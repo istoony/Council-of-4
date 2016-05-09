@@ -5,11 +5,12 @@ public class moreMoney implements Bonus {
 
 	public moreMoney(int n) {
 		this.howMany=n;
-		return;
+		
 	}
 	public void giveBonus(Player p) {
+		
 		p.setMoney(p.getMoney+this.howMany);
-		return;
+		
 	}
 
 }
