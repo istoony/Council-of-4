@@ -6,12 +6,11 @@ public class MoreMoney implements Bonus {
 	int howMany; //how many money to give to the player
 
 	public MoreMoney(int n) {
-		this.howMany=n;
+		howMany=n;
 		
 	}
 	public void giveBonus(Player p) {
-		
-		p.setMoney(p.getMoney()+this.howMany);
+		p.setMoney(p.getMoney()+howMany);
 		
 	}
 

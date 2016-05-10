@@ -6,10 +6,10 @@ public class MoreHelpers implements Bonus {
 	int howMany; //how many helpers to give
 	
 	public MoreHelpers(int n) {
-		this.howMany=n;
+		howMany=n;
 	}
 	
 	public void giveBonus(Player p) {
-		p.setHelpers(p.getHelpers()+this.howMany);
+		p.setHelpers(p.getHelpers()+howMany);
 	}
 }
