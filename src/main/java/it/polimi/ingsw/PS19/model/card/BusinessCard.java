@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.card;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.paramiter.RegionType;
 
 public class BusinessCard implements Card {
