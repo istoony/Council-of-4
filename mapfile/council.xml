@@ -1,18 +1,58 @@
 
 <map>
+	
 	<citycolors>
+		
 		<citycolor id="Yellow">
+			
 			<bonus-more-victory-points>3</bonus-more-victory-points>
+		
 		</citycolor>
+
 		<citycolor id="Blue">
+
 			<bonus-more-victory-points>5</bonus-more-victory-points>
+		
 		</citycolor>
+
 		<citycolor id="Red">
+
 			<bonus-more-victory-points>7</bonus-more-victory-points>
+
 		</citycolor>
+
 		<citycolor id="Gray">
+
 			<bonus-more-victory-points>9</bonus-more-victory-points>
+
 		</citycolor>
+	
 	</citycolors>
+
+
+	
+	<regiontypes>
+		<regiontype id="Mountain">
+		</regiontype>
+		<regiontype id="Plain">
+		</regiontype>
+		<regiontype id="Sea">
+		</regiontype>
+	</regiontypes>
+
+	<regions>
+		<region>
+			<id>1</id>
+			<type>Sea</type>
+			<roadsRight>2</roadsRight>
+			<roadsLeft>0</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<city1>Atene</city1>
+			<city2>Berlino</city2>
+			<city3>Copenaghen</city3>
+			<city4>Dublino</city4>
+			<city5>Firenze</city5>
+		</region>
+	</regions>
 
 </map>
