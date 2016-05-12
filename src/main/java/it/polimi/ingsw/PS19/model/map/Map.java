@@ -30,7 +30,7 @@ public class Map
 
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 					
-			NodeList nList = doc.getElementsByTagName("citycolor");
+			NodeList nList = doc.getElementsByTagName("city");
 					
 			System.out.println("----------------------------");
 
@@ -44,12 +44,18 @@ public class Map
 
 					Element eElement = (Element) nNode;
 
-					System.out.println("color: " + eElement.getAttribute("id"));
-					System.out.println("bonus : " + eElement.getElementsByTagName("bonus-more-victory-points").item(0).getTextContent());
+					System.out.println("id: " + eElement.getAttribute("id"));
+					System.out.println("Number of near cities: " + eElement.getElementsByTagName("nOfRoads").item(0).getTextContent());
+					int provaint = Integer.parseInt(eElement.getElementsByTagName("nOfRoads").item(0).getTextContent());
+					for(int k=0; k<provaint; k++){
+					System.out.println("cities: " + eElement.getElementsByTagName("road").item(k).getTextContent());
+					}
+					//System.out.println("bonus : " + eElement.getElementsByTagName("bonus-more-victory-points").item(0).getTextContent());
 				/*	System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
 					System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
 					System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
 */
+
 				}
 			}
 		    } catch (Exception e) {

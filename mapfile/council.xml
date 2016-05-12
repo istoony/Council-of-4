@@ -26,6 +26,12 @@
 			<bonus-more-victory-points>9</bonus-more-victory-points>
 
 		</citycolor>
+
+		<citycolor id="Violet">
+
+			<bonus-more-victory-points>0</bonus-more-victory-points>
+
+		</citycolor>
 	
 	</citycolors>
 
@@ -41,18 +47,152 @@
 	</regiontypes>
 
 	<regions>
-		<region>
-			<id>1</id>
+		<region id="1">
 			<type>Sea</type>
-			<roadsRight>2</roadsRight>
+			<roadsRight>3</roadsRight>
 			<roadsLeft>0</roadsLeft>
 			<nOfCities>5</nOfCities>
-			<city1>Atene</city1>
-			<city2>Berlino</city2>
-			<city3>Copenaghen</city3>
-			<city4>Dublino</city4>
-			<city5>Firenze</city5>
+			<cityid>1</cityid>
+			<cityid>2</cityid>
+			<cityid>3</cityid>
+			<cityid>4</cityid>
+			<cityid>5</cityid>
+		</region>
+		<region id="2">
+			<type>Plain</type>
+			<roadsRight>3</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>6</cityid>
+			<cityid>7</cityid>
+			<cityid>8</cityid>
+			<cityid>9</cityid>
+			<cityid>10</cityid>
+		</region>
+		<region id="3">
+			<type>Mountain</type>
+			<roadsRight>0</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
 		</region>
 	</regions>
-
+	<cities>
+		<city id="1">
+			<name>Atene</name>
+			<color>Blue</color>
+			<nOfRoads>2</nOfRoads>
+			<road>2</road>
+			<road>3</road>
+		</city>
+		<city id="2">
+			<name>Berlino</name>
+			<color>Yellow</color>
+			<nOfRoads>2</nOfRoads>
+			<road>1</road>
+			<road>OUT_RIGHT</road>
+		</city>
+		<city id="3">
+			<name>Copenaghen</name>
+			<color>Red</color>
+			<nOfRoads>3</nOfRoads>
+			<road>1</road>
+			<road>4</road>
+			<road>5</road>
+		</city>
+		<city id="4">
+			<name>Dublino</name>
+			<color>Gray</color>
+			<nOfRoads>2</nOfRoads>
+			<road>3</road>
+			<road>5</road>
+		</city>
+		<city id="5">
+			<name>Firenze</name>
+			<color>Gray</color>
+			<nOfRoads>3</nOfRoads>
+			<road>3</road>
+			<road>4</road>
+			<road>OUT_RIGHT</road>
+		</city>
+		<city id="6">
+			<name>Kiev</name>
+			<color>Yellow</color>
+			<nOfRoads>2</nOfRoads>
+			<road>7</road>
+			<road>OUT_LEFT</road>
+		</city>
+		<city id="7">
+			<name>Lisbona</name>
+			<color>Red</color>
+			<nOfRoads>3</nOfRoads>
+			<road>6</road>
+			<road>8</road>
+			<road>OUT_RIGHT</road>
+		</city>
+		<city id="8">
+			<name>Mosca</name>
+			<color>Violet</color>
+			<nOfRoads>4</nOfRoads>
+			<road>7</road>
+			<road>9</road>
+			<road>10</road>
+			<road>OUT_RIGHT</road>
+		</city>
+		<city id="9">
+			<name>Novegro</name>
+			<color>Gray</color>
+			<nOfRoads>2</nOfRoads>
+			<road>8</road>
+			<road>OUT_LEFT</road>
+		</city>
+		<city id="10">
+			<name>Orebro</name>
+			<color>Red</color>
+			<nOfRoads>3</nOfRoads>
+			<road>8</road>
+			<road>OUT_LEFT</road>
+			<road>OUT_RIGHT</road>
+		</city>
+		<city id="11">
+			<name>Parigi</name>
+			<color>Yellow</color>
+			<nOfRoads>2</nOfRoads>
+			<road>12</road>
+			<road>OUT_LEFT</road>
+		</city>
+		<city id="12">
+			<name>Roma</name>
+			<color>Red</color>
+			<nOfRoads>2</nOfRoads>
+			<road>11</road>
+			<road>13</road>
+		</city>
+		<city id="13">
+			<name>Stoccolma</name>
+			<color>Yellow</color>
+			<nOfRoads>2</nOfRoads>
+			<road>12</road>
+			<road>14</road>
+			<road>15</road>
+		</city>
+		<city id="14">
+			<name>Tirana</name>
+			<color>Gray</color>
+			<nOfRoads>2</nOfRoads>
+			<road>13</road>
+			<road>OUT_LEFT</road>
+		</city>
+		<city id="15">
+			<name>Zanzibar</name>
+			<color>Red</color>
+			<nOfRoads>2</nOfRoads>
+			<road>13</road>
+			<road>OUT_LEFT</road>
+		</city>
+	</cities>
 </map>
