@@ -1,0 +1,18 @@
+
+<map>
+	<citycolors>
+		<citycolor id="Yellow">
+			<bonus-more-victory-points>3</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="Blue">
+			<bonus-more-victory-points>5</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="Red">
+			<bonus-more-victory-points>7</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="Gray">
+			<bonus-more-victory-points>9</bonus-more-victory-points>
+		</citycolor>
+	</citycolors>
+
+</map>

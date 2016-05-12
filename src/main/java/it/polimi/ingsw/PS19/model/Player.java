@@ -1,5 +1,12 @@
 package it.polimi.ingsw.PS19.model;
 
+import java.util.ArrayList;
+
+import javax.naming.spi.DirStateFactory.Result;
+
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+
 public class Player {
 	int money;
 	int helpers;
@@ -7,6 +14,12 @@ public class Player {
 	int nobilityPoints;
 	int mainActionCounter;
 	int fastActionCounter;
+	
+	ArrayList<BusinessCard> freebusinesscard;
+	ArrayList<BusinessCard> usedbusinesscard;
+	ArrayList<PoliticsCard> politiccard;
+	
+	
 	
 	
 	//methods
@@ -56,10 +69,20 @@ public class Player {
 	public int getHelpers() {
 		return helpers;
 	}
-	public void setHelpers(int h) {
-		this.helpers = h;
+	public void setHelpers(int helpers) {
+		this.helpers = helpers;
 	}
 	
+	public boolean findPoliticsCard(PoliticsCard card)
+	{
+		for (PoliticsCard politics : politiccard) 
+		{
+			if(politics.equals(card))
+				return true;
+		}
+		return false;
+		
+	}
 	
 	
 }

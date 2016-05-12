@@ -20,5 +20,12 @@ public class PoliticsCard implements Card {
 	{
 		return color;
 	}
+	
+	public boolean equals(PoliticsCard c) 
+	{
+		if(c.getColor() == this.color)
+			return true;
+		return false;
+	}
 
 }

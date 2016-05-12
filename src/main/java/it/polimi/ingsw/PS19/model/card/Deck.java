@@ -8,6 +8,7 @@ public abstract class Deck
 	
 	public Card getFirstCard()
 	{
-		return card.get(card.size()-1);
+		Card card = card.get(card.size()-1);
+		return card;
 	}
 }
