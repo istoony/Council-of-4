@@ -1,0 +1,22 @@
+<mapcolor>	
+	<councilcolors>		
+		
+		<numberofelement>6</numberofelement>
+		
+		<councilcolor>RED</councilcolor>
+		<councilcolor>BLUE</councilcolor>
+		<councilcolor>ORANGE</councilcolor>
+		<councilcolor>BLACK</councilcolor>
+		<councilcolor>WHITE</councilcolor>
+		<councilcolor>PINK</councilcolor>
+	
+	
+	</councilcolors>
+	<politicscard>
+
+		<numberofcard>60</numberofcard>
+
+	</politicscard>
+	
+	<numberofcouncillorpercolor>10</numberofcouncillorpercolor>
+</mapcolor>

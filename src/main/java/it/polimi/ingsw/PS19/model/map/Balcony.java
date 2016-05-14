@@ -7,7 +7,7 @@ import it.polimi.ingsw.PS19.model.paramiter.CouncilColor;
 
 public class Balcony 
 {
-	private ArrayList<CouncilColor> councilcolor = new ArrayList();
+	private ArrayList<Color> councilcolor = new ArrayList();
 	private static final int NUMBER_OF_COUNCIL = 4;
 	
 	private AvaibleCouncillor avaiblecouncillor;
@@ -18,6 +18,19 @@ public class Balcony
 		for(int i = 0; i< NUMBER_OF_COUNCIL; i++)
 		{
 			CouncilColor color = randomCouncilColor();
+			if(avaiblecouncillor.decrement(color) == true)
+				councilcolor.add(color);
+			else
+				i--;
+		}
+	}
+	
+	public Balcony(AvaibleCouncillor avaiblecouncillor) 
+	{
+		this.avaiblecouncillor = avaiblecouncillor;
+		for(int i = 0; i< NUMBER_OF_COUNCIL; i++)
+		{
+			Color color = avaiblecouncillor.get
 			if(avaiblecouncillor.decrement(color) == true)
 				councilcolor.add(color);
 			else
