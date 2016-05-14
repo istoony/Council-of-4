@@ -38,17 +38,20 @@
 
 	
 	<regiontypes>
-		<regiontype id="Mountain">
+		<regiontype pos="0">
+			<name>Sea</name>
 		</regiontype>
-		<regiontype id="Plain">
+		<regiontype pos="1">
+			<name>Plain</name>
 		</regiontype>
-		<regiontype id="Sea">
+		<regiontype poa="2">
+			<name>Mountain</name>
 		</regiontype>
 	</regiontypes>
 
 	<regions>
 		<region id="1">
-			<type>Sea</type>
+			<type>0</type>
 			<roadsRight>3</roadsRight>
 			<roadsLeft>0</roadsLeft>
 			<nOfCities>5</nOfCities>
@@ -59,7 +62,7 @@
 			<cityid>5</cityid>
 		</region>
 		<region id="2">
-			<type>Plain</type>
+			<type>1</type>
 			<roadsRight>3</roadsRight>
 			<roadsLeft>3</roadsLeft>
 			<nOfCities>5</nOfCities>
@@ -70,7 +73,7 @@
 			<cityid>10</cityid>
 		</region>
 		<region id="3">
-			<type>Mountain</type>
+			<type>2</type>
 			<roadsRight>0</roadsRight>
 			<roadsLeft>3</roadsLeft>
 			<nOfCities>5</nOfCities>

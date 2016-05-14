@@ -4,3 +4,4 @@ public enum RegionType
 {
 	MOUNTAIN, HILL, PLAIN
 }
+//INCOERENTE, da rivedere con file XML

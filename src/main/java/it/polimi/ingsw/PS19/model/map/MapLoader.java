@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.map;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,16 +13,63 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.PS19.model.Constants;
+
 public class MapLoader {
 	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
 	
-	String type;
+	int type;
 	int id;
 	int outRight;
 	int outLeft;
 	
 	
-	public  static ArrayList<Region[]> wizard(String xmlfile){
+	
+	public static Map builder(){
+		ArrayList<MapLoader> map = new ArrayList<MapLoader>();
+		
+		map = MapLoader.mapFileReading(Constants.MAP_FILE);
+		if(map.isEmpty()){
+			return 
+		}
+		map = MapLoader.findrandomLegalMap(map);
+		if(map.isEmpty()){
+			return 
+		}
+		
+		//continue to map construction
+	}
+	
+	
+	private static ArrayList<MapLoader> findrandomLegalMap(ArrayList<MapLoader> regionlist){
+
+		ArrayList<MapLoader> legalMap = new ArrayList<MapLoader>();
+		ArrayList<MapLoader> typecountertemp;
+		int count;
+		
+		for(int i=0; i<Constants.MAX_REGIONS; i++){
+			count=0;
+			typecountertemp = new ArrayList<MapLoader>();
+			for(MapLoader el : regionlist){
+				if(el.type==i&&(i==0||(el.outRight==legalMap.get(i-1).outLeft))){
+					count++;
+					typecountertemp.add(el);
+				}
+			}
+			Random rand = new Random();
+			int k = Math.abs(rand.nextInt())%count;
+			legalMap.add(i, typecountertemp.get(i));
+			
+		}
+		
+		return legalMap;
+		
+		
+		
+
+	}	
+	
+	private  static ArrayList<MapLoader> mapFileReading(String xmlfile){
 		
 		ArrayList<MapLoader> maplist = new ArrayList<MapLoader>();
 		
@@ -47,36 +95,28 @@ public class MapLoader {
 
 					Element e = (Element) nNode;
 					
-					String s = e.getElementsByTagName("type"))item(0).getTextContent();
+					int ty=Integer.parseInt(e.getElementsByTagName("type").item(0).getTextContent());
+					int id = Integer.parseInt(e.getAttribute("id"));
+					int outLeft = Integer.parseInt(e.getElementsByTagName("roadsLeft").item(0).getTextContent());
+					int outRight = Integer.parseInt(e.getElementsByTagName("roadsRight").item(0).getTextContent());					
 					
-					maplist.add(new MapLoader(s, )
-					
-					System.out.println("id: " + e.getAttribute("id"));
-					System.out.println("Number of near cities: " + e.getElementsByTagName("nOfRoads").item(0).getTextContent());
-					int provaint = Integer.parseInt(e.getElementsByTagName("nOfRoads").item(0).getTextContent());
-					for(int k=0; k<provaint; k++){
-					System.out.println("cities: " + e.getElementsByTagName("road").item(k).getTextContent());
-					}
-
+					maplist.add(new MapLoader(ty, id, outRight, outLeft));
 
 				}
 			}
+			
+			return maplist;
+			
 		    } catch (Exception e) {
 		    	e.printStackTrace();
+		    	return maplist;
 		    }
 	}
 	
-	
-	private Element[] RegionsConstrainResolver(Element[] solution, NodeList nlist){
-		
-		
-		
-		
-		
-	}
+
 
 	
-	private MapLoader(String t, int i, int dx, int sx){
+	private MapLoader(int t, int i, int dx, int sx){
 		type=t;
 		id=i;
 		outRight=dx;
