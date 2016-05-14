@@ -1,30 +1,31 @@
 package it.polimi.ingsw.PS19.model.map;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-import it.polimi.ingsw.PS19.model.paramiter.CouncilColor;
+import it.polimi.ingsw.PS19.model.paramiter.ColorManager;
 
 public class AvaibleCouncillor 
 {
-	private Map<CouncilColor,Integer> avaiblecouncillor;
+	private Map<Color,Integer> avaiblecouncillor;
+	private ColorManager listofcolors;
 	
 	/**
 	 * Impostare per ogni colore il numero di consiglieri disponibili
 	 */
-	public AvaibleCouncillor() 
+	public AvaibleCouncillor(int numberoffreecouncillor, ColorManager colors) 
 	{
-		avaiblecouncillor = new TreeMap<CouncilColor, Integer>();
-		int i = 2;
-		for (CouncilColor c : CouncilColor.values()) 
+		listofcolors = colors;
+		avaiblecouncillor = new HashMap<Color, Integer>();
+		
+		for (Color color : listofcolors.getColors())
 		{
-			avaiblecouncillor.put(c, i);
-			i++;
+			avaiblecouncillor.put(color, numberoffreecouncillor);
 		}
 	}
 	
-	public boolean decrement(CouncilColor color)
+	public boolean decrement(Color color)
 	{
 		Integer numberofcouncillor = avaiblecouncillor.get(color);
 		if(numberofcouncillor.intValue() == 0)
@@ -35,7 +36,7 @@ public class AvaibleCouncillor
 		
 	}
 	
-	public void increment(CouncilColor color)
+	public void increment(Color color)
 	{
 		Integer numberofcouncillor = avaiblecouncillor.get(color);
 		numberofcouncillor++;
@@ -45,7 +46,7 @@ public class AvaibleCouncillor
 	public String toString() 
 	{
 		String s = "\n+++++++++++++\n";
-		for (CouncilColor c : CouncilColor.values()) 
+		for (Color c : listofcolors.getColors()) 
 		{
 			s = s + c.toString() + " " + avaiblecouncillor.get(c) + "     ";
 		}

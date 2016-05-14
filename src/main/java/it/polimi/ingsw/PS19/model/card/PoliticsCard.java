@@ -1,22 +1,18 @@
 package it.polimi.ingsw.PS19.model.card;
 
-import it.polimi.ingsw.PS19.model.paramiter.CouncilColor;
+import java.awt.Color;
+
 
 public class PoliticsCard implements Card {
 	
-	CouncilColor color;
-	
-	
-	/**
-	 * Set card color
-	 * @param color
-	 */
-	public void setColor(CouncilColor color) 
+	private Color color;
+
+	public PoliticsCard(Color color) 
 	{
 		this.color = color;
 	}
 	
-	public CouncilColor getColor() 
+	public Color getColor() 
 	{
 		return color;
 	}
@@ -26,6 +22,12 @@ public class PoliticsCard implements Card {
 		if(c.getColor() == this.color)
 			return true;
 		return false;
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return color.toString();
 	}
 
 }
