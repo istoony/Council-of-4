@@ -44,7 +44,7 @@
 		<regiontype pos="1">
 			<name>Plain</name>
 		</regiontype>
-		<regiontype poa="2">
+		<regiontype pos="2">
 			<name>Mountain</name>
 		</regiontype>
 	</regiontypes>

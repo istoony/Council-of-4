@@ -23,19 +23,25 @@ public class MapLoader {
 	int outRight;
 	int outLeft;
 	
+	public static void main(String[] args){
+		MapLoader.builder();
+	}
 	
-	
-	public static Map builder(){
-		ArrayList<MapLoader> map = new ArrayList<MapLoader>();
+	public static void builder(){
+		ArrayList<MapLoader> map;
 		
-		map = MapLoader.mapFileReading(Constants.MAP_FILE);
+		map = MapLoader.mapFileReading(Constants.FILE_TEST);
 		if(map.isEmpty()){
-			return 
+			return;
 		}
 		map = MapLoader.findrandomLegalMap(map);
 		if(map.isEmpty()){
-			return 
+			return;
 		}
+		for(MapLoader el : map){
+			System.out.println(el.id);
+		}
+		
 		
 		//continue to map construction
 	}
@@ -43,31 +49,60 @@ public class MapLoader {
 	
 	private static ArrayList<MapLoader> findrandomLegalMap(ArrayList<MapLoader> regionlist){
 
-		ArrayList<MapLoader> legalMap = new ArrayList<MapLoader>();
-		ArrayList<MapLoader> typecountertemp;
-		int count;
+		ArrayList<MapLoader> legalMap;
+		ArrayList<ArrayList<MapLoader>> maplist = new ArrayList<ArrayList<MapLoader>>();
+		Random rand = new Random();
 		
 		for(int i=0; i<Constants.MAX_REGIONS; i++){
-			count=0;
-			typecountertemp = new ArrayList<MapLoader>();
+			ArrayList<MapLoader> typecountertemp = new ArrayList<MapLoader>();
 			for(MapLoader el : regionlist){
-				if(el.type==i&&(i==0||(el.outRight==legalMap.get(i-1).outLeft))){
-					count++;
+				if(el.type==i){
 					typecountertemp.add(el);
+					
 				}
 			}
-			Random rand = new Random();
-			int k = Math.abs(rand.nextInt())%count;
-			legalMap.add(i, typecountertemp.get(i));
-			
+			maplist.add(typecountertemp);
 		}
 		
+		maplist = MapLoader.searchLegalMaps(maplist);
+		int k = maplist.size();
+		int i = Math.abs(rand.nextInt()%k);
+		legalMap = maplist.get(i);
+		
 		return legalMap;
-		
-		
-		
-
 	}	
+	
+	
+	
+	private static ArrayList<ArrayList<MapLoader>> searchLegalMaps(ArrayList<ArrayList<MapLoader>> maplist){
+		ArrayList<MapLoader> type1 = maplist.get(0);
+		ArrayList<MapLoader> type2 = maplist.get(1);
+		ArrayList<MapLoader> type3 = maplist.get(2);
+		ArrayList<MapLoader> legal; 
+		ArrayList<ArrayList<MapLoader>> allLegals = new ArrayList<ArrayList<MapLoader>>();
+		for(MapLoader el1 : type1){
+			legal = new ArrayList<MapLoader>();
+			legal.add(el1);
+			for(MapLoader el2 : type2){
+				if(el1.outRight==el2.outLeft){
+					legal.add(el2);
+					for(MapLoader el3 : type3){
+						if(el2.outRight==el3.outLeft){
+							legal.add(el3);
+							allLegals.add(legal);
+						}
+					}
+				}
+			}
+			
+		}
+		return allLegals;
+		
+	}
+	
+
+		
+	
 	
 	private  static ArrayList<MapLoader> mapFileReading(String xmlfile){
 		
@@ -103,7 +138,7 @@ public class MapLoader {
 					maplist.add(new MapLoader(ty, id, outRight, outLeft));
 
 				}
-			}
+			}	
 			
 			return maplist;
 			
