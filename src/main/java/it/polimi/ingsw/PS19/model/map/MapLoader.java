@@ -1,46 +1,50 @@
 package it.polimi.ingsw.PS19.model.map;
 
-import java.io.File;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.Constants;
 
 public class MapLoader {
 	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
+	
+	private static final String MAP_FILE="mapfile/council.xml";
 	
 	int type;
 	int id;
 	int outRight;
 	int outLeft;
 	
+	private MapLoader(int t, int i, int dx, int sx){
+		type=t;
+		id=i;
+		outRight=dx;
+		outLeft=sx;
+	}
+	
+	
+	//test main
 	public static void main(String[] args){
 		MapLoader.builder();
 	}
 	
-	public static void builder(){
+	//change return type to map
+	public static void builder() throws IllegalMapException{
 		ArrayList<MapLoader> map;
 		
-		map = MapLoader.mapFileReading(Constants.FILE_TEST);
+		map = MapLoader.mapFileReading(MapLoader.MAP_FILE);
 		if(map.isEmpty()){
-			return;
+			throw new IllegalMapException("Incorrect map file!");
 		}
 		map = MapLoader.findrandomLegalMap(map);
 		if(map.isEmpty()){
-			return;
+			throw new IllegalMapException("Incorrect map file!");
 		}
-		for(MapLoader el : map){
-			System.out.println(el.id);
-		}
+
 		
 		
 		//continue to map construction
@@ -53,7 +57,7 @@ public class MapLoader {
 		ArrayList<ArrayList<MapLoader>> maplist = new ArrayList<ArrayList<MapLoader>>();
 		Random rand = new Random();
 		
-		for(int i=0; i<Constants.MAX_REGIONS; i++){
+		for(int i=0; i<3; i++){
 			ArrayList<MapLoader> typecountertemp = new ArrayList<MapLoader>();
 			for(MapLoader el : regionlist){
 				if(el.type==i){
@@ -97,7 +101,6 @@ public class MapLoader {
 			
 		}
 		return allLegals;
-		
 	}
 	
 
@@ -108,54 +111,26 @@ public class MapLoader {
 		
 		ArrayList<MapLoader> maplist = new ArrayList<MapLoader>();
 		
-		try {
+		NodeList nList = FileReader.XMLReader(xmlfile, "region");
 
-			File fXmlFile = new File(xmlfile);
-			
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+		for (int temp = 0; temp < nList.getLength(); temp++) {
+			Node nNode = nList.item(temp);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element e = (Element) nNode;
 					
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-			doc.getDocumentElement().normalize();
-			
-			NodeList nList = doc.getElementsByTagName("region");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
-		
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					Element e = (Element) nNode;
+				int ty=Integer.parseInt(e.getElementsByTagName("type").item(0).getTextContent());
+				int id = Integer.parseInt(e.getAttribute("id"));
+				int outLeft = Integer.parseInt(e.getElementsByTagName("roadsLeft").item(0).getTextContent());
+				int outRight = Integer.parseInt(e.getElementsByTagName("roadsRight").item(0).getTextContent());					
 					
-					int ty=Integer.parseInt(e.getElementsByTagName("type").item(0).getTextContent());
-					int id = Integer.parseInt(e.getAttribute("id"));
-					int outLeft = Integer.parseInt(e.getElementsByTagName("roadsLeft").item(0).getTextContent());
-					int outRight = Integer.parseInt(e.getElementsByTagName("roadsRight").item(0).getTextContent());					
-					
-					maplist.add(new MapLoader(ty, id, outRight, outLeft));
+				maplist.add(new MapLoader(ty, id, outRight, outLeft));
 
-				}
-			}	
+			}
+		}	
 			
-			return maplist;
+		return maplist;
 			
-		    } catch (Exception e) {
-		    	e.printStackTrace();
-		    	return maplist;
-		    }
-	}
-	
 
-
-	
-	private MapLoader(int t, int i, int dx, int sx){
-		type=t;
-		id=i;
-		outRight=dx;
-		outLeft=sx;
 	}
 	
 }
