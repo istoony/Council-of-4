@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.paramiter;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -77,7 +78,19 @@ public class ColorManager
 		}
 	}
 	
-	@Override
+	public ColorManager(Color color)
+	{
+		colors = new ArrayList<Color>();
+		colors.add(color);
+		size++;	
+	}
+	
+	public void addColor(Color color)
+	{
+		colors.add(color);
+		size++;
+	}
+@Override
 	public String toString() 
 	{
 		String s = "SIZE: " + size + "\n";
@@ -86,7 +99,6 @@ public class ColorManager
 		return s;
 			
 	}
-	
 	public int getSize() {
 		return size;
 	}
@@ -94,14 +106,10 @@ public class ColorManager
 	{
 		return colors;
 	}
-	/*
-	public static void main(String[] args)
+	public Color getRandomColor()
 	{
-		ArrayList<String> s = new ArrayList<String>();
-		s.add("BLACK");
-		s.add("RED");
-		s.add("WHITE");
-		ColorManager color = new ColorManager(s);
-		System.out.println(color.toString());
-	}*/
+		Random rand = new Random();
+		
+		return colors.get(rand.nextInt() % size);
+	}
 }

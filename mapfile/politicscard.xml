@@ -1,3 +1,14 @@
+<!-- bonus-more-money
+    bonus-more-helper
+    bonus-more-nobilitytrack
+    bonus-more-politicscard
+    bonus-another-turn
+    bonus-more-victory-points
+    bonus-more-business-card
+    bonus-get-business-card-bonus
+    bonus-get-two-token
+    bonus-get-city-bonus -->
+
 <mapcolor>	
 	<councilcolors>		
 		
@@ -10,7 +21,6 @@
 		<councilcolor>WHITE</councilcolor>
 		<councilcolor>PINK</councilcolor>
 	
-	
 	</councilcolors>
 	<politicscard>
 
@@ -18,5 +28,56 @@
 
 	</politicscard>
 	
-	<numberofcouncillorpercolor>10</numberofcouncillorpercolor>
+	<businesscard>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-helper</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-victory-helper</type>
+				<parameter>2</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+		</card>
+	</businesscard>
 </mapcolor>
