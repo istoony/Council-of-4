@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.paramiter.RegionType;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class BusinessCard implements Card {
 
@@ -43,10 +43,7 @@ public class BusinessCard implements Card {
 		String s = "";
 		s = s + "REGION: " + type.name() + "\n";
 		for (Bonus b : bonus) 
-		{
 			s = s + b.getClass().getName() + "  ";
-			System.out.println("bonus12345");
-		}
 		s = s + "\n";
 		
 		return s;

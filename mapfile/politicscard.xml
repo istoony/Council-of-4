@@ -10,21 +10,21 @@
     bonus-get-city-bonus -->
 
 <mapcolor>	
-	<councilcolors>		
-		
-		<numberofelement>6</numberofelement>
-		
-		<councilcolor>RED</councilcolor>
-		<councilcolor>BLUE</councilcolor>
-		<councilcolor>ORANGE</councilcolor>
-		<councilcolor>BLACK</councilcolor>
-		<councilcolor>WHITE</councilcolor>
-		<councilcolor>PINK</councilcolor>
+	<colors>	
+		<color>#FF0000</color>
+		<color>#0000FF</color>
+		<color>#FF7F00</color>
+		<color>#000000</color>
+		<color>#FFFFFF</color>
+		<color>#FFC0CB</color>
+	</colors>
 	
-	</councilcolors>
+	<councillornumber>10</councillornumber>
+	
 	<politicscard>
 
-		<numberofcard>60</numberofcard>
+		<numberofcard>12</numberofcard>
+		<numberofjoker>10</numberofjoker>
 
 	</politicscard>
 	
@@ -33,8 +33,9 @@
 			<region>MOUNTAIN</region>
 			<bonus>
 				<type>bonus-more-helper</type>
-				<parameter>2</parameter>
+				<parameter>1</parameter>
 			</bonus>
+			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
@@ -42,28 +43,47 @@
 				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
+			<numberofcities>1</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-more-victory-helper</type>
-				<parameter>2</parameter>
+				<type>bonus-more-victory-points</type>
+				<parameter>3</parameter>
 			</bonus>
 			<bonus>
 				<type>bonus-more-money</type>
-				<parameter>2</parameter>
+				<parameter>4</parameter>
 			</bonus>
 			<bonus>
 				<type>bonus-more-victory-points</type>
-				<parameter>2</parameter>
+				<parameter>5</parameter>
 			</bonus>
+			<numberofcities>3</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
 				<type>bonus-more-victory-points</type>
-				<parameter>2</parameter>
+				<parameter>6</parameter>
 			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>7</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>8</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
 		</card>
 		<card>
 			<region>HILL</region>
@@ -71,6 +91,43 @@
 				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
+			<numberofcities>5</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>3</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>70</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>5</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>6</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>5</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
 		</card>
 		<card>
 			<region>PLAIN</region>
@@ -78,6 +135,84 @@
 				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>8</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>3</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>70</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>5</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>6</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>5</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
 		</card>
 	</businesscard>
+	
+	<nobilitypath>
+		<position>
+			<numberofposition>3</numberofposition>
+			<bonus>
+				<type>bonus-more-helper</type>
+				<parameter>1</parameter>
+			</bonus>
+		</position>
+		<position>
+			<numberofposition>5</numberofposition>
+			<bonus>
+				<type>bonus-more-helper</type>
+				<parameter>1</parameter>
+			</bonus>
+		</position>
+	</nobilitypath>
 </mapcolor>

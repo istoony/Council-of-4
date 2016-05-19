@@ -3,7 +3,7 @@ package it.polimi.ingsw.PS19.model.map;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import it.polimi.ingsw.PS19.model.paramiter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 
 public class Balcony 
