@@ -91,6 +91,6 @@ public class ColorManager
 	{
 		Random rand = new Random();
 		
-		return colors.get(rand.nextInt() % size);
+		return colors.get(Math.abs(rand.nextInt()) % size);
 	}
 }

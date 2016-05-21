@@ -206,6 +206,14 @@
 				<type>bonus-more-helper</type>
 				<parameter>1</parameter>
 			</bonus>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>10</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
 		</position>
 		<position>
 			<numberofposition>5</numberofposition>

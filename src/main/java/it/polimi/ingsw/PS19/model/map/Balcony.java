@@ -15,6 +15,7 @@ public class Balcony
 		
 	public Balcony(AvaibleCouncillor avaiblecouncillor, ColorManager colormanager) 
 	{
+		councilcolor = new ArrayList<Color>();
 		this.avaiblecouncillor = avaiblecouncillor;
 		for(int i = 0; i< NUMBER_OF_COUNCILLOR; i++)
 		{
