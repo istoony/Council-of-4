@@ -12,7 +12,7 @@ import org.w3c.dom.NodeList;
 public class MapLoader {
 	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
 	
-	private static final String MAP_FILE="mapfile/council.xml";
+	static final String MAP_FILE="mapfile/council.xml";
 	
 	int type;
 	int id;
@@ -44,6 +44,7 @@ public class MapLoader {
 		if(map.isEmpty()){
 			throw new IllegalMapException("Incorrect map file!");
 		}
+		CityLoader.CitiesReader(map);
 
 		
 		
