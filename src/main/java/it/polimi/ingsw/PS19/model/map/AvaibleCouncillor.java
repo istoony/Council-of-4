@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.polimi.ingsw.PS19.model.paramiter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 public class AvaibleCouncillor 
 {
@@ -20,9 +20,7 @@ public class AvaibleCouncillor
 		avaiblecouncillor = new HashMap<Color, Integer>();
 		
 		for (Color color : listofcolors.getColors())
-		{
 			avaiblecouncillor.put(color, numberoffreecouncillor);
-		}
 	}
 	
 	public boolean decrement(Color color)

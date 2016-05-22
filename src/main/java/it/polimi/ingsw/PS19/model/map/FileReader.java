@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 public class FileReader {
 	
-	static NodeList XMLReader(String nomefile, String nomeNodo){
+	public static NodeList XMLReader(String nomefile, String nomeNodo){
 		try {
 
 			File fXmlFile = new File(nomefile);
