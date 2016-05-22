@@ -2,8 +2,6 @@ package it.polimi.ingsw.PS19.model;
 
 import java.util.ArrayList;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 

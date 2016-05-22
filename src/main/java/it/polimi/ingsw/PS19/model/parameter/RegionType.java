@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.paramiter;
+package it.polimi.ingsw.PS19.model.parameter;
 
 public enum RegionType 
 {
