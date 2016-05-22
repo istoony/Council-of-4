@@ -1,12 +1,14 @@
 package it.polimi.ingsw.PS19.model.map;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 public class BalconyFactory 
 {
-	public static void CreateBalcony(/*ArrayList<Region> regions,*/ King king, String pathfile) 
+	public static void createBalcony(ArrayList<Region> regions, King king, String pathfile) 
 	{
 		ColorManager colors = new ColorManager(pathfile);
 		

@@ -8,6 +8,7 @@ import it.polimi.ingsw.PS19.model.Model;
 public class GameController implements Observer
 {
 	private Model model;
+	private int numberofplayer;
 	
 	
 	public GameController() 
