@@ -24,7 +24,7 @@ public class DeckFactory
 	private static final String BUSINESSCARD = "businesscard";
 	private static final String JOKERCOLOR = "#FEFEFE";
 	
-	public static Deck businessDeckFactory(String pathfile, RegionType type) 
+	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type) 
 	{
 		try {
 
@@ -38,7 +38,7 @@ public class DeckFactory
 			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 			doc.getDocumentElement().normalize();
 			
-			Deck businessdeck = new BusinessDeck();
+			BusinessDeck businessdeck = new BusinessDeck();
 			if(doc.getElementsByTagName(BUSINESSCARD).getLength()!=1)
 				return null;		//potrei lanciare un eccezione
 			

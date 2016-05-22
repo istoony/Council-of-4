@@ -6,6 +6,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+
 public class CityLoader {
 	
 	
@@ -43,6 +46,12 @@ public class CityLoader {
 						if(el.id==Integer.parseInt(e.getAttribute("id"))){
 							el.setParameters(e.getElementsByTagName("name").item(0).getTextContent(), e.getElementsByTagName("color").item(0).getTextContent());
 							el.addNear(CityLoader.retrieveNear(e));
+							int numberofbonus = e.getElementsByTagName("bonus").getLength();
+							for(int i = 0; i < numberofbonus; i++)
+							{
+								Bonus bonus = BonusFactory.getBonus(e.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(e.getElementsByTagName("parameter").item(i).getTextContent()));
+								el.addBonus(bonus);
+							}
 							
 					}		
 				}	

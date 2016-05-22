@@ -91,6 +91,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>2</road>
 			<road>3</road>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>5</parameter>
+			</bonus>
 		</city>
 		<city id="2">
 			<name>Berlino</name>
@@ -98,6 +102,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>1</road>
 			<road>-1</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="3">
 			<name>Copenaghen</name>
@@ -106,6 +114,10 @@
 			<road>1</road>
 			<road>4</road>
 			<road>5</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="4">
 			<name>Dublino</name>
@@ -113,6 +125,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>3</road>
 			<road>-3</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="5">
 			<name>Firenze</name>
@@ -121,6 +137,10 @@
 			<road>3</road>
 			<road>4</road>
 			<road>-2</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="6">
 			<name>Kiev</name>
@@ -128,6 +148,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>7</road>
 			<road>-1001</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="7">
 			<name>Lisbona</name>
@@ -136,6 +160,10 @@
 			<road>6</road>
 			<road>8</road>
 			<road>-1</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="8">
 			<name>Mosca</name>
@@ -145,6 +173,10 @@
 			<road>9</road>
 			<road>10</road>
 			<road>-2</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="9">
 			<name>Novegro</name>
@@ -152,6 +184,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>8</road>
 			<road>-1002</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="10">
 			<name>Orebro</name>
@@ -160,6 +196,10 @@
 			<road>8</road>
 			<road>-1003</road>
 			<road>-3</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="11">
 			<name>Parigi</name>
@@ -167,6 +207,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>12</road>
 			<road>-1001</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="12">
 			<name>Roma</name>
@@ -174,6 +218,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>11</road>
 			<road>13</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="13">
 			<name>Stoccolma</name>
@@ -182,6 +230,14 @@
 			<road>12</road>
 			<road>14</road>
 			<road>15</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>5</parameter>
+			</bonus>
 		</city>
 		<city id="14">
 			<name>Tirana</name>
@@ -189,6 +245,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>13</road>
 			<road>-1002</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 		<city id="15">
 			<name>Zanzibar</name>
@@ -196,6 +256,10 @@
 			<nOfRoads>2</nOfRoads>
 			<road>13</road>
 			<road>-1003</road>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>4</parameter>
+			</bonus>
 		</city>
 	</cities>
 </map>

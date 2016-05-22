@@ -41,7 +41,7 @@ public class BusinessCard implements Card {
 	public String toString() 
 	{
 		String s = "";
-		s = s + "REGION: " + type.name() + "\n";
+		s = s + "REGION: " + type.name() + "  ";
 		for (Bonus b : bonus) 
 			s = s + b.getClass().getName() + "  ";
 		s = s + "\n";

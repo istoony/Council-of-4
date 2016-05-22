@@ -8,7 +8,7 @@ import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 public class BalconyFactory 
 {
-	public static void createBalcony(ArrayList<Region> regions, King king, String pathfile) 
+	public static ColorManager createBalcony(ArrayList<Region> regions, King king, String pathfile) 
 	{
 		ColorManager colors = new ColorManager(pathfile);
 		
@@ -31,10 +31,11 @@ public class BalconyFactory
 		Balcony b4 = new Balcony(avaiblecouncillor, colors);
 		king.setBalcony(b4);
 		
+		return colors;
 	}
 	
 	public static void main(String[] args) 
 	{
-		CreateBalcony(null, "mapfile/politicscard.xml");
+		createBalcony(null,null, "mapfile/politicscard.xml");
 	}
 }
