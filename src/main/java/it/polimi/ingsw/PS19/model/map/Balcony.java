@@ -17,13 +17,15 @@ public class Balcony
 	{
 		councilcolor = new ArrayList<Color>();
 		this.avaiblecouncillor = avaiblecouncillor;
-		for(int i = 0; i< NUMBER_OF_COUNCILLOR; i++)
+		int i = 0;
+		while (i< NUMBER_OF_COUNCILLOR)
 		{
 			Color color = colormanager.getRandomColor();
 			if(avaiblecouncillor.decrement(color))
+			{
 				councilcolor.add(color);
-			else
-				i--;
+				i++;
+			}
 		}
 	}
 	
