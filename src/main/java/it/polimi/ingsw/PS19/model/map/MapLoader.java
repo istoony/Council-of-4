@@ -29,12 +29,74 @@ public class MapLoader {
 	
 	//test main
 	public static void main(String[] args){
-		MapLoader.builder();
+		Map map = MapLoader.builder();
+		
+		/*
+		for(Region r : map.listaRegioni){
+			System.out.println(r.position);
+			for(City c : r.cities){
+				System.out.println(c.name);
+				for (City cc : c.neighbours){
+					System.out.println("1G "+cc.name);
+					for(City ccc : cc.neighbours){
+						System.out.println("2G "+ccc.name);
+					}
+				}
+			}
+		}
+		*/
+		//MapLoader.goTo(map);
+
+		
 	}
 	
+	
+	private static void goTo(Map m){
+		String from = "Atene";
+		String to = "Kiev";
+		ArrayList<City> result = new ArrayList<City>();
+		for(Region r : m.listaRegioni){
+			for(City c : r.cities){
+				if(from.equals(c.name)){
+					ArrayList<City> vis = new ArrayList<City>();
+					result = MapLoader.recursive(from, to, result, c, vis);
+				}
+			}
+		}
+		System.out.println(from);
+		for(int i=result.size()-1; i>=0; i--){
+			System.out.println(result.get(i).name);
+		}
+	}
+	
+	
+	private static ArrayList<City> recursive(String f, String t, ArrayList<City> path, City c, ArrayList<City> visited){
+		for(City n : c.neighbours){
+			if(!visited.contains(n)){
+				if(t.equals(n.name)){
+					path.add(n);
+					return path;
+				}
+				visited.add(c);
+				visited.add(n);
+				path = MapLoader.recursive(f, t, path, n, visited);
+				if(!path.isEmpty()){
+					if(path.contains(n)){
+						return path;
+					}
+					path.add(n);
+					return path;
+				}
+			}
+		}
+		return path;
+	}
+	
+	
 	//change return type to map
-	public static void builder() throws IllegalMapException{
+	public static Map builder() throws IllegalMapException{
 		ArrayList<MapLoader> map;
+		ArrayList<ArrayList<City>> regioncitylist;
 		
 		map = MapLoader.mapFileReading(MapLoader.MAP_FILE);
 		if(map.isEmpty()){
@@ -44,11 +106,9 @@ public class MapLoader {
 		if(map.isEmpty()){
 			throw new IllegalMapException("Incorrect map file!");
 		}
-		CityLoader.CitiesReader(map);
-
+		regioncitylist = CityLoader.CitiesReader(map);
 		
-		
-		//continue to map construction
+		return Map.finalMapBuilder(regioncitylist);
 	}
 	
 	

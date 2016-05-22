@@ -10,7 +10,7 @@ public class CityLoader {
 	
 	
 	//metodo principale, popola le protoregioni di città con annessi cammini
-	static void CitiesReader(ArrayList<MapLoader> idlist){
+	static ArrayList<ArrayList<City>> CitiesReader(ArrayList<MapLoader> idlist){
 		
 		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<ArrayList<City>>();
 			
@@ -52,32 +52,7 @@ public class CityLoader {
 		regioncitylist = CityLoader.pathBuilder(regioncitylist);
 		regioncitylist = CityLoader.roadWelder(regioncitylist);
 		
-		// parte di test
-		/*
-		for(ArrayList<City> cityl : regioncitylist){
-			for(City c : cityl){
-				System.out.println(c.name);
-				for(City cc : c.neighbours){
-					System.out.println("1G: "+cc.name);
-					for(City ccc : cc.neighbours){
-					//	System.out.println("2G: "+ccc.name);
-					}
-				}
-			}
-		}
-	*/ 
-		//perchè questo funziona e quello sopra no? anche il debug è corretto..
-		for(City c : regioncitylist.get(2)){
-			System.out.println(c.name);
-			for(City cc : c.neighbours){
-				System.out.println("1G: "+cc.name);
-				for(City ccc : cc.neighbours){
-					System.out.println("2G: "+ccc.name);
-				}
-			}
-			
-		}
-		
+		return regioncitylist;
 		
 		
 		
@@ -102,7 +77,6 @@ public class CityLoader {
 						for(City el2 : copia){
 							if(neig.id==el2.id){
 								newneig.add(el2);
-								//neig.setParameters(el2.name, el2.citycolor);
 							}
 						}
 					}
@@ -140,8 +114,6 @@ public class CityLoader {
 					for(City elr : regionR){
 						for(City next : elr.neighbours){
 							if(next.id+1000==neig.id){
-								//next.setParameters(ell.name, ell.citycolor, ell.id);
-								//neig.setParameters(elr.name, elr.citycolor, elr.id);
 								ell.neighbours.set(ell.neighbours.indexOf(neig), elr);
 								elr.neighbours.set(elr.neighbours.indexOf(next), ell);
 

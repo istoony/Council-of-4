@@ -52,7 +52,7 @@
 	<regions>
 		<region id="1">
 			<type>0</type>
-			<roadsRight>2</roadsRight>
+			<roadsRight>3</roadsRight>
 			<roadsLeft>0</roadsLeft>
 			<nOfCities>5</nOfCities>
 			<cityid>1</cityid>
@@ -64,7 +64,7 @@
 		<region id="2">
 			<type>1</type>
 			<roadsRight>3</roadsRight>
-			<roadsLeft>2</roadsLeft>
+			<roadsLeft>3</roadsLeft>
 			<nOfCities>5</nOfCities>
 			<cityid>6</cityid>
 			<cityid>7</cityid>
@@ -112,7 +112,7 @@
 			<color>#696969</color>
 			<nOfRoads>2</nOfRoads>
 			<road>3</road>
-			<road>5</road>
+			<road>-3</road>
 		</city>
 		<city id="5">
 			<name>Firenze</name>

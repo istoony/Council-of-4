@@ -12,7 +12,7 @@ public class City {
 	Bonus bonus;
 	Color citycolor;
 	ArrayList<City> neighbours;
-	
+	//reference to his own region
 	
 	public City(int id){
 		this.id=id;
