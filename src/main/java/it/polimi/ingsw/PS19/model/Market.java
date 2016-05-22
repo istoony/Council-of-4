@@ -1,7 +1,7 @@
 package it.polimi.ingsw.PS19.model;
 
 import java.util.ArrayList;
-
+//****//
 public class Market 
 {
 	private ArrayList<Order> listoforder;
