@@ -8,6 +8,8 @@ package it.polimi.ingsw.PS19.message;
  */
 public class SimpleMessage extends Message 
 {
+	private static final long serialVersionUID = -5700330213823620192L;
+
 	public SimpleMessage()
 	{
 		type = MessageType.SIMPLE;

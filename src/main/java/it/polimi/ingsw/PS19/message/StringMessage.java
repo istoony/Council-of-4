@@ -8,6 +8,8 @@ package it.polimi.ingsw.PS19.message;
  */
 public class StringMessage extends Message 
 {
+	private static final long serialVersionUID = 2743693051133944097L;
+	
 	private String line;
 	
 	public StringMessage(String s)
