@@ -34,6 +34,16 @@ public class Model extends Observable
 		}
 		Player.setStartingItems(player, "mapfile/playerconfig.xml");
 	}
+	
+	public Map getMap() 
+	{
+		return map;
+	}
+	
+	public Player getPlayerById(int i)
+	{
+		return player.get(i);
+	}
 	@Override
 	public String toString() 
 	{

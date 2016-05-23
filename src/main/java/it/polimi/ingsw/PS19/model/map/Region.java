@@ -12,7 +12,7 @@ public class Region {
 	public static final String FILE_PATH = "mapfile/politicscard.xml"; //---->forse file configurazione?
 	
 	
-	private RegionType position; 
+	private RegionType type; 
 	private ArrayList<City> cities;
 	private BusinessDeck businessdeck;
 	private Card firstcard;
@@ -24,12 +24,11 @@ public class Region {
 		cities = new ArrayList<City>();
 		cities.addAll(c);
 		
-		
 	}
 	
 	private void setPosition(RegionType pos)
 	{
-		this.position=pos;
+		this.type=pos;
 		
 		initBusinessDeck();
 	}
@@ -38,14 +37,22 @@ public class Region {
 	{
 		this.balcony = balcony;
 	}
+	public Balcony getBalcony() 
+	{
+		return balcony;
+	}
 	
 	private void initBusinessDeck()
 	{
-		this.businessdeck = DeckFactory.businessDeckFactory(FILE_PATH,position, cities);
+		this.businessdeck = DeckFactory.businessDeckFactory(FILE_PATH,type, cities);
 		firstcard = businessdeck.getFirstCard();
 		secondcard = businessdeck.getFirstCard();
 	}
 	
+	public RegionType getType() 
+	{
+		return type;
+	}
 	
 	public static ArrayList<Region> finalRegionBuilder(ArrayList<ArrayList<City>> citiesbyregion)
 	{
@@ -69,7 +76,7 @@ public class Region {
 	@Override
 	public String toString() {
 		String s = "\n";
-		s += "REGION POSITION: " + position.toString() + "\n";
+		s += "REGION POSITION: " + type.toString() + "\n";
 		for (City city : cities) 
 		{
 			s += city.toString() + "\n";

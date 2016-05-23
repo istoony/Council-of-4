@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 import it.polimi.ingsw.PS19.model.map.Region;
 
 public class Map 
@@ -52,8 +53,19 @@ public class Map
 		return cities;
 	}
 	
+	public Region getRegionByType(RegionType r)
+	{
+		for (Region region : listaRegioni) 
+		{
+			if(region.getType() == r)
+				return region;
+		}
+		return null;
+	}
+	
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		String s = "";
 		for (Region region : listaRegioni) 
 			s += region.toString() + "\n";

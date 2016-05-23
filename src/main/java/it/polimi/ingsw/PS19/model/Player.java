@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.Card;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
