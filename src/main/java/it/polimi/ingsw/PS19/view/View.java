@@ -44,7 +44,10 @@ public class View extends Observable implements Observer, Runnable
 			for(int i = 0; i < playerConnection.size(); i++)
 			{
 				if(i == n)
+				{
 					playerConnection.get(n).setActive();
+					activeID = n;
+				}
 				else
 				{
 					if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED) 
@@ -73,9 +76,12 @@ public class View extends Observable implements Observer, Runnable
 		
 		//If no action is required by the view the message is forwarded to the clients
 		forwardMessage(mex);
-		
 	}
 
+	/*
+	 * "Main of the game"
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() 
 	{
