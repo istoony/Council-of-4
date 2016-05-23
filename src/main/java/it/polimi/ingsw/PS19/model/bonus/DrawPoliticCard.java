@@ -1,21 +1,26 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
+
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.card.PoliticDeck;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 public class DrawPoliticCard implements Bonus{
 	
-	incompleto
+	PoliticDeck deck;
+	int howmany;
 	
-	public DrawPoliticCard() {
-		// TODO Auto-generated constructor stub
+	public DrawPoliticCard(PoliticDeck p, int n) {
+		howmany=n;
+		deck=p;
 	}
 
 	public void giveBonus(Player p) {
-		// TODO Auto-generated method stub
-		//eeeee questa dopo
-		//prendi carta dal mazzo e aggiungila a quelle del giocatore
-	}
-	
-	
+		PoliticsCard c;
+		for(int i=0; i<howmany; i++){
+			c = (PoliticsCard) deck.getFirstCard();
+			p.addCardToHand(c);
+		}
+	}	
 	
 }

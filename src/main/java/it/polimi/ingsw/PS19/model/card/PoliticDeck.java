@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.model.card;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
@@ -13,6 +14,8 @@ public class PoliticDeck implements Deck
 		card = new ArrayList<PoliticsCard>();
 		
 	}
+	
+
 	public Card getFirstCard()
 	{
 		Card singlecard = card.get(FIRST_CARD);
