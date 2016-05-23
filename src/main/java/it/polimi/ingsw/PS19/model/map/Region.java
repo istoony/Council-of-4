@@ -12,7 +12,7 @@ public class Region {
 	public static final String FILE_PATH = "mapfile/politicscard.xml"; //---->forse file configurazione?
 	
 	
-	private RegionType position; //0, 1, 2 --->MOLTO MEGLIO MOUNTAIN; HILL; PLAIN
+	private RegionType position; 
 	private ArrayList<City> cities;
 	private BusinessDeck businessdeck;
 	private Card firstcard;
