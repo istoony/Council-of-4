@@ -42,6 +42,7 @@ public class GameFactory extends Thread
 		controller = new GameController(model);
 		view.addObserver(controller);
 		model.addObserver(view);
+		new Thread(view).start();
     }
 
 }
