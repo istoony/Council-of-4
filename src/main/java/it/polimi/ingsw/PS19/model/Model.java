@@ -26,7 +26,8 @@ public class Model
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		String s = "++++++++++++++++++++\n";
 		s = s + "number of player: " + numberofplayer + "\n";
 		s = s + map.toString();

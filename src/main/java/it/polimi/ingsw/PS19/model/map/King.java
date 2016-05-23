@@ -23,4 +23,13 @@ public class King
 	{
 		return balcony;
 	}
+	
+	@Override
+	public String toString() 
+	{
+		String s = "";
+		s += balcony.toString() + "\n";
+		s += "CITY:  " + currentcity.toString() + "\n";
+		return s;
+	}
 }

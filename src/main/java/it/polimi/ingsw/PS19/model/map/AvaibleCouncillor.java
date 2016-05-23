@@ -43,10 +43,10 @@ public class AvaibleCouncillor
 	@Override
 	public String toString() 
 	{
-		String s = "\n+++++++++++++\n";
+		String s = "\n+++++++++++++\n          ";
 		for (Color c : listofcolors.getColors()) 
 		{
-			s = s + c.toString() + " " + avaiblecouncillor.get(c) + "     ";
+			s = s + c.toString() + "-->" + avaiblecouncillor.get(c) + "\n          ";
 		}
 		return s;
 	}

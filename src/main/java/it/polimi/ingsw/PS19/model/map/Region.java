@@ -17,24 +17,31 @@ public class Region {
 	private BusinessDeck businessdeck;
 	private Card firstcard;
 	private Card secondcard;
+	private Balcony balcony;
 	
-	
-	private Region(ArrayList<City> c){
+	private Region(ArrayList<City> c)
+	{
 		cities = new ArrayList<City>();
 		cities.addAll(c);
 		
 		
 	}
 	
-	private void setPosition(RegionType pos){
+	private void setPosition(RegionType pos)
+	{
 		this.position=pos;
 		
 		initBusinessDeck();
 	}
 	
+	public void setBalcony(Balcony balcony) 
+	{
+		this.balcony = balcony;
+	}
+	
 	private void initBusinessDeck()
 	{
-		this.businessdeck = DeckFactory.businessDeckFactory(FILE_PATH,position);
+		this.businessdeck = DeckFactory.businessDeckFactory(FILE_PATH,position, cities);
 		firstcard = businessdeck.getFirstCard();
 		secondcard = businessdeck.getFirstCard();
 	}
@@ -45,7 +52,8 @@ public class Region {
 		
 		ArrayList<Region> returnmap = new ArrayList<Region>();
 		
-		for(ArrayList<City> el : citiesbyregion){
+		for(ArrayList<City> el : citiesbyregion)
+		{
 			returnmap.add(new Region(el));
 			returnmap.get(returnmap.size()-1).setPosition(RegionType.valueOf(returnmap.size()-1));
 		}
@@ -68,6 +76,7 @@ public class Region {
 		}
 		s += "-----CARDS-----\n   FIRST CARD: \n     " + firstcard.toString();
 		s += "   SECOND CARD: \n     " + secondcard.toString();
+		s += "\n   BALCONY:   " + balcony.toString();
 		return s;
 	}
 	

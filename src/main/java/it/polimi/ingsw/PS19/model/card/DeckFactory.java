@@ -3,6 +3,8 @@ package it.polimi.ingsw.PS19.model.card;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,6 +16,7 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -24,10 +27,11 @@ public class DeckFactory
 	private static final String BUSINESSCARD = "businesscard";
 	private static final String JOKERCOLOR = "#FEFEFE";
 	
-	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type) 
+	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, ArrayList<City> cities) 
 	{
 		try {
-
+			Random rand = new Random();
+			
 			File fXmlFile = new File(pathfile);
 			
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -50,8 +54,7 @@ public class DeckFactory
 				{
 					Element eElement = (Element) nNode;
 					
-					RegionType region = RegionType.valueOf(eElement.getElementsByTagName("region").item(0).getTextContent());
-					int numberofcities = Integer.parseInt(eElement.getElementsByTagName("numberofcities").item(0).getTextContent());
+					RegionType region = RegionType.valueOf(eElement.getElementsByTagName("region").item(0).getTextContent());				
 					if(region == type)
 					{
 						BusinessCard card = new BusinessCard(region);
@@ -60,6 +63,15 @@ public class DeckFactory
 						{
 							Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));
 							card.addBonus(bonus);
+						}
+						int numberofcities = Integer.parseInt(eElement.getElementsByTagName("numberofcities").item(0).getTextContent());
+						//System.out.println("GEEEEEEEEEEEEEEEEEEEE" + numberofcities);
+						for(int i = 0; i < numberofcities; i++)
+						{
+							//System.out.println(i);
+							if(!card.addCity(cities.get(Math.abs(rand.nextInt(cities.size())))))
+								i--;
+							//System.out.println(card.toString());
 						}
 					
 						businessdeck.addToDeck(card);
@@ -123,15 +135,15 @@ public class DeckFactory
 		return deck;
 	}
 	
-	public static void main(String[] args) throws IOException 
+	/*public static void main(String[] args) throws IOException 
 	{
 		ColorManager color = new ColorManager("mapfile/politicscard.xml");
 		System.out.println(color.toString());
 		Deck politic = DeckFactory.politicsDeckFactory("mapfile/politicscard.xml", color);
 		System.out.println(JOKERCOLOR);
 		System.out.println(politic.toString());
-		Deck businessMountain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.MOUNTAIN);
+	/*	Deck businessMountain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.MOUNTAIN);
 		Deck businessPlain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.PLAIN);
-		Deck businessHill = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.HILL);
-	}
+		Deck businessHill = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.HILL);*/
+	//}
 }

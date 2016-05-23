@@ -57,6 +57,7 @@ public class Map
 		String s = "";
 		for (Region region : listaRegioni) 
 			s += region.toString() + "\n";
+		s += "KING:  " + king.toString();
 		return s;
 	}
 	

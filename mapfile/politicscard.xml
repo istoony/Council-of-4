@@ -43,7 +43,7 @@
 				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
@@ -75,7 +75,7 @@
 				<type>bonus-more-victory-points</type>
 				<parameter>7</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
@@ -83,7 +83,7 @@
 				<type>bonus-more-victory-points</type>
 				<parameter>8</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>HILL</region>
@@ -127,7 +127,7 @@
 				<type>bonus-more-money</type>
 				<parameter>5</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>PLAIN</region>
@@ -187,7 +187,7 @@
 				<type>bonus-more-money</type>
 				<parameter>5</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>3</numberofcities>
 		</card>
 		<card>
 			<region>PLAIN</region>
@@ -195,7 +195,7 @@
 				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
-			<numberofcities>1</numberofcities>
+			<numberofcities>2</numberofcities>
 		</card>
 	</businesscard>
 	

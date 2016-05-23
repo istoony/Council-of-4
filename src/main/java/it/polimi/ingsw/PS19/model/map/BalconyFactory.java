@@ -17,19 +17,20 @@ public class BalconyFactory
 		int numberofcouncillor = Integer.parseInt(nList.item(0).getTextContent());
 		
 		AvaibleCouncillor avaiblecouncillor = new AvaibleCouncillor(numberofcouncillor, colors);
-		//regions.get(0).addBalcony(new Balcony(avaiblecouncillor, colors));
+		System.out.println(avaiblecouncillor.toString());
+		regions.get(0).setBalcony(new Balcony(avaiblecouncillor, colors));
 		
-		Balcony b1 = new Balcony(avaiblecouncillor, colors);
-		//regions.get(0).addBalcony(new Balcony(avaiblecouncillor, colors));
+		//Balcony b1 = new Balcony(avaiblecouncillor, colors);
+		regions.get(1).setBalcony(new Balcony(avaiblecouncillor, colors));
 
-		Balcony b2 = new Balcony(avaiblecouncillor, colors);
+		//Balcony b2 = new Balcony(avaiblecouncillor, colors);
+		regions.get(2).setBalcony(new Balcony(avaiblecouncillor, colors));
+		
+		//Balcony b3 = new Balcony(avaiblecouncillor, colors);
 		//regions.get(0).addBalcony(new Balcony(avaiblecouncillor, colors));
 		
-		Balcony b3 = new Balcony(avaiblecouncillor, colors);
-		//regions.get(0).addBalcony(new Balcony(avaiblecouncillor, colors));
-		
-		Balcony b4 = new Balcony(avaiblecouncillor, colors);
-		king.setBalcony(b4);
+		//Balcony b4 = new Balcony(avaiblecouncillor, colors);
+		king.setBalcony(new Balcony(avaiblecouncillor, colors));
 		
 		return colors;
 	}

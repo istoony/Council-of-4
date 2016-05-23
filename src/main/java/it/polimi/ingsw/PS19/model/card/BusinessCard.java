@@ -37,6 +37,18 @@ public class BusinessCard implements Card {
 		this.bonus.add(bonus);
 	}
 	
+	public Boolean addCity(City city) 
+	{
+		for (City c : this.city) 
+		{
+			if(c.equals(city))
+				return false;
+			
+		}
+		this.city.add(city);
+		return true;
+	}
+	
 	@Override
 	public String toString() 
 	{
@@ -44,6 +56,9 @@ public class BusinessCard implements Card {
 		s = s + "REGION: " + type.name() + "  ";
 		for (Bonus b : bonus) 
 			s = s + b.getClass().getName() + "  ";
+		s += "cities: " + city.size() + "   \n";
+		for (City c : city) 
+			s = s + c.toString() + "  ";
 		s = s + "\n";
 		
 		return s;
