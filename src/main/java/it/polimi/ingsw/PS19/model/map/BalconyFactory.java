@@ -35,8 +35,4 @@ public class BalconyFactory
 		return colors;
 	}
 	
-	public static void main(String[] args) 
-	{
-		createBalcony(null,null, "mapfile/politicscard.xml");
-	}
 }

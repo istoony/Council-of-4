@@ -111,6 +111,18 @@ public class Player {
 		this.helpers = helpers;
 	}
 	
+	@Override
+	public String toString() {
+		String s = "";
+		s += "ID:  " + id + "\n";
+		s += "Money:  " + money + "\n";
+		s += "Helpers:  " + helpers + "\n";
+		s += "victoryP:  " + victoryPoints + "\n";
+		s += "NobilityP:  " + nobilityPoints + "\n";
+		
+		return s;
+	}
+	
 	public boolean findPoliticsCard(PoliticsCard card)
 	{
 		for (PoliticsCard politics : politiccard) 
