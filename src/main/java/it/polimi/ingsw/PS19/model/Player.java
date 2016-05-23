@@ -12,6 +12,7 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class Player {
+	int id;
 	int money;
 	int helpers;
 	int victoryPoints;
@@ -25,6 +26,11 @@ public class Player {
 	ArrayList<PoliticsCard> politiccard;
 	
 	
+	public Player(int id) 
+	{
+		this.id = id;
+		
+	}
 	
 	
 	//methods
@@ -35,7 +41,7 @@ public class Player {
 	}
 	
 	
-	public ArrayList<Player> setStartingItems(ArrayList<Player> p, String xmlfile){
+	public static ArrayList<Player> setStartingItems(ArrayList<Player> p, String xmlfile){
 		
 		NodeList nList = FileReader.XMLReader(xmlfile, "starting");
 		Node nNode = nList.item(0);
