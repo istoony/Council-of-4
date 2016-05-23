@@ -2,8 +2,8 @@
  * @Author Andrea Milanta
  */
 package it.polimi.ingsw.PS19.view.connection;
-import java.util.concurrent.*;
 
+import java.util.concurrent.*;
 import it.polimi.ingsw.PS19.message.Message;
 
 /*

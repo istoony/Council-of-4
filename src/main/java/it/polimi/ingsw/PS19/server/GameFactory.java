@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import it.polimi.ingsw.PS19.controller.GameController;
 import it.polimi.ingsw.PS19.message.GameStartedMessage;
@@ -10,14 +11,18 @@ import it.polimi.ingsw.PS19.view.connection.Connection;
 
 public class GameFactory extends Thread 
 {
-	private ArrayList<Connection> players;
+	private HashMap<Integer, Connection> players;
 	private View view;
 	private Model model;
 	private GameController controller;
 	
 	public GameFactory(ArrayList<Connection> conns) 
 	{
-		players = conns;
+		players = new HashMap<Integer, Connection>();
+		for (Integer i = 0; i < conns.size(); i++) 
+		{
+			players.put(i, conns.get(i));
+		}
 	}
 	
 	/*

@@ -4,7 +4,6 @@
 package it.polimi.ingsw.PS19.view.connection;
 
 import java.util.concurrent.Callable;
-
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.view.exceptions.ReaderException;
 

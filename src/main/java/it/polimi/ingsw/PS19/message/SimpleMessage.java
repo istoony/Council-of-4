@@ -17,6 +17,6 @@ public class SimpleMessage extends Message
 	
 	public String getString()
 	{
-		return senderID.toString();
+		return id.toString();
 	}
 }
