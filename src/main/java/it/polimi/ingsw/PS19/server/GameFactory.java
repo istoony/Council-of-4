@@ -20,6 +20,12 @@ public class GameFactory extends Thread
 		players = conns;
 	}
 	
+	/*
+	 * Sends message of game started to clients
+	 * Creates new Game
+	 * Configures Observer pattern between view controller and message
+	 * @see java.lang.Thread#run()
+	 */
 	public void run() 
 	{
 		for(int i = 0; i < players.size(); i++)

@@ -12,19 +12,19 @@ public abstract class Message implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	Integer ID;
+	Integer senderID;
 	MessageType type;
 	
 	public Message(){}
 	
 	public int getID()
 	{
-		return ID;
+		return senderID;
 	}
 	
 	public void setID(int id)
 	{
-		ID = id;
+		senderID = id;
 	}
 	
 	public abstract String getString();
