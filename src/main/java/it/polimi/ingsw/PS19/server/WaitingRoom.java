@@ -30,7 +30,8 @@ public class WaitingRoom
 	
 	public static void StartTimer()
 	{
-		if(t != null) return;
+		if(t != null) 
+			return;
 		t = new TimerThread();
 		t.start();
 	}

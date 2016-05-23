@@ -26,37 +26,22 @@ public class MapLoader {
 		outLeft=sx;
 	}
 	
-	
+	/*
 	//test main
 	public static void main(String[] args){
 		Map map = MapLoader.builder();
-		
-		/*
-		for(Region r : map.listaRegioni){
-			System.out.println(r.position);
-			for(City c : r.cities){
-				System.out.println(c.name);
-				for (City cc : c.neighbours){
-					System.out.println("1G "+cc.name);
-					for(City ccc : cc.neighbours){
-						System.out.println("2G "+ccc.name);
-					}
-				}
-			}
-		}
-		*/
-		//MapLoader.goTo(map);
+		MapLoader.goTo(map);
 
 		
 	}
-	
+	*/
 	
 	private static void goTo(Map m){
 		String from = "Atene";
 		String to = "Kiev";
 		ArrayList<City> result = new ArrayList<City>();
 		for(Region r : m.listaRegioni){
-			for(City c : r.cities){
+			for(City c : r.getCities()){
 				if(from.equals(c.name)){
 					ArrayList<City> vis = new ArrayList<City>();
 					result = MapLoader.recursive(from, to, result, c, vis);
