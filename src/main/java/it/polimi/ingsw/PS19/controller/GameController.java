@@ -11,9 +11,9 @@ public class GameController implements Observer
 	private int numberofplayer;
 	
 	
-	public GameController() 
+	public GameController(Model m) 
 	{
-		model = new Model(2);
+		model = m;
 		
 	}
 	public void update(Observable arg0, Object arg1) 

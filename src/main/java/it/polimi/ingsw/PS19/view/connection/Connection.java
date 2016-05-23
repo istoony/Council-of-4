@@ -24,6 +24,11 @@ public abstract class Connection
 	public abstract void setInactive();
 	public abstract void setDisconnected();
 	
+	public ConnectionStatus getStatus()
+	{
+		return status;
+	}
+	
 	/*
 	 * Writes a message
 	 * returns a future reference to the number of attempts required
