@@ -13,12 +13,12 @@ public class GameController implements Observer
 	
 	public GameController() 
 	{
-		model = new Model();
+		model = new Model(2);
 		
 	}
 	public void update(Observable arg0, Object arg1) 
 	{
-		
+		System.out.println(arg1.getClass().toString());
 	}
 
 }
