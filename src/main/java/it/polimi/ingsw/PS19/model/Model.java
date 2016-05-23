@@ -18,7 +18,6 @@ public class Model
 	public Model(int numberofplayer) 
 	{
 		this.numberofplayer = numberofplayer;
-		PlayerFactory(numberofplayer);
 		
 		map = MapLoader.builder();
 		
