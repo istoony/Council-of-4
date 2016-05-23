@@ -1,8 +1,12 @@
 package it.polimi.ingsw.PS19.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.view.connection.Connection;
@@ -12,9 +16,9 @@ import it.polimi.ingsw.PS19.view.exceptions.PlayerDisconnectedException;
 
 public class View extends Observable implements Observer
 {
-	private ArrayList<Connection> playerConnection;
+	private HashMap<Integer, Connection> playerConnection;
 	
-	public View(ArrayList<Connection> conns) 
+	public View(HashMap<Integer, Connection> conns) 
 	{
 		playerConnection = conns;
 	}
@@ -46,8 +50,40 @@ public class View extends Observable implements Observer
 	}
 
 	@Override
-	public void update(Observable o, Object arg) 
+	public void update(Observable o, Object arg)
 	{
-		// TODO Auto-generated method stub
+		if(!(arg instanceof Message))
+			return;
+		Message mex = (Message) arg;
+		Integer id = mex.getID();
+		ArrayList<Future<Integer>> writeFeedback = new ArrayList<Future<Integer>>();
+		
+		// Broadcast
+		if(id < 0)
+		{
+			for (Entry<Integer, Connection> player : playerConnection.entrySet()) 
+			{
+				writeFeedback.add(player.getValue().write(mex));
+			}
+		}
+		
+		// To specific client
+		else
+		{
+			writeFeedback.add(playerConnection.get(id).write(mex));
+		}
+		
+		//Verify writing success
+		for (int i = 0; i < writeFeedback.size(); i++) 
+		{
+			try 
+			{
+				writeFeedback.get(i).get();
+			} catch (InterruptedException | ExecutionException e) 
+			{
+				e.printStackTrace();
+				playerConnection.get(i).setDisconnected();
+			}
+		}
 	}
 }
