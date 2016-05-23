@@ -19,11 +19,6 @@ public class View extends Observable implements Observer
 		playerConnection = conns;
 	}
 	
-	public void update(Observable arg0, Message arg1) 
-	{
-		
-	}
-	
 	/*
 	 * Set Active Player
 	 */
@@ -49,6 +44,10 @@ public class View extends Observable implements Observer
 		}
 		else throw new NoSuchPlayerException();
 	}
-	
 
+	@Override
+	public void update(Observable o, Object arg) 
+	{
+		// TODO Auto-generated method stub
+	}
 }
