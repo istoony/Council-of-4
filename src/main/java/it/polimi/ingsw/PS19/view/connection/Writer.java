@@ -4,9 +4,9 @@
 package it.polimi.ingsw.PS19.view.connection;
 import java.util.concurrent.Callable;
 
+import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.server.Constants;
 import it.polimi.ingsw.PS19.view.exceptions.SocketWritingException;
-import it.polimi.ingsw.PS19.view.message.Message;
 
 /*
  * Abstract class to write a message. 
@@ -41,7 +41,8 @@ public abstract class Writer implements Callable<Integer>
 				numOfTries++;
 			}
 		}while(!success && numOfTries < Constants.MAX_WRITING_TRIES);
-		if(!success) throw new SocketWritingException();
+		if(!success) 
+			throw new SocketWritingException();
 		return numOfTries;
 	}
 	
