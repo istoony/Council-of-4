@@ -1,13 +1,14 @@
 package it.polimi.ingsw.PS19.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
-public class Model 
+public class Model extends Observable
 {
 	
 	private Market market;
