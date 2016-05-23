@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.card.Card;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
@@ -40,14 +41,14 @@ public class Player {
 		Node nNode = nList.item(0);
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element e = (Element) nNode;
-			int mone=Integer.parseInt(e.getElementsByTagName("money").item(0).getTextContent());
-			int helper = Integer.parseInt(e.getElementsByTagName("helpers").item(0).getTextContent());
+			int money=Integer.parseInt(e.getElementsByTagName("money").item(0).getTextContent());
+			int helpers = Integer.parseInt(e.getElementsByTagName("helpers").item(0).getTextContent());
 			int politiccards = Integer.parseInt(e.getElementsByTagName("politiccards").item(0).getTextContent());		
 			
 			for(Player player : p){
 				player.startingPoliticCard=politiccards;
-				player.money=mone+p.indexOf(player);
-				player.helpers=helper+p.indexOf(player);
+				player.money=money+p.indexOf(player);
+				player.helpers=helpers+p.indexOf(player);
 			}
 		}
 		return p;
