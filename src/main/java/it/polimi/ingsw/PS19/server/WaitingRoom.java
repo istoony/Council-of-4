@@ -10,9 +10,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
-import it.polimi.ingsw.PS19.view.message.StringMessage;
 
 /*
  * This static class (class with only static method) collects the users requiring to play and starts

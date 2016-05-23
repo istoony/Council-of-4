@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.*;
 
-import it.polimi.ingsw.PS19.view.message.Message;
+import it.polimi.ingsw.PS19.message.Message;
 
 /**
  * Class for socket connection

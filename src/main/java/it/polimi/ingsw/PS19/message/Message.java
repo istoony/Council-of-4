@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.view.message;
+package it.polimi.ingsw.PS19.message;
 
 /*
  * Abstract class that implements a message

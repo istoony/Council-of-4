@@ -4,8 +4,9 @@
 package it.polimi.ingsw.PS19.view.connection;
 
 import java.io.BufferedReader;
-import it.polimi.ingsw.PS19.view.message.Message;
-import it.polimi.ingsw.PS19.view.message.SimpleMessage;
+
+import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.SimpleMessage;
 
 
 /*
