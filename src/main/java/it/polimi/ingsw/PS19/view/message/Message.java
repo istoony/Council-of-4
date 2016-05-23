@@ -1,17 +1,27 @@
-/**
- * 
+/*
+ * @author Andrea Milanta
  */
 package it.polimi.ingsw.PS19.view.message;
-import it.polimi.ingsw.PS19.model.*;
 
-/**
- * @author Andrea
- * Abstract class for standard messages between view and controller
+/*
+ * Abstract class that implements a message
  */
 public abstract class Message 
 {
-	Player player;
-	Direction direction;
+	Integer ID;
+	MessageType type;
 	
+	public Message(){}
 	
+	public int getID()
+	{
+		return ID;
+	}
+	
+	public void setID(int id)
+	{
+		ID = id;
+	}
+	
+	public abstract String getString();
 }

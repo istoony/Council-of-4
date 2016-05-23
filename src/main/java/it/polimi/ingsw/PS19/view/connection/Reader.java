@@ -1,15 +1,33 @@
-/**
- * 
+/*
+ *@Author Andrea Milanta 
  */
 package it.polimi.ingsw.PS19.view.connection;
-import it.polimi.ingsw.PS19.view.message.*;
 
-/**
- * @author Andrea
- * Interface for reading message from a general external interface
+import java.util.concurrent.Callable;
+import it.polimi.ingsw.PS19.view.exceptions.ReaderException;
+import it.polimi.ingsw.PS19.view.message.Message;
+
+
+/*
+ * Abstract class to read a message.
+ * Runs on a different Thread
  */
-
-public interface Reader 
+public abstract class Reader implements Callable<Message> 
 {
-	public Message read();
+	public Message call() throws ReaderException
+	{
+		try
+		{
+			return read();
+		}
+		catch(Exception e)
+		{
+			throw new ReaderException();
+		}
+	}
+
+	/*
+	 * Actual reading method. different for different types of communication 
+	 */
+	protected abstract Message read() throws Exception;
 }

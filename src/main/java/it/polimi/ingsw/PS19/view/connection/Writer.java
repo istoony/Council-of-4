@@ -1,14 +1,61 @@
-/**
- * 
+/*
+ *@Author Andrea Milanta 
  */
 package it.polimi.ingsw.PS19.view.connection;
-import it.polimi.ingsw.PS19.view.message.*;
+import java.util.concurrent.Callable;
 
-/**
- * @author Andrea
- * Interface for writing message to a general external interface
+import it.polimi.ingsw.PS19.server.Constants;
+import it.polimi.ingsw.PS19.view.exceptions.SocketWritingException;
+import it.polimi.ingsw.PS19.view.message.Message;
+
+/*
+ * Abstract class to write a message. 
+ * Runs on a different Thread.
  */
-public interface Writer 
+public abstract class Writer implements Callable<Integer>
 {
-	public void write(Message message);
+	protected Message message;
+	
+	/*
+	 * Implementation of call to write
+	 * @see java.util.concurrent.Callable#call()
+	 */
+	@Override
+	public Integer call() throws SocketWritingException
+	{
+		int numOfTries = 0;
+		boolean success = false;
+		do
+		{
+			try
+			{
+				write();
+				success = true;
+			}
+			catch(Exception e)
+			{
+				success = false;
+			}
+			finally
+			{
+				numOfTries++;
+			}
+		}while(!success && numOfTries < Constants.MAX_WRITING_TRIES);
+		if(!success) throw new SocketWritingException();
+		return numOfTries;
+	}
+	
+	/*
+	 * Actual writing method which will be different for different type of communication
+	 */
+	protected abstract void write() throws Exception;
+	
+	/*
+	 * Sets message to be written
+	 */
+	public void setMessage(Message mex)
+	{
+		message = mex;
+	}
+
 }
