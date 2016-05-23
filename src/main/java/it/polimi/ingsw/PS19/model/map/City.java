@@ -13,13 +13,38 @@ public class City {
 	private ArrayList<Bonus> bonus;
 	Color citycolor;
 	ArrayList<City> neighbours;
-	//reference to his own region
+	ArrayList<Integer> emporia; //array di id giocatori
 	
 	public City(int id){
 		this.id=id;
 		bonus = new ArrayList<Bonus>();
+		emporia = new ArrayList<Integer>();
 	}
 	
+	public void buildEmporium(Player p){
+		emporia.add(p.getId());
+	}
+	
+	public int calculateMalusEmporium(Player p){
+		return emporia.size();
+	}
+	
+	public void applyNetBonus(Player p, ArrayList<City> visited){
+		this.applyBonus(p);
+		visited.add(this);
+		for(City neig : neighbours){
+			if(!visited.contains(neig)&&emporia.contains(p.getId())){
+
+				neig.applyNetBonus(p, visited);
+			}
+		}
+	}
+	
+	public void applyBonus(Player p){
+		for(Bonus b : bonus){
+			b.giveBonus(p);
+		}
+	}
 	
 	public void setParameters(String name, String color){
 		this.name=name;

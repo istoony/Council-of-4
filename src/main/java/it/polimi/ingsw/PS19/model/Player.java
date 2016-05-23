@@ -11,14 +11,14 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class Player {
-	int id;
-	int money;
-	int helpers;
-	int victoryPoints;
-	int nobilityPoints;
-	int mainActionCounter;
-	int fastActionCounter;
-	int startingPoliticCard;
+	private int id;
+	private int money;
+	private int helpers;
+	private int victoryPoints;
+	private int nobilityPoints;
+	private int mainActionCounter;
+	private int fastActionCounter;
+	private int startingPoliticCard;
 	
 	ArrayList<BusinessCard> freebusinesscard;
 	ArrayList<BusinessCard> usedbusinesscard;
@@ -68,7 +68,14 @@ public class Player {
 	}
 	
 	//getter and setter
-	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}	
 	public int getMainActionCounter() {
 		return mainActionCounter;
 	}
