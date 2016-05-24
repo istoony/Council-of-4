@@ -12,4 +12,10 @@ public class SendFullGame implements Action {
 		return true;
 	}
 
+	@Override
+	public Boolean isPossible(Model model) 
+	{
+		return true;
+	}
+
 }

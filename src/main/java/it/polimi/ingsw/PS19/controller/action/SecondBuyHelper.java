@@ -23,4 +23,11 @@ public class SecondBuyHelper implements Action
 		return true;
 	}
 
+	@Override
+	public Boolean isPossible(Model model) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

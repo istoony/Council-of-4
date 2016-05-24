@@ -28,4 +28,10 @@ public class MainElectRegionCouncillor implements Action
 		return result;
 	}
 
+	@Override
+	public Boolean isPossible(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -3,20 +3,23 @@ package it.polimi.ingsw.PS19.controller.action;
 import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
+import it.polimi.ingsw.PS19.message.SendActionMessage;
 
 public class ActionFactory 
 {
 	public static Action createAction(Message message)
 	{
-		/***CONFIGURATION MESSAGES***/
+		/***CONFIGURATION MESSAGES**
 		if(message.getType() == MessageType.SEND_FULL_GAME)
 			return new SendFullGame();
+		if(message.getType() == MessageType.)
+			return new SendFullGame();
 		
-		/***MAIN ACTION MESSAGES***/
-		if(message.getType() == MessageType.MAIN_ELECT_REGION_COUNCILLOR)
+		/***ACTION MESSAGES**
+		if(message.getType() == MessageType.ACTION)
 		{
-			ElectCouncillorMessage m = (ElectCouncillorMessage) message;
-			return new MainElectRegionCouncillor(m.getColor(), m.getID(), m.getRegion());
+			SendActionMessage m = (SendActionMessage) message;
+			return m.getAction();
 		}
 		
 		/***SECOND ACTION MESSAGES***/

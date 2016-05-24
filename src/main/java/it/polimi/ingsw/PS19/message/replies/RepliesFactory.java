@@ -5,7 +5,7 @@ import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.model.Model;
 
-public class Replies 
+public class RepliesFactory 
 {
 	public static Message createTrueReplies(Message m, Model model)
 	{

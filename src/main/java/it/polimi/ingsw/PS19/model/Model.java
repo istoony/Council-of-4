@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.message.replies.Replies;
+import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -47,9 +49,20 @@ public class Model extends Observable
 		return player.get(i);
 	}
 	
-	public void createTrueMessage(Message m)
+	public void createMessage(MessageType messageType)
 	{
-		Message message = Replies.createTrueReplies(m, this);
+		Message message;
+		switch (messageType) 
+		{
+			case GAME_STARTED:
+			{
+				message = new SendFullGameReply(this);
+				break;
+			}
+
+			default:
+				break;
+		}
 		notifyObservers(message);
 	}
 	

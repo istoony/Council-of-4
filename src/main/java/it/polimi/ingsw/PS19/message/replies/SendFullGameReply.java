@@ -8,7 +8,8 @@ public class SendFullGameReply extends Message
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4734240442883203509L;
+
 	private Model model;
 	public SendFullGameReply(Model model) 
 	{

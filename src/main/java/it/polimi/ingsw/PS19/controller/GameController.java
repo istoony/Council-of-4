@@ -6,6 +6,7 @@ import java.util.Observer;
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.ActionFactory;
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class GameController implements Observer
@@ -24,13 +25,24 @@ public class GameController implements Observer
 			return;
 		Message m = (Message) message;
 		
-		Action action = ActionFactory.createAction(m);
+		readMessage(m);
 		
-		Boolean result = action.execute(model);
-		
-		if(result)
-			model.createTrueMessage(m);
 		//model.createFalseMessage(message);
+	}
+	
+	protected void readMessage(Message message)
+	{
+		switch (message.getType()) 
+		{
+			case GAME_STARTED:
+			{
+				model.createMessage(MessageType.GAME_STARTED);
+				break;
+			}
+
+			default:
+				break;
+		}
 	}
 
 }
