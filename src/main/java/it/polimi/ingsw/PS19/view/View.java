@@ -10,8 +10,8 @@ import java.util.concurrent.Future;
 
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
-import it.polimi.ingsw.PS19.message.PlayerDisconnectedMessage;
-import it.polimi.ingsw.PS19.message.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
+import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 import it.polimi.ingsw.PS19.view.exceptions.NoSuchPlayerException;
@@ -33,7 +33,6 @@ public class View extends Observable implements Observer, Runnable
 	 */
 	private void setActive(int n) 
 	{
-		
 		if(n < playerConnection.size() && n >= 0)
 		{
 			if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED)
@@ -44,7 +43,10 @@ public class View extends Observable implements Observer, Runnable
 			for(int i = 0; i < playerConnection.size(); i++)
 			{
 				if(i == n)
+				{
 					playerConnection.get(n).setActive();
+					activeID = n;
+				}
 				else
 				{
 					if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED) 
@@ -73,9 +75,12 @@ public class View extends Observable implements Observer, Runnable
 		
 		//If no action is required by the view the message is forwarded to the clients
 		forwardMessage(mex);
-		
 	}
 
+	/*
+	 * "Main of the game"
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() 
 	{

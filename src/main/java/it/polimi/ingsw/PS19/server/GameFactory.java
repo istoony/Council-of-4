@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.message.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.view.View;
 import it.polimi.ingsw.PS19.view.connection.Connection;

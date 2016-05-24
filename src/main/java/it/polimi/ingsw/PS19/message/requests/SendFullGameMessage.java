@@ -1,7 +1,10 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
+
+import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.MessageType;
 
 /*
  * 
