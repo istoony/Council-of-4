@@ -4,7 +4,7 @@ import it.polimi.ingsw.PS19.model.Player;
 
 public class ReuseBusinessCardBonus implements Bonus {
 	
-	incompleto
+	//incompleto
 	
 	public void giveBonus(Player p) {
 		// TODO Auto-generated method stub

@@ -2,15 +2,13 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.card.BusinessDeck;
 import it.polimi.ingsw.PS19.model.card.Card;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class Region {
-	
-	public static final String FILE_PATH = "mapfile/politicscard.xml"; //---->forse file configurazione?
-	
 	
 	private RegionType type; 
 	private ArrayList<City> cities;
@@ -44,7 +42,7 @@ public class Region {
 	
 	private void initBusinessDeck()
 	{
-		this.businessdeck = DeckFactory.businessDeckFactory(FILE_PATH,type, cities);
+		this.businessdeck = DeckFactory.businessDeckFactory(FileNames.CARD_FILE,type, cities);
 		firstcard = businessdeck.getFirstCard();
 		secondcard = businessdeck.getFirstCard();
 	}

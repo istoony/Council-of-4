@@ -34,7 +34,6 @@ public class City {
 		visited.add(this);
 		for(City neig : neighbours){
 			if(!visited.contains(neig)&&emporia.contains(p.getId())){
-
 				neig.applyNetBonus(p, visited);
 			}
 		}

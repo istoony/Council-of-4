@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.map;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
@@ -15,6 +16,7 @@ public class Map
 	private PoliticDeck politicdeck;
 	private ColorManager councilcolors;
 	private King king;
+	private GeneralBonus bonus;
 
 	
 	private Map(ArrayList<Region> regionlist)

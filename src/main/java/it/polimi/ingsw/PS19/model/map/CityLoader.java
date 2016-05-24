@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
@@ -17,7 +18,7 @@ public class CityLoader {
 		
 		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<ArrayList<City>>();
 			
-		NodeList nList = FileReader.XMLReader(MapLoader.MAP_FILE, "region");
+		NodeList nList = FileReader.XMLReader(FileNames.MAP_FILE, "region");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
@@ -34,7 +35,7 @@ public class CityLoader {
 				}					
 			}
 		}	
-		nList = FileReader.XMLReader(MapLoader.MAP_FILE, "city");
+		nList = FileReader.XMLReader(FileNames.MAP_FILE, "city");
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
@@ -45,14 +46,7 @@ public class CityLoader {
 					for(City el : rlist){
 						if(el.id==Integer.parseInt(e.getAttribute("id"))){
 							el.setParameters(e.getElementsByTagName("name").item(0).getTextContent(), e.getElementsByTagName("color").item(0).getTextContent());
-							el.addNear(CityLoader.retrieveNear(e));
-							int numberofbonus = e.getElementsByTagName("bonus").getLength();
-							for(int i = 0; i < numberofbonus; i++)
-							{
-								Bonus bonus = BonusFactory.getBonus(e.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(e.getElementsByTagName("parameter").item(i).getTextContent()));
-								el.addBonus(bonus);
-							}
-							
+							el.addNear(CityLoader.retrieveNear(e));	
 					}		
 				}	
 				}

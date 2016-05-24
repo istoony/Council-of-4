@@ -8,11 +8,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.PS19.model.FileNames;
+
 
 public class MapLoader {
 	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
-	
-	static final String MAP_FILE="mapfile/council.xml";
 	
 	int type;
 	int id;
@@ -83,7 +83,7 @@ public class MapLoader {
 		ArrayList<MapLoader> map;
 		ArrayList<ArrayList<City>> regioncitylist;
 		
-		map = MapLoader.mapFileReading(MapLoader.MAP_FILE);
+		map = MapLoader.mapFileReading(FileNames.MAP_FILE);
 		if(map.isEmpty()){
 			throw new IllegalMapException("Incorrect map file!");
 		}
