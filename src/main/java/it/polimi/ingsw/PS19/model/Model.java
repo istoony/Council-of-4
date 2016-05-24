@@ -3,6 +3,8 @@ package it.polimi.ingsw.PS19.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.replies.Replies;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -44,6 +46,13 @@ public class Model extends Observable
 	{
 		return player.get(i);
 	}
+	
+	public void createTrueMessage(Message m)
+	{
+		Message message = Replies.createTrueReplaies(m, this);
+		notifyObservers(message);
+	}
+	
 	@Override
 	public String toString() 
 	{

@@ -13,6 +13,16 @@ public class GameStartedMessage extends Message
 		numberOfPlayer = numOfPlayers;
 	}
 	
+	public int getNumberOfPlayer() 
+	{
+		return numberOfPlayer;
+	}
+	
+	public int getPlayerNumber() 
+	{
+		return playerNumber;
+	}
+	
 	
 	@Override
 	public String getString() 

@@ -62,6 +62,14 @@ public class Map
 		}
 		return null;
 	}
+	public ArrayList<Region> getListaRegioni() 
+	{
+		return listaRegioni;
+	}
+	public King getKing() 
+	{
+		return king;
+	}
 	
 	@Override
 	public String toString() 

@@ -16,18 +16,21 @@ public class GameController implements Observer
 	public GameController(Model m) 
 	{
 		model = m;
-		
 	}
+	
 	public void update(Observable view, Object message) 
 	{
 		if(!(message instanceof Message))
 			return;
 		Message m = (Message) message;
+		
 		Action action = ActionFactory.createAction(m);
 		
 		Boolean result = action.execute(model);
+		
 		if(result)
-			model.createTrueMessage(message);
+			model.createTrueMessage(m);
+		//model.createFalseMessage(message);
 	}
 
 }
