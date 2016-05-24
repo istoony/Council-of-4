@@ -49,7 +49,7 @@ public class Model extends Observable
 	
 	public void createTrueMessage(Message m)
 	{
-		Message message = Replies.createTrueReplaies(m, this);
+		Message message = Replies.createTrueReplies(m, this);
 		notifyObservers(message);
 	}
 	

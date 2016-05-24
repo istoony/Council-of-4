@@ -7,7 +7,7 @@ import it.polimi.ingsw.PS19.model.Model;
 
 public class Replies 
 {
-	public static Message createTrueReplaies(Message m, Model model)
+	public static Message createTrueReplies(Message m, Model model)
 	{
 		if(m.getType() == MessageType.SEND_FULL_GAME)
 			return new SendFullGameReply(model);
