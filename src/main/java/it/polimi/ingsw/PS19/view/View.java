@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.message.PlayerDisconnectedMessage;
-import it.polimi.ingsw.PS19.message.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 import it.polimi.ingsw.PS19.view.exceptions.NoSuchPlayerException;
