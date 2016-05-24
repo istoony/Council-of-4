@@ -7,11 +7,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.server.Constants;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 import it.polimi.ingsw.PS19.view.exceptions.NoSuchPlayerException;
@@ -87,6 +90,21 @@ public class View extends Observable implements Observer, Runnable
 		notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
 		{
+			Connection activeConn = playerConnection.get(activeID);
+			Future<Message> waitMex = activeConn.read();
+			try 
+			{
+				Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
+				notifyObservers(recMex);
+			} catch (InterruptedException | ExecutionException e) 
+			{
+				e.printStackTrace();
+				System.exit(0);
+			} catch (TimeoutException e) 
+			{
+				activeConn.setDisconnected();
+				notifyObservers(new PlayerDisconnectedMessage(activeID));
+			}
 			
 		}
 	}
