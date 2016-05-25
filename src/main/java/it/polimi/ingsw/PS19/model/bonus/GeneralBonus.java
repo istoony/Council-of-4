@@ -14,14 +14,14 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class GeneralBonus implements Bonus {
 
-	private ArrayList<RegionType> regionsBonus;
+	private ArrayList<ArrayList<City>> regionsBonus;
 	private int singleRegionBonus;
 	private ArrayList<Integer> kingBonus;  //first to achieve
 	private ArrayList<CityColorBonus> colorBonus;
 	
 	
 	public GeneralBonus(String xmlfile, ArrayList<Region> regionlist){
-		regionsBonus = new ArrayList<RegionType>();
+		regionsBonus = new ArrayList<ArrayList<City>>();
 		kingBonus = new ArrayList<Integer>();
 		colorBonus = new ArrayList<CityColorBonus>();
 		this.inizializeKing(xmlfile);
@@ -30,15 +30,42 @@ public class GeneralBonus implements Bonus {
 
 	}
 	
-	public int askPoints(){
-		
+	public int askPoints(Player p){
+		int pointsR=0;
+		int pointsC=0;
+		for(ArrayList<City> citylist : regionsBonus){
+			if(p.getMyEmporia().containsAll(citylist)){
+				regionsBonus.remove(regionsBonus.indexOf(citylist));
+				pointsR += singleRegionBonus;
+				if(pointsR>0){
+					pointsR += this.askKingBonus();
+				}
+			}
+		}
+		for(CityColorBonus c : colorBonus){
+			if(p.getMyEmporia().containsAll(c.getCitylist())){
+				regionsBonus.remove(regionsBonus.indexOf(c));
+				pointsC += c.getPoints();
+				if(pointsC>0){
+					pointsC += this.askKingBonus();
+				}
+			}
+		}
+		return pointsC+pointsR;
+	}
+	
+	//metodo ausiliario del precedente
+	private int askKingBonus(){
+		int i=0;
+		if(!kingBonus.isEmpty()){
+			i = kingBonus.get(0);
+			kingBonus.remove(0);
+		}
+		return i;
 	}
 	
 	//metodo di verifica
 	public void print(){
-		for(RegionType rt : regionsBonus){
-			System.out.println(rt.toString());
-		}
 		System.out.println(singleRegionBonus);
 		for (Integer i : kingBonus){
 			System.out.println(i);
@@ -99,7 +126,7 @@ public class GeneralBonus implements Bonus {
 			c.joinBonusToCity(rlist);
 		}
 		for(Region r : rlist){
-			this.regionsBonus.add(r.getType());
+			this.regionsBonus.add(r.getCities());
 		}
 	}
 	

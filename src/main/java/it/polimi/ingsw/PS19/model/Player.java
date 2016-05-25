@@ -8,6 +8,7 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class Player {
@@ -24,10 +25,13 @@ public class Player {
 	ArrayList<BusinessCard> usedbusinesscard;
 	ArrayList<PoliticsCard> politiccard;
 	
+	private ArrayList<City> myEmporia;
+	
 	
 	public Player(int id) 
 	{
 		this.id = id;
+		myEmporia = new ArrayList<City>();
 		
 	}
 	
@@ -144,6 +148,25 @@ public class Player {
 		}
 		return false;
 		
+	}
+
+	public void addToMyEmporia(City c) {
+		this.myEmporia.add(c);
+	}
+
+	/**
+	 * @return the myEmporia
+	 */
+	public ArrayList<City> getMyEmporia() {
+		return myEmporia;
+	}
+
+
+	/**
+	 * @param myEmporia the myEmporia to set
+	 */
+	public void setMyEmporia(ArrayList<City> myEmporia) {
+		this.myEmporia = myEmporia;
 	}
 	
 	

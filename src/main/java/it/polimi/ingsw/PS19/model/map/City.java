@@ -23,12 +23,14 @@ public class City {
 	
 	public void buildEmporium(Player p){
 		emporia.add(p.getId());
+		p.addToMyEmporia(this);
 	}
 	
 	public int calculateMalusEmporium(Player p){
 		return emporia.size();
 	}
 	
+	//applica i bonus delle città collegate
 	public void applyNetBonus(Player p, ArrayList<City> visited){
 		this.applyBonus(p);
 		visited.add(this);
