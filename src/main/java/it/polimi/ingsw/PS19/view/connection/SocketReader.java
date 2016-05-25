@@ -3,10 +3,11 @@
  */
 package it.polimi.ingsw.PS19.view.connection;
 
-import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
 
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.SimpleMessage;
 
 
 /*
@@ -14,19 +15,25 @@ import it.polimi.ingsw.PS19.message.SimpleMessage;
  */
 public class SocketReader extends Reader 
 {
-	private BufferedReader reader;
+	private ObjectInputStream reader;
 	
-	public SocketReader(BufferedReader br)
+	public SocketReader(Socket cs)
 	{
-		reader = br;
+		try {
+			reader = new ObjectInputStream(cs.getInputStream());
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	protected Message read() throws Exception 
 	{
-		Message message = new SimpleMessage();
-		String idString = reader.readLine();
-		message.setID(Integer.parseInt(idString));
+		Object obj = reader.readObject();
+		if(!(obj instanceof Message))
+			return null;
+		Message message = (Message)obj;
 		return message;
 	}
 }

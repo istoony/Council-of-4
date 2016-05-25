@@ -98,7 +98,7 @@ public class WaitingRoom
 		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + "players!");  //TEST
 		
 		mux.lock();
-		//create new game with connections()
+		new GameFactory(room);
 		/*
 		 * Fake game for test purpose only
 		 */
