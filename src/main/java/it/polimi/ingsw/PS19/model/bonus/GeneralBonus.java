@@ -30,7 +30,13 @@ public class GeneralBonus implements Bonus {
 
 	}
 	
-	public int askPoints(Player p){
+	@Override
+	public void giveBonus(Player p) {
+		int points = this.askPoints(p);
+		p.setVictoryPoints(p.getVictoryPoints()+points);
+	}
+	
+	private int askPoints(Player p){
 		int pointsR=0;
 		int pointsC=0;
 		for(ArrayList<City> citylist : regionsBonus){
@@ -79,12 +85,6 @@ public class GeneralBonus implements Bonus {
 	
 	}
 	
-	@Override
-	public void giveBonus(Player p) {
-		// TODO Auto-generated method stub
-
-	}
-	
 	//metodo ausilio costruttore 1, bonus del re
 	private void inizializeKing(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "bonus");
@@ -129,13 +129,5 @@ public class GeneralBonus implements Bonus {
 			this.regionsBonus.add(r.getCities());
 		}
 	}
-	
-	
-
-
-
-
-	
-	
 	
 }

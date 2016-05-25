@@ -25,6 +25,7 @@ public class Map
 	public static void main(String[] args) {
 		Map map = MapLoader.builder();
 		map.kingBonus.print();
+		
 	}
 	
 	private Map(ArrayList<Region> regionlist)

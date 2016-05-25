@@ -67,15 +67,12 @@ public class City {
 		return Color.decode(color);
 	}
 	
-	public char getCapitalLetter(){
-		return this.name.charAt(0);
-	}
-	
 	public Color getCitycolor() 
 	{
 		return citycolor;
 	}
 	
+	//aggiungi vicini
 	public void addNear(ArrayList<City> lis){
 		this.neighbours = new ArrayList<City>();
 		this.neighbours.addAll(lis);

@@ -64,7 +64,7 @@ public class Model extends Observable
 			default:
 				break;
 		}
-		notifyObservers(message);
+		//notifyObservers(message);
 	}
 	
 	@Override
@@ -86,6 +86,10 @@ public class Model extends Observable
 public static void main(String[] args) 
 {
 	Model m = new Model(2);
-	System.out.println(m.toString());
+	//System.out.println(m.toString());
+	m.map.getListaRegioni().get(0).getCities().get(1).buildEmporium(m.getPlayerById(0));
+	m.map.getListaRegioni().get(0).getCities().get(0).buildEmporium(m.getPlayerById(0));
+	System.out.println(m.getPlayerById(0).getMyEmporia().get(0));
+	System.out.println(m.getPlayerById(0).getMyEmporia().get(1));
 }	
 }
