@@ -37,6 +37,11 @@ public class BusinessCard implements Card {
 		this.bonus.add(bonus);
 	}
 	
+	public RegionType getType() 
+	{
+		return type;
+	}
+	
 	public Boolean addCity(City city) 
 	{
 		for (City c : this.city) 

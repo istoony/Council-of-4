@@ -72,6 +72,15 @@ public class Region {
 		return cities;
 	}
 	
+	public City getCityById(int id)
+	{
+		for (City c : cities) 
+		{
+			if(c.getId() == id)
+				return c;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		String s = "\n";

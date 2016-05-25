@@ -24,14 +24,12 @@ public class ChangeCouncillorAction {
 		GameController g = new GameController(m);
 		for (RegionType reg : RegionType.values()) 
 		{
-			for (Color color : m.getMap().getCouncilcolors().getColors()) 
-			{
-				System.out.println("FIRST++++"+ reg.toString() +"\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
-				MainElectRegionCouncillor ac = new MainElectRegionCouncillor(color, 0, reg);
-				SendActionMessage me = new SendActionMessage(ac, 0);
-				g.update(null, me);
-				System.out.println("SECOND++++\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
-			}
+			Color color = m.getMap().getCouncilcolors().getRandomColor();
+			System.out.println("FIRST++++"+ reg.toString() +"\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
+			MainElectRegionCouncillor ac = new MainElectRegionCouncillor(color, 0, reg);
+			SendActionMessage me = new SendActionMessage(ac, 0);
+			g.update(null, me);
+			System.out.println("SECOND++++\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
 		}
 		
 	}
