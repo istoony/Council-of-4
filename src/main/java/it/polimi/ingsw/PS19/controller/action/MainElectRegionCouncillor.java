@@ -24,7 +24,7 @@ public class MainElectRegionCouncillor implements Action
 	{
 		Boolean result = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
 		if(result)
-			model.getPlayerById(id).setMoney(model.getPlayerById(id).getMoney() + MONEY);
+			model.getPlayerById(id).addMoney(MONEY);
 		return result;
 	}
 

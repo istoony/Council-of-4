@@ -5,7 +5,6 @@ import java.util.Observable;
 
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
-import it.polimi.ingsw.PS19.message.replies.Replies;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
@@ -21,7 +20,9 @@ public class Model extends Observable
 	public Model(int numberofplayer) 
 	{
 		this.numberofplayer = numberofplayer;
+		
 		PlayerFactory();
+		
 		map = MapLoader.builder();
 		
 		market = new Market();

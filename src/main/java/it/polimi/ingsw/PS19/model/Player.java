@@ -67,8 +67,14 @@ public class Player {
 		freebusinesscard.add(c);
 	}
 	
+	public void addMoney(int m)
+	{
+		money = money + m;
+	}
+	
 	//getter and setter
-	public int getId() {
+	public int getId() 
+	{
 		return id;
 	}
 

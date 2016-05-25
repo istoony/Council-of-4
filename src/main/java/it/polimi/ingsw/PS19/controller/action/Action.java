@@ -8,5 +8,6 @@ public interface Action
 	public Boolean execute(Model model);
 	
 	public Boolean isPossible(Model model);
+	
 
 }
