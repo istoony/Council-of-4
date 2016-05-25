@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -31,20 +32,26 @@ public class ClientManager
 	public static void main(String[] args) 
 	{
 		int tries = 0;
-		Connection conn = null;
+		Connection connection = null;
 		Thread t;
 		boolean success = false;
 		
+		//Gets IP and port from user
 		String ip = getIP();
 		Integer port = getPort();
+		
+		//Prova a connettersi
 		do
 		{
+			//Start thread to write string while connecting
 			t = new waitingWriterThread("Trying to connect..");
 			t.start();
+			
+			//Tries to connect: First time with player input, after with standard input
 			try 
 			{				
 				socket = new Socket(Inet4Address.getByName(ip), port);
-				conn = new SocketConnection(socket, executorService);
+				connection = new SocketConnection(socket, executorService);
 				success = true;
 				t.interrupt();
 				System.out.println("Connection successful");
@@ -52,7 +59,10 @@ public class ClientManager
 			{
 				success = false;
 				t.interrupt();
-				System.out.println("Connection Unsuccessful");
+				if(tries == 0)
+					System.out.println("Connection Unsuccessful. Trying again with standard IP (" + ClientConstants.IP_ADDRESS + ") and port (" + ClientConstants.REMOTE_PORT + ")");
+				else 
+					System.out.println("Connection Unsuccessful");
 				try {Thread.sleep(10000);}
 				catch (InterruptedException e1) {
 						e1.printStackTrace();
@@ -68,10 +78,19 @@ public class ClientManager
 			System.out.println("Connection Unsuccessful, the program will now close");
 			System.exit(0);
 		}
+		
+		
 		while(true)
 		{
-			Future<Message> waitMex = conn.read();
-			Message mex = waitMex.get();
+			Future<Message> waitMex = connection.read();
+			Message mex = null;
+			try {
+				mex = waitMex.get();
+			} catch (InterruptedException | ExecutionException e) 
+			{
+				mex = null;
+				e.printStackTrace();
+			}
 			if(!(mex == null)) 
 				{
 					System.out.println("New Message with ID: " + mex.getID());

@@ -17,8 +17,6 @@ import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.server.Constants;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
-import it.polimi.ingsw.PS19.view.exceptions.NoSuchPlayerException;
-import it.polimi.ingsw.PS19.view.exceptions.PlayerDisconnectedException;
 
 public class View extends Observable implements Observer, Runnable
 {
@@ -96,16 +94,19 @@ public class View extends Observable implements Observer, Runnable
 			{
 				Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
 				notifyObservers(recMex);
-			} catch (InterruptedException | ExecutionException e) 
-			{
-				e.printStackTrace();
-				System.exit(0);
-			} catch (TimeoutException e) 
+			} 
+			//Timeout error => Player set disconnected
+			catch (TimeoutException e) 
 			{
 				activeConn.setDisconnected();
 				notifyObservers(new PlayerDisconnectedMessage(activeID));
-			}
-			
+			}	
+			//General Error. Exit
+			catch (InterruptedException | ExecutionException e) 
+			{
+				e.printStackTrace();
+				System.exit(0);
+			} 
 		}
 	}
 	
