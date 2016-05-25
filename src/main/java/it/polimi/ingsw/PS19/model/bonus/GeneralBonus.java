@@ -50,7 +50,7 @@ public class GeneralBonus implements Bonus {
 		}
 		for(CityColorBonus c : colorBonus){
 			if(p.getMyEmporia().containsAll(c.getCitylist())){
-				regionsBonus.remove(regionsBonus.indexOf(c));
+				colorBonus.remove(colorBonus.indexOf(c));
 				pointsC += c.getPoints();
 				if(pointsC>0){
 					pointsC += this.askKingBonus();

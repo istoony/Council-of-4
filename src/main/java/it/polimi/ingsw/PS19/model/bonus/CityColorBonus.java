@@ -10,13 +10,11 @@ public class CityColorBonus {
 	
 	private Color color;
 	private int points;
-	private boolean avaible;
 	private ArrayList<City> citylist;
 	
 	public CityColorBonus(String c, int p){
 		color=Color.decode(c);
 		points=p;
-		avaible=true;
 	}
 	
 	public void joinBonusToCity(ArrayList<Region> rcitylist){
@@ -51,7 +49,7 @@ public class CityColorBonus {
 	 */
 	@Override
 	public String toString() {
-		return "CityColorBonus [color=" + color + ", points=" + points + ", avaible=" + avaible + "]";
+		return "CityColorBonus [color=" + color + ", points=" + points +"]";
 	}
 
 
@@ -78,17 +76,5 @@ public class CityColorBonus {
 	 */
 	public void setPoints(int points) {
 		this.points = points;
-	}
-	/**
-	 * @return the avaible
-	 */
-	public boolean isAvaible() {
-		return avaible;
-	}
-	/**
-	 * @param avaible the avaible to set
-	 */
-	public void setAvaible(boolean avaible) {
-		this.avaible = avaible;
 	}
 }
