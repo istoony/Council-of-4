@@ -25,8 +25,10 @@ public class GameController implements Observer
 			return;
 		Message m = (Message) message;
 		
-		readMessage(m);
+		Action action = m.getAction();
 		
+		action.execute(model);
+
 		//model.createFalseMessage(message);
 	}
 	

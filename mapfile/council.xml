@@ -122,7 +122,7 @@
 		</city>
 		<city id="7">
 			<name>Lisbona</name>
-			<color>#FF0000</color>
+			<color>#0000FF</color>
 			<nOfRoads>3</nOfRoads>
 			<road>6</road>
 			<road>8</road>
@@ -139,14 +139,14 @@
 		</city>
 		<city id="9">
 			<name>Novegro</name>
-			<color>#696969</color>
+			<color>#FFFF00</color>
 			<nOfRoads>2</nOfRoads>
 			<road>8</road>
 			<road>-1002</road>
 		</city>
 		<city id="10">
 			<name>Orebro</name>
-			<color>#FF0000</color>
+			<color>#0000FF</color>
 			<nOfRoads>3</nOfRoads>
 			<road>8</road>
 			<road>-1003</road>
@@ -176,7 +176,7 @@
 		</city>
 		<city id="14">
 			<name>Tirana</name>
-			<color>#696969</color>
+			<color>#0000FF</color>
 			<nOfRoads>2</nOfRoads>
 			<road>13</road>
 			<road>-1002</road>

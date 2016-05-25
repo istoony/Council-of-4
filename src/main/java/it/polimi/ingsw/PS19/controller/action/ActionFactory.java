@@ -5,6 +5,15 @@ import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.message.SendActionMessage;
 
+
+/**
+ * 
+ * PROBABILMENTE QUESTA CLASSE LA ELIMINIAMO A BREVES
+ * @author toony_000
+ *
+ */
+
+
 public class ActionFactory 
 {
 	public static Action createAction(Message message)

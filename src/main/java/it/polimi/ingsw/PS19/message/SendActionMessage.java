@@ -6,17 +6,13 @@ public class SendActionMessage extends Message
 {
 	
 	private static final long serialVersionUID = -3920462838497498563L;
-	private Action action;
 	
-	public SendActionMessage(Action a) 
+	public SendActionMessage(Action a, int id) 
 	{
-		action = a;
+		this.id = id;
+		this.action = a;
 	}
 	
-	public Action getAction() 
-	{
-		return action;
-	}
 	
 	@Override
 	public String getString() {
