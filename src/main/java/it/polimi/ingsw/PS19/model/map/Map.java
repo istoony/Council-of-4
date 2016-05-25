@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.map;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
@@ -16,8 +17,10 @@ public class Map
 	private PoliticDeck politicdeck;
 	private ColorManager councilcolors;
 	private King king;
-	private GeneralBonus bonus;
+	private GeneralBonus kingBonus;
 
+	
+	
 	
 	private Map(ArrayList<Region> regionlist)
 	{
@@ -26,9 +29,11 @@ public class Map
 		
 		kingFactory();	
 		///OVVIAMENTE DA CAMBIARE IL PATH DEL FILE SOTTOS
-		councilcolors = BalconyFactory.createBalcony(listaRegioni, king, "mapfile/politicscard.xml");
+		councilcolors = BalconyFactory.createBalcony(listaRegioni, king, FileNames.CARD_FILE);
 		
-		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory("mapfile/politicscard.xml", councilcolors);
+		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory(FileNames.CARD_FILE, councilcolors);
+		
+		kingBonus = new GeneralBonus(FileNames.MAP_FILE, listaRegioni);
 	}
 	
 	private void kingFactory()
@@ -36,10 +41,8 @@ public class Map
 		ArrayList<City> cities = getAllCities();
 		for (City city : cities)
 		{
-			//System.out.println(city.citycolor.toString());
 			if(city.getCitycolor().equals(Color.decode("#8B008B")))
 			{
-				//System.out.println(city.toString());
 				king = new King(city);		
 			}
 		}
@@ -64,10 +67,12 @@ public class Map
 		}
 		return null;
 	}
+	
 	public ArrayList<Region> getListaRegioni() 
 	{
 		return listaRegioni;
 	}
+	
 	public King getKing() 
 	{
 		return king;

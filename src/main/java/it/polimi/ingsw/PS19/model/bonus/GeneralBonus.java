@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.FileReader;
+import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class GeneralBonus implements Bonus {
@@ -18,26 +19,19 @@ public class GeneralBonus implements Bonus {
 	private ArrayList<Integer> kingBonus;  //first to achieve
 	private ArrayList<CityColorBonus> colorBonus;
 	
-	/*
-	public static void main(String[] args) {
-		GeneralBonus gb = new GeneralBonus(FileNames.MAP_FILE);
-		System.out.println(gb.toString());
-		System.out.println(gb.colorBonus.get(0).toString());
-		
-	}
-	*/
 	
-	private GeneralBonus(String xmlfile){
+	public GeneralBonus(String xmlfile, ArrayList<Region> regionlist){
 		regionsBonus = new ArrayList<RegionType>();
 		kingBonus = new ArrayList<Integer>();
 		colorBonus = new ArrayList<CityColorBonus>();
 		this.inizializeKing(xmlfile);
 		this.inizializeCity(xmlfile);
+		this.inizializeColors(regionlist);
 
 	}
 	
 	
-	public void inizializeKing(String xmlfile){
+	private void inizializeKing(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "bonus");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -55,7 +49,7 @@ public class GeneralBonus implements Bonus {
 		}	
 	}
 	
-	public void inizializeCity(String xmlfile){
+	private void inizializeCity(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "citycolor");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -67,7 +61,13 @@ public class GeneralBonus implements Bonus {
 				String c = e.getAttribute("id");		
 				this.colorBonus.add(new CityColorBonus(c, n));
 			}
-		}	
+		}
+	}
+	
+	private void inizializeColors(ArrayList<Region> rlist){
+		for(CityColorBonus c : this.colorBonus){
+			c.joinBonusToCity(rlist);
+		}
 	}
 	
 	

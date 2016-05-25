@@ -1,17 +1,34 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
 import java.awt.Color;
+import java.util.ArrayList;
+
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.Region;
 
 public class CityColorBonus {
 	
 	private Color color;
 	private int points;
 	private boolean avaible;
+	private ArrayList<City> citylist;
 	
 	public CityColorBonus(String c, int p){
 		color=Color.decode(c);
 		points=p;
 		avaible=true;
+	}
+	
+	public void joinBonusToCity(ArrayList<Region> rcitylist){
+		citylist = new ArrayList<City>();
+		for(Region r : rcitylist){
+			for(City c : r.getCities()){
+				if(color.equals(c.getCitycolor())){
+					citylist.add(c);
+				}
+			}
+		}
+		
 	}
 	
 	
