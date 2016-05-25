@@ -30,11 +30,16 @@ public class SocketWriter extends Writer
 	 * @see connection.Writer#write()
 	 */
 	@Override
-	protected void write() throws Exception
+	protected void write()
 	{
 		if(message == null) return;
-		out.writeObject(message);
-		out.flush();
+		try {
+			out.writeObject(message);
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

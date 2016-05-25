@@ -5,7 +5,7 @@ import java.awt.Color;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class MainElectRegionCouncillor implements Action 
+public class MainElectRegionCouncillor implements Action
 {
 	private static final int MONEY = 4;
 	private Color color;

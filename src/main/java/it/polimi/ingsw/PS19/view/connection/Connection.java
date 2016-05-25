@@ -33,7 +33,7 @@ public abstract class Connection
 	 * Writes a message
 	 * returns a future reference to the number of attempts required
 	 */
-	public abstract Future<Integer> write(Message message);
+	public abstract Integer write(Message message);
 	
 	/*
 	 * Reads a message

@@ -71,6 +71,7 @@ public class ClientView extends Observable implements Observer, Runnable
 		{
 			try
 			{
+				/*
 				System.out.println("Inserisci codice azione(0)");
 				String s = in.readLine();
 				int ac = Integer.parseInt(s);
@@ -87,18 +88,28 @@ public class ClientView extends Observable implements Observer, Runnable
 				System.out.println("Inserisci colore (#FF0000, #0000FF, #FF7F00, #000000, #FFFFFF, #FFC0CB)");
 				String col = in.readLine();
 				Color c = Color.decode(col);
-				
-				Action a = new MainElectRegionCouncillor(c, id, r);
+				System.out.println("Colore preso");
+				*/
+				Action a = new MainElectRegionCouncillor(Color.decode("#FF0000"), 0, RegionType.HILL);
 				Message m = new SendActionMessage(a, id);
-				Future<Integer> f = connection.write(m);
-				f.get();
+				System.out.println("Mandato in: " + connection.write(m) + " tentativi");
+				/*
+				try
+				{
+					f.get();
+				} catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				//*/
 				System.out.println("Mex mandato!");
 			} 
 			catch(Exception e)
 			{
 				System.out.println("NON VALIDO!!");
+				e.printStackTrace();
 			}
-			
+			stop = true;
 		}
 	}
 
@@ -119,15 +130,6 @@ public class ClientView extends Observable implements Observer, Runnable
 	 */
 	public void forwardMessage(Message mex)
 	{
-		Future<Integer> writeFeedback = connection.write(mex);
-		
-		//Verify writing success
-		try {
-			writeFeedback.get();
-		} catch (InterruptedException | ExecutionException e) 
-		{
-			e.printStackTrace();
-			notifyObservers(new PlayerDisconnectedMessage(-1));
-		}
+		connection.write(mex);
 	}
 }
