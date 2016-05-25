@@ -6,11 +6,14 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.*;
 
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.view.exceptions.SocketWritingException;
 
 /**
  * Class for socket connection
@@ -25,9 +28,10 @@ public class SocketConnection extends Connection
 	public SocketConnection(Socket client, ExecutorService exec) throws IOException
 	{
 		clientSocket = client;
-		writer = new SocketWriter(new PrintWriter(clientSocket.getOutputStream(), true)); 
-		reader = new SocketReader(new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
+		writer = new SocketWriter(clientSocket); 
+		reader = new SocketReader(clientSocket);
 		setExecutor(exec);
+		System.out.println("Conn created");
 	}
 
 	@Override
@@ -51,11 +55,18 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#write(view.Message)
 	 */
 	@Override
-	public Future<Integer> write(Message message)
+	public Integer write(Message message)
 	{
-		Future<Integer> result;
 		writer.setMessage(message);
-		result = executor.submit(writer);
+		Integer result = null;
+		try {
+			result = writer.call();
+		} catch (SocketWritingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Future<Integer> result;
+		//result = executor.submit(writer);
 		return result;
 	}
 	

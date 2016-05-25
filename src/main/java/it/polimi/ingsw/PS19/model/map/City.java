@@ -8,12 +8,12 @@ import it.polimi.ingsw.PS19.model.bonus.Bonus;
 
 public class City {
 	
-	int id;
-	String name;
+	private int id;
+	private String name;
 	private ArrayList<Bonus> bonus;
-	Color citycolor;
-	ArrayList<City> neighbours;
-	ArrayList<Integer> emporia; //array di id giocatori
+	private Color citycolor;
+	private ArrayList<City> neighbours;
+	private ArrayList<Integer> emporia; //array di id giocatori
 	
 	public City(int id){
 		this.id=id;
@@ -72,7 +72,15 @@ public class City {
 		return citycolor;
 	}
 	
+<<<<<<< HEAD
 	//aggiungi vicini
+=======
+	public int getId() 
+	{
+		return id;
+	}
+	
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 	public void addNear(ArrayList<City> lis){
 		this.neighbours = new ArrayList<City>();
 		this.neighbours.addAll(lis);

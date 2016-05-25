@@ -3,11 +3,14 @@
  */
 package it.polimi.ingsw.PS19.Client;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,7 +30,7 @@ public class ClientManager
 {
 	private static Socket socket;
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	//Thread pool used by connections for writing;
-	private static PrintWriter out; 
+	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) 
 	{
@@ -37,9 +40,17 @@ public class ClientManager
 		boolean success = false;
 		
 		//Gets IP and port from user
-		String ip = getIP();
-		Integer port = getPort();
-		
+		String ip;
+		Integer port;
+		try {
+			ip = getIP();
+			port = getPort();
+		} catch (IOException e2) {
+			ip = ClientConstants.IP_ADDRESS;
+			port = ClientConstants.REMOTE_PORT;
+			e2.printStackTrace();
+		}
+
 		//Prova a connettersi
 		do
 		{
@@ -51,6 +62,7 @@ public class ClientManager
 			try 
 			{				
 				socket = new Socket(Inet4Address.getByName(ip), port);
+				System.out.println("Socket created");
 				connection = new SocketConnection(socket, executorService);
 				success = true;
 				t.interrupt();
@@ -79,7 +91,19 @@ public class ClientManager
 			System.exit(0);
 		}
 		
+		//Start new thread for the actual game;
+		ClientView view = new ClientView(connection);
+		/*/
+		ClientInterpreter interpreter = new ClientInterpreter();
+		ClientUI userInterface = new ClientUI();
+		ClientMessageCreator messageCreator = new ClientMessageCreator();
+		view.addObserver(interpreter);
+		interpreter.addObserver(view);
+		messageCreator.addObserver(view);
+		//*/
+		new Thread(view).start();
 		
+		/*
 		while(true)
 		{
 			Future<Message> waitMex = connection.read();
@@ -92,17 +116,17 @@ public class ClientManager
 				e.printStackTrace();
 			}
 			if(!(mex == null)) 
-				{
-					System.out.println("New Message with ID: " + mex.getID());
-					System.out.println(mex.getString());
-				}
-		}
+			{
+				System.out.println("New Message with ID: " + mex.getID());
+				System.out.println(mex.getString());
+			}
+		}//*/
 	}
 	
-	private static String getIP()
+	private static String getIP() throws IOException
 	{
 		System.out.println("Insert server IP Address: ");
-		String ip = System.console().readLine();
+		String ip = in.readLine();
 		try {
 			Inet4Address.getByName(ip);
 		} catch (UnknownHostException e) {
@@ -112,11 +136,11 @@ public class ClientManager
 		return ip;
 	}
 	
-	private static Integer getPort()
+	private static Integer getPort() throws IOException
 	{
 		Integer port = null;
 		System.out.println("Insert server port: ");
-		String portString = System.console().readLine();
+		String portString = in.readLine();
 		try {
 			port = Integer.parseUnsignedInt(portString);
 			if(port < 0 || port > 65535) throw new NumberFormatException();

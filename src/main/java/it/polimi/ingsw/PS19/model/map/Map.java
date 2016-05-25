@@ -80,6 +80,10 @@ public class Map
 	{
 		return king;
 	}
+	public ColorManager getCouncilcolors() 
+	{
+		return councilcolors;
+	}
 	
 	@Override
 	public String toString() 

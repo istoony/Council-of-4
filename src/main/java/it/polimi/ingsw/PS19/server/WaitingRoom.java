@@ -98,10 +98,10 @@ public class WaitingRoom
 		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + "players!");  //TEST
 		
 		mux.lock();
-		//create new game with connections()
+		new GameFactory(room);
 		/*
 		 * Fake game for test purpose only
-		 */
+		
 		ArrayList<Future<Integer>> writeReturnList = new ArrayList<Future<Integer>>();
 		for(Connection c:room) writeReturnList.add(c.write(new StringMessage("Game has started")));
 		for(int i = 0; i<writeReturnList.size(); i++)
@@ -119,7 +119,7 @@ public class WaitingRoom
 				room.get(i).setDisconnected();
 			}
 		}
-		//
+		//*/
 		room.clear();
 		mux.unlock();
 		secondPlayerTime = -1;								//Resets secondPlayerTime
