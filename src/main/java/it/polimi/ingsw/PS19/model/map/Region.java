@@ -52,6 +52,7 @@ public class Region {
 		return type;
 	}
 	
+	//inizializzazione 
 	public static ArrayList<Region> finalRegionBuilder(ArrayList<ArrayList<City>> citiesbyregion)
 	{
 		

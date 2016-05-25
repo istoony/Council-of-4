@@ -6,8 +6,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -30,7 +30,35 @@ public class GeneralBonus implements Bonus {
 
 	}
 	
+	public int askPoints(){
+		
+	}
 	
+	//metodo di verifica
+	public void print(){
+		for(RegionType rt : regionsBonus){
+			System.out.println(rt.toString());
+		}
+		System.out.println(singleRegionBonus);
+		for (Integer i : kingBonus){
+			System.out.println(i);
+		}
+		for(CityColorBonus cb : colorBonus){
+			System.out.println(cb.toString());
+			for(City e : cb.getCitylist()){
+				System.out.println(e.toString());
+			}
+		}
+	
+	}
+	
+	@Override
+	public void giveBonus(Player p) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	//metodo ausilio costruttore 1, bonus del re
 	private void inizializeKing(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "bonus");
 
@@ -49,6 +77,7 @@ public class GeneralBonus implements Bonus {
 		}	
 	}
 	
+	//metodo ausilio costruttore 2, bonus per colore
 	private void inizializeCity(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "citycolor");
 
@@ -64,28 +93,20 @@ public class GeneralBonus implements Bonus {
 		}
 	}
 	
+	//metodo ausilio costruttore 3, colori e regioni
 	private void inizializeColors(ArrayList<Region> rlist){
 		for(CityColorBonus c : this.colorBonus){
 			c.joinBonusToCity(rlist);
 		}
+		for(Region r : rlist){
+			this.regionsBonus.add(r.getType());
+		}
 	}
 	
 	
-	@Override
-	public void giveBonus(Player p) {
-		// TODO Auto-generated method stub
-
-	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "GeneralBonus [regionsBonus=" + regionsBonus + ", singleRegionBonus=" + singleRegionBonus
-				+ ", kingBonus=" + kingBonus + ", colorBonus=" + colorBonus + "]";
-	}
+
 
 	
 	

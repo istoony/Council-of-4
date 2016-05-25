@@ -32,6 +32,20 @@ public class CityColorBonus {
 	}
 	
 	
+	/**
+	 * @return the citylist
+	 */
+	public ArrayList<City> getCitylist() {
+		return citylist;
+	}
+
+	/**
+	 * @param citylist the citylist to set
+	 */
+	public void setCitylist(ArrayList<City> citylist) {
+		this.citylist = citylist;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
