@@ -66,6 +66,9 @@ public class Player {
 	public void addCardToHand(PoliticsCard c){
 		politiccard.add(c);
 	}
+	public void removeCardToHand(PoliticsCard c){
+		politiccard.remove(c);
+	}
 	
 	public void addCardToHand(BusinessCard c){
 		freebusinesscard.add(c);

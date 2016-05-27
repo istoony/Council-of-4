@@ -89,6 +89,15 @@ public class Region {
 	{
 		return secondcard;
 	}
+	public void drowFirstCard()
+	{
+		firstcard = businessdeck.getFirstCard();
+	}
+	
+	public void drowSecondCard()
+	{
+		secondcard = businessdeck.getFirstCard();
+	}
 	
 	@Override
 	public String toString() {

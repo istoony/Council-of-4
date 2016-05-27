@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.FileNames;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.bonus.CityColorBonus;
 import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
@@ -83,6 +81,10 @@ public class Map
 	public ColorManager getCouncilcolors() 
 	{
 		return councilcolors;
+	}
+	public PoliticDeck getPoliticdeck() 
+	{
+		return politicdeck;
 	}
 	
 	@Override

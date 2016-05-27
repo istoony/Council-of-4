@@ -2,7 +2,6 @@ package it.polimi.ingsw.PS19.model.card;
 
 import java.awt.Color;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +17,7 @@ import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DeckFactory 
@@ -25,7 +25,6 @@ public class DeckFactory
 	
 	private static final String POLITICSCARD = "politicscard";
 	private static final String BUSINESSCARD = "businesscard";
-	private static final String JOKERCOLOR = "#FEFEFE";
 	
 	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, ArrayList<City> cities) 
 	{
@@ -128,7 +127,7 @@ public class DeckFactory
 		}
 		for(int i =0; i<numberofjoker; i++)
 		{
-				Card card = new PoliticsCard(Color.decode(JOKERCOLOR));
+				Card card = new PoliticsCard(Color.decode(Costants.JOKERCOLOR));
 				deck.addToDeck(card);
 		}
 		

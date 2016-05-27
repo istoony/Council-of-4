@@ -1,6 +1,5 @@
 package it.polimi.ingsw.PS19.model.card;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
