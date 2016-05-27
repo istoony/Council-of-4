@@ -26,8 +26,9 @@ public class SecondBuyHelper implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if(model.getPlayerById(id).getMoney() < MONEY)
+			return false;
+		return true;
 	}
 
 }

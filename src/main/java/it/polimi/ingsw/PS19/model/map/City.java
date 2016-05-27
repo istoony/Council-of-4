@@ -17,8 +17,8 @@ public class City {
 	
 	public City(int id){
 		this.id=id;
-		bonus = new ArrayList<Bonus>();
-		emporia = new ArrayList<Integer>();
+		bonus = new ArrayList<>();
+		emporia = new ArrayList<>();
 	}
 	
 	public void buildEmporium(Player p){
@@ -71,16 +71,15 @@ public class City {
 	{
 		return citycolor;
 	}
-	
-<<<<<<< HEAD
-	//aggiungi vicini
-=======
+
 	public int getId() 
 	{
 		return id;
 	}
-	
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
+	public ArrayList<City> getNeighbours() 
+	{
+		return neighbours;
+	}
 	public void addNear(ArrayList<City> lis){
 		this.neighbours = new ArrayList<City>();
 		this.neighbours.addAll(lis);

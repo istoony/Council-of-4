@@ -1,5 +1,7 @@
 package it.polimi.ingsw.PS19.message.requests;
 
+import java.util.Queue;
+
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 

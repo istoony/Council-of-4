@@ -20,14 +20,14 @@ public abstract class Message implements Serializable
 	
 	public Message(){}
 	
-	public int getID()
+	public int getId()
 	{
 		return id;
 	}
 	
-	public void setID(int iD)
+	public void setId(int id)
 	{
-		id = iD;
+		this.id = id;
 	}
 	
 	public void setAction(Action action) 
@@ -44,6 +44,8 @@ public abstract class Message implements Serializable
 	{
 		return type;
 	}
+	
+	public abstract Action accept(MessageInterpreterVisitor messageInterpreter);
 	
 	public abstract String getString();
 }

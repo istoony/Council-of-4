@@ -4,9 +4,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.ActionFactory;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageType;
+import it.polimi.ingsw.PS19.message.MessageInterpreterVisitor;
+import it.polimi.ingsw.PS19.message.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class GameController implements Observer
@@ -21,30 +21,17 @@ public class GameController implements Observer
 	
 	public void update(Observable view, Object message) 
 	{
+		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
+	
 		if(!(message instanceof Message))
 			return;
 		Message m = (Message) message;
 		
-		Action action = m.getAction();
-		
-		action.execute(model);
+		Action action = m.accept(messageInterpreter);
+		if(action.isPossible(model))
+			action.execute(model);
 
 		//model.createFalseMessage(message);
-	}
-	
-	protected void readMessage(Message message)
-	{
-		switch (message.getType()) 
-		{
-			case GAME_STARTED:
-			{
-				model.createMessage(MessageType.GAME_STARTED);
-				break;
-			}
-
-			default:
-				break;
-		}
 	}
 
 }

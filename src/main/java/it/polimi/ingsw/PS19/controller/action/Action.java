@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.PS19.model.Model;
 
-public interface Action extends Serializable
+public interface Action
 {
 
 	public Boolean execute(Model model);

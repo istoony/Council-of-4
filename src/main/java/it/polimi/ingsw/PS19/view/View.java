@@ -65,7 +65,7 @@ public class View extends Observable implements Observer, Runnable
 		if(!(arg instanceof Message))
 			return;
 		Message mex = (Message) arg;
-		Integer id = mex.getID();
+		Integer id = mex.getId();
 		
 		//Checks if message is to set new turn, and if so changes the active connection
 		if(mex.getType() == MessageType.ID_ACTIVE_PLAYER)
@@ -115,7 +115,7 @@ public class View extends Observable implements Observer, Runnable
 	 */
 	public void forwardMessage(Message mex)
 	{
-		Integer id = mex.getID();
+		Integer id = mex.getId();
 		ArrayList<Future<Integer>> writeFeedback = new ArrayList<Future<Integer>>();
 		
 		// Broadcast

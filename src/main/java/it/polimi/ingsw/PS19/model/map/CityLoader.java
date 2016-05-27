@@ -7,8 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.FileNames;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
 public class CityLoader {
 	
@@ -44,7 +42,7 @@ public class CityLoader {
 				
 				for(ArrayList<City> rlist : regioncitylist){
 					for(City el : rlist){
-						if(el.id==Integer.parseInt(e.getAttribute("id"))){
+						if(el.getId()==Integer.parseInt(e.getAttribute("id"))){
 							el.setParameters(e.getElementsByTagName("name").item(0).getTextContent(), e.getElementsByTagName("color").item(0).getTextContent());
 							el.addNear(CityLoader.retrieveNear(e));	
 					}		
@@ -72,13 +70,13 @@ public class CityLoader {
 			copia.addAll(reg);
 			for(City el : reg){
 				newneig.clear();
-				for(City neig : el.neighbours){
-					if(neig.id<0){
+				for(City neig : el.getNeighbours()){
+					if(neig.getId()<0){
 						newneig.add(neig);
 					}
 					else{
 						for(City el2 : copia){
-							if(neig.id==el2.id){
+							if(neig.getId()==el2.getId()){
 								newneig.add(el2);
 							}
 						}
@@ -112,13 +110,13 @@ public class CityLoader {
 	//metodo accessorio del precedente
 	private static ArrayList<ArrayList<City>> welding(ArrayList<City> regionL, ArrayList<City> regionR){
 		for(City ell : regionL){
-			for(City neig : ell.neighbours){
-				if(neig.id<0){
+			for(City neig : ell.getNeighbours()){
+				if(neig.getId()<0){
 					for(City elr : regionR){
-						for(City next : elr.neighbours){
-							if(next.id+1000==neig.id){
-								ell.neighbours.set(ell.neighbours.indexOf(neig), elr);
-								elr.neighbours.set(elr.neighbours.indexOf(next), ell);
+						for(City next : elr.getNeighbours()){
+							if(next.getId()+1000==neig.getId()){
+								ell.getNeighbours().set(ell.getNeighbours().indexOf(neig), elr);
+								elr.getNeighbours().set(elr.getNeighbours().indexOf(next), ell);
 
 							}
 						}
