@@ -3,7 +3,6 @@ package it.polimi.ingsw.PS19.message;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import it.polimi.ingsw.PS19.DrawPoliticCardAction;
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.BuyHelper;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;

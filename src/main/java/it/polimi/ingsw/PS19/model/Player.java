@@ -75,7 +75,10 @@ public class Player {
 	public void addCardToHand(BusinessCard c){
 		freebusinesscard.add(c);
 	}
-	
+	public ArrayList<PoliticsCard> getPoliticcard() 
+	{
+		return politiccard;
+	}
 	public void addMoney(int m)
 	{
 		money = money + m;
@@ -139,12 +142,21 @@ public class Player {
 		s += "Money:  " + money + "\n";
 		s += "Helpers:  " + helpers + "\n";
 		s += "victoryP:  " + victoryPoints + "\n";
-		s += "NobilityP:  " + nobilityPoints + "\nPOLITICS CARD: ";
+		s += "NobilityP:  " + nobilityPoints + "\n";
+		s += "POLITICS CARD: ";
 		for (PoliticsCard p : politiccard) 
 		{
 			s += p.toString() + "   ";
 		}
+		s += "\nFREE BUSINESS CARD: ";
+		for (BusinessCard businessCard : freebusinesscard) {
+			s += businessCard.toString() + "   ";
+		}
 		
+		s += "\nUSED BUSINESS CARD: ";
+		for (BusinessCard businessCard : usedbusinesscard) {
+			s += businessCard.toString() + "   ";
+		}
 		return s;
 	}
 	
