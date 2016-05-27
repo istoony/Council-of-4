@@ -13,4 +13,6 @@ public interface MessageInterpreterVisitor
 	
 	public Action visit(GetBusinessCardMessage message);
 	
+	public Action visit(DrawPoliticsCardMessage message);
+	
 }

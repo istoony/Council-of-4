@@ -11,13 +11,12 @@ public class PoliticDeck implements Deck
 	public PoliticDeck() 
 	{
 		card = new ArrayList<PoliticsCard>();
-		
 	}
 	
 
-	public Card getFirstCard()
+	public PoliticsCard getFirstCard()
 	{
-		Card singlecard = card.get(FIRST_CARD);
+		PoliticsCard singlecard = card.get(FIRST_CARD);
 		card.remove(FIRST_CARD);
 		return singlecard;
 	}
@@ -25,6 +24,10 @@ public class PoliticDeck implements Deck
 	public void addToDeck(Card card) 
 	{
 		this.card.add((PoliticsCard) card);
+	}
+	public int getSize()
+	{
+		return card.size();
 	}
 	
 	public Card addToDeck(int position) {

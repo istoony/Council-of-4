@@ -32,7 +32,9 @@ public class Player {
 	{
 		this.id = id;
 		myEmporia = new ArrayList<City>();
-		
+		freebusinesscard = new ArrayList<>();
+		usedbusinesscard = new ArrayList<>();
+		politiccard = new ArrayList<>();
 	}
 	
 	
@@ -137,7 +139,11 @@ public class Player {
 		s += "Money:  " + money + "\n";
 		s += "Helpers:  " + helpers + "\n";
 		s += "victoryP:  " + victoryPoints + "\n";
-		s += "NobilityP:  " + nobilityPoints + "\n";
+		s += "NobilityP:  " + nobilityPoints + "\nPOLITICS CARD: ";
+		for (PoliticsCard p : politiccard) 
+		{
+			s += p.toString() + "   ";
+		}
 		
 		return s;
 	}
