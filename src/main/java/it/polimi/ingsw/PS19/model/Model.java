@@ -5,7 +5,6 @@ import java.util.Observable;
 
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
-import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -57,7 +56,7 @@ public class Model extends Observable
 		{
 			case GAME_STARTED:
 			{
-				message = new SendFullGameReply(this);
+			//	message = new SendFullGameReply(this);
 				break;
 			}
 

@@ -2,13 +2,13 @@ package it.polimi.ingsw.PS19.controller.action;
 
 import it.polimi.ingsw.PS19.model.Model;
 
-public class SecondBuyHelper implements Action
+public class BuyHelper implements Action
 {
 	private static final int HELPERS = 1;
 	private static final int MONEY = 3;
 	private int id;
 	
-	public SecondBuyHelper(int id) 
+	public BuyHelper(int id) 
 	{
 		this.id = id;
 	}

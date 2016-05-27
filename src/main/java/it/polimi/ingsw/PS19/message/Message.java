@@ -15,8 +15,6 @@ public abstract class Message implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	protected Integer id;
-	protected MessageType type;
-	protected Action action;
 	
 	public Message(){}
 	
@@ -28,21 +26,6 @@ public abstract class Message implements Serializable
 	public void setId(int id)
 	{
 		this.id = id;
-	}
-	
-	public void setAction(Action action) 
-	{
-		this.action = action;
-	}
-	
-	public Action getAction() 
-	{
-		return action;
-	}
-	
-	public MessageType getType()
-	{
-		return type;
 	}
 	
 	public abstract Action accept(MessageInterpreterVisitor messageInterpreter);

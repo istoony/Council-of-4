@@ -3,8 +3,11 @@ package it.polimi.ingsw.PS19.message;
 import java.awt.Color;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.MainElectCouncillor;
+import it.polimi.ingsw.PS19.controller.action.BuyHelper;
+import it.polimi.ingsw.PS19.controller.action.ElectCouncillor;
+import it.polimi.ingsw.PS19.controller.action.GetBusinessCard;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -16,14 +19,13 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		int playerId = message.getId();
 		RegionType region = message.getRegion();
 		Color councicolor =  message.getColor();
+		Boolean mainAction = message.getMainAction();
+		King king = message.getKing();
 		
-		if(region == null)
-		{
-			King king = message.getKing();
-			return new MainElectCouncillor(councicolor, playerId, king);	
-		}
+		if(king != null)
+			return new ElectCouncillor(councicolor, playerId, king, mainAction);	
 		
-		return new MainElectCouncillor(councicolor, playerId, region);
+		return new ElectCouncillor(councicolor, playerId, region, mainAction);
 	}
 
 	@Override
@@ -31,6 +33,22 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	{
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Action visit(BuyHelperMessage message) 
+	{
+		int playerId = message.getId();
+		return new BuyHelper(playerId);
+	}
+
+	@Override
+	public Action visit(GetBusinessCardMessage message) 
+	{
+		BusinessCard card = message.getCard();
+		RegionType region = message.getRegion();
+		int playerId = message.getId();
+		return new GetBusinessCard(playerId, region, card);
 	}
 
 }

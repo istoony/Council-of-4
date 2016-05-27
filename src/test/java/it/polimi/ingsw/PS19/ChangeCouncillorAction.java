@@ -5,8 +5,7 @@ import java.awt.Color;
 import org.junit.Test;
 
 import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.controller.action.MainElectRegionCouncillor;
-import it.polimi.ingsw.PS19.message.SendActionMessage;
+import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -19,14 +18,18 @@ public class ChangeCouncillorAction {
 		//System.out.println(m.toString());
 		//Region r = m.getMap().getRegionByType(RegionType.HILL);
 		GameController g = new GameController(m);
+		for (int i = 0; i < 50 ; i++) 
+		{
 		for (RegionType reg : RegionType.values()) 
 		{
 			Color color = m.getMap().getCouncilcolors().getRandomColor();
-			System.out.println("FIRST++++"+ reg.toString() +"\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
-			MainElectRegionCouncillor ac = new MainElectRegionCouncillor(color, 0, reg);
-			SendActionMessage me = new SendActionMessage(ac, 0);
+			System.out.println("FIRST++++"+ reg.toString() +"COLORR" + color.toString() + "\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
+			ElectCouncillorMessage me = new ElectCouncillorMessage(color, reg);
+			me.setId(0);
+			me.setMainAction(true);
 			g.update(null, me);
 			System.out.println("SECOND++++\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
+		}
 		}
 		
 	}

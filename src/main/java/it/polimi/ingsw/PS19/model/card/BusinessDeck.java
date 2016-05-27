@@ -11,9 +11,9 @@ public class BusinessDeck implements Deck
 		card = new ArrayList<BusinessCard>();
 	}
 		
-	public Card getFirstCard()
+	public BusinessCard getFirstCard()
 	{
-		Card singlecard = card.get(FIRST_CARD);
+		BusinessCard singlecard = card.get(FIRST_CARD);
 		card.remove(FIRST_CARD);
 		return singlecard;
 	}

@@ -6,28 +6,30 @@ import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class MainElectCouncillor implements Action
+public class ElectCouncillor implements Action
 {
 	private static final int MONEY = 4;
 	private static final int HELPERS = 1;
-	private Boolean MainAction;
+	private Boolean mainAction;
 	private Color color;
 	private int id;
 	private RegionType region;
 	private King king;
 
-	public MainElectCouncillor(Color color, int id, RegionType region) 
+	public ElectCouncillor(Color color, int id, RegionType region, Boolean mainAction) 
 	{
 		this.color = color;
 		this.id = id;
 		this.region = region;
+		this.mainAction = mainAction;
 	}
 	
-	public MainElectCouncillor(Color color, int id, King k) 
+	public ElectCouncillor(Color color, int id, King k, Boolean mainAction) 
 	{
 		this.color = color;
 		this.id = id;
 		this.king = k;
+		this.mainAction = mainAction;
 	}
 	
 	@Override
@@ -38,9 +40,9 @@ public class MainElectCouncillor implements Action
 			result = model.getMap().getKing().getBalcony().setNewCouncill(color);
 		else
 			result = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
-		if(result && MainAction)
+		if(result && mainAction)
 			model.getPlayerById(id).addMoney(MONEY);
-		else if(result && !MainAction)
+		else if(result && !mainAction)
 			model.getPlayerById(id).setHelpers(model.getPlayerById(id).getHelpers() - HELPERS);
 		return result;
 	}
@@ -48,14 +50,9 @@ public class MainElectCouncillor implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(MainAction == false)
+		if(mainAction == false)
 			return model.getPlayerById(id).getHelpers() >= HELPERS;
 		return true;
 	}
 	
-	public static void main(String[] args) 
-	{
-		
-	}
-
 }

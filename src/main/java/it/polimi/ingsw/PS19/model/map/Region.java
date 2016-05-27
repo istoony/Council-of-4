@@ -3,8 +3,8 @@ package it.polimi.ingsw.PS19.model.map;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.FileNames;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.BusinessDeck;
-import it.polimi.ingsw.PS19.model.card.Card;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -13,8 +13,8 @@ public class Region {
 	private RegionType type; 
 	private ArrayList<City> cities;
 	private BusinessDeck businessdeck;
-	private Card firstcard;
-	private Card secondcard;
+	private BusinessCard firstcard;
+	private BusinessCard secondcard;
 	private Balcony balcony;
 	
 	private Region(ArrayList<City> c)
@@ -79,6 +79,15 @@ public class Region {
 			if(c.getId() == id)
 				return c;
 		}
+		return null;
+	}
+	public BusinessCard getFirstcard() 
+	{
+		return firstcard;
+	}
+	public BusinessCard getSecondcard() 
+	{
+		return secondcard;
 	}
 	
 	@Override

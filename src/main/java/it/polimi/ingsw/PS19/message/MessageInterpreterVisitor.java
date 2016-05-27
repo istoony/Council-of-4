@@ -9,4 +9,8 @@ public interface MessageInterpreterVisitor
 	
 	public Action visit(SendFullGameMessage message);
 	
+	public Action visit(BuyHelperMessage message);
+	
+	public Action visit(GetBusinessCardMessage message);
+	
 }

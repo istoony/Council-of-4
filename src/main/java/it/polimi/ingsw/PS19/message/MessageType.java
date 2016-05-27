@@ -5,6 +5,12 @@ package it.polimi.ingsw.PS19.message;
 
 public enum MessageType 
 {	
+	
+	
+	/***
+	 * 
+	 * PROBABILMENTE DA ELIMINARE
+	 */
 	SIMPLE,
 	STRING,
 	

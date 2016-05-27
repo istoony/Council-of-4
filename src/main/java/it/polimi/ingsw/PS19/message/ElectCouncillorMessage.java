@@ -18,24 +18,31 @@ public class ElectCouncillorMessage extends Message
 	private Color color;
 	private RegionType region = null;
 	private King king = null;
+	private Boolean mainAction;
 
 	public ElectCouncillorMessage(Color c, RegionType r) 
 	{
 		color = c;
 		region = r;
-		type = MessageType.MAIN_ELECT_REGION_COUNCILLOR;
 	}
 	public ElectCouncillorMessage(Color c, King k) 
 	{
 		color = c;
 		king = k;
-		type = MessageType.MAIN_ELECT_REGION_COUNCILLOR;
 	}
 	
 	public ElectCouncillorMessage(Color c) 
 	{
 		color = c;
-		type = MessageType.MAIN_ELECT_KING_COUNCILLOR;
+	}
+	
+	public void setMainAction(Boolean mainAction) 
+	{
+		this.mainAction = mainAction;
+	}
+	
+	public Boolean getMainAction() {
+		return mainAction;
 	}
 	
 	public King getKing() 

@@ -9,9 +9,9 @@ public class PlayerDisconnectedMessage extends Message
 {
 	private static final long serialVersionUID = 1600487378262939610L;
 	
-	public PlayerDisconnectedMessage(Integer iD) 
+	public PlayerDisconnectedMessage(Integer id) 
 	{
-		id = iD;
+		this.id = id;
 		type = MessageType.PLAYER_DISCONNECTED;
 	}
 	
