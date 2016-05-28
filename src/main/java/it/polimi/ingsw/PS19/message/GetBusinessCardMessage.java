@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.message;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
@@ -16,7 +17,7 @@ public class GetBusinessCardMessage extends Message
 	private static final long serialVersionUID = 843031999175292374L;
 	private BusinessCard card;
 	private RegionType region;
-	private ArrayList<PoliticsCard> politicsCard;
+	private ArrayList<Color> politicsCard;
 	
 	public GetBusinessCardMessage(BusinessCard c, RegionType r) 
 	{
@@ -25,19 +26,19 @@ public class GetBusinessCardMessage extends Message
 		this.politicsCard = new ArrayList<>();
 	}
 	
-	public GetBusinessCardMessage(BusinessCard c, RegionType r, ArrayList<PoliticsCard> politicsCard) 
+	public GetBusinessCardMessage(BusinessCard c, RegionType r, ArrayList<Color> politicsCard) 
 	{
 		card = c;
 		region = r;
 		this.politicsCard = politicsCard;
 	}
 	
-	public void addPoliticCard(PoliticsCard card)
+	public void addPoliticCard(Color card)
 	{
 		politicsCard.add(card);
 	}
 	
-	public ArrayList<PoliticsCard> getPoliticsCard() 
+	public ArrayList<Color> getPoliticsCard() 
 	{
 		return politicsCard;
 	}

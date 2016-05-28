@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -28,7 +29,11 @@ public class DrawPoliticCardAction {
 			System.out.println(m.getPlayerById(0).toString());
 			
 		}
-		ArrayList<PoliticsCard> pc = m.getPlayerById(0).getPoliticcard();
+		ArrayList<Color> pc = new ArrayList<>();
+		pc.add(Color.decode("#FF0000"));
+		pc.add(Color.decode("#0000FF"));
+		pc.add(Color.decode("#FFFFFF"));
+		pc.add(Color.decode("#FFFF00"));
 		BusinessCard card = m.getMap().getRegionByType(RegionType.MOUNTAIN).getFirstcard();
 		
 		GetBusinessCardMessage businessMessage = new GetBusinessCardMessage(card, RegionType.MOUNTAIN, pc);

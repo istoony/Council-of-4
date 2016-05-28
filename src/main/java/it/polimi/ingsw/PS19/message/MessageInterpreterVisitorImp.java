@@ -51,7 +51,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		BusinessCard card = message.getCard();
 		RegionType region = message.getRegion();
 		int playerId = message.getId();
-		ArrayList<PoliticsCard> politicscard = message.getPoliticsCard();
+		ArrayList<Color> politicscard = message.getPoliticsCard();
 		return new GetBusinessCard(playerId, region, card, politicscard);
 	}
 

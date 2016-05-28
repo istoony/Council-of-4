@@ -20,9 +20,9 @@ public class GetBusinessCard implements Action
 	RegionType region;
 	BusinessCard card;
 	Boolean isFirstCard;
-	ArrayList<PoliticsCard> politicsCard;
+	ArrayList<Color> politicsCard;
 	
-	public GetBusinessCard(int id, RegionType r, BusinessCard c, ArrayList<PoliticsCard> politicsCard) 
+	public GetBusinessCard(int id, RegionType r, BusinessCard c, ArrayList<Color> politicsCard) 
 	{
 		playerId = id;
 		region = r;
@@ -38,8 +38,9 @@ public class GetBusinessCard implements Action
 			//Per ogni carta arrivata dal Messaggio rimuovo la carta dal player e la aggiungo alla
 			//fine del mazzo
 			//
-		for (PoliticsCard p : politicsCard)
+		for(int i = 0; i < politicsCard.size(); i++)
 		{
+			PoliticsCard p = new PoliticsCard(politicsCard.get(i));
 			player.removeCardToHand(p);
 			model.getMap().getPoliticdeck().addToDeck(p);
 		}
@@ -72,13 +73,23 @@ public class GetBusinessCard implements Action
 	public Boolean isPossible(Model model) 
 	{
 		Player player = model.getPlayerById(playerId);
+		
 			//controlla se tutte le carte che gli arrivano dal client sono presenti nella mano del player
 			//se non è presente una carta ritorna false e non fa l'azione, potremmo cambiarlo in qualcosa di
 			//più sofisticato che conta le carte presenti e se hai abbastanza soldi allora te la lascia fare
 			//comunque. Per adesso lasciamolo così poi vedremo.
-		for (PoliticsCard pc : politicsCard) 
-			if(!player.findPoliticsCard(pc))
+		
+			/*
+			 *Controllo se per ogni colore che mi è arrivato ho almeno una carta di quel colore,
+			 *Se non ho nessuna carta di quel colore RETURN FALSE
+			 */
+		
+		for (Color color : politicsCard) 
+		{
+			PoliticsCard tempCard = new PoliticsCard(color);
+			if(!player.findPoliticsCard(tempCard))
 				return false;
+		}
 			//Controlla se hai abbastanza MONEY in base al numero di carte che hai e in base ai joker
 		int money = player.getMoney();
 		
@@ -118,9 +129,9 @@ public class GetBusinessCard implements Action
 	private int numberOfJoker()
 	{
 		int count = 0;
-		for (PoliticsCard p : politicsCard) 
+		for (Color color : politicsCard) 
 		{
-			if(p.getColor().equals(Color.decode(Costants.JOKERCOLOR)))
+			if(color.equals(Color.decode(Costants.JOKERCOLOR)))
 				count ++;
 		}
 		return count;

@@ -25,6 +25,12 @@ public class PoliticDeck implements Deck
 	{
 		this.card.add((PoliticsCard) card);
 	}
+	
+	public void addToDeck(PoliticsCard card) 
+	{
+		this.card.add(card);
+	}
+	
 	public int getSize()
 	{
 		return card.size();

@@ -20,7 +20,7 @@ public class PoliticsCard implements Card {
 
 	public boolean equals(PoliticsCard c) 
 	{
-		if(c.getColor() == this.color)
+		if(c.getColor().equals(this.color))
 			return true;
 		return false;
 	}

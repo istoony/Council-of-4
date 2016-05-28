@@ -68,8 +68,14 @@ public class Player {
 	public void addCardToHand(PoliticsCard c){
 		politiccard.add(c);
 	}
-	public void removeCardToHand(PoliticsCard c){
-		politiccard.remove(c);
+	public void removeCardToHand(PoliticsCard c)
+	{
+		for (PoliticsCard card : politiccard) 
+			if(card.equals(c))
+			{
+				politiccard.remove(card);
+				return;
+			}
 	}
 	
 	public void addCardToHand(BusinessCard c){
