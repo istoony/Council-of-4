@@ -4,6 +4,8 @@
 package it.polimi.ingsw.PS19.view.connection;
 
 import java.util.concurrent.*;
+
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 
 /*
@@ -33,7 +35,7 @@ public abstract class Connection
 	 * Writes a message
 	 * returns a future reference to the number of attempts required
 	 */
-	public abstract Integer write(Message message);
+	public abstract Integer write(Message message) throws WriterException;
 	
 	/*
 	 * Reads a message

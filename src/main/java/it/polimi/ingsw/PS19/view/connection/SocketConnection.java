@@ -12,8 +12,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.*;
 
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.view.exceptions.SocketWritingException;
 
 /**
  * Class for socket connection
@@ -55,15 +56,14 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#write(view.Message)
 	 */
 	@Override
-	public Integer write(Message message)
+	public Integer write(Message message) throws WriterException
 	{
 		writer.setMessage(message);
 		Integer result = null;
 		try {
 			result = writer.call();
 		} catch (SocketWritingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new WriterException();
 		}
 		//Future<Integer> result;
 		//result = executor.submit(writer);

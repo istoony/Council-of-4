@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.polimi.ingsw.PS19.controller.GameController;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.view.View;
@@ -35,7 +36,12 @@ public class GameFactory extends Thread
 	{
 		for(int i = 0; i < players.size(); i++)
 		{
-			players.get(i).write(new GameStartedMessage(i, players.size()));
+			try {
+				players.get(i).write(new GameStartedMessage(i, players.size()));
+			} catch (WriterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		view = new View(players);
 		model = new Model(players.size());

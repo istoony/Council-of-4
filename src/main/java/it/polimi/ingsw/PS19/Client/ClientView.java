@@ -11,12 +11,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.MainElectRegionCouncillor;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.SendActionMessage;
-import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 
@@ -25,12 +27,11 @@ import it.polimi.ingsw.PS19.view.connection.Connection;
  */
 public class ClientView extends Observable implements Observer, Runnable
 {
+	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean stop = false;
 	Connection connection = null;
 	ClientInterpreter interpreter = new ClientInterpreter();
-	
-	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	
+		
 	public ClientView(Connection conn)
 	{
 		connection = conn;
@@ -41,13 +42,14 @@ public class ClientView extends Observable implements Observer, Runnable
 	{
 		//notifyObservers(new GetInputMessage());
 		//notifyObservers(new SendFullGameMessage(-1));
-		/*
-		while(!stop)
-		{
+		
+		
+		//while(!stop)
+		//{
 			Future<Message> waitMex = connection.read();
 			try 
 			{
-				Message recMex = waitMex.get();
+				Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
 				notifyObservers(recMex);
 			} 
 			//General Error. Exit
@@ -55,8 +57,14 @@ public class ClientView extends Observable implements Observer, Runnable
 			{
 				e.printStackTrace();
 				System.exit(0);
+			} catch (TimeoutException e) {
+				System.out.println("Server Timeout Error!");
+				e.printStackTrace();
+				System.exit(0);
 			} 
-		}//*/
+		//}//*/
+		notifyObservers(null);
+		/*
 		System.out.println("Inserisci numero player");
 		String iD;
 		try {
@@ -69,48 +77,10 @@ public class ClientView extends Observable implements Observer, Runnable
 		
 		while(!stop)
 		{
-			try
-			{
-				/*
-				System.out.println("Inserisci codice azione(0)");
-				String s = in.readLine();
-				int ac = Integer.parseInt(s);
-				RegionType r = null;
-				System.out.println("Inserisci Regione (p, h, m)");
-				String loc = in.readLine();
-				if (loc.equals("p")) 
-					r = RegionType.PLAIN;
-				else if (loc.equals("h")) 
-					r = RegionType.HILL;
-				else if (loc.equals("m")) 
-					r = RegionType.MOUNTAIN;
-				//else throw new Exception();
-				System.out.println("Inserisci colore (#FF0000, #0000FF, #FF7F00, #000000, #FFFFFF, #FFC0CB)");
-				String col = in.readLine();
-				Color c = Color.decode(col);
-				System.out.println("Colore preso");
-				*/
-				Action a = new MainElectRegionCouncillor(Color.decode("#FF0000"), 0, RegionType.HILL);
-				Message m = new SendActionMessage(a, id);
-				System.out.println("Mandato in: " + connection.write(m) + " tentativi");
-				/*
-				try
-				{
-					f.get();
-				} catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-				//*/
-				System.out.println("Mex mandato!");
-			} 
-			catch(Exception e)
-			{
-				System.out.println("NON VALIDO!!");
-				e.printStackTrace();
-			}
+			notifyObservers(null);
 			stop = true;
 		}
+		//*/
 	}
 
 	@Override
@@ -130,6 +100,11 @@ public class ClientView extends Observable implements Observer, Runnable
 	 */
 	public void forwardMessage(Message mex)
 	{
-		connection.write(mex);
+		try {
+			connection.write(mex);
+		} catch (WriterException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 }

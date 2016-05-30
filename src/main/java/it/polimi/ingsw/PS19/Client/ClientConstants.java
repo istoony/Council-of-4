@@ -13,4 +13,5 @@ public final class ClientConstants
 	//public static final Integer PORT = 4400;
 	public static Integer MAX_CONN_TRIES = 2;
 	public static Integer MAX_WRITING_TRIES = 5;
+	public static Integer MAX_SERVER_TIMEOUT_s = 60;
 }

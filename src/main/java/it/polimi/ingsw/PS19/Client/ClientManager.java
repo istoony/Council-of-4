@@ -93,13 +93,17 @@ public class ClientManager
 		
 		//Start new thread for the actual game;
 		ClientView view = new ClientView(connection);
+		ClientUI userInterface = new ClientCLI();
+		ClientInterpreter interpreter = new ClientInterpreter();
+		view.addObserver(interpreter);
+		interpreter.addObserver(userInterface);
+		userInterface.addObserver(view);
+
 		/*/
 		ClientInterpreter interpreter = new ClientInterpreter();
-		ClientUI userInterface = new ClientUI();
-		ClientMessageCreator messageCreator = new ClientMessageCreator();
 		view.addObserver(interpreter);
-		interpreter.addObserver(view);
-		messageCreator.addObserver(view);
+		ClientMessageCreator messageCreator = new ClientMessageCreator();
+		ClientCLI..addObserver(view);
 		//*/
 		new Thread(view).start();
 		

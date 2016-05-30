@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
@@ -111,28 +112,36 @@ public class View extends Observable implements Observer, Runnable
 	}
 	
 	/*
-	 * Forwards message on connections and checks that the writing was Succesful
-	 */
 	public void forwardMessage(Message mex)
 	{
-		Integer id = mex.getId();
-		ArrayList<Future<Integer>> writeFeedback = new ArrayList<Future<Integer>>();
+		Integer id = mex.getID();
 		
 		// Broadcast
 		if(id < 0)
 		{
 			for (Entry<Integer, Connection> player : playerConnection.entrySet()) 
 			{
-				writeFeedback.add(player.getValue().write(mex));
+				try {
+					player.getValue().write(mex);
+				} catch (WriterException e) {
+					notifyObservers(new PlayerDisconnectedMessage(player.getKey()));
+					e.printStackTrace();
+				}
 			}
 		}
 		
 		// To specific client
 		else
 		{
-			writeFeedback.add(playerConnection.get(id).write(mex));
+			try {
+				playerConnection.get(id).write(mex);
+			} catch (WriterException e) {
+				notifyObservers(new PlayerDisconnectedMessage(id));
+				e.printStackTrace();
+			}		
 		}
 		
+		/*
 		//Verify writing success
 		for (int i = 0; i < writeFeedback.size(); i++) 
 		{
@@ -145,6 +154,6 @@ public class View extends Observable implements Observer, Runnable
 				playerConnection.get(i).setDisconnected();
 				notifyObservers(new PlayerDisconnectedMessage(i));
 			}
-		}
+		}//*/
 	}
 }

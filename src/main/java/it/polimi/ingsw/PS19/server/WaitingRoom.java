@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
@@ -46,8 +47,14 @@ public class WaitingRoom
 	public static void addConnection(Socket clientSocket) throws IOException
 	{
 		Connection conn = new SocketConnection(clientSocket, executorService);
-		conn.write(new StringMessage("Connected!"));
-		conn.write(new StringMessage("waiting for players"));
+		try
+		{
+			conn.write(new StringMessage("Connected!"));
+			conn.write(new StringMessage("waiting for players"));
+		} catch(WriterException e)
+		{
+			e.printStackTrace();
+		}
 		mux.lock();
 		room.add(conn);
 		mux.unlock();
@@ -133,6 +140,11 @@ public class WaitingRoom
  	public static void quit()
  	{
  		t.interrupt();
- 		for(Connection c: room) c.write(new StringMessage("ServerQuits"));
+ 		for(Connection c: room)
+			try {
+				c.write(new StringMessage("ServerQuits"));
+			} catch (WriterException e) {
+				e.printStackTrace();
+			}
  	}
 }
