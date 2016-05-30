@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.view.exceptions;
+package it.polimi.ingsw.PS19.exceptions;
 
 public class PlayerDisconnectedException extends Exception 
 {

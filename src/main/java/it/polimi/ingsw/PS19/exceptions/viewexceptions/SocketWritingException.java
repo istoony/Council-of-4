@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.view.exceptions;
+package it.polimi.ingsw.PS19.exceptions.viewexceptions;
 
 public class SocketWritingException extends WriterException 
 {

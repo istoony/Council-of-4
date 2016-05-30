@@ -3,9 +3,10 @@
  */
 package it.polimi.ingsw.PS19.view.connection;
 import java.util.concurrent.Callable;
+
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.server.Constants;
-import it.polimi.ingsw.PS19.view.exceptions.SocketWritingException;
 
 /*
  * Abstract class to write a message. 

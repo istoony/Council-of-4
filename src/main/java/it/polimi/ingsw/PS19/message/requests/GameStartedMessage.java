@@ -30,7 +30,8 @@ public class GameStartedMessage extends Message
 	@Override
 	public String getString() 
 	{
-		return null;
+		String s = "Game has started with " + getNumberOfPlayer() + " players\nYou are player number " + getPlayerNumber();
+		return s;
 	}
 
 }
