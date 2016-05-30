@@ -69,11 +69,6 @@ public class View extends Observable implements Observer, Runnable
 		Integer id = mex.getId();
 		
 		//Checks if message is to set new turn, and if so changes the active connection
-		if(mex.getType() == MessageType.ID_ACTIVE_PLAYER)
-		{
-			setActive(id);
-			return;
-		}
 		
 		//If no action is required by the view the message is forwarded to the clients
 		forwardMessage(mex);
@@ -111,10 +106,10 @@ public class View extends Observable implements Observer, Runnable
 		}
 	}
 	
-	/*
+	
 	public void forwardMessage(Message mex)
 	{
-		Integer id = mex.getID();
+		Integer id = mex.getId();
 		
 		// Broadcast
 		if(id < 0)

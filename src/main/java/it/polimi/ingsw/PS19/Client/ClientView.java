@@ -15,10 +15,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.MainElectRegionCouncillor;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.SendActionMessage;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 

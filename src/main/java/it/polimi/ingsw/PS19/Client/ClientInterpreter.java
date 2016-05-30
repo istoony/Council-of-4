@@ -3,8 +3,6 @@ package it.polimi.ingsw.PS19.Client;
 import java.util.Observable;
 import java.util.Observer;
 
-import it.polimi.ingsw.PS19.message.GetInputMessage;
-
 public class ClientInterpreter extends Observable implements Observer
 {
 
