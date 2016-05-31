@@ -2,15 +2,12 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Random;
 
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
 public class City {
-	
-	private static final int MAX_BONUS = 2;
 	
 	private int id;
 	private String name;
@@ -23,6 +20,7 @@ public class City {
 		this.id=id;
 		bonus = new ArrayList<>();
 		emporia = new ArrayList<>();
+		this.generateBonus();
 	}
 	
 	public void buildEmporium(Player p){
@@ -93,13 +91,7 @@ public class City {
 	}
 	
 	private void generateBonus(){
-		Random r = new Random();
-		int n = r.nextInt(MAX_BONUS-1)+1;
-		for(int i = 0; i<=n; i++){
-			bonus.add(BonusFactory.generateCityBonus());
-			
-			
-		}
+		this.bonus.addAll(BonusFactory.generateCityBonus());
 	}
 	
 

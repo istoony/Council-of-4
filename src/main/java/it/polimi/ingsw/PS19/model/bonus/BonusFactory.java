@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BonusFactory 
@@ -23,6 +24,7 @@ public class BonusFactory
 	private static final int MAX_CITY_VP = 3;
 	private static final int MAX_CITY_NOBILITY = 1;
 	private static final int NUMBER_OF_KIND_OF_BONUS = 5;
+	private static final int MAX_BONUS_PER_CITY = 2;
 	
 	/*bonus-more-money
     bonus-more-helper
@@ -70,32 +72,51 @@ public class BonusFactory
 		return null;	
 	}
 	
-	public static Bonus generateCityBonus(){
+	public static ArrayList<Bonus> generateCityBonus(){
+		Random k = new Random();
 		Random r = new Random();
 		int n;
-		int i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
-		switch(i){
-			case 0 : {
-				n = r.nextInt(MAX_CITY_CARDS-1)+1;
-				return new DrawPoliticCard(n);
-			}
-			case 1 : {
-				n = r.nextInt(MAX_CITY_HELPERS-1)+1;
-				return new MoreHelpers(n);
-			}
-			case 2 : {
-				n = r.nextInt(MAX_CITY_MONEY-1)+1;
-				return new MoreMoney(n);
-			}
-			case 3 : {
-				n = r.nextInt(MAX_CITY_NOBILITY-1)+1;
-				return new MoreNobilityPoints(n);
-			}
-			case 4 : {
-				n = r.nextInt(MAX_CITY_VP-1)+1;
-				return new MoreVictoryPoints(n);
-			}
+		int i=0;
+		ArrayList<Integer> truthTable = new ArrayList<Integer>();
+		ArrayList<Bonus> bon = new ArrayList<Bonus>();
+		
+		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++){
+			truthTable.add(1);
 		}
-		return null;
+		
+		int max = k.nextInt(MAX_BONUS_PER_CITY-1)+1;
+		for(int count=0; count<max; count++){
+			
+			i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
+			while(truthTable.get(i)==0){
+				i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
+			}
+		
+			switch(i){
+				case 0 : {
+					n = r.nextInt(MAX_CITY_CARDS-1)+1;
+					bon.add(new DrawPoliticCard(n));
+				}
+				case 1 : {
+					n = r.nextInt(MAX_CITY_HELPERS-1)+1;
+					bon.add(new MoreHelpers(n));
+				}
+				case 2 : {
+					n = r.nextInt(MAX_CITY_MONEY-1)+1;
+					bon.add(new MoreMoney(n));
+				}
+				case 3 : {
+					n = r.nextInt(MAX_CITY_NOBILITY-1)+1;
+					bon.add(new MoreNobilityPoints(n));
+				}		
+				case 4 : {
+					n = r.nextInt(MAX_CITY_VP-1)+1;
+					bon.add(new MoreVictoryPoints(n));
+				}
+			}
+			truthTable.set(i, 0);
+			
+		}
+		return bon;
 	}
 }
