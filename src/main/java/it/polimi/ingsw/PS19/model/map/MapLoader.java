@@ -34,7 +34,7 @@ public class MapLoader {
 
 		
 	}
-	*/
+	
 	
 	private static void goTo(Map m){
 		String from = "Atene";
@@ -42,7 +42,7 @@ public class MapLoader {
 		ArrayList<City> result = new ArrayList<City>();
 		for(Region r : m.listaRegioni){
 			for(City c : r.getCities()){
-				if(from.equals(c.name)){
+				if(from.equals(c.getName)){
 					ArrayList<City> vis = new ArrayList<City>();
 					result = MapLoader.recursive(from, to, result, c, vis);
 				}
@@ -54,7 +54,7 @@ public class MapLoader {
 		}
 	}
 	
-	
+
 	private static ArrayList<City> recursive(String f, String t, ArrayList<City> path, City c, ArrayList<City> visited){
 		for(City n : c.neighbours){
 			if(!visited.contains(n)){
@@ -76,7 +76,7 @@ public class MapLoader {
 		}
 		return path;
 	}
-	
+		*/
 	
 	//change return type to map
 	public static Map builder() throws IllegalMapException{

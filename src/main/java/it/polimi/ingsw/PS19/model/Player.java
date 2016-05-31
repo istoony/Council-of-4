@@ -83,8 +83,17 @@ public class Player {
 	}
 	public ArrayList<PoliticsCard> getPoliticcard() 
 	{
-		return politiccard;
+		return clone(politiccard);
 	}
+	
+	private ArrayList<PoliticsCard> clone(ArrayList<PoliticsCard> politiccard2) {
+		ArrayList<PoliticsCard> clone = new ArrayList<>();
+		for (PoliticsCard p : politiccard) 
+			clone.add(p);
+		return clone;
+	}
+
+
 	public void addMoney(int m)
 	{
 		money = money + m;

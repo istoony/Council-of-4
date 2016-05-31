@@ -50,23 +50,10 @@ public class Model extends Observable
 	{
 		return player.get(i);
 	}
-	
-	public void createMessage(MessageType messageType)
+	public int getNumberofplayer() 
 	{
-		Message message;
-		switch (messageType) 
-		{
-			case GAME_STARTED:
-			{
-			//	message = new SendFullGameReply(this);
-				break;
-			}
-
-			default:
-				break;
-		}
-		//notifyObservers(message);
-	}
+		return numberofplayer;
+	};
 	
 	@Override
 	public String toString() 

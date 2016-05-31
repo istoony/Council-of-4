@@ -60,9 +60,7 @@ public class Balcony
 		for ( Color c : councilcolor) 
 		{
 			s = s + " " + c.toString();
-		}
-		s = s + avaiblecouncillor.toString();
-		
+		}		
 		return s;
 	}
 	
