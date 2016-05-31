@@ -23,9 +23,10 @@ public class NewTurnMessage extends Message
 	}
 
 	@Override
-	public String getString() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getString() 
+	{
+		String s = "Turn of player " + activePlayer;
+		return s;
 	}
 
 }

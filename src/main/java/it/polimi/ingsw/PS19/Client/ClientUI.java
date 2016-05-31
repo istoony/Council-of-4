@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
@@ -21,6 +22,14 @@ public abstract class ClientUI extends Observable implements Observer
 			setChanged();
 			notifyObservers(new StringMessage("Hello this is player " + playerId));
 		}
+		else if(arg instanceof NewTurnMessage)
+		{
+			NewTurnMessage mex = (NewTurnMessage) arg;
+			if(mex.getActivePlayer() == playerId)
+				activatePlayer();
+			else
+				System.out.println(mex.getString());
+		}
 		else if(arg instanceof RequestActionMessage)
 		{
 			System.out.println("New Action Requested");
@@ -37,4 +46,7 @@ public abstract class ClientUI extends Observable implements Observer
 	}
 	
 	protected abstract void requestAction();
+	protected abstract void activatePlayer();
+
+	
 }

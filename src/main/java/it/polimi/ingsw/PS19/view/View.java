@@ -103,7 +103,9 @@ public class View extends Observable implements Observer, Runnable
 				//Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
 				Message recMex = waitMex.get();
 				if(recMex instanceof StringMessage)
+				{
 					System.out.println(recMex.getString());
+				}
 				else 
 				{
 					setChanged();

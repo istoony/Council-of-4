@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.NoSuchActionException;
+import it.polimi.ingsw.PS19.message.BuyHelperMessage;
 import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.Message;
@@ -43,8 +44,10 @@ public class ClientCLI extends ClientUI
 		try {
 			Supplier<Message> elCounc = () -> this.electCouncillor();
 			Supplier<Message> endTurn = () -> this.endTurn();
+			Supplier<Message> buyHelper = () -> this.buyHelper();
 			messageCreator.put(0, endTurn);
 			messageCreator.put(1, elCounc);
+			messageCreator.put(2, buyHelper);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,11 +61,18 @@ public class ClientCLI extends ClientUI
 
 		while(!valid)
 		{
-			System.out.println("Decidi che azione fare (0 EndTurn, 1 ElectCouncilor): ");
+			System.out.print("Decidi che azione fare (");
+			for(int i = 0; i < messageCreator.size(); i++)
+			{
+				String actionName = messageCreator.get(i).toString();
+				System.out.print(i + "-" + actionName + ", ");
+			}
+			System.out.println("):");
 			try {
 				String s = in.readLine();
 				actionId = Integer.parseInt(s);
 				mex = defineAction(actionId);
+				mex.setId(playerId);
 				setChanged();
 				notifyObservers(mex);
 				valid = true;
@@ -117,6 +127,11 @@ public class ClientCLI extends ClientUI
 		}
 		
 		return mex;
+	}
+	
+	private BuyHelperMessage buyHelper()
+	{
+		return new BuyHelperMessage();
 	}
 	
 	private EndTurnMessage endTurn()
@@ -197,5 +212,13 @@ public class ClientCLI extends ClientUI
 			return null;
 		System.out.println("Invalid Region");
 		throw new InvalidInsertionException();
+	}
+
+	
+	@Override
+	protected void activatePlayer() 
+	{
+		System.out.println("It is your turn!");
+		requestAction();
 	}
 }

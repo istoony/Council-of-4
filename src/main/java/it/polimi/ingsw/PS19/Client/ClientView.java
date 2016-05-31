@@ -39,7 +39,8 @@ public class ClientView extends Observable implements Observer, Runnable
 			Future<Message> waitMex = connection.read();
 			try 
 			{
-				Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
+				//Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
+				Message recMex = waitMex.get();
 				setChanged();
 				notifyObservers(recMex);
 			} 
@@ -48,12 +49,14 @@ public class ClientView extends Observable implements Observer, Runnable
 			{
 				e.printStackTrace();
 				System.exit(0);
-			} catch (TimeoutException e) {
+			} 
+			/*
+			catch (TimeoutException e) {
 				System.out.println("Server Timeout Error!");
 				e.printStackTrace();
 				System.exit(0);
-			} 
-		}//*/
+			}//*/
+		}
 		notifyObservers(null);
 		/*
 		System.out.println("Inserisci numero player");
