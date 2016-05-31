@@ -6,12 +6,16 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+
+import it.polimi.ingsw.PS19.controller.action.SendFullGame;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.StringMessage;
+import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
+import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 
@@ -94,6 +98,8 @@ public class View extends Observable implements Observer, Runnable
 	public void run() 
 	{
 		int i = 0;
+		setChanged();
+		notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
 		{
 			Connection activeConn = playerConnection.get(activeId);
