@@ -1,6 +1,8 @@
 package it.polimi.ingsw.PS19.model.card;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 public class PoliticDeck implements Deck
@@ -36,6 +38,10 @@ public class PoliticDeck implements Deck
 		return card.size();
 	}
 	
+	public void shuffle()
+	{
+		Collections.shuffle(card);
+	}
 	public Card addToDeck(int position) {
 		// TODO Auto-generated method stub
 		return null;

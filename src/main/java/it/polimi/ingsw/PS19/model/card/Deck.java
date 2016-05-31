@@ -14,6 +14,8 @@ public interface Deck
 	
 	public abstract Card addToDeck(int position);
 	
+	public abstract void shuffle();
+	
 	
 	
 	

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.card;
+package it.polimi.ingsw.PS19.model.map;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,6 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
-import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class NobilityPath 
 {

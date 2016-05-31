@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.model.card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class BusinessDeck implements Deck 
 {
@@ -28,6 +29,7 @@ public class BusinessDeck implements Deck
 		return null;
 	}
 	
+	
 	@Override
 	public String toString() {
 		String s = "\n+++++++++++++\n";
@@ -37,6 +39,12 @@ public class BusinessDeck implements Deck
 			s = s + c.toString() + "  ";
 		}
 		return s;
+	}
+
+	@Override
+	public void shuffle() 
+	{
+		Collections.shuffle(card);
 	}
 
 }

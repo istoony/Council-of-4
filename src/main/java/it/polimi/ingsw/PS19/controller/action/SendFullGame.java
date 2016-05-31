@@ -1,8 +1,16 @@
 package it.polimi.ingsw.PS19.controller.action;
 
-import it.polimi.ingsw.PS19.model.Model;
+import java.util.ArrayList;
 
-public class SendFullGame implements Action {
+import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
+import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.Region;
+
+public class SendFullGame implements Action 
+{
 
 	private String result;
 	@Override
@@ -31,14 +39,20 @@ public class SendFullGame implements Action {
 	}
 
 	@Override
-	public void createReplyMessage() 
+	public Reply createReplyMessage(Model model) 
 	{
-		
+		ArrayList<Region> regions = model.getMap().getListaRegioni();
+		King king = model.getMap().getKing();
+		ArrayList<Player> player = model.getPlayer();
+		SendFullGameReply reply = new SendFullGameReply(regions, player, king);
+		reply.setId(-1);
+		return reply;
 	}
 
 	@Override
 	public void checkAlreadyTurn() 
 	{
+		
 		return;		
 	}
 

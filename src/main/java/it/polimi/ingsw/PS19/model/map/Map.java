@@ -18,6 +18,7 @@ public class Map
 	private ColorManager councilcolors;
 	private King king;
 	private GeneralBonus kingBonus;
+	private NobilityPath nobilityPath;
 
 	
 	public static void main(String[] args) {
@@ -35,27 +36,22 @@ public class Map
 		councilcolors = BalconyFactory.createBalcony(listaRegioni, king, FileNames.CARD_FILE);
 		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory(FileNames.CARD_FILE, councilcolors);
 		kingBonus = new GeneralBonus(FileNames.MAP_FILE, listaRegioni);
+		nobilityPath = new NobilityPath(FileNames.CARD_FILE);
 	}
 	
 	private void kingFactory()
 	{
 		ArrayList<City> cities = getAllCities();
 		for (City city : cities)
-		{
 			if(city.getCitycolor().equals(Color.decode("#8B008B")))
-			{
 				king = new King(city);		
-			}
-		}
 	}
 	
 	private ArrayList<City> getAllCities()
 	{
 		ArrayList<City> cities = new ArrayList<City>();
 		for (Region region : listaRegioni) 
-		{
 			cities.addAll(region.getCities());
-		}
 		return cities;
 	}
 	
@@ -71,7 +67,9 @@ public class Map
 	
 	public ArrayList<Region> getListaRegioni() 
 	{
-		return listaRegioni;
+		ArrayList<Region> reg = new ArrayList<>();
+		reg.addAll(listaRegioni);
+		return reg;
 	}
 	
 	public King getKing() 

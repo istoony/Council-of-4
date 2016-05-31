@@ -3,6 +3,8 @@ package it.polimi.ingsw.PS19.model.card;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -77,6 +79,7 @@ public class DeckFactory
 					}
 				}
 			}
+			Collections.shuffle((List<?>) businessdeck);
 			return businessdeck;
 		    } catch (Exception e) {
 			e.printStackTrace();
@@ -130,19 +133,19 @@ public class DeckFactory
 				Card card = new PoliticsCard(Color.decode(Costants.JOKERCOLOR));
 				deck.addToDeck(card);
 		}
-		
+		deck.shuffle();
 		return deck;
 	}
-	
-	/*public static void main(String[] args) throws IOException 
+
+	public static void main(String[] args)
 	{
 		ColorManager color = new ColorManager("mapfile/politicscard.xml");
 		System.out.println(color.toString());
 		Deck politic = DeckFactory.politicsDeckFactory("mapfile/politicscard.xml", color);
-		System.out.println(JOKERCOLOR);
+		//System.out.println(JOKERCOLOR);
 		System.out.println(politic.toString());
 	/*	Deck businessMountain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.MOUNTAIN);
 		Deck businessPlain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.PLAIN);
 		Deck businessHill = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.HILL);*/
-	//}
+	}
 }
