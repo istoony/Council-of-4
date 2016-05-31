@@ -6,6 +6,7 @@ import java.util.Observer;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
 
 public abstract class ClientUI extends Observable implements Observer
 {
@@ -20,9 +21,9 @@ public abstract class ClientUI extends Observable implements Observer
 			setChanged();
 			notifyObservers(new StringMessage("Hello this is player " + playerId));
 		}
-		else if(arg == null)
+		else if(arg instanceof RequestActionMessage)
 		{
-			System.out.println("Null message arrived");
+			System.out.println("New Action Requested");
 			requestAction();
 		}
 		else if(arg instanceof Message)

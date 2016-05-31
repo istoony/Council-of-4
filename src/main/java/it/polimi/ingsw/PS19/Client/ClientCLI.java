@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Observable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -33,12 +32,13 @@ public class ClientCLI extends ClientUI
 
 	public ClientCLI()
 	{
-		councillorsColors.add(Color.getColor("#FF0000"));
-		councillorsColors.add(Color.getColor("#0000FF"));
-		councillorsColors.add(Color.getColor("#FF7F00"));
-		councillorsColors.add(Color.getColor("#000000"));
-		councillorsColors.add(Color.getColor("#FFFFFF"));
-		councillorsColors.add(Color.getColor("#FFC0CB"));
+		councillorsColors.add(new Color(0xFF0000));
+		councillorsColors.add(new Color(0x0000FF));
+		councillorsColors.add(new Color(0xFF7F00));
+		councillorsColors.add(new Color(0x000000));
+		councillorsColors.add(new Color(0xFFFFFF));
+		councillorsColors.add(new Color(0xFFC0CB));
+		
 		Supplier<Message> elCounc = null;
 		try {
 			elCounc = () -> this.electCouncillor();
@@ -90,17 +90,19 @@ public class ClientCLI extends ClientUI
 		return mex;
 	}
 	
-	private Message electCouncillor()
+	private ElectCouncillorMessage electCouncillor()
 	{
-		Message mex = null;
+		ElectCouncillorMessage mex = null;
 		RegionType loc = null;
 		Color col;
 		System.out.println();
 		System.out.println("SHIFTA BALCONCINO");
 		try 
 		{
-			loc = getRegionAndKing();	
+			loc = getRegionAndKing();
+			System.out.println("Got the region");
 			col = getAndValidateColor(councillorsColors);
+			System.out.println("Got the color");
 			if(loc == null) 
 				mex = new ElectCouncillorMessage(col);
 			else 
@@ -137,17 +139,18 @@ public class ClientCLI extends ClientUI
 	 */
 	private Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException, IOException
 	{
-		System.out.print("Definisc il colore del consigliere da aggiungere (");
+		
+		System.out.print("Definisci il colore del consigliere da aggiungere (");
 		for(Color c : validColors)
 		{
-			System.out.print("#"+Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ");
+			System.out.print("#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ");
 		}
 		System.out.println("):");
 		String s = in.readLine();
 		Color color;
 		try
 		{
-			color = Color.getColor(s);
+			color = Color.decode(s);
 			for(Color c : validColors)
 			{
 				if(color.equals(c))
@@ -167,7 +170,7 @@ public class ClientCLI extends ClientUI
 	 */
 	private RegionType getRegionAndKing() throws InvalidInsertionException, IOException
 	{
-		System.out.print("Definisci il balcolcino da shiftare");
+		System.out.print("Definisci il balcolcino da shiftare (");
 		for(RegionType reg : RegionType.values())
 		{
 			System.out.print(reg.toString().substring(0, 1).toLowerCase() + "=" + reg.toString() + ", ");
@@ -176,7 +179,7 @@ public class ClientCLI extends ClientUI
 		String s = in.readLine();
 		for(RegionType reg : RegionType.values())
 		{
-			if(reg.toString().substring(0, 1).toLowerCase().equals(s))
+			if(reg.toString().toLowerCase().substring(0, 1).equals(s))
 				return reg;
 		}
 		if(s.equals("k"))

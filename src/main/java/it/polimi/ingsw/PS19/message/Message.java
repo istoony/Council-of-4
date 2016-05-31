@@ -14,7 +14,7 @@ public abstract class Message implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	protected Integer id;
+	protected int id;
 	
 	public Message(){}
 	

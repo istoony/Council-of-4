@@ -13,7 +13,9 @@ import java.util.concurrent.TimeoutException;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
+import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
+import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.server.Constants;
 import it.polimi.ingsw.PS19.view.connection.Connection;
@@ -24,6 +26,7 @@ public class View extends Observable implements Observer, Runnable
 	private HashMap<Integer, Connection> playerConnection;
 	private int activeId = 0;
 	private boolean stop = false;
+	boolean firstRun = true;
 	
 	public View(HashMap<Integer, Connection> conns) 
 	{
@@ -37,7 +40,7 @@ public class View extends Observable implements Observer, Runnable
 	{
 		if(n < playerConnection.size() && n >= 0)
 		{
-			if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED)
+			if(playerConnection.get(n).getStatus() == ConnectionStatus.DISCONNECTED)
 			{
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(n));
@@ -56,6 +59,13 @@ public class View extends Observable implements Observer, Runnable
 						playerConnection.get(n).setInactive();
 				}
 			}
+		}
+		if(!firstRun)
+		{
+			Message m = new RequestActionMessage();
+			m.setId(activeId);
+			update(this, m);
+			System.out.println("New Action requested to player " + activeId);
 		}
 		else return;
 	}
@@ -90,7 +100,7 @@ public class View extends Observable implements Observer, Runnable
 	@Override
 	public void run() 
 	{
-		//notifyObservers(new SendFullGameMessage(-1));
+		int i = 0;
 		while(!stop)
 		{
 			Connection activeConn = playerConnection.get(activeId);
@@ -99,27 +109,36 @@ public class View extends Observable implements Observer, Runnable
 			{
 				//Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
 				Message recMex = waitMex.get();
-				System.out.println(recMex.getString());
-				setNextActive();
-				/*
-				setChanged();
-				notifyObservers(recMex);
-				//*/
+				if(recMex instanceof StringMessage)
+					System.out.println(recMex.getString());
+				else 
+				{
+					setChanged();
+					notifyObservers(recMex);
+				}
 			} 
 			//Timeout error => Player set disconnected
 			/*
 			catch (TimeoutException e) 
 			{
 				activeConn.setDisconnected();
+				setNextActive();
 				setChanged();
-				notifyObservers(new PlayerDisconnectedMessage(activeID));
+				notifyObservers(new PlayerDisconnectedMessage(activeId));
 			}	
 			//*///General Error. Exit
 			catch (InterruptedException | ExecutionException e) 
 			{
 				e.printStackTrace();
 				System.exit(0);
-			} 
+			}
+			finally
+			{
+				if(++i >= playerConnection.size())
+					firstRun = false;
+				System.out.println("firstRun = " + firstRun);
+				setNextActive();
+			}
 		}
 	}
 	
