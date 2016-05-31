@@ -8,20 +8,25 @@ public class SendFullGame implements Action {
 	@Override
 	public Boolean execute(Model model) 
 	{
-		if(model == null)
-			return false;
+		model.getCurrentState().setSendfullgame(true);
 		return true;
 	}
 
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(model == null)
+		{
+			result = Action.GENERIC_ERROR;
+			return false;
+		}
 		result = Action.EVERYTHING_IS_OK;
 		return true;
 	}
 
 	@Override
-	public String getStringResult() {
+	public String getStringResult() 
+	{
 		return result;
 	}
 

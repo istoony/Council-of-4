@@ -29,8 +29,7 @@ public class SendFullGameMessage extends Message
 	}
 	@Override
 	public Action accept(MessageInterpreterVisitor messageInterpreter) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageInterpreter.visit(this);
 	}
 
 }

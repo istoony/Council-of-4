@@ -9,6 +9,7 @@ import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.ElectCouncillor;
 import it.polimi.ingsw.PS19.controller.action.EndTurn;
 import it.polimi.ingsw.PS19.controller.action.GetBusinessCard;
+import it.polimi.ingsw.PS19.controller.action.SendFullGame;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.King;
@@ -34,8 +35,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	@Override
 	public Action visit(SendFullGameMessage message) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new SendFullGame();
 	}
 
 	@Override

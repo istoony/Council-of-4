@@ -13,6 +13,7 @@ public interface Action
 	public static final String NOT_HAVE_POLITIC_CARD = "You haven't this politic card";
 	public static final String NO_BUSINESS_CARD = "Can't find business card";	
 	public static final String BUILD_EMPORIA = "You already have an emporium in this city";
+	public static final String GENERIC_ERROR = "ERROR!";
 	
 	
 

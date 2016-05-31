@@ -3,10 +3,8 @@ package it.polimi.ingsw.PS19.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageType;
-import it.polimi.ingsw.PS19.message.StringMessage;
+import it.polimi.ingsw.PS19.message.NewTurnMessage;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -23,7 +21,7 @@ public class Model extends Observable
 	{
 		this.numberofplayer = numberofplayer;
 		
-		PlayerFactory();
+		playerFactory();
 		
 		map = MapLoader.builder();
 		
@@ -32,9 +30,9 @@ public class Model extends Observable
 		currentState = new CurrentState();
 	}
 	
-	private void PlayerFactory()
+	private void playerFactory()
 	{
-		player = new ArrayList<Player>();
+		player = new ArrayList<>();
 		
 		for(int i = 0; i < numberofplayer; i++)
 		{
@@ -52,6 +50,7 @@ public class Model extends Observable
 	{
 		return player.get(i);
 	}
+	
 	public int getNumberofplayer() 
 	{
 		return numberofplayer;
@@ -72,11 +71,14 @@ public class Model extends Observable
 		return s;
 	}
 	
-	public void createMessage(String result, Message message)
+	public void createMessage(String result)
 	{
 		setChanged();
-		ActionInterpreterVisitor visitor = new ActionInterpreterVisitorImp();
-		notifyObservers(action.resply(visitor));
+		if(currentState.getSendfullgame())
+		{
+			NewTurnMessage message = new NewTurnMessage(currentState.getPlayerTurnId());
+			notifyObservers(message);
+		}
 	}
 	
 	public CurrentState getCurrentState() 

@@ -9,6 +9,7 @@ public class NewTurnMessage extends Message
 	public NewTurnMessage(int activePlayerId) 
 	{
 		activePlayer = activePlayerId;
+		setId(-1);
 	}
 	
 	public int getActivePlayer() 
