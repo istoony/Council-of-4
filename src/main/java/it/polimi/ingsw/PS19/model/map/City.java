@@ -72,14 +72,20 @@ public class City {
 		return citycolor;
 	}
 
+
+	//aggiungi vicini
+
+
 	public int getId() 
 	{
 		return id;
 	}
+
 	public ArrayList<City> getNeighbours() 
 	{
 		return neighbours;
 	}
+
 	public void addNear(ArrayList<City> lis){
 		this.neighbours = new ArrayList<City>();
 		this.neighbours.addAll(lis);
