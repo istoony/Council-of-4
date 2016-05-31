@@ -2,11 +2,15 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
 public class City {
+	
+	private static final int MAX_BONUS = 2;
 	
 	private int id;
 	private String name;
@@ -72,10 +76,6 @@ public class City {
 		return citycolor;
 	}
 
-
-	//aggiungi vicini
-
-
 	public int getId() 
 	{
 		return id;
@@ -86,15 +86,23 @@ public class City {
 		return neighbours;
 	}
 
+	//aggiungi vicini
 	public void addNear(ArrayList<City> lis){
 		this.neighbours = new ArrayList<City>();
 		this.neighbours.addAll(lis);
 	}
 	
-	public void addBonus(Bonus bonus)
-	{
-		this.bonus.add(bonus);
+	private void generateBonus(){
+		Random r = new Random();
+		int n = r.nextInt(MAX_BONUS-1)+1;
+		for(int i = 0; i<=n; i++){
+			bonus.add(BonusFactory.generateCityBonus());
+			
+			
+		}
 	}
+	
+
 	
 	@Override
 	public String toString() 

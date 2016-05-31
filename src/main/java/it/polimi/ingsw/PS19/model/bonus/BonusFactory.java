@@ -1,5 +1,7 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
+import java.util.Random;
+
 public class BonusFactory 
 {
 
@@ -14,6 +16,14 @@ public class BonusFactory
 	private static final String BONUS_MORE_HELPER = "bonus-more-helper";
 	private static final String BONUS_MORE_MONEY = "bonus-more-money";
 
+	//BOUNDS FOR CITY BONUS
+	private static final int MAX_CITY_HELPERS = 2;
+	private static final int MAX_CITY_CARDS = 2;
+	private static final int MAX_CITY_MONEY = 3;
+	private static final int MAX_CITY_VP = 3;
+	private static final int MAX_CITY_NOBILITY = 1;
+	private static final int NUMBER_OF_KIND_OF_BONUS = 5;
+	
 	/*bonus-more-money
     bonus-more-helper
     bonus-more-nobilitytrack
@@ -58,5 +68,34 @@ public class BonusFactory
 											
 	//	if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
 		return null;	
+	}
+	
+	public static Bonus generateCityBonus(){
+		Random r = new Random();
+		int n;
+		int i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
+		switch(i){
+			case 0 : {
+				n = r.nextInt(MAX_CITY_CARDS-1)+1;
+				return new DrawPoliticCard(n);
+			}
+			case 1 : {
+				n = r.nextInt(MAX_CITY_HELPERS-1)+1;
+				return new MoreHelpers(n);
+			}
+			case 2 : {
+				n = r.nextInt(MAX_CITY_MONEY-1)+1;
+				return new MoreMoney(n);
+			}
+			case 3 : {
+				n = r.nextInt(MAX_CITY_NOBILITY-1)+1;
+				return new MoreNobilityPoints(n);
+			}
+			case 4 : {
+				n = r.nextInt(MAX_CITY_VP-1)+1;
+				return new MoreVictoryPoints(n);
+			}
+		}
+		return null;
 	}
 }
