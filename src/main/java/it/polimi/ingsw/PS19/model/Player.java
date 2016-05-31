@@ -196,5 +196,11 @@ public class Player {
 		this.myEmporia = myEmporia;
 	}
 	
-	
+	public Boolean findMyEmporiaById(int id)
+	{
+		for (City c : myEmporia) 
+			if(c.getId() == id)
+				return true;
+		return false;
+	}
 }

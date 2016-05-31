@@ -10,7 +10,6 @@ import it.polimi.ingsw.PS19.message.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DrawPoliticCardAction {
@@ -32,8 +31,7 @@ public class DrawPoliticCardAction {
 		ArrayList<Color> pc = new ArrayList<>();
 		pc.add(Color.decode("#FF0000"));
 		pc.add(Color.decode("#0000FF"));
-		pc.add(Color.decode("#FFFFFF"));
-		pc.add(Color.decode("#FFFF00"));
+		//pc.add(Color.decode("#FEFEFE"));
 		BusinessCard card = m.getMap().getRegionByType(RegionType.MOUNTAIN).getFirstcard();
 		
 		GetBusinessCardMessage businessMessage = new GetBusinessCardMessage(card, RegionType.MOUNTAIN, pc);

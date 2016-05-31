@@ -26,7 +26,7 @@ public class City {
 		p.addToMyEmporia(this);
 	}
 	
-	public int calculateMalusEmporium(Player p){
+	public int calculateMalusEmporium(){
 		return emporia.size();
 	}
 	

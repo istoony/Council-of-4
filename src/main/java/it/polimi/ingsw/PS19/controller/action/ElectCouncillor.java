@@ -12,14 +12,14 @@ public class ElectCouncillor implements Action
 	private static final int HELPERS = 1;
 	private Boolean mainAction;
 	private Color color;
-	private int id;
+	private int playerId;
 	private RegionType region;
 	private King king;
 
 	public ElectCouncillor(Color color, int id, RegionType region, Boolean mainAction) 
 	{
 		this.color = color;
-		this.id = id;
+		this.playerId = id;
 		this.region = region;
 		this.mainAction = mainAction;
 	}
@@ -27,7 +27,7 @@ public class ElectCouncillor implements Action
 	public ElectCouncillor(Color color, int id, King k, Boolean mainAction) 
 	{
 		this.color = color;
-		this.id = id;
+		this.playerId = id;
 		this.king = k;
 		this.mainAction = mainAction;
 	}
@@ -41,17 +41,20 @@ public class ElectCouncillor implements Action
 		else
 			result = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
 		if(result && mainAction)
-			model.getPlayerById(id).addMoney(MONEY);
+			model.getPlayerById(playerId).addMoney(MONEY);
 		else if(result && !mainAction)
-			model.getPlayerById(id).setHelpers(model.getPlayerById(id).getHelpers() - HELPERS);
+			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
 		return result;
 	}
 
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.ceckPlayerTurn(playerId, model))
+			return false;
+		
 		if(mainAction == false)
-			return model.getPlayerById(id).getHelpers() >= HELPERS;
+			return model.getPlayerById(playerId).getHelpers() >= HELPERS;
 		return true;
 	}
 	

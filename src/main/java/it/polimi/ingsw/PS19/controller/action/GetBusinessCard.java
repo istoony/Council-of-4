@@ -72,12 +72,10 @@ public class GetBusinessCard implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		Player player = model.getPlayerById(playerId);
+		if(Action.ceckPlayerTurn(playerId, model))
+			return false;
 		
-			//controlla se tutte le carte che gli arrivano dal client sono presenti nella mano del player
-			//se non è presente una carta ritorna false e non fa l'azione, potremmo cambiarlo in qualcosa di
-			//più sofisticato che conta le carte presenti e se hai abbastanza soldi allora te la lascia fare
-			//comunque. Per adesso lasciamolo così poi vedremo.
+		Player player = model.getPlayerById(playerId);
 		
 			/*
 			 *Controllo se per ogni colore che mi è arrivato ho almeno una carta di quel colore,

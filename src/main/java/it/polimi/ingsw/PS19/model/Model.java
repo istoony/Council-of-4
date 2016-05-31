@@ -15,6 +15,7 @@ public class Model extends Observable
 	private Map map;
 	private ArrayList<Player> player;
 	private int numberofplayer;
+	private CurrentState currentState;
 	
 	public Model(int numberofplayer) 
 	{
@@ -26,6 +27,7 @@ public class Model extends Observable
 		
 		market = new Market();
 		
+		currentState = new CurrentState();
 	}
 	
 	private void PlayerFactory()
@@ -81,7 +83,10 @@ public class Model extends Observable
 		return s;
 	}
 	
-	
+	public CurrentState getCurrentState() 
+	{
+		return currentState;
+	}
 public static void main(String[] args) 
 {
 	Model m = new Model(2);
