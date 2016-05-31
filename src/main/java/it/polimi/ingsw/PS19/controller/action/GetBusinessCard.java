@@ -16,11 +16,13 @@ public class GetBusinessCard implements Action
 	private static final int MONEY_1_CARDS = 10;
 	private static final int MONEY_2_CARDS = 7;
 	private static final int MONEY_3_CARDS = 4;
-	int playerId;
-	RegionType region;
-	BusinessCard card;
-	Boolean isFirstCard;
-	ArrayList<Color> politicsCard;
+	private int playerId;
+	private RegionType region;
+	private BusinessCard card;
+	private Boolean isFirstCard;
+	private ArrayList<Color> politicsCard;
+	
+	private String result;
 	
 	public GetBusinessCard(int id, RegionType r, BusinessCard c, ArrayList<Color> politicsCard) 
 	{
@@ -73,7 +75,10 @@ public class GetBusinessCard implements Action
 	public Boolean isPossible(Model model) 
 	{
 		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = Action.NOT_YOUR_TURN;
 			return false;
+		}
 		
 		Player player = model.getPlayerById(playerId);
 		
@@ -86,13 +91,19 @@ public class GetBusinessCard implements Action
 		{
 			PoliticsCard tempCard = new PoliticsCard(color);
 			if(!player.findPoliticsCard(tempCard))
+			{
+				result = Action.NOT_HAVE_POLITIC_CARD;
 				return false;
+			}
 		}
 			//Controlla se hai abbastanza MONEY in base al numero di carte che hai e in base ai joker
 		int money = player.getMoney();
 		
 		if(money < numberOfNeedMoney() + numberOfJoker())
+		{
+			result = Action.NO_MONEY;
 			return false;
+		}
 		
 			//controlla se esistono queste carte dentro la regione, per adesso uso == ma probabilmente
 			//non funziona quindi
@@ -100,6 +111,7 @@ public class GetBusinessCard implements Action
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
 		
+		result = Action.EVERYTHING_IS_OK;
 		if(firstCard == card)
 		{
 			isFirstCard = true;
@@ -110,6 +122,7 @@ public class GetBusinessCard implements Action
 			isFirstCard = false;
 			return true;
 		}
+		result = Action.NO_BUSINESS_CARD;
 		return false;
 	}
 
@@ -133,5 +146,10 @@ public class GetBusinessCard implements Action
 				count ++;
 		}
 		return count;
+	}
+
+	@Override
+	public String getStringResult() {
+		return result;
 	}
 }

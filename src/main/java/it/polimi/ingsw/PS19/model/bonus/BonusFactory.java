@@ -22,7 +22,7 @@ public class BonusFactory
 	private static final int MAX_CITY_CARDS = 2;
 	private static final int MAX_CITY_MONEY = 3;
 	private static final int MAX_CITY_VP = 3;
-	private static final int MAX_CITY_NOBILITY = 1;
+	private static final int MAX_CITY_NOBILITY = 2;
 	private static final int NUMBER_OF_KIND_OF_BONUS = 5;
 	private static final int MAX_BONUS_PER_CITY = 2;
 	

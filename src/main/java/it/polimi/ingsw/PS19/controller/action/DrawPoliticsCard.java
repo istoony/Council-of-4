@@ -4,7 +4,8 @@ import it.polimi.ingsw.PS19.model.Model;
 
 public class DrawPoliticsCard implements Action 
 {
-	int playerId;
+	private int playerId;
+	private String result;
 	
 	public DrawPoliticsCard(int id) 
 	{
@@ -21,11 +22,23 @@ public class DrawPoliticsCard implements Action
 	public Boolean isPossible(Model model) 
 	{
 		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = Action.NOT_YOUR_TURN;
 			return false;
+		}
 		
 		if(model.getMap().getPoliticdeck().getSize() == 0)
+		{
+			result = Action.POLITIC_DECK_IS_OVER;
 			return false;
+		}
+		result = Action.EVERYTHING_IS_OK;
 		return true;
+	}
+	@Override
+	public String getStringResult() 
+	{
+		return result;
 	}
 
 }

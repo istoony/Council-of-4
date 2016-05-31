@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import it.polimi.ingsw.PS19.controller.GameController;
 import it.polimi.ingsw.PS19.message.DrawPoliticsCardMessage;
+import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
@@ -16,14 +18,17 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class CompleteModelTest {
 
+	Scanner in;
+	Model m;
+	GameController g;
+	int turn = 0;
 	@Test
 	public void testModel() 
 	{
-		Model m = new Model(2);
-		GameController g = new GameController(m);
-		Scanner in = new Scanner(System.in); 
+		m = new Model(2);
+		g = new GameController(m);
 		System.out.println(m.toString());
-		int turn = 0;
+		in = new Scanner(System.in); 
 		while(true)
 		{
 			System.out.println("CURRENT TURN" + turn);getClass();
@@ -35,55 +40,105 @@ public class CompleteModelTest {
 			}
 			System.out.println(m.getPlayerById(turn).toString());
 			System.out.println("MAIN ACTION: \n"
-					+ "1 - Corrompere un consiglio e comprare una business");
+					+ "1 - Corrompere un consiglio e comprare una business\n"
+					+ "2 - Cambiare il colore a un balconcino");
 			int action = in.nextInt();
 			if(action == 1)
-			{
-				System.out.println("Inserisci la regione");
-				int r;
-				r = in.nextInt();
-				RegionType region = null;
-				if(r == 1) 
-					region = RegionType.PLAIN;
-				if(r == 2) 
-					region = RegionType.HILL;
-				if(r == 3) 
-					region = RegionType.MOUNTAIN;
+				drawBusinessCardTest();
+			if(action == 2)
+				electCouncillorTest();
 			
-				System.out.println(m.getMap().getRegionByType(region).toString());
-				int c = in.nextInt();
-				BusinessCard card = null;
-				if(c == 1)
-					card = m.getMap().getRegionByType(region).getFirstcard();
-				else 
-					card = m.getMap().getRegionByType(region).getSecondcard();
-
-			
-				int i = 0;
-				ArrayList<Color> polcard = new ArrayList<>();
-				while(i != -1)
-				{
-					System.out.println("BALCONE DELLA REGIONE" + m.getMap().getRegionByType(region).getBalcony().toString());
-					System.out.println(m.getPlayerById(turn).toString());
-					System.out.println("SCEGLI LA CARTA CHE VUOI SELEZIONARE");
-					i = in.nextInt();
-					if(i!=-1)
-					{
-						polcard.add(m.getPlayerById(turn).getPoliticcard().get(i).getColor());
-						System.out.println("HAI SCELTO  " +polcard.get(polcard.size() -1).toString());
-					}
-				}
-				
-				GetBusinessCardMessage draw = new GetBusinessCardMessage(card, region,polcard);
-				draw.setId(turn);
-				g.update(null, draw);
-			}
 			System.out.println(m.toString());
+			EndTurnMessage endt = new EndTurnMessage();
+			endt.setId(turn);
+			g.update(null, endt);
 			if(turn == 1)
 				turn = 0;
 			else 
 				turn = 1;
 		}
 	}
+	private void drawBusinessCardTest()
+	{
+		RegionType region = getRegionCLI();
+		int c = in.nextInt();
+		BusinessCard card = null;
+		if(c == 1)
+			card = m.getMap().getRegionByType(region).getFirstcard();
+		else 
+			card = m.getMap().getRegionByType(region).getSecondcard();
 
+	
+		int i = 0;
+		ArrayList<Color> polcard = new ArrayList<>();
+		while(i != -1)
+		{
+			System.out.println("BALCONE DELLA REGIONE" + m.getMap().getRegionByType(region).getBalcony().toString());
+			System.out.println(m.getPlayerById(turn).toString());
+			System.out.println("SCEGLI LA CARTA CHE VUOI SELEZIONARE");
+			i = in.nextInt();
+			if(i!=-1)
+			{
+				polcard.add(m.getPlayerById(turn).getPoliticcard().get(i).getColor());
+				System.out.println("HAI SCELTO  " +polcard.get(polcard.size() -1).toString());
+			}
+		}
+		
+		GetBusinessCardMessage draw = new GetBusinessCardMessage(card, region,polcard);
+		draw.setId(turn);
+		g.update(null, draw);
+	}
+	
+	private RegionType getRegionCLI() 
+	{
+		System.out.println("Inserisci la regione\n"
+				+ "1 - " + RegionType.PLAIN 
+				+ "\n2 - " + RegionType.HILL
+				+ "\n3 - " + RegionType.MOUNTAIN);
+		int r;
+		r = in.nextInt();
+		RegionType region = null;
+		if(r == 1) 
+			region = RegionType.PLAIN;
+		if(r == 2) 
+			region = RegionType.HILL;
+		if(r == 3) 
+			region = RegionType.MOUNTAIN;
+	
+		System.out.println(m.getMap().getRegionByType(region).toString());
+		return region;
+	}
+
+	private void electCouncillorTest()
+	{
+		RegionType region = getRegionCLI();
+		Color color = getColorCLI();
+		ElectCouncillorMessage mess = new ElectCouncillorMessage(color, region);
+		mess.setId(turn);
+		mess.setMainAction(true);
+		g.update(null, mess);
+	}
+	
+	private Color getColorCLI()
+	{
+		System.out.println("1 - #FFFFFF\n"
+				+ "2 - #000000\n"
+				+ "3 - #FF7F00\n"
+				+ "4 - #0000FF\n"
+				+ "5 - #FFC0CB\n"
+				+ "6 - #FF0000");
+		int scelta = in.nextInt();
+		if(scelta == 1)
+			return Color.decode("#FFFFFF");
+		if(scelta == 2)
+			return Color.decode("#000000");
+		if(scelta == 3)
+			return Color.decode("#FF7F00");
+		if(scelta == 4)
+			return Color.decode("#0000FF");
+		if(scelta == 5)
+			return Color.decode("#FFC0CB");
+		else
+			return Color.decode("#FF0000");
+	}
 }

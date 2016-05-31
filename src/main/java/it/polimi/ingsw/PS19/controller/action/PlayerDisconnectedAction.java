@@ -17,4 +17,10 @@ public class PlayerDisconnectedAction implements Action {
 		return null;
 	}
 
+	@Override
+	public String getStringResult() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

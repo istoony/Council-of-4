@@ -11,13 +11,15 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 public class MainBuildEmporium implements Action 
 {
 	private int cityid;
-	private int playerid;
+	private int playerId;
 	private BusinessCard businessCard;
+	
+	private String result;
 	
 	public MainBuildEmporium(int city, int playerid, BusinessCard card) 
 	{
 		this.cityid = city;
-		this.playerid = playerid;
+		this.playerId = playerid;
 		this.businessCard = card;
 	}
 	
@@ -25,7 +27,7 @@ public class MainBuildEmporium implements Action
 	public Boolean execute(Model model) 
 	{
 		RegionType region = businessCard.getType();
-		Player player = model.getPlayerById(playerid);
+		Player player = model.getPlayerById(playerId);
 			//CHECK SE NON C'E' GIA L'EMPORIO DEL PLAYER SU QUESTA CITTA'
 		
 				//WRITE ME!
@@ -33,7 +35,7 @@ public class MainBuildEmporium implements Action
 			//RETURN = numero di empori dentro la città di altri player
 		int numberOfHelpers = getNumberOfHelper(model, region);
 		
-		model.getPlayerById(playerid).setHelpers(model.getPlayerById(playerid).getHelpers() - numberOfHelpers);
+		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - numberOfHelpers);
 		
 		model.getMap().getRegionByType(region).getCityById(cityid).buildEmporium(player);
 		
@@ -49,19 +51,35 @@ public class MainBuildEmporium implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.checkPlayerTurn(playerid, model))
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = Action.NOT_YOUR_TURN;
 			return false;
+		}
+		
 		RegionType region = businessCard.getType();
-		if(model.getPlayerById(playerid).findMyEmporiaById(cityid))
+		if(model.getPlayerById(playerId).findMyEmporiaById(cityid))
+		{
+			result = Action.BUILD_EMPORIA;
 			return false;
-		if(getNumberOfHelper(model, region) > model.getPlayerById(playerid).getHelpers())
+		}
+		if(getNumberOfHelper(model, region) > model.getPlayerById(playerId).getHelpers())
+		{
+			result = Action.NO_HELPERS;
 			return false;
+		}
+		result = Action.EVERYTHING_IS_OK;
 		return true;
 	}
 	
 	private int getNumberOfHelper(Model model, RegionType region)
 	{
 		return model.getMap().getRegionByType(region).getCityById(cityid).calculateMalusEmporium();
+	}
+
+	@Override
+	public String getStringResult() {
+		return result;
 	}
 
 }

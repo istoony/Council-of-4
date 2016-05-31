@@ -19,6 +19,7 @@ public class GameController implements Observer
 		model = m;
 	}
 	
+	@Override
 	public void update(Observable view, Object message) 
 	{
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
@@ -30,8 +31,8 @@ public class GameController implements Observer
 		Action action = m.accept(messageInterpreter);
 		if(action.isPossible(model))
 			action.execute(model);
-
-		//model.createFalseMessage(message);
+		String result = action.getStringResult();
+		model.createMessage(result);
 	}
 
 }

@@ -3,8 +3,10 @@ package it.polimi.ingsw.PS19.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.MessageType;
+import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -70,17 +72,15 @@ public class Model extends Observable
 		return s;
 	}
 	
+	public void createMessage(String result, Message message)
+	{
+		setChanged();
+		ActionInterpreterVisitor visitor = new ActionInterpreterVisitorImp();
+		notifyObservers(action.resply(visitor));
+	}
+	
 	public CurrentState getCurrentState() 
 	{
 		return currentState;
 	}
-public static void main(String[] args) 
-{
-	Model m = new Model(2);
-	//System.out.println(m.toString());
-	m.map.getListaRegioni().get(0).getCities().get(1).buildEmporium(m.getPlayerById(0));
-	m.map.getListaRegioni().get(0).getCities().get(0).buildEmporium(m.getPlayerById(0));
-	System.out.println(m.getPlayerById(0).getMyEmporia().get(0));
-	System.out.println(m.getPlayerById(0).getMyEmporia().get(1));
-}	
 }

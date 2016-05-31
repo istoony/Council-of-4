@@ -15,6 +15,8 @@ public class ElectCouncillor implements Action
 	private int playerId;
 	private RegionType region;
 	private King king;
+	
+	private String result;
 
 	public ElectCouncillor(Color color, int id, RegionType region, Boolean mainAction) 
 	{
@@ -51,11 +53,24 @@ public class ElectCouncillor implements Action
 	public Boolean isPossible(Model model) 
 	{
 		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = Action.NOT_YOUR_TURN;
 			return false;
+		}
 		
-		if(mainAction == false)
-			return model.getPlayerById(playerId).getHelpers() >= HELPERS;
+		if(mainAction == false && model.getPlayerById(playerId).getHelpers() < HELPERS)
+		{
+			result = Action.NO_HELPERS;
+			return false;
+		}
+		result = Action.EVERYTHING_IS_OK;
 		return true;
+	}
+
+	@Override
+	public String getStringResult() 
+	{
+		return result;
 	}
 	
 }
