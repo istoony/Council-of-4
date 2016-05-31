@@ -60,26 +60,14 @@ public class ClientCLI extends ClientUI
 	protected ClientActionChooser requestActionType(ArrayList<ClientActionChooser> actionList) 
 	{
 		boolean valid = false;
-<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
-<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
-		int actionId;
-		Request mex = null;
-
-=======
-=======
 <<<<<<< Upstream, based on branch 'milanta' of https://bitbucket.org/CoF_ps19/ps19
->>>>>>> 0ccb890 Refactor Messages
 		ClientActionChooser action = null;
 		int i = 0;
-<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
->>>>>>> ad0c516 Client update
-=======
 =======
 		int actionId;
 		Request mex = null;
 
 >>>>>>> 501e0b6 Refactor Messages
->>>>>>> 0ccb890 Refactor Messages
 		while(!valid)
 		{
 			System.out.println("Decidi che tipo di azione fare:");
@@ -239,6 +227,16 @@ public class ClientCLI extends ClientUI
 		if(s.equals("k"))
 			return null;
 		System.out.println("Invalid Region");
+		throw new InvalidInsertionException();
+	}
+
+	@Override
+	protected void showNotification(String s) 
+	{
+		System.out.println(s);
+	}
+}
+;
 		throw new InvalidInsertionException();
 	}
 

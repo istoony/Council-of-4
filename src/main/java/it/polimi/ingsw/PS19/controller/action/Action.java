@@ -32,6 +32,10 @@ public interface Action
 	
 	public void checkAlreadyTurn();
 	
+	public Reply createReplyMessage(Model model);
+	
+	public void checkAlreadyTurn();
+	
 	public static Boolean checkPlayerTurn(int id1, Model m)
 	{
 		return id1 != m.getCurrentState().getPlayerTurnId();

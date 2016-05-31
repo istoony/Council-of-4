@@ -1,5 +1,8 @@
-package it.polimi.ingsw.PS19.controller.action;
-
+	@Override
+	public void checkAlreadyTurn() {
+		// TODO Auto-generated method stub
+		
+	}
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
@@ -49,8 +52,8 @@ public class BuyHelper implements Action
 		return result;
 	}
 
+
 	@Override
-<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
@@ -60,17 +63,6 @@ public class BuyHelper implements Action
 	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
 		return null;
-=======
-	public void createReplyMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-		
->>>>>>> 0ccb890 Refactor Messages
 	}
 
 }

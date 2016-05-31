@@ -1,6 +1,9 @@
 package it.polimi.ingsw.PS19.message.replies;
 
 <<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
+=======
+>>>>>>> 23cab84 Messages, Action & Replies Update
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.Player;
@@ -48,6 +51,7 @@ public class SendFullGameReply extends Reply
 		// TODO Auto-generated method stub
 		return null;
 	}
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 =======
 
 public class SendFullGameReply extends Reply 
@@ -58,5 +62,7 @@ public class SendFullGameReply extends Reply
 	 */
 	private static final long serialVersionUID = -4013509319790221079L;
 >>>>>>> 0ccb890 Refactor Messages
+=======
+>>>>>>> 23cab84 Messages, Action & Replies Update
 
 }

@@ -40,6 +40,7 @@ public class SendFullGame implements Action
 
 	@Override
 <<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public Reply createReplyMessage(Model model) 
 	{
 		ArrayList<Region> regions = model.getMap().getListaRegioni();
@@ -56,14 +57,26 @@ public class SendFullGame implements Action
 		
 =======
 	public void createReplyMessage() 
+=======
+	public Reply createReplyMessage(Model model) 
+>>>>>>> 23cab84 Messages, Action & Replies Update
 	{
-		
+		ArrayList<Region> regions = model.getMap().getListaRegioni();
+		King king = model.getMap().getKing();
+		ArrayList<Player> player = model.getPlayer();
+		SendFullGameReply reply = new SendFullGameReply(regions, player, king);
+		reply.setId(-1);
+		return reply;
 	}
 
 	@Override
 	public void checkAlreadyTurn() 
 	{
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 >>>>>>> 0ccb890 Refactor Messages
+=======
+		
+>>>>>>> 23cab84 Messages, Action & Replies Update
 		return;		
 	}
 
