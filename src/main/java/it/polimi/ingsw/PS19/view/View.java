@@ -1,23 +1,17 @@
 package it.polimi.ingsw.PS19.view;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageType;
+import it.polimi.ingsw.PS19.message.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.server.Constants;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 
@@ -84,11 +78,10 @@ public class View extends Observable implements Observer, Runnable
 		//Checks whether the object passed is a message or not and if so gets the id;
 		if(!(arg instanceof Message))
 			return;
+		if(arg instanceof NewTurnMessage)
+			setActive(((NewTurnMessage) arg).getActivePlayer());
 		Message mex = (Message) arg;
-		Integer id = mex.getId();
-		
 		//Checks if message is to set new turn, and if so changes the active connection
-		
 		//If no action is required by the view the message is forwarded to the clients
 		forwardMessage(mex);
 	}
@@ -132,13 +125,6 @@ public class View extends Observable implements Observer, Runnable
 				e.printStackTrace();
 				System.exit(0);
 			}
-			finally
-			{
-				if(++i >= playerConnection.size())
-					firstRun = false;
-				System.out.println("firstRun = " + firstRun);
-				setNextActive();
-			}
 		}
 	}
 	
@@ -155,6 +141,7 @@ public class View extends Observable implements Observer, Runnable
 				try {
 					player.getValue().write(mex);
 				} catch (WriterException e) {
+					setChanged();
 					notifyObservers(new PlayerDisconnectedMessage(player.getKey()));
 					e.printStackTrace();
 				}
@@ -167,6 +154,7 @@ public class View extends Observable implements Observer, Runnable
 			try {
 				playerConnection.get(id).write(mex);
 			} catch (WriterException e) {
+				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(id));
 				e.printStackTrace();
 			}		

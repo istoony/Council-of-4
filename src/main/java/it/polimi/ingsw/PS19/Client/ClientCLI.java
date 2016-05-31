@@ -15,6 +15,7 @@ import java.util.function.Supplier;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.NoSuchActionException;
 import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -39,10 +40,11 @@ public class ClientCLI extends ClientUI
 		councillorsColors.add(new Color(0xFFFFFF));
 		councillorsColors.add(new Color(0xFFC0CB));
 		
-		Supplier<Message> elCounc = null;
 		try {
-			elCounc = () -> this.electCouncillor();
-			messageCreator.put(0, elCounc);
+			Supplier<Message> elCounc = () -> this.electCouncillor();
+			Supplier<Message> endTurn = () -> this.endTurn();
+			messageCreator.put(0, endTurn);
+			messageCreator.put(1, elCounc);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,7 +58,7 @@ public class ClientCLI extends ClientUI
 
 		while(!valid)
 		{
-			System.out.println("Decidi che azione fare (0 ElectCouncilor): ");
+			System.out.println("Decidi che azione fare (0 EndTurn, 1 ElectCouncilor): ");
 			try {
 				String s = in.readLine();
 				actionId = Integer.parseInt(s);
@@ -107,12 +109,21 @@ public class ClientCLI extends ClientUI
 				mex = new ElectCouncillorMessage(col);
 			else 
 				mex = new ElectCouncillorMessage(col, loc);
+			mex.setMainAction(true);
 		} catch (IOException | InvalidInsertionException e) 
 		{
 			e.printStackTrace();
 			return null;
 		}
 		
+		return mex;
+	}
+	
+	private EndTurnMessage endTurn()
+	{
+		EndTurnMessage mex = new EndTurnMessage();
+		mex.setId(playerId);
+		System.out.println("Your turn has ended!");
 		return mex;
 	}
 	
