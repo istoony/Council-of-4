@@ -49,7 +49,7 @@ public class MainBuildEmporium implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.ceckPlayerTurn(playerid, model))
+		if(Action.checkPlayerTurn(playerid, model))
 			return false;
 		RegionType region = businessCard.getType();
 		if(model.getPlayerById(playerid).findMyEmporiaById(cityid))

@@ -9,7 +9,7 @@ public interface Action
 	
 	public Boolean isPossible(Model model);
 	
-	public static Boolean ceckPlayerTurn(int id1, Model m)
+	public static Boolean checkPlayerTurn(int id1, Model m)
 	{
 		return id1 != m.getCurrentState().getPlayerTurnId();
 	}

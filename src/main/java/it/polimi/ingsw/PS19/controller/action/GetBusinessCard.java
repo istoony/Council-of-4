@@ -72,7 +72,7 @@ public class GetBusinessCard implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.ceckPlayerTurn(playerId, model))
+		if(Action.checkPlayerTurn(playerId, model))
 			return false;
 		
 		Player player = model.getPlayerById(playerId);

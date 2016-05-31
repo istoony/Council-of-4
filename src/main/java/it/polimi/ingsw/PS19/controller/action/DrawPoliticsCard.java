@@ -20,7 +20,7 @@ public class DrawPoliticsCard implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.ceckPlayerTurn(playerId, model))
+		if(Action.checkPlayerTurn(playerId, model))
 			return false;
 		
 		if(model.getMap().getPoliticdeck().getSize() == 0)

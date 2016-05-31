@@ -5,6 +5,7 @@ import it.polimi.ingsw.PS19.model.Model;
 public class EndTurn implements Action 
 {
 	private int playerId;
+	
 	public EndTurn(int id) 
 	{
 		playerId = id;
@@ -22,7 +23,7 @@ public class EndTurn implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.ceckPlayerTurn(playerId, model))
+		if(Action.checkPlayerTurn(playerId, model))
 			return false;
 		
 		if(model.getPlayerById(playerId).getMainActionCounter() != 0)

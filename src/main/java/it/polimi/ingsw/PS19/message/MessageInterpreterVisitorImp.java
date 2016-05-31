@@ -7,10 +7,10 @@ import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.BuyHelper;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.ElectCouncillor;
+import it.polimi.ingsw.PS19.controller.action.EndTurn;
 import it.polimi.ingsw.PS19.controller.action.GetBusinessCard;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -56,9 +56,16 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	@Override
-	public Action visit(DrawPoliticsCardMessage message) {
+	public Action visit(DrawPoliticsCardMessage message) 
+	{
 			int playerId = message.getId();
 		return new DrawPoliticsCard(playerId);
+	}
+	
+	public Action visit(EndTurnMessage message)
+	{
+		int playerId = message.getId();
+		return new EndTurn(playerId);
 	}
 
 }

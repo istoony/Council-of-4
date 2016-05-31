@@ -50,7 +50,7 @@ public class ElectCouncillor implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.ceckPlayerTurn(playerId, model))
+		if(Action.checkPlayerTurn(playerId, model))
 			return false;
 		
 		if(mainAction == false)
