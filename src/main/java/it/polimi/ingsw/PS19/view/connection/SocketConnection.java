@@ -32,7 +32,6 @@ public class SocketConnection extends Connection
 		writer = new SocketWriter(clientSocket); 
 		reader = new SocketReader(clientSocket);
 		setExecutor(exec);
-		System.out.println("Conn created");
 	}
 
 	@Override

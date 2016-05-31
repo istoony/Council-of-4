@@ -61,6 +61,7 @@ public class ClientCLI extends ClientUI
 				String s = in.readLine();
 				actionId = Integer.parseInt(s);
 				mex = defineAction(actionId);
+				setChanged();
 				notifyObservers(mex);
 				valid = true;
 			} catch (IOException | NumberFormatException | NoSuchActionException e) 

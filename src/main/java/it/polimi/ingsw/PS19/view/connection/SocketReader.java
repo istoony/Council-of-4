@@ -30,7 +30,7 @@ public class SocketReader extends Reader
 	@Override
 	protected Message read() throws Exception 
 	{
-		Object obj = reader.readObject();
+		Object obj = (Object)reader.readObject();
 		if(!(obj instanceof Message))
 			return null;
 		Message message = (Message)obj;

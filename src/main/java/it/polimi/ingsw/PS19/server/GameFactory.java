@@ -24,6 +24,7 @@ public class GameFactory extends Thread
 		{
 			players.put(i, conns.get(i));
 		}
+		new Thread(this).start();
 	}
 	
 	/*
@@ -43,6 +44,7 @@ public class GameFactory extends Thread
 				e.printStackTrace();
 			}
 		}
+		System.out.println("GameStartedMessages Sent");
 		view = new View(players);
 		model = new Model(players.size());
 		controller = new GameController(model);

@@ -22,7 +22,7 @@ import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 public class View extends Observable implements Observer, Runnable
 {
 	private HashMap<Integer, Connection> playerConnection;
-	private int activeID = 0;
+	private int activeId = 0;
 	private boolean stop = false;
 	
 	public View(HashMap<Integer, Connection> conns) 
@@ -39,6 +39,7 @@ public class View extends Observable implements Observer, Runnable
 		{
 			if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED)
 			{
+				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(n));
 				return;
 			}
@@ -47,7 +48,7 @@ public class View extends Observable implements Observer, Runnable
 				if(i == n)
 				{
 					playerConnection.get(n).setActive();
-					activeID = n;
+					activeId = n;
 				}
 				else
 				{
@@ -59,6 +60,14 @@ public class View extends Observable implements Observer, Runnable
 		else return;
 	}
 
+	private void setNextActive()
+	{
+		if(playerConnection.get(activeId + 1) != null)
+			setActive(activeId + 1);
+		else
+			setActive(0);
+	}
+	
 	@Override
 	public void update(Observable o, Object arg)
 	{
@@ -81,23 +90,31 @@ public class View extends Observable implements Observer, Runnable
 	@Override
 	public void run() 
 	{
-		notifyObservers(new SendFullGameMessage(-1));
+		//notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
 		{
-			Connection activeConn = playerConnection.get(activeID);
+			Connection activeConn = playerConnection.get(activeId);
 			Future<Message> waitMex = activeConn.read();
 			try 
 			{
-				Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
+				//Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
+				Message recMex = waitMex.get();
+				System.out.println(recMex.getString());
+				setNextActive();
+				/*
+				setChanged();
 				notifyObservers(recMex);
+				//*/
 			} 
 			//Timeout error => Player set disconnected
+			/*
 			catch (TimeoutException e) 
 			{
 				activeConn.setDisconnected();
+				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(activeID));
 			}	
-			//General Error. Exit
+			//*///General Error. Exit
 			catch (InterruptedException | ExecutionException e) 
 			{
 				e.printStackTrace();

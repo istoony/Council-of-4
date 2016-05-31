@@ -57,6 +57,7 @@ public class WaitingRoom
 		}
 		mux.lock();
 		room.add(conn);
+		System.out.println(room.size() + " players in Waiting room");
 		mux.unlock();
 		if(room.size() == 2) 
 		{
@@ -102,13 +103,13 @@ public class WaitingRoom
 	{
 		if(room.size() <2) return; 						//Check to avoid concurrency in one particular case		
 		
-		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + "players!");  //TEST
+		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
 		
 		mux.lock();
 		new GameFactory(room);
+		//new Thread(new GameFactory(room)).start();
 		/*
-		 * Fake game for test purpose only
-		
+		 * Fake game for test purpose only	
 		ArrayList<Future<Integer>> writeReturnList = new ArrayList<Future<Integer>>();
 		for(Connection c:room) writeReturnList.add(c.write(new StringMessage("Game has started")));
 		for(int i = 0; i<writeReturnList.size(); i++)
@@ -131,6 +132,7 @@ public class WaitingRoom
 		mux.unlock();
 		secondPlayerTime = -1;								//Resets secondPlayerTime
 		executorService = Executors.newFixedThreadPool(10);	//Creates new ThreadPool
+		System.out.println(room.size() + " players in waiting room");
 	}
  	
 	/*

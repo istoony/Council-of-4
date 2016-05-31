@@ -106,7 +106,6 @@ public class ClientManager
 		ClientCLI..addObserver(view);
 		//*/
 		new Thread(view).start();
-		
 		/*
 		while(true)
 		{
@@ -121,7 +120,7 @@ public class ClientManager
 			}
 			if(!(mex == null)) 
 			{
-				System.out.println("New Message with ID: " + mex.getID());
+				System.out.println("New Message with ID: " + mex.getId());
 				System.out.println(mex.getString());
 			}
 		}//*/

@@ -3,9 +3,7 @@
  */
 package it.polimi.ingsw.PS19.Client;
 
-import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Observable;
 import java.util.Observer;
@@ -14,10 +12,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 
 /*
@@ -38,16 +34,13 @@ public class ClientView extends Observable implements Observer, Runnable
 	@Override
 	public void run() 
 	{
-		//notifyObservers(new GetInputMessage());
-		//notifyObservers(new SendFullGameMessage(-1));
-		
-		
-		//while(!stop)
-		//{
+		while(!stop)
+		{
 			Future<Message> waitMex = connection.read();
 			try 
 			{
 				Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
+				setChanged();
 				notifyObservers(recMex);
 			} 
 			//General Error. Exit
@@ -60,7 +53,7 @@ public class ClientView extends Observable implements Observer, Runnable
 				e.printStackTrace();
 				System.exit(0);
 			} 
-		//}//*/
+		}//*/
 		notifyObservers(null);
 		/*
 		System.out.println("Inserisci numero player");
@@ -105,4 +98,5 @@ public class ClientView extends Observable implements Observer, Runnable
 			e.printStackTrace();
 		}
 	}
+
 }
