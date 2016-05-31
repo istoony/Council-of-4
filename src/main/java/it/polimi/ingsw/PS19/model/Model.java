@@ -3,6 +3,10 @@ package it.polimi.ingsw.PS19.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
+=======
+import it.polimi.ingsw.PS19.message.requests.Request;
+>>>>>>> 0ccb890 Refactor Messages
 import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;

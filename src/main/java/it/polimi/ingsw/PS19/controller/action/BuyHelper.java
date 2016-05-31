@@ -50,6 +50,7 @@ public class BuyHelper implements Action
 	}
 
 	@Override
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
@@ -59,6 +60,17 @@ public class BuyHelper implements Action
 	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
 		return null;
+=======
+	public void createReplyMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkAlreadyTurn() {
+		// TODO Auto-generated method stub
+		
+>>>>>>> 0ccb890 Refactor Messages
 	}
 
 }

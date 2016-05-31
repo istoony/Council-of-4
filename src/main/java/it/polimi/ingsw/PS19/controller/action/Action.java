@@ -24,7 +24,11 @@ public interface Action
 	
 	public String getStringResult();
 	
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public Reply createReplyMessage(Model model);
+=======
+	public void createReplyMessage();
+>>>>>>> 0ccb890 Refactor Messages
 	
 	public void checkAlreadyTurn();
 	

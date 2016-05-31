@@ -8,6 +8,7 @@ public abstract class Reply extends Message
 	/**
 	 * 
 	 */
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	
 	private String result;
 	
@@ -25,5 +26,8 @@ public abstract class Reply extends Message
 	}
 	
 	public abstract String getString();
+=======
+	private static final long serialVersionUID = -1984682021445434304L;
+>>>>>>> 0ccb890 Refactor Messages
 	
 }
