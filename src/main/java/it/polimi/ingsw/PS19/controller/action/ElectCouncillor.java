@@ -72,5 +72,17 @@ public class ElectCouncillor implements Action
 	{
 		return result;
 	}
+
+	@Override
+	public void createReplyMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkAlreadyTurn() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

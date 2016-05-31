@@ -1,8 +1,8 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 
-public class DrawPoliticsCardMessage extends Message
+public class DrawPoliticsCardMessage extends Request
 {
 	/**
 	 * 

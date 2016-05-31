@@ -1,7 +1,6 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 
 public interface MessageInterpreterVisitor 
 {

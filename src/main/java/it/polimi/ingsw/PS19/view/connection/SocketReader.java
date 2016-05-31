@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 
 
 /*
@@ -28,12 +28,12 @@ public class SocketReader extends Reader
 	}
 	
 	@Override
-	protected Message read() throws Exception 
+	protected Request read() throws Exception 
 	{
 		Object obj = (Object)reader.readObject();
-		if(!(obj instanceof Message))
+		if(!(obj instanceof Request))
 			return null;
-		Message message = (Message)obj;
-		return message;
+		Request request = (Request)obj;
+		return request;
 	}
 }

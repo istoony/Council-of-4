@@ -32,9 +32,9 @@ public class SocketWriter extends Writer
 	@Override
 	protected void write()
 	{
-		if(message == null) return;
+		if(request == null) return;
 		try {
-			out.writeObject(message);
+			out.writeObject(request);
 			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

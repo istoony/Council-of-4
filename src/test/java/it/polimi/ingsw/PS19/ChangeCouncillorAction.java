@@ -5,7 +5,7 @@ import java.awt.Color;
 import org.junit.Test;
 
 import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 

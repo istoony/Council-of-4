@@ -6,7 +6,7 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.util.concurrent.*;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 
 /*
  * Abstract class that covers communication with one user
@@ -35,11 +35,11 @@ public abstract class Connection
 	 * Writes a message
 	 * returns a future reference to the number of attempts required
 	 */
-	public abstract Integer write(Message message) throws WriterException;
+	public abstract Integer write(Request request) throws WriterException;
 	
 	/*
 	 * Reads a message
 	 * returns a future reference to the read message
 	 */
-	public abstract Future<Message> read();
+	public abstract Future<Request> read();
 }

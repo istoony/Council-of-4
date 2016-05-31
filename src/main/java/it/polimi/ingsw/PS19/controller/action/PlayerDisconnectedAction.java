@@ -23,4 +23,16 @@ public class PlayerDisconnectedAction implements Action {
 		return null;
 	}
 
+	@Override
+	public void createReplyMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkAlreadyTurn() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

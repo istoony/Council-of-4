@@ -1,13 +1,13 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 
-public class BuyHelperMessage extends Message {
+public class BuyHelperMessage extends Request {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6631486135334169951L;
+	private static final long serialVersionUID = 5953738823072831707L;
 
 	@Override
 	public Action accept(MessageInterpreterVisitor messageInterpreter) 

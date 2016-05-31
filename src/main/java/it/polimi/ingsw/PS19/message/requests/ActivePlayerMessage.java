@@ -1,12 +1,15 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 
-public class ActivePlayerMessage extends Message 
-{
-	private static final long serialVersionUID = 6744987619447786564L;
+public class ActivePlayerMessage extends Request 
+{	
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5269855660545855772L;
+
 	public ActivePlayerMessage(int activePlayer) 
 	{
 		id = activePlayer;

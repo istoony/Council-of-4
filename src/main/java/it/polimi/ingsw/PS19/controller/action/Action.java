@@ -23,6 +23,10 @@ public interface Action
 	
 	public String getStringResult();
 	
+	public void createReplyMessage();
+	
+	public void checkAlreadyTurn();
+	
 	public static Boolean checkPlayerTurn(int id1, Model m)
 	{
 		return id1 != m.getCurrentState().getPlayerTurnId();

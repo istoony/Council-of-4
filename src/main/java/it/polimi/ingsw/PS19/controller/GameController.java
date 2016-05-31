@@ -4,9 +4,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageInterpreterVisitor;
-import it.polimi.ingsw.PS19.message.MessageInterpreterVisitorImp;
+import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.message.requests.MessageInterpreterVisitor;
+import it.polimi.ingsw.PS19.message.requests.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class GameController implements Observer
@@ -24,9 +24,9 @@ public class GameController implements Observer
 	{
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
 	
-		if(!(message instanceof Message))
+		if(!(message instanceof Request))
 			return;
-		Message m = (Message) message;
+		Request m = (Request) message;
 		
 		Action action = m.accept(messageInterpreter);
 		if(action.isPossible(model))

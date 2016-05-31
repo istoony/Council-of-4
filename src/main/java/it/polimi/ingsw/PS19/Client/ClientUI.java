@@ -3,11 +3,10 @@ package it.polimi.ingsw.PS19.Client;
 import java.util.Observable;
 import java.util.Observer;
 
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.NewTurnMessage;
-import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
-import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
+import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.StringMessage;
 
 public abstract class ClientUI extends Observable implements Observer
 {
@@ -30,14 +29,9 @@ public abstract class ClientUI extends Observable implements Observer
 			else
 				System.out.println(mex.getString());
 		}
-		else if(arg instanceof RequestActionMessage)
+		else if(arg instanceof Request)
 		{
-			System.out.println("New Action Requested");
-			requestAction();
-		}
-		else if(arg instanceof Message)
-		{
-			System.out.println(((Message) arg).getString());
+			System.out.println(((Request) arg).getString());
 			
 		}
 		else

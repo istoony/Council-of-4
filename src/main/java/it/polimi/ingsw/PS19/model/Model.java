@@ -3,8 +3,8 @@ package it.polimi.ingsw.PS19.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.NewTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 

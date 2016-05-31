@@ -6,16 +6,16 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.util.concurrent.Callable;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.ReaderException;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 
 
 /*
  * Abstract class to read a message.
  * Runs on a different Thread
  */
-public abstract class Reader implements Callable<Message> 
+public abstract class Reader implements Callable<Request> 
 {
-	public Message call() throws ReaderException
+	public Request call() throws ReaderException
 	{
 		try
 		{
@@ -30,5 +30,5 @@ public abstract class Reader implements Callable<Message>
 	/*
 	 * Actual reading method. different for different types of communication 
 	 */
-	protected abstract Message read() throws Exception;
+	protected abstract Request read() throws Exception;
 }

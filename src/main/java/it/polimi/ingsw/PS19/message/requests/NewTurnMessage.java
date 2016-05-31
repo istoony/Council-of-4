@@ -1,9 +1,13 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 
-public class NewTurnMessage extends Message 
+public class NewTurnMessage extends Request 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7435306774785268694L;
 	int activePlayer;
 	
 	public NewTurnMessage(int activePlayerId) 

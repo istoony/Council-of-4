@@ -1,9 +1,13 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 
-public class StringMessage extends Message 
+public class StringMessage extends Request 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1555049360643133272L;
 	String text;
 
 	public StringMessage(String s) 

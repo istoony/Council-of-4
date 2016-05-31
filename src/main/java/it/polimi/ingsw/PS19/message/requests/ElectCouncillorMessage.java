@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import java.awt.Color;
 
@@ -12,7 +12,7 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 /*
  * 
  */
-public class ElectCouncillorMessage extends Message 
+public class ElectCouncillorMessage extends Request 
 {
 	private static final long serialVersionUID = 8630705435374774862L;
 	private Color color;

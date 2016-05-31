@@ -4,14 +4,11 @@
 package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageInterpreterVisitor;
-import it.polimi.ingsw.PS19.message.MessageType;
 
 /*
  * 
  */
-public class SendFullGameMessage extends Message 
+public class SendFullGameMessage extends Request 
 {
 	private static final long serialVersionUID = -1349912240299946517L;
 

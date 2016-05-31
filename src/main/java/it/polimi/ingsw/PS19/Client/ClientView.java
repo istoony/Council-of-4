@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 
 /*
@@ -36,11 +36,11 @@ public class ClientView extends Observable implements Observer, Runnable
 	{
 		while(!stop)
 		{
-			Future<Message> waitMex = connection.read();
+			Future<Request> waitMex = connection.read();
 			try 
 			{
 				//Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
-				Message recMex = waitMex.get();
+				Request recMex = waitMex.get();
 				setChanged();
 				notifyObservers(recMex);
 			} 
@@ -81,9 +81,9 @@ public class ClientView extends Observable implements Observer, Runnable
 	public void update(Observable o, Object arg)
 	{
 		//Checks whether the object passed is a message or not
-		if(!(arg instanceof Message))
+		if(!(arg instanceof Request))
 			return;
-		Message mex = (Message) arg;
+		Request mex = (Request) arg;
 
 		//The message is forwarded to the clients
 		forwardMessage(mex);
@@ -92,7 +92,7 @@ public class ClientView extends Observable implements Observer, Runnable
 	/*Forwards message on connection
 	 * 
 	 */
-	public void forwardMessage(Message mex)
+	public void forwardMessage(Request mex)
 	{
 		try {
 			connection.write(mex);

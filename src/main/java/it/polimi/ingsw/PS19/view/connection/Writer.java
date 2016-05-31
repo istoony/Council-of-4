@@ -5,7 +5,7 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.util.concurrent.Callable;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.server.Constants;
 
 /*
@@ -14,7 +14,7 @@ import it.polimi.ingsw.PS19.server.Constants;
  */
 public abstract class Writer implements Callable<Integer>
 {
-	protected Message message;
+	protected Request request;
 	
 	/*
 	 * Implementation of call to write
@@ -54,9 +54,9 @@ public abstract class Writer implements Callable<Integer>
 	/*
 	 * Sets message to be written
 	 */
-	public void setMessage(Message mex)
+	public void setMessage(Request mex)
 	{
-		message = mex;
+		request = mex;
 	}
 
 }

@@ -1,14 +1,13 @@
-package it.polimi.ingsw.PS19.message;
+package it.polimi.ingsw.PS19.message.requests;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class GetBusinessCardMessage extends Message 
+public class GetBusinessCardMessage extends Request 
 {
 
 	/**

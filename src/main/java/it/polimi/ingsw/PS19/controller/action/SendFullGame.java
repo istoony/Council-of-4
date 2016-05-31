@@ -30,4 +30,16 @@ public class SendFullGame implements Action {
 		return result;
 	}
 
+	@Override
+	public void createReplyMessage() 
+	{
+		
+	}
+
+	@Override
+	public void checkAlreadyTurn() 
+	{
+		return;		
+	}
+
 }

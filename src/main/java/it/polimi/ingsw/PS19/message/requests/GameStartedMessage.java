@@ -1,11 +1,8 @@
 package it.polimi.ingsw.PS19.message.requests;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.MessageInterpreterVisitor;
-import it.polimi.ingsw.PS19.message.MessageType;
 
-public class GameStartedMessage extends Message 
+public class GameStartedMessage extends Request 
 {
 	private static final long serialVersionUID = 8482425746181360920L;
 	private int playerNumber;

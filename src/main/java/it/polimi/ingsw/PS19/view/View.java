@@ -9,13 +9,12 @@ import java.util.concurrent.Future;
 
 import it.polimi.ingsw.PS19.controller.action.SendFullGame;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.NewTurnMessage;
-import it.polimi.ingsw.PS19.message.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
-import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.StringMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 
@@ -58,13 +57,13 @@ public class View extends Observable implements Observer, Runnable
 				}
 			}
 		}
-		if(!firstRun)
+	/*	if(!firstRun)
 		{
 			Message m = new RequestActionMessage();
 			m.setId(activeId);
 			update(this, m);
 			System.out.println("New Action requested to player " + activeId);
-		}
+		} */
 		else return;
 	}
 
@@ -80,11 +79,11 @@ public class View extends Observable implements Observer, Runnable
 	public void update(Observable o, Object arg)
 	{
 		//Checks whether the object passed is a message or not and if so gets the id;
-		if(!(arg instanceof Message))
+		if(!(arg instanceof Request))
 			return;
 		if(arg instanceof NewTurnMessage)
 			setActive(((NewTurnMessage) arg).getActivePlayer());
-		Message mex = (Message) arg;
+		Request mex = (Request) arg;
 		//Checks if message is to set new turn, and if so changes the active connection
 		//If no action is required by the view the message is forwarded to the clients
 		forwardMessage(mex);
@@ -103,11 +102,11 @@ public class View extends Observable implements Observer, Runnable
 		while(!stop)
 		{
 			Connection activeConn = playerConnection.get(activeId);
-			Future<Message> waitMex = activeConn.read();
+			Future<Request> waitMex = activeConn.read();
 			try 
 			{
 				//Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_s, TimeUnit.SECONDS);
-				Message recMex = waitMex.get();
+				Request recMex = waitMex.get();
 				if(recMex instanceof StringMessage)
 				{
 					System.out.println(recMex.getString());
@@ -137,7 +136,7 @@ public class View extends Observable implements Observer, Runnable
 	}
 	
 	
-	public void forwardMessage(Message mex)
+	public void forwardMessage(Request mex)
 	{
 		Integer id = mex.getId();
 		

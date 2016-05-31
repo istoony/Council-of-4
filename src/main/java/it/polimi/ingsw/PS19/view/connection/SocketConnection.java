@@ -14,7 +14,7 @@ import java.util.concurrent.*;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.Request;
 
 /**
  * Class for socket connection
@@ -55,9 +55,9 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#write(view.Message)
 	 */
 	@Override
-	public Integer write(Message message) throws WriterException
+	public Integer write(Request request) throws WriterException
 	{
-		writer.setMessage(message);
+		writer.setMessage(request);
 		Integer result = null;
 		try {
 			result = writer.call();
@@ -74,9 +74,9 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#read()
 	 */
 	@Override
-	public Future<Message> read()
+	public Future<Request> read()
 	{
-		Future<Message> result = executor.submit(reader);
+		Future<Request> result = executor.submit(reader);
 		return result;
 	}
 }

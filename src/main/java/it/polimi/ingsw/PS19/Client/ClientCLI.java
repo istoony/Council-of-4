@@ -14,10 +14,10 @@ import java.util.function.Supplier;
 
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.NoSuchActionException;
-import it.polimi.ingsw.PS19.message.BuyHelperMessage;
-import it.polimi.ingsw.PS19.message.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
@@ -29,7 +29,7 @@ public class ClientCLI extends ClientUI
 	private ArrayList<Color> councillorsColors = new ArrayList<Color>();
 	
 	//Necessary
-	HashMap<Integer,Supplier<Message>> messageCreator = new HashMap<Integer,Supplier<Message>>();
+	HashMap<Integer,Supplier<Request>> messageCreator = new HashMap<Integer,Supplier<Request>>();
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
 	public ClientCLI()
@@ -42,9 +42,9 @@ public class ClientCLI extends ClientUI
 		councillorsColors.add(new Color(0xFFC0CB));
 		
 		try {
-			Supplier<Message> elCounc = () -> this.electCouncillor();
-			Supplier<Message> endTurn = () -> this.endTurn();
-			Supplier<Message> buyHelper = () -> this.buyHelper();
+			Supplier<Request> elCounc = () -> this.electCouncillor();
+			Supplier<Request> endTurn = () -> this.endTurn();
+			Supplier<Request> buyHelper = () -> this.buyHelper();
 			messageCreator.put(0, endTurn);
 			messageCreator.put(1, elCounc);
 			messageCreator.put(2, buyHelper);
@@ -57,7 +57,7 @@ public class ClientCLI extends ClientUI
 	{
 		boolean valid = false;
 		int actionId;
-		Message mex = null;
+		Request mex = null;
 
 		while(!valid)
 		{
@@ -85,12 +85,12 @@ public class ClientCLI extends ClientUI
 		}
 	}
 	
-	private Message defineAction(int id) throws NoSuchActionException
+	private Request defineAction(int id) throws NoSuchActionException
 	{
-		Message mex = null;
+		Request mex = null;
 		try
 		{
-			Supplier<Message> f = messageCreator.get(id);
+			Supplier<Request> f = messageCreator.get(id);
 			if(f == null) throw new IndexOutOfBoundsException();
 			mex = f.get();
 			if(mex == null) throw new NoSuchActionException();
