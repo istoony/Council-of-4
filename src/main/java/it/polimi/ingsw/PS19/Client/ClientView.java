@@ -24,7 +24,6 @@ public class ClientView extends Observable implements Observer, Runnable
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean stop = false;
 	Connection connection = null;
-	ClientInterpreter interpreter = new ClientInterpreter();
 		
 	public ClientView(Connection conn)
 	{

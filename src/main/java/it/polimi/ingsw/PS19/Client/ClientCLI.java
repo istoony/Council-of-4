@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import it.polimi.ingsw.PS19.Client.clientAction.ClientAction;
+import it.polimi.ingsw.PS19.Client.clientAction.ClientActionChooser;
+import it.polimi.ingsw.PS19.Client.clientAction.FastAction;
+import it.polimi.ingsw.PS19.Client.clientAction.MainAction;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.NoSuchActionException;
 import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
@@ -53,36 +57,48 @@ public class ClientCLI extends ClientUI
 		}
 	}
 	
-	protected void requestAction() 
+	protected ClientActionChooser requestActionType(ArrayList<ClientActionChooser> actionList) 
 	{
 		boolean valid = false;
+<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 		int actionId;
 		Request mex = null;
 
+=======
+		ClientActionChooser action = null;
+		int i = 0;
+>>>>>>> ad0c516 Client update
 		while(!valid)
 		{
-			System.out.print("Decidi che azione fare (");
-			for(int i = 0; i < messageCreator.size(); i++)
+			System.out.println("Decidi che tipo di azione fare:");
+			for(int j = 0; j < actionList.size(); j++)
 			{
-				String actionName = messageCreator.get(i).toString();
-				System.out.print(i + "-" + actionName + ", ");
+				System.out.println(j + " - " + actionList.get(i).toString());
 			}
-			System.out.println("):");
 			try {
 				String s = in.readLine();
-				actionId = Integer.parseInt(s);
-				mex = defineAction(actionId);
-				mex.setId(playerId);
-				setChanged();
-				notifyObservers(mex);
+				int actionId = Integer.parseInt(s);
+				action = actionList.get(actionId);
 				valid = true;
-			} catch (IOException | NumberFormatException | NoSuchActionException e) 
+			} catch (IOException | NumberFormatException | IndexOutOfBoundsException e) 
 			{
 				valid = false;
 				e.printStackTrace();
 				System.out.println("Inserimento non valido");
 			}
+			finally
+			{
+				i++;
+				if(i >= ClientConstants.MAX_INPUT_ERRORS)
+					valid = true;
+			}
 		}
+		return action;
+	}
+	
+	protected ClientAction requestAction(ArrayList<ClientAction> actionList)
+	{
+		
 	}
 	
 	private Request defineAction(int id) throws NoSuchActionException
@@ -142,7 +158,7 @@ public class ClientCLI extends ClientUI
 		return mex;
 	}
 	
-	private RegionType getRegion() throws InvalidInsertionException, IOException
+	protected RegionType getRegion() throws InvalidInsertionException, IOException
 	{
 		System.out.print("Definisci il balcolcino da shiftare");
 		for(RegionType reg : RegionType.values())
@@ -163,7 +179,7 @@ public class ClientCLI extends ClientUI
 	/*
 	 * Gets a valid color from user wrt the parameter array
 	 */
-	private Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException, IOException
+	protected Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException, IOException
 	{
 		
 		System.out.print("Definisci il colore del consigliere da aggiungere (");
@@ -194,7 +210,7 @@ public class ClientCLI extends ClientUI
 	 * Gets region or king from user
 	 * if is king returns null;
 	 */
-	private RegionType getRegionAndKing() throws InvalidInsertionException, IOException
+	protected RegionType getRegionAndKing() throws InvalidInsertionException, IOException
 	{
 		System.out.print("Definisci il balcolcino da shiftare (");
 		for(RegionType reg : RegionType.values())
@@ -214,11 +230,9 @@ public class ClientCLI extends ClientUI
 		throw new InvalidInsertionException();
 	}
 
-	
 	@Override
-	protected void activatePlayer() 
+	protected void showNotification(String s) 
 	{
-		System.out.println("It is your turn!");
-		requestAction();
+		System.out.println(s);
 	}
 }
