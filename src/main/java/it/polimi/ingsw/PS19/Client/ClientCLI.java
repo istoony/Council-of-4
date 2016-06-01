@@ -27,7 +27,7 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 /*
  * 
  */
-public class ClientCLI extends ClientUI 
+public class ClientCLI implements ClientUI 
 {
 	//TO BE PUT IN MODEL
 	private ArrayList<Color> councillorsColors = new ArrayList<Color>();
@@ -38,6 +38,7 @@ public class ClientCLI extends ClientUI
 
 	public ClientCLI()
 	{
+		/*
 		councillorsColors.add(new Color(0xFF0000));
 		councillorsColors.add(new Color(0x0000FF));
 		councillorsColors.add(new Color(0xFF7F00));
@@ -55,19 +56,14 @@ public class ClientCLI extends ClientUI
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//*/
 	}
 	
 	protected ClientActionChooser requestActionType(ArrayList<ClientActionChooser> actionList) 
 	{
 		boolean valid = false;
-<<<<<<< Upstream, based on branch 'milanta' of https://bitbucket.org/CoF_ps19/ps19
 		ClientActionChooser action = null;
 		int i = 0;
-=======
-		int actionId;
-		Request mex = null;
-
->>>>>>> 501e0b6 Refactor Messages
 		while(!valid)
 		{
 			System.out.println("Decidi che tipo di azione fare:");
@@ -98,6 +94,7 @@ public class ClientCLI extends ClientUI
 	
 	protected ClientAction requestAction(ArrayList<ClientAction> actionList)
 	{
+		return null;
 		
 	}
 	
@@ -150,15 +147,7 @@ public class ClientCLI extends ClientUI
 		return new BuyHelperMessage();
 	}
 	
-	private EndTurnMessage endTurn()
-	{
-		EndTurnMessage mex = new EndTurnMessage();
-		mex.setId(playerId);
-		System.out.println("Your turn has ended!");
-		return mex;
-	}
-	
-	protected RegionType getRegion() throws InvalidInsertionException, IOException
+	public RegionType getRegion() throws InvalidInsertionException, IOException
 	{
 		System.out.print("Definisci il balcolcino da shiftare");
 		for(RegionType reg : RegionType.values())
@@ -179,7 +168,7 @@ public class ClientCLI extends ClientUI
 	/*
 	 * Gets a valid color from user wrt the parameter array
 	 */
-	protected Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException, IOException
+	public Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException, IOException
 	{
 		
 		System.out.print("Definisci il colore del consigliere da aggiungere (");
@@ -210,7 +199,7 @@ public class ClientCLI extends ClientUI
 	 * Gets region or king from user
 	 * if is king returns null;
 	 */
-	protected RegionType getRegionAndKing() throws InvalidInsertionException, IOException
+	public RegionType getRegionAndKing() throws InvalidInsertionException, IOException
 	{
 		System.out.print("Definisci il balcolcino da shiftare (");
 		for(RegionType reg : RegionType.values())
@@ -231,18 +220,14 @@ public class ClientCLI extends ClientUI
 	}
 
 	@Override
-	protected void showNotification(String s) 
+	public void showNotification(String s) 
 	{
 		System.out.println(s);
-	}
-}
-;
-		throw new InvalidInsertionException();
 	}
 
 	@Override
-	protected void showNotification(String s) 
-	{
-		System.out.println(s);
+	public ClientAction requestActionType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

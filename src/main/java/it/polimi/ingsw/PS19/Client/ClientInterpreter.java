@@ -6,10 +6,10 @@ import java.util.Observer;
 import it.polimi.ingsw.PS19.Client.clientAction.ClientAction;
 import it.polimi.ingsw.PS19.Client.clientModel.ClientModel;
 import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.NewTurnMessage;
-import it.polimi.ingsw.PS19.message.StringMessage;
+import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
-import it.polimi.ingsw.PS19.message.requests.RequestActionMessage;
+import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.StringMessage;
 
 public class ClientInterpreter extends Observable implements Observer
 {
@@ -47,8 +47,8 @@ public class ClientInterpreter extends Observable implements Observer
 			else
 				userInterface.showNotification(mex.getString());
 		}
-		else if(arg instanceof Message)
-			userInterface.showNotification(((Message) arg).getString());
+		else if(arg instanceof Reply)
+			userInterface.showNotification(((Reply) arg).getString());
 		else
 			userInterface.showNotification("Invalid Object received");
 			
@@ -59,6 +59,7 @@ public class ClientInterpreter extends Observable implements Observer
 		mainDone = false;
 		fastDone = false;
 		requestAction();
+		System.out.println("Benvenuti! B&D");
 	}
 	
 	private Message requestAction()
