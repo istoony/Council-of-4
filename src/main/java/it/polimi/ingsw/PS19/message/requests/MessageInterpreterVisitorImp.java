@@ -5,12 +5,14 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.BuyHelper;
+import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.ElectCouncillor;
 import it.polimi.ingsw.PS19.controller.action.EndTurn;
 import it.polimi.ingsw.PS19.controller.action.GetBusinessCard;
 import it.polimi.ingsw.PS19.controller.action.SendFullGame;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -65,6 +67,14 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	{
 		int playerId = message.getId();
 		return new EndTurn(playerId);
+	}
+
+	@Override
+	public Action visit(ChangeKingPositionMessage message) 
+	{
+		City c = message.getCity();
+		int id = message.getId();
+		return new ChangeKingPosition(id, c);
 	}
 
 }

@@ -15,5 +15,7 @@ public interface MessageInterpreterVisitor
 	public Action visit(DrawPoliticsCardMessage message);
 	
 	public Action visit(EndTurnMessage message);
+	
+	public Action visit(ChangeKingPositionMessage message);
 		
 }
