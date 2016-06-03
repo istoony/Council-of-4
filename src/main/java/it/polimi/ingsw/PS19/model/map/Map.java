@@ -21,12 +21,6 @@ public class Map
 	private NobilityPath nobilityPath;
 
 	
-	public static void main(String[] args) {
-		Map map = MapLoader.builder();
-		map.kingBonus.print();
-		
-	}
-	
 	private Map(ArrayList<Region> regionlist)
 	{
 		listaRegioni = new ArrayList<Region>();
@@ -96,9 +90,43 @@ public class Map
 	}
 	
 	public static Map finalMapBuilder(ArrayList<ArrayList<City>> citiesbyregion){
+
+		return new Map(Region.finalRegionBuilder(citiesbyregion));
 		
-		Map map = new Map(Region.finalRegionBuilder(citiesbyregion));
-		return map;
-		
+	}
+	
+	public int calculateShorterPath(City start, City end){
+		ArrayList<City> result = new ArrayList<City>();
+		for(Region r : this.listaRegioni){
+			for(City c : r.getCities()){
+				if(start.equals(c)){
+					ArrayList<City> vis = new ArrayList<City>();
+					result = this.recursive(start, end, result, c, vis);
+				}
+			}
+		}
+		return result.size()+1;
+	}
+	
+	private ArrayList<City> recursive(City start, City end, ArrayList<City> path, City c, ArrayList<City> visited){
+		for(City n : c.getNeighbours()){
+			if(!visited.contains(n)){
+				if(end.equals(n)){
+					path.add(n);
+					return path;
+				}
+				visited.add(c);
+				visited.add(n);
+				path = this.recursive(start, end, path, n, visited);
+				if(!path.isEmpty()){
+					if(path.contains(n)){
+						return path;
+					}
+					path.add(n);
+					return path;
+				}
+			}
+		}
+		return path;
 	}
 }

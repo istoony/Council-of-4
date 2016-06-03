@@ -94,7 +94,6 @@ public class City {
 		this.bonus.addAll(BonusFactory.generateCityBonus());
 	}
 	
-
 	
 	@Override
 	public String toString() 
