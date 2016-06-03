@@ -9,6 +9,7 @@ public class ChangeKingPosition implements Action {
 	int playerId;
 	City city;
 	String result; //vedi l'interfaccia action, per ogni errore metti in questa stringa il perchè dell'errore
+	final static int JUMPCOST = 2;
 	
 	public ChangeKingPosition(int id, City c) //occhio che C non avrà lo stesso puntatore alla città salvata nel
 											//model, quidi conviene confrontare gli ID per muovere il re
@@ -26,7 +27,7 @@ public class ChangeKingPosition implements Action {
 
 	@Override
 	public Boolean isPossible(Model model) {
-		int requiredmoney = model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city);
+		int requiredmoney = JUMPCOST*model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
 			return true;
 		}
