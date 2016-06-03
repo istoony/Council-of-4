@@ -53,10 +53,4 @@ public class SendFullGame implements Action
 		
 	}
 
-	@Override
-	public void createReplyMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

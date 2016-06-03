@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.controller.action;
 
 import java.awt.Color;
 
+import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -74,15 +75,15 @@ public class ElectCouncillor implements Action
 	}
 
 	@Override
-	public void createReplyMessage() {
+	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void checkAlreadyTurn() {
+	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 }

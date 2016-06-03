@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.controller.action;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
@@ -83,15 +84,15 @@ public class MainBuildEmporium implements Action
 	}
 
 	@Override
-	public void createReplyMessage() {
+	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void checkAlreadyTurn() {
+	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

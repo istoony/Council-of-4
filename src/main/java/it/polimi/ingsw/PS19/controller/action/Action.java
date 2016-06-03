@@ -24,21 +24,14 @@ public interface Action
 	
 	public String getStringResult();
 	
-<<<<<<< Upstream, based on branch 'master' of https://bitbucket.org/CoF_ps19/ps19
-	public Reply createReplyMessage(Model model);
-=======
-	public void createReplyMessage();
->>>>>>> 0ccb890 Refactor Messages
-	
-	public void checkAlreadyTurn();
-	
 	public Reply createReplyMessage(Model model);
 	
 	public void checkAlreadyTurn();
 	
-	public static Boolean checkPlayerTurn(int id1, Model m)
+	
+	public static Boolean checkPlayerTurn(int id, Model m)
 	{
-		return id1 != m.getCurrentState().getPlayerTurnId();
+		return id != m.getCurrentState().getPlayerTurnId();
 	}
 	
 

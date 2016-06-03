@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.controller.action;
 
+import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class EndTurn implements Action 
@@ -44,14 +45,14 @@ public class EndTurn implements Action
 		return result;
 	}
 	@Override
-	public void createReplyMessage() {
+	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void checkAlreadyTurn() {
+	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

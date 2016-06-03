@@ -1,8 +1,5 @@
-	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-		
-	}
+package it.polimi.ingsw.PS19.controller.action;
+
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
