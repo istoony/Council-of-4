@@ -1,16 +1,13 @@
 package it.polimi.ingsw.PS19.Client.clientAction;
 
-import java.util.ArrayList;
-
-import it.polimi.ingsw.PS19.Client.clientModel.ClientModel;
-
 public class MainAction extends ClientActionChooser 
-{
-	
-	@Override
-	public ArrayList<ClientAction> isPossible(ClientModel model) 
+{	
+	public MainAction() 
 	{
-		return null;
+		actions.add(new BuildEmporiumInputs());
+		actions.add(new BuildWithKingInputs());
+		actions.add(new ElectCouncillorInputs());
+		actions.add(new GetBusinessPermitInput());
 	}
 
 	@Override
