@@ -20,7 +20,7 @@ public class SendFullGameMessage extends Request
 	 * @see it.polimi.ingsw.PS19.message.Message#getString()
 	 */
 	@Override
-	public String getString() {
+	public String toString() {
 		// TODO Auto-generated method stub
 		return null;
 	}

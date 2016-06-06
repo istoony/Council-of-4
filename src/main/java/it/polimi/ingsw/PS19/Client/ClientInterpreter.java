@@ -11,11 +11,11 @@ import it.polimi.ingsw.PS19.Client.clientModel.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
-import it.polimi.ingsw.PS19.message.requests.StringMessage;
 
 public class ClientInterpreter extends Observable implements Observer
 {
@@ -44,7 +44,7 @@ public class ClientInterpreter extends Observable implements Observer
 		if(arg instanceof GameStartedMessage)
 		{
 			playerId = ((GameStartedMessage) arg).getPlayerNumber();
-			userInterface.showNotification(((GameStartedMessage) arg).getString());
+			userInterface.showNotification(((GameStartedMessage) arg).toString());
 			setChanged();
 			notifyObservers(new StringMessage("Hello this is player " + playerId));
 		}
@@ -54,10 +54,10 @@ public class ClientInterpreter extends Observable implements Observer
 			if(mex.getActivePlayer() == playerId)
 				activatePlayer(mex);
 			else
-				userInterface.showNotification(mex.getString());
+				userInterface.showNotification(mex.toString());
 		}
 		else if(arg instanceof Reply)
-			userInterface.showNotification(((Reply) arg).getString());
+			userInterface.showNotification(((Reply) arg).toString());
 		else
 			userInterface.showNotification("Invalid Object received");
 			

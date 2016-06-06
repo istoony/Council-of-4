@@ -14,7 +14,7 @@ public class GetBusinessPermitInput extends ClientAction {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 	@Override
 	public Request Execute(ClientUI userInterface) {
 		// TODO Auto-generated method stub

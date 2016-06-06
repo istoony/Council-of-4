@@ -26,7 +26,7 @@ public class GameStartedMessage extends Request
 	
 	
 	@Override
-	public String getString() 
+	public String toString() 
 	{
 		String s = "Game has started with " + getNumberOfPlayer() + " players\nYou are player number " + getPlayerNumber();
 		return s;

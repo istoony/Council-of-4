@@ -16,7 +16,7 @@ public class ActivePlayerMessage extends Request
 	}
 	
 	@Override
-	public String getString() 
+	public String toString() 
 	{
 		return null;
 	}

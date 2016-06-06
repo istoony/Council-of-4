@@ -28,7 +28,7 @@ public class NewTurnMessage extends Request
 	}
 
 	@Override
-	public String getString() 
+	public String toString() 
 	{
 		String s = "Turn of player " + activePlayer;
 		return s;

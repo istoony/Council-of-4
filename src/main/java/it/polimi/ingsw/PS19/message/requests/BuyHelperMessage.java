@@ -16,7 +16,7 @@ public class BuyHelperMessage extends Request {
 	}
 
 	@Override
-	public String getString() 
+	public String toString() 
 	{
 		// TODO Auto-generated method stub
 		return null;

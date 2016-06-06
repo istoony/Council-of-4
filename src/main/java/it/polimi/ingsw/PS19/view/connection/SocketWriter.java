@@ -2,10 +2,9 @@
  * @author Andrea Milanta
  */
 package it.polimi.ingsw.PS19.view.connection;
+
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 /*
@@ -32,9 +31,9 @@ public class SocketWriter extends Writer
 	@Override
 	protected void write()
 	{
-		if(request == null) return;
+		if(message == null) return;
 		try {
-			out.writeObject(request);
+			out.writeObject(message);
 			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

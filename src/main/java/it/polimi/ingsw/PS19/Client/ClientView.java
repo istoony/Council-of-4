@@ -9,10 +9,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 
@@ -21,7 +19,7 @@ import it.polimi.ingsw.PS19.view.connection.Connection;
  */
 public class ClientView extends Observable implements Observer, Runnable
 {
-	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	//private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private boolean stop = false;
 	Connection connection = null;
 		
@@ -35,11 +33,11 @@ public class ClientView extends Observable implements Observer, Runnable
 	{
 		while(!stop)
 		{
-			Future<Request> waitMex = connection.read();
+			Future<Message> waitMex = connection.read();
 			try 
 			{
 				//Message recMex = waitMex.get(ClientConstants.MAX_SERVER_TIMEOUT_s, TimeUnit.SECONDS);
-				Request recMex = waitMex.get();
+				Message recMex = waitMex.get();
 				setChanged();
 				notifyObservers(recMex);
 			} 

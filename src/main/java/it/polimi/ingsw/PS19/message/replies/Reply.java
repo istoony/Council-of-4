@@ -18,7 +18,4 @@ public abstract class Reply extends Message
 	{
 		this.result = result;
 	}
-	
-	public abstract String getString();
-
 }

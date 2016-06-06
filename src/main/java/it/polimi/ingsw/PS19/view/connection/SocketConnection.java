@@ -3,18 +3,13 @@
  */
 package it.polimi.ingsw.PS19.view.connection;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.*;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.message.Message;
 
 /**
  * Class for socket connection
@@ -55,9 +50,9 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#write(view.Message)
 	 */
 	@Override
-	public Integer write(Request request) throws WriterException
+	public Integer write(Message message) throws WriterException
 	{
-		writer.setMessage(request);
+		writer.setMessage(message);
 		Integer result = null;
 		try {
 			result = writer.call();
@@ -74,9 +69,9 @@ public class SocketConnection extends Connection
 	 * @see connection.Connection#read()
 	 */
 	@Override
-	public Future<Request> read()
+	public Future<Message> read()
 	{
-		Future<Request> result = executor.submit(reader);
+		Future<Message> result = executor.submit(reader);
 		return result;
 	}
 }

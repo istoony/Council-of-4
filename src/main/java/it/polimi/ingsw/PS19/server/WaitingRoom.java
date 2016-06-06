@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.requests.StringMessage;
+import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
 

@@ -6,17 +6,11 @@ package it.polimi.ingsw.PS19.Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
 
