@@ -38,11 +38,6 @@ public class BonusFactory
     bonus-get-city-bonus*/
 	
 	
-	public BonusFactory() 
-	{
-		// TODO Auto-generated constructor stub
-	}
-	
 	public static Bonus getBonus(String typeofbonus, int parameter)
 	{
 		if(typeofbonus.equals(BONUS_MORE_MONEY))

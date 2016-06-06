@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.message.replies;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.Client.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
@@ -15,21 +16,21 @@ public class SendFullGameReply extends Reply
 	 */
 	private static final long serialVersionUID = -4013509319790221079L;
 	
-	private ArrayList<Region> regions;
-	private ArrayList<Player> player;
+	private List<Region> regions;
+	private List<Player> player;
 	private King king;
 	
-	public SendFullGameReply(ArrayList<Region> r, ArrayList<Player> p, King k) 
+	public SendFullGameReply(List<Region> regions2, List<Player> p, King k) 
 	{
-		regions = r;
+		regions = regions2;
 		player = p;
 		king = k;
 	}
 	
-	public ArrayList<Region> getRegions() {
+	public List<Region> getRegions() {
 		return regions;
 	}
-	public ArrayList<Player> getPlayer() {
+	public List<Player> getPlayer() {
 		return player;
 	}
 	public King getKing() {
@@ -39,8 +40,7 @@ public class SendFullGameReply extends Reply
 	@Override
 	public void display(ReplyVisitor replyvisitor) 
 	{
-		replyvisitor.display(this);
-		
+		return replyvisitor.display(this);
 	}
 
 	@Override

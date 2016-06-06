@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
@@ -33,7 +34,7 @@ public class City {
 	}
 	
 	//applica i bonus delle città collegate
-	public void applyNetBonus(Player p, ArrayList<City> visited){
+	public void applyNetBonus(Player p, List<City> visited){
 		this.applyBonus(p);
 		visited.add(this);
 		for(City neig : neighbours){
@@ -79,14 +80,14 @@ public class City {
 		return id;
 	}
 
-	public ArrayList<City> getNeighbours() 
+	public List<City> getNeighbours() 
 	{
 		return neighbours;
 	}
 
 	//aggiungi vicini
-	public void addNear(ArrayList<City> lis){
-		this.neighbours = new ArrayList<City>();
+	public void addNear(List<City> lis){
+		this.neighbours = new ArrayList<>();
 		this.neighbours.addAll(lis);
 	}
 	
