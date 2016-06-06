@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.message.requests;
 
 
 import it.polimi.ingsw.PS19.controller.action.Action;
+import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 
 public class PlayerDisconnectedMessage extends Request 
 {

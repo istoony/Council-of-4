@@ -1,16 +1,15 @@
-package it.polimi.ingsw.PS19.message.requests;
+package it.polimi.ingsw.PS19.controller.action;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.BuyHelper;
-import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
-import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
-import it.polimi.ingsw.PS19.controller.action.ElectCouncillor;
-import it.polimi.ingsw.PS19.controller.action.EndTurn;
-import it.polimi.ingsw.PS19.controller.action.GetBusinessCard;
-import it.polimi.ingsw.PS19.controller.action.SendFullGame;
+import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
+import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.King;
