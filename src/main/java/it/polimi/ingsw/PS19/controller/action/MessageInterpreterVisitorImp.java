@@ -52,7 +52,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		RegionType region = message.getRegion();
 		int playerId = message.getId();
 		ArrayList<Color> politicscard = message.getPoliticsCard();
-		return new GetBusinessCard(playerId, region, card, politicscard);
+		return new DrawBusinessCard(playerId, region, card, politicscard);
 	}
 
 	@Override
