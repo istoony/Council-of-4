@@ -45,6 +45,11 @@ public class Model extends Observable
 		return map;
 	}
 	
+	public Market getMarket() 
+	{
+		return market;
+	}
+	
 	public Player getPlayerById(int i)
 	{
 		return player.get(i);

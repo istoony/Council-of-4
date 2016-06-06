@@ -4,9 +4,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
+import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
+import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.PS19.message.requests.Request;
-import it.polimi.ingsw.PS19.message.requests.MessageInterpreterVisitor;
-import it.polimi.ingsw.PS19.message.requests.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class GameController implements Observer

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
@@ -37,9 +38,11 @@ public class SendFullGame implements Action
 	{
 		return result;
 	}
+	
+	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		ArrayList<Region> regions = model.getMap().getListaRegioni();
+		List<Region> regions = model.getMap().getListaRegioni();
 		King king = model.getMap().getKing();
 		ArrayList<Player> player = model.getPlayer();
 		SendFullGameReply reply = new SendFullGameReply(regions, player, king);

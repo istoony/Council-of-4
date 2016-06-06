@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class DrawPoliticsCard implements Action 
@@ -47,9 +48,9 @@ public class DrawPoliticsCard implements Action
 		
 	}
 	@Override
-	public Reply createReplyMessage(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Reply createReplyMessage(Model model) 
+	{
+		return new SendFullPlayerReply(model.getPlayerById(playerId), result);
 	}
 
 }

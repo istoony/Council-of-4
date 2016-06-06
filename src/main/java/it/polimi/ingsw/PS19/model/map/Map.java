@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
@@ -23,7 +24,7 @@ public class Map
 	
 	private Map(ArrayList<Region> regionlist)
 	{
-		listaRegioni = new ArrayList<Region>();
+		listaRegioni = new ArrayList<>();
 		listaRegioni.addAll(regionlist);
 		
 		kingFactory();	
@@ -59,7 +60,7 @@ public class Map
 		return null;
 	}
 	
-	public ArrayList<Region> getListaRegioni() 
+	public List<Region> getListaRegioni() 
 	{
 		ArrayList<Region> reg = new ArrayList<>();
 		reg.addAll(listaRegioni);
@@ -96,11 +97,11 @@ public class Map
 	}
 	
 	public int calculateShorterPath(City start, City end){
-		ArrayList<City> result = new ArrayList<City>();
+		ArrayList<City> result = new ArrayList<>();
 		for(Region r : this.listaRegioni){
 			for(City c : r.getCities()){
 				if(start.equals(c)){
-					ArrayList<City> vis = new ArrayList<City>();
+					ArrayList<City> vis = new ArrayList<>();
 					result = this.recursive(start, end, result, c, vis);
 				}
 			}

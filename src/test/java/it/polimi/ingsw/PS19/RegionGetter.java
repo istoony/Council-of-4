@@ -2,7 +2,7 @@ package it.polimi.ingsw.PS19;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class RegionGetter {
 	public void test() 
 	{
 		Model m = new Model(3);
-		ArrayList<Region> r = m.getMap().getListaRegioni();
+		List<Region> r = m.getMap().getListaRegioni();
 				//controlla se il puntatore di R è lo stesso che ritorna dal model
 				//se sono diversi il test va a buon fine ed è giusto perchè vuol
 				//dire che getListaRegioni ritorna una copia delle regioni che posso modificare come voglio

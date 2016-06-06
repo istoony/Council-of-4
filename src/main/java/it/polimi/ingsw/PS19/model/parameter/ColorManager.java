@@ -1,14 +1,10 @@
 package it.polimi.ingsw.PS19.model.parameter;
 
 import java.awt.Color;
-import java.io.File;
+import java.util.List;
 import java.util.ArrayList;
+
 import java.util.Random;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -26,7 +22,7 @@ public class ColorManager
 	
 	public ColorManager(String pathfile) 
 	{
-		colors = new ArrayList<Color>();
+		colors = new ArrayList<>();
 		try {
 			
 			NodeList numberofcolors = FileReader.XMLReader(pathfile, COLOR_MARKER);
@@ -36,7 +32,6 @@ public class ColorManager
 						
 			for(int k=0; k<numberofcolors.getLength(); k++)
 			{
-				System.out.println(eElement.getElementsByTagName(COLOR_MARKER).item(k).getTextContent());
 				Color c = Color.decode(eElement.getElementsByTagName(COLOR_MARKER).item(k).getTextContent());
 				
 				colors.add(c);
@@ -49,9 +44,9 @@ public class ColorManager
 		    	}
 	}
 	
-	public ColorManager(ArrayList<String> listofcolors)
+	public ColorManager(List<String> listofcolors)
 	{
-		colors = new ArrayList<Color>();
+		colors = new ArrayList<>();
 		for(String s : listofcolors)
 		{
 				colors.add(Color.decode(s));
@@ -61,7 +56,7 @@ public class ColorManager
 	
 	public ColorManager(Color color)
 	{
-		colors = new ArrayList<Color>();
+		colors = new ArrayList<>();
 		colors.add(color);
 		size++;	
 	}
@@ -83,7 +78,7 @@ public class ColorManager
 	public int getSize() {
 		return size;
 	}
-	public ArrayList<Color> getColors() 
+	public List<Color> getColors() 
 	{
 		return colors;
 	}
@@ -91,6 +86,6 @@ public class ColorManager
 	{
 		Random rand = new Random();
 		
-		return colors.get(Math.abs(rand.nextInt()) % size);
+		return colors.get(rand.nextInt(size));
 	}
 }

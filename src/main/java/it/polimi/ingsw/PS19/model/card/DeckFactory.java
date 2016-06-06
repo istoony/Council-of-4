@@ -2,8 +2,6 @@ package it.polimi.ingsw.PS19.model.card;
 
 import java.awt.Color;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +26,7 @@ public class DeckFactory
 	private static final String POLITICSCARD = "politicscard";
 	private static final String BUSINESSCARD = "businesscard";
 	
-	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, ArrayList<City> cities) 
+	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, List<City> cities)
 	{
 		try {
 			Random rand = new Random();
@@ -66,20 +64,17 @@ public class DeckFactory
 							card.addBonus(bonus);
 						}
 						int numberofcities = Integer.parseInt(eElement.getElementsByTagName("numberofcities").item(0).getTextContent());
-						//System.out.println("GEEEEEEEEEEEEEEEEEEEE" + numberofcities);
 						for(int i = 0; i < numberofcities; i++)
 						{
-							//System.out.println(i);
 							if(!card.addCity(cities.get(Math.abs(rand.nextInt(cities.size())))))
 								i--;
-							//System.out.println(card.toString());
 						}
 					
 						businessdeck.addToDeck(card);
 					}
 				}
 			}
-			Collections.shuffle((List<?>) businessdeck);
+			businessdeck.shuffle();
 			return businessdeck;
 		    } catch (Exception e) {
 			e.printStackTrace();

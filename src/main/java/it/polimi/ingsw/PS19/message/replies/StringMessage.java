@@ -1,5 +1,7 @@
 package it.polimi.ingsw.PS19.message.replies;
 
+import it.polimi.ingsw.PS19.Client.ReplyVisitor;
+
 public class StringMessage extends Reply 
 {
 	/**

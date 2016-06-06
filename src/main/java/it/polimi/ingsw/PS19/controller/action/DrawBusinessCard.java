@@ -1,8 +1,9 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.List;
 
+import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
@@ -11,7 +12,7 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class GetBusinessCard implements Action 
+public class DrawBusinessCard implements Action 
 {
 
 	private static final int MONEY_1_CARDS = 10;
@@ -21,11 +22,11 @@ public class GetBusinessCard implements Action
 	private RegionType region;
 	private BusinessCard card;
 	private Boolean isFirstCard;
-	private ArrayList<Color> politicsCard;
+	private List<Color> politicsCard;
 	
 	private String result;
 	
-	public GetBusinessCard(int id, RegionType r, BusinessCard c, ArrayList<Color> politicsCard) 
+	public DrawBusinessCard(int id, RegionType r, BusinessCard c, List<Color> politicsCard) 
 	{
 		playerId = id;
 		region = r;
@@ -61,13 +62,11 @@ public class GetBusinessCard implements Action
 			selectedcard = model.getMap().getRegionByType(region).getFirstcard();
 			model.getMap().getRegionByType(region).drowFirstCard();
 		}
-		else if(!isFirstCard)
+		else
 		{
 			selectedcard = model.getMap().getRegionByType(region).getSecondcard();
 			model.getMap().getRegionByType(region).drowSecondCard();
 		}
-		else 
-			return false;
 		model.getPlayerById(playerId).addCardToHand(selectedcard);
 		return true;
 	}
@@ -161,8 +160,13 @@ public class GetBusinessCard implements Action
 	}
 
 	@Override
-	public Reply createReplyMessage(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Reply createReplyMessage(Model model) 
+	{
+		DrawBusinessCardReply reply = new DrawBusinessCardReply(model.getPlayerById(playerId), region, result);
+		
+		reply.setFirstcard(model.getMap().getRegionByType(region).getFirstcard());
+		reply.setSecondcard(model.getMap().getRegionByType(region).getSecondcard());
+		
+		return reply;
 	}
 }
