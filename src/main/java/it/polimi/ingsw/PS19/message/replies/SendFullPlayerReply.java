@@ -3,7 +3,7 @@ package it.polimi.ingsw.PS19.message.replies;
 import it.polimi.ingsw.PS19.Client.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 
-public class BuyHelperReply extends Reply
+public class SendFullPlayerReply extends Reply
 {
 
 	/**
@@ -12,7 +12,7 @@ public class BuyHelperReply extends Reply
 	private static final long serialVersionUID = 1117123155364033902L;
 	private Player player;
 	
-	public BuyHelperReply(Player p, String s) 
+	public SendFullPlayerReply(Player p, String s) 
 	{
 		player = p;
 		setResult(s);

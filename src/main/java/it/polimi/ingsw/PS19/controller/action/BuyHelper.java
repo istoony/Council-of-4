@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19.controller.action;
 
-import it.polimi.ingsw.PS19.message.replies.BuyHelperReply;
+import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
@@ -60,7 +60,7 @@ public class BuyHelper implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		BuyHelperReply reply = new BuyHelperReply(model.getPlayerById(id), result);
+		SendFullPlayerReply reply = new SendFullPlayerReply(model.getPlayerById(id), result);
 		reply.setId(model.getCurrentState().getPlayerTurnId());
 		return reply;
 	}
