@@ -102,11 +102,11 @@ public class WaitingRoom
 	public static synchronized void startGame()
 	{
 		if(room.size() <2) return; 						//Check to avoid concurrency in one particular case		
-		
-		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
-		
 		mux.lock();
-		new GameFactory(room);
+		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
+		@SuppressWarnings("unchecked")
+		ArrayList<Connection> fullRoom = (ArrayList<Connection>) room.clone();
+		new GameFactory(fullRoom);
 		//new Thread(new GameFactory(room)).start();
 		/*
 		 * Fake game for test purpose only	
