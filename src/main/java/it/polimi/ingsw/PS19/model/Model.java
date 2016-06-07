@@ -1,9 +1,10 @@
 package it.polimi.ingsw.PS19.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
-import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
+import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
 
@@ -60,7 +61,7 @@ public class Model extends Observable
 		return numberofplayer;
 	}
 	
-	public ArrayList<Player> getPlayer() 
+	public List<Player> getPlayer() 
 	{
 		return player;
 	}
@@ -80,14 +81,10 @@ public class Model extends Observable
 		return s;
 	}
 	
-	public void createMessage(String result)
+	public void createMessage(Reply reply)
 	{
 		setChanged();
-		if(currentState.getSendfullgame())
-		{
-			NewTurnMessage message = new NewTurnMessage(currentState.getPlayerTurnId());
-			notifyObservers(message);
-		}
+		notifyObservers(reply);
 	}
 	
 	public CurrentState getCurrentState() 

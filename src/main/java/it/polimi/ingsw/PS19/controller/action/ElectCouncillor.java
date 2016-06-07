@@ -2,8 +2,10 @@ package it.polimi.ingsw.PS19.controller.action;
 
 import java.awt.Color;
 
+import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -15,7 +17,7 @@ public class ElectCouncillor implements Action
 	private Color color;
 	private int playerId;
 	private RegionType region;
-	private King king;
+	private King king = null;
 	
 	private String result;
 
@@ -83,8 +85,19 @@ public class ElectCouncillor implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		ElectCouncillorReply reply;
+		if(king == null)
+		{
+			Balcony b = model.getMap().getRegionByType(region).getBalcony();
+			reply = new ElectCouncillorReply(model.getPlayerById(playerId), b, region);
+		}
+		else
+		{
+			Balcony b = model.getMap().getKing().getBalcony();
+			reply = new ElectCouncillorReply(model.getPlayerById(playerId), b);
+		}
+		reply.setResult(result);
+		return reply;
 	}
 	
 }
