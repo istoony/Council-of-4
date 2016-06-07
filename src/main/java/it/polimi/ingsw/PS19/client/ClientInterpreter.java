@@ -16,8 +16,8 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 
 public class ClientInterpreter extends Observable implements Observer
 {
