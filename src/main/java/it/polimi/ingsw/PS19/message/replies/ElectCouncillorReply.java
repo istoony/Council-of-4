@@ -1,8 +1,7 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.PS19.message.replies;
 
 
-import it.polimi.ingsw.PS19.Client.ReplyVisitor;
-import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.client.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -51,13 +50,9 @@ public class ElectCouncillorReply extends Reply
 	}
 	
 	@Override
-	public void display(ReplyVisitor replyvisitor) {
-		// TODO Auto-generated method stub
-		
+	public void display(ReplyVisitor replyvisitor) 
+	{
+		return replyvisitor.display(this);	
 	}
-	@Override
-	public String getString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

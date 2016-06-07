@@ -1,9 +1,9 @@
-package it.polimi.ingsw.PS19.Client.clientAction;
+package it.polimi.ingsw.PS19.client.clientaction;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.PS19.Client.ClientUI;
-import it.polimi.ingsw.PS19.Client.clientModel.ClientModel;
+import it.polimi.ingsw.PS19.client.ClientUI;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientModel;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 public class BuildEmporiumInputs extends ClientAction {

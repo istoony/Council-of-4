@@ -12,7 +12,8 @@ public class DrawPoliticCard implements Bonus{
 		howmany=n;
 
 	}
-
+	
+	@Override
 	public void giveBonus(Player p) {
 
 	}	

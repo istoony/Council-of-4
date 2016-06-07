@@ -1,13 +1,14 @@
-package it.polimi.ingsw.PS19.Client;
+package it.polimi.ingsw.PS19.client;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import it.polimi.ingsw.PS19.Client.clientAction.ClientAction;
-import it.polimi.ingsw.PS19.Client.clientAction.ClientActionChooser;
-import it.polimi.ingsw.PS19.Client.clientAction.FastAction;
-import it.polimi.ingsw.PS19.Client.clientAction.MainAction;
-import it.polimi.ingsw.PS19.Client.clientModel.ClientModel;
+
+import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
+import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.PS19.client.clientaction.FastAction;
+import it.polimi.ingsw.PS19.client.clientaction.MainAction;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.Reply;

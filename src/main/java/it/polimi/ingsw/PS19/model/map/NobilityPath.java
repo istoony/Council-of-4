@@ -17,7 +17,7 @@ public class NobilityPath
 	
 	public NobilityPath(String pathfile) 
 	{
-		nobility = new HashMap<Integer, ArrayList<Bonus>>();
+		nobility = new HashMap<>();
 		NodeList nList = FileReader.XMLReader(pathfile, "position");
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) 
@@ -29,7 +29,7 @@ public class NobilityPath
 				
 				int numberofposition = Integer.parseInt(eElement.getElementsByTagName("numberofposition").item(0).getTextContent());
 				int numberofbonus = eElement.getElementsByTagName("bonus").getLength();
-				ArrayList<Bonus> bonusarray = new ArrayList<Bonus>();
+				ArrayList<Bonus> bonusarray = new ArrayList<>();
 				for(int i = 0; i < numberofbonus; i++)
 				{
 					Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19.message.replies;
 
-import it.polimi.ingsw.PS19.Client.ReplyVisitor;
+import it.polimi.ingsw.PS19.client.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 
 public class SendFullPlayerReply extends Reply

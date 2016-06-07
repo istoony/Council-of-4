@@ -1,9 +1,10 @@
-package it.polimi.ingsw.PS19.Client;
+package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import it.polimi.ingsw.PS19.Client.clientAction.ClientAction;
-import it.polimi.ingsw.PS19.Client.clientAction.ClientActionChooser;
+
+import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
+import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 

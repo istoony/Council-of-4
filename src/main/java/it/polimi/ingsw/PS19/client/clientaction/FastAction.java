@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.Client.clientAction;
+package it.polimi.ingsw.PS19.client.clientaction;
 
 public class FastAction extends ClientActionChooser 
 {

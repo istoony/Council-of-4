@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.PS19.Client;
+package it.polimi.ingsw.PS19.client;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

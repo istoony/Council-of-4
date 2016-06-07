@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,20 +11,20 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class GeneralBonus implements Bonus {
 
-	private ArrayList<ArrayList<City>> regionsBonus;
+	private List<ArrayList<City>> regionsBonus;
 	private int singleRegionBonus;
-	private ArrayList<Integer> kingBonus;  //first to achieve
-	private ArrayList<CityColorBonus> colorBonus;
+	private List<Integer> kingBonus;  //first to achieve
+	private List<CityColorBonus> colorBonus;
 	
 	
-	public GeneralBonus(String xmlfile, ArrayList<Region> regionlist){
-		regionsBonus = new ArrayList<ArrayList<City>>();
-		kingBonus = new ArrayList<Integer>();
-		colorBonus = new ArrayList<CityColorBonus>();
+	public GeneralBonus(String xmlfile, List<Region> regionlist){
+		regionsBonus = new ArrayList<>();
+		kingBonus = new ArrayList<>();
+		colorBonus = new ArrayList<>();
+		
 		this.inizializeKing(xmlfile);
 		this.inizializeCity(xmlfile);
 		this.inizializeColors(regionlist);
@@ -121,7 +122,7 @@ public class GeneralBonus implements Bonus {
 	}
 	
 	//metodo ausilio costruttore 3, colori e regioni
-	private void inizializeColors(ArrayList<Region> rlist){
+	private void inizializeColors(List<Region> rlist){
 		for(CityColorBonus c : this.colorBonus){
 			c.joinBonusToCity(rlist);
 		}

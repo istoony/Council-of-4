@@ -91,22 +91,27 @@ public class BonusFactory
 				case 0 : {
 					n = r.nextInt(MAX_CITY_CARDS-1)+1;
 					bon.add(new DrawPoliticCard(n));
+					break;
 				}
 				case 1 : {
 					n = r.nextInt(MAX_CITY_HELPERS-1)+1;
 					bon.add(new MoreHelpers(n));
+					break;
 				}
 				case 2 : {
 					n = r.nextInt(MAX_CITY_MONEY-1)+1;
 					bon.add(new MoreMoney(n));
+					break;
 				}
 				case 3 : {
 					n = r.nextInt(MAX_CITY_NOBILITY-1)+1;
 					bon.add(new MoreNobilityPoints(n));
+					break;
 				}		
 				case 4 : {
 					n = r.nextInt(MAX_CITY_VP-1)+1;
 					bon.add(new MoreVictoryPoints(n));
+					break;
 				}
 			}
 			truthTable.set(i, 0);
