@@ -15,14 +15,16 @@ public class SendFullGameUpdate implements ClientUpdate
 	private ColorManager councilcolors = null;
 	private List<Player> player;
 	private int activeplayer;
+	private String result;
 	
 	
-	public SendFullGameUpdate(King k, List<Region> r, List<Player> p, int active) 
+	public SendFullGameUpdate(String res, King k, List<Region> r, List<Player> p, int active) 
 	{
 		king = k;
 		regions =r;
 		player = p;
 		activeplayer = active;
+		result = res;
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class SendFullGameUpdate implements ClientUpdate
 		model.setKing(king);
 		model.setPlayer(player);
 		model.setRegions(regions);
-				
+		model.setResult(result);
 	}
 	
 }

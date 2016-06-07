@@ -101,7 +101,7 @@ public class ClientCLI implements ClientUI
 				if(color.equals(c))
 					return color;
 			}
-		} catch(IOException e)
+		} catch(IOException | NumberFormatException e)
 		{
 			e.printStackTrace();
 		}
