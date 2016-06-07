@@ -34,7 +34,9 @@ public class SocketWriter extends Writer
 	{
 		if(message == null) return;
 		try {
+			out.reset();
 			out.writeObject(message);
+			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
