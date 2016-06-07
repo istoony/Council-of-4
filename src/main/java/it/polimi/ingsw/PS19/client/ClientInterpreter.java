@@ -42,32 +42,20 @@ public class ClientInterpreter extends Observable implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		if(arg instanceof GameStartedMessage)
+		if(arg instanceof Reply)
 		{
-			playerId = ((GameStartedMessage) arg).getPlayerNumber();
-			userInterface.showNotification(((GameStartedMessage) arg).toString());
-			setChanged();
-			notifyObservers(new StringMessage("Hello this is player " + playerId));
+			Reply reply = ((Reply) arg);
+			userInterface.showNotification(reply.toString());
+			if(reply.getActivePlayer() == playerId)
+				activatePlayer();
 		}
-		else if(arg instanceof NewTurnMessage)
-		{
-			NewTurnMessage mex = (NewTurnMessage) arg;
-			if(mex.getActivePlayer() == playerId)
-				activatePlayer(mex);
-			else
-				userInterface.showNotification(mex.toString());
-		}
-		else if(arg instanceof Reply)
-			userInterface.showNotification(((Reply) arg).toString());
 		else
 			userInterface.showNotification("Invalid Object received");
 			
 	}
 
-	private void activatePlayer(NewTurnMessage mex) 
+	private void activatePlayer() 
 	{
-		for(ClientActionChooser c : typesOfAction)
-			c.resetAvail();
 		requestAction();
 	}
 	
