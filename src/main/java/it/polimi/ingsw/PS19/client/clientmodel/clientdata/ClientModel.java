@@ -11,8 +11,40 @@ public class ClientModel
 {
 	private King king;
 	private List<Region> regions;
-	private ColorManager cuncilcolors;
+	private ColorManager councilcolors;
 	private Player player;
 	private int activeplayer;
+	
+	public void setKing(King king) {
+		this.king = king;
+	}
+	public void setRegions(List<Region> regions) {
+		this.regions = regions;
+	}
+	public void setCouncilcolors(ColorManager cuncilcolors) {
+		this.councilcolors = cuncilcolors;
+	}
+	public void setActiveplayer(int activeplayer) {
+		this.activeplayer = activeplayer;
+	}
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	public int getActiveplayer() {
+		return activeplayer;
+	}
+	public ColorManager getCouncilcolors() {
+		return councilcolors;
+	}
+	public King getKing() {
+		return king;
+	}
+	public Player getPlayer() {
+		return player;
+	}
+	public List<Region> getRegions() {
+		return regions;
+	}
+	
 	
 }
