@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.message.replies;
 
 
 import it.polimi.ingsw.PS19.client.ReplyVisitor;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -50,7 +51,7 @@ public class ElectCouncillorReply extends Reply
 	}
 	
 	@Override
-	public void display(ReplyVisitor replyvisitor) 
+	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{
 		return replyvisitor.display(this);	
 	}

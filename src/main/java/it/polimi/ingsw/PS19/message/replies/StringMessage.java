@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.message.replies;
 
 import it.polimi.ingsw.PS19.client.ReplyVisitor;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 
 public class StringMessage extends Reply 
 {
@@ -21,8 +22,9 @@ public class StringMessage extends Reply
 	}
 
 	@Override
-	public void display(ReplyVisitor replyvisitor) {
-		// TODO Auto-generated method stub
+	public ClientUpdate display(ReplyVisitor replyvisitor) {
+		
+		return null;
 		
 	}
 
