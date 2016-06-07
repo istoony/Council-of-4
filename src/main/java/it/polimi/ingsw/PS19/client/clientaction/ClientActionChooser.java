@@ -7,7 +7,7 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 
 public abstract class ClientActionChooser
 {
-	int avail = 0;
+	int avail = 1;
 	
 	ArrayList<ClientAction> actions = new ArrayList<ClientAction>();
 	
