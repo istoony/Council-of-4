@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.model.FileNames;
@@ -96,38 +97,52 @@ public class Map
 		
 	}
 	
-	public int calculateShorterPath(City start, City end){
+	public ArrayList<City> calculateShorterPath(City start, City end){
 		ArrayList<City> result = new ArrayList<>();
 		for(Region r : this.listaRegioni){
 			for(City c : r.getCities()){
 				if(start.equals(c)){
-					ArrayList<City> vis = new ArrayList<>();
-					result = this.recursive(start, end, result, c, vis);
+					HashMap<City, City> visited = new HashMap<>(); 
+					HashMap<City, City> parentree = new HashMap<>(); 
+					ArrayList<City> frontier = new ArrayList<>();
+					result = recursiveBFS(start, end, result, c, visited, frontier, parentree);
 				}
 			}
 		}
-		return result.size()+1;
+		return result;
 	}
 	
-	private ArrayList<City> recursive(City start, City end, ArrayList<City> path, City c, ArrayList<City> visited){
-		for(City n : c.getNeighbours()){
-			if(!visited.contains(n)){
-				if(end.equals(n)){
-					path.add(n);
-					return path;
-				}
-				visited.add(c);
-				visited.add(n);
-				path = this.recursive(start, end, path, n, visited);
-				if(!path.isEmpty()){
-					if(path.contains(n)){
-						return path;
-					}
-					path.add(n);
-					return path;
-				}
+	
+	//hashmap for path reconstruction, <node, parentnode>
+	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree){
+		if(root.equals(end)){
+			path.add(end);
+			City temp;
+			while(!path.contains(start)){
+				temp = parenttree.get(root);
+				path.add(temp);
+				root=temp;
+			}
+			return path;
+		}
+		
+		for(City c : root.getNeighbours()){
+			if(!parenttree.containsKey(c)){
+				parenttree.put(c, root);
 			}
 		}
-		return path;
-	}
+		frontier.addAll(root.getNeighbours());
+		City newroot = frontier.get(0);
+		frontier.remove(0);
+		while(visited.containsValue(newroot)){
+			newroot = frontier.get(0);
+			frontier.remove(0);
+		}
+		visited.put(newroot, root);
+		return recursiveBFS(newroot, end, path, start, visited, frontier, parenttree);
+		
+		}
+		
 }
+
+

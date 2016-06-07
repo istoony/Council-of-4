@@ -109,5 +109,12 @@ public class City {
 		s += "\n   citycolor:" + citycolor + "\n";
 		return s;
 	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 		
 }
