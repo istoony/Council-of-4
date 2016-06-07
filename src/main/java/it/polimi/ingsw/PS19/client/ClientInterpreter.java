@@ -8,7 +8,7 @@ import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientaction.FastAction;
 import it.polimi.ingsw.PS19.client.clientaction.MainAction;
-import it.polimi.ingsw.PS19.client.clientmodel.ClientModel;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.Reply;

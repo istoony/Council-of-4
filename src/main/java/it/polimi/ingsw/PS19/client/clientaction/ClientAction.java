@@ -6,7 +6,7 @@ package it.polimi.ingsw.PS19.client.clientaction;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.client.ClientUI;
-import it.polimi.ingsw.PS19.client.clientmodel.ClientModel;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.requests.Request;
 

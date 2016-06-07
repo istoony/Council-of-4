@@ -44,7 +44,7 @@ public class SendFullGame implements Action
 	{
 		List<Region> regions = model.getMap().getListaRegioni();
 		King king = model.getMap().getKing();
-		ArrayList<Player> player = model.getPlayer();
+		List<Player> player = model.getPlayer();
 		SendFullGameReply reply = new SendFullGameReply(regions, player, king);
 		reply.setId(-1);
 		return reply;
