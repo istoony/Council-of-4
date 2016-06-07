@@ -12,19 +12,17 @@ public class SendFullGameUpdate implements ClientUpdate
 {
 	private King king;
 	private List<Region> regions;
-	private ColorManager councilcolors;
-	private Player player;
+	private ColorManager councilcolors = null;
+	private List<Player> player;
 	private int activeplayer;
 	
 	
-	public SendFullGameUpdate(King k, List<Region> r, ColorManager color, Player p, int active) 
+	public SendFullGameUpdate(King k, List<Region> r, List<Player> p, int active) 
 	{
 		king = k;
 		regions =r;
-		councilcolors = color;
 		player = p;
 		activeplayer = active;
-		
 	}
 
 	@Override

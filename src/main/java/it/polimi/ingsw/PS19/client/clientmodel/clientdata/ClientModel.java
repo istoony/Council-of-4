@@ -12,7 +12,7 @@ public class ClientModel
 	private King king;
 	private List<Region> regions;
 	private ColorManager councilcolors;
-	private Player player;
+	private List<Player> player;
 	private int activeplayer;
 	
 	public void setKing(King king) {
@@ -27,7 +27,7 @@ public class ClientModel
 	public void setActiveplayer(int activeplayer) {
 		this.activeplayer = activeplayer;
 	}
-	public void setPlayer(Player player) {
+	public void setPlayer(List<Player> player) {
 		this.player = player;
 	}
 	public int getActiveplayer() {
@@ -39,7 +39,7 @@ public class ClientModel
 	public King getKing() {
 		return king;
 	}
-	public Player getPlayer() {
+	public List<Player> getPlayer() {
 		return player;
 	}
 	public List<Region> getRegions() {
