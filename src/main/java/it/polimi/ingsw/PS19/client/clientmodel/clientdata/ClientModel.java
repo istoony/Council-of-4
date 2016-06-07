@@ -69,6 +69,7 @@ public class ClientModel
 	{
 		String s = "";
 		//s += councilcolors.toString();
+		s += result;
 		s += "\n-----\n";
 		s += king.toString();
 		s += "\n-----\n";

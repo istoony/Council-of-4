@@ -97,6 +97,7 @@ public class ElectCouncillor implements Action
 			reply = new ElectCouncillorReply(model.getPlayerById(playerId), b);
 		}
 		reply.setResult(result);
+		reply.setId(-1);
 		return reply;
 	}
 	

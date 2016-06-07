@@ -101,6 +101,7 @@ public class ClientInterpreter extends Observable implements Observer
 				{
 					mex = action.Execute(userInterface);
 					actionType.subAvail();
+					//mex.setId(playerId);
 					notify(mex);
 					valid = true;
 				} catch (InvalidInsertionException e) 

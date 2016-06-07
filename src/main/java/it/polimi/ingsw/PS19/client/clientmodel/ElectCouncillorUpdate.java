@@ -34,7 +34,7 @@ public class ElectCouncillorUpdate implements ClientUpdate
 	{
 		model.setActiveplayer(activeplayer);
 		model.setResult(result);
-		if(king == true)
+		if(king)
 			model.getKing().setBalcony(balcony);
 		else
 			model.getRegionByType(region).setBalcony(balcony);

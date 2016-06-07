@@ -18,6 +18,7 @@ public class SocketWriter extends Writer
 	{
 	try {
 			out = new ObjectOutputStream(cs.getOutputStream());
+			out.flush();
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
@@ -34,7 +35,6 @@ public class SocketWriter extends Writer
 		if(message == null) return;
 		try {
 			out.writeObject(message);
-			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
