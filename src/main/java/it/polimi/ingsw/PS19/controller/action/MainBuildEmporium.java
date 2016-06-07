@@ -54,22 +54,22 @@ public class MainBuildEmporium implements Action
 	{
 		if(Action.checkPlayerTurn(playerId, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
 		RegionType region = businessCard.getType();
 		if(model.getPlayerById(playerId).findMyEmporiaById(cityid))
 		{
-			result = Action.BUILD_EMPORIA;
+			result = ActionMessages.BUILD_EMPORIA;
 			return false;
 		}
 		if(getNumberOfHelper(model, region) > model.getPlayerById(playerId).getHelpers())
 		{
-			result = Action.NO_HELPERS;
+			result = ActionMessages.NO_HELPERS;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 	

@@ -76,7 +76,7 @@ public class DrawBusinessCard implements Action
 	{
 		if(Action.checkPlayerTurn(playerId, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
@@ -92,7 +92,7 @@ public class DrawBusinessCard implements Action
 			PoliticsCard tempCard = new PoliticsCard(color);
 			if(!player.findPoliticsCard(tempCard))
 			{
-				result = Action.NOT_HAVE_POLITIC_CARD;
+				result = ActionMessages.NOT_HAVE_POLITIC_CARD;
 				return false;
 			}
 		}
@@ -101,7 +101,7 @@ public class DrawBusinessCard implements Action
 		
 		if(money < numberOfNeedMoney() + numberOfJoker())
 		{
-			result = Action.NO_MONEY;
+			result = ActionMessages.NO_MONEY;
 			return false;
 		}
 		
@@ -111,7 +111,7 @@ public class DrawBusinessCard implements Action
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
 		
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		if(firstCard == card)
 		{
 			isFirstCard = true;
@@ -122,7 +122,7 @@ public class DrawBusinessCard implements Action
 			isFirstCard = false;
 			return true;
 		}
-		result = Action.NO_BUSINESS_CARD;
+		result = ActionMessages.NO_BUSINESS_CARD;
 		return false;
 	}
 

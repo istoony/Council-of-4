@@ -25,16 +25,16 @@ public class DrawPoliticsCard implements Action
 	{
 		if(Action.checkPlayerTurn(playerId, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
 		if(model.getMap().getPoliticdeck().getSize() == 0)
 		{
-			result = Action.POLITIC_DECK_IS_OVER;
+			result = ActionMessages.POLITIC_DECK_IS_OVER;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 	@Override

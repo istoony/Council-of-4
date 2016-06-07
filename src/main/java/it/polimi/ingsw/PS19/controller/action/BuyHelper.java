@@ -31,16 +31,16 @@ public class BuyHelper implements Action
 	{
 		if(Action.checkPlayerTurn(id, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
 		if(model.getPlayerById(id).getMoney() < MONEY)
 		{
-			result = Action.NO_MONEY;
+			result = ActionMessages.NO_MONEY;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 

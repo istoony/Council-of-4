@@ -38,16 +38,16 @@ public class ElectCouncillor implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		Boolean result;
+		Boolean res;
 		if(king != null)
-			result = model.getMap().getKing().getBalcony().setNewCouncill(color);
+			res = model.getMap().getKing().getBalcony().setNewCouncill(color);
 		else
-			result = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
-		if(result && mainAction)
+			res = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
+		if(res && mainAction)
 			model.getPlayerById(playerId).addMoney(MONEY);
-		else if(result && !mainAction)
+		else if(res)
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
-		return result;
+		return res;
 	}
 
 	@Override
@@ -55,16 +55,16 @@ public class ElectCouncillor implements Action
 	{
 		if(Action.checkPlayerTurn(playerId, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
-		if(mainAction == false && model.getPlayerById(playerId).getHelpers() < HELPERS)
+		if(!mainAction && model.getPlayerById(playerId).getHelpers() < HELPERS)
 		{
-			result = Action.NO_HELPERS;
+			result = ActionMessages.NO_HELPERS;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
@@ -81,7 +81,8 @@ public class ElectCouncillor implements Action
 	}
 
 	@Override
-	public Reply createReplyMessage(Model model) {
+	public Reply createReplyMessage(Model model) 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -27,16 +27,16 @@ public class EndTurn implements Action
 	{
 		if(Action.checkPlayerTurn(playerId, model))
 		{
-			result = Action.NOT_YOUR_TURN;
+			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
 		
 		if(model.getPlayerById(playerId).getMainActionCounter() != 0)
 		{
-			result = Action.MAIN_ACTION;
+			result = ActionMessages.MAIN_ACTION;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 	@Override

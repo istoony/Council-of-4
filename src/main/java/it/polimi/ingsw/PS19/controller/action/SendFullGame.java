@@ -26,10 +26,10 @@ public class SendFullGame implements Action
 	{
 		if(model == null)
 		{
-			result = Action.GENERIC_ERROR;
+			result = ActionMessages.GENERIC_ERROR;
 			return false;
 		}
-		result = Action.EVERYTHING_IS_OK;
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
