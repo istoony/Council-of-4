@@ -1,10 +1,15 @@
 package it.polimi.ingsw.PS19.model.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class BusinessDeck implements Deck 
+public class BusinessDeck implements Deck, Serializable 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3125331114395001758L;
 	private static final int FIRST_CARD = 0;
 	ArrayList<BusinessCard> card;
 	

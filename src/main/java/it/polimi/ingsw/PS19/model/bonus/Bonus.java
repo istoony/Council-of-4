@@ -1,8 +1,11 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.PS19.model.Player;
 
-public interface Bonus {
+@FunctionalInterface
+public interface Bonus extends Serializable{
 	
 	void giveBonus(Player p);
 	
