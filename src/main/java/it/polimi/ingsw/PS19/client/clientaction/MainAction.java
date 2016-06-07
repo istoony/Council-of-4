@@ -6,7 +6,7 @@ public class MainAction extends ClientActionChooser
 	{
 		actions.add(new BuildEmporiumInputs());
 		actions.add(new BuildWithKingInputs());
-		actions.add(new ElectCouncillorInputs());
+		actions.add(new ElectCouncillorInputs(true));
 		actions.add(new GetBusinessPermitInput());
 	}
 

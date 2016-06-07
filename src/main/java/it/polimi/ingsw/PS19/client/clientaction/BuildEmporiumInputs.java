@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
@@ -28,7 +29,7 @@ public class BuildEmporiumInputs extends ClientAction {
 	}
 
 	@Override
-	public ArrayList<Object> getUsefulInfo(ClientModel model) {
+	public List<Object> getUsefulInfo(ClientModel model) {
 		// TODO Auto-generated method stub
 		return null;
 	}

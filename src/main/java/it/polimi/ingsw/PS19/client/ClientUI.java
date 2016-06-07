@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -24,4 +25,5 @@ public interface ClientUI
 	
 	public void showNotification(String s);
 	
+	public void drawModel(ClientModel model);
 }

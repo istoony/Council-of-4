@@ -14,10 +14,8 @@ import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.requests.NewTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 public class ClientInterpreter extends Observable implements Observer
@@ -25,14 +23,18 @@ public class ClientInterpreter extends Observable implements Observer
 	ClientUI userInterface;
 	ClientModel model;
 	Integer playerId;
-	MainAction mainAction = new MainAction();
-	FastAction fastAction = new FastAction();
-	List<ClientActionChooser> typesOfAction = new ArrayList<ClientActionChooser>();
-	ReplyVisitor visitor = new ReplyVisitorImpl();
+	MainAction mainAction;
+	FastAction fastAction;
+	List<ClientActionChooser> typesOfAction;
+	ReplyVisitor visitor;
 	
 	public ClientInterpreter(ClientUI ui) 
 	{
 		userInterface = ui;
+		mainAction = new MainAction();
+		fastAction = new FastAction();
+		visitor = new ReplyVisitorImpl();
+		typesOfAction = new ArrayList<ClientActionChooser>();
 		model = new ClientModel();
 		typesOfAction.add(mainAction);
 		typesOfAction.add(fastAction);
@@ -59,8 +61,8 @@ public class ClientInterpreter extends Observable implements Observer
 		else if(arg instanceof Reply)
 		{
 			Reply reply = ((Reply) arg);
-			userInterface.showNotification(reply.toString());
 			updateModel(reply);
+			userInterface.drawModel(model);
 			if(reply.getActivePlayer() == playerId)
 				activatePlayer();
 		}

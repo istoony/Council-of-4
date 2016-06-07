@@ -7,7 +7,7 @@ public class FastAction extends ClientActionChooser
 	{
 		actions.add(new BuildEmporiumInputs());
 		actions.add(new BuildWithKingInputs());
-		actions.add(new ElectCouncillorInputs());
+		actions.add(new ElectCouncillorInputs(false));
 		actions.add(new GetBusinessPermitInput());	
 	}
 	

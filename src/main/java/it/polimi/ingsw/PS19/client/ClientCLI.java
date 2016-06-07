@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -30,7 +31,7 @@ public class ClientCLI implements ClientUI
 			System.out.println("Decidi che tipo di azione fare:");
 			for(int j = 0; j < actionList.size(); j++)
 			{
-				System.out.println(j + " - " + actionList.get(i).toString());
+				System.out.println(j + " - " + actionList.get(j).toString());
 			}
 			try {
 				String s = in.readLine();
@@ -178,5 +179,11 @@ public class ClientCLI implements ClientUI
 			}
 		}
 		return action;
+	}
+
+	@Override
+	public void drawModel(ClientModel model) 
+	{
+		System.out.println(model.toString());
 	}
 }

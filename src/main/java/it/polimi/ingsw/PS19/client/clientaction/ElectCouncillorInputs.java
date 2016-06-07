@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.client.clientaction;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
@@ -14,10 +15,12 @@ public class ElectCouncillorInputs extends ClientAction
 {
 	private ArrayList<Color> councillorsColors = new ArrayList<Color>();
 	RegionType location;
+	boolean mainAction = false;
 	Color color;
 	
-	public ElectCouncillorInputs()
+	public ElectCouncillorInputs(boolean main)
 	{
+		mainAction = main;
 		councillorsColors.add(new Color(0xFF0000));
 		councillorsColors.add(new Color(0x0000FF));
 		councillorsColors.add(new Color(0xFF7F00));
@@ -43,15 +46,23 @@ public class ElectCouncillorInputs extends ClientAction
 	@Override
 	protected Request buildMessage() 
 	{
+		ElectCouncillorMessage request;
 		if(location == null)
-			return new ElectCouncillorMessage(color);
+			request =  new ElectCouncillorMessage(color);
 		else
-			return new ElectCouncillorMessage(color, location);
+			request =  new ElectCouncillorMessage(color, location);
+		request.setMainAction(mainAction);
+		return request;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "Elect Councillor";
+	}
 
 	@Override
-	public ArrayList<Object> getUsefulInfo(ClientModel model) {
+	public List<Object> getUsefulInfo(ClientModel model) {
 		// TODO Auto-generated method stub
 		return null;
 	}
