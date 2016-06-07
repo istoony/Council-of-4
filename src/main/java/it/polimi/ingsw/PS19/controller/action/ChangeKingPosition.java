@@ -4,6 +4,7 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
 
+
 public class ChangeKingPosition implements Action {
 
 	int playerId;
@@ -29,8 +30,14 @@ public class ChangeKingPosition implements Action {
 	public Boolean isPossible(Model model) {
 		int requiredmoney = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
+			if(city.getEmporia().contains((Integer)playerId)){
+				result = ActionMessages.BUILD_EMPORIA;
+				return false;
+			}
+			result = ActionMessages.EVERYTHING_IS_OK;
 			return true;
 		}
+		result = ActionMessages.NO_MONEY;
 		return false;
 	}
 

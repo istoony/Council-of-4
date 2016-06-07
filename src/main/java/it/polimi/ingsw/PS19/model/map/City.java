@@ -121,5 +121,19 @@ public class City implements Serializable{
 	public String getName() {
 		return name;
 	}
+
+	/**
+	 * @return the emporia
+	 */
+	public ArrayList<Integer> getEmporia() {
+		return emporia;
+	}
+
+	/**
+	 * @param emporia the emporia to set
+	 */
+	public void setEmporia(ArrayList<Integer> emporia) {
+		this.emporia = emporia;
+	}
 		
 }

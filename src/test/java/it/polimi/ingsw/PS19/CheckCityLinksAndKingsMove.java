@@ -1,7 +1,6 @@
 package it.polimi.ingsw.PS19;
 
 
-import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
 import it.polimi.ingsw.PS19.model.Model;
@@ -11,6 +10,7 @@ public class CheckCityLinksAndKingsMove {
 	
 	public static void main(String[] args) {
 		
+		
 		Model m = new Model(2);
 		
 		//starting city
@@ -18,7 +18,7 @@ public class CheckCityLinksAndKingsMove {
 		ChangeKingPosition move;
 		
 		//set player money
-		for(int mon=10; mon>=0; mon--){
+		for(int mon=9; mon>0; mon=mon-2){
 			m.getPlayerById(0).setMoney(mon);
 		
 			//check the shortest path to all the cities in the map
