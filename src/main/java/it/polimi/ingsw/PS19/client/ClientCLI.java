@@ -7,8 +7,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
+import java.util.List;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
@@ -21,8 +20,7 @@ public class ClientCLI implements ClientUI
 {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
-	@Override
-	public ClientActionChooser requestActionType(ArrayList<ClientActionChooser> actionList) 
+	public ClientActionChooser requestActionType(List<ClientActionChooser> actionList) 
 	{
 		boolean valid = false;
 		ClientActionChooser action = null;
@@ -83,7 +81,7 @@ public class ClientCLI implements ClientUI
 	/*
 	 * Gets a valid color from user wrt the parameter array
 	 */
-	public Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException
+	public Color getAndValidateColor(List<Color> validColors) throws InvalidInsertionException
 	{
 		
 		System.out.print("Definisci il colore del consigliere da aggiungere (");
@@ -141,14 +139,12 @@ public class ClientCLI implements ClientUI
 		throw new InvalidInsertionException();
 	}
 
-	@Override
 	public void showNotification(String s) 
 	{
 		System.out.println(s);
 	}
 
-	@Override
-	public ClientAction getAction(ArrayList<ClientAction> actionList) 
+	public ClientAction getAction(List<ClientAction> actionList) 
 	{
 		boolean valid = false;
 		ClientAction action = null;

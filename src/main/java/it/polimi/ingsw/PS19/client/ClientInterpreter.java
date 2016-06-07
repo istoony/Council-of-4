@@ -12,6 +12,7 @@ import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
@@ -45,6 +46,10 @@ public class ClientInterpreter extends Observable implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		if(arg instanceof GameStartedMessage)
+		{
+			playerId = ((GameStartedMessage)arg).getPlayerNumber();
+		}
 		if(arg instanceof Reply)
 		{
 			Reply reply = ((Reply) arg);
@@ -52,7 +57,6 @@ public class ClientInterpreter extends Observable implements Observer
 			updateModel(reply);
 			if(reply.getActivePlayer() == playerId)
 				activatePlayer();
-			
 		}
 		else
 			userInterface.showNotification("Invalid Object received");
