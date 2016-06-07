@@ -22,7 +22,7 @@ public class AvaibleCouncillor implements Serializable
 	public AvaibleCouncillor(int numberoffreecouncillor, ColorManager colors) 
 	{
 		listofcolors = colors;
-		councillor = new HashMap<Color, Integer>();
+		councillor = new HashMap<>();
 		
 		for (Color color : listofcolors.getColors())
 			councillor.put(color, numberoffreecouncillor);
@@ -45,6 +45,7 @@ public class AvaibleCouncillor implements Serializable
 		numberofcouncillor++;
 		councillor.put(color, numberofcouncillor);
 	}
+	
 	@Override
 	public String toString() 
 	{

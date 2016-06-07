@@ -40,7 +40,7 @@ public class MapLoader {
 		if(map.isEmpty()){
 			throw new IllegalMapException("Incorrect map file!");
 		}
-		regioncitylist = CityLoader.CitiesReader(map);
+		regioncitylist = CityLoader.citiesReader(map);
 		
 		return Map.finalMapBuilder(regioncitylist);
 	}
@@ -53,7 +53,7 @@ public class MapLoader {
 		Random rand = new Random();
 		
 		for(int i=0; i<3; i++){
-			ArrayList<MapLoader> typecountertemp = new ArrayList<MapLoader>();
+			ArrayList<MapLoader> typecountertemp = new ArrayList<>();
 			for(MapLoader el : regionlist){
 				if(el.type==i){
 					typecountertemp.add(el);
@@ -80,7 +80,7 @@ public class MapLoader {
 		ArrayList<MapLoader> legal; 
 		ArrayList<ArrayList<MapLoader>> allLegals = new ArrayList<ArrayList<MapLoader>>();
 		for(MapLoader el1 : type1){
-			legal = new ArrayList<MapLoader>();
+			legal = new ArrayList<>();
 			legal.add(el1);
 			for(MapLoader el2 : type2){
 				if(el1.outRight==el2.outLeft){
@@ -104,7 +104,7 @@ public class MapLoader {
 	
 	private  static ArrayList<MapLoader> mapFileReading(String xmlfile){
 		
-		ArrayList<MapLoader> maplist = new ArrayList<MapLoader>();
+		ArrayList<MapLoader> maplist = new ArrayList<>();
 		
 		NodeList nList = FileReader.XMLReader(xmlfile, "region");
 

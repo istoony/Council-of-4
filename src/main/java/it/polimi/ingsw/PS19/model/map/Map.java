@@ -45,7 +45,7 @@ public class Map
 	
 	private ArrayList<City> getAllCities()
 	{
-		ArrayList<City> cities = new ArrayList<City>();
+		ArrayList<City> cities = new ArrayList<>();
 		for (Region region : listaRegioni) 
 			cities.addAll(region.getCities());
 		return cities;

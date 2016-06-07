@@ -12,7 +12,7 @@ public class CityLoader {
 	
 	
 	//metodo principale, popola le protoregioni di città con annessi cammini
-	static ArrayList<ArrayList<City>> CitiesReader(ArrayList<MapLoader> idlist){
+	static ArrayList<ArrayList<City>> citiesReader(ArrayList<MapLoader> idlist){
 		
 		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<ArrayList<City>>();
 			
@@ -24,7 +24,7 @@ public class CityLoader {
 				Element e = (Element) nNode;
 				for(MapLoader elem : idlist){
 					if(elem.id==Integer.parseInt(e.getAttribute("id"))){
-						ArrayList<City> citylist = new ArrayList<City>();
+						ArrayList<City> citylist = new ArrayList<>();
 						for(int i=0; i<Integer.parseInt(e.getElementsByTagName("nOfCities").item(0).getTextContent()); i++){
 							citylist.add(new City(Integer.parseInt(e.getElementsByTagName("cityid").item(i).getTextContent())));
 						}
@@ -62,8 +62,8 @@ public class CityLoader {
 	
 	//Collega le città per nome
 	private static ArrayList<ArrayList<City>> pathBuilder(ArrayList<ArrayList<City>> citiesinregions){
-		ArrayList<City> copia = new ArrayList<City>();
-		ArrayList<City> newneig = new ArrayList<City>();
+		ArrayList<City> copia = new ArrayList<>();
+		ArrayList<City> newneig = new ArrayList<>();
 		
 		for(ArrayList<City> reg : citiesinregions){	
 			copia.clear();
@@ -134,7 +134,7 @@ public class CityLoader {
 	
 	//trova i neighbours delle città (completa la lettura da file)
 	private static ArrayList<City> retrieveNear(Element e){
-		ArrayList<City> nearlist = new ArrayList<City>();
+		ArrayList<City> nearlist = new ArrayList<>();
 		for(int i=0; i<Integer.parseInt(e.getElementsByTagName("nOfRoads").item(0).getTextContent()); i++){
 			nearlist.add(new City(Integer.parseInt(e.getElementsByTagName("road").item(i).getTextContent())));
 		}

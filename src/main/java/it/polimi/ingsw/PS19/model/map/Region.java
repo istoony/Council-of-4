@@ -25,7 +25,7 @@ public class Region implements Serializable{
 	
 	private Region(ArrayList<City> c)
 	{
-		cities = new ArrayList<City>();
+		cities = new ArrayList<>();
 		cities.addAll(c);
 		
 	}
@@ -62,7 +62,7 @@ public class Region implements Serializable{
 	public static ArrayList<Region> finalRegionBuilder(ArrayList<ArrayList<City>> citiesbyregion)
 	{
 		
-		ArrayList<Region> returnmap = new ArrayList<Region>();
+		ArrayList<Region> returnmap = new ArrayList<>();
 		
 		for(ArrayList<City> el : citiesbyregion)
 		{

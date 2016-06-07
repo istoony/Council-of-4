@@ -20,7 +20,7 @@ public class Balcony implements Serializable
 		
 	public Balcony(AvaibleCouncillor avaiblecouncillor, ColorManager colormanager) 
 	{
-		councilcolor = new ArrayList<Color>();
+		councilcolor = new ArrayList<>();
 		this.avaiblecouncillor = avaiblecouncillor;
 		int i = 0;
 		while (i< NUMBER_OF_COUNCILLOR)
