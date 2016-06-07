@@ -1,13 +1,18 @@
 package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 
-public class Balcony 
+public class Balcony implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2160537846072709310L;
 	private ArrayList<Color> councilcolor;
 	private static final int NUMBER_OF_COUNCILLOR = 4;
 	

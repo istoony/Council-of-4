@@ -1,10 +1,15 @@
 package it.polimi.ingsw.PS19.model.card;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 
-public class PoliticsCard implements Card {
+public class PoliticsCard implements Card, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7874520741873353611L;
 	private Color color;
 
 	public PoliticsCard(Color color) 

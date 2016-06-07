@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.model.map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.FileNames;
@@ -8,7 +9,12 @@ import it.polimi.ingsw.PS19.model.card.BusinessDeck;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class Region {
+public class Region implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3588965044910132551L;
 	
 	private RegionType type; 
 	private ArrayList<City> cities;

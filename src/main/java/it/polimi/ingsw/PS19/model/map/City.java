@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,12 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
-public class City {
+public class City implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9001240521619279283L;
 	private int id;
 	private String name;
 	private ArrayList<Bonus> bonus;

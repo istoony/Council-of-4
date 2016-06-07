@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.w3c.dom.Element;
@@ -11,7 +12,12 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
-public class Player {
+public class Player implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -505551466312267551L;
 	private int id;
 	private int money;
 	private int helpers;

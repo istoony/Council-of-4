@@ -1,14 +1,19 @@
 package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
-public class AvaibleCouncillor 
+public class AvaibleCouncillor implements Serializable
 {
-	private Map<Color,Integer> avaiblecouncillor;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Map<Color,Integer> councillor;
 	private ColorManager listofcolors;
 	
 	/**
@@ -17,28 +22,28 @@ public class AvaibleCouncillor
 	public AvaibleCouncillor(int numberoffreecouncillor, ColorManager colors) 
 	{
 		listofcolors = colors;
-		avaiblecouncillor = new HashMap<Color, Integer>();
+		councillor = new HashMap<Color, Integer>();
 		
 		for (Color color : listofcolors.getColors())
-			avaiblecouncillor.put(color, numberoffreecouncillor);
+			councillor.put(color, numberoffreecouncillor);
 	}
 	
 	public boolean decrement(Color color)
 	{
-		Integer numberofcouncillor = avaiblecouncillor.get(color);
+		Integer numberofcouncillor = councillor.get(color);
 		if(numberofcouncillor.intValue() == 0)
 			return false;
 		numberofcouncillor--;
-		avaiblecouncillor.put(color, numberofcouncillor);
+		councillor.put(color, numberofcouncillor);
 		return true;
 		
 	}
 	
 	public void increment(Color color)
 	{
-		Integer numberofcouncillor = avaiblecouncillor.get(color);
+		Integer numberofcouncillor = councillor.get(color);
 		numberofcouncillor++;
-		avaiblecouncillor.put(color, numberofcouncillor);
+		councillor.put(color, numberofcouncillor);
 	}
 	@Override
 	public String toString() 
@@ -46,7 +51,7 @@ public class AvaibleCouncillor
 		String s = "\n+++++++++++++\n          ";
 		for (Color c : listofcolors.getColors()) 
 		{
-			s = s + c.toString() + "-->" + avaiblecouncillor.get(c) + "\n          ";
+			s = s + c.toString() + "-->" + councillor.get(c) + "\n          ";
 		}
 		return s;
 	}

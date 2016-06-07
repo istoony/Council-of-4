@@ -1,13 +1,18 @@
 package it.polimi.ingsw.PS19.model.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class BusinessCard implements Card {
+public class BusinessCard implements Card, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	RegionType type;
 	ArrayList<Bonus> bonus;
 	ArrayList<City> city;

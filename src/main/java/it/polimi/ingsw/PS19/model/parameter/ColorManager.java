@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.model.parameter;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -10,8 +11,12 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
-public class ColorManager 
+public class ColorManager implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 477874054352268861L;
 	private static final String COLOR_MARKER = "color";
 	private static final String COLORS_MARKER = "colors";
 	
