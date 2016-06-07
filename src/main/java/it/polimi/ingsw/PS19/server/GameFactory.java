@@ -19,7 +19,7 @@ public class GameFactory extends Thread
 	
 	public GameFactory(ArrayList<Connection> conns) 
 	{
-		players = new HashMap<Integer, Connection>();
+		players = new HashMap<>();
 		for (Integer i = 0; i < conns.size(); i++) 
 		{
 			players.put(i, conns.get(i));

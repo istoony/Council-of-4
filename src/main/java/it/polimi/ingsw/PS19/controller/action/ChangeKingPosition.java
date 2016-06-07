@@ -27,7 +27,7 @@ public class ChangeKingPosition implements Action {
 
 	@Override
 	public Boolean isPossible(Model model) {
-		int requiredmoney = JUMPCOST*model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city);
+		int requiredmoney = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
 			return true;
 		}

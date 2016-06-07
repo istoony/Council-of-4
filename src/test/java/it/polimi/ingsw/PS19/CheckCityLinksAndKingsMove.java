@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
 
@@ -12,13 +13,25 @@ public class CheckCityLinksAndKingsMove {
 		
 		Model m = new Model(2);
 		
-
-				City city1 = m.getMap().getListaRegioni().get(0).getCities().get(0);
-				City city2 = m.getMap().getListaRegioni().get(2).getCities().get(4);
-				ArrayList<City> path = m.getMap().calculateShorterPath(city1, city2);
-				for(City c : path){
-					System.out.println(c.getName());
+		//starting city
+		City city2;
+		ChangeKingPosition move;
+		
+		//set player money
+		for(int mon=10; mon>=0; mon--){
+			m.getPlayerById(0).setMoney(mon);
+		
+			//check the shortest path to all the cities in the map
+			System.out.println("my money: "+mon);
+			for(int i=0; i<m.getMap().getListaRegioni().size(); i++){
+				for(int j=0; j<m.getMap().getListaRegioni().get(i).getCities().size(); j++){
+					city2 = m.getMap().getListaRegioni().get(i).getCities().get(j);
+					move = new ChangeKingPosition(0, city2);
+					System.out.println("Can i move to " +city2.getName());
+					System.out.println(move.isPossible(m));
 				}
+			}
+		}
 
 	}
 	
