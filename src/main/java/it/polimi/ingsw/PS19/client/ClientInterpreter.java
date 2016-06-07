@@ -49,13 +49,14 @@ public class ClientInterpreter extends Observable implements Observer
 		if(arg instanceof GameStartedMessage)
 		{
 			playerId = ((GameStartedMessage)arg).getPlayerNumber();
+			userInterface.showNotification(((GameStartedMessage)arg).toString());
 		}
-		if(arg instanceof StringMessage)
+		else if(arg instanceof StringMessage)
 		{
 			userInterface.showNotification(((StringMessage)arg).toString());
 			return;
 		}
-		if(arg instanceof Reply)
+		else if(arg instanceof Reply)
 		{
 			Reply reply = ((Reply) arg);
 			userInterface.showNotification(reply.toString());
