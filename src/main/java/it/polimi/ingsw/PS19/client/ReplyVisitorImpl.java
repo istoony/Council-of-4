@@ -10,8 +10,7 @@ public class ReplyVisitorImpl implements ReplyVisitor {
 	@Override
 	public void display(SendFullGameReply message) 
 	{
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
