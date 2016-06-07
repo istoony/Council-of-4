@@ -1,7 +1,7 @@
 package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
@@ -12,11 +12,16 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public interface ClientUI
 {	
-	ClientActionChooser requestActionType(ArrayList<ClientActionChooser> actions);
-	ClientAction getAction(ArrayList<ClientAction> actions);
-	RegionType getRegion() throws InvalidInsertionException;
-	Color getAndValidateColor(ArrayList<Color> validColors) throws InvalidInsertionException;
-	RegionType getRegionAndKing() throws InvalidInsertionException;
-	void showNotification(String s);
+	public ClientActionChooser requestActionType(List<ClientActionChooser> actions);
+	
+	public ClientAction getAction(List<ClientAction> actions);
+	
+	public RegionType getRegion() throws InvalidInsertionException;
+	
+	public Color getAndValidateColor(List<Color> validColors) throws InvalidInsertionException;
+	
+	public RegionType getRegionAndKing() throws InvalidInsertionException;
+	
+	public void showNotification(String s);
 	
 }

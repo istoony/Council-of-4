@@ -3,8 +3,6 @@
  */
 package it.polimi.ingsw.PS19.client;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
@@ -55,23 +53,6 @@ public class ClientView extends Observable implements Observer, Runnable
 			}//*/
 		}
 		notifyObservers(null);
-		/*
-		System.out.println("Inserisci numero player");
-		String iD;
-		try {
-			iD = in.readLine();
-		} catch (IOException e1) {
-			iD = "0";
-			e1.printStackTrace();
-		}
-		int id = Integer.parseInt(iD);
-		
-		while(!stop)
-		{
-			notifyObservers(null);
-			stop = true;
-		}
-		//*/
 	}
 
 	@Override

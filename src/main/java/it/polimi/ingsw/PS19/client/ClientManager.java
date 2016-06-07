@@ -39,10 +39,9 @@ public class ClientManager
 		try {
 			ip = getIP();
 			port = getPort();
-		} catch (IOException e2) {
+		} catch (IOException e) {
 			ip = ClientConstants.IP_ADDRESS;
 			port = ClientConstants.REMOTE_PORT;
-			e2.printStackTrace();
 		}
 
 		//Prova a connettersi
@@ -99,24 +98,6 @@ public class ClientManager
 		ClientCLI..addObserver(view);
 		//*/
 		new Thread(view).start();
-		/*
-		while(true)
-		{
-			Future<Message> waitMex = connection.read();
-			Message mex = null;
-			try {
-				mex = waitMex.get();
-			} catch (InterruptedException | ExecutionException e) 
-			{
-				mex = null;
-				e.printStackTrace();
-			}
-			if(!(mex == null)) 
-			{
-				System.out.println("New Message with ID: " + mex.getId());
-				System.out.println(mex.getString());
-			}
-		}//*/
 	}
 	
 	private static String getIP() throws IOException
