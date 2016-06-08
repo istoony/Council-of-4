@@ -1,6 +1,5 @@
 package it.polimi.ingsw.PS19.controller.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.message.replies.Reply;

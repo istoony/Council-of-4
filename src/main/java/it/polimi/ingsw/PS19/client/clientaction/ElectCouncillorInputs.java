@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.model.map.King;
 
 public class ElectCouncillorInputs extends ClientAction 
 {
@@ -36,19 +37,20 @@ public class ElectCouncillorInputs extends ClientAction
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
+	public Request Execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException 
 	{
 		location = userInterface.getRegionAndKing();
 		color = userInterface.getAndValidateColor(councillorsColors);
-		return buildMessage();
+		
+		return buildMessage(model);
 	}
 
 	@Override
-	protected Request buildMessage() 
+	protected Request buildMessage(ClientModel model) 
 	{
 		ElectCouncillorMessage request;
 		if(location == null)
-			request =  new ElectCouncillorMessage(color);
+			request =  new ElectCouncillorMessage(color, (King)getUsefulInfo(model).get(0));
 		else
 			request =  new ElectCouncillorMessage(color, location);
 		request.setMainAction(mainAction);
@@ -62,9 +64,11 @@ public class ElectCouncillorInputs extends ClientAction
 	}
 
 	@Override
-	public List<Object> getUsefulInfo(ClientModel model) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Object> getUsefulInfo(ClientModel model) 
+	{
+		List<Object> list = new ArrayList<>();
+		list.add(model.getKing());
+		return list;
 	}
 
 }

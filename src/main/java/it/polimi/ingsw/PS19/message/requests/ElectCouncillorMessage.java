@@ -32,11 +32,6 @@ public class ElectCouncillorMessage extends Request
 		king = k;
 	}
 	
-	public ElectCouncillorMessage(Color c) 
-	{
-		color = c;
-	}
-	
 	public void setMainAction(Boolean mainAction) 
 	{
 		this.mainAction = mainAction;

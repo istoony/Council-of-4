@@ -73,5 +73,11 @@ public class BusinessCard implements Card, Serializable{
 		
 		return s;
 	}
+
+	@Override
+	public boolean equals(Card card) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

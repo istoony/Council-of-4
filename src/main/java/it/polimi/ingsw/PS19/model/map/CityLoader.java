@@ -14,7 +14,7 @@ public class CityLoader {
 	//metodo principale, popola le protoregioni di città con annessi cammini
 	static ArrayList<ArrayList<City>> citiesReader(ArrayList<MapLoader> idlist){
 		
-		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<ArrayList<City>>();
+		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<>();
 			
 		NodeList nList = FileReader.XMLReader(FileNames.MAP_FILE, "region");
 
@@ -91,8 +91,8 @@ public class CityLoader {
 	
 	//"salda" i neighbours tra le varie regions
 	private static ArrayList<ArrayList<City>> roadWelder(ArrayList<ArrayList<City>> citiesbyregion){
-		ArrayList<ArrayList<City>> couples = new ArrayList<ArrayList<City>>();
-		ArrayList<ArrayList<City>> rejoin = new ArrayList<ArrayList<City>>();
+		ArrayList<ArrayList<City>> couples;
+		ArrayList<ArrayList<City>> rejoin = new ArrayList<>();
 
 		for(int i=0; i<citiesbyregion.size()-1; i++){
 
@@ -125,7 +125,7 @@ public class CityLoader {
 				}
 			}
 		}
-		ArrayList<ArrayList<City>> weld2region = new ArrayList<ArrayList<City>>();
+		ArrayList<ArrayList<City>> weld2region = new ArrayList<>();
 		weld2region.add(regionL);
 		weld2region.add(regionR);
 		return weld2region;

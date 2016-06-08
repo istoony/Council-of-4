@@ -64,10 +64,12 @@ public class DeckFactory
 							card.addBonus(bonus);
 						}
 						int numberofcities = Integer.parseInt(eElement.getElementsByTagName("numberofcities").item(0).getTextContent());
-						for(int i = 0; i < numberofcities; i++)
+						int i=0;
+						while(i < numberofcities)
 						{
 							if(!card.addCity(cities.get(Math.abs(rand.nextInt(cities.size())))))
 								i--;
+							i++;
 						}
 					
 						businessdeck.addToDeck(card);
@@ -130,17 +132,5 @@ public class DeckFactory
 		}
 		deck.shuffle();
 		return deck;
-	}
-
-	public static void main(String[] args)
-	{
-		ColorManager color = new ColorManager("mapfile/politicscard.xml");
-		System.out.println(color.toString());
-		Deck politic = DeckFactory.politicsDeckFactory("mapfile/politicscard.xml", color);
-		//System.out.println(JOKERCOLOR);
-		System.out.println(politic.toString());
-	/*	Deck businessMountain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.MOUNTAIN);
-		Deck businessPlain = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.PLAIN);
-		Deck businessHill = DeckFactory.businessDeckFactory("mapfile/politicscard.xml",RegionType.HILL);*/
 	}
 }

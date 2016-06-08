@@ -22,10 +22,11 @@ public class PoliticsCard implements Card, Serializable {
 		return color;
 	}
 	
-
-	public boolean equals(PoliticsCard c) 
+	@Override
+	public boolean equals(Card card) 
 	{
-		if(c.getColor().equals(this.color))
+		PoliticsCard carda = (PoliticsCard) card;
+		if(carda!=null && carda.getColor().equals(this.color))
 			return true;
 		return false;
 	}

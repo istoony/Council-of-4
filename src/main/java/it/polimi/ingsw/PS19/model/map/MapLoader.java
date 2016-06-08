@@ -49,7 +49,7 @@ public class MapLoader {
 	private static ArrayList<MapLoader> findrandomLegalMap(ArrayList<MapLoader> regionlist){
 
 		ArrayList<MapLoader> legalMap;
-		ArrayList<ArrayList<MapLoader>> maplist = new ArrayList<ArrayList<MapLoader>>();
+		ArrayList<ArrayList<MapLoader>> maplist = new ArrayList<>();
 		Random rand = new Random();
 		
 		for(int i=0; i<3; i++){
@@ -78,7 +78,7 @@ public class MapLoader {
 		ArrayList<MapLoader> type2 = maplist.get(1);
 		ArrayList<MapLoader> type3 = maplist.get(2);
 		ArrayList<MapLoader> legal; 
-		ArrayList<ArrayList<MapLoader>> allLegals = new ArrayList<ArrayList<MapLoader>>();
+		ArrayList<ArrayList<MapLoader>> allLegals = new ArrayList<>();
 		for(MapLoader el1 : type1){
 			legal = new ArrayList<>();
 			legal.add(el1);

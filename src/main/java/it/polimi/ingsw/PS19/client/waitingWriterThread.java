@@ -21,7 +21,10 @@ public class waitingWriterThread extends Thread
 		while(!hasBeenInterrupted)
 		{
 			System.out.println(text);
-			try {Thread.sleep(5000);}
+			try 
+			{
+				Thread.sleep(5000);
+			}
 			catch (InterruptedException e) {
 				return;
 			}

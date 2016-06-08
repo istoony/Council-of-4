@@ -20,7 +20,7 @@ public abstract class ClientAction
 	
 	public abstract List<Object> getUsefulInfo(ClientModel model);
 	
-	public abstract Request Execute(ClientUI userInterface) throws InvalidInsertionException;
+	public abstract Request Execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException;
 	
-	protected abstract Request buildMessage();
+	protected abstract Request buildMessage(ClientModel model);
 }

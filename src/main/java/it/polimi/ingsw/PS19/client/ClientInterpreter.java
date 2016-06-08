@@ -99,7 +99,7 @@ public class ClientInterpreter extends Observable implements Observer
 				ClientAction action = actionType.getAction(userInterface, model);
 				try 
 				{
-					mex = action.Execute(userInterface);
+					mex = action.Execute(userInterface, model);
 					actionType.subAvail();
 					//mex.setId(playerId);
 					notify(mex);

@@ -2,8 +2,6 @@ package it.polimi.ingsw.PS19.message.replies;
 
 import it.polimi.ingsw.PS19.client.ReplyVisitor;
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 
 public class GameStartedMessage extends Reply 
 {
@@ -31,8 +29,7 @@ public class GameStartedMessage extends Reply
 	@Override
 	public String toString() 
 	{
-		String s = "Game has started with " + getNumberOfPlayer() + " players\nYou are player number " + getPlayerNumber();
-		return s;
+		return "Game has started with " + getNumberOfPlayer() + " players\nYou are player number " + getPlayerNumber();
 	}
 	
 	@Override
