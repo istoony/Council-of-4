@@ -1,7 +1,7 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
@@ -51,7 +51,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		BusinessCard card = message.getCard();
 		RegionType region = message.getRegion();
 		int playerId = message.getId();
-		ArrayList<Color> politicscard = message.getPoliticsCard();
+		List<Color> politicscard = message.getPoliticsCard();
 		return new DrawBusinessCard(playerId, region, card, politicscard);
 	}
 
@@ -61,7 +61,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 			int playerId = message.getId();
 		return new DrawPoliticsCard(playerId);
 	}
-	
+	@Override
 	public Action visit(EndTurnMessage message)
 	{
 		int playerId = message.getId();

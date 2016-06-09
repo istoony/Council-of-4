@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.message.requests;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
@@ -17,7 +18,7 @@ public class GetBusinessCardMessage extends Request
 	private static final long serialVersionUID = 843031999175292374L;
 	private BusinessCard card;
 	private RegionType region;
-	private ArrayList<Color> politicsCard;
+	private List<Color> politicsCard;
 	
 	public GetBusinessCardMessage(BusinessCard c, RegionType r) 
 	{
@@ -26,7 +27,7 @@ public class GetBusinessCardMessage extends Request
 		this.politicsCard = new ArrayList<>();
 	}
 	
-	public GetBusinessCardMessage(BusinessCard c, RegionType r, ArrayList<Color> politicsCard) 
+	public GetBusinessCardMessage(BusinessCard c, RegionType r, List<Color> politicsCard) 
 	{
 		card = c;
 		region = r;
@@ -38,7 +39,7 @@ public class GetBusinessCardMessage extends Request
 		politicsCard.add(card);
 	}
 	
-	public ArrayList<Color> getPoliticsCard() 
+	public List<Color> getPoliticsCard() 
 	{
 		return politicsCard;
 	}
@@ -58,11 +59,4 @@ public class GetBusinessCardMessage extends Request
 	{
 		return messageInterpreter.visit(this);
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

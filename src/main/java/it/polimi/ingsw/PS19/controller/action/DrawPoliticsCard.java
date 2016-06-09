@@ -17,6 +17,7 @@ public class DrawPoliticsCard implements Action
 	public Boolean execute(Model model) 
 	{
 		model.getPlayerById(playerId).addCardToHand(model.getMap().getPoliticdeck().getFirstCard());
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
@@ -50,7 +51,7 @@ public class DrawPoliticsCard implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new SendFullPlayerReply(model.getPlayerById(playerId), result);
+		return new SendFullPlayerReply(model.getPlayer(), result);
 	}
 
 }

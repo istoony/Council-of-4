@@ -8,7 +8,6 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
@@ -31,13 +30,14 @@ public class CompleteModelTest {
 		in = new Scanner(System.in); 
 		while(true)
 		{
-			System.out.println("CURRENT TURN" + turn);getClass();
-			for(int i = 0; i<6; i++)
+			System.out.println(m.toString());
+			System.out.println("CURRENT TURN" + turn);
+		/*	for(int i = 0; i<6; i++)
 			{
 				DrawPoliticsCardMessage message = new DrawPoliticsCardMessage();
 				message.setId(turn);
 				g.update(null, message);
-			}
+			}*/
 			System.out.println(m.getPlayerById(turn).toString());
 			System.out.println("MAIN ACTION: \n"
 					+ "1 - Corrompere un consiglio e comprare una business\n"

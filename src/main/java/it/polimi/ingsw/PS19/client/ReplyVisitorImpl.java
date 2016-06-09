@@ -4,6 +4,7 @@ import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ElectCouncillorUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.SendFullGameUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.SendFullPlayerUpdate;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
@@ -27,9 +28,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(SendFullPlayerReply message) 
 	{
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new SendFullPlayerUpdate(message.getPlayer(), message.getResult(), message.getActivePlayer());		
 	}
 
 	@Override
