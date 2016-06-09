@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
@@ -23,5 +24,7 @@ public interface MessageInterpreterVisitor
 	public Action visit(EndTurnMessage message);
 	
 	public Action visit(ChangeKingPositionMessage message);
+	
+	public Action visit(BuyMainActionMessage message);
 		
 }

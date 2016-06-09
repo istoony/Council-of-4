@@ -9,7 +9,7 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
-public class City implements Serializable{
+public class City implements Serializable {
 	
 	/**
 	 * 

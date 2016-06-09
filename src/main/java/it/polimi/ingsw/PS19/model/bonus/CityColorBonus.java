@@ -1,14 +1,19 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.Region;
 
-public class CityColorBonus {
+public class CityColorBonus implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4291459210465781040L;
 	private Color color;
 	private int points;
 	private List<City> citylist;

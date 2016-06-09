@@ -14,6 +14,10 @@ import it.polimi.ingsw.PS19.model.map.Region;
 
 public class GeneralBonus implements Bonus {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1772425330600691738L;
 	private List<List<City>> regionsBonus;
 	private int singleRegionBonus;
 	private List<Integer> kingBonus;  //first to achieve
@@ -70,22 +74,7 @@ public class GeneralBonus implements Bonus {
 		}
 		return i;
 	}
-	
-	//metodo di verifica
-	public void print(){
-		System.out.println(singleRegionBonus);
-		for (Integer i : kingBonus){
-			System.out.println(i);
-		}
-		for(CityColorBonus cb : colorBonus){
-			System.out.println(cb.toString());
-			for(City e : cb.getCitylist()){
-				System.out.println(e.toString());
-			}
-		}
-	
-	}
-	
+		
 	//metodo ausilio costruttore 1, bonus del re
 	private void inizializeKing(String xmlfile){
 		NodeList nList = FileReader.XMLReader(xmlfile, "bonus");

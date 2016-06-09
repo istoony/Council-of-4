@@ -54,13 +54,14 @@ public class Balcony implements Serializable
 	    {
 	        //set the last element to the value of the 2nd to last element
 	    	councilcolor.set(i,councilcolor.get(i-1)); 
-	    	
 	    }
 	    return temp;
 	}
 	public List<Color> getCouncilcolor()
 	{
-		return councilcolor;
+		List<Color> colors = new ArrayList<>();
+		colors.addAll(councilcolor);
+		return colors;
 	}
 	
 	@Override

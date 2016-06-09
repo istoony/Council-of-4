@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
@@ -74,6 +75,12 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		City c = message.getCity();
 		int id = message.getId();
 		return new ChangeKingPosition(id, c);
+	}
+
+	@Override
+	public Action visit(BuyMainActionMessage message) 
+	{
+		return new BuyMainAction(message.getId());
 	}
 
 }
