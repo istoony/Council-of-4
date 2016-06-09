@@ -2,7 +2,9 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
@@ -45,6 +47,28 @@ public class AvaibleCouncillor implements Serializable
 		numberofcouncillor++;
 		councillor.put(color, numberofcouncillor);
 	}
+	
+	public List<Color> getAvailableColors()
+	{
+		List<Color> availableColors = new ArrayList<>();
+		for (Color c : listofcolors.getColors())
+			if(councillor.get(c) > 0)
+				availableColors.add(c);
+		return availableColors;
+	}
+	
+	public List<Color> getAllColors()
+	{
+		List<Color> availableColors = new ArrayList<>();
+		for (Color c : listofcolors.getColors())
+			availableColors.add(c);
+		return availableColors;
+	}
+	
+	public ColorManager getListofcolors() {
+		return listofcolors;
+	}
+	
 	
 	@Override
 	public String toString() 

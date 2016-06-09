@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19.model.map;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.NodeList;
 
@@ -9,7 +9,7 @@ import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 public class BalconyFactory 
 {
 	private BalconyFactory() {}
-	public static ColorManager createBalcony(ArrayList<Region> regions, King king, String pathfile) 
+	public static AvaibleCouncillor createBalcony(List<Region> regions, King king, String pathfile) 
 	{
 		ColorManager colors = new ColorManager(pathfile);
 		
@@ -27,7 +27,7 @@ public class BalconyFactory
 		
 		king.setBalcony(new Balcony(avaiblecouncillor, colors));
 		
-		return colors;
+		return avaiblecouncillor;
 	}
 	
 }

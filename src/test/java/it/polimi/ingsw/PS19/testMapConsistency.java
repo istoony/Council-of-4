@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
@@ -14,7 +14,7 @@ public class testMapConsistency {
 		//starting city
 		City city1 = m.getMap().getListaRegioni().get(0).getCities().get(0);
 		City city2;
-		ArrayList<City> path;
+		List<City> path;
 		
 		//check the shortest path to all the cities in the map
 		for(int i=0; i<m.getMap().getListaRegioni().size(); i++){

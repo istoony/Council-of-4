@@ -17,20 +17,20 @@ public class Map
 {	
 	ArrayList<Region> listaRegioni;
 	private PoliticDeck politicdeck;
-	private ColorManager councilcolors;
+	private AvaibleCouncillor councilcolors;
 	private King king;
 	private GeneralBonus kingBonus;
 	private NobilityPath nobilityPath;
 
 	
-	private Map(ArrayList<Region> regionlist)
+	private Map(List<Region> list)
 	{
 		listaRegioni = new ArrayList<>();
-		listaRegioni.addAll(regionlist);
+		listaRegioni.addAll(list);
 		
 		kingFactory();	
 		councilcolors = BalconyFactory.createBalcony(listaRegioni, king, FileNames.CARD_FILE);
-		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory(FileNames.CARD_FILE, councilcolors);
+		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory(FileNames.CARD_FILE, councilcolors.getListofcolors());
 		kingBonus = new GeneralBonus(FileNames.MAP_FILE, listaRegioni);
 		nobilityPath = new NobilityPath(FileNames.CARD_FILE);
 	}
@@ -74,7 +74,7 @@ public class Map
 	}
 	public ColorManager getCouncilcolors() 
 	{
-		return councilcolors;
+		return councilcolors.getListofcolors();
 	}
 	public PoliticDeck getPoliticdeck() 
 	{
@@ -91,13 +91,13 @@ public class Map
 		return s;
 	}
 	
-	public static Map finalMapBuilder(ArrayList<ArrayList<City>> citiesbyregion){
+	public static Map finalMapBuilder(List<ArrayList<City>> citiesbyregion){
 
 		return new Map(Region.finalRegionBuilder(citiesbyregion));
 		
 	}
 	
-	public ArrayList<City> calculateShorterPath(City start, City end){
+	public List<City> calculateShorterPath(City start, City end){
 		ArrayList<City> result = new ArrayList<>();
 		for(Region r : this.listaRegioni){
 			for(City c : r.getCities()){
@@ -115,7 +115,8 @@ public class Map
 	
 	//hashmap for path reconstruction, <node, parentnode>
 	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree){
-		if(root.equals(end)){
+		if(root.equals(end))
+		{
 			path.add(end);
 			City temp;
 			while(!path.contains(start)){

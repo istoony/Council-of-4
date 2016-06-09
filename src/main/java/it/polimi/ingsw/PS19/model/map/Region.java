@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model.map;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
@@ -59,7 +60,7 @@ public class Region implements Serializable{
 	}
 	
 	//inizializzazione 
-	public static ArrayList<Region> finalRegionBuilder(ArrayList<ArrayList<City>> citiesbyregion)
+	public static List<Region> finalRegionBuilder(List<ArrayList<City>> citiesbyregion)
 	{
 		
 		ArrayList<Region> returnmap = new ArrayList<>();
@@ -73,7 +74,7 @@ public class Region implements Serializable{
 		return returnmap;
 	}
 	
-	public ArrayList<City> getCities() 
+	public List<City> getCities() 
 	{
 		return cities;
 	}

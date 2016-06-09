@@ -14,7 +14,7 @@ import it.polimi.ingsw.PS19.model.map.Region;
 
 public class GeneralBonus implements Bonus {
 
-	private List<ArrayList<City>> regionsBonus;
+	private List<List<City>> regionsBonus;
 	private int singleRegionBonus;
 	private List<Integer> kingBonus;  //first to achieve
 	private List<CityColorBonus> colorBonus;
@@ -40,7 +40,7 @@ public class GeneralBonus implements Bonus {
 	private int askPoints(Player p){
 		int pointsR=0;
 		int pointsC=0;
-		for(ArrayList<City> citylist : regionsBonus){
+		for(List<City> citylist : regionsBonus){
 			if(p.getMyEmporia().containsAll(citylist)){
 				regionsBonus.remove(regionsBonus.indexOf(citylist));
 				pointsR += singleRegionBonus;
