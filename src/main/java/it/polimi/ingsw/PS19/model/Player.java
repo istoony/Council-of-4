@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,17 +29,17 @@ public class Player implements Serializable
 	private int startingPoliticCard;
 	private int maxemporia;
 	
-	ArrayList<BusinessCard> freebusinesscard;
-	ArrayList<BusinessCard> usedbusinesscard;
-	ArrayList<PoliticsCard> politiccard;
+	List<BusinessCard> freebusinesscard;
+	List<BusinessCard> usedbusinesscard;
+	List<PoliticsCard> politiccard;
 	
-	private ArrayList<City> myEmporia;
+	private List<City> myEmporia;
 	
 	
 	public Player(int id) 
 	{
 		this.id = id;
-		myEmporia = new ArrayList<City>();
+		myEmporia = new ArrayList<>();
 		freebusinesscard = new ArrayList<>();
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
@@ -53,7 +54,7 @@ public class Player implements Serializable
 	}
 	
 	
-	public static ArrayList<Player> setStartingItems(ArrayList<Player> p, String xmlfile){
+	public static List<Player> setStartingItems(List<Player> p, String xmlfile){
 		
 		NodeList nList = FileReader.XMLReader(xmlfile, "starting");
 		Node nNode = nList.item(0);
@@ -89,12 +90,13 @@ public class Player implements Serializable
 	public void addCardToHand(BusinessCard c){
 		freebusinesscard.add(c);
 	}
-	public ArrayList<PoliticsCard> getPoliticcard() 
+	public List<PoliticsCard> getPoliticcard() 
 	{
-		return clone(politiccard);
+		return clonePoliticCard();
 	}
 	
-	private ArrayList<PoliticsCard> clone(ArrayList<PoliticsCard> politiccard2) {
+	private ArrayList<PoliticsCard> clonePoliticCard() 
+	{
 		ArrayList<PoliticsCard> clone = new ArrayList<>();
 		for (PoliticsCard p : politiccard) 
 			clone.add(p);
@@ -203,7 +205,7 @@ public class Player implements Serializable
 	/**
 	 * @return the myEmporia
 	 */
-	public ArrayList<City> getMyEmporia() {
+	public List<City> getMyEmporia() {
 		return myEmporia;
 	}
 
@@ -211,7 +213,7 @@ public class Player implements Serializable
 	/**
 	 * @param myEmporia the myEmporia to set
 	 */
-	public void setMyEmporia(ArrayList<City> myEmporia) {
+	public void setMyEmporia(List<City> myEmporia) {
 		this.myEmporia = myEmporia;
 	}
 	
