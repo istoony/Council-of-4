@@ -1,43 +1,38 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
 
+import java.util.List;
+
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.model.map.Balcony;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.Region;
 
 public class ElectCouncillorUpdate implements ClientUpdate
 {
 	
-	private Boolean king;
-	private RegionType region;
-	private Balcony balcony;
+	private List<Region> regions;
+	private King king;
+	private AvailableCouncillor availablecouncillor;
 	private int activeplayer;
 	private String result;
-	public ElectCouncillorUpdate(String res, Balcony b, int active) 
+
+	public ElectCouncillorUpdate(String res,List<Region> r, King k, AvailableCouncillor ac, int active) 
 	{
 		result = res;
-		king = true;
-		balcony = b;
 		activeplayer = active;
-				
-	}
-	public ElectCouncillorUpdate(String res, Balcony b, RegionType r, int active) 
-	{
-		king = false;
-		result = res;
-		balcony = b;
-		activeplayer = active;
-		region = r;
+		regions = r;
+		availablecouncillor = ac;
+		king = k;
 	}
 	@Override
 	public void update(ClientModel model) 
 	{
 		model.setActiveplayer(activeplayer);
 		model.setResult(result);
-		if(king)
-			model.getKing().setBalcony(balcony);
-		else
-			model.getRegionByType(region).setBalcony(balcony);
+		model.setKing(king);
+		model.setAvailablecouncillor(availablecouncillor);
+		model.setRegions(regions);
 	}
 
 }

@@ -30,7 +30,6 @@ public class ClientCLI implements ClientUI
 		int i = 0;
 		while(!valid)
 		{
-			System.console().writer().println("DECIDI CHE CAZZO DI ACTION");
 			System.out.println("Decidi che tipo di azione fare:");
 			for(int j = 0; j < actionList.size(); j++)
 			{

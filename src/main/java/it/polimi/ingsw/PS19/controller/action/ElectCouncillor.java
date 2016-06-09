@@ -5,7 +5,6 @@ import java.awt.Color;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -86,16 +85,7 @@ public class ElectCouncillor implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		ElectCouncillorReply reply;
-		if(king == null)
-		{
-			Balcony b = model.getMap().getRegionByType(region).getBalcony();
-			reply = new ElectCouncillorReply(model.getPlayerById(playerId), b, region);
-		}
-		else
-		{
-			Balcony b = model.getMap().getKing().getBalcony();
-			reply = new ElectCouncillorReply(model.getPlayerById(playerId), b);
-		}
+		reply = new ElectCouncillorReply(model.getPlayerById(model.getCurrentState().getPlayerTurnId()), model.getMap().getListaRegioni(),model.getMap().getAvailableCouncillor(), model.getMap().getKing());
 		reply.setResult(result);
 		reply.setId(-1);
 		return reply;

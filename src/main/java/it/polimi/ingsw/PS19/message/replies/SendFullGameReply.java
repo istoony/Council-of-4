@@ -24,11 +24,13 @@ public class SendFullGameReply extends Reply
 	private NobilityPath nobilitypath;
 	private AvailableCouncillor availableCouncillor;
 	
-	public SendFullGameReply(List<Region> regions2, List<Player> p, King k) 
+	public SendFullGameReply(List<Region> regions2, List<Player> p, King k, AvailableCouncillor avc, NobilityPath nob) 
 	{
 		regions = regions2;
 		player = p;
 		king = k;
+		nobilitypath = nob;
+		availableCouncillor = avc;
 	}
 	
 	public List<Region> getRegions() {
@@ -39,6 +41,12 @@ public class SendFullGameReply extends Reply
 	}
 	public King getKing() {
 		return king;
+	}
+	public AvailableCouncillor getAvailableCouncillor() {
+		return availableCouncillor;
+	}
+	public NobilityPath getNobilitypath() {
+		return nobilitypath;
 	}
 	
 	@Override

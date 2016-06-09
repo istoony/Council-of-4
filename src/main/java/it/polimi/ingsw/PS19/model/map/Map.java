@@ -80,6 +80,14 @@ public class Map
 	{
 		return politicdeck;
 	}
+	public AvailableCouncillor getAvailableCouncillor() 
+	{
+		return councilcolors;
+	}
+	public NobilityPath getNobilityPath() 
+	{
+		return nobilityPath;
+	}
 	
 	@Override
 	public String toString() 

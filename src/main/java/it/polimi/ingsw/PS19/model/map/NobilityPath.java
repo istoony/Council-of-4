@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.model.map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +12,12 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 
-public class NobilityPath 
+public class NobilityPath implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -142212466262863614L;
 	private Map<Integer, ArrayList<Bonus>> nobility;
 	
 	public NobilityPath(String pathfile) 

@@ -6,7 +6,9 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
 
 public class SendFullGame implements Action 
@@ -44,7 +46,9 @@ public class SendFullGame implements Action
 		List<Region> regions = model.getMap().getListaRegioni();
 		King king = model.getMap().getKing();
 		List<Player> player = model.getPlayer();
-		SendFullGameReply reply = new SendFullGameReply(regions, player, king);
+		AvailableCouncillor availablecouncillor = model.getMap().getAvailableCouncillor();
+		NobilityPath noility = model.getMap().getNobilityPath();
+		SendFullGameReply reply = new SendFullGameReply(regions, player, king, availablecouncillor, noility);
 		reply.setId(-1);
 		return reply;
 	}

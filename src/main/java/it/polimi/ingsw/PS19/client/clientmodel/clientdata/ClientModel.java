@@ -3,28 +3,27 @@ package it.polimi.ingsw.PS19.client.clientmodel.clientdata;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class ClientModel 
 {
 	private King king;
 	private List<Region> regions;
-	private ColorManager councilcolors;
+	private AvailableCouncillor availablecouncillor;
 	private List<Player> player;
 	private int activeplayer;
 	private String result;
+	private NobilityPath nobilitypath;
 	
 	public void setKing(King king) {
 		this.king = king;
 	}
 	public void setRegions(List<Region> regions) {
 		this.regions = regions;
-	}
-	public void setCouncilcolors(ColorManager cuncilcolors) {
-		this.councilcolors = cuncilcolors;
 	}
 	public void setActiveplayer(int activeplayer) {
 		this.activeplayer = activeplayer;
@@ -34,9 +33,6 @@ public class ClientModel
 	}
 	public int getActiveplayer() {
 		return activeplayer;
-	}
-	public ColorManager getCouncilcolors() {
-		return councilcolors;
 	}
 	public King getKing() {
 		return king;
@@ -53,6 +49,19 @@ public class ClientModel
 	public void setResult(String result) {
 		this.result = result;
 	}
+	public void setAvailablecouncillor(AvailableCouncillor availablecouncillor) {
+		this.availablecouncillor = availablecouncillor;
+	}
+	public void setNobilitypath(NobilityPath nobilitypath) {
+		this.nobilitypath = nobilitypath;
+	}
+	public AvailableCouncillor getAvailablecouncillor() {
+		return availablecouncillor;
+	}
+	public NobilityPath getNobilitypath() {
+		return nobilitypath;
+	}
+	
 	
 	public Region getRegionByType(RegionType r)
 	{
@@ -68,7 +77,7 @@ public class ClientModel
 	public String toString() 
 	{
 		String s = "";
-		//s += councilcolors.toString();
+		s += availablecouncillor.toString();
 		s += result;
 		s += "\n-----\n";
 		s += king.toString();

@@ -15,9 +15,8 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(SendFullGameReply message) 
 	{
-		return new SendFullGameUpdate(message.getResult(), message.getKing() ,message.getRegions(), message.getPlayer(), message.getActivePlayer());
+		return new SendFullGameUpdate(message.getResult(), message.getKing(), message.getRegions(), message.getPlayer(), message.getActivePlayer(), message.getAvailableCouncillor(), message.getNobilitypath());
 	}
-
 	@Override
 	public ClientUpdate display(DrawBusinessCardReply message) 
 	{
@@ -36,10 +35,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(ElectCouncillorReply message) 
 	{
-		if(message.getKing())
-			return new ElectCouncillorUpdate(message.getResult(), message.getBalcony(), message.getActivePlayer());
-		return new ElectCouncillorUpdate(message.getResult(), message.getBalcony(), message.getRegion(), message.getActivePlayer());
-		
+		return new ElectCouncillorUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(), message.getActivePlayer());
 	}
 
 	@Override

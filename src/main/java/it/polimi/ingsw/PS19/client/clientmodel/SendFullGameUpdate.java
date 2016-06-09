@@ -4,38 +4,45 @@ import java.util.List;
 
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 public class SendFullGameUpdate implements ClientUpdate
 {
 	private King king;
 	private List<Region> regions;
-	private ColorManager councilcolors = null;
 	private List<Player> player;
 	private int activeplayer;
+	private NobilityPath nobilitypath;
+	private AvailableCouncillor availablecouncillor;
 	private String result;
 	
 	
-	public SendFullGameUpdate(String res, King k, List<Region> r, List<Player> p, int active) 
+	
+	public SendFullGameUpdate(String res, King k, List<Region> r, List<Player> p, int active, AvailableCouncillor ac ,NobilityPath nob) 
 	{
 		king = k;
 		regions =r;
 		player = p;
 		activeplayer = active;
 		result = res;
+		nobilitypath = nob;
+		availablecouncillor =ac;
 	}
 
 	@Override
 	public void update(ClientModel model) 
 	{
 		model.setActiveplayer(activeplayer);
-		model.setCouncilcolors(councilcolors);
 		model.setKing(king);
 		model.setPlayer(player);
 		model.setRegions(regions);
 		model.setResult(result);
+		model.setAvailablecouncillor(availablecouncillor);
+		model.setNobilitypath(nobilitypath);
+		
 	}
 	
 }
