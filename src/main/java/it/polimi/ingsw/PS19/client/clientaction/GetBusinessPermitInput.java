@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
@@ -15,6 +16,9 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class GetBusinessPermitInput extends SatisfyCouncilInput 
 {
+	private BusinessCard businessCard;
+	private RegionType regionType;
+	private List<Color> colors;
 	public GetBusinessPermitInput(ClientModel m) 
 	{
 		model = m;
@@ -32,29 +36,31 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		int count = 0;
-		RegionType regionType = userInterface.getRegion(getAvailableRegions());
+		regionType = userInterface.getRegion(getAvailableRegions());
 		Region region = model.getRegionByType(regionType);
 		List<Color> balcony = region.getBalcony().getCouncilcolor();
 		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
-		
-		List<Color> colors = null;
+		colors = new ArrayList<>();
 		PoliticsCard politicCard = null;
 		while(count < 4 && politicCards.size() > 0)
 		{
+			politicCards = getAvailablePolitics(balcony, politicCards);
 			politicCard = userInterface.getPolitic(politicCards);
-			
+			balcony.remove(politicCard.getColor());
+			colors.add(politicCard.getColor());
+			politicCards.remove(politicCard);
 			count++;
 		}
 		List<BusinessCard> cards = new ArrayList<>();
 		cards.add(region.getFirstcard());
 		cards.add(region.getSecondcard());
-		BusinessCard card = userInterface.getBusiness(cards);
-		return null;
+		businessCard = userInterface.getBusiness(cards);
+		return buildMessage();
 	}
 
 	@Override
-	protected Request buildMessage() {
-		// TODO Auto-generated method stub
-		return null;
+	protected Request buildMessage() 
+	{
+		return new GetBusinessCardMessage(businessCard, regionType, colors);
 	}
 }
