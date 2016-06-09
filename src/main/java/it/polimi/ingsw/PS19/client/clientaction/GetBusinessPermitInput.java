@@ -42,9 +42,9 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
 		colors = new ArrayList<>();
 		PoliticsCard politicCard;
+		politicCards = getAvailablePolitics(balcony, politicCards);
 		while(count < 4 && !politicCards.isEmpty())
 		{
-			politicCards = getAvailablePolitics(balcony, politicCards);
 			if(count > 0)
 				politicCards.add(null);
 			politicCard = userInterface.getPolitic(politicCards);
@@ -54,6 +54,7 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 			colors.add(politicCard.getColor());
 			politicCards.remove(politicCard);
 			count++;
+			politicCards = getAvailablePolitics(balcony, politicCards);
 		}
 		List<BusinessCard> cards = new ArrayList<>();
 		cards.add(region.getFirstcard());

@@ -66,7 +66,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<PoliticsCard> jollies = new ArrayList<>();
 		for(PoliticsCard card : cards)
-			if(card.getColor().equals(Costants.JOKERCOLOR))
+			if(card.getColor().equals(Color.decode(Costants.JOKERCOLOR)))
 				jollies.add(card);
 		return jollies;
 	}
@@ -74,6 +74,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	protected List<PoliticsCard> getAvailablePolitics(List<Color> balcony, List<PoliticsCard> cards)
 	{
 		List<PoliticsCard> availableCards = new ArrayList<>();
+		if(balcony.isEmpty() || cards.isEmpty())
+			return availableCards;
 		for(Color balconyColor : balcony)
 		{
 			for(int i = 0; i < cards.size(); i++)
@@ -87,6 +89,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				}
 			}
 		}
+		availableCards.addAll(getJollies(cards));
 		return availableCards;
 	}
 }

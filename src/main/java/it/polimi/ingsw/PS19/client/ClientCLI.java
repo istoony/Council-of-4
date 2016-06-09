@@ -9,8 +9,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import it.polimi.ingsw.PS19.client.clientaction.BuyHelperInputs;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.PS19.client.clientaction.ElectCouncillorInputs;
+import it.polimi.ingsw.PS19.client.clientaction.EndTurnInput;
+import it.polimi.ingsw.PS19.client.clientaction.GetBusinessPermitInput;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
@@ -113,7 +118,7 @@ public class ClientCLI extends ClientUI
 		int i = 0;
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
-			strings.add(a.toString());
+			strings.add(getString(a));
 		while(!valid)
 		{
 			writeln("Decidi che azione fare");
@@ -235,4 +240,16 @@ public class ClientCLI extends ClientUI
 		return region.toString();
 	}
 	
+	private String getString(ClientAction input)
+	{
+		if(input instanceof GetBusinessPermitInput)
+			return "Get Business Permit";
+		if(input instanceof ElectCouncillorInputs)
+			return "Elect Councillor";
+		if(input instanceof BuyHelperInputs)
+			return "Buy Helper";
+		if(input instanceof EndTurnInput)
+			return "EndTurn";
+		return null;
+	}
 }
