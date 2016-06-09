@@ -12,6 +12,7 @@ public class EndTurn implements Action
 	{
 		playerId = id;
 	}
+	
 	@Override
 	public Boolean execute(Model model) 
 	{
@@ -39,16 +40,19 @@ public class EndTurn implements Action
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
+	
 	@Override
 	public String getStringResult() 
 	{
 		return result;
 	}
+	
 	@Override
 	public void checkAlreadyTurn() {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub

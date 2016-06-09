@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
@@ -101,7 +99,8 @@ public class WaitingRoom
 	 */
 	public static synchronized void startGame()
 	{
-		if(room.size() <2) return; 						//Check to avoid concurrency in one particular case		
+		if(room.size() <2) 
+			return; 						//Check to avoid concurrency in one particular case		
 		mux.lock();
 		System.out.println(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
 		@SuppressWarnings("unchecked")

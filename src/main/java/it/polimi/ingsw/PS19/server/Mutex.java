@@ -10,7 +10,9 @@ public class Mutex
 {
 	private static boolean locked = false;			//Boolean to implements the mutex
 
-	public Mutex(){};
+	public Mutex(){
+		//Sonar è contento
+	};
 	
 	/*
 	 * Waits for the mutex to be released and the blocks it
@@ -18,7 +20,7 @@ public class Mutex
 	public void lock()								
 	{
 		while(locked);							//Waits for unlocking
-		locked = true;
+			locked = true;
 	}
 	
 	/*

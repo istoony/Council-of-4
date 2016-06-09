@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.polimi.ingsw.PS19.client;
 
 import java.io.BufferedReader;
@@ -120,7 +117,8 @@ public class ClientManager
 		String portString = in.readLine();
 		try {
 			port = Integer.parseUnsignedInt(portString);
-			if(port < 0 || port > 65535) throw new NumberFormatException();
+			if(port < 0 || port > 65535) 
+				throw new NumberFormatException();
 		} catch (NumberFormatException e) {
 			System.out.println("Port not valid, using defaul Port: " + ClientConstants.REMOTE_PORT);
 			port = ClientConstants.REMOTE_PORT;

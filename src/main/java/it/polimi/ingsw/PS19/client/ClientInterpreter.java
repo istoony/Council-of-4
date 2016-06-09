@@ -35,7 +35,7 @@ public class ClientInterpreter extends Observable implements Observer
 		model = new ClientModel();
 		mainAction = new MainAction(model);
 		fastAction = new FastAction(model);
-		typesOfAction = new ArrayList<ClientActionChooser>();
+		typesOfAction = new ArrayList<>();
 		typesOfAction.add(mainAction);
 		typesOfAction.add(fastAction);
 	}
@@ -55,7 +55,7 @@ public class ClientInterpreter extends Observable implements Observer
 		}
 		else if(arg instanceof Reply)
 		{
-			Reply reply = ((Reply) arg);
+			Reply reply = (Reply) arg;
 			updateModel(reply);
 			userInterface.drawModel(model);
 			if(reply.getActivePlayer() == playerId)
@@ -79,14 +79,13 @@ public class ClientInterpreter extends Observable implements Observer
 	
 	private void requestAction()
 	{
-		Request mex;
+		Request mex = new EndTurnMessage();
 		boolean valid;
 		do
 		{
 			ClientActionChooser actionType = getActionType();
 			if(actionType == null)
 			{
-				mex = new EndTurnMessage(); 
 				valid = true;
 			}
 			else
@@ -114,7 +113,7 @@ public class ClientInterpreter extends Observable implements Observer
 		for(ClientActionChooser c : typesOfAction) 
 			choose &= c.available();
 		if(choose)
-			return(userInterface.requestActionType(typesOfAction));
+			return userInterface.requestActionType(typesOfAction);
 		else if(mainAction.available())
 			return mainAction;
 		else if(fastAction.available())

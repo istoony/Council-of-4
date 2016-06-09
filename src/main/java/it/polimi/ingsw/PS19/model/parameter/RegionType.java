@@ -6,9 +6,12 @@ public enum RegionType
 	
 	public static RegionType valueOf(int n)
 	{
-		if(n == 0) return PLAIN;
-		if(n == 1) return HILL;
-		if(n == 2) return MOUNTAIN;
+		if(n == 0)
+			return PLAIN;
+		if(n == 1) 
+			return HILL;
+		if(n == 2) 
+			return MOUNTAIN;
 		return null;
 	}
 }

@@ -7,13 +7,11 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.List;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
@@ -23,6 +21,7 @@ public class ClientCLI implements ClientUI
 {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
+	@Override
 	public ClientActionChooser requestActionType(List<ClientActionChooser> actionList) 
 	{
 		boolean valid = false;
@@ -56,6 +55,7 @@ public class ClientCLI implements ClientUI
 		return action;
 	}
 	
+	@Override
 	public RegionType getRegion() throws InvalidInsertionException
 	{
 		System.out.print("Definisci il balcolcino da shiftare");
@@ -69,7 +69,7 @@ public class ClientCLI implements ClientUI
 			String s = in.readLine();
 			for(RegionType reg : RegionType.values())
 			{
-				if(reg.toString().substring(0, 1).toLowerCase().equals(s))
+				if(reg.toString().substring(0, 1).equalsIgnoreCase(s))
 					return reg;
 			}
 		}
@@ -84,6 +84,7 @@ public class ClientCLI implements ClientUI
 	/*
 	 * Gets a valid color from user wrt the parameter array
 	 */
+	@Override
 	public Color getAndValidateColor(List<Color> validColors) throws InvalidInsertionException
 	{
 		
@@ -115,6 +116,7 @@ public class ClientCLI implements ClientUI
 	 * Gets region or king from user
 	 * if is king returns null;
 	 */
+	@Override
 	public RegionType getRegionAndKing() throws InvalidInsertionException 
 	{
 		System.out.print("Definisci il balcolcino da shiftare (");
@@ -132,7 +134,7 @@ public class ClientCLI implements ClientUI
 				if(reg.toString().toLowerCase().substring(0, 1).equals(s))
 					return reg;
 			}
-			if(s.equals("k"))
+			if("k".equals(s))
 				return null;
 		} catch (IOException e) 
 		{
@@ -142,11 +144,13 @@ public class ClientCLI implements ClientUI
 		throw new InvalidInsertionException();
 	}
 
+	@Override
 	public void showNotification(String s) 
 	{
 		System.out.println(s);
 	}
 
+	@Override
 	public ClientAction getAction(List<ClientAction> actionList) 
 	{
 		boolean valid = false;
