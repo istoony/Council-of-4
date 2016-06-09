@@ -162,11 +162,6 @@ public class DrawBusinessCard implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		DrawBusinessCardReply reply = new DrawBusinessCardReply(model.getPlayerById(playerId), region, result);
-		
-		reply.setFirstcard(model.getMap().getRegionByType(region).getFirstcard());
-		reply.setSecondcard(model.getMap().getRegionByType(region).getSecondcard());
-		
-		return reply;
+		return new DrawBusinessCardReply(model.getPlayer(),model.getMap().getListaRegioni(),result);
 	}
 }

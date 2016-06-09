@@ -85,7 +85,7 @@ public class ElectCouncillor implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		ElectCouncillorReply reply;
-		reply = new ElectCouncillorReply(model.getPlayerById(model.getCurrentState().getPlayerTurnId()), model.getMap().getListaRegioni(),model.getMap().getAvailableCouncillor(), model.getMap().getKing());
+		reply = new ElectCouncillorReply(model.getPlayer(), model.getMap().getListaRegioni(),model.getMap().getAvailableCouncillor(), model.getMap().getKing());
 		reply.setResult(result);
 		reply.setId(-1);
 		return reply;

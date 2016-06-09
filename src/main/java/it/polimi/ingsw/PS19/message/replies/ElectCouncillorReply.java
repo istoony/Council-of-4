@@ -20,10 +20,10 @@ public class ElectCouncillorReply extends Reply
 	private Balcony balcony;
 	private List<Region> region;
 	private King king;
-	private Player player;
+	private List<Player> player;
 	private AvailableCouncillor availableCouncillor;
 	
-	public ElectCouncillorReply(Player p, List<Region> r, AvailableCouncillor ac, King k) 
+	public ElectCouncillorReply(List<Player> p, List<Region> r, AvailableCouncillor ac, King k) 
 	{
 		player = p;
 		region = r;
@@ -31,7 +31,7 @@ public class ElectCouncillorReply extends Reply
 		king = k;
 	}
 				
-	public Player getPlayer() {
+	public List<Player> getPlayer() {
 		return player;
 	}
 	

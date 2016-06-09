@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.client;
 
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ElectCouncillorUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.SendFullGameUpdate;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
@@ -20,13 +21,12 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(DrawBusinessCardReply message) 
 	{
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new DrawBusinessCardUpdate(message.getPlayer(), message.getRegion());
 	}
 
 	@Override
-	public ClientUpdate display(SendFullPlayerReply message) {
+	public ClientUpdate display(SendFullPlayerReply message) 
+	{
 		return null;
 		// TODO Auto-generated method stub
 		
@@ -35,7 +35,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(ElectCouncillorReply message) 
 	{
-		return new ElectCouncillorUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(), message.getActivePlayer());
+		return new ElectCouncillorUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(),message.getPlayer(), message.getActivePlayer());
 	}
 
 	@Override

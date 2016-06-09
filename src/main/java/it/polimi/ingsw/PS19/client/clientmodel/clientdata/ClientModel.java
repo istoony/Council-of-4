@@ -18,6 +18,12 @@ public class ClientModel
 	private int activeplayer;
 	private String result;
 	private NobilityPath nobilitypath;
+	private int currentId;
+	
+	public ClientModel(int id) 
+	{
+		currentId = id;
+	}
 	
 	public void setKing(King king) {
 		this.king = king;
@@ -79,7 +85,7 @@ public class ClientModel
 		String s = "";
 		s += availablecouncillor.toString();
 		s += result;
-		s += "\n-----\n";
+		s += "\n------\n";
 		s += king.toString();
 		s += "\n-----\n";
 		for (Region region : regions) 
