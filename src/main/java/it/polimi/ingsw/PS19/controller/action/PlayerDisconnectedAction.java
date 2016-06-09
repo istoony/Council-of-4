@@ -1,39 +1,41 @@
 package it.polimi.ingsw.PS19.controller.action;
 
+import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class PlayerDisconnectedAction implements Action {
 
+	private int playerId;
+	private String result;
+	
+	public PlayerDisconnectedAction(int id) 
+	{
+		playerId = id;
+	}
 	@Override
 	public Boolean execute(Model model) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		model.getPlayerById(playerId).disconnectPlayer();
+		result = ActionMessages.PLAYER_DISCONNECTED + playerId;
+		return true;
 	}
 
 	@Override
-	public Boolean isPossible(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean isPossible(Model model) 
+	{
+		return true;
 	}
 
 	@Override
 	public String getStringResult() {
-		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 
 	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Reply createReplyMessage(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Reply createReplyMessage(Model model) 
+	{
+		return new PlayerDisconnectedReply(playerId, result);
 	}
 
 }

@@ -90,10 +90,4 @@ public class ChangeKingPosition implements Action {
 		return null;
 	}
 
-	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

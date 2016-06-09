@@ -53,10 +53,4 @@ public class SendFullGame implements Action
 		return reply;
 	}
 
-	@Override
-	public void checkAlreadyTurn() 
-	{
-		
-	}
-
 }

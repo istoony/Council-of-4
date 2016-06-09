@@ -84,12 +84,6 @@ public class MainBuildEmporium implements Action
 	}
 
 	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) {
 		// TODO Auto-generated method stub
 		return null;

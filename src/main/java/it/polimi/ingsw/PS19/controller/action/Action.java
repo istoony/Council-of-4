@@ -13,9 +13,7 @@ public interface Action
 	public String getStringResult();
 	
 	public Reply createReplyMessage(Model model);
-	
-	public void checkAlreadyTurn();
-	
+		
 	
 	public static Boolean checkPlayerTurn(int id, Model m)
 	{

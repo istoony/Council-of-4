@@ -43,11 +43,7 @@ public class DrawPoliticsCard implements Action
 	{
 		return result;
 	}
-	@Override
-	public void checkAlreadyTurn() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{

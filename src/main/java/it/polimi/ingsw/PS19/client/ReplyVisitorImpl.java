@@ -3,11 +3,13 @@ package it.polimi.ingsw.PS19.client;
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ElectCouncillorUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.PlayerDisconnectedUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.SendFullGameUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.SendFullPlayerUpdate;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 
@@ -41,6 +43,10 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	public ClientUpdate display(GameStartedMessage message) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public ClientUpdate display(PlayerDisconnectedReply message) {
+		return new PlayerDisconnectedUpdate(message.getResult());
 	}
 
 }

@@ -13,6 +13,8 @@ public class ActionMessages
 	public static final String BUILD_EMPORIA = "You already have an emporium in this city";
 	public static final String GENERIC_ERROR = "ERROR!";
 	public static final String NO_BUILD = "You have already built are yours emporia!";
+	public static final String PLAYER_DISCONNECTED = "Player Disconnected. id = ";
+	
 	
 	private ActionMessages() { }
 }

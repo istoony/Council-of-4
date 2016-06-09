@@ -20,6 +20,8 @@ public class Player implements Serializable
 	private static final long serialVersionUID = -505551466312267551L;
 	
 	private int id;
+	private boolean connected;
+	
 	private int money;
 	private int helpers;
 	private int victoryPoints;
@@ -43,6 +45,7 @@ public class Player implements Serializable
 		freebusinesscard = new ArrayList<>();
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
+		connected = true;
 	}
 	
 	
@@ -159,6 +162,15 @@ public class Player implements Serializable
 	}
 	public void setHelpers(int helpers) {
 		this.helpers = helpers;
+	}
+	
+	public boolean isConnected() 
+	{
+		return connected;
+	}
+	public void disconnectPlayer()
+	{
+		connected = false;
 	}
 	
 	@Override
