@@ -21,8 +21,8 @@ public enum RegionType
 	public static List<RegionType> getValues()
 	{
 		List<RegionType> regions = new ArrayList<>();
-		for(RegionType r : RegionType.values())
-			regions.add(r);
+		for(int i = 0; i < RegionType.values().length; i++)
+			regions.add(RegionType.values()[i]);
 		return regions;
 	}
 }

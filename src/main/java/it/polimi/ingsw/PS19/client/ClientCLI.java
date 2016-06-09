@@ -61,8 +61,8 @@ public class ClientCLI extends ClientUI
 	{
 		writeln("Definisci il balcolcino da shiftare");
 		List<String> strings = new ArrayList<>();
-		for(int i = 0; i < regions.size(); i++)
-			strings.add(regions.toString());
+		for(RegionType region : regions)
+			strings.add(getString(region));
 		int index = getValues(strings);
 		return regions.get(index);
 	}
@@ -230,4 +230,9 @@ public class ClientCLI extends ClientUI
 	}
 
 
+	private String getString(RegionType region)
+	{
+		return region.toString();
+	}
+	
 }
