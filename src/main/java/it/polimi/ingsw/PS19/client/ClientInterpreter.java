@@ -117,12 +117,12 @@ public class ClientInterpreter extends Observable implements Observer
 		boolean choose = true;
 		
 		for(ClientActionChooser c : typesOfAction) 
-			choose &= c.available();
+			choose &= c.isPossible();
 		if(choose)
 			return(userInterface.requestActionType(typesOfAction));
-		else if(mainAction.available())
+		else if(mainAction.isPossible())
 			return mainAction;
-		else if(fastAction.available())
+		else if(fastAction.isPossible())
 			return fastAction;
 		else
 			return null;

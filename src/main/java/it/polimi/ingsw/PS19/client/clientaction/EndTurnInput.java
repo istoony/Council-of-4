@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.client.clientaction;
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 public class EndTurnInput extends ClientAction 
@@ -13,21 +14,23 @@ public class EndTurnInput extends ClientAction
 	}
 
 	@Override
-	public boolean isPossible() {
-		// TODO Auto-generated method stub
+	public boolean isPossible() 
+	{
+		if(model.getMyPlayer().getMainActionCounter() <= 0)
+			return true;
 		return false;
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
+	{
+		return buildMessage();
 	}
 
 	@Override
-	protected Request buildMessage() {
-		// TODO Auto-generated method stub
-		return null;
+	protected Request buildMessage() 
+	{
+		return new EndTurnMessage();
 	}
 
 }

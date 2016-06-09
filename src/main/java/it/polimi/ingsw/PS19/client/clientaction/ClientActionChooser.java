@@ -9,20 +9,21 @@ public abstract class ClientActionChooser
 {
 	int avail = 1;
 	ClientModel model;
+	ArrayList<ClientAction> actions = new ArrayList<ClientAction>();
 	
 	public ClientActionChooser(ClientModel m) 
 	{
 		model = m;
 	}
 	
-	ArrayList<ClientAction> actions = new ArrayList<ClientAction>();
-	
+	public abstract boolean isPossible();
+		
 	public ClientAction getAction(ClientUI userInterface)
 	{
-		return userInterface.getAction(this.isPossible());
+		return userInterface.getAction(this.possibleActions());
 	}
 	
-	public ArrayList<ClientAction> isPossible() 
+	public ArrayList<ClientAction> possibleActions() 
 	{
 		ArrayList<ClientAction> availableActions = new ArrayList<ClientAction>();
 		for(ClientAction a : actions)

@@ -80,4 +80,10 @@ public class BusinessCard implements Card, Serializable{
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public ArrayList<City> getCity() 
+	{
+		return (ArrayList<City>) city.clone();
+	}
+	
 }

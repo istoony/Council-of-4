@@ -14,6 +14,13 @@ public class FastAction extends ClientActionChooser
 		actions.add(new NewMainActionInput(model));	
 	}
 	
+	public boolean isPossible() 
+	{
+		if(model.getMyPlayer().getFastActionCounter() > 0)
+			return true;
+		else return false;
+	}
+	
 	@Override
 	public String toString() 
 	{
