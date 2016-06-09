@@ -112,12 +112,12 @@ public class DrawBusinessCard implements Action
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
 		
 		result = ActionMessages.EVERYTHING_IS_OK;
-		if(firstCard == card)
+		if(firstCard.equals(card))
 		{
 			isFirstCard = true;
 			return true;
 		}
-		if(secondCard == card)
+		if(secondCard.equals(card))
 		{
 			isFirstCard = false;
 			return true;

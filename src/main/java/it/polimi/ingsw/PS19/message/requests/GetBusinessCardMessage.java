@@ -12,9 +12,6 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 public class GetBusinessCardMessage extends Request 
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 843031999175292374L;
 	private BusinessCard card;
 	private RegionType region;
