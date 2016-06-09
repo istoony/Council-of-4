@@ -13,6 +13,7 @@ import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -75,7 +76,7 @@ public class ClientCLI extends ClientUI
 		writeln("Definisci il colore del consigliere da aggiungere");
 		List<String> strings = new ArrayList<>();
 		for(Color c : validColors)
-			strings.add(colorToString(c));
+			strings.add(getString(c));
 		System.out.println("):");
 		return validColors.get(getValues(strings));
 	}
@@ -113,16 +114,14 @@ public class ClientCLI extends ClientUI
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
 			strings.add(a.toString());
-		strings.add("Start again");
 		while(!valid)
 		{
 			writeln("Decidi che azione fare");
 			try 
 			{
 				int index = getValues(strings);
-				if(index < actionList.size())
-					valid = true;
-					action = actionList.get(index);
+				action = actionList.get(index);
+				valid = true;
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
@@ -150,7 +149,7 @@ public class ClientCLI extends ClientUI
 		writeln("Scegli Carta");
 		List<String> strings = new ArrayList<>();
 		for(BusinessCard card : cards)
-			strings.add(businessToString(card));
+			strings.add(getString(card));
 		int index = getValues(strings);
 		return(cards.get(index));
 	}
@@ -161,7 +160,7 @@ public class ClientCLI extends ClientUI
 		writeln("Scegli Carta");
 		List<String> strings = new ArrayList<>();
 		for(PoliticsCard card : cards)
-			strings.add(politicToString(card));
+			strings.add(getString(card));
 		int index = getValues(strings);
 		return(cards.get(index));
 	}
@@ -171,7 +170,7 @@ public class ClientCLI extends ClientUI
 		int i, n;
 		try
 		{
-			writeln("(");
+			write("(");
 			for(i = 0; i < strings.size()-1; i++)
 				write(i + " = " + strings.get(i) + ", ");
 			writeln(i + " = " + strings.get(i) + ")");
@@ -202,9 +201,15 @@ public class ClientCLI extends ClientUI
 		return in.readLine();
 	}
 	
-	private String businessToString(BusinessCard card)
+	private String getString(BusinessCard card)
 	{
-		return card.toString();
+		String s = null;
+		for(Bonus b : card.getBonus())
+		{
+			s += b.toString();
+			s += ", ";
+		}
+		return s;
 	}
 
 	private String modelToString(ClientModel model)
@@ -212,14 +217,16 @@ public class ClientCLI extends ClientUI
 		return model.toString();
 	}
 
-	private String colorToString(Color c)
+	private String getString(Color c)
 	{
 		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ";
 	}
 
-	private String politicToString(PoliticsCard card)
+	private String getString(PoliticsCard card)
 	{
-		return colorToString(card.getColor());
+		if(card == null)
+			return "no more cards";
+		return getString(card.getColor());
 	}
 
 

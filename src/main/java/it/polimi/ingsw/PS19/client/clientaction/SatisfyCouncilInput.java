@@ -76,8 +76,6 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	protected List<PoliticsCard> getAvailablePolitics(List<Color> balcony, List<PoliticsCard> cards)
 	{
 		List<PoliticsCard> availableCards = new ArrayList<>();
-		for(PoliticsCard card : cards)
-			availableCards.add(card);
 		for(Color balconyColor : balcony)
 		{
 			for(int i = 0; i < cards.size(); i++)
@@ -85,7 +83,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				
 				if(balconyColor.equals(cards.get(i).getColor()))
 				{
-					availableCards.remove(i);
+					availableCards.add(cards.get(i));
+					cards.remove(i);
 					break;
 				}
 			}
