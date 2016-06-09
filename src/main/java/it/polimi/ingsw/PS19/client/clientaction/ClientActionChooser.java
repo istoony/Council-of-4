@@ -8,20 +8,26 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 public abstract class ClientActionChooser
 {
 	int avail = 1;
+	ClientModel model;
+	
+	public ClientActionChooser(ClientModel m) 
+	{
+		model = m;
+	}
 	
 	ArrayList<ClientAction> actions = new ArrayList<ClientAction>();
 	
-	public ClientAction getAction(ClientUI userInterface, ClientModel model)
+	public ClientAction getAction(ClientUI userInterface)
 	{
-		return userInterface.getAction(this.isPossible(model));
+		return userInterface.getAction(this.isPossible());
 	}
 	
-	public ArrayList<ClientAction> isPossible(ClientModel model) 
+	public ArrayList<ClientAction> isPossible() 
 	{
 		ArrayList<ClientAction> availableActions = new ArrayList<ClientAction>();
 		for(ClientAction a : actions)
 		{
-			if(a.isPossible(model))
+			if(a.isPossible())
 				availableActions.add(a);
 		}
 		return availableActions;

@@ -1,13 +1,16 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+
 public class MainAction extends ClientActionChooser 
 {	
-	public MainAction() 
+	public MainAction(ClientModel m) 
 	{
-		actions.add(new BuildEmporiumInputs());
-		actions.add(new BuildWithKingInputs());
-		actions.add(new ElectCouncillorInputs(true));
-		actions.add(new GetBusinessPermitInput());
+		super(m);
+		actions.add(new BuildEmporiumInputs(model));
+		actions.add(new BuildWithKingInputs(model));
+		actions.add(new ElectCouncillorInputs(model, true));
+		actions.add(new GetBusinessPermitInput(model));
 	}
 
 	@Override

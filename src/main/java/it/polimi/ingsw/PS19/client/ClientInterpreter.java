@@ -31,18 +31,13 @@ public class ClientInterpreter extends Observable implements Observer
 	public ClientInterpreter(ClientUI ui) 
 	{
 		userInterface = ui;
-		mainAction = new MainAction();
-		fastAction = new FastAction();
 		visitor = new ReplyVisitorImpl();
-		typesOfAction = new ArrayList<ClientActionChooser>();
 		model = new ClientModel();
+		mainAction = new MainAction(model);
+		fastAction = new FastAction(model);
+		typesOfAction = new ArrayList<ClientActionChooser>();
 		typesOfAction.add(mainAction);
 		typesOfAction.add(fastAction);
-	}
-	
-	public void setModel(ClientModel model) 
-	{
-		this.model = model;
 	}
 
 	@Override
@@ -96,10 +91,10 @@ public class ClientInterpreter extends Observable implements Observer
 			}
 			else
 			{
-				ClientAction action = actionType.getAction(userInterface, model);
+				ClientAction action = actionType.getAction(userInterface);
 				try 
 				{
-					mex = action.Execute(userInterface, model);
+					mex = action.Execute(userInterface);
 					actionType.subAvail();
 					//mex.setId(playerId);
 					notify(mex);

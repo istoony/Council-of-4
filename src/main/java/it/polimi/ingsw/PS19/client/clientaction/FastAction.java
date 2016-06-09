@@ -1,14 +1,17 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+
 public class FastAction extends ClientActionChooser 
 {
 	
-	public FastAction() 
+	public FastAction(ClientModel m) 
 	{
-		actions.add(new BuildEmporiumInputs());
-		actions.add(new BuildWithKingInputs());
-		actions.add(new ElectCouncillorInputs(false));
-		actions.add(new GetBusinessPermitInput());	
+		super(m);
+		actions.add(new BuildEmporiumInputs(model));
+		actions.add(new BuildWithKingInputs(model));
+		actions.add(new ElectCouncillorInputs(model, false));
+		actions.add(new GetBusinessPermitInput(model));	
 	}
 	
 	@Override
