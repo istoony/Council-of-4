@@ -39,7 +39,7 @@ public class ClientInterpreter extends Observable implements Observer
 		model = new ClientModel(playerId);
 		mainAction = new MainAction(model);
 		fastAction = new FastAction(model);
-		typesOfAction = new ArrayList<ClientActionChooser>();
+		typesOfAction = new ArrayList<>();
 		typesOfAction.add(mainAction);
 		typesOfAction.add(fastAction);
 	}

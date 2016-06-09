@@ -7,17 +7,20 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
  * 
  */
-public class ClientCLI implements ClientUI 
+public class ClientCLI extends ClientUI 
 {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
@@ -27,23 +30,20 @@ public class ClientCLI implements ClientUI
 		boolean valid = false;
 		ClientActionChooser action = null;
 		int i = 0;
+		List<String> strings = new ArrayList<>();
+		for(ClientActionChooser a : actionList)
+			strings.add(a.toString());
 		while(!valid)
 		{
-			System.out.println("Decidi che tipo di azione fare:");
-			for(int j = 0; j < actionList.size(); j++)
-			{
-				System.out.println(j + " - " + actionList.get(j).toString());
-			}
+			writeln("Decidi che tipo di azione fare");
 			try {
-				String s = in.readLine();
-				int actionId = Integer.parseInt(s);
-				action = actionList.get(actionId);
+				int index = getValues(strings);
+				action = actionList.get(index);
 				valid = true;
-			} catch (IOException | NumberFormatException | IndexOutOfBoundsException e) 
+			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
 				e.printStackTrace();
-				System.out.println("Inserimento non valido");
 			}
 			finally
 			{
@@ -56,60 +56,28 @@ public class ClientCLI implements ClientUI
 	}
 	
 	@Override
-	public RegionType getRegion() throws InvalidInsertionException
+	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException
 	{
-		System.out.print("Definisci il balcolcino da shiftare");
-		for(RegionType reg : RegionType.values())
-		{
-			System.out.print(reg.toString().substring(0, 1).toLowerCase() + "=" + reg.toString() + ", ");
-		}
-		System.out.println("):");
-		try
-		{
-			String s = in.readLine();
-			for(RegionType reg : RegionType.values())
-			{
-				if(reg.toString().substring(0, 1).equalsIgnoreCase(s))
-					return reg;
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		System.out.println("Invalid Region");
-		throw new InvalidInsertionException();
+		writeln("Definisci il balcolcino da shiftare");
+		List<String> strings = new ArrayList<>();
+		for(int i = 0; i < regions.size(); i++)
+			strings.add(regions.toString());
+		int index = getValues(strings);
+		return regions.get(index);
 	}
 	
 	/*
 	 * Gets a valid color from user wrt the parameter array
 	 */
 	@Override
-	public Color getAndValidateColor(List<Color> validColors) throws InvalidInsertionException
+	public Color getColor(List<Color> validColors) throws InvalidInsertionException
 	{
-		
-		System.out.print("Definisci il colore del consigliere da aggiungere (");
+		writeln("Definisci il colore del consigliere da aggiungere");
+		List<String> strings = new ArrayList<>();
 		for(Color c : validColors)
-		{
-			System.out.print("#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ");
-		}
+			strings.add(colorToString(c));
 		System.out.println("):");
-		Color color;
-		try
-		{
-			String s = in.readLine();
-			color = Color.decode(s);
-			for(Color c : validColors)
-			{
-				if(color.equals(c))
-					return color;
-			}
-		} catch(IOException | NumberFormatException e)
-		{
-			e.printStackTrace();
-		}
-		System.out.println("Invalid Color");
-		throw new InvalidInsertionException();
+		return validColors.get(getValues(strings));
 	}
 
 	/*
@@ -117,31 +85,17 @@ public class ClientCLI implements ClientUI
 	 * if is king returns null;
 	 */
 	@Override
-	public RegionType getRegionAndKing() throws InvalidInsertionException 
-	{
-		System.out.print("Definisci il balcolcino da shiftare (");
-		for(RegionType reg : RegionType.values())
-		{
-			System.out.print(reg.toString().substring(0, 1).toLowerCase() + "=" + reg.toString() + ", ");
-		}
-		System.out.println("k=KING):");
-		String s;
-		try 
-		{
-			s = in.readLine();
-			for(RegionType reg : RegionType.values())
-			{
-				if(reg.toString().toLowerCase().substring(0, 1).equals(s))
-					return reg;
-			}
-			if("k".equals(s))
-				return null;
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		System.out.println("Invalid Region");
-		throw new InvalidInsertionException();
+	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException 
+	{ 
+		writeln("Definisci il balcolcino da shiftare");
+		List<String> strings = new ArrayList<>();
+		for(int i = 0; i < regions.size(); i++)
+			strings.add(regions.toString());
+		strings.add("KING");
+		int index = getValues(strings);
+		if(index == regions.size())
+			return null;
+		return regions.get(index);
 	}
 
 	@Override
@@ -156,26 +110,23 @@ public class ClientCLI implements ClientUI
 		boolean valid = false;
 		ClientAction action = null;
 		int i = 0;
+		List<String> strings = new ArrayList<>();
+		for(ClientAction a : actionList)
+			strings.add(a.toString());
+		strings.add("Start again");
 		while(!valid)
 		{
-			System.out.println("Decidi che azione fare:");
-			for(int j = 0; j < actionList.size(); j++)
+			writeln("Decidi che azione fare");
+			try 
 			{
-				System.out.println(j + " - " + actionList.get(i).toString());
-			}
-			System.out.println("Q to start again");
-			try {
-				String s = in.readLine();
-				if(s.equals("Q") || s.equals("q"))
-					return null;
-				int actionId = Integer.parseInt(s);
-				action = actionList.get(actionId);
-				valid = true;
-			} catch (IOException | NumberFormatException | IndexOutOfBoundsException e) 
+				int index = getValues(strings);
+				if(index < actionList.size())
+					valid = true;
+					action = actionList.get(index);
+			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				e.printStackTrace();
-				System.out.println("Inserimento non valido");
+				strings.clear();
 			}
 			finally
 			{
@@ -190,6 +141,86 @@ public class ClientCLI implements ClientUI
 	@Override
 	public void drawModel(ClientModel model) 
 	{
-		System.out.println(model.toString());
+		writeln(modelToString(model));
 	}
+
+	@Override
+	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException
+	{
+		writeln("Scegli Carta");
+		List<String> strings = new ArrayList<>();
+		for(BusinessCard card : cards)
+			strings.add(businessToString(card));
+		int index = getValues(strings);
+		return(cards.get(index));
+	}
+	
+	@Override
+	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException 
+	{
+		writeln("Scegli Carta");
+		List<String> strings = new ArrayList<>();
+		for(PoliticsCard card : cards)
+			strings.add(politicToString(card));
+		int index = getValues(strings);
+		return(cards.get(index));
+	}
+	
+	private int getValues(List<String> strings) throws InvalidInsertionException
+	{
+		int i, n;
+		try
+		{
+			writeln("(");
+			for(i = 0; i < strings.size()-1; i++)
+				write(i + " = " + strings.get(i) + ", ");
+			writeln(i + " = " + strings.get(i) + ")");
+			String s = read();
+			n = Integer.parseInt(s);
+			if(n >= strings.size() || n < 0)
+				throw new IOException();
+		}catch(IOException | NumberFormatException e)
+		{
+			writeln("Invalid Insertion");
+			throw new InvalidInsertionException();
+		}
+		return n;
+	}
+	
+	private void write(String s)
+	{
+		System.out.print(s);
+	}
+	
+	private void writeln(String s)
+	{
+		System.out.println(s);
+	}
+	
+	private String read() throws IOException
+	{
+		return in.readLine();
+	}
+	
+	private String businessToString(BusinessCard card)
+	{
+		return card.toString();
+	}
+
+	private String modelToString(ClientModel model)
+	{
+		return model.toString();
+	}
+
+	private String colorToString(Color c)
+	{
+		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ";
+	}
+
+	private String politicToString(PoliticsCard card)
+	{
+		return colorToString(card.getColor());
+	}
+
+
 }

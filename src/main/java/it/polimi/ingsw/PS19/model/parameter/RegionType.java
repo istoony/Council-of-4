@@ -1,5 +1,8 @@
 package it.polimi.ingsw.PS19.model.parameter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum RegionType 
 {
 	MOUNTAIN, HILL, PLAIN;
@@ -13,6 +16,14 @@ public enum RegionType
 		if(n == 2) 
 			return MOUNTAIN;
 		return null;
+	}
+	
+	public static List<RegionType> getValues()
+	{
+		List<RegionType> regions = new ArrayList<>();
+		for(RegionType r : RegionType.values())
+			regions.add(r);
+		return regions;
 	}
 }
 //INCOERENTE, da rivedere con file XML

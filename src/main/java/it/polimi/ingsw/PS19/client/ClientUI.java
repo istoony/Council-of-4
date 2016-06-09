@@ -7,23 +7,40 @@ import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 
 
-public interface ClientUI
+public abstract class ClientUI
 {	
-	public ClientActionChooser requestActionType(List<ClientActionChooser> actions);
+	public abstract ClientActionChooser requestActionType(List<ClientActionChooser> actions);
 	
-	public ClientAction getAction(List<ClientAction> actions);
+	public abstract ClientAction getAction(List<ClientAction> actions);
 	
-	public RegionType getRegion() throws InvalidInsertionException;
+	public RegionType getRegion() throws InvalidInsertionException
+	{
+		return(getRegion(RegionType.getValues()));
+	}
 	
-	public Color getAndValidateColor(List<Color> validColors) throws InvalidInsertionException;
+	public abstract RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException;
 	
-	public RegionType getRegionAndKing() throws InvalidInsertionException;
+	public abstract Color getColor(List<Color> validColors) throws InvalidInsertionException;
 	
-	public void showNotification(String s);
+	public RegionType getRegionAndKing() throws InvalidInsertionException
+	{
+		return(getRegionAndKing(RegionType.getValues()));
+	}
+
+	public abstract RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException;
+
+	public abstract void showNotification(String s);
 	
-	public void drawModel(ClientModel model);
+	public abstract void drawModel(ClientModel model);
+	
+	public abstract BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException;
+	
+	public abstract PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException;
+
 }

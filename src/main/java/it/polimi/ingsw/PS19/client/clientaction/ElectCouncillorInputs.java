@@ -1,8 +1,6 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
@@ -34,7 +32,7 @@ public class ElectCouncillorInputs extends ClientAction
 	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		location = userInterface.getRegionAndKing();
-		color = userInterface.getAndValidateColor(model.getAvailablecouncillor().getAvailableColors());
+		color = userInterface.getColor(model.getAvailablecouncillor().getAvailableColors());
 		
 		return buildMessage();
 	}

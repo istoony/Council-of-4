@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public abstract class SatisfyCouncilInput extends ClientAction 
 {
@@ -27,6 +28,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	
 	protected boolean kingAvailable()
 	{
+		if(getCost(model.getKing().getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(model.getKing().getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney())
+			return true;
 		return false;
 	}
 	
@@ -52,6 +55,41 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				}
 			}
 		}
+		cost -= getJollyNumber(cards) * 2; 
 		return cost;
+	}
+	
+	private int getJollyNumber(List<PoliticsCard> cards)
+	{
+		return getJollies(cards).size();
+	}
+	
+	private List<PoliticsCard> getJollies(List<PoliticsCard> cards)
+	{
+		List<PoliticsCard> jollies = new ArrayList<>();
+		for(PoliticsCard card : cards)
+			if(card.getColor().equals(Costants.JOKERCOLOR))
+				jollies.add(card);
+		return jollies;
+	}
+
+	protected List<PoliticsCard> getAvailablePolitics(List<Color> balcony, List<PoliticsCard> cards)
+	{
+		List<PoliticsCard> availableCards = new ArrayList<>();
+		for(PoliticsCard card : cards)
+			availableCards.add(card);
+		for(Color balconyColor : balcony)
+		{
+			for(int i = 0; i < cards.size(); i++)
+			{
+				
+				if(balconyColor.equals(cards.get(i).getColor()))
+				{
+					availableCards.remove(i);
+					break;
+				}
+			}
+		}
+		return availableCards;
 	}
 }
