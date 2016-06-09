@@ -17,7 +17,7 @@ public class Map
 {	
 	ArrayList<Region> listaRegioni;
 	private PoliticDeck politicdeck;
-	private AvaibleCouncillor councilcolors;
+	private AvailableCouncillor councilcolors;
 	private King king;
 	private GeneralBonus kingBonus;
 	private NobilityPath nobilityPath;

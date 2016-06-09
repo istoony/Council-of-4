@@ -9,7 +9,7 @@ import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 public class BalconyFactory 
 {
 	private BalconyFactory() {}
-	public static AvaibleCouncillor createBalcony(List<Region> regions, King king, String pathfile) 
+	public static AvailableCouncillor createBalcony(List<Region> regions, King king, String pathfile) 
 	{
 		ColorManager colors = new ColorManager(pathfile);
 		
@@ -17,7 +17,7 @@ public class BalconyFactory
 		
 		int numberofcouncillor = Integer.parseInt(nList.item(0).getTextContent());
 		
-		AvaibleCouncillor avaiblecouncillor = new AvaibleCouncillor(numberofcouncillor, colors);
+		AvailableCouncillor avaiblecouncillor = new AvailableCouncillor(numberofcouncillor, colors);
 		
 		regions.get(0).setBalcony(new Balcony(avaiblecouncillor, colors));
 		

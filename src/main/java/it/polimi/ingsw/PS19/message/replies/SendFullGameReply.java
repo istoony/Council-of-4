@@ -5,7 +5,9 @@ import java.util.List;
 import it.polimi.ingsw.PS19.client.ReplyVisitor;
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
 
 public class SendFullGameReply extends Reply 
@@ -19,6 +21,8 @@ public class SendFullGameReply extends Reply
 	private List<Region> regions;
 	private List<Player> player;
 	private King king;
+	private NobilityPath nobilitypath;
+	private AvailableCouncillor availableCouncillor;
 	
 	public SendFullGameReply(List<Region> regions2, List<Player> p, King k) 
 	{

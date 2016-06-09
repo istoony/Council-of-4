@@ -17,9 +17,9 @@ public class Balcony implements Serializable
 	private List<Color> councilcolor;
 	private static final int NUMBER_OF_COUNCILLOR = 4;
 	
-	private AvaibleCouncillor avaiblecouncillor;
+	private AvailableCouncillor avaiblecouncillor;
 		
-	public Balcony(AvaibleCouncillor avaiblecouncillor, ColorManager colormanager) 
+	public Balcony(AvailableCouncillor avaiblecouncillor, ColorManager colormanager) 
 	{
 		councilcolor = new ArrayList<>();
 		this.avaiblecouncillor = avaiblecouncillor;

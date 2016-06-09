@@ -9,7 +9,7 @@ import java.util.Map;
 
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
-public class AvaibleCouncillor implements Serializable
+public class AvailableCouncillor implements Serializable
 {
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class AvaibleCouncillor implements Serializable
 	/**
 	 * Impostare per ogni colore il numero di consiglieri disponibili
 	 */
-	public AvaibleCouncillor(int numberoffreecouncillor, ColorManager colors) 
+	public AvailableCouncillor(int numberoffreecouncillor, ColorManager colors) 
 	{
 		listofcolors = colors;
 		councillor = new HashMap<>();
