@@ -58,6 +58,10 @@ public class Balcony implements Serializable
 	    }
 	    return temp;
 	}
+	public List<Color> getCouncilcolor()
+	{
+		return councilcolor;
+	}
 	
 	@Override
 	public String toString() 
