@@ -68,6 +68,16 @@ public class ClientModel
 		return nobilitypath;
 	}
 	
+	public Player getMyPlayer()
+	{
+		for (Player p : player)
+		{
+			if(p.getId() == currentId)
+				return p;
+		}
+		return null;
+	}
+	
 	
 	public Region getRegionByType(RegionType r)
 	{
