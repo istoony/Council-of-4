@@ -18,9 +18,14 @@ import it.polimi.ingsw.PS19.client.clientaction.EndTurnInput;
 import it.polimi.ingsw.PS19.client.clientaction.GetBusinessPermitInput;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.map.Balcony;
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
@@ -208,18 +213,102 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(BusinessCard card)
 	{
-		String s = null;
+		String s = "[";
+		s += "Cities: ";
+		for(City city: card.getCity())
+		{
+			s += getString(city);
+			s += ", ";
+		}
+		s += "Bonus: ";
 		for(Bonus b : card.getBonus())
 		{
-			s += b.toString();
+			s += getString(b);
 			s += ", ";
+		}
+		s += "]";
+		return s;
+	}
+	
+	private String getString(Bonus b)
+	{
+		return b.toString().substring(b.toString().lastIndexOf(".") + 1, b.toString().lastIndexOf("@"));
+	}
+	
+	private String getString(City city)
+	{
+		return city.getName();
+	}
+	
+	private String modelToString(ClientModel model)
+	{
+		String s = "----------------------------------- \n MODEL\n \n \n";
+		for(Region region: model.getRegions())
+		{
+			s += getString(region);
+			s += "\n\n";
+		}
+		s += getString(model.getKing());
+		s += "\n";
+		for(Player p : model.getPlayer())
+		{
+			s += getString(p);
+			s += "\n \n";
 		}
 		return s;
 	}
-
-	private String modelToString(ClientModel model)
+	
+	private String getString(Player p)
 	{
-		return model.toString();
+		String s = "Player: "+ p.getId() + "\n";
+		s += "\nNumber of Emporia Left: " + p.getMyEmporia() + "\n";
+		s += "Money: " + p.getMoney() + "\n";
+		s += "Victory Points: " + p.getVictoryPoints() + "\n";
+		s += "Nobility Points: " + p.getNobilityPoints() + "\n";
+		s += "Number of helpers: " + p.getHelpers() + "\n";
+		s += "PoliticCards: [";
+		for(PoliticsCard card : p.getPoliticcard())
+		{
+			s += getString(card) + ", ";
+		}	
+		s += "]\n";
+		s += "Free Business Cards:";
+		if(p.getFreebusinesscard().isEmpty())
+			s += 0 + "\n";
+		else
+		{
+			s += "\n";
+			for(BusinessCard card : p.getFreebusinesscard())
+				s += getString(card) + "\n";
+		}
+		s += "\nUsed Business Cards:";
+		if(p.getUsedbusinesscard().isEmpty())
+			s += 0 + "\n";
+		else
+		{
+			s += "\n";
+			for(BusinessCard card : p.getUsedbusinesscard())
+				s += getString(card) + "\n";
+		}
+		s += "\nPolitic Cards: ";
+		if(p.getPoliticcard().isEmpty())
+			s += 0 + "\n";
+		else
+		{
+			s += "[";
+			for(PoliticsCard card : p.getPoliticcard())
+				s += getString(card) + ", ";
+			s += "]\n";
+		}
+		return s;
+	}
+	
+	private String getString(King king)
+	{
+		String s = "King\n";
+		s += "Current City: " + getString(king.getCurrentcity()) + "\n";
+		s += getString(king.getBalcony()) + "\n";
+		return s;
 	}
 
 	private String getString(Color c)
@@ -251,5 +340,36 @@ public class ClientCLI extends ClientUI
 		if(input instanceof EndTurnInput)
 			return "EndTurn";
 		return null;
+	}
+
+	private String getString(Balcony b)
+	{
+		String s = "Balcony: [";
+		for(Color c : b.getCouncilcolor())
+		{
+			s += getString(c) + ", ";
+		}
+		s += "]\n";
+		return s;
+	}
+	
+	private String getString(Region region)
+	{
+		String s = "Region: ";
+		s += getString(region.getType()) + "\n";
+		s += getString(region.getBalcony());
+		s += "CITIES: [";
+		for(City c : region.getCities())
+		{
+			s += getString(c);
+			s += ", ";
+		}
+		s += "]\n ";
+		s += "\n Business Cards:";
+		s += "First Card: ";
+		s += getString(region.getFirstcard());
+		s += "\nSecond Card: ";
+		s += getString(region.getSecondcard());
+		return s;
 	}
 }
