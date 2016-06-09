@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.controller.action;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.Region;
 
 
 public class ChangeKingPosition implements Action {
@@ -21,17 +22,42 @@ public class ChangeKingPosition implements Action {
 	
 	@Override
 	public Boolean execute(Model model) 
-	{
-		// TODO Auto-generated method stub
-		return null;
+	{	
+		City real = getRealCity(model);
+		if(real==null){
+			result = ActionMessages.GENERIC_ERROR;
+			return false;
+		}
+		int helperscost = real.calculateMalusEmporium();
+		int moneycost = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		
+		model.getMap().getKing().setCurrentcity(real);
+		real.buildEmporium(model.getPlayerById(playerId));
+		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers()-helperscost);
+		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
+		return true;
 	}
 
 	@Override
 	public Boolean isPossible(Model model) {
+		if(model.getPlayerById(playerId).getMaxemporia()==0){
+			result = ActionMessages.NO_BUILD;
+			return false;
+		}
+		
 		int requiredmoney = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
-			if(city.getEmporia().contains((Integer)playerId)){
+			City real = getRealCity(model);
+			if(real==null){	
+				result = ActionMessages.GENERIC_ERROR;
+				return false;
+			}
+			if(real.getEmporia().contains((Integer)playerId)){
 				result = ActionMessages.BUILD_EMPORIA;
+				return false;
+			}
+			else if(real.calculateMalusEmporium()>model.getPlayerById(playerId).getHelpers()){
+				result = ActionMessages.NO_HELPERS;
 				return false;
 			}
 			result = ActionMessages.EVERYTHING_IS_OK;
@@ -39,6 +65,17 @@ public class ChangeKingPosition implements Action {
 		}
 		result = ActionMessages.NO_MONEY;
 		return false;
+	}
+	
+	private City getRealCity(Model m){
+		for(Region r : m.getMap().getListaRegioni()){
+			for(City c : r.getCities()){
+				if(c.equals(city)){
+					return c;
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override

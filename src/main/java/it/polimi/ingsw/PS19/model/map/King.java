@@ -39,4 +39,10 @@ public class King implements Serializable
 		s += "CITY:  " + currentcity.toString() + "\n";
 		return s;
 	}
+	/**
+	 * @param currentcity the currentcity to set
+	 */
+	public void setCurrentcity(City currentcity) {
+		this.currentcity = currentcity;
+	}
 }
