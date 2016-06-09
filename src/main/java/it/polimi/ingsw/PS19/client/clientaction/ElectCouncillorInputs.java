@@ -34,7 +34,7 @@ public class ElectCouncillorInputs extends ClientAction
 	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		location = userInterface.getRegionAndKing();
-		color = userInterface.getAndValidateColor(getAvailableColors());
+		color = userInterface.getAndValidateColor(model.getAvailablecouncillor().getAvailableColors());
 		
 		return buildMessage();
 	}
@@ -51,13 +51,6 @@ public class ElectCouncillorInputs extends ClientAction
 		return request;
 	}
 
-	private List<Color> getAvailableColors()
-	{
-		List<Color> councillorsColors = new ArrayList<>();
-		
-		return councillorsColors;
-	}
-	
 	@Override
 	public String toString()
 	{

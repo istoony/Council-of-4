@@ -1,36 +1,57 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import it.polimi.ingsw.PS19.client.ClientUI;
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.message.requests.Request;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.map.Balcony;
+import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class SatisfyCouncilInput extends ClientAction 
+public abstract class SatisfyCouncilInput extends ClientAction 
 {
-	public SatisfyCouncilInput(ClientModel m) 
+	protected List<RegionType> getAvailableRegions()
 	{
-		model = m;
+		List<RegionType> availableRegions = new ArrayList<>();
+		for(Region r: model.getRegions())
+		{
+			
+			if(getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney());
+				availableRegions.add(r.getType());
+		}
+		return availableRegions;
 	}
-
-	@Override
-	public boolean isPossible() {
-		// TODO Auto-generated method stub
+	
+	protected boolean kingAvailable()
+	{
 		return false;
 	}
-
-	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private int getCost(Balcony balcony, List<PoliticsCard> cards)
+	{
+		int cost = 13;
+		List<Boolean> catched = new ArrayList<>();
+		for(int j = 0; j < balcony.getCouncilcolor().size(); j++)
+		{
+			catched.add(false);
+			Color balconyColor = balcony.getCouncilcolor().get(j); 
+			for(int i = 0; i < cards.size(); i++)
+			{
+				
+				if(balconyColor.equals(cards.get(i).getColor()))
+				{
+					cost -= 3;
+					if(cost == 1)
+						cost = 0;
+					catched.set(j, true);
+					cards.remove(i);
+					break;
+				}
+			}
+		}
+		return cost;
 	}
-
-	@Override
-	protected Request buildMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

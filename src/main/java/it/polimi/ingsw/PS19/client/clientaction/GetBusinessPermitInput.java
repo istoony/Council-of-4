@@ -5,7 +5,7 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
-public class GetBusinessPermitInput extends ClientAction 
+public class GetBusinessPermitInput extends SatisfyCouncilInput 
 {
 
 	public GetBusinessPermitInput(ClientModel m) 
@@ -16,7 +16,7 @@ public class GetBusinessPermitInput extends ClientAction
 	@Override
 	public boolean isPossible() 
 	{
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

@@ -8,10 +8,10 @@ public class FastAction extends ClientActionChooser
 	public FastAction(ClientModel m) 
 	{
 		super(m);
-		actions.add(new BuildEmporiumInputs(model));
-		actions.add(new BuildWithKingInputs(model));
+		actions.add(new RedrawBusinessCardInput(model));
+		actions.add(new BuyHelperInputs(model));
 		actions.add(new ElectCouncillorInputs(model, false));
-		actions.add(new GetBusinessPermitInput(model));	
+		actions.add(new NewMainActionInput(model));	
 	}
 	
 	@Override

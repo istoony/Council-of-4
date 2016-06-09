@@ -5,11 +5,17 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
-public class BuildWithKingInputs extends SatisfyCouncilInput 
+public class EndTurnInput extends ClientAction 
 {
-	public BuildWithKingInputs(ClientModel m) 
+	public EndTurnInput(ClientModel m) 
 	{
 		model = m;
+	}
+
+	@Override
+	public boolean isPossible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -22,12 +28,6 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 	protected Request buildMessage() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean isPossible() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
