@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.List;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
@@ -29,6 +30,7 @@ public class ClientCLI implements ClientUI
 		int i = 0;
 		while(!valid)
 		{
+			System.console().writer().println("DECIDI CHE CAZZO DI ACTION");
 			System.out.println("Decidi che tipo di azione fare:");
 			for(int j = 0; j < actionList.size(); j++)
 			{
