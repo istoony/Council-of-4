@@ -50,6 +50,7 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 			politicCard = userInterface.getPolitic(politicCards);
 			if(politicCard == null)
 				break;
+			politicCards.remove(politicCards.size()-1);
 			balcony.remove(politicCard.getColor());
 			colors.add(politicCard.getColor());
 			politicCards.remove(politicCard);
