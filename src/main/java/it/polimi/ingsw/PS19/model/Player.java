@@ -14,10 +14,10 @@ import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class Player implements Serializable
 {
-	/**
-	 * 
-	 */
+
+	private static final int EMPORIUM_SIZE=10;
 	private static final long serialVersionUID = -505551466312267551L;
+	
 	private int id;
 	private int money;
 	private int helpers;
@@ -26,6 +26,7 @@ public class Player implements Serializable
 	private int mainActionCounter;
 	private int fastActionCounter;
 	private int startingPoliticCard;
+	private int maxemporia;
 	
 	ArrayList<BusinessCard> freebusinesscard;
 	ArrayList<BusinessCard> usedbusinesscard;
@@ -66,6 +67,7 @@ public class Player implements Serializable
 				player.startingPoliticCard=politiccards;
 				player.money=money+p.indexOf(player);
 				player.helpers=helpers+p.indexOf(player);
+				player.maxemporia=EMPORIUM_SIZE;
 			}
 		}
 		return p;
@@ -115,6 +117,7 @@ public class Player implements Serializable
 	public void setId(int id) {
 		this.id = id;
 	}	
+	
 	public int getMainActionCounter() {
 		return mainActionCounter;
 	}
@@ -193,7 +196,8 @@ public class Player implements Serializable
 	}
 
 	public void addToMyEmporia(City c) {
-		this.myEmporia.add(c);
+		myEmporia.add(c);
+		maxemporia=maxemporia-1;
 	}
 
 	/**
@@ -217,5 +221,21 @@ public class Player implements Serializable
 			if(c.getId() == id)
 				return true;
 		return false;
+	}
+
+
+	/**
+	 * @return the maxemporia
+	 */
+	public int getMaxemporia() {
+		return maxemporia;
+	}
+
+
+	/**
+	 * @param maxemporia the maxemporia to set
+	 */
+	public void setMaxemporia(int maxemporia) {
+		this.maxemporia = maxemporia;
 	}
 }
