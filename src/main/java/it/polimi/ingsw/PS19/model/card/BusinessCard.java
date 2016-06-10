@@ -89,4 +89,13 @@ public class BusinessCard implements Card, Serializable{
 			cities.add(c);
 		return cities;
 	}
+
+	@Override
+	public boolean compare(Card card) 
+	{
+		BusinessCard b = (BusinessCard) card;
+		if(b.getId() == id)
+			return true;
+		return false;
+	}
 }

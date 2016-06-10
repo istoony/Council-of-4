@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.model.bonus;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class BonusFactory 
@@ -67,7 +68,7 @@ public class BonusFactory
 		return null;	
 	}
 	
-	public static ArrayList<Bonus> generateCityBonus(){
+	public static List<Bonus> generateCityBonus(){
 		Random k = new Random();
 		Random r = new Random();
 		int n;

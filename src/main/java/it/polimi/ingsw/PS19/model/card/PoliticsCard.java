@@ -22,8 +22,7 @@ public class PoliticsCard implements Card, Serializable {
 		return color;
 	}
 	
-	@Override
-	public boolean equals(Object card) 
+	public boolean compare(Card card) 
 	{
 		PoliticsCard c = (PoliticsCard) card;
 		if(c!=null && c.getColor().equals(this.color))

@@ -44,7 +44,7 @@ public class ClientManager
 		//Prova a connettersi
 		do
 		{
-			//Start thread to write string while connecting
+			//Start thread to write string while connecting....
 			t = new waitingWriterThread("Trying to connect..");
 			t.start();
 			
