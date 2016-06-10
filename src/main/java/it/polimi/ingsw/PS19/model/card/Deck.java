@@ -1,7 +1,5 @@
 package it.polimi.ingsw.PS19.model.card;
 
-import java.util.ArrayList;
-
 public interface Deck 
 {
 	/**

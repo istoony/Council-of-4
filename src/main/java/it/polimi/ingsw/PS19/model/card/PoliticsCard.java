@@ -23,10 +23,10 @@ public class PoliticsCard implements Card, Serializable {
 	}
 	
 	@Override
-	public boolean equals(Card card) 
+	public boolean equals(Object card) 
 	{
-		PoliticsCard carda = (PoliticsCard) card;
-		if(carda!=null && carda.getColor().equals(this.color))
+		PoliticsCard c = (PoliticsCard) card;
+		if(c!=null && c.getColor().equals(this.color))
 			return true;
 		return false;
 	}
