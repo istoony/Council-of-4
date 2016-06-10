@@ -11,6 +11,6 @@ public final class Constants
 	public static final int PORT = 4444;
 	public static final int MAX_PLAYERS = 5;
 	public static final int MAX_WRITING_TRIES = 5;
-	public static final int MAX_WAIT_TIME_s = 5;
-	public static final long PLAYER_TIMEOUT_TIME_s = 120;
+	public static final int MAX_WAIT_TIME_S = 5;
+	public static final long PLAYER_TIMEOUT_TIME_S = 120;
 }

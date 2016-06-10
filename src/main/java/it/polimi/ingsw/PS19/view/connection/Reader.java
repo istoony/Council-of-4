@@ -15,6 +15,7 @@ import it.polimi.ingsw.PS19.message.Message;
  */
 public abstract class Reader implements Callable<Message> 
 {
+	@Override
 	public Message call() throws ReaderException
 	{
 		try

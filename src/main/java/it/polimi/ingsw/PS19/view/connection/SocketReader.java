@@ -33,7 +33,6 @@ public class SocketReader extends Reader
 		Object obj = reader.readObject();
 		if(!(obj instanceof Message))
 			return null;
-		Message mex = (Message)obj;
-		return mex;
+		return (Message)obj;
 	}
 }

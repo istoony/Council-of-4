@@ -18,7 +18,7 @@ public class TimerThread extends Thread
 	public TimerThread()
 	{
 		t0 = System.currentTimeMillis();	//By default t0 is time of the creation of the timer;
-		defaultTime = Constants.MAX_WAIT_TIME_s*1000;
+		defaultTime = Constants.MAX_WAIT_TIME_S*1000;
 		System.out.println("Timer Thread has started");
 	}
 	
@@ -28,7 +28,8 @@ public class TimerThread extends Thread
 		while(!hasBeenInterrupted)								//Runs continuously until someone interrupts the thread;
 		{
 			t0 = WaitingRoom.getStartTime();							//Else get new t0
-			if(t0 < 0) time = defaultTime;								//checks there is a second player (t0 > 0) if not set default time;
+			if(t0 < 0) 
+				time = defaultTime;								//checks there is a second player (t0 > 0) if not set default time;
 			else 
 			{
 				time = t0 + defaultTime - System.currentTimeMillis();	//if new second player is present timeout is in t0 + default - now;
@@ -38,7 +39,8 @@ public class TimerThread extends Thread
 			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(WaitingRoom.getStartTime() == t0) WaitingRoom.startGame();	//If second player has not changed start game
+			if(WaitingRoom.getStartTime() == t0) 
+				WaitingRoom.startGame();	//If second player has not changed start game
 		}
 	}
 	

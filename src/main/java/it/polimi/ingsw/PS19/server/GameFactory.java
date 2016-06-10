@@ -1,7 +1,8 @@
 package it.polimi.ingsw.PS19.server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import it.polimi.ingsw.PS19.controller.GameController;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
@@ -12,12 +13,12 @@ import it.polimi.ingsw.PS19.view.connection.Connection;
 
 public class GameFactory extends Thread 
 {
-	private HashMap<Integer, Connection> players;
+	private Map<Integer, Connection> players;
 	private View view;
 	private Model model;
 	private GameController controller;
 	
-	public GameFactory(ArrayList<Connection> conns) 
+	public GameFactory(List<Connection> conns) 
 	{
 		players = new HashMap<>();
 		for (Integer i = 0; i < conns.size(); i++) 
@@ -33,6 +34,7 @@ public class GameFactory extends Thread
 	 * Configures Observer pattern between view controller and message
 	 * @see java.lang.Thread#run()
 	 */
+	@Override
 	public void run() 
 	{
 		for(int i = 0; i < players.size(); i++)

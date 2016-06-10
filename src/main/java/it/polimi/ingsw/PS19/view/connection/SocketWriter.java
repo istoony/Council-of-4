@@ -32,7 +32,8 @@ public class SocketWriter extends Writer
 	@Override
 	protected void write()
 	{
-		if(message == null) return;
+		if(message == null) 
+			return;
 		try {
 			out.reset();
 			out.writeObject(message);

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.view;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
@@ -17,12 +18,12 @@ import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
 
 public class View extends Observable implements Observer, Runnable
 {
-	private HashMap<Integer, Connection> playerConnection;
+	private Map<Integer, Connection> playerConnection;
 	private int activeId = 0;
 	private boolean stop = false;
 	boolean firstRun = true;
 	
-	public View(HashMap<Integer, Connection> conns) 
+	public View(Map<Integer, Connection> conns) 
 	{
 		playerConnection = conns;
 	}
@@ -93,7 +94,6 @@ public class View extends Observable implements Observer, Runnable
 	@Override
 	public void run() 
 	{
-		int i = 0;
 		setChanged();
 		notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
