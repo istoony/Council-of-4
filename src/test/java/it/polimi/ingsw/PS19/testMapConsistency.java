@@ -2,8 +2,8 @@ package it.polimi.ingsw.PS19;
 
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.map.City;
 
 public class testMapConsistency {
 	
