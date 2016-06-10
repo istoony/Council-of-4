@@ -86,7 +86,7 @@ public class ClientInterpreter extends Observable implements Observer
 	
 	private void requestAction()
 	{
-		Request mex;
+		Request mex = null;
 		boolean valid;
 		do
 		{
@@ -103,8 +103,7 @@ public class ClientInterpreter extends Observable implements Observer
 				{
 					mex = action.Execute(userInterface);
 					actionType.subAvail();
-					//mex.setId(playerId);
-					notify(mex);
+					mex.setId(playerId);
 					valid = true;
 				} catch (InvalidInsertionException e) 
 				{
@@ -112,6 +111,7 @@ public class ClientInterpreter extends Observable implements Observer
 				}
 			}
 		}while(!valid);
+		notify(mex);
 	}
 	
 	private ClientActionChooser getActionType()

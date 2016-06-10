@@ -29,7 +29,7 @@ import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
- * 
+ * CLI User Interface
  */
 public class ClientCLI extends ClientUI 
 {
@@ -83,18 +83,13 @@ public class ClientCLI extends ClientUI
 	@Override
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException
 	{
-		writeln("Definisci il colore del consigliere da aggiungere");
+		writeln("Definisci il colore del consigliere da aggiungere:");
 		List<String> strings = new ArrayList<>();
 		for(Color c : validColors)
 			strings.add(getString(c));
-		System.out.println("):");
 		return validColors.get(getValues(strings));
 	}
 
-	/*
-	 * Gets region or king from user
-	 * if is king returns null;
-	 */
 	@Override
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException 
 	{ 
@@ -112,7 +107,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showNotification(String s) 
 	{
-		System.out.println(s);
+		writeln(s);
 	}
 
 	@Override
@@ -322,7 +317,6 @@ public class ClientCLI extends ClientUI
 			return "no more cards";
 		return getString(card.getColor());
 	}
-
 
 	private String getString(RegionType region)
 	{
