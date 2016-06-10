@@ -44,13 +44,8 @@ public class ClientManager
 		//Prova a connettersi
 		do
 		{
-<<<<<<< HEAD
-			//Start thread to write string while connecting....
-			t = new waitingWriterThread("Trying to connect..");
-=======
 			//Start thread to write string while connecting
 			t = new WaitingWriterThread("Trying to connect..");
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 			t.start();
 			
 			//Tries to connect: First time with player input, after with standard input
