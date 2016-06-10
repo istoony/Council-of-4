@@ -9,6 +9,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.ps19.model.FileNames;
+import it.polimi.ingsw.ps19.model.IllegalFileException;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 
@@ -18,6 +20,7 @@ public class NobilityPath implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = -142212466262863614L;
+	private static final String ERROR = "file corrotto/non valido!";
 	
 	private Map<Integer, ArrayList<Bonus>> nobility;
 	
@@ -40,6 +43,9 @@ public class NobilityPath implements Serializable
 				String s1 = ss[1].trim();
 				int k = Integer.parseInt(ss[2].trim());
 				Bonus bonus = BonusFactory.getBonus(s1, k);
+				if(bonus==null){
+					throw new IllegalFileException(ERROR);
+				}
 				bonusarray.add(bonus);
 				ArrayList<Bonus> check = nobility.putIfAbsent(position, bonusarray);
 				if(check!=null){
@@ -54,7 +60,7 @@ public class NobilityPath implements Serializable
 	public String toString() 
 	{
 		String s = "\n------------";
-		for (int i = 0; i < 6; i++) 
+		for (int i = 0; i <= this.getMaxKey(); i++) 
 		{
 			s = s + "\nposition: " + i + "\n";
 			if(nobility.get(i) != null)
@@ -67,5 +73,16 @@ public class NobilityPath implements Serializable
 		}
 		return s;
 	}
+	
+	private int getMaxKey(){
+		int max=0;
+		for(int k : nobility.keySet()){
+			if (k>max){
+				max=k;
+			}
+		}
+		return max;
+	}
+	
 		
 }
