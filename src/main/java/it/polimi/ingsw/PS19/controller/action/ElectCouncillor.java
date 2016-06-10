@@ -1,12 +1,12 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
 
-import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ElectCouncillor implements Action
 {

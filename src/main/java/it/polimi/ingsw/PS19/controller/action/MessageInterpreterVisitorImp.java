@@ -1,21 +1,21 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
-import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
-import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 

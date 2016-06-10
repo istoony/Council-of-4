@@ -2,9 +2,9 @@ package it.polimi.ingsw.PS19;
 
 
 
-import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.ps19.controller.action.ChangeKingPosition;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.map.City;
 
 public class CheckCityLinksAndKingsMove {
 	

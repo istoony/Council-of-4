@@ -1,11 +1,12 @@
-package it.polimi.ingsw.PS19.model;
+package it.polimi.ingsw.ps19.model;
 
 import java.util.List;
+
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 public class Order implements Serializable{
 	/**

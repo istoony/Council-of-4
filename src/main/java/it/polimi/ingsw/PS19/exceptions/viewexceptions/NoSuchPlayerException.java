@@ -1,10 +1,10 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.PS19.exceptions.viewexceptions;
+package it.polimi.ingsw.ps19.exceptions.viewexceptions;
 
-/**
- * Exception to notify of searched player not present
+/*
+ * 
  */
 public class NoSuchPlayerException extends Exception 
 {

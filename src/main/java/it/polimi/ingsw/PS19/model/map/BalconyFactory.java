@@ -1,10 +1,10 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 import java.util.List;
 
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.parameter.ColorManager;
+import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 
 public class BalconyFactory 
 {

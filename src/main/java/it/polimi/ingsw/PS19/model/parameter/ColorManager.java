@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.parameter;
+package it.polimi.ingsw.ps19.model.parameter;
 
 import java.awt.Color;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.util.Random;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.map.FileReader;
+import it.polimi.ingsw.ps19.model.map.FileReader;
 
 public class ColorManager implements Serializable
 {

@@ -11,31 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.client.clientaction.BuyHelperInputs;
-import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
-import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.PS19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.PS19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.PS19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.map.Balcony;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
-import it.polimi.ingsw.PS19.server.Mutex;
+import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
+import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
+import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
+import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
+import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.Balcony;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-/**
+/*
  * CLI User Interface
  */
 public class ClientCLI extends ClientUI 
 {
-	private static Mutex mux = new Mutex();
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	@Override
@@ -174,17 +172,6 @@ public class ClientCLI extends ClientUI
 		return cards.get(index);
 	}
 	
-	@Override
-	public City getCity(List<City> cities) throws InvalidInsertionException
-	{
-		writeln("Scegli Città");
-		List<String> strings = new ArrayList<>();
-		for(City city : cities)
-			strings.add(getString(city));
-		int index = getValues(strings);
-		return cities.get(index);
-	}
-	
 	private int getValues(List<String> strings) throws InvalidInsertionException
 	{
 		int i;
@@ -210,29 +197,17 @@ public class ClientCLI extends ClientUI
 	
 	private void write(String s)
 	{
-		mux.lock();
 		System.out.print(s);
-		mux.unlock();
 	}
 	
 	private void writeln(String s)
 	{
-		mux.lock();
 		System.out.println(s);
-		mux.unlock();
 	}
 	
-	/**
-	 * Read from CLI
-	 * @return string read
-	 * @throws IOException
-	 */
-	public String read() throws IOException
+	private String read() throws IOException
 	{
-		mux.lock();
-		String s = in.readLine();
-		mux.unlock();
-		return s;
+		return in.readLine();
 	}
 	
 	private String getString(BusinessCard card)
@@ -262,24 +237,6 @@ public class ClientCLI extends ClientUI
 	private String getString(City city)
 	{
 		return city.getName();
-	}
-	
-	private String getFullString(City city)
-	{
-		String s = city.getName();
-		s += ":(";
-		s += getString(city.getCitycolor());
-		s += ",";
-		if(city.getEmporia().isEmpty())
-			s += "No Emporia";
-		else
-		{
-			s += "Emporia of players: ";
-			for(Integer playerId : city.getEmporia())
-				s = s.concat(playerId.toString() + ", ");
-		}
-		s += ")";
-		return s;
 	}
 	
 	private String modelToString(ClientModel model)
@@ -364,7 +321,7 @@ public class ClientCLI extends ClientUI
 			return "no more cards";
 		return getString(card.getColor());
 	}
-	
+
 	private String getString(RegionType region)
 	{
 		return region.toString();
@@ -399,18 +356,17 @@ public class ClientCLI extends ClientUI
 		String s = "Region: ";
 		s += getString(region.getType()) + "\n";
 		s += getString(region.getBalcony());
-		s += "Cities:\n";
+		s += "CITIES: [";
 		for(City c : region.getCities())
 		{
-			s = s.concat("\t" + getFullString(c) + "\n");
+			s = s.concat(getString(c) + ", ");
 		}
-		s += "\n Business Cards:\n";
-		s += "\tFirst Card: ";
+		s += "]\n ";
+		s += "\n Business Cards:";
+		s += "First Card: ";
 		s += getString(region.getFirstcard());
-		s += "\n\tSecond Card: ";
+		s += "\nSecond Card: ";
 		s += getString(region.getSecondcard());
-		s += "\n";
 		return s;
 	}
-
 }

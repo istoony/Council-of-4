@@ -1,8 +1,8 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
-import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
+import it.polimi.ingsw.ps19.model.Model;
 
 public class DrawPoliticsCard implements Action 
 {
