@@ -108,21 +108,28 @@ public class DrawBusinessCard implements Action
 			//controlla se esistono queste carte dentro la regione, per adesso uso == ma probabilmente
 			//non funziona quindi
 		
+		if(findFirstSecondCard(model))
+			return true;
+		result = ActionMessages.NO_BUSINESS_CARD;
+		return false;
+	}
+
+	private boolean findFirstSecondCard(Model model) 
+	{
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
 		
 		result = ActionMessages.EVERYTHING_IS_OK;
-		if(firstCard.equals(card))
+		if(firstCard.getId() ==card.getId())
 		{
 			isFirstCard = true;
 			return true;
 		}
-		if(secondCard.equals(card))
+		if(secondCard.getId() == card.getId())
 		{
 			isFirstCard = false;
 			return true;
 		}
-		result = ActionMessages.NO_BUSINESS_CARD;
 		return false;
 	}
 
