@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import it.polimi.ingsw.PS19.client.clientaction.BuyHelperInputs;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
@@ -54,7 +55,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				e.printStackTrace();
+				log.log(Level.SEVERE, e.toString(), e);
 			}
 			finally
 			{
@@ -130,6 +131,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
+				log.log(Level.SEVERE, e.toString(), e);
 				strings.clear();
 			}
 			finally
@@ -156,7 +158,7 @@ public class ClientCLI extends ClientUI
 		for(BusinessCard card : cards)
 			strings.add(getString(card));
 		int index = getValues(strings);
-		return(cards.get(index));
+		return cards.get(index);
 	}
 	
 	@Override
@@ -167,12 +169,13 @@ public class ClientCLI extends ClientUI
 		for(PoliticsCard card : cards)
 			strings.add(getString(card));
 		int index = getValues(strings);
-		return(cards.get(index));
+		return cards.get(index);
 	}
 	
 	private int getValues(List<String> strings) throws InvalidInsertionException
 	{
-		int i, n;
+		int i;
+		int n;
 		try
 		{
 			write("(");
@@ -186,6 +189,7 @@ public class ClientCLI extends ClientUI
 		}catch(IOException | NumberFormatException e)
 		{
 			writeln("Invalid Insertion");
+			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
 		return n;
@@ -209,17 +213,17 @@ public class ClientCLI extends ClientUI
 	private String getString(BusinessCard card)
 	{
 		String s = "[";
-		s += "Cities: ";
+		s = s.concat("Cities: ");
 		for(City city: card.getCity())
 		{
-			s += getString(city);
-			s += ", ";
+			s = s.concat(getString(city));
+			s = s.concat(", ");
 		}
 		s += "Bonus: ";
 		for(Bonus b : card.getBonus())
 		{
-			s += getString(b);
-			s += ", ";
+			s = s.concat(getString(b));
+			s = s.concat(", ");
 		}
 		s += "]";
 		return s;
@@ -227,7 +231,7 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(Bonus b)
 	{
-		return b.toString().substring(b.toString().lastIndexOf(".") + 1, b.toString().lastIndexOf("@"));
+		return b.toString().substring(b.toString().lastIndexOf('.') + 1, b.toString().lastIndexOf('@'));
 	}
 	
 	private String getString(City city)
@@ -240,15 +244,15 @@ public class ClientCLI extends ClientUI
 		String s = "----------------------------------- \n MODEL\n \n \n";
 		for(Region region: model.getRegions())
 		{
-			s += getString(region);
-			s += "\n\n";
+			s = s.concat(getString(region));
+			s = s.concat("\n\n");
 		}
 		s += getString(model.getKing());
 		s += "\n";
 		for(Player p : model.getPlayer())
 		{
-			s += getString(p);
-			s += "\n \n";
+			s = s.concat(getString(p));
+			s = s.concat("\n\n");
 		}
 		return s;
 	}
@@ -264,7 +268,7 @@ public class ClientCLI extends ClientUI
 		s += "PoliticCards: [";
 		for(PoliticsCard card : p.getPoliticcard())
 		{
-			s += getString(card) + ", ";
+			s = s.concat(getString(card) + ", ");
 		}	
 		s += "]\n";
 		s += "Free Business Cards:";
@@ -274,7 +278,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getFreebusinesscard())
-				s += getString(card) + "\n";
+				s = s.concat(getString(card) + "\n");
 		}
 		s += "\nUsed Business Cards:";
 		if(p.getUsedbusinesscard().isEmpty())
@@ -283,7 +287,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
-				s += getString(card) + "\n";
+				s = s.concat(getString(card) + "\n");
 		}
 		s += "\nPolitic Cards: ";
 		if(p.getPoliticcard().isEmpty())
@@ -292,7 +296,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "[";
 			for(PoliticsCard card : p.getPoliticcard())
-				s += getString(card) + ", ";
+				s = s.concat(getString(card) + ", ");
 			s += "]\n";
 		}
 		return s;
@@ -341,7 +345,7 @@ public class ClientCLI extends ClientUI
 		String s = "Balcony: [";
 		for(Color c : b.getCouncilcolor())
 		{
-			s += getString(c) + ", ";
+			s = s.concat(getString(c) + ", ");
 		}
 		s += "]\n";
 		return s;
@@ -355,8 +359,7 @@ public class ClientCLI extends ClientUI
 		s += "CITIES: [";
 		for(City c : region.getCities())
 		{
-			s += getString(c);
-			s += ", ";
+			s = s.concat(getString(c) + ", ");
 		}
 		s += "]\n ";
 		s += "\n Business Cards:";

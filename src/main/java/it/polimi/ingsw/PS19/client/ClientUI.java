@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.logging.*;
 
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
@@ -15,6 +16,8 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public abstract class ClientUI
 {	
+	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
+	
 	public abstract ClientActionChooser requestActionType(List<ClientActionChooser> actions);
 	
 	public abstract ClientAction getAction(List<ClientAction> actions);
