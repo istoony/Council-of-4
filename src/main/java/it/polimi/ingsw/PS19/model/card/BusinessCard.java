@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.model.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.map.City;
@@ -13,14 +14,15 @@ public class BusinessCard implements Card, Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	RegionType type;
-	ArrayList<Bonus> bonus;
-	ArrayList<City> city;
+	private RegionType type;
+	private List<Bonus> bonus;
+	private List<City> city;
+	private int id;
 	
 	public BusinessCard(RegionType type, Bonus bonus, City city) 
 	{
-		this.bonus = new ArrayList<Bonus>();
-		this.city = new ArrayList<City>();
+		this.bonus = new ArrayList<>();
+		this.city = new ArrayList<>();
 		this.type = type;
 		this.bonus.add(bonus);
 		this.city.add(city);
@@ -28,12 +30,12 @@ public class BusinessCard implements Card, Serializable{
 	
 	public BusinessCard(RegionType type) 
 	{
-		this.bonus = new ArrayList<Bonus>();
-		this.city = new ArrayList<City>();
+		this.bonus = new ArrayList<>();
+		this.city = new ArrayList<>();
 		this.type = type;
 	}
 	
-	public ArrayList<Bonus> getBonus() 
+	public List<Bonus> getBonus() 
 	{
 		return bonus;
 	}
@@ -58,6 +60,12 @@ public class BusinessCard implements Card, Serializable{
 		this.city.add(city);
 		return true;
 	}
+	protected void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
+	}
 	
 	@Override
 	public String toString() 
@@ -73,13 +81,6 @@ public class BusinessCard implements Card, Serializable{
 		
 		return s;
 	}
-
-	@Override
-	public boolean equals(Card card) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	@SuppressWarnings("unchecked")
 	public ArrayList<City> getCity() 
 	{

@@ -77,6 +77,7 @@ public class DeckFactory
 				}
 			}
 			businessdeck.shuffle();
+			businessdeck.setCardsId();
 			return businessdeck;
 		    } catch (Exception e) {
 			e.printStackTrace();
