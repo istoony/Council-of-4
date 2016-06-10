@@ -112,6 +112,10 @@ public class City implements Serializable {
 			s += "   bonus:" + b.toString();
 		}
 		s += "\n   citycolor:" + citycolor + "\n";
+		s += "\n neighbours:\n"; 
+		for(City c : neighbours){
+			s+=c.name+"\n";
+		}
 		return s;
 	}
 

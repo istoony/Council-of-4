@@ -11,6 +11,11 @@ import it.polimi.ingsw.ps19.model.FileNames;
 public class CityLoader {
 	
 	
+	private CityLoader() {
+		super();
+	}
+	
+	
 	//metodo principale, popola le protoregioni di città con annessi cammini
 	static ArrayList<ArrayList<City>> citiesReader(ArrayList<MapLoader> idlist){
 		
@@ -140,5 +145,7 @@ public class CityLoader {
 		}
 		return nearlist;
 	}
+	
+
 	
 }

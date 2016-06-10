@@ -73,8 +73,8 @@ public class BonusFactory
 		Random r = new Random();
 		int n;
 		int i=0;
-		ArrayList<Integer> truthTable = new ArrayList<Integer>();
-		ArrayList<Bonus> bon = new ArrayList<Bonus>();
+		ArrayList<Integer> truthTable = new ArrayList<>();
+		ArrayList<Bonus> bon = new ArrayList<>();
 		
 		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++){
 			truthTable.add(1);
