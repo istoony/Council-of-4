@@ -19,8 +19,6 @@ public class BuyHelper implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		if(model.getPlayerById(id).getMoney() < MONEY)
-			return false;
 		model.getPlayerById(id).setMoney(model.getPlayerById(id).getMoney() - MONEY);
 		model.getPlayerById(id).setHelpers(model.getPlayerById(id).getHelpers() + HELPERS);
 		return true;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
+import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
@@ -23,6 +24,8 @@ public interface ReplyVisitor
 	public ClientUpdate display(PlayerDisconnectedReply message);
 	
 	public ClientUpdate display(EndTurnReply message);
+	
+	public ClientUpdate display(ChangeKingPositionReply message);
 	
 
 }
