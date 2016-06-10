@@ -81,6 +81,7 @@ public class BusinessCard implements Card, Serializable{
 		
 		return s;
 	}
+<<<<<<< HEAD
 	
 	public List<City> getCity() 
 	{
@@ -88,5 +89,11 @@ public class BusinessCard implements Card, Serializable{
 		for (City c : city) 
 			cities.add(c);
 		return cities;
+=======
+	@SuppressWarnings("unchecked")
+	public ArrayList<City> getCity() 
+	{
+		return (ArrayList<City>) city.clone();
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 	}
 }

@@ -46,6 +46,7 @@ public class Player implements Serializable
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
 		connected = true;
+		setStartingAction();
 	}
 	
 	
@@ -235,6 +236,20 @@ public class Player implements Serializable
 			if(c.getId() == id)
 				return true;
 		return false;
+	}
+
+	public List<BusinessCard> getFreebusinesscard() 
+	{
+		List<BusinessCard> list = new ArrayList<>();
+		list.addAll(freebusinesscard);
+		return list;
+	}
+	
+	public List<BusinessCard> getUsedbusinesscard() 
+	{
+		List<BusinessCard> list = new ArrayList<>();
+		list.addAll(usedbusinesscard);
+		return list;
 	}
 
 

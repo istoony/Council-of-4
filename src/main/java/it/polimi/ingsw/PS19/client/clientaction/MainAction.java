@@ -18,4 +18,12 @@ public class MainAction extends ClientActionChooser
 	{
 		return "Main Action";
 	}
+
+	@Override
+	public boolean isPossible() 
+	{
+		if(model.getMyPlayer().getMainActionCounter() > 0)
+			return true;
+		return false;
+	}
 }
