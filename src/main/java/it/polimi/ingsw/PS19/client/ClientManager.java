@@ -20,7 +20,7 @@ import it.polimi.ingsw.PS19.view.connection.SocketConnection;
 public class ClientManager 
 {
 	private static Socket socket;
-	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	//Thread pool used by connections for writing;
+	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) 
@@ -45,7 +45,7 @@ public class ClientManager
 		do
 		{
 			//Start thread to write string while connecting
-			t = new waitingWriterThread("Trying to connect..");
+			t = new WaitingWriterThread("Trying to connect..");
 			t.start();
 			
 			//Tries to connect: First time with player input, after with standard input

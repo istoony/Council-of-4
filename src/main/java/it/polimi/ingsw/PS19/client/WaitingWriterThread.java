@@ -6,11 +6,11 @@ package it.polimi.ingsw.PS19.client;
  * @author Andrea
  *
  */
-public class waitingWriterThread extends Thread 
+public class WaitingWriterThread extends Thread 
 {
 	private String text;
 	private boolean hasBeenInterrupted = false;
-	public waitingWriterThread(String s)
+	public WaitingWriterThread(String s)
 	{
 		text = s;
 	}
