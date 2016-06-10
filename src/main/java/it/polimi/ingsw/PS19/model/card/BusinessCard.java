@@ -82,9 +82,11 @@ public class BusinessCard implements Card, Serializable{
 		return s;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<City> getCity() 
 	{
-		return (List<City>) city.clone();
+		List<City> cities = new ArrayList<>();
+		for (City c : city) 
+			cities.add(c);
+		return cities;
 	}
 }
