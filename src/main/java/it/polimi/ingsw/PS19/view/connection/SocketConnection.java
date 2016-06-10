@@ -18,8 +18,6 @@ public class SocketConnection extends Connection
 {
 
 	private Socket clientSocket;
-	private SocketWriter writer;
-	private SocketReader reader;
 	
 	public SocketConnection(Socket client, ExecutorService exec) throws IOException
 	{
