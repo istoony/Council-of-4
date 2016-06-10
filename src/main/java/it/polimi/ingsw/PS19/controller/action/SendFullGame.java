@@ -18,7 +18,6 @@ public class SendFullGame implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getCurrentState().setSendfullgame(true);
 		return true;
 	}
 

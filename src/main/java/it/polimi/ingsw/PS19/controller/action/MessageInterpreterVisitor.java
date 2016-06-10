@@ -8,6 +8,7 @@ import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
 
 public interface MessageInterpreterVisitor 
 {
@@ -26,5 +27,7 @@ public interface MessageInterpreterVisitor
 	public Action visit(ChangeKingPositionMessage message);
 	
 	public Action visit(BuyMainActionMessage message);
+	
+	public Action visit(SendOrderMessage message);
 		
 }

@@ -1,22 +1,41 @@
 package it.polimi.ingsw.PS19.model;
 
-import java.util.ArrayList;
-//****//
+
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class Market 
 {
-	private ArrayList<Order> listoforder;
+	private Map<Integer, Order> listoforder;
 	
 	public Market() 
 	{
-		listoforder = new ArrayList<Order>();
+		listoforder = new HashMap<>();
 	}
 	
-	public void addOrder(Order order)
+	public void addOrder(Order order, int playerId)
 	{
-		listoforder.add(order);
+		listoforder.put(playerId,order);
 	}
-	public ArrayList<Order> getListoforder() 
+	
+	public Map<Integer, Order> getListoforder() 
 	{
 		return listoforder;
+	}
+	
+	public Order getOrderById(int playerId)
+	{
+		return listoforder.get(playerId);
+	}
+	
+	public boolean removeOrderById(int playerId)
+	{
+		return listoforder.remove(playerId)!= null;
+		
+	}
+	public int getSize()
+	{
+		return listoforder.size();
 	}
 }

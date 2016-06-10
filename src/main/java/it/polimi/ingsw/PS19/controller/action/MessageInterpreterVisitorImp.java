@@ -11,6 +11,7 @@ import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.King;
@@ -81,6 +82,12 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	public Action visit(BuyMainActionMessage message) 
 	{
 		return new BuyMainAction(message.getId());
+	}
+
+	@Override
+	public Action visit(SendOrderMessage message) 
+	{
+		return new AddOrder(message.getOrder(), message.getId());
 	}
 
 }

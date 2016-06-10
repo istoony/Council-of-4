@@ -14,6 +14,7 @@ public class ActionMessages
 	public static final String GENERIC_ERROR = "ERROR!";
 	public static final String NO_BUILD = "You have already built are yours emporia!";
 	public static final String PLAYER_DISCONNECTED = "Player Disconnected. id = ";
+	public static final String NO_MARKET_TIME ="this is not Market time";
 	
 	
 	private ActionMessages() { }

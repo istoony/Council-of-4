@@ -6,14 +6,13 @@ public class CurrentState
 	private Boolean cityBonusRequest;
 	private int playerTurnId;
 	
-	private Boolean sendfullgame;
+	private Boolean timeToMarket;
 	
 	public CurrentState() 
 	{
 		businessCardRequest = false;
 		cityBonusRequest = false;
 		playerTurnId = 0;
-		sendfullgame = false;
 	}
 	
 	public void setBusinessCardRequest(Boolean businessCardRequest) {
@@ -34,11 +33,13 @@ public class CurrentState
 	public int getPlayerTurnId() {
 		return playerTurnId;
 	}
-	public Boolean getSendfullgame() {
-		return sendfullgame;
+	 public void setTimeToMarket(Boolean timeToMarket) 
+	 {
+		this.timeToMarket = timeToMarket;
 	}
-	public void setSendfullgame(Boolean sendfullgame) {
-		this.sendfullgame = sendfullgame;
+	 public Boolean getTimeToMarket() 
+	 {
+		return timeToMarket;
 	}
 	
 }

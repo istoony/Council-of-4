@@ -1,25 +1,30 @@
 package it.polimi.ingsw.PS19.model;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
-public class Order {
-	private ArrayList<BusinessCard> businesscard;
-	private ArrayList<PoliticsCard> politicscard;
+public class Order implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 692698285944776249L;
+	private List<BusinessCard> businesscard;
+	private List<PoliticsCard> politicscard;
 	private int helper;
 	private int price;
 	
 	public Order() 
 	{
-		businesscard = new ArrayList<BusinessCard>();
-		politicscard = new ArrayList<PoliticsCard>();
+		businesscard = new ArrayList<>();
+		politicscard = new ArrayList<>();
 		helper = 0;
 	}
 	
-	public Order(ArrayList<BusinessCard> businesscard, ArrayList<PoliticsCard> politicscards, int helper, int price)
+	public Order(List<BusinessCard> businesscard, List<PoliticsCard> politicscards, int helper, int price)
 	{
 		this.businesscard = businesscard;
 		this.politicscard = politicscards;
@@ -43,6 +48,9 @@ public class Order {
 	public void setPrice(int price) 
 	{
 		this.price = price;
+	}
+	public int getPrice() {
+		return price;
 	}
 	
 	public List<BusinessCard> getBusinesscard() {
