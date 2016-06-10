@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.controller.action;
 
+import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 
@@ -49,9 +50,9 @@ public class EndTurn implements Action
 	
 	
 	@Override
-	public Reply createReplyMessage(Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public Reply createReplyMessage(Model model) 
+	{
+		return new EndTurnReply(model.getCurrentState().getPlayerTurnId(), result);
 	}
 
 }

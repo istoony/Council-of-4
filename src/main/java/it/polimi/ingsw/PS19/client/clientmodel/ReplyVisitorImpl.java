@@ -1,13 +1,8 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.PS19.client.clientmodel;
 
-import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.ElectCouncillorUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.PlayerDisconnectedUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.SendFullGameUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.SendFullPlayerUpdate;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
@@ -47,6 +42,11 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(PlayerDisconnectedReply message) {
 		return new PlayerDisconnectedUpdate(message.getResult());
+	}
+	@Override
+	public ClientUpdate display(EndTurnReply message) 
+	{
+		return new EndTurnUpdate(message.getActivePlayer());
 	}
 
 }
