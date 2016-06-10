@@ -49,7 +49,7 @@ public class BusinessCard implements Card, Serializable{
 		return type;
 	}
 	
-	public Boolean addCity(City city) 
+	protected Boolean addCity(City city) 
 	{
 		for (City c : this.city) 
 		{
@@ -80,5 +80,11 @@ public class BusinessCard implements Card, Serializable{
 		s = s + "\n";
 		
 		return s;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<City> getCity() 
+	{
+		return (List<City>) city.clone();
 	}
 }
