@@ -82,8 +82,7 @@ public class ChangeKingPosition implements Action {
 
 	@Override
 	public String getStringResult() {
-		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 
 	@Override

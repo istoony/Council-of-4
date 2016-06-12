@@ -17,7 +17,7 @@ public class BuyMainAction implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getPlayerById(playerId).setMainActionCounter(1);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter()+1);
 		return true;
 	}
 

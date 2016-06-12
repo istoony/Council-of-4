@@ -26,14 +26,17 @@ public class Player implements Serializable
 	private int helpers;
 	private int victoryPoints;
 	private int nobilityPoints;
-	private int mainActionCounter;
-	private int fastActionCounter;
 	private int startingPoliticCard;
 	private int maxemporia;
 	
-	List<BusinessCard> freebusinesscard;
-	List<BusinessCard> usedbusinesscard;
-	List<PoliticsCard> politiccard;
+	private int mainActionCounter;
+	private int fastActionCounter;
+	private int politicCardToDraw;
+	private ArrayList<Integer> businessCardToDrawByRegion;
+	
+	private List<BusinessCard> freebusinesscard;
+	private List<BusinessCard> usedbusinesscard;
+	private List<PoliticsCard> politiccard;
 	
 	private List<City> myEmporia;
 	
@@ -46,7 +49,6 @@ public class Player implements Serializable
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
 		connected = true;
-		setStartingAction();
 	}
 	
 	
@@ -55,8 +57,9 @@ public class Player implements Serializable
 	public void setStartingAction(){
 		mainActionCounter = 1;
 		fastActionCounter = 1;
+		politicCardToDraw = 1 + startingPoliticCard;
+		startingPoliticCard = 0;
 	}
-	
 	
 	public static List<Player> setStartingItems(List<Player> p, String xmlfile){
 		
@@ -266,5 +269,37 @@ public class Player implements Serializable
 	 */
 	public void setMaxemporia(int maxemporia) {
 		this.maxemporia = maxemporia;
+	}
+
+
+	/**
+	 * @return the politicCardToDraw
+	 */
+	public int getPoliticCardToDraw() {
+		return politicCardToDraw;
+	}
+
+
+	/**
+	 * @param politicCardToDraw the politicCardToDraw to set
+	 */
+	public void setPoliticCardToDraw(int politicCardToDraw) {
+		this.politicCardToDraw = politicCardToDraw;
+	}
+
+
+	/**
+	 * @return the businessCardToDrawByRegion
+	 */
+	public ArrayList<Integer> getBusinessCardToDrawByRegion() {
+		return businessCardToDrawByRegion;
+	}
+
+
+	/**
+	 * @param businessCardToDrawByRegion the businessCardToDrawByRegion to set
+	 */
+	public void setBusinessCardToDrawByRegion(ArrayList<Integer> businessCardToDrawByRegion) {
+		this.businessCardToDrawByRegion = businessCardToDrawByRegion;
 	}
 }

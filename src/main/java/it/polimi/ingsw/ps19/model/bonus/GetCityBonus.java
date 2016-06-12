@@ -6,6 +6,7 @@ public class GetCityBonus implements Bonus {
 	/**
 	 * 
 	 */
+	// not done
 	private static final long serialVersionUID = 6314285377196367956L;
 	
 	private int howmany;

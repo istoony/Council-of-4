@@ -17,7 +17,8 @@ public class GeneralBonus implements Bonus {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1772425330600691738L;
+	private static final long serialVersionUID = -1328598681393239063L;
+
 	private List<List<City>> regionsBonus;
 	private int singleRegionBonus;
 	private List<Integer> kingBonus;  //first to achieve

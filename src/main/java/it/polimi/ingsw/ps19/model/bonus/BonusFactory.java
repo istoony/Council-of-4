@@ -36,6 +36,10 @@ public class BonusFactory
     bonus-get-business-card-bonus
     bonus-get-city-bonus*/
 	
+	private BonusFactory(){
+		//null
+	}
+	
 	
 	public static Bonus getBonus(String typeofbonus, int parameter)
 	{
@@ -52,13 +56,13 @@ public class BonusFactory
 			return new DrawPoliticCard(parameter);
 						
 		if(typeofbonus.equals(BONUS_ANOTHER_TURN))
-			return new MoreMainAction();
+			return new MoreMainAction(parameter);
 							
 		if(typeofbonus.equals(BONUS_MORE_VICTORY_POINTS))
 			return new MoreVictoryPoints(parameter);
 					
 		if(typeofbonus.equals(BONUS_MORE_BUSINESS_CARD))
-			return new DrawBusinessCard();
+			return new DrawBusinessCard(parameter);
 		
 		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
 			return new ReuseBusinessCardBonus();
