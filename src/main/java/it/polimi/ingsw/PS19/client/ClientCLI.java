@@ -293,17 +293,20 @@ public class ClientCLI extends ClientUI
 			s = s.concat(getString(p));
 			s = s.concat("\n\n");
 		}
+		s += "Active Player ID: " + model.getActiveplayer();
 		return s;
 	}
 	
 	private String getString(Player p)
 	{
 		String s = "Player: "+ p.getId() + "\n";
-		s += "\nNumber of Emporia Left: " + (p.getMaxemporia() - p.getMyEmporia().size()) + "\n";
+		s += "Number of Emporia Left: " + (p.getMaxemporia() - p.getMyEmporia().size()) + "\n";
 		s += "Money: " + p.getMoney() + "\n";
 		s += "Victory Points: " + p.getVictoryPoints() + "\n";
 		s += "Nobility Points: " + p.getNobilityPoints() + "\n";
 		s += "Number of helpers: " + p.getHelpers() + "\n";
+		s += "Number of MAIN available: " + p.getMainActionCounter() + "\n";
+		s += "Number of FAST available: " + p.getFastActionCounter() + "\n";
 		s += "Politic Cards: ";
 		if(p.getPoliticcard().isEmpty())
 			s += 0 + "\n";

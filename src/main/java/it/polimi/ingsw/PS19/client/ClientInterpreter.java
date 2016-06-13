@@ -75,6 +75,7 @@ public class ClientInterpreter extends Observable implements Observer
 			Reply reply = (Reply) arg;
 			updateModel(reply);
 			userInterface.drawModel(model);
+			userInterface.showNotification("Active player: " + reply.getActivePlayer());
 			if(reply.getActivePlayer() == playerId)
 				activatePlayer();
 		}
