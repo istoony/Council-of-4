@@ -246,7 +246,7 @@ public class ClientCLI extends ClientUI
 			s = s.concat(getString(b));
 			s = s.concat(", ");
 		}
-		s += "]";
+		s += "]\n";
 		return s;
 	}
 	
@@ -294,6 +294,7 @@ public class ClientCLI extends ClientUI
 			s = s.concat("\n\n");
 		}
 		s += "Active Player ID: " + model.getActiveplayer();
+		s += "\n--------------------------------------\n\n";
 		return s;
 	}
 	
@@ -324,7 +325,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getFreebusinesscard())
-				s = s.concat(getString(card) + "\n");
+				s = s.concat(getString(card));
 		}
 		s += "Used Business Cards:";
 		if(p.getUsedbusinesscard().isEmpty())
@@ -333,7 +334,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
-				s = s.concat(getString(card) + "\n");
+				s = s.concat(getString(card));
 		}
 		return s;
 	}
@@ -402,9 +403,8 @@ public class ClientCLI extends ClientUI
 		s += "Business Cards:\n";
 		s += "\tFirst Card: ";
 		s += getString(region.getFirstcard());
-		s += "\n\tSecond Card: ";
+		s += "\tSecond Card: ";
 		s += getString(region.getSecondcard());
-		s += "\n";
 		return s;
 	}
 }
