@@ -100,25 +100,26 @@ public class ClientInterpreter extends Observable implements Observer
 		boolean valid;
 		do
 		{
-			ClientActionChooser actionType = getActionType();
-			if(actionType == null)
+			try
 			{
-				mex = new EndTurnMessage(); 
-				valid = true;
-			}
-			else
-			{
-				ClientAction action = actionType.getAction(userInterface);
-				try 
+				ClientActionChooser actionType = getActionType();
+				if(actionType == null)
 				{
+					mex = new EndTurnMessage(); 
+					valid = true;
+				}
+				else
+				{
+					ClientAction action = actionType.getAction(userInterface);
 					mex = action.execute(userInterface);
 					mex.setId(playerId);
 					valid = true;
-				} catch (InvalidInsertionException e) 
-				{
-					log.log(Level.OFF, e.toString(), e);
-					valid = false;
-				}
+				} 
+			}
+			catch (InvalidInsertionException e) 
+			{
+				log.log(Level.OFF, e.toString(), e);
+				valid = false;
 			}
 		}while(!valid);
 		notify(mex);
