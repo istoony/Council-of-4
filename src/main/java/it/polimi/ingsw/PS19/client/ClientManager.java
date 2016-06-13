@@ -110,6 +110,8 @@ public class ClientManager
 		userInterface.showNotification("Insert server IP Address: ");
 		String ip = in.readLine();
 		try {
+			if(ip.length() == 0)
+				ip = ClientConstants.IP_ADDRESS;
 			Inet4Address.getByName(ip);
 		} catch (UnknownHostException e) 
 		{

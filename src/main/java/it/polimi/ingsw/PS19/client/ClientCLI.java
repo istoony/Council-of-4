@@ -188,6 +188,8 @@ public class ClientCLI extends ClientUI
 	{
 		int i;
 		int n;
+		if (strings.isEmpty())
+			throw new InvalidInsertionException();
 		try
 		{
 			write("(");
@@ -296,17 +298,21 @@ public class ClientCLI extends ClientUI
 	private String getString(Player p)
 	{
 		String s = "Player: "+ p.getId() + "\n";
-		s += "\nNumber of Emporia Left: " + p.getMyEmporia() + "\n";
+		s += "\nNumber of Emporia Left: " + p.getMyEmporia().size() + "\n";
 		s += "Money: " + p.getMoney() + "\n";
 		s += "Victory Points: " + p.getVictoryPoints() + "\n";
 		s += "Nobility Points: " + p.getNobilityPoints() + "\n";
 		s += "Number of helpers: " + p.getHelpers() + "\n";
-		s += "PoliticCards: [";
-		for(PoliticsCard card : p.getPoliticcard())
+		s += "Politic Cards: ";
+		if(p.getPoliticcard().isEmpty())
+			s += 0 + "\n";
+		else
 		{
-			s = s.concat(getString(card) + ", ");
-		}	
-		s += "]\n";
+			s += "[";
+			for(PoliticsCard card : p.getPoliticcard())
+				s = s.concat(getString(card) + ", ");
+			s += "]\n";
+		}
 		s += "Free Business Cards:";
 		if(p.getFreebusinesscard().isEmpty())
 			s += 0 + "\n";
@@ -324,16 +330,6 @@ public class ClientCLI extends ClientUI
 			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
 				s = s.concat(getString(card) + "\n");
-		}
-		s += "Politic Cards: ";
-		if(p.getPoliticcard().isEmpty())
-			s += 0 + "\n";
-		else
-		{
-			s += "[";
-			for(PoliticsCard card : p.getPoliticcard())
-				s = s.concat(getString(card) + ", ");
-			s += "]\n";
 		}
 		return s;
 	}
@@ -399,7 +395,7 @@ public class ClientCLI extends ClientUI
 		{
 			s = s.concat("\t" + getFullString(c) + "\n");
 		}
-		s += "\n Business Cards:\n";
+		s += "Business Cards:\n";
 		s += "\tFirst Card: ";
 		s += getString(region.getFirstcard());
 		s += "\n\tSecond Card: ";
