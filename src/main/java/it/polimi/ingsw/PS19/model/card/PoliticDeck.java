@@ -1,9 +1,7 @@
-package it.polimi.ingsw.ps19.model.card;
+package it.polimi.ingsw.PS19.model.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
 public class PoliticDeck implements Deck
 {

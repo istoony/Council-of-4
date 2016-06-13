@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.model.card;
+package it.polimi.ingsw.PS19.model.card;
 
 import java.awt.Color;
 import java.io.File;
@@ -13,12 +13,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.ps19.model.bonus.Bonus;
-import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
-import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.parameter.ColorManager;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
-import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.parameter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DeckFactory 
 {

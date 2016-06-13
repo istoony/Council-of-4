@@ -5,11 +5,12 @@ package it.polimi.ingsw.PS19.view.connection;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.SocketWritingException;
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.PS19.message.Message;
 
 /**
  * Class for socket connection

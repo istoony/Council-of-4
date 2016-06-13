@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import it.polimi.ingsw.ps19.message.replies.Reply;
-import it.polimi.ingsw.ps19.model.map.Map;
-import it.polimi.ingsw.ps19.model.map.MapLoader;
+import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.model.map.Map;
+import it.polimi.ingsw.PS19.model.map.MapLoader;
 
 public class Model extends Observable
 {

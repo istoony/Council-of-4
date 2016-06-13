@@ -5,15 +5,10 @@ package it.polimi.ingsw.PS19.view.connection;
 
 import java.util.concurrent.Callable;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.server.Constants;
-=======
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.SocketWritingException;
-import it.polimi.ingsw.ps19.message.Message;
-import it.polimi.ingsw.ps19.server.Constants;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
+
 
 /*
  * Abstract class to write a message. 

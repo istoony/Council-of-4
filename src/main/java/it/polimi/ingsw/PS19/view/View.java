@@ -1,6 +1,5 @@
 package it.polimi.ingsw.PS19.view;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Observable;
@@ -8,7 +7,6 @@ import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.Reply;
@@ -17,16 +15,7 @@ import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
-=======
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.ps19.message.Message;
-import it.polimi.ingsw.ps19.message.replies.Reply;
-import it.polimi.ingsw.ps19.message.requests.NewTurnMessage;
-import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
-import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.ps19.view.connection.Connection;
-import it.polimi.ingsw.ps19.view.connection.ConnectionStatus;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
+
 
 public class View extends Observable implements Observer, Runnable
 {

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.polimi.ingsw.ps19.model.parameter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 
 public class AvailableCouncillor implements Serializable
 {

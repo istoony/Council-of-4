@@ -1,12 +1,12 @@
-package it.polimi.ingsw.ps19.model.card;
+package it.polimi.ingsw.PS19.model.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.ps19.model.bonus.Bonus;
-import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class BusinessCard implements Card, Serializable{
 

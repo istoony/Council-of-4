@@ -8,10 +8,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.ps19.model.card.BusinessCard;
-import it.polimi.ingsw.ps19.model.card.PoliticsCard;
-import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.map.FileReader;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.FileReader;
 
 public class Player implements Serializable
 {
