@@ -25,7 +25,6 @@ public class GameController implements Observer
 	public GameController(Model m) 
 	{
 		model = m;
-		drawPoliticsCard(m);
 	}
 	
 	/**
@@ -52,6 +51,8 @@ public class GameController implements Observer
 		 *See MessageInterpreterVisitor
 		 */
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
+		
+		drawPoliticsCard(model);
 	
 		if(!(message instanceof Request))
 			return;
@@ -91,8 +92,7 @@ public class GameController implements Observer
 			else
 				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer());
 	
-			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setFastActionCounter(1);
-			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setMainActionCounter(1);
+			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			
 		}
 	}
