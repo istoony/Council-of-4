@@ -82,10 +82,9 @@ public class GameController implements Observer
 	private void checkAlreadyTurn()
 	{
 		int id = model.getCurrentState().getPlayerTurnId();
-		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0)
-		{
-			model.getCurrentState().setBusinessCardRequest(false);
-			model.getCurrentState().setCityBonusRequest(false);
+		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
+				&& !model.getCurrentState().getCityBonusRequest() && !model.getCurrentState().getBusinessCardRequest())
+		{		
 			if(id + 1 < model.getMaxId())
 				model.getCurrentState().setPlayerTurnId(id + 1);
 			else
@@ -93,7 +92,6 @@ public class GameController implements Observer
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setFastActionCounter(1);
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setMainActionCounter(1);
-			
 			
 		}
 	}
@@ -122,14 +120,12 @@ public class GameController implements Observer
 	{
 		if(model.getCurrentState().getBusinessCardRequest())
 			model.createMessage(new GetBusinessCardBonusReply(model.getCurrentState().getPlayerTurnId()));
-		model.getCurrentState().setBusinessCardRequest(false);
 	}
 	
 	private void checkCityBonus()
 	{
 		if(model.getCurrentState().getCityBonusRequest())
 			model.createMessage(new GetCityBonusReply(model.getCurrentState().getPlayerTurnId()));
-		model.getCurrentState().setCityBonusRequest(false);
 	}
 	
 	
