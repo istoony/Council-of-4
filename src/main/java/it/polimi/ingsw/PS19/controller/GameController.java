@@ -35,7 +35,8 @@ public class GameController implements Observer
 	{
 		for (Player p : m.getPlayer()) 
 		{
-			for(int i=0;i<p.getPoliticCardToDraw();i++)
+			int numberOfPoliticCards = p.getPoliticCardToDraw();
+			for(int i=0;i<numberOfPoliticCards;i++)
 			{
 				DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId());
 				drawPoliticsCard.execute(m);
@@ -78,8 +79,7 @@ public class GameController implements Observer
 		
 		setTimeToMarket();
 		checkTimeToMarket();
-			
-		return;
+		
 	}
 	private void checkAlreadyTurn()
 	{
@@ -94,6 +94,7 @@ public class GameController implements Observer
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			
+
 		}
 	}
 	

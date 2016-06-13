@@ -1,16 +1,8 @@
 package it.polimi.ingsw.PS19;
 
-
-
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
-=======
-import it.polimi.ingsw.ps19.controller.action.ChangeKingPosition;
-import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.model.map.City;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 public class CheckCityLinksAndKingsMove {
 	

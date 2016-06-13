@@ -53,6 +53,8 @@ public class Player implements Serializable
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
 		connected = true;
+		mainActionCounter = 1;
+		fastActionCounter = 1;
 	}
 	
 	
@@ -61,8 +63,7 @@ public class Player implements Serializable
 	public void setStartingAction(){
 		mainActionCounter = 1;
 		fastActionCounter = 1;
-		politicCardToDraw = 1 + startingPoliticCard;
-		startingPoliticCard = 0;
+		politicCardToDraw = 1;
 	}
 	
 	public static List<Player> setStartingItems(List<Player> p, String xmlfile){
@@ -75,11 +76,13 @@ public class Player implements Serializable
 			int helpers = Integer.parseInt(e.getElementsByTagName("helpers").item(0).getTextContent());
 			int politiccards = Integer.parseInt(e.getElementsByTagName("politiccards").item(0).getTextContent());		
 			
-			for(Player player : p){
+			for(Player player : p)
+			{
 				player.startingPoliticCard=politiccards;
 				player.money=money+p.indexOf(player);
 				player.helpers=helpers+p.indexOf(player);
 				player.maxemporia=EMPORIUM_SIZE;
+				player.politicCardToDraw = 1 + player.startingPoliticCard;
 			}
 		}
 		return p;
@@ -279,8 +282,11 @@ public class Player implements Serializable
 	/**
 	 * @return the politicCardToDraw
 	 */
-	public int getPoliticCardToDraw() {
-		return politicCardToDraw;
+	public int getPoliticCardToDraw() 
+	{
+		int app = politicCardToDraw;
+		politicCardToDraw = 0;
+		return app;
 	}
 
 
