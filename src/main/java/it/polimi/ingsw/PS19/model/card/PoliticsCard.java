@@ -22,6 +22,7 @@ public class PoliticsCard implements Card, Serializable {
 		return color;
 	}
 	
+	@Override
 	public boolean compare(Card card) 
 	{
 		PoliticsCard c = (PoliticsCard) card;

@@ -68,6 +68,7 @@ public class DrawBusinessCard implements Action
 			model.getMap().getRegionByType(region).drowSecondCard();
 		}
 		model.getPlayerById(playerId).addCardToHand(selectedcard);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
 		return true;
 	}
 

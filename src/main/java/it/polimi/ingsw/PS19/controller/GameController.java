@@ -65,8 +65,8 @@ public class GameController implements Observer
 		reply = action.createReplyMessage(model);
 		
 		checkModelStatus();
-		System.out.println(model.toString());
 		reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
+		reply.setId(-1);
 		model.createMessage(reply);
 	}
 	
