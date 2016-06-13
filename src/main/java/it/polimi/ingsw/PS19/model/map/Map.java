@@ -1,10 +1,11 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
@@ -12,6 +13,15 @@ import it.polimi.ingsw.PS19.model.card.PoliticDeck;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
+=======
+import it.polimi.ingsw.ps19.model.FileNames;
+import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
+import it.polimi.ingsw.ps19.model.card.DeckFactory;
+import it.polimi.ingsw.ps19.model.card.PoliticDeck;
+import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.ps19.model.parameter.ColorManager;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 public class Map 
 {	

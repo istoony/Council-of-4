@@ -5,8 +5,13 @@ package it.polimi.ingsw.PS19.view.connection;
 
 import java.util.concurrent.*;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
+=======
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.Message;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 /*
  * Abstract class that covers communication with one user

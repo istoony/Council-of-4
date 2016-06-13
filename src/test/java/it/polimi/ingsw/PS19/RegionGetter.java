@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 public class RegionGetter {
 

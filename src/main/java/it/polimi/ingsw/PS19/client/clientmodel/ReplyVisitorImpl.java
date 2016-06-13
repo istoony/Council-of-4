@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
@@ -9,6 +10,16 @@ import it.polimi.ingsw.PS19.message.replies.GetBusinessCardBonusReply;
 import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
+=======
+import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
+import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
+import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
+import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply;
+import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
+import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 public class ReplyVisitorImpl implements ReplyVisitor 
 {

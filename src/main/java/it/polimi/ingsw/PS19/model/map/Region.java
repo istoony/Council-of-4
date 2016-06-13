@@ -1,14 +1,14 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.FileNames;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.BusinessDeck;
-import it.polimi.ingsw.PS19.model.card.DeckFactory;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.model.FileNames;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.BusinessDeck;
+import it.polimi.ingsw.ps19.model.card.DeckFactory;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class Region implements Serializable{
 	

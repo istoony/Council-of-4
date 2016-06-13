@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 /*
  * This class works as a timer for the waiting room

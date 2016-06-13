@@ -9,8 +9,13 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
+=======
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.SocketConnection;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 
 

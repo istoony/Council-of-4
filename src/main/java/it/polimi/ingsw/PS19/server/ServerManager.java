@@ -1,7 +1,7 @@
 /*
  * @Author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;

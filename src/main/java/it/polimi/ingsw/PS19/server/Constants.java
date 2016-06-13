@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 /*
  *This class collects all the constants (final values) of the programs which are used by more than one class

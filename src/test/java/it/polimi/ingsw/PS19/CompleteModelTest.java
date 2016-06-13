@@ -1,5 +1,23 @@
 package it.polimi.ingsw.PS19;
 
+<<<<<<< HEAD
+=======
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import org.junit.Test;
+
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
+
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 public class CompleteModelTest {
 	/*
 	Scanner in;

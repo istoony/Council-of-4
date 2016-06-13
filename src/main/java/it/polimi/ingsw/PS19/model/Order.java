@@ -1,9 +1,17 @@
-package it.polimi.ingsw.PS19.model;
+package it.polimi.ingsw.ps19.model;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+=======
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 import java.io.Serializable;
 import java.util.ArrayList;

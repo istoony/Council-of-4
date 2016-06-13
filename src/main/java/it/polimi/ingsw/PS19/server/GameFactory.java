@@ -1,15 +1,15 @@
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.view.View;
-import it.polimi.ingsw.PS19.view.connection.Connection;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.view.View;
+import it.polimi.ingsw.ps19.view.connection.Connection;
 
 public class GameFactory extends Thread 
 {

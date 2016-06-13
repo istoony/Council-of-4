@@ -2,9 +2,9 @@ package it.polimi.ingsw.PS19.client.clientmodel;
 
 import java.util.List;
 
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.map.King;
 
 public class ChangeKingPositionUpdate implements ClientUpdate 
 {

@@ -1,12 +1,12 @@
-package it.polimi.ingsw.PS19.model.bonus;
+package it.polimi.ingsw.ps19.model.bonus;
 
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 public class CityColorBonus implements Serializable {
 	

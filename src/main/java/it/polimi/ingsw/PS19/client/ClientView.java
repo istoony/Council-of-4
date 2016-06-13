@@ -8,10 +8,17 @@ import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.view.connection.Connection;
+=======
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.requests.Request;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 /*
  * 

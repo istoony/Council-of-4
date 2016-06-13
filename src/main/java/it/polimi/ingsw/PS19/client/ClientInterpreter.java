@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientaction.FastAction;
@@ -20,6 +21,23 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
+=======
+import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
+import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.ps19.client.clientaction.FastAction;
+import it.polimi.ingsw.ps19.client.clientaction.MainAction;
+import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.StringMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.message.requests.Request;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 public class ClientInterpreter extends Observable implements Observer
 {

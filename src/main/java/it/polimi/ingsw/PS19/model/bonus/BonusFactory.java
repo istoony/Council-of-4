@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.bonus;
+package it.polimi.ingsw.ps19.model.bonus;
 
 import java.util.ArrayList;
 import java.util.List;
