@@ -1,14 +1,14 @@
-package it.polimi.ingsw.ps19.message.replies;
+package it.polimi.ingsw.PS19.message.replies;
 
 import java.util.List;
 
-import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
-import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
-import it.polimi.ingsw.ps19.model.map.King;
-import it.polimi.ingsw.ps19.model.map.NobilityPath;
-import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.NobilityPath;
+import it.polimi.ingsw.PS19.model.map.Region;
 
 public class SendFullGameReply extends Reply 
 {

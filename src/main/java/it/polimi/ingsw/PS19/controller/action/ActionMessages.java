@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.PS19.controller.action;
 
 public class ActionMessages 
 {

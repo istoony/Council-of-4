@@ -1,8 +1,8 @@
-package it.polimi.ingsw.ps19.message.requests;
+package it.polimi.ingsw.PS19.message.requests;
 
-import it.polimi.ingsw.ps19.controller.action.Action;
-import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
-import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.PS19.controller.action.Action;
+import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
+import it.polimi.ingsw.PS19.model.Order;
 
 public class SendOrderMessage extends Request
 {

@@ -1,14 +1,14 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.ps19.message.requests;
+package it.polimi.ingsw.PS19.message.requests;
 
 import java.awt.Color;
 
-import it.polimi.ingsw.ps19.controller.action.Action;
-import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
-import it.polimi.ingsw.ps19.model.map.King;
-import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.controller.action.Action;
+import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 /*
  * 

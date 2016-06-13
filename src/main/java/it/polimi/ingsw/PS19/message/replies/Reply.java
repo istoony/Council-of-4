@@ -1,8 +1,8 @@
-package it.polimi.ingsw.ps19.message.replies;
+package it.polimi.ingsw.PS19.message.replies;
 
-import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
-import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.PS19.message.Message;
 
 public abstract class Reply extends Message
 {

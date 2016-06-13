@@ -1,9 +1,8 @@
-package it.polimi.ingsw.ps19.controller;
+package it.polimi.ingsw.PS19.controller;
 
 import java.util.Observable;
 import java.util.Observer;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
@@ -15,16 +14,7 @@ import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
-=======
-import it.polimi.ingsw.ps19.controller.action.Action;
-import it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard;
-import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
-import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp;
-import it.polimi.ingsw.ps19.message.replies.Reply;
-import it.polimi.ingsw.ps19.message.requests.Request;
-import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.model.Player;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
+
 
 public class GameController implements Observer
 {

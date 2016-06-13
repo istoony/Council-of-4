@@ -1,14 +1,14 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.PS19.controller.action;
 
-import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
-import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
-import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
-import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
+import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
+import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
 
 /**
  * The Interface MessageInterpreterVisitor implements Visitor pattern
