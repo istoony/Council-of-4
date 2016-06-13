@@ -42,7 +42,14 @@ public class ChangeKingPosition implements Action {
 
 	@Override
 	public Boolean isPossible(Model model) {
-		if(model.getPlayerById(playerId).getMaxemporia()==0){
+		
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		
+		if((model.getPlayerById(playerId).getMaxemporia()-model.getPlayerById(playerId).getMyEmporia().size())==0){
 			result = ActionMessages.NO_BUILD;
 			return false;
 		}

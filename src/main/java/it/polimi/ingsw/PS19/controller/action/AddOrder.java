@@ -31,6 +31,11 @@ public class AddOrder implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
 		result = ActionMessages.EVERYTHING_IS_OK;
 		if(model.getCurrentState().getTimeToMarket())
 			return true;
