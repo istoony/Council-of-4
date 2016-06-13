@@ -35,7 +35,7 @@ import it.polimi.ingsw.PS19.server.Mutex;
  */
 public class ClientCLI extends ClientUI 
 {
-	private static Mutex mux = new Mutex();
+	//private static Mutex mux = new Mutex();
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	@Override
@@ -210,16 +210,16 @@ public class ClientCLI extends ClientUI
 	
 	private void write(String s)
 	{
-		mux.lock();
+		//mux.lock();
 		System.out.print(s);
-		mux.unlock();
+		//mux.unlock();
 	}
 	
 	private void writeln(String s)
 	{
-		mux.lock();
+		//mux.lock();
 		System.out.println(s);
-		mux.unlock();
+		//mux.unlock();
 	}
 	
 	/**
@@ -229,9 +229,9 @@ public class ClientCLI extends ClientUI
 	 */
 	public String read() throws IOException
 	{
-		mux.lock();
+		//mux.lock();
 		String s = in.readLine();
-		mux.unlock();
+		//mux.unlock();
 		return s;
 	}
 	
