@@ -7,20 +7,21 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.ps19.controller.GameController;
-import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.model.card.BusinessCard;
-import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.PS19.controller.GameController;
+import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class CompleteModelTest {
 
 	Scanner in;
 	Model m;
 	GameController g;
-	int turn = 0;
+	int turn;
+	
 	@Test
 	public void testModel() 
 	{
@@ -30,6 +31,7 @@ public class CompleteModelTest {
 		in = new Scanner(System.in); 
 		while(true)
 		{
+			turn = m.getCurrentState().getPlayerTurnId();
 			System.out.println(m.toString());
 			System.out.println("CURRENT TURN" + turn);
 		/*	for(int i = 0; i<6; i++)
@@ -39,23 +41,20 @@ public class CompleteModelTest {
 				g.update(null, message);
 			}*/
 			System.out.println(m.getPlayerById(turn).toString());
+			System.out.println(m.getCurrentState().toString());
 			System.out.println("MAIN ACTION: \n"
 					+ "1 - Corrompere un consiglio e comprare una business\n"
-					+ "2 - Cambiare il colore a un balconcino");
+					+ "2 - Cambiare il colore a un balconcino\n"
+					+ "3 - fine del turno");
 			int action = in.nextInt();
 			if(action == 1)
 				drawBusinessCardTest();
 			if(action == 2)
 				electCouncillorTest();
+			if(action == 3)
+				fineTurno();
 			
 			System.out.println(m.toString());
-			EndTurnMessage endt = new EndTurnMessage();
-			endt.setId(turn);
-			g.update(null, endt);
-			if(turn == 1)
-				turn = 0;
-			else 
-				turn = 1;
 		}
 	}
 	private void drawBusinessCardTest()
@@ -140,5 +139,12 @@ public class CompleteModelTest {
 			return Color.decode("#FFC0CB");
 		else
 			return Color.decode("#FF0000");
+	}
+	
+	private void fineTurno()
+	{
+		EndTurnMessage m = new EndTurnMessage();
+		m.setId(turn);
+		g.update(null, m);
 	}
 }
