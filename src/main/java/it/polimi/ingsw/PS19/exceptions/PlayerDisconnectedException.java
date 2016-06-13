@@ -1,5 +1,8 @@
-package it.polimi.ingsw.ps19.exceptions;
+package it.polimi.ingsw.PS19.exceptions;
 
+/**
+ * Exception to notify that a player is disconnected
+ */
 public class PlayerDisconnectedException extends Exception 
 {
 	private static final long serialVersionUID = 8676922617260112320L;
