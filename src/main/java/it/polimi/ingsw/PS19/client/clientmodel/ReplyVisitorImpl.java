@@ -52,7 +52,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(EndTurnReply message) 
 	{
-		return new EndTurnUpdate(message.getActivePlayer());
+		return new EndTurnUpdate(message.getActivePlayer(), message.getPlayer());
 	}
 	
 	@Override

@@ -19,7 +19,13 @@ public class EndTurn implements Action
 	{
 		model.getPlayerById(playerId).setFastActionCounter(0);
 		model.getPlayerById(playerId).setMainActionCounter(0);
-			
+		
+		if(playerId < model.getMaxId())
+			model.getCurrentState().setPlayerTurnId(playerId + 1);
+		else
+			model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer());
+	
+		model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();			
 		return true;
 	}
 
@@ -51,7 +57,7 @@ public class EndTurn implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new EndTurnReply(model.getCurrentState().getPlayerTurnId(), result);
+		return new EndTurnReply(model.getCurrentState().getPlayerTurnId(), model.getPlayer(), result);
 	}
 
 }

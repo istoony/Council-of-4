@@ -95,6 +95,7 @@ public class GameController implements Observer
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
+			
 
 		}
 	}
