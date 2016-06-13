@@ -200,27 +200,103 @@
 	</businesscard>
 	
 	<nobilitypath>
-		<position>
-			<numberofposition>3</numberofposition>
+		<cell>
+			<position>2</position>
 			<bonus>
-				<type>bonus-more-helper</type>
-				<parameter>1</parameter>
+				<type>bonus-more-victory-points</type>
+				<value>2</value>
 			</bonus>
+		</cell>
+		<cell>
+			<position>2</position>
 			<bonus>
 				<type>bonus-more-money</type>
-				<parameter>10</parameter>
+				<value>2</value>
 			</bonus>
+		</cell>
+		<cell>
+			<position>4</position>
 			<bonus>
-				<type>bonus-more-money</type>
-				<parameter>2</parameter>
+				<type>bonus-get-city-bonus</type>
+				<value>1</value>
 			</bonus>
-		</position>
-		<position>
-			<numberofposition>5</numberofposition>
+		</cell>
+		<cell>
+			<position>6</position>
+			<bonus>
+				<type>bonus-another-turn</type>
+				<value>1</value>
+			</bonus>
+		</cell>
+		<cell>
+			<position>8</position>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<value>3</value>
+			</bonus>
+		</cell>
+		<cell>
+			<position>8</position>
+			<bonus>
+				<type>bonus-more-politicscard</type>
+				<value>1</value>
+			</bonus>
+		</cell>		
+		<cell>
+			<position>10</position>
+			<bonus>
+				<type>bonus-more-business-card</type>
+				<value>1</value>
+			</bonus>
+		</cell>		
+		<cell>
+			<position>12</position>
 			<bonus>
 				<type>bonus-more-helper</type>
-				<parameter>1</parameter>
+				<value>1</value>
 			</bonus>
-		</position>
+		</cell>		
+		<cell>
+			<position>12</position>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<value>5</value>
+			</bonus>
+		</cell>		
+		<cell>
+			<position>14</position>
+			<bonus>
+				<type>bonus-get-business-card-bonus</type>
+				<value>1</value>
+			</bonus>
+		</cell>	
+		<cell>
+			<position>16</position>
+			<bonus>
+				<type>bonus-get-city-bonus</type>
+				<value>2</value>
+			</bonus>
+		</cell>		
+		<cell>
+			<position>18</position>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<value>8</value>
+			</bonus>
+		</cell>	
+		<cell>
+			<position>19</position>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<value>2</value>
+			</bonus>
+		</cell>	
+		<cell>
+			<position>20</position>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<value>3</value>
+			</bonus>
+		</cell>					
 	</nobilitypath>
 </mapcolor>

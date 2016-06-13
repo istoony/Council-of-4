@@ -1,12 +1,12 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.util.Random;
 
-import it.polimi.ingsw.PS19.message.replies.CompleteMarketReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.Order;
+import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.Order;
 
 public class AddOrder implements Action 
 {

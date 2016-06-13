@@ -9,8 +9,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+<<<<<<< HEAD
+import it.polimi.ingsw.PS19.model.IllegalFileException;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+=======
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
+
 
 public class NobilityPath implements Serializable
 {
@@ -18,12 +24,14 @@ public class NobilityPath implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = -142212466262863614L;
+	private static final String ERROR = "file corrotto/non valido!";
+	
 	private Map<Integer, ArrayList<Bonus>> nobility;
 	
 	public NobilityPath(String pathfile) 
 	{
 		nobility = new HashMap<>();
-		NodeList nList = FileReader.XMLReader(pathfile, "position");
+		NodeList nList = FileReader.XMLReader(pathfile, "cell");
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) 
 		{
@@ -32,15 +40,22 @@ public class NobilityPath implements Serializable
 			{
 				Element eElement = (Element) nNode;
 				
-				int numberofposition = Integer.parseInt(eElement.getElementsByTagName("numberofposition").item(0).getTextContent());
-				int numberofbonus = eElement.getElementsByTagName("bonus").getLength();
+				int position = Integer.parseInt(eElement.getElementsByTagName("position").item(0).getTextContent());
 				ArrayList<Bonus> bonusarray = new ArrayList<>();
-				for(int i = 0; i < numberofbonus; i++)
-				{
-					Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));
-					bonusarray.add(bonus);
+				String s = eElement.getElementsByTagName("bonus").item(0).getTextContent();
+				String[] ss = s.split("\n");
+				String s1 = ss[1].trim();
+				int k = Integer.parseInt(ss[2].trim());
+				Bonus bonus = BonusFactory.getBonus(s1, k);
+				if(bonus==null){
+					throw new IllegalFileException(ERROR);
 				}
-				nobility.put(numberofposition, bonusarray);
+				bonusarray.add(bonus);
+				ArrayList<Bonus> check = nobility.putIfAbsent(position, bonusarray);
+				if(check!=null){
+					bonusarray.addAll(check);
+					nobility.put(position, bonusarray);
+				}
 			}
 		}
 	}
@@ -49,7 +64,7 @@ public class NobilityPath implements Serializable
 	public String toString() 
 	{
 		String s = "\n------------";
-		for (int i = 0; i < 6; i++) 
+		for (int i = 0; i <= this.getMaxKey(); i++) 
 		{
 			s = s + "\nposition: " + i + "\n";
 			if(nobility.get(i) != null)
@@ -63,9 +78,15 @@ public class NobilityPath implements Serializable
 		return s;
 	}
 	
-	public static void main(String[] args) 
-	{
-		NobilityPath np = new NobilityPath("mapfile/politicscard.xml");
-		System.out.println(np.toString());
+	private int getMaxKey(){
+		int max=0;
+		for(int k : nobility.keySet()){
+			if (k>max){
+				max=k;
+			}
+		}
+		return max;
 	}
+	
+		
 }

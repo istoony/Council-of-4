@@ -3,26 +3,27 @@
  */
 package it.polimi.ingsw.PS19.view.connection;
 
-import java.io.IOException;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.server.Constants;
+=======
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.SocketWritingException;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.server.Constants;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
-/**
+/*
  * Abstract class to write a message. 
  * Runs on a different Thread.
  */
 public abstract class Writer implements Callable<Integer>
 {
-	protected static final Logger log = Logger.getLogger("CONNECTION_LOGGER");
-	
 	protected Message message;
 	
-	/**
+	/*
 	 * Implementation of call to write
 	 * @see java.util.concurrent.Callable#call()
 	 */
@@ -40,7 +41,6 @@ public abstract class Writer implements Callable<Integer>
 			}
 			catch(Exception e)
 			{
-				log.log(Level.SEVERE, e.toString(), e);
 				success = false;
 			}
 			finally
@@ -53,14 +53,13 @@ public abstract class Writer implements Callable<Integer>
 		return numOfTries;
 	}
 	
-	/**
+	/*
 	 * Actual writing method which will be different for different type of communication
 	 */
-	protected abstract void write() throws IOException;
+	protected abstract void write() throws Exception;
 	
-	/**
-	 * set Message to be written
-	 * @param mex: message
+	/*
+	 * Sets message to be written
 	 */
 	public void setMessage(Message mex)
 	{

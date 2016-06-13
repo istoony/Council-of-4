@@ -1,80 +1,94 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
-import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
-import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
-import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
 
 /**
- * Visitor interface on server side
+ * The Interface MessageInterpreterVisitor implements Visitor pattern
+ * to only read all message form view e to create action.
+ * This class and all implementation don't change the model.
  */
 public interface MessageInterpreterVisitor 
 {
+	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for ElectCouncillorMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(ElectCouncillorMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for SendFullGameMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(SendFullGameMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for BuyHelperMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(BuyHelperMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for GetBusinessCardMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(GetBusinessCardMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for DrawPoliticsCardMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(DrawPoliticsCardMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for EndTurnMessage
+	 * (if player don't play the fast action but only main action)
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(EndTurnMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for ChangeKingPositionMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(ChangeKingPositionMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for BuyMainActionMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(BuyMainActionMessage message);
 	
 	/**
-	 * return the proper Action wrt the message
-	 * @param message
-	 * @return
+	 * Visit for SendOrderMessage
+	 *
+	 * @param message the message
+	 * @return the action
 	 */
 	public Action visit(SendOrderMessage message);
+		
 }

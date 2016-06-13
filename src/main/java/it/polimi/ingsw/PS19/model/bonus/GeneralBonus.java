@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.bonus;
+package it.polimi.ingsw.ps19.model.bonus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,17 +7,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.FileReader;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.FileReader;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 public class GeneralBonus implements Bonus {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1772425330600691738L;
+	private static final long serialVersionUID = -1328598681393239063L;
+
 	private List<List<City>> regionsBonus;
 	private int singleRegionBonus;
 	private List<Integer> kingBonus;  //first to achieve

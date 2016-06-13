@@ -1,20 +1,13 @@
-package it.polimi.ingsw.PS19.message.requests;
+package it.polimi.ingsw.ps19.message.requests;
 
 
-import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
+import it.polimi.ingsw.ps19.controller.action.Action;
+import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 
-/**
- * Message to notify that a player had disconnected
- */
 public class PlayerDisconnectedMessage extends Request 
 {
 	private static final long serialVersionUID = 1600487378262939610L;
 	
-	/**
-	 * Constructor
-	 * @param id: id of disconnected player
-	 */
 	public PlayerDisconnectedMessage(Integer id) 
 	{
 		this.id = id;
@@ -23,12 +16,12 @@ public class PlayerDisconnectedMessage extends Request
 	@Override
 	public String toString() 
 	{
-		return new String();
+		return null;
 	}
 
 	@Override
-	public Action accept(MessageInterpreterVisitor messageInterpreter) 
-	{
+	public Action accept(MessageInterpreterVisitor messageInterpreter) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

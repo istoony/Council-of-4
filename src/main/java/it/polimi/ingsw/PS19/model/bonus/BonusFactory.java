@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.bonus;
+package it.polimi.ingsw.ps19.model.bonus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ public class BonusFactory
 {
 
 	private static final String BONUS_GET_CITY_BONUS = "bonus-get-city-bonus";
-	private static final String BONUS_GET_TWO_TOKEN = "bonus-get-two-token";
 	private static final String BONUS_GET_BUSINESS_CARD_BONUS = "bonus-get-business-card-bonus";
 	private static final String BONUS_MORE_BUSINESS_CARD = "bonus-more-business-card";
 	private static final String BONUS_MORE_VICTORY_POINTS = "bonus-more-victory-points";
@@ -35,8 +34,11 @@ public class BonusFactory
     bonus-more-victory-points
     bonus-more-business-card
     bonus-get-business-card-bonus
-    bonus-get-two-token
     bonus-get-city-bonus*/
+	
+	private BonusFactory(){
+		//null
+	}
 	
 	
 	public static Bonus getBonus(String typeofbonus, int parameter)
@@ -50,21 +52,24 @@ public class BonusFactory
 		if(typeofbonus.equals(BONUS_MORE_NOBILITYTRACK))
 			return new MoreNobilityPoints(parameter);
 					
-	//	if(typeofbonus.equals(BONUS_MORE_POLITICSCARD))
+		if(typeofbonus.equals(BONUS_MORE_POLITICSCARD))
+			return new DrawPoliticCard(parameter);
 						
 		if(typeofbonus.equals(BONUS_ANOTHER_TURN))
-			return new MoreMainAction();
+			return new MoreMainAction(parameter);
 							
 		if(typeofbonus.equals(BONUS_MORE_VICTORY_POINTS))
 			return new MoreVictoryPoints(parameter);
 					
-	//	if(typeofbonus.equals(BONUS_MORE_BUSINESS_CARD))
-									
-	//	if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
-										
-	//	if(typeofbonus.equals(BONUS_GET_TWO_TOKEN))
-											
-	//	if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
+		if(typeofbonus.equals(BONUS_MORE_BUSINESS_CARD))
+			return new DrawBusinessCard(parameter);
+		
+		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
+			return new ReuseBusinessCardBonus();
+																			
+		if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
+			return new GetCityBonus(parameter);
+			
 		return null;	
 	}
 	
@@ -72,9 +77,9 @@ public class BonusFactory
 		Random k = new Random();
 		Random r = new Random();
 		int n;
-		int i=0;
-		ArrayList<Integer> truthTable = new ArrayList<Integer>();
-		ArrayList<Bonus> bon = new ArrayList<Bonus>();
+		int i;
+		ArrayList<Integer> truthTable = new ArrayList<>();
+		ArrayList<Bonus> bon = new ArrayList<>();
 		
 		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++){
 			truthTable.add(1);

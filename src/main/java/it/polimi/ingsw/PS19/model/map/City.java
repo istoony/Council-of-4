@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 
 public class City implements Serializable {
 	
@@ -112,6 +112,10 @@ public class City implements Serializable {
 			s += "   bonus:" + b.toString();
 		}
 		s += "\n   citycolor:" + citycolor + "\n";
+		s += "\n neighbours:\n"; 
+		for(City c : neighbours){
+			s+=c.name+"\n";
+		}
 		return s;
 	}
 

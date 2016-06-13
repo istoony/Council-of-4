@@ -1,13 +1,13 @@
-package it.polimi.ingsw.PS19.message.requests;
+package it.polimi.ingsw.ps19.message.requests;
 
-import it.polimi.ingsw.PS19.controller.action.Action;
-import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
+import it.polimi.ingsw.ps19.controller.action.Action;
+import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 
-/**
- * Message to buy new helper
- */
-public class BuyHelperMessage extends Request 
-{
+public class BuyHelperMessage extends Request {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 5953738823072831707L;
 
 	@Override
@@ -15,4 +15,12 @@ public class BuyHelperMessage extends Request
 	{
 		return messageInterpreter.visit(this);
 	}
+
+	@Override
+	public String toString() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

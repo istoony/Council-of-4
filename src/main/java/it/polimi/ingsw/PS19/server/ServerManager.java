@@ -1,72 +1,54 @@
 /*
  * @Author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.server;
-
+package it.polimi.ingsw.ps19.server;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import it.polimi.ingsw.PS19.client.ClientCLI;
 
 import java.io.IOException;
 
-/**
+/*
  * Main class of the server
  * manages socket connections.
  */
 public class ServerManager 
 {
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
-	private static ServerSocket serverSocket;	
-	private static boolean stop = false;
-	public static final ClientCLI serverCLI =  new ClientCLI();
+	private static ServerSocket serverSocket;	//Socket del server;
 	
-	private ServerManager(){}
-	
-	/**
-	 * Main del server
-	 * @param args
-	 */
 	public static void main(String[] args) 
 	{
-		Thread t = new StopperThread();
-		t.start();
-	
+		/*
+		 * Creates Server socket
+		 */
 		try
 		{
 			serverSocket = new ServerSocket(Constants.PORT);
-			ServerManager.serverCLI.showNotification("The server socket creation has been successful");
+			System.out.println("the server socket creation has been successful");
 		}
 		catch(IOException e)
 		{
-			ServerManager.serverCLI.showNotification("Something went wrong in creating a serversocket");
-			log.log(Level.SEVERE, e.toString(), e);
+			System.out.println("Something went wrong in creating a serversocket");
+			e.printStackTrace();
 		}
-		WaitingRoom.startTimer();
-		while(!stop)
+		
+		WaitingRoom.StartTimer();
+		/*
+		 * Waits for new clients and adds them to waiting room
+		 */
+		while(true)
 		{
 			try
 			{
 				Socket clientSocket = serverSocket.accept();
-				ServerManager.serverCLI.showNotification(LocalDateTime.now() + " New client Connected");
+				//TEST
+				System.out.println(LocalDateTime.now() + " New client Connected");
 				WaitingRoom.addConnection(clientSocket);
 			}
 			catch(IOException e)
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				
 			}
 		}
-		WaitingRoom.quit();
-	}
-	
-	/**
-	 * stops the server
-	 */
-	public static void stop()
-	{
-		stop = true;
 	}
 }

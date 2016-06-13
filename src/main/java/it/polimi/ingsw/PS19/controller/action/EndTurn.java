@@ -1,8 +1,8 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
-import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.model.Model;
 
 public class EndTurn implements Action 
 {
@@ -17,10 +17,9 @@ public class EndTurn implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		if(model.getNumberofplayer()-1 == playerId)
-			model.getCurrentState().setPlayerTurnId(0);
-		else 
-			model.getCurrentState().setPlayerTurnId(playerId + 1);
+		model.getPlayerById(playerId).setFastActionCounter(0);
+		model.getPlayerById(playerId).setMainActionCounter(0);
+			
 		return true;
 	}
 

@@ -1,12 +1,12 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
 
-import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ElectCouncillor implements Action
 {
@@ -45,9 +45,16 @@ public class ElectCouncillor implements Action
 		else
 			res = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
 		if(res && mainAction)
+		{
 			model.getPlayerById(playerId).addMoney(MONEY);
+			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);	
+		}
 		else if(res)
+		{
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
+			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - 1);
+		}
+		
 		return res;
 	}
 

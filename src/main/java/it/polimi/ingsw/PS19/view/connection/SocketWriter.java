@@ -6,19 +6,14 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
 
-/**
+/*
  * Implements Writer for Socket Communication
  */
 public class SocketWriter extends Writer 
 {
 	private ObjectOutputStream out;
 	
-	/**
-	 * Constructor
-	 * @param cs: client socket
-	 */
 	public SocketWriter(Socket cs)
 	{
 	try {
@@ -26,23 +21,27 @@ public class SocketWriter extends Writer
 			out.flush();
 		} catch (IOException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			e.printStackTrace();
 		}
 	}
 	
-	/**
+	/*
 	 * Writes Message
-	 * @throws IOException 
 	 * @see connection.Writer#write()
 	 */
 	@Override
-	protected void write() throws IOException
+	protected void write()
 	{
 		if(message == null) 
 			return;
-		out.reset();
-		out.writeObject(message);
-		out.flush();
+		try {
+			out.reset();
+			out.writeObject(message);
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

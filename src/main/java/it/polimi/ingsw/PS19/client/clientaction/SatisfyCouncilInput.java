@@ -4,15 +4,20 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.PS19.model.parameter.RegionType;
+=======
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.Balcony;
+import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
-/**
- * Abstract class to be implemented by those inputs which require to satisfy a council
- */
 public abstract class SatisfyCouncilInput extends ClientAction 
 {
 	protected List<RegionType> getAvailableRegions()
@@ -21,7 +26,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		for(Region r: model.getRegions())
 		{
 			
-			if(getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney())
+			if(getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney());
 				availableRegions.add(r.getType());
 		}
 		return availableRegions;
@@ -48,12 +53,12 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				if(balconyColor.equals(cards.get(i).getColor()))
 				{
 					cost -= 3;
+					if(cost == 1)
+						cost = 0;
 					catched.set(j, true);
 					cards.remove(i);
 					break;
 				}
-				if(cost == 1)
-					cost = 0;
 			}
 		}
 		cost -= getJollyNumber(cards) * 2; 

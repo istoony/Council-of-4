@@ -13,6 +13,7 @@ public class CurrentState
 		businessCardRequest = false;
 		cityBonusRequest = false;
 		playerTurnId = 0;
+		timeToMarket = false;
 	}
 	
 	public void setBusinessCardRequest(Boolean businessCardRequest) {
@@ -33,13 +34,24 @@ public class CurrentState
 	public int getPlayerTurnId() {
 		return playerTurnId;
 	}
-	 public void setTimeToMarket(Boolean timeToMarket) 
-	 {
+	public void setTimeToMarket(Boolean timeToMarket) 
+	{
 		this.timeToMarket = timeToMarket;
 	}
-	 public Boolean getTimeToMarket() 
-	 {
+	public Boolean getTimeToMarket() 
+	{
 		return timeToMarket;
 	}
+	
+	@Override
+	public String toString() 
+	{
+		String s = "";
+		s += "\nbusinessCard = " + businessCardRequest;
+		s += "\nCityBonus = " + cityBonusRequest;
+		s += "\nTimeToMarket" + timeToMarket;
+		return s;
+	} 
+	
 	
 }
