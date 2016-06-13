@@ -26,8 +26,7 @@ public class ClientManager
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private static ClientUI userInterface;
-	
-	private ClientManager(){}
+		private ClientManager(){}
 	
 	/**
 	 * Client main
@@ -41,11 +40,7 @@ public class ClientManager
 		Thread t;
 		boolean success = false;
 		
-		ClientView view = new ClientView(connection);
 		userInterface = new ClientCLI();
-		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
-		view.addObserver(interpreter);
-		interpreter.addObserver(view);
 		//Gets IP and port from user
 		String ip;
 		Integer port;
@@ -67,8 +62,9 @@ public class ClientManager
 			t.start();
 			
 			//Tries to connect: First time with player input, after with standard input
-			try(Socket socket = new Socket(Inet4Address.getByName(ip), port))
-			{				
+			try
+			{	
+				Socket socket = new Socket(Inet4Address.getByName(ip), port);
 				userInterface.showNotification("Socket created");
 				connection = new SocketConnection(socket, executorService);
 				success = true;
@@ -101,6 +97,11 @@ public class ClientManager
 			userInterface.showNotification("Connection Unsuccessful, the program will now close");
 			System.exit(0);
 		}
+
+		ClientView view = new ClientView(connection);
+		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
+		view.addObserver(interpreter);
+		interpreter.addObserver(view);
 		new Thread(view).start();
 	}
 	

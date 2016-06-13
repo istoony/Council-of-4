@@ -3,6 +3,7 @@
  */
 package it.polimi.ingsw.PS19.client;
 
+import java.net.SocketException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutionException;
