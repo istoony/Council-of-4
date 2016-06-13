@@ -2,6 +2,9 @@ package it.polimi.ingsw.PS19.message;
 
 import java.io.Serializable;
 
+/**
+ * Generic class that rappresents a message that will be sent between client and server
+ */
 public abstract class Message implements Serializable
 {
 

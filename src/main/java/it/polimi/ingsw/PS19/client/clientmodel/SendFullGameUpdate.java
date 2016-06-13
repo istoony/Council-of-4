@@ -9,6 +9,9 @@ import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
 
+/**
+ * Class that update to a completely new model
+ */
 public class SendFullGameUpdate implements ClientUpdate
 {
 	private King king;
@@ -21,6 +24,16 @@ public class SendFullGameUpdate implements ClientUpdate
 	
 	
 	
+	/**
+	 * Constructor
+	 * @param res: result
+	 * @param k: king
+	 * @param r: list of regions
+	 * @param p: List of players
+	 * @param active: active player id
+	 * @param ac: available councillors
+	 * @param nob: nobility path
+	 */
 	public SendFullGameUpdate(String res, King k, List<Region> r, List<Player> p, int active, AvailableCouncillor ac ,NobilityPath nob) 
 	{
 		king = k;

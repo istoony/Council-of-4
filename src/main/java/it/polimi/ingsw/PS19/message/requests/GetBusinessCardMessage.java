@@ -9,6 +9,9 @@ import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
+/**
+ * Message to get a new business card
+ */
 public class GetBusinessCardMessage extends Request 
 {
 
@@ -17,6 +20,11 @@ public class GetBusinessCardMessage extends Request
 	private RegionType region;
 	private List<Color> politicsCard;
 	
+	/**
+	 * Constructor
+	 * @param c: Business card
+	 * @param r: region
+	 */
 	public GetBusinessCardMessage(BusinessCard c, RegionType r) 
 	{
 		card = c;
@@ -24,6 +32,12 @@ public class GetBusinessCardMessage extends Request
 		this.politicsCard = new ArrayList<>();
 	}
 	
+	/**
+	 * Constructor
+	 * @param c: Business card
+	 * @param r: RegionType
+	 * @param politicsCard: list of politic cards used to satisfy the council
+	 */
 	public GetBusinessCardMessage(BusinessCard c, RegionType r, List<Color> politicsCard) 
 	{
 		card = c;
@@ -31,6 +45,10 @@ public class GetBusinessCardMessage extends Request
 		this.politicsCard = politicsCard;
 	}
 	
+	/**
+	 * Add politic card to list of politic card used to satisfy the council
+	 * @param card
+	 */
 	public void addPoliticCard(Color card)
 	{
 		politicsCard.add(card);

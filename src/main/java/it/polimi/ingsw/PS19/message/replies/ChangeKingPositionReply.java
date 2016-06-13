@@ -7,11 +7,8 @@ import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.King;
 
-public class ChangeKingPositionReply extends Reply {
-
-	/**
-	 * 
-	 */
+public class ChangeKingPositionReply extends Reply 
+{
 	private static final long serialVersionUID = 4036516393257537545L;
 	private List<Player> player;
 	private King king;

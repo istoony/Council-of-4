@@ -9,6 +9,9 @@ import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
+/**
+ * Class that rappresents the local model
+ */
 public class ClientModel 
 {
 	private King king;
@@ -20,6 +23,10 @@ public class ClientModel
 	private NobilityPath nobilitypath;
 	private int currentId;
 	
+	/**
+	 * Constructor
+	 * @param id: local player Id
+	 */
 	public ClientModel(int id) 
 	{
 		currentId = id;
@@ -70,15 +77,17 @@ public class ClientModel
 	
 	public Player getMyPlayer()
 	{
-		for (Player p : player)
-		{
-			if(p.getId() == currentId)
-				return p;
-		}
-		return null;
+		if(player.size() < currentId)
+			return null;
+		return player.get(currentId);
 	}
 	
 	
+	/**
+	 * Get Region from type
+	 * @param r: regionType
+	 * @return Region
+	 */
 	public Region getRegionByType(RegionType r)
 	{
 		for (Region region : regions) 
@@ -88,22 +97,6 @@ public class ClientModel
 		}
 		return null;
 	}
-	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		s += availablecouncillor.toString();
-		s += result;
-		s += "\n------\n";
-		s += king.toString();
-		s += "\n-----\n";
-		for (Region region : regions) 
-			s += region.toString() + "\n";
-		s += "\n-----\n";
-		s += player.get(activeplayer).toString();
-		return s;
-	}
-	
+
 	
 }

@@ -14,11 +14,19 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
+/**
+ * Class that creates a new {@link GetBusinessCardMessage} from user inputs and local model
+ */
 public class GetBusinessPermitInput extends SatisfyCouncilInput 
 {
 	private BusinessCard businessCard;
 	private RegionType regionType;
 	private List<Color> colors;
+	
+	/**
+	 * Constructor
+	 * @param m
+	 */
 	public GetBusinessPermitInput(ClientModel m) 
 	{
 		model = m;
@@ -33,7 +41,7 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
+	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		int count = 0;
 		regionType = userInterface.getRegion(getAvailableRegions());

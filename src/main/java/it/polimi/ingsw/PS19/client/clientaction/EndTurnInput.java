@@ -6,8 +6,15 @@ import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
+/**
+ * Class that creates a new EndTurnMessage
+ */
 public class EndTurnInput extends ClientAction 
 {
+	/**
+	 * Constructor
+	 * @param m
+	 */
 	public EndTurnInput(ClientModel m) 
 	{
 		model = m;
@@ -22,7 +29,7 @@ public class EndTurnInput extends ClientAction
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
+	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		return buildMessage();
 	}

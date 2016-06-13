@@ -3,8 +3,8 @@
  */
 package it.polimi.ingsw.PS19.client;
 
-/*
- * 
+/**
+ * Class that contains constants related to the clients
  */
 public final class ClientConstants 
 {

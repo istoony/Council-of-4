@@ -1,13 +1,27 @@
 package it.polimi.ingsw.PS19.client;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Starts a separate thread that writes a string every TIMEOUT milliseconds
+ */
 public class WaitingWriterThread extends Thread 
 {
+	protected static final Logger log = Logger.getLogger("Waiting_Writer_Thread_Logger");
+	private static final int TIMEOUT = 5000;
 	private String text;
 	private boolean hasBeenInterrupted = false;
+	private ClientUI userInterface;
 	
-	public WaitingWriterThread(String s)
+	/**
+	 * @param s: string that will be written by the thread
+	 * @param ui: user interface
+	 */
+	public WaitingWriterThread(String s, ClientUI ui)
 	{
 		text = s;
+		userInterface = ui;
 	}
 	
 	@Override
@@ -15,11 +29,14 @@ public class WaitingWriterThread extends Thread
 	{
 		while(!hasBeenInterrupted)
 		{
-			System.out.println(text);
+			userInterface.showNotification(text);
 			try{
-				Thread.sleep(5000);
+				Thread.sleep(TIMEOUT);
 			}
-			catch (InterruptedException e) {
+			catch (InterruptedException e) 
+			{
+				this.interrupt();
+				log.log(Level.OFF, e.toString(), e);
 				return;
 			}
 		}

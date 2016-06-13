@@ -8,14 +8,21 @@ import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
-//import it.polimi.ingsw.PS19.model.map.King;
 
+/**
+ * Class that creates a new ElectCouncillorMessage from user inputs and local model
+ */
 public class ElectCouncillorInputs extends ClientAction 
 {
 	RegionType location;
 	boolean mainAction = false;
 	Color color;
 	
+	/**
+	 * Constructor
+	 * @param m
+	 * @param main: true if mainAction
+	 */
 	public ElectCouncillorInputs(ClientModel m, boolean main)
 	{
 		model = m;
@@ -25,11 +32,13 @@ public class ElectCouncillorInputs extends ClientAction
 	@Override
 	public boolean isPossible() 
 	{
+		if(model.getMyPlayer().getHelpers() <= 0 && !mainAction)
+			return false;
 		return true;
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException 
+	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
 		location = userInterface.getRegionAndKing();
 		color = userInterface.getColor(model.getAvailablecouncillor().getAvailableColors());

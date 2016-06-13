@@ -10,8 +10,8 @@ import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-/*
- * 
+/**
+ * Message to elect a new councillor
  */
 public class ElectCouncillorMessage extends Request 
 {
@@ -21,11 +21,22 @@ public class ElectCouncillorMessage extends Request
 	private King king = null;
 	private Boolean mainAction;
 
+	/**
+	 * Constructor for region balcony
+	 * @param c: color
+	 * @param r: regionType
+	 */
 	public ElectCouncillorMessage(Color c, RegionType r) 
 	{
 		color = c;
 		region = r;
 	}
+	
+	/**
+	 * Constructor for king balcony
+	 * @param c: color
+	 * @param k: king
+	 */
 	public ElectCouncillorMessage(Color c, King k) 
 	{
 		color = c;
@@ -61,11 +72,4 @@ public class ElectCouncillorMessage extends Request
 	{
 		return messageInterpreter.visit(this);
 	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

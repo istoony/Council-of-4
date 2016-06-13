@@ -2,8 +2,15 @@ package it.polimi.ingsw.PS19.client.clientaction;
 
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 
+/**
+ * Class that contains the main actions
+ */
 public class MainAction extends ClientActionChooser 
 {	
+	/**
+	 * Constructor
+	 * @param m
+	 */
 	public MainAction(ClientModel m) 
 	{
 		super(m);

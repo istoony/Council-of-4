@@ -3,8 +3,8 @@
  */
 package it.polimi.ingsw.PS19.server;
 
-/*
- *This class collects all the constants (final values) of the programs which are used by more than one class
+/**
+ * This class collects all the constants (final values) of the programs which are used by more than one class
  */
 public final class Constants
 {
@@ -13,4 +13,6 @@ public final class Constants
 	public static final int MAX_WRITING_TRIES = 5;
 	public static final int MAX_WAIT_TIME_S = 5;
 	public static final long PLAYER_TIMEOUT_TIME_S = 120;
+	
+	private Constants() {}
 }

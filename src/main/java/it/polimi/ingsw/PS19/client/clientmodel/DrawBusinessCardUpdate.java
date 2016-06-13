@@ -6,10 +6,19 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.Region;
 
+/**
+ * Class to update Business Cards in model
+ */
 public class DrawBusinessCardUpdate implements ClientUpdate 
 {
 	private List<Player> player;
 	private List<Region> regions;
+	
+	/**
+	 * Constructtor
+	 * @param p: List of players
+	 * @param r: List of regions
+	 */
 	public DrawBusinessCardUpdate(List<Player> p, List<Region> r) 
 	{
 		player = p;

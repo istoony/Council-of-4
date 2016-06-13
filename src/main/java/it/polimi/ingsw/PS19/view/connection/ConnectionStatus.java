@@ -3,7 +3,7 @@
  */
 package it.polimi.ingsw.PS19.view.connection;
 
-/*
+/**
  * Enum with possible connection statuses
  */
 public enum ConnectionStatus 

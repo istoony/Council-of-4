@@ -9,6 +9,9 @@ import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 
+/**
+ * Implementation of the reply visitor
+ */
 public class ReplyVisitorImpl implements ReplyVisitor 
 {
 
@@ -36,19 +39,22 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	}
 
 	@Override
-	public ClientUpdate display(GameStartedMessage message) {
-		// TODO Auto-generated method stub
+	public ClientUpdate display(GameStartedMessage message) 
+	{
 		return null;
 	}
+	
 	@Override
 	public ClientUpdate display(PlayerDisconnectedReply message) {
 		return new PlayerDisconnectedUpdate(message.getResult());
 	}
+	
 	@Override
 	public ClientUpdate display(EndTurnReply message) 
 	{
 		return new EndTurnUpdate(message.getActivePlayer());
 	}
+	
 	@Override
 	public ClientUpdate display(ChangeKingPositionReply message) 
 	{
