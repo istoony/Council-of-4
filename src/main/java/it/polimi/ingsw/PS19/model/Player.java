@@ -36,7 +36,7 @@ public class Player implements Serializable
 	
 	private int politicCardToDraw;
 	
-	private ArrayList<Integer> businessCardToDrawByRegion;
+	private List<Integer> businessCardToDrawByRegion;
 	
 	private List<BusinessCard> freebusinesscard;
 	private List<BusinessCard> usedbusinesscard;
@@ -94,7 +94,7 @@ public class Player implements Serializable
 	public void removeCardToHand(PoliticsCard c)
 	{
 		for (PoliticsCard card : politiccard) 
-			if(card.equals(c))
+			if(card.getColor().equals(c.getColor()))
 			{
 				politiccard.remove(card);
 				return;
@@ -213,7 +213,7 @@ public class Player implements Serializable
 	{
 		for (PoliticsCard politics : politiccard) 
 		{
-			if(politics.equals(card))
+			if(politics.getColor().equals(card.getColor()))
 				return true;
 		}
 		return false;
@@ -301,7 +301,7 @@ public class Player implements Serializable
 	/**
 	 * @return the businessCardToDrawByRegion
 	 */
-	public ArrayList<Integer> getBusinessCardToDrawByRegion() {
+	public List<Integer> getBusinessCardToDrawByRegion() {
 		return businessCardToDrawByRegion;
 	}
 
@@ -309,7 +309,7 @@ public class Player implements Serializable
 	/**
 	 * @param businessCardToDrawByRegion the businessCardToDrawByRegion to set
 	 */
-	public void setBusinessCardToDrawByRegion(ArrayList<Integer> businessCardToDrawByRegion) {
+	public void setBusinessCardToDrawByRegion(List<Integer> businessCardToDrawByRegion) {
 		this.businessCardToDrawByRegion = businessCardToDrawByRegion;
 	}
 }
