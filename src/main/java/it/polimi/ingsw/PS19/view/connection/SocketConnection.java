@@ -5,8 +5,8 @@ package it.polimi.ingsw.PS19.view.connection;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
+import java.util.logging.Level;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
@@ -17,9 +17,14 @@ import it.polimi.ingsw.PS19.message.Message;
  */
 public class SocketConnection extends Connection
 {
-
 	private Socket clientSocket;
 	
+	/**
+	 * Constructor
+	 * @param client: socket
+	 * @param exec: executor service to read
+	 * @throws IOException
+	 */
 	public SocketConnection(Socket client, ExecutorService exec) throws IOException
 	{
 		clientSocket = client;
@@ -44,10 +49,6 @@ public class SocketConnection extends Connection
 		status = ConnectionStatus.DISCONNECTED;
 	}
 	
-	/*
-	 * Runs a callable that writes the message
-	 * @see connection.Connection#write(view.Message)
-	 */
 	@Override
 	public Integer write(Message message) throws WriterException
 	{
@@ -55,22 +56,21 @@ public class SocketConnection extends Connection
 		Integer result = null;
 		try {
 			result = writer.call();
-		} catch (SocketWritingException e) {
+		} catch (SocketWritingException e) 
+		{
+			log.log(Level.SEVERE, e.toString(), e);
 			throw new WriterException();
 		}
-		//Future<Integer> result;
-		//result = executor.submit(writer);
 		return result;
 	}
 	
-	/*
+	/**
 	 * Runs a callable that reads a message
 	 * @see connection.Connection#read()
 	 */
 	@Override
 	public Future<Message> read()
 	{
-		Future<Message> result = executor.submit(reader);
-		return result;
+		return executor.submit(reader);
 	}
 }
