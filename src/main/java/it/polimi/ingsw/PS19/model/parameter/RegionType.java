@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.model.parameter;
+package it.polimi.ingsw.PS19.model.parameter;
 
 import java.util.ArrayList;
 import java.util.List;
