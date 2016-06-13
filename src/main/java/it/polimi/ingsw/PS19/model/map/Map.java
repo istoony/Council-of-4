@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.model.map;
+package it.polimi.ingsw.PS19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import it.polimi.ingsw.ps19.model.card.PoliticDeck;
 import it.polimi.ingsw.ps19.model.map.Region;
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
+
 
 public class Map 
 {	
