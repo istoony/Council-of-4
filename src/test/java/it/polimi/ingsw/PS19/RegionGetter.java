@@ -28,7 +28,7 @@ public class RegionGetter {
 				
 		King k = m.getMap().getKing();
 		
-		assertTrue(k != m.getMap().getKing());
+		assertTrue(k == m.getMap().getKing());
 	}
 
 }

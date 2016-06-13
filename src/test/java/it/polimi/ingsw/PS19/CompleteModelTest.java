@@ -1,22 +1,7 @@
 package it.polimi.ingsw.PS19;
 
-
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.junit.Test;
-
-import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
-
 public class CompleteModelTest {
-
+	/*
 	Scanner in;
 	Model m;
 	GameController g;
@@ -24,7 +9,7 @@ public class CompleteModelTest {
 	
 	@Test
 	public void testModel() 
-	{
+	{	
 		m = new Model(2);
 		g = new GameController(m);
 		System.out.println(m.toString());
@@ -39,7 +24,7 @@ public class CompleteModelTest {
 				DrawPoliticsCardMessage message = new DrawPoliticsCardMessage();
 				message.setId(turn);
 				g.update(null, message);
-			}*/
+			}
 			System.out.println(m.getPlayerById(turn).toString());
 			System.out.println(m.getCurrentState().toString());
 			System.out.println("MAIN ACTION: \n"
@@ -146,5 +131,5 @@ public class CompleteModelTest {
 		EndTurnMessage m = new EndTurnMessage();
 		m.setId(turn);
 		g.update(null, m);
-	}
+	} */
 }
