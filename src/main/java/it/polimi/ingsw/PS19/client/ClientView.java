@@ -40,7 +40,7 @@ public class ClientView extends Observable implements Observer, Runnable
 		while(!stop)
 		{
 			Future<Message> waitMex = connection.read();
-			try 
+			try
 			{
 				Message recMex = waitMex.get();
 				setChanged();

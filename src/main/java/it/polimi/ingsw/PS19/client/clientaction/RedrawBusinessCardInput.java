@@ -43,6 +43,5 @@ public class RedrawBusinessCardInput extends ClientAction
 		//TODO: create proper request
 		return null;
 	}
-
 }
 

@@ -19,6 +19,7 @@ public class FastAction extends ClientActionChooser
 		actions.add(new BuyHelperInputs(model));
 		actions.add(new ElectCouncillorInputs(model, false));
 		actions.add(new NewMainActionInput(model));	
+		actions.add(new EndTurnInput(model));
 	}
 	
 	@Override

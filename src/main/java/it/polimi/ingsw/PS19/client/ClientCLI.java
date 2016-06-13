@@ -17,6 +17,7 @@ import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientaction.ElectCouncillorInputs;
 import it.polimi.ingsw.PS19.client.clientaction.EndTurnInput;
 import it.polimi.ingsw.PS19.client.clientaction.GetBusinessPermitInput;
+import it.polimi.ingsw.PS19.client.clientaction.RedrawBusinessCardInput;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.Player;
@@ -28,14 +29,12 @@ import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
-//import it.polimi.ingsw.PS19.server.Mutex;
 
 /**
  * CLI User Interface
  */
 public class ClientCLI extends ClientUI 
 {
-	//private static Mutex mux = new Mutex();
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	@Override
@@ -98,8 +97,8 @@ public class ClientCLI extends ClientUI
 	{ 
 		writeln("Definisci il balcolcino da shiftare");
 		List<String> strings = new ArrayList<>();
-		for(int i = 0; i < regions.size(); i++)
-			strings.add(regions.toString());
+		for(RegionType region : regions)
+			strings.add(getString(region));
 		strings.add("KING");
 		int index = getValues(strings);
 		if(index == regions.size())
@@ -210,16 +209,12 @@ public class ClientCLI extends ClientUI
 	
 	private void write(String s)
 	{
-		//mux.lock();
 		System.out.print(s);
-		//mux.unlock();
 	}
 	
 	private void writeln(String s)
 	{
-		//mux.lock();
 		System.out.println(s);
-		//mux.unlock();
 	}
 	
 	/**
@@ -229,9 +224,7 @@ public class ClientCLI extends ClientUI
 	 */
 	public String read() throws IOException
 	{
-		//mux.lock();
 		String s = in.readLine();
-		//mux.unlock();
 		return s;
 	}
 	
@@ -323,7 +316,7 @@ public class ClientCLI extends ClientUI
 			for(BusinessCard card : p.getFreebusinesscard())
 				s = s.concat(getString(card) + "\n");
 		}
-		s += "\nUsed Business Cards:";
+		s += "Used Business Cards:";
 		if(p.getUsedbusinesscard().isEmpty())
 			s += 0 + "\n";
 		else
@@ -332,7 +325,7 @@ public class ClientCLI extends ClientUI
 			for(BusinessCard card : p.getUsedbusinesscard())
 				s = s.concat(getString(card) + "\n");
 		}
-		s += "\nPolitic Cards: ";
+		s += "Politic Cards: ";
 		if(p.getPoliticcard().isEmpty())
 			s += 0 + "\n";
 		else
@@ -355,7 +348,7 @@ public class ClientCLI extends ClientUI
 
 	private String getString(Color c)
 	{
-		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase() + ", ";
+		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase();
 	}
 
 	private String getString(PoliticsCard card)
@@ -379,7 +372,9 @@ public class ClientCLI extends ClientUI
 		if(input instanceof BuyHelperInputs)
 			return "Buy Helper";
 		if(input instanceof EndTurnInput)
-			return "EndTurn";
+			return "End Turn";
+		if(input instanceof RedrawBusinessCardInput)
+			return "Redraw Business Card";
 		return null;
 	}
 
