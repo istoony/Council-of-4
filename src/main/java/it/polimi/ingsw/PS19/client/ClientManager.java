@@ -42,7 +42,7 @@ public class ClientManager
 		boolean success = false;
 		
 		ClientView view = new ClientView(connection);
-		ClientUI userInterface = new ClientCLI();
+		userInterface = new ClientCLI();
 		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
 		view.addObserver(interpreter);
 		interpreter.addObserver(view);
