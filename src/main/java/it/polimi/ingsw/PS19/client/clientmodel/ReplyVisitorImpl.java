@@ -1,26 +1,17 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
-import it.polimi.ingsw.PS19.message.replies.GetBusinessCardBonusReply;
 import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
-=======
-import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
-import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
-import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
-import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
-import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
-import it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply;
-import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
-import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
+/**
+ * Implementation of the reply visitor
+ */
 public class ReplyVisitorImpl implements ReplyVisitor 
 {
 
@@ -48,29 +39,26 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	}
 
 	@Override
-	public ClientUpdate display(GameStartedMessage message) {
-		// TODO Auto-generated method stub
+	public ClientUpdate display(GameStartedMessage message) 
+	{
 		return null;
 	}
+	
 	@Override
 	public ClientUpdate display(PlayerDisconnectedReply message) {
 		return new PlayerDisconnectedUpdate(message.getResult());
 	}
+	
 	@Override
 	public ClientUpdate display(EndTurnReply message) 
 	{
 		return new EndTurnUpdate(message.getActivePlayer());
 	}
+	
 	@Override
 	public ClientUpdate display(ChangeKingPositionReply message) 
 	{
 		return new ChangeKingPositionUpdate(message.getPlayer(), message.getKing(), message.getResult(), message.getActivePlayer());
-	}
-	@Override
-	public ClientUpdate display(GetBusinessCardBonusReply message) 
-	{
-		
-		return null;
 	}
 
 }

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientaction.FastAction;
@@ -21,26 +22,13 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
-=======
-import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
-import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
-import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
-import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
-import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.message.Message;
-import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
-import it.polimi.ingsw.ps19.message.replies.Reply;
-import it.polimi.ingsw.ps19.message.replies.StringMessage;
-import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.ps19.message.requests.Request;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
+/**
+ * Reads the messages from the server and act consequentially
+ */
 public class ClientInterpreter extends Observable implements Observer
 {
+	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	ClientUI userInterface;
 	ClientModel model;
 	Integer playerId;
@@ -49,6 +37,9 @@ public class ClientInterpreter extends Observable implements Observer
 	List<ClientActionChooser> typesOfAction;
 	ReplyVisitor visitor;
 	
+	/**
+	 * @param ui: user interface
+	 */
 	public ClientInterpreter(ClientUI ui) 
 	{
 		userInterface = ui;
@@ -81,7 +72,7 @@ public class ClientInterpreter extends Observable implements Observer
 		}
 		else if(arg instanceof Reply)
 		{
-			Reply reply = ((Reply) arg);
+			Reply reply = (Reply) arg;
 			updateModel(reply);
 			userInterface.drawModel(model);
 			if(reply.getActivePlayer() == playerId)
@@ -120,12 +111,12 @@ public class ClientInterpreter extends Observable implements Observer
 				ClientAction action = actionType.getAction(userInterface);
 				try 
 				{
-					mex = action.Execute(userInterface);
-					actionType.subAvail();
+					mex = action.execute(userInterface);
 					mex.setId(playerId);
 					valid = true;
 				} catch (InvalidInsertionException e) 
 				{
+					log.log(Level.OFF, e.toString(), e);
 					valid = false;
 				}
 			}
@@ -140,7 +131,7 @@ public class ClientInterpreter extends Observable implements Observer
 		for(ClientActionChooser c : typesOfAction) 
 			choose &= c.isPossible();
 		if(choose)
-			return(userInterface.requestActionType(typesOfAction));
+			return userInterface.requestActionType(typesOfAction);
 		else if(mainAction.isPossible())
 			return mainAction;
 		else if(fastAction.isPossible())

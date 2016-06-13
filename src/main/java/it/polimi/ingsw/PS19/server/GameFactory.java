@@ -1,23 +1,34 @@
-package it.polimi.ingsw.ps19.server;
+package it.polimi.ingsw.PS19.server;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import it.polimi.ingsw.ps19.controller.GameController;
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
-import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.view.View;
-import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.PS19.controller.GameController;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.view.View;
+import it.polimi.ingsw.PS19.view.connection.Connection;
 
+/**
+ * Class the creates a new game
+ */
 public class GameFactory extends Thread 
 {
+	protected static final Logger log = Logger.getLogger("GAME_LOGGER");
+	
 	private Map<Integer, Connection> players;
 	private View view;
 	private Model model;
 	private GameController controller;
 	
+	/**
+	 * Constructor
+	 * @param conns: List of the connections aka players
+	 */
 	public GameFactory(List<Connection> conns) 
 	{
 		players = new HashMap<>();
@@ -25,15 +36,9 @@ public class GameFactory extends Thread
 		{
 			players.put(i, conns.get(i));
 		}
-		new Thread(this).start();
+		this.start();
 	}
 	
-	/*
-	 * Sends message of game started to clients
-	 * Creates new Game
-	 * Configures Observer pattern between view controller and message
-	 * @see java.lang.Thread#run()
-	 */
 	@Override
 	public void run() 
 	{
@@ -41,9 +46,9 @@ public class GameFactory extends Thread
 		{
 			try {
 				players.get(i).write(new GameStartedMessage(i, players.size()));
-			} catch (WriterException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (WriterException e) 
+			{
+				log.log(Level.SEVERE, e.toString(), e);
 			}
 		}
 		System.out.println("GameStartedMessages Sent");

@@ -1,34 +1,44 @@
 package it.polimi.ingsw.PS19.client.clientaction;
 
-import it.polimi.ingsw.ps19.client.ClientUI;
-import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.message.requests.Request;
+import it.polimi.ingsw.PS19.client.ClientUI;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.PS19.message.requests.Request;
 
+/**
+ * Class that creates a new BuyHelperMessage from user inputs and local model
+ */
 public class BuyHelperInputs extends ClientAction 
 {
 
+	/**
+	 * Constructor
+	 * @param m
+	 */
 	public BuyHelperInputs(ClientModel m) 
 	{
 		model = m;
 	}
 	
 	@Override
-	public boolean isPossible() {
-		// TODO Auto-generated method stub
+	public boolean isPossible() 
+	{
+		if(model.getMyPlayer().getMoney() >= 3)
+			return true;
 		return false;
 	}
 
 	@Override
-	public Request Execute(ClientUI userInterface) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
+	{
+		return buildMessage();
 	}
 
 	@Override
-	protected Request buildMessage() {
-		// TODO Auto-generated method stub
-		return null;
+	protected Request buildMessage() 
+	{
+		return new BuyHelperMessage();
 	}
 
 }

@@ -3,12 +3,15 @@ package it.polimi.ingsw.PS19.client.clientmodel;
 
 import java.util.List;
 
-import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
-import it.polimi.ingsw.ps19.model.map.King;
-import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.Region;
 
+/**
+ * Class that updates the balconies in model
+ */
 public class ElectCouncillorUpdate implements ClientUpdate
 {
 	
@@ -19,6 +22,15 @@ public class ElectCouncillorUpdate implements ClientUpdate
 	private List<Player> players;
 	private String result;
 
+	/**
+	 * Constructor
+	 * @param res: result
+	 * @param r: List of regions
+	 * @param k: King
+	 * @param ac: available councillors
+	 * @param p: List of players
+	 * @param active: active player id
+	 */
 	public ElectCouncillorUpdate(String res,List<Region> r, King k, AvailableCouncillor ac, List<Player> p, int active) 
 	{
 		result = res;

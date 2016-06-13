@@ -8,14 +8,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-<<<<<<< HEAD
 import it.polimi.ingsw.PS19.view.connection.Connection;
 import it.polimi.ingsw.PS19.view.connection.SocketConnection;
-=======
-import it.polimi.ingsw.ps19.view.connection.Connection;
-import it.polimi.ingsw.ps19.view.connection.SocketConnection;
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19.git
 
 
 
@@ -25,24 +22,39 @@ import it.polimi.ingsw.ps19.view.connection.SocketConnection;
  */
 public class ClientManager 
 {
-	private static Socket socket;
+	private static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	private static ClientUI userInterface;
 	
-	public static void main(String[] args) 
+	private ClientManager(){}
+	
+	/**
+	 * Client main
+	 * @param args
+	 * @throws InterruptedException 
+	 */
+	public static void main(String[] args) throws InterruptedException 
 	{
 		int tries = 0;
 		Connection connection = null;
 		Thread t;
 		boolean success = false;
 		
+		ClientView view = new ClientView(connection);
+		ClientUI userInterface = new ClientCLI();
+		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
+		view.addObserver(interpreter);
+		interpreter.addObserver(view);
 		//Gets IP and port from user
 		String ip;
 		Integer port;
 		try {
 			ip = getIP();
 			port = getPort();
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
+			log.log(Level.SEVERE, e.toString(), e);
 			ip = ClientConstants.IP_ADDRESS;
 			port = ClientConstants.REMOTE_PORT;
 		}
@@ -51,29 +63,32 @@ public class ClientManager
 		do
 		{
 			//Start thread to write string while connecting
-			t = new WaitingWriterThread("Trying to connect..");
+			t = new WaitingWriterThread("Trying to connect..", userInterface);
 			t.start();
 			
 			//Tries to connect: First time with player input, after with standard input
-			try 
+			try(Socket socket = new Socket(Inet4Address.getByName(ip), port))
 			{				
-				socket = new Socket(Inet4Address.getByName(ip), port);
-				System.out.println("Socket created");
+				userInterface.showNotification("Socket created");
 				connection = new SocketConnection(socket, executorService);
 				success = true;
 				t.interrupt();
-				System.out.println("Connection successful");
+				userInterface.showNotification("Connection successful");
 			} catch (IOException e) 
 			{
 				success = false;
 				t.interrupt();
 				if(tries == 0)
-					System.out.println("Connection Unsuccessful. Trying again with standard IP (" + ClientConstants.IP_ADDRESS + ") and port (" + ClientConstants.REMOTE_PORT + ")");
+					userInterface.showNotification("Connection Unsuccessful. Trying again with standard IP (" + ClientConstants.IP_ADDRESS + ") and port (" + ClientConstants.REMOTE_PORT + ")");
 				else 
-					System.out.println("Connection Unsuccessful");
-				try {Thread.sleep(10000);}
-				catch (InterruptedException e1) {
-						e1.printStackTrace();
+					userInterface.showNotification("Connection Unsuccessful");
+				try {
+					Thread.sleep(10000);
+				}
+				catch (InterruptedException e1) 
+				{
+					log.log(Level.SEVERE, e.toString(), e);
+					throw e1; 
 				}
 			} 
 			finally
@@ -83,34 +98,22 @@ public class ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			System.out.println("Connection Unsuccessful, the program will now close");
+			userInterface.showNotification("Connection Unsuccessful, the program will now close");
 			System.exit(0);
 		}
-		
-		//Start new thread for the actual game;
-		ClientView view = new ClientView(connection);
-		ClientUI userInterface = new ClientCLI();
-		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
-		view.addObserver(interpreter);
-		interpreter.addObserver(view);
-
-		/*/
-		ClientInterpreter interpreter = new ClientInterpreter();
-		view.addObserver(interpreter);
-		ClientMessageCreator messageCreator = new ClientMessageCreator();
-		ClientCLI..addObserver(view);
-		//*/
 		new Thread(view).start();
 	}
 	
 	private static String getIP() throws IOException
 	{
-		System.out.println("Insert server IP Address: ");
+		userInterface.showNotification("Insert server IP Address: ");
 		String ip = in.readLine();
 		try {
 			Inet4Address.getByName(ip);
-		} catch (UnknownHostException e) {
-			System.out.println("IP Address not valid, using defaul IP: " + ClientConstants.IP_ADDRESS);
+		} catch (UnknownHostException e) 
+		{
+			log.log(Level.SEVERE, e.toString(), e);
+			userInterface.showNotification("IP Address not valid, using defaul IP: " + ClientConstants.IP_ADDRESS);
 			ip = ClientConstants.IP_ADDRESS;
 		}
 		return ip;
@@ -119,14 +122,14 @@ public class ClientManager
 	private static Integer getPort() throws IOException
 	{
 		Integer port = null;
-		System.out.println("Insert server port: ");
+		userInterface.showNotification("Insert server port: ");
 		String portString = in.readLine();
 		try {
 			port = Integer.parseUnsignedInt(portString);
 			if(port < 0 || port > 65535) 
 				throw new NumberFormatException();
 		} catch (NumberFormatException e) {
-			System.out.println("Port not valid, using defaul Port: " + ClientConstants.REMOTE_PORT);
+			userInterface.showNotification("Port not valid, using defaul Port: " + ClientConstants.REMOTE_PORT);
 			port = ClientConstants.REMOTE_PORT;
 		}
 		return port;
