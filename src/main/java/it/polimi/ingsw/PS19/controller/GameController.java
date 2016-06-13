@@ -20,7 +20,7 @@ public class GameController implements Observer
 {
 	
 	private Model model;
-	
+	private Reply reply;
 	
 	public GameController(Model m) 
 	{
@@ -62,10 +62,10 @@ public class GameController implements Observer
 		Action action = m.accept(messageInterpreter);
 		if(action.isPossible(model))
 			action.execute(model);
-		Reply reply = action.createReplyMessage(model);
+		reply = action.createReplyMessage(model);
 		
 		checkModelStatus();
-		
+		System.out.println(model.toString());
 		reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		model.createMessage(reply);
 	}
@@ -87,12 +87,13 @@ public class GameController implements Observer
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
 				&& !model.getCurrentState().getCityBonusRequest() && !model.getCurrentState().getBusinessCardRequest())
 		{		
-			if(id + 1 < model.getMaxId())
+			if(id < model.getMaxId())
 				model.getCurrentState().setPlayerTurnId(id + 1);
 			else
 				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer());
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
+			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
 
 		}
