@@ -132,6 +132,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
+				showNotification("Invalid Insertion");
 				log.log(Level.SEVERE, e.toString(), e);
 				strings.clear();
 			}
@@ -298,7 +299,7 @@ public class ClientCLI extends ClientUI
 	private String getString(Player p)
 	{
 		String s = "Player: "+ p.getId() + "\n";
-		s += "\nNumber of Emporia Left: " + p.getMyEmporia().size() + "\n";
+		s += "\nNumber of Emporia Left: " + (p.getMaxemporia() - p.getMyEmporia().size()) + "\n";
 		s += "Money: " + p.getMoney() + "\n";
 		s += "Victory Points: " + p.getVictoryPoints() + "\n";
 		s += "Nobility Points: " + p.getNobilityPoints() + "\n";
@@ -403,5 +404,4 @@ public class ClientCLI extends ClientUI
 		s += "\n";
 		return s;
 	}
-
 }
