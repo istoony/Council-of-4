@@ -106,7 +106,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showNotification(String s) 
 	{
-		writeln(s + "\n");
+		writeln(s);
 	}
 
 	@Override
