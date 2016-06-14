@@ -1,26 +1,17 @@
 package it.polimi.ingsw.PS19.client;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
-import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientaction.FastAction;
 import it.polimi.ingsw.PS19.client.clientaction.MainAction;
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitorImpl;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.StringMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 /**
@@ -28,13 +19,11 @@ import it.polimi.ingsw.PS19.message.requests.Request;
  */
 public class ClientInterpreter extends Observable implements Observer
 {
-	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	ClientUI userInterface;
 	ClientModel model;
 	Integer playerId;
 	MainAction mainAction;
 	FastAction fastAction;
-	List<ClientActionChooser> typesOfAction;
 	ReplyVisitor visitor;
 	
 	/**
@@ -51,9 +40,8 @@ public class ClientInterpreter extends Observable implements Observer
 		model = new ClientModel(playerId);
 		mainAction = new MainAction(model);
 		fastAction = new FastAction(model);
-		typesOfAction = new ArrayList<>();
-		typesOfAction.add(mainAction);
-		typesOfAction.add(fastAction);
+		ClientUpdate.loadTypeOfAction(mainAction);
+		ClientUpdate.loadTypeOfAction(fastAction);
 	}
 
 	@Override
@@ -73,34 +61,19 @@ public class ClientInterpreter extends Observable implements Observer
 		else if(arg instanceof Reply)
 		{
 			Reply reply = (Reply) arg;
-			updateModel(reply);
+			ClientUpdate updateAction = reply.display(visitor);
+			updateAction.update(model);
 			userInterface.drawModel(model);
 			userInterface.showNotification("Active player: " + reply.getActivePlayer());
 			if(reply.getActivePlayer() == playerId)
-				activatePlayer();
+			{
+				Request mex = updateAction.execute(userInterface);
+				notify(mex);
+			}
 		}
 		else
 			userInterface.showNotification("Invalid Object received");
-			
-	}
-	
-	private void updateModel(Reply reply)
-	{
-		ClientUpdate updateAction = reply.display(visitor);
-		updateAction.update(model);
-	}
-
-	private void activatePlayer() 
-	{
-		requestAction();
-	}
-	
-	private void requestAction()
-	{
-	
-		notify(mex);
-	}
-	
+	}	
 	
 	private void notify(Message mex)
 	{

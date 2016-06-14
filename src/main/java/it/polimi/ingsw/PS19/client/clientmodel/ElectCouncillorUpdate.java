@@ -12,7 +12,7 @@ import it.polimi.ingsw.PS19.model.map.Region;
 /**
  * Class that updates the balconies in model
  */
-public class ElectCouncillorUpdate implements ClientUpdate
+public class ElectCouncillorUpdate extends ClientUpdate
 {
 	
 	private List<Region> regions;

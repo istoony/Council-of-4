@@ -12,7 +12,7 @@ import it.polimi.ingsw.PS19.model.map.Region;
 /**
  * Class that update to a completely new model
  */
-public class SendFullGameUpdate implements ClientUpdate
+public class SendFullGameUpdate extends ClientUpdate
 {
 	private King king;
 	private List<Region> regions;

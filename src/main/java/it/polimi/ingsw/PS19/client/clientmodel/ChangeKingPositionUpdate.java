@@ -9,7 +9,7 @@ import it.polimi.ingsw.PS19.model.map.King;
 /**
  * Class to update king position in model
  */
-public class ChangeKingPositionUpdate implements ClientUpdate 
+public class ChangeKingPositionUpdate extends ClientUpdate 
 {
 	private List<Player> player;
 	private King king;

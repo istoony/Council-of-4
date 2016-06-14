@@ -8,7 +8,7 @@ import it.polimi.ingsw.PS19.model.Player;
 /**
  * Class that updates model to show new turn end
  */
-public class EndTurnUpdate implements ClientUpdate 
+public class EndTurnUpdate extends ClientUpdate 
 {
 	private int playerTurnId;
 	private List<Player> player;
@@ -16,6 +16,7 @@ public class EndTurnUpdate implements ClientUpdate
 	/**
 	 * Constructor
 	 * @param id: new active player
+	 * @param p: list of players;
 	 */
 	public EndTurnUpdate(int id, List<Player> p) 
 	{

@@ -1,6 +1,9 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
@@ -11,17 +14,24 @@ import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 /**
- * Interface to update local model
+ * Class to update local model
  */
 public abstract class ClientUpdate
 {
+	protected static List<ClientActionChooser> typesOfAction = new ArrayList<>();
+	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	/**
 	 * Updates model
 	 * @param model: model to be updated
 	 */
 	public abstract void update(ClientModel model);
 	
-	public Request execute(ClientModel model, ClientUI userInterface)
+	/**
+	 * Class to get a new message
+	 * @param userInterface
+	 * @return
+	 */
+	public Request execute(ClientUI userInterface)
 	{
 		Request mex = null;
 		boolean valid;
@@ -39,7 +49,6 @@ public abstract class ClientUpdate
 				{
 					ClientAction action = actionType.getAction(userInterface);
 					mex = action.execute(userInterface);
-					mex.setId(playerId);
 					valid = true;
 				} 
 			}
@@ -60,11 +69,20 @@ public abstract class ClientUpdate
 			choose &= c.isPossible();
 		if(choose)
 			return userInterface.requestActionType(typesOfAction);
-		else if(mainAction.isPossible())
-			return mainAction;
-		else if(fastAction.isPossible())
-			return fastAction;
+		else if(typesOfAction.get(0).isPossible())
+			return typesOfAction.get(0);
+		else if(typesOfAction.get(1).isPossible())
+			return typesOfAction.get(1);
 		else
 			return null;
+	}
+	
+	/**
+	 * Loads the array with the available actions
+	 * @param typeOfAction: action to be loaded
+	 */
+	public static void loadTypeOfAction(ClientActionChooser typeOfAction)
+	{
+		typesOfAction.add(typeOfAction);
 	}
 }

@@ -8,7 +8,7 @@ import it.polimi.ingsw.PS19.model.Player;
 /**
  * Class that updates all the players
  */
-public class SendFullPlayerUpdate implements ClientUpdate {
+public class SendFullPlayerUpdate extends ClientUpdate {
 
 	private List<Player> player;
 	private String result;

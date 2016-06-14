@@ -9,7 +9,7 @@ import it.polimi.ingsw.PS19.model.map.Region;
 /**
  * Class to update Business Cards in model
  */
-public class DrawBusinessCardUpdate implements ClientUpdate 
+public class DrawBusinessCardUpdate extends ClientUpdate 
 {
 	private List<Player> player;
 	private List<Region> regions;
