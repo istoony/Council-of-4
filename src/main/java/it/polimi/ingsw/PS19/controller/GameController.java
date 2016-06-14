@@ -51,6 +51,7 @@ public class GameController implements Observer
 		 *the messageInterpreter implements vistior pattern to read all message
 		 *See MessageInterpreterVisitor
 		 */
+		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
 		
 		drawPoliticsCard(model);
@@ -90,7 +91,7 @@ public class GameController implements Observer
 			if(id < model.getMaxId())
 				model.getCurrentState().setPlayerTurnId(id + 1);
 			else
-				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer());
+				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer() + 1);
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());

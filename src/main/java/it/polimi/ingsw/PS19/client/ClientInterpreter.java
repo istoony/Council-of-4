@@ -97,50 +97,10 @@ public class ClientInterpreter extends Observable implements Observer
 	
 	private void requestAction()
 	{
-		Request mex = null;
-		boolean valid;
-		do
-		{
-			try
-			{
-				ClientActionChooser actionType = getActionType();
-				if(actionType == null)
-				{
-					mex = new EndTurnMessage(); 
-					valid = true;
-				}
-				else
-				{
-					ClientAction action = actionType.getAction(userInterface);
-					mex = action.execute(userInterface);
-					mex.setId(playerId);
-					valid = true;
-				} 
-			}
-			catch (InvalidInsertionException e) 
-			{
-				log.log(Level.OFF, e.toString(), e);
-				valid = false;
-			}
-		}while(!valid);
+	
 		notify(mex);
 	}
 	
-	private ClientActionChooser getActionType()
-	{
-		boolean choose = true;
-		
-		for(ClientActionChooser c : typesOfAction) 
-			choose &= c.isPossible();
-		if(choose)
-			return userInterface.requestActionType(typesOfAction);
-		else if(mainAction.isPossible())
-			return mainAction;
-		else if(fastAction.isPossible())
-			return fastAction;
-		else
-			return null;
-	}
 	
 	private void notify(Message mex)
 	{

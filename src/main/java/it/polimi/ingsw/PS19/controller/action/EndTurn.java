@@ -23,7 +23,7 @@ public class EndTurn implements Action
 		if(playerId < model.getMaxId())
 			model.getCurrentState().setPlayerTurnId(playerId + 1);
 		else
-			model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer());
+			model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer() + 1);
 	
 		model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();			
 		return true;

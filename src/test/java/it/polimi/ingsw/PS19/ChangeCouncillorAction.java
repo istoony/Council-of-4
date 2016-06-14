@@ -1,5 +1,7 @@
 package it.polimi.ingsw.PS19;
 
+import static org.junit.Assert.*;
+
 import java.awt.Color;
 
 import org.junit.Test;
@@ -20,17 +22,16 @@ public class ChangeCouncillorAction {
 		GameController g = new GameController(m);
 		for (int i = 0; i < 50 ; i++) 
 		{
-		for (RegionType reg : RegionType.values()) 
-		{
-			Color color = m.getMap().getCouncilcolors().getRandomColor();
-			System.out.println("FIRST++++"+ reg.toString() +"COLORR" + color.toString() + "\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
-			ElectCouncillorMessage me = new ElectCouncillorMessage(color, reg);
-			me.setId(0);
-			me.setMainAction(true);
-			g.update(null, me);
-			System.out.println("SECOND++++\n" + m.getMap().getRegionByType(reg).getBalcony().toString());
+			for (RegionType reg : RegionType.values()) 
+			{
+				Color color = m.getMap().getCouncilcolors().getRandomColor();
+				ElectCouncillorMessage me = new ElectCouncillorMessage(color, reg);
+				me.setId(0);
+				me.setMainAction(true);
+				g.update(null, me);
+			}
 		}
-		}
+		assertTrue(true);
 		
 	}
 
