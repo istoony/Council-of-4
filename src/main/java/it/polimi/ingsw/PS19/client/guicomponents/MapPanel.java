@@ -37,7 +37,7 @@ public class MapPanel extends JPanel{
 		for(RegionPanel rp : regionPanelList){
 			this.add(rp);
 			rp.initialize();
-			rp.draw();
+			//rp.draw();
 		}
 		
 		
