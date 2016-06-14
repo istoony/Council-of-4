@@ -1,11 +1,14 @@
 package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.util.List;
+import java.util.Map;
 
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.PS19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
@@ -14,6 +17,7 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI{
 
+	
 	@Override
 	public ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		// TODO Auto-generated method stub
@@ -52,6 +56,7 @@ public class ClientGUI extends ClientUI{
 
 	@Override
 	public void drawModel(ClientModel model) {
+		MainWindow view = new MainWindow(model);
 		// TODO Auto-generated method stub
 		
 	}
@@ -70,6 +75,12 @@ public class ClientGUI extends ClientUI{
 
 	@Override
 	public City getCity(List<City> cities) throws InvalidInsertionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public City getCity(Map<City, Integer> citiesECost) throws InvalidInsertionException {
 		// TODO Auto-generated method stub
 		return null;
 	}
