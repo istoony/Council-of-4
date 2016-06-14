@@ -32,35 +32,22 @@ public abstract class ClientUpdate
 	 * @param userInterface
 	 * @param model: reference to model
 	 * @return
+	 * @throws InvalidInsertionException 
 	 */
-	public Request execute(ClientUI userInterface, ClientModel model)
+	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
 		Request mex = null;
 		userInterface.showNotification(model.getResult());
-		boolean valid;
-		do
+		ClientActionChooser actionType = getActionType(userInterface);
+		if(actionType == null)
 		{
-			try
-			{
-				ClientActionChooser actionType = getActionType(userInterface);
-				if(actionType == null)
-				{
-					mex = new EndTurnMessage(); 
-					valid = true;
-				}
-				else
-				{
-					ClientAction action = actionType.getAction(userInterface);
-					mex = action.execute(userInterface);
-					valid = true;
-				} 
-			}
-			catch (InvalidInsertionException e) 
-			{
-				log.log(Level.OFF, e.toString(), e);
-				valid = false;
-			}
-		}while(!valid);
+			mex = new EndTurnMessage(); 
+		}
+		else
+		{
+			ClientAction action = actionType.getAction(userInterface);
+			mex = action.execute(userInterface);
+		} 
 		return mex;
 	}
 	

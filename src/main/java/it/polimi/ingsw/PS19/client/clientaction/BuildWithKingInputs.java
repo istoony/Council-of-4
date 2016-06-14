@@ -63,4 +63,10 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 		}
 		return availableCities;
 	}
+
+	@Override
+	public String toString() 
+	{
+		return "Build With King";
+	}
 }

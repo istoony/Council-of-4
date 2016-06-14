@@ -22,7 +22,7 @@ import it.polimi.ingsw.PS19.view.connection.SocketConnection;
  */
 public class ClientManager 
 {
-	private static final Logger log = Logger.getLogger("CLIENT_LOGGER");
+	public static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	private static ExecutorService executorService = Executors.newFixedThreadPool(2);	
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	private static ClientUI userInterface;

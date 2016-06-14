@@ -40,4 +40,10 @@ public class BuyMainActionInput extends ClientAction
 		return new BuyMainActionMessage();
 	}
 
+	@Override
+	public String toString() 
+	{
+		return "Buy Main Action";
+	}
+
 }

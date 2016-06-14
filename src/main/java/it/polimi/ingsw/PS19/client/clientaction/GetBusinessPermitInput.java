@@ -57,4 +57,10 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	{
 		return new GetBusinessCardMessage(businessCard, regionType, colors);
 	}
+
+	@Override
+	public String toString() 
+	{
+		return "Draw Business Card";
+	}
 }

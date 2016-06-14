@@ -41,4 +41,10 @@ public class BuyHelperInputs extends ClientAction
 		return new BuyHelperMessage();
 	}
 
+	@Override
+	public String toString() 
+	{
+		return "Buy Helper";
+	}
+
 }

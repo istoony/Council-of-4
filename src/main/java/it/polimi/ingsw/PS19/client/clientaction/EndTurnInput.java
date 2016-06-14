@@ -40,4 +40,10 @@ public class EndTurnInput extends ClientAction
 		return new EndTurnMessage();
 	}
 
+	@Override
+	public String toString() 
+	{
+		return "End Turn";
+	}
+
 }

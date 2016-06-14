@@ -123,7 +123,7 @@ public class Map
 	
 	//hashmap for path reconstruction, <node, parentnode>
 	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree){
-		if(root.equals(end))
+		if(root.getId() == end.getId())
 		{
 			path.add(end);
 			City temp;

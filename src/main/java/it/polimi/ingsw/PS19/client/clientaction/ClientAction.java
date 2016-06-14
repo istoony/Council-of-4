@@ -26,4 +26,7 @@ public abstract class ClientAction
 	public abstract Request execute(ClientUI userInterface) throws InvalidInsertionException;
 	
 	protected abstract Request buildMessage();
+	
+	@Override
+	public abstract String toString();
 }

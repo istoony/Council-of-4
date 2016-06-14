@@ -1,5 +1,5 @@
 /*
- * @author Andrea Milanta 
+/ * @author Andrea Milanta 
  */
 package it.polimi.ingsw.PS19.client;
 
@@ -13,13 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.client.clientaction.BuyHelperInputs;
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
 import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.PS19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.PS19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.PS19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.PS19.client.clientaction.RedrawBusinessCardInput;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.Player;
@@ -111,7 +106,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showNotification(String s) 
 	{
-		writeln("\n" + s + "\n");
+		writeln(s + "\n");
 	}
 
 	@Override
@@ -251,6 +246,8 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(BusinessCard card)
 	{
+		if(card == null)
+			return "Nothing";
 		String s = "[";
 		s = s.concat("Cities: ");
 		for(City city: card.getCity())
@@ -384,17 +381,7 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(ClientAction input)
 	{
-		if(input instanceof GetBusinessPermitInput)
-			return "Get Business Permit";
-		if(input instanceof ElectCouncillorInputs)
-			return "Elect Councillor";
-		if(input instanceof BuyHelperInputs)
-			return "Buy Helper";
-		if(input instanceof EndTurnInput)
-			return "End Turn";
-		if(input instanceof RedrawBusinessCardInput)
-			return "Redraw Business Card";
-		return null;
+		return input.toString();
 	}
 
 	private String getString(Balcony b)
@@ -424,5 +411,45 @@ public class ClientCLI extends ClientUI
 		s += "\tSecond Card: ";
 		s += getString(region.getSecondcard());
 		return s;
+	}
+	
+	@Override
+	public int getNumberOfHelpers(int n) throws InvalidInsertionException 
+	{
+		int number;
+		writeln("How many helpers to sell? (Available: " + n + ")\n");
+		try
+		{
+			String s = read();
+			number = Integer.parseInt(s);
+			if(number > n || number < 0)
+				throw new IOException();
+		}catch(IOException | NumberFormatException e)
+		{
+			writeln("Invalid Insertion");
+			log.log(Level.SEVERE, e.toString(), e);
+			throw new InvalidInsertionException();
+		}
+		return number;
+	}
+
+	@Override
+	public int getPrice() throws InvalidInsertionException 
+	{
+		int number;
+		writeln("Set the price for your order:\n");
+		try
+		{
+			String s = read();
+			number = Integer.parseInt(s);
+			if(number < 0)
+				throw new IOException();
+		}catch(IOException | NumberFormatException e)
+		{
+			writeln("Invalid Insertion");
+			log.log(Level.SEVERE, e.toString(), e);
+			throw new InvalidInsertionException();
+		}
+		return number;
 	}
 }

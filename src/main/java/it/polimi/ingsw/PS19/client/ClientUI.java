@@ -113,10 +113,24 @@ public abstract class ClientUI
 	public abstract City getCity(List<City> cities) throws InvalidInsertionException;
 	
 	/**
-	 * MAkes the user choose a city from a list with respective cost
-	 * @param cities: available cities with cost;
+	 * Makes the player choose how many helpers to sell
+	 * @param n: number of helpers available
+	 * @return
+	 */
+	public abstract int getNumberOfHelpers(int n) throws InvalidInsertionException;
+	
+	/**
+	 * MAkes the user choose a city from a list with respective cost for moving the king to it
+	 * @param citiesECost: available cities with cost;
 	 * @return chosen city
 	 * @throws InvalidInsertionException
 	 */
 	public abstract City getCity(Map<City,Integer> citiesECost) throws InvalidInsertionException;
+
+	/**
+	 * Makes the user set a price for an order
+	 * @return price
+	 * @throws InvalidInsertionException 
+	 */
+	public abstract int getPrice() throws InvalidInsertionException;
 }

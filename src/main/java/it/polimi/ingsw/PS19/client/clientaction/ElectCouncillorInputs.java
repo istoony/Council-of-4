@@ -58,4 +58,10 @@ public class ElectCouncillorInputs extends ClientAction
 		return request;
 	}
 
+	@Override
+	public String toString() 
+	{
+		return "Elect Councillor";
+	}
+
 }

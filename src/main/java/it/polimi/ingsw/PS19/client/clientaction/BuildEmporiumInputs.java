@@ -46,7 +46,7 @@ public class BuildEmporiumInputs extends ClientAction
 	@Override
 	protected Request buildMessage() 
 	{
-		//TODO create build emporium message
+		//TODO create proper mex
 		return null;
 	}
 	
@@ -70,5 +70,11 @@ public class BuildEmporiumInputs extends ClientAction
 			if(!model.getMyPlayer().getMyEmporia().contains(ct))
 				availableCities.add(ct);
 		return availableCities;
+	}
+
+	@Override
+	public String toString() 
+	{
+		return "Build Emporium";
 	}
 }

@@ -2,12 +2,15 @@ package it.polimi.ingsw.PS19.client;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+
 import it.polimi.ingsw.PS19.client.clientaction.FastAction;
 import it.polimi.ingsw.PS19.client.clientaction.MainAction;
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitorImpl;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.PS19.message.replies.Reply;
@@ -19,6 +22,7 @@ import it.polimi.ingsw.PS19.message.requests.Request;
  */
 public class ClientInterpreter extends Observable implements Observer
 {
+	
 	ClientUI userInterface;
 	ClientModel model;
 	Integer playerId;
@@ -67,7 +71,20 @@ public class ClientInterpreter extends Observable implements Observer
 			userInterface.showNotification("Active player: " + reply.getActivePlayer());
 			if(reply.getActivePlayer() == playerId)
 			{
-				Request mex = updateAction.execute(userInterface, model);
+				boolean valid;
+				Request mex = null;
+				do
+				{
+					try 
+					{
+						mex = updateAction.execute(userInterface, model);
+						valid = true;
+					} catch (InvalidInsertionException e) 
+					{
+						ClientManager.log.log(Level.SEVERE, e.toString(), e);
+						valid = false;
+					}
+				}while(!valid);
 				notify(mex);
 			}
 		}

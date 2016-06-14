@@ -43,5 +43,11 @@ public class RedrawBusinessCardInput extends ClientAction
 		//TODO: create proper request
 		return null;
 	}
+
+	@Override
+	public String toString() 
+	{
+		return "Redraw Business Card";
+	}
 }
 
