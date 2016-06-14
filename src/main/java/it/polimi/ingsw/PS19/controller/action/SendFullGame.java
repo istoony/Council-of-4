@@ -28,7 +28,9 @@ public class SendFullGame extends SupportMethod implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return sendFullGame(model);
+		Reply r = sendFullGame(model);
+		r.setResult(result);
+		return r;
 	}
 
 }

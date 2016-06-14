@@ -44,6 +44,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		real.buildEmporium(model.getPlayerById(playerId));
 		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers()-helperscost);
 		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}

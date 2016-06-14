@@ -100,9 +100,9 @@ public class GameController implements Observer
 		checkBusinessCardBonus();
 		checkCityBonus();		
 		
-		checkAlreadyTurn();
-		
 		setTimeToMarket();
+		
+		checkAlreadyTurn();
 		
 	}
 	

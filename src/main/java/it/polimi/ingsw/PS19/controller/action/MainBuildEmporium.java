@@ -1,18 +1,12 @@
 package it.polimi.ingsw.PS19.controller.action;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.NobilityPath;
-import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class MainBuildEmporium extends SupportMethod implements Action 
@@ -89,7 +83,9 @@ public class MainBuildEmporium extends SupportMethod implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return sendFullGame(model);
+		Reply r = sendFullGame(model);
+		r.setResult(result);
+		return r;
 	}
 
 }
