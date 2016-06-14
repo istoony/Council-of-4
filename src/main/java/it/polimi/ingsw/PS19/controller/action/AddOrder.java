@@ -39,12 +39,6 @@ public class AddOrder implements Action
 	}
 
 	@Override
-	public String getStringResult() 
-	{
-		return result;
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		if(model.getCurrentState().getTimeToMarket())

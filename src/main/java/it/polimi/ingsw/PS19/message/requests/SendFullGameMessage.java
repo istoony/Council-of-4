@@ -20,11 +20,7 @@ public class SendFullGameMessage extends Request
 	/* (non-Javadoc)
 	 * @see it.polimi.ingsw.PS19.message.Message#getString()
 	 */
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public Action accept(MessageInterpreterVisitor messageInterpreter) {
 		return messageInterpreter.visit(this);

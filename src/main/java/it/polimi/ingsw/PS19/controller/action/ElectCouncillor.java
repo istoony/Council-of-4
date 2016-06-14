@@ -77,13 +77,6 @@ public class ElectCouncillor implements Action
 	}
 
 	@Override
-	public String getStringResult() 
-	{
-		return result;
-	}
-
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		ElectCouncillorReply reply;

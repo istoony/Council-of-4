@@ -14,15 +14,9 @@ public class PlayerDisconnectedMessage extends Request
 	}
 	
 	@Override
-	public String toString() 
+	public Action accept(MessageInterpreterVisitor messageInterpreter) 
 	{
-		return null;
-	}
-
-	@Override
-	public Action accept(MessageInterpreterVisitor messageInterpreter) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageInterpreter.visit(this);
 	}
 
 }

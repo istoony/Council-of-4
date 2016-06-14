@@ -19,11 +19,5 @@ public class DrawPoliticsCardMessage extends Request
 	public Action accept(MessageInterpreterVisitor messageInterpreter) {
 		return messageInterpreter.visit(this);
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

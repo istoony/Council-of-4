@@ -48,13 +48,6 @@ public class EndTurn implements Action
 	}
 	
 	@Override
-	public String getStringResult() 
-	{
-		return result;
-	}
-	
-	
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		return new EndTurnReply(model.getCurrentState().getPlayerTurnId(), model.getPlayer(), result);
