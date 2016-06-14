@@ -74,7 +74,6 @@ public class DrawCity extends JComponent{
     				log.log(Level.SEVERE, e.toString(), e);
     	       }
     	}
-    	System.out.println(image.toString());
        
     }
 
