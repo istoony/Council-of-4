@@ -17,6 +17,8 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
  * user interface abstract class
  */
 public abstract class ClientUI
+
+
 {	
 	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	

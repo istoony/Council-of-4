@@ -1,6 +1,8 @@
 package it.polimi.ingsw.PS19.model.map;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +12,12 @@ import org.w3c.dom.NodeList;
 
 
 public class FileReader {
+	
+	private static final Logger log = Logger.getLogger("FILE_READER_LOGGER");
+	
+	private FileReader(){
+		
+	}
 	
 	public static NodeList XMLReader(String nomefile, String nomeNodo){
 		try {
@@ -28,7 +36,7 @@ public class FileReader {
 
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, e.toString(), e);
 			return null;
 		}
 

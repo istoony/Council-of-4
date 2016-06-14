@@ -22,7 +22,7 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DeckFactory 
 {
-	
+	//TODO
 	private static final String POLITICSCARD = "politicscard";
 	private static final String BUSINESSCARD = "businesscard";
 	

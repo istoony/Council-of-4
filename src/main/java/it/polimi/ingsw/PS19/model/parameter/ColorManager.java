@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -20,6 +22,7 @@ public class ColorManager implements Serializable
 	private static final String COLOR_MARKER = "color";
 	private static final String COLORS_MARKER = "colors";
 	
+	private static final Logger log = Logger.getLogger("COLOR_LOGGER");
 	
 	private ArrayList<Color> colors;
 	
@@ -45,7 +48,7 @@ public class ColorManager implements Serializable
 
 		} catch (Exception e) 
 		    	{
-		    	e.printStackTrace();
+					log.log(Level.SEVERE, e.toString(), e);
 		    	}
 	}
 	
@@ -71,7 +74,8 @@ public class ColorManager implements Serializable
 		colors.add(color);
 		size++;
 	}
-@Override
+	
+	@Override
 	public String toString() 
 	{
 		String s = "SIZE: " + size + "\n";
@@ -80,13 +84,16 @@ public class ColorManager implements Serializable
 		return s;
 			
 	}
+
 	public int getSize() {
 		return size;
 	}
+	
 	public List<Color> getColors() 
 	{
 		return colors;
 	}
+	
 	public Color getRandomColor()
 	{
 		Random rand = new Random();
