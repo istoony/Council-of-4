@@ -16,6 +16,7 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
 import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.FileReader;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -30,22 +31,12 @@ public class DeckFactory
 	{
 		try {
 			Random rand = new Random();
-			
-			File fXmlFile = new File(pathfile);
-			
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-					
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-			doc.getDocumentElement().normalize();
-			
+						
 			BusinessDeck businessdeck = new BusinessDeck();
-			if(doc.getElementsByTagName(BUSINESSCARD).getLength()!=1)
+			if(FileReader.XMLReader(pathfile, BUSINESSCARD).getLength()!=1)
 				return null;		//potrei lanciare un eccezione
 			
-			NodeList nList = doc.getElementsByTagName("card");
+			NodeList nList = FileReader.XMLReader(pathfile, "card");
 			for (int temp = 0; temp < nList.getLength(); temp++) 
 			{
 				Node nNode = nList.item(temp);

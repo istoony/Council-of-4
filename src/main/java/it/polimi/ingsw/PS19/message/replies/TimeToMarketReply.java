@@ -13,8 +13,7 @@ public class TimeToMarketReply extends Reply {
 	@Override
 	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{
-		//return replyvisitor.display(this);
-		return null;
+		return replyvisitor.display(this);
 	}
 
 }
