@@ -1,6 +1,9 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
@@ -27,11 +30,16 @@ public class MainFrame extends JFrame {
 	protected void initialize(){
 		MapPanel mpanel = new MapPanel();
 		mpanel.initialize(model);
-		this.add(mpanel, BorderLayout.CENTER);
+
+		add(mpanel);
+		mpanel.setSize(new Dimension(2*MWIDTH/3, MHEIGHT));
+
 		
 		InfoPanel infobox = new InfoPanel();
 		infobox.initialize(this);
-		this.add(infobox, BorderLayout.EAST);
+		add(infobox);
+		infobox.setSize(new Dimension(MWIDTH/3, MHEIGHT));
+		infobox.setMaximumSize(new Dimension(MWIDTH/3, MHEIGHT));
 	}
 	
 	

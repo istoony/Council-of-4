@@ -1,8 +1,12 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
@@ -10,19 +14,31 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 
 public class MapPanel extends JPanel{
 	
-	RegionPanel r1;
-	RegionPanel r2;
-	RegionPanel r3;
+	private List<RegionPanel> regionPanelList;
+	private List<String> positions; 
+
 	
 	protected MapPanel(){
 		super();
+		regionPanelList = new ArrayList<>();
+		positions = new ArrayList<>();
+		positions.add("West");
+		positions.add("Center");
+		positions.add("East");
 	}
 	
 	protected void initialize(ClientModel m){
-		setBackground(Color.green);
-		r1 = new RegionPanel(m.getRegions().get(0));
-		r2 = new RegionPanel(m.getRegions().get(1));
-		r3 = new RegionPanel(m.getRegions().get(2));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		setLayout(new GridLayout(1, 3));
+		
+		for(int i=0; i<m.getRegions().size(); i++){
+			regionPanelList.add(new RegionPanel(m.getRegions().get(i)));
+		}
+		for(RegionPanel rp : regionPanelList){
+			this.add(rp);
+			rp.initialize();
+			rp.draw();
+		}
 		
 		
 	}

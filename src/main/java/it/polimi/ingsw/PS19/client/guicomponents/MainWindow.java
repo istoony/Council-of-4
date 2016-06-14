@@ -1,8 +1,7 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
-
-
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.PS19.model.Model;
 
 
 public class MainWindow {
@@ -29,6 +28,14 @@ public class MainWindow {
 		frame.initialize();
 	}
 	
+	
+	public static void main(String args[]){
+		Model mm = new Model(2);
+		ClientModel m = new ClientModel(mm);
+		MainWindow window = new MainWindow(m);
+		window.frame.setVisible(true);
+
+	}
 
 
 }

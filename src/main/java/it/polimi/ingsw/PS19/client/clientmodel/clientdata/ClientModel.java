@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.City;
@@ -34,6 +35,14 @@ public class ClientModel
 	{
 		currentId = id;
 	}
+	
+	public ClientModel(Model m){
+		regions = m.getMap().getListaRegioni();
+		king = m.getMap().getKing();
+		player = m.getPlayer();
+		nobilitypath = m.getMap().getNobilityPath();
+	}
+	
 	
 	public void setKing(King king) {
 		this.king = king;

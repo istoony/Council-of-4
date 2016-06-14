@@ -1,7 +1,6 @@
 package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.util.List;
 import java.util.Map;
 
