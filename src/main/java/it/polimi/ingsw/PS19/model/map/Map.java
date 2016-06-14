@@ -37,15 +37,15 @@ public class Map
 	
 	private void kingFactory()
 	{
-		ArrayList<City> cities = getAllCities();
+		List<City> cities = getAllCities();
 		for (City city : cities)
 			if(city.getCitycolor().equals(Color.decode("#8B008B")))
 				king = new King(city);		
 	}
 	
-	private ArrayList<City> getAllCities()
+	private List<City> getAllCities()
 	{
-		ArrayList<City> cities = new ArrayList<>();
+		List<City> cities = new ArrayList<>();
 		for (Region region : listaRegioni) 
 			cities.addAll(region.getCities());
 		return cities;

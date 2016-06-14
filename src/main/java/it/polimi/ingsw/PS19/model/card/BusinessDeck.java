@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class BusinessDeck implements Deck, Serializable 
 {
@@ -12,7 +13,7 @@ public class BusinessDeck implements Deck, Serializable
 	 */
 	private static final long serialVersionUID = -3125331114395001758L;
 	private static final int FIRST_CARD = 0;
-	List<BusinessCard> card;
+	private List<BusinessCard> card;
 	
 	public BusinessDeck() {
 		card = new ArrayList<>();
@@ -30,11 +31,25 @@ public class BusinessDeck implements Deck, Serializable
 	{
 		this.card.add((BusinessCard) card);
 	}
-	@Override
-	public Card addToDeck(int position) 
+	public void addToDeckRandom(BusinessCard c)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Random r = new Random(serialVersionUID);
+		int number = r.nextInt(card.size());
+		
+		BusinessCard temp = card.get(number);
+		card.set(number, c);
+		
+		for(int i = number + 1 ; i<card.size() - 1; i++)
+		{
+			c = card.get(i);
+			card.set(i, temp);
+			temp = card.get(i + 1);
+		}
+		card.add(temp);
+		
+	}
+	public List<BusinessCard> getCard() {
+		return card;
 	}
 	
 	@Override
@@ -58,7 +73,16 @@ public class BusinessDeck implements Deck, Serializable
 	{
 		int i = 0;
 		for (BusinessCard businessCard : card) 
+		{
 			businessCard.setId(i);
+			i++;
+		}
+	}
+
+	@Override
+	public Card addToDeck(int position) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

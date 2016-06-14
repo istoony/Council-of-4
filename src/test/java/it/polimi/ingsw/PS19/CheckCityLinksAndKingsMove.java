@@ -24,7 +24,7 @@ public class CheckCityLinksAndKingsMove {
 			for(int i=0; i<m.getMap().getListaRegioni().size(); i++){
 				for(int j=0; j<m.getMap().getListaRegioni().get(i).getCities().size(); j++){
 					city2 = m.getMap().getListaRegioni().get(i).getCities().get(j);
-					move = new ChangeKingPosition(0, city2);
+					move = new ChangeKingPosition(0, city2, null);
 					System.out.println("Can i move to " +city2.getName());
 					System.out.println(move.isPossible(m));
 				}

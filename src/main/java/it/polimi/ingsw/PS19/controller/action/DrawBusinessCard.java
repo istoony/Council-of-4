@@ -9,15 +9,11 @@ import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class DrawBusinessCard implements Action 
+public class DrawBusinessCard  extends SupportMethod implements Action 
 {
 
-	private static final int MONEY_1_CARDS = 10;
-	private static final int MONEY_2_CARDS = 7;
-	private static final int MONEY_3_CARDS = 4;
 	private int playerId;
 	private RegionType region;
 	private BusinessCard card;
@@ -51,7 +47,7 @@ public class DrawBusinessCard implements Action
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.addMoney((-1)*numberOfNeedMoney() - numberOfJoker());
+		player.addMoney((-1)*numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
 		
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione
@@ -100,7 +96,7 @@ public class DrawBusinessCard implements Action
 			//Controlla se hai abbastanza MONEY in base al numero di carte che hai e in base ai joker
 		int money = player.getMoney();
 		
-		if(money < numberOfNeedMoney() + numberOfJoker())
+		if(money < numberOfNeedMoney(politicsCard) + numberOfJoker(politicsCard))
 		{
 			result = ActionMessages.NO_MONEY;
 			return false;
@@ -132,28 +128,6 @@ public class DrawBusinessCard implements Action
 			return true;
 		}
 		return false;
-	}
-
-	private int numberOfNeedMoney()
-	{
-		if(politicsCard.size() == 1)
-			return MONEY_1_CARDS;
-		if(politicsCard.size() == 2)
-			return MONEY_2_CARDS;
-		if(politicsCard.size() == 3)
-			return MONEY_3_CARDS;
-		return 0;
-	}
-	
-	private int numberOfJoker()
-	{
-		int count = 0;
-		for (Color color : politicsCard) 
-		{
-			if(color.equals(Color.decode(Costants.JOKERCOLOR)))
-				count ++;
-		}
-		return count;
 	}
 
 	@Override

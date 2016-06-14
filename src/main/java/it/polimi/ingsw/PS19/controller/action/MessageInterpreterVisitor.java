@@ -7,6 +7,7 @@ import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
 
@@ -90,5 +91,7 @@ public interface MessageInterpreterVisitor
 	 * @return the action
 	 */
 	public Action visit(SendOrderMessage message);
+	
+	public Action visit(RedrawBusinessCardMessage message);
 		
 }

@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
@@ -104,7 +105,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	{
 		City c = message.getCity();
 		int id = message.getId();
-		return new ChangeKingPosition(id, c);
+		return new ChangeKingPosition(id, c, message.getPoliticCard());
 	}
 
 	/* (non-Javadoc)
@@ -124,5 +125,11 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	{
 		return new AddOrder(message.getOrder(), message.getId());
 	}
+
+	@Override
+	public Action visit(RedrawBusinessCardMessage message) {
+		return new RedrawBusinessCard(message.getRegion(), message.getId());
+	}
+
 
 }

@@ -71,6 +71,7 @@ public class BusinessCard implements Card, Serializable{
 	public String toString() 
 	{
 		String s = "";
+		s = s + "ID: " + id;
 		s = s + "REGION: " + type.name() + "  ";
 		for (Bonus b : bonus) 
 			s = s + b.getClass().getName() + "  ";

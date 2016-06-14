@@ -1,24 +1,32 @@
 package it.polimi.ingsw.PS19.controller.action;
 
+import java.awt.Color;
+import java.util.List;
+
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.Region;
 
 
-public class ChangeKingPosition implements Action {
+public class ChangeKingPosition extends SupportMethod implements Action{
 
 	int playerId;
 	City city;
 	String result; //vedi l'interfaccia action, per ogni errore metti in questa stringa il perchè dell'errore
+	List<Color> politicCard;
 	private static final int JUMPCOST = 2;
 	
-	public ChangeKingPosition(int id, City c) //occhio che C non avrà lo stesso puntatore alla città salvata nel
+	public ChangeKingPosition(int id, City c, List<Color> politic) //occhio che C non avrà lo stesso puntatore alla città salvata nel
 											//model, quidi conviene confrontare gli ID per muovere il re
 	{
 		playerId = id;
 		city = c;
+		politicCard = politic;
+		
 	}
 	
 	@Override
@@ -42,10 +50,23 @@ public class ChangeKingPosition implements Action {
 
 	@Override
 	public Boolean isPossible(Model model) {
-		if(model.getPlayerById(playerId).getMaxemporia()==0){
+		if(model.getPlayerById(playerId).getMaxemporia()==0)
+		{
 			result = ActionMessages.NO_BUILD;
 			return false;
 		}
+		Player player = model.getPlayerById(playerId);
+		
+		for(int i = 0; i < politicCard.size(); i++)
+		{
+			PoliticsCard p = new PoliticsCard(politicCard.get(i));
+			player.removeCardToHand(p);
+			model.getMap().getPoliticdeck().addToDeck(p);
+		}
+			//
+			//in base alle carte arrivate tolgo dei soldi al player
+			//
+		player.addMoney((-1)*numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
 		int requiredmoney = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
@@ -69,10 +90,11 @@ public class ChangeKingPosition implements Action {
 		return false;
 	}
 	
-	private City getRealCity(Model m){
+	private City getRealCity(Model m)
+	{
 		for(Region r : m.getMap().getListaRegioni()){
 			for(City c : r.getCities()){
-				if(c.equals(city)){
+				if(c.getId() == city.getId()){
 					return c;
 				}
 			}

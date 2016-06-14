@@ -53,8 +53,8 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
-		
-		drawPoliticsCard(model);
+		//TODO: remove me
+		//drawPoliticsCard(model);
 	
 		if(!(message instanceof Request))
 			return;
