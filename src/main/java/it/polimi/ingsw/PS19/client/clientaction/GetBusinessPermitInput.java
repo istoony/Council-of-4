@@ -44,7 +44,7 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	{
 		regionType = userInterface.getRegion(getAvailableRegions());
 		Region region = model.getRegionByType(regionType);
-		colors = satisfyCouncil(region, userInterface);
+		colors = satisfyCouncil(region.getBalcony(), userInterface);
 		List<BusinessCard> cards = new ArrayList<>();
 		cards.add(region.getFirstcard());
 		cards.add(region.getSecondcard());

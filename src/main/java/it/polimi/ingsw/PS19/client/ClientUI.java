@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.client;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.*;
 
 import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
@@ -110,4 +111,12 @@ public abstract class ClientUI
 	 * @throws InvalidInsertionException
 	 */
 	public abstract City getCity(List<City> cities) throws InvalidInsertionException;
+	
+	/**
+	 * MAkes the user choose a city from a list with respective cost
+	 * @param cities: available cities with cost;
+	 * @return chosen city
+	 * @throws InvalidInsertionException
+	 */
+	public abstract City getCity(Map<City,Integer> citiesECost) throws InvalidInsertionException;
 }

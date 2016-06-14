@@ -98,11 +98,11 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		return availableCards;
 	}
 	
-	protected List<Color> satisfyCouncil(Region region, ClientUI userInterface) throws InvalidInsertionException
+	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI userInterface) throws InvalidInsertionException
 	{
 		List<Color> colors = new ArrayList<>();
 		int count = 0;
-		List<Color> balcony = region.getBalcony().getCouncilcolor();
+		List<Color> balcony = balcon.getCouncilcolor();
 		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
 		PoliticsCard politicCard;
 		politicCards = getAvailablePolitics(balcony, politicCards);

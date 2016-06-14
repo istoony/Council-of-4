@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import it.polimi.ingsw.PS19.client.clientaction.BuyHelperInputs;
@@ -181,6 +183,22 @@ public class ClientCLI extends ClientUI
 		List<String> strings = new ArrayList<>();
 		for(City city : cities)
 			strings.add(getString(city));
+		int index = getValues(strings);
+		return cities.get(index);
+	}
+	
+
+	@Override
+	public City getCity(Map<City, Integer> citiesECosts) throws InvalidInsertionException 
+	{
+		writeln("Scegli Città");
+		List<String> strings = new ArrayList<>();
+		List<City> cities = new ArrayList<>();
+		for(Entry<City, Integer> entry : citiesECosts.entrySet())
+		{
+			strings.add(getString(entry.getKey()) + "(" + entry.getValue().toString() + ")");
+			cities.add(entry.getKey());
+		}
 		int index = getValues(strings);
 		return cities.get(index);
 	}

@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 
 public class ChangeKingPosition extends SupportMethod implements Action{
@@ -18,7 +19,6 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	City city;
 	String result; //vedi l'interfaccia action, per ogni errore metti in questa stringa il perchè dell'errore
 	List<Color> politicCard;
-	private static final int JUMPCOST = 2;
 	
 	public ChangeKingPosition(int id, City c, List<Color> politic) //occhio che C non avrà lo stesso puntatore alla città salvata nel
 											//model, quidi conviene confrontare gli ID per muovere il re
@@ -38,7 +38,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			return false;
 		}
 		int helperscost = real.calculateMalusEmporium();
-		int moneycost = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		
 		model.getMap().getKing().setCurrentcity(real);
 		real.buildEmporium(model.getPlayerById(playerId));
@@ -68,7 +68,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//
 		player.addMoney((-1)*numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
-		int requiredmoney = JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		int requiredmoney = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
 			City real = getRealCity(model);
 			if(real==null){	
