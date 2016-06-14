@@ -34,7 +34,7 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	@Override
 	public boolean isPossible() 
 	{
-		if(getAvailableRegions() != null)
+		if(!getAvailableRegions().isEmpty())
 			return true;
 		return false;
 	}
