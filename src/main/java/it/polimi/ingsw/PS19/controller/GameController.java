@@ -15,20 +15,31 @@ import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 
-
+/**
+ * The Class GameController.
+ */
 public class GameController implements Observer
 {
 	
+	/** The model. */
 	private Model model;
+	
+	/** The reply. */
 	private Reply reply;
 	
+	/**
+	 * Instantiates a new game controller.
+	 *
+	 * @param m the m
+	 */
 	public GameController(Model m) 
 	{
 		model = m;
 	}
 	
 	/**
-	 * Draw POLITICS_CARD for each player
+	 * Draw POLITICS_CARD for each player.
+	 *
 	 * @param m is the model of the game
 	 */
 	private void drawPoliticsCard(Model m) 
@@ -44,6 +55,9 @@ public class GameController implements Observer
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable view, Object message) 
 	{
@@ -53,8 +67,8 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
-		//TODO: remove me
-		//drawPoliticsCard(model);
+		
+		drawPoliticsCard(model);
 	
 		if(!(message instanceof Request))
 			return;
@@ -63,14 +77,24 @@ public class GameController implements Observer
 		Action action = m.accept(messageInterpreter);
 		if(action.isPossible(model))
 			action.execute(model);
-		reply = action.createReplyMessage(model);
+		reply = action.createReplyMessage(model);		
 		
 		checkModelStatus();
-		reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		reply.setId(-1);
+		
+		if(model.getCurrentState().getTimeToMarket())
+			reply.setActivePlayer(-1);
+		else
+			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		model.createMessage(reply);
+
+		checkTimeToMarket();
+		
 	}
 	
+	/**
+	 * Check model status.
+	 */
 	private void checkModelStatus()
 	{
 		checkBusinessCardBonus();
@@ -79,9 +103,12 @@ public class GameController implements Observer
 		checkAlreadyTurn();
 		
 		setTimeToMarket();
-		checkTimeToMarket();
 		
 	}
+	
+	/**
+	 * Check already turn.
+	 */
 	private void checkAlreadyTurn()
 	{
 		int id = model.getCurrentState().getPlayerTurnId();
@@ -96,11 +123,12 @@ public class GameController implements Observer
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
-			
-
 		}
 	}
 	
+	/**
+	 * Sets the time to market.
+	 */
 	private void setTimeToMarket()
 	{
 		for (Player p : model.getPlayer()) 
@@ -112,6 +140,9 @@ public class GameController implements Observer
 		model.getCurrentState().setTimeToMarket(true);
 	}
 	
+	/**
+	 * Check time to market.
+	 */
 	private void checkTimeToMarket()
 	{
 		if(model.getCurrentState().getTimeToMarket())
@@ -121,12 +152,18 @@ public class GameController implements Observer
 		}
 	}
 	
+	/**
+	 * Check business card bonus.
+	 */
 	private void checkBusinessCardBonus()
 	{
 		if(model.getCurrentState().getBusinessCardRequest())
 			model.createMessage(new GetBusinessCardBonusReply(model.getCurrentState().getPlayerTurnId()));
 	}
 	
+	/**
+	 * Check city bonus.
+	 */
 	private void checkCityBonus()
 	{
 		if(model.getCurrentState().getCityBonusRequest())

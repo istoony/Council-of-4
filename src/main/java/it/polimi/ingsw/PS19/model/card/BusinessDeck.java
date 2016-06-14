@@ -33,7 +33,7 @@ public class BusinessDeck implements Deck, Serializable
 	}
 	public void addToDeckRandom(BusinessCard c)
 	{
-		Random r = new Random(serialVersionUID);
+		Random r = new Random();
 		int number = r.nextInt(card.size());
 		
 		BusinessCard temp = card.get(number);

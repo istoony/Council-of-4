@@ -9,6 +9,7 @@ import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
+import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
 
 /**
  * Implementation of the reply visitor
@@ -65,6 +66,11 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	public ClientUpdate display(TimeToMarketReply message) 
 	{
 		return new TimeToMarketUpdate();
+	}
+	@Override
+	public ClientUpdate display(WaitingPlayerForMarketReply message) 
+	{
+		return new WaitingPlayerForMarketUpdate(message.getResult());
 	}
 
 }

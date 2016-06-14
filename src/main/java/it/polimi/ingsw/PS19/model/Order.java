@@ -1,11 +1,11 @@
 package it.polimi.ingsw.PS19.model;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 public class Order implements Serializable{
 	/**
@@ -13,7 +13,7 @@ public class Order implements Serializable{
 	 */
 	private static final long serialVersionUID = 692698285944776249L;
 	private List<BusinessCard> businesscard;
-	private List<PoliticsCard> politicscard;
+	private List<Color> politicscard;
 	private int helper;
 	private int price;
 	
@@ -24,7 +24,7 @@ public class Order implements Serializable{
 		helper = 0;
 	}
 	
-	public Order(List<BusinessCard> businesscard, List<PoliticsCard> politicscards, int helper, int price)
+	public Order(List<BusinessCard> businesscard, List<Color> politicscards, int helper, int price)
 	{
 		this.businesscard = businesscard;
 		this.politicscard = politicscards;
@@ -37,7 +37,7 @@ public class Order implements Serializable{
 		businesscard.add(card);
 	}
 	
-	public void addPoliticsCard(PoliticsCard card)
+	public void addPoliticsCard(Color card)
 	{
 		politicscard.add(card);
 	}
@@ -59,7 +59,7 @@ public class Order implements Serializable{
 	public int getHelper() {
 		return helper;
 	}
-	public List<PoliticsCard> getPoliticscard() {
+	public List<Color> getPoliticscard() {
 		return politicscard;
 	}
 	

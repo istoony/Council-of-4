@@ -18,9 +18,9 @@ public class WaitingPlayerForMarketReply extends Reply
 	}
 
 	@Override
-	public ClientUpdate display(ReplyVisitor replyvisitor) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClientUpdate display(ReplyVisitor replyvisitor) 
+	{
+		return replyvisitor.display(this);
 	}
 
 }

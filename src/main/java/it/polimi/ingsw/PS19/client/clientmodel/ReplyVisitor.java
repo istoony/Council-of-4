@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.client.clientmodel;
 
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
+import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
@@ -72,6 +73,8 @@ public interface ReplyVisitor
 	public ClientUpdate display(ChangeKingPositionReply message);
 	
 	public ClientUpdate display(TimeToMarketReply message);
+	
+	public ClientUpdate display(WaitingPlayerForMarketReply message);
 	
 	
 }
