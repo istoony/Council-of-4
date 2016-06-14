@@ -24,12 +24,6 @@ public class SendFullGame extends SupportMethod implements Action
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
-
-	@Override
-	public String getStringResult() 
-	{
-		return result;
-	}
 	
 	@Override
 	public Reply createReplyMessage(Model model) 

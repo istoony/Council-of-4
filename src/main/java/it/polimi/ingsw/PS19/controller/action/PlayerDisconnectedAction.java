@@ -28,11 +28,6 @@ public class PlayerDisconnectedAction implements Action {
 	}
 
 	@Override
-	public String getStringResult() {
-		return result;
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		return new PlayerDisconnectedReply(playerId, result);

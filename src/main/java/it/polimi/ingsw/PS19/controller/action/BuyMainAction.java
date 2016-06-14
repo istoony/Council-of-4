@@ -37,11 +37,6 @@ public class BuyMainAction implements Action
 	}
 
 	@Override
-	public String getStringResult() {
-		return result;
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		return new SendFullPlayerReply(model.getPlayer(), result);

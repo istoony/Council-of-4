@@ -27,13 +27,6 @@ public interface Action
 	public Boolean isPossible(Model model);
 	
 	/**
-	 * Gets the string result.
-	 *
-	 * @return the string result
-	 */
-	public String getStringResult();
-	
-	/**
 	 * Creates the reply message to send to view
 	 *
 	 * @param model the model

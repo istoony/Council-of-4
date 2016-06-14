@@ -61,11 +61,5 @@ public class ElectCouncillorMessage extends Request
 	{
 		return messageInterpreter.visit(this);
 	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

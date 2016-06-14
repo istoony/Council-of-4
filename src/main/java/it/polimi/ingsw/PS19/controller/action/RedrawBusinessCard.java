@@ -48,12 +48,6 @@ public class RedrawBusinessCard implements Action
 	}
 
 	@Override
-	public String getStringResult() 
-	{
-		return result;
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		return new DrawBusinessCardReply(model.getPlayer(), model.getMap().getListaRegioni(), result);

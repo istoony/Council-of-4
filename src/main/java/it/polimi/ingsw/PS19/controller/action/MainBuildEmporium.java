@@ -87,11 +87,6 @@ public class MainBuildEmporium extends SupportMethod implements Action
 	}
 
 	@Override
-	public String getStringResult() {
-		return result;
-	}
-
-	@Override
 	public Reply createReplyMessage(Model model) 
 	{
 		return sendFullGame(model);
