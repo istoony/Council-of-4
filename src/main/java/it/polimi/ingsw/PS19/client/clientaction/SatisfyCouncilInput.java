@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.PS19.client.ClientUI;
+import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.Balcony;
 import it.polimi.ingsw.PS19.model.map.Region;
@@ -94,5 +96,43 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		}
 		availableCards.addAll(getJollies(cards));
 		return availableCards;
+	}
+	
+	protected List<Color> satisfyCouncil(Region region, ClientUI userInterface) throws InvalidInsertionException
+	{
+		List<Color> colors = new ArrayList<>();
+		int count = 0;
+		List<Color> balcony = region.getBalcony().getCouncilcolor();
+		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
+		PoliticsCard politicCard;
+		politicCards = getAvailablePolitics(balcony, politicCards);
+		while(count < 4 && !politicCards.isEmpty())
+		{
+			if(count > getMinimumCardsToDraw())
+				politicCards.add(null);
+			politicCard = userInterface.getPolitic(politicCards);
+			if(politicCard == null)
+				break;
+			politicCards.remove(politicCards.size()-1);
+			balcony.remove(politicCard.getColor());
+			colors.add(politicCard.getColor());
+			politicCards.remove(politicCard);
+			count++;
+			politicCards = getAvailablePolitics(balcony, politicCards);
+		}
+		return colors;
+	}
+	
+	private int getMinimumCardsToDraw()
+	{
+		int money = model.getMyPlayer().getMoney();
+		if(money >= 10)
+			return 1;
+		else if(money >= 7)
+			return 2;
+		else if(money >= 4)
+			return 3;
+		else 
+			return 4;
 	}
 }

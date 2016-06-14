@@ -83,7 +83,7 @@ public class ClientManager
 				}
 				catch (InterruptedException e1) 
 				{
-					log.log(Level.SEVERE, e.toString(), e);
+					log.log(Level.SEVERE, e1.toString(), e1);
 					throw e1; 
 				}
 			} 

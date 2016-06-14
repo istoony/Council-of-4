@@ -3,18 +3,19 @@ package it.polimi.ingsw.PS19.client.clientaction;
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 
 /**
  * Class that creates a new NewMainActionMessage from user inputs and local model
  */
-public class NewMainActionInput extends ClientAction 
+public class BuyMainActionInput extends ClientAction 
 {
 	/**
 	 * Constructor
 	 * @param m
 	 */
-	public NewMainActionInput(ClientModel m) 
+	public BuyMainActionInput(ClientModel m) 
 	{
 		model = m;
 	}
@@ -36,8 +37,7 @@ public class NewMainActionInput extends ClientAction
 	@Override
 	protected Request buildMessage() 
 	{
-		//TODO: create proper request
-		return null;
+		return new BuyMainActionMessage();
 	}
 
 }

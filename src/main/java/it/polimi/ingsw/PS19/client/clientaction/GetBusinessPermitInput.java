@@ -10,7 +10,6 @@ import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -43,28 +42,9 @@ public class GetBusinessPermitInput extends SatisfyCouncilInput
 	@Override
 	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
-		int count = 0;
 		regionType = userInterface.getRegion(getAvailableRegions());
 		Region region = model.getRegionByType(regionType);
-		List<Color> balcony = region.getBalcony().getCouncilcolor();
-		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
-		colors = new ArrayList<>();
-		PoliticsCard politicCard;
-		politicCards = getAvailablePolitics(balcony, politicCards);
-		while(count < 4 && !politicCards.isEmpty())
-		{
-			if(count > 0)
-				politicCards.add(null);
-			politicCard = userInterface.getPolitic(politicCards);
-			if(politicCard == null)
-				break;
-			politicCards.remove(politicCards.size()-1);
-			balcony.remove(politicCard.getColor());
-			colors.add(politicCard.getColor());
-			politicCards.remove(politicCard);
-			count++;
-			politicCards = getAvailablePolitics(balcony, politicCards);
-		}
+		colors = satisfyCouncil(region, userInterface);
 		List<BusinessCard> cards = new ArrayList<>();
 		cards.add(region.getFirstcard());
 		cards.add(region.getSecondcard());

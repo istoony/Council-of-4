@@ -20,6 +20,7 @@ public abstract class ClientUpdate
 {
 	protected static List<ClientActionChooser> typesOfAction = new ArrayList<>();
 	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
+	
 	/**
 	 * Updates model
 	 * @param model: model to be updated
@@ -29,11 +30,13 @@ public abstract class ClientUpdate
 	/**
 	 * Class to get a new message
 	 * @param userInterface
+	 * @param model: reference to model
 	 * @return
 	 */
-	public Request execute(ClientUI userInterface)
+	public Request execute(ClientUI userInterface, ClientModel model)
 	{
 		Request mex = null;
+		userInterface.showNotification(model.getResult());
 		boolean valid;
 		do
 		{

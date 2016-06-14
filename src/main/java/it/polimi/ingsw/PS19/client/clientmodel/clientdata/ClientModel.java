@@ -1,9 +1,11 @@
 package it.polimi.ingsw.PS19.client.clientmodel.clientdata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
@@ -98,5 +100,16 @@ public class ClientModel
 		return null;
 	}
 
+	/**
+	 * returns the list of all the cities in the map
+	 * @return: List of all the cities in the map
+	 */
+	public List<City> getAllCities()
+	{
+		List<City> cities = new ArrayList<>();
+		for (Region region : regions) 
+			cities.addAll(region.getCities());
+		return cities;
+	}
 	
 }

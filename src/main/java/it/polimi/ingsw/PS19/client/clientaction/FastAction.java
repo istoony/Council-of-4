@@ -18,7 +18,7 @@ public class FastAction extends ClientActionChooser
 		actions.add(new RedrawBusinessCardInput(model));
 		actions.add(new BuyHelperInputs(model));
 		actions.add(new ElectCouncillorInputs(model, false));
-		actions.add(new NewMainActionInput(model));	
+		actions.add(new BuyMainActionInput(model));	
 		actions.add(new EndTurnInput(model));
 	}
 	

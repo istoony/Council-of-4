@@ -67,7 +67,7 @@ public class ClientInterpreter extends Observable implements Observer
 			userInterface.showNotification("Active player: " + reply.getActivePlayer());
 			if(reply.getActivePlayer() == playerId)
 			{
-				Request mex = updateAction.execute(userInterface);
+				Request mex = updateAction.execute(userInterface, model);
 				notify(mex);
 			}
 		}
