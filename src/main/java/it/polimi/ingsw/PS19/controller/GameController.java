@@ -28,13 +28,15 @@ public class GameController implements Observer
 	private Reply reply;
 	
 	/**
-	 * Instantiates a new game controller.
+	 * Instantiates a new game controller. The game Started!
 	 *
 	 * @param m the m
 	 */
 	public GameController(Model m) 
 	{
 		model = m;
+		
+		drawPoliticsCard();
 	}
 	
 	/**
@@ -42,15 +44,26 @@ public class GameController implements Observer
 	 *
 	 * @param m is the model of the game
 	 */
-	private void drawPoliticsCard(Model m) 
+	private void drawPoliticsCard() 
 	{
-		for (Player p : m.getPlayer()) 
+		for (Player p : model.getPlayer()) 
 		{
-			int numberOfPoliticCards = p.getPoliticCardToDraw();
+			int numberOfPoliticCards = p.getStartingPoliticCard();
 			for(int i=0;i<numberOfPoliticCards;i++)
 			{
 				DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId());
-				drawPoliticsCard.execute(m);
+				drawPoliticsCard.execute(model);
+			}
+		}
+		//Fa pescare una carta al primo player
+		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
+		
+		if( numberOfPoliticCards !=0)
+		{
+			for(int i=0;i<numberOfPoliticCards;i++)
+			{
+				DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
+				drawPoliticsCard.execute(model);
 			}
 		}
 	}
@@ -68,8 +81,6 @@ public class GameController implements Observer
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
 		
-		drawPoliticsCard(model);
-	
 		if(!(message instanceof Request))
 			return;
 		Request m = (Request) message;
@@ -121,6 +132,10 @@ public class GameController implements Observer
 				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer() + 1);
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
+			
+			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
+			drawPoliticsCard.execute(model);
+			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
 		}

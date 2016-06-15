@@ -10,12 +10,14 @@ public class PoliticDeck implements Deck
 	
 	public PoliticDeck() 
 	{
-		card = new ArrayList<PoliticsCard>();
+		card = new ArrayList<>();
 	}
 	
-
+	@Override
 	public PoliticsCard getFirstCard()
 	{
+		if(card.size() == 0)
+			return null;
 		PoliticsCard singlecard = card.get(FIRST_CARD);
 		card.remove(FIRST_CARD);
 		return singlecard;
@@ -36,11 +38,13 @@ public class PoliticDeck implements Deck
 		return card.size();
 	}
 	
+	@Override
 	public void shuffle()
 	{
 		Collections.shuffle(card);
 	}
-	public Card addToDeck(int position) {
+	public Card addToDeck(int position) 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}

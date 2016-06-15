@@ -13,6 +13,10 @@ import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
 
+/**
+ * @author toony_000
+ *
+ */
 public class Player implements Serializable
 {
 
@@ -60,7 +64,8 @@ public class Player implements Serializable
 	
 	//methods
 	
-	public void setStartingAction(){
+	public void setStartingAction()
+	{
 		mainActionCounter = 1;
 		fastActionCounter = 1;
 		politicCardToDraw = 1;
@@ -82,7 +87,7 @@ public class Player implements Serializable
 				player.money=money+p.indexOf(player);
 				player.helpers=helpers+p.indexOf(player);
 				player.maxemporia=EMPORIUM_SIZE;
-				player.politicCardToDraw = 1 + player.startingPoliticCard;
+				player.politicCardToDraw = 1;
 			}
 		}
 		return p;
@@ -255,11 +260,26 @@ public class Player implements Serializable
 		return list;
 	}
 	
+	public BusinessCard removeFreebusinesscardById(int id) 
+	{
+		BusinessCard b = null;
+		for (BusinessCard card : freebusinesscard)
+			if(card.getId() == id)
+				b = card;
+		return b;
+	}
+	
+	
 	public List<BusinessCard> getUsedbusinesscard() 
 	{
 		List<BusinessCard> list = new ArrayList<>();
 		list.addAll(usedbusinesscard);
 		return list;
+	}
+	
+	public void addUsedBusinessCard(BusinessCard card)
+	{
+		usedbusinesscard.add(card);
 	}
 
 
@@ -280,6 +300,8 @@ public class Player implements Serializable
 
 
 	/**
+	 * Get Number of Politic card to Draw AFTER SET
+	 * THIS NUMBER AT 0
 	 * @return the politicCardToDraw
 	 */
 	public int getPoliticCardToDraw() 
@@ -293,10 +315,15 @@ public class Player implements Serializable
 	/**
 	 * @param politicCardToDraw the politicCardToDraw to set
 	 */
-	public void setPoliticCardToDraw(int politicCardToDraw) {
+	public void setPoliticCardToDraw(int politicCardToDraw) 
+	{
 		this.politicCardToDraw = politicCardToDraw;
 	}
-
+	
+	public int getStartingPoliticCard() 
+	{
+		return startingPoliticCard;
+	}
 
 	/**
 	 * @return the businessCardToDrawByRegion

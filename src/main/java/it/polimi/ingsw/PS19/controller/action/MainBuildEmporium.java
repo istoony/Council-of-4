@@ -17,9 +17,9 @@ public class MainBuildEmporium extends SupportMethod implements Action
 	
 	private String result;
 	
-	public MainBuildEmporium(int city, int playerid, BusinessCard card) 
+	public MainBuildEmporium(City city, int playerid, BusinessCard card) 
 	{
-		this.cityid = city;
+		this.cityid = city.getId();
 		this.playerId = playerid;
 		this.businessCard = card;
 	}
@@ -43,6 +43,9 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		model.getMap().getRegionByType(region).getCityById(cityid).applyBonus(player);
 		
 		model.getMap().getRegionByType(region).getCityById(cityid).applyNetBonus(player, new ArrayList<City>());
+		
+		//remove to my hand business card
+		model.getPlayerById(playerId).addUsedBusinessCard(model.getPlayerById(playerId).removeFreebusinesscardById(businessCard.getId()));
 		
 		//CONTROLLO SE HO ALTRI BONUS DA APPLICARE
 		

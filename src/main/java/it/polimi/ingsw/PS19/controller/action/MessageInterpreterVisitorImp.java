@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.controller.action;
 import java.awt.Color;
 import java.util.List;
 
+import it.polimi.ingsw.PS19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
@@ -135,6 +136,12 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	@Override
 	public Action visit(PlayerDisconnectedMessage message) {
 		return new PlayerDisconnectedAction(message.getId());
+	}
+
+	@Override
+	public Action visit(BuildEmporiumMessage message) 
+	{
+		return new MainBuildEmporium(message.getCity(), message.getId(), message.getBusinessCard());
 	}
 
 

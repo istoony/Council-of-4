@@ -7,6 +7,7 @@ import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
@@ -63,8 +64,13 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			selectedcard = model.getMap().getRegionByType(region).getSecondcard();
 			model.getMap().getRegionByType(region).drowSecondCard();
 		}
-		model.getPlayerById(playerId).addCardToHand(selectedcard);
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
+		player.addCardToHand(selectedcard);
+		for (Bonus b : selectedcard.getBonus()) 
+		{
+			b.giveBonus(player);
+		}
+		
+		player.setMainActionCounter(player.getMainActionCounter() - 1);
 		return true;
 	}
 
@@ -84,15 +90,12 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			 *Se non ho nessuna carta di quel colore RETURN FALSE
 			 */
 		
-		for (Color color : politicsCard) 
+		if(!(findPoliticCard(politicsCard, player)))
 		{
-			PoliticsCard tempCard = new PoliticsCard(color);
-			if(!player.findPoliticsCard(tempCard))
-			{
-				result = ActionMessages.NOT_HAVE_POLITIC_CARD;
-				return false;
-			}
+			result = ActionMessages.NO_MONEY;
+			return false;
 		}
+			
 			//Controlla se hai abbastanza MONEY in base al numero di carte che hai e in base ai joker
 		int money = player.getMoney();
 		

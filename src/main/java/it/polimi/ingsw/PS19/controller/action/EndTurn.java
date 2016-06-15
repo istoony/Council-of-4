@@ -18,14 +18,7 @@ public class EndTurn implements Action
 	public Boolean execute(Model model) 
 	{
 		model.getPlayerById(playerId).setFastActionCounter(0);
-		model.getPlayerById(playerId).setMainActionCounter(0);
-		
-		if(playerId < model.getMaxId())
-			model.getCurrentState().setPlayerTurnId(playerId + 1);
-		else
-			model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer() + 1);
-	
-		model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();			
+		model.getPlayerById(playerId).setMainActionCounter(0);		
 		return true;
 	}
 

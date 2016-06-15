@@ -7,6 +7,7 @@ import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.map.NobilityPath;
@@ -49,5 +50,16 @@ public class SupportMethod
 		AvailableCouncillor availablecouncillor = model.getMap().getAvailableCouncillor();
 		NobilityPath noility = model.getMap().getNobilityPath();
 		return new SendFullGameReply(regions, player, king, availablecouncillor, noility);
+	}
+	
+	protected boolean findPoliticCard(List<Color> politicsCard, Player player)
+	{
+		for (Color color : politicsCard) 
+		{
+			PoliticsCard tempCard = new PoliticsCard(color);
+			if(!player.findPoliticsCard(tempCard))
+				return false;
+		}
+		return true;
 	}
 }

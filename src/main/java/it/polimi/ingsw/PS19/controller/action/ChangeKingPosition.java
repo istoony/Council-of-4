@@ -34,9 +34,24 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	{	
 		City real = getRealCity(model);
 		if(real==null){
+
 			result = ActionMessages.GENERIC_ERROR;
 			return false;
 		}
+		
+		Player player = model.getPlayerById(playerId);
+		
+		for(int i = 0; i < politicCard.size(); i++)
+		{
+			PoliticsCard p = new PoliticsCard(politicCard.get(i));
+			player.removeCardToHand(p);
+			model.getMap().getPoliticdeck().addToDeck(p);
+		}
+			//
+			//in base alle carte arrivate tolgo dei soldi al player
+			//
+		player.addMoney((-1)*numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
+		
 		int helperscost = real.calculateMalusEmporium();
 		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		
@@ -56,20 +71,17 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			result = ActionMessages.NO_BUILD;
 			return false;
 		}
-		Player player = model.getPlayerById(playerId);
 		
-		for(int i = 0; i < politicCard.size(); i++)
+		Player player = model.getPlayerById(playerId);
+		if(!(findPoliticCard(politicCard, player)))
 		{
-			PoliticsCard p = new PoliticsCard(politicCard.get(i));
-			player.removeCardToHand(p);
-			model.getMap().getPoliticdeck().addToDeck(p);
+			result = ActionMessages.NO_MONEY;
+			return false;
 		}
-			//
-			//in base alle carte arrivate tolgo dei soldi al player
-			//
-		player.addMoney((-1)*numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
 		int requiredmoney = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
+		
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
 			City real = getRealCity(model);
 			if(real==null){	
