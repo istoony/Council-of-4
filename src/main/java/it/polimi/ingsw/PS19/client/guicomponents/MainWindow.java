@@ -30,7 +30,7 @@ public class MainWindow {
 	
 	
 	public static void main(String args[]){
-		Model mm = new Model(2);
+		Model mm = new Model(3);
 		ClientModel m = new ClientModel(mm);
 		MainWindow window = new MainWindow(m);
 		window.frame.setVisible(true);

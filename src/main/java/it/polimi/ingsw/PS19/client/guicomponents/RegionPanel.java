@@ -1,7 +1,6 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,8 @@ import it.polimi.ingsw.PS19.model.map.Region;
 
 public class RegionPanel extends JPanel{
 
+	private static final String TOOLTIP = "Region ";
+	
 	private List<DrawCity> citylist;
 	private Region myregion;
 	
@@ -22,6 +23,7 @@ public class RegionPanel extends JPanel{
 		citylist = new ArrayList<>();
 		myregion = re;
 		setVisible(true);
+		setToolTipText(TOOLTIP+(myregion.getType().toString()));
 	}
 	
 	protected void initialize(){

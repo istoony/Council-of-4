@@ -84,4 +84,16 @@ public class ClientGUI extends ClientUI{
 		return null;
 	}
 
+	@Override
+	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getPrice() throws InvalidInsertionException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

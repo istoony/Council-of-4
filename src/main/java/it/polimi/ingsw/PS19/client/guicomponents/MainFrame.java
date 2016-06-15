@@ -1,18 +1,17 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JFrame;
-
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 
 public class MainFrame extends JFrame {
 
-	private static final int MWIDTH = 1000;
-	private static final int MHEIGHT = 600;
+	protected static final int MWIDTH = 1000;
+	protected static final int MHEIGHT = 600;
 	
 	private static final String NAME = "CO4, GAME ";
 	private int idgame;
@@ -25,22 +24,30 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(true);
 		setBounds(100, 60, MWIDTH, MHEIGHT);
+		setMinimumSize(this.getSize());
+		getContentPane().setLayout(new BorderLayout());
 	}
 	
 	protected void initialize(){
 		MapPanel mpanel = new MapPanel();
 		mpanel.initialize(model);
 
-		add(mpanel);
-		mpanel.setSize(new Dimension(2*MWIDTH/3, MHEIGHT));
+		getContentPane().add(mpanel, BorderLayout.CENTER);
+		mpanel.setPreferredSize(new Dimension((int) (0.6*MWIDTH), MHEIGHT));
+		mpanel.setVisible(true);
 
 		
 		InfoPanel infobox = new InfoPanel();
 		infobox.initialize(this);
-		add(infobox);
-		infobox.setSize(new Dimension(MWIDTH/3, MHEIGHT));
-		infobox.setMaximumSize(new Dimension(MWIDTH/3, MHEIGHT));
+		getContentPane().add(infobox, BorderLayout.EAST);
+		infobox.setPreferredSize(new Dimension((int) (0.3*MWIDTH), MHEIGHT));
 	}
-	
+
+	/**
+	 * @return the model
+	 */
+	public ClientModel getModel() {
+		return model;
+	}
 	
 }
