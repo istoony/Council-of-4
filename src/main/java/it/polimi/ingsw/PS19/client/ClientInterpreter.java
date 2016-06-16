@@ -69,7 +69,7 @@ public class ClientInterpreter extends Observable implements Observer
 			updateAction.update(model);
 			userInterface.drawModel(model);
 			userInterface.showNotification("Active player: " + reply.getActivePlayer());
-			if(reply.getActivePlayer() == playerId)
+			if(reply.getActivePlayer() == playerId || reply.getActivePlayer() == -1)
 			{
 				boolean valid;
 				Request mex = null;

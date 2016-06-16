@@ -31,9 +31,9 @@ public class TestMapConsistencyTest {
 				//System.out.println("stampa percorso");
 				for(int k=path.size()-1; k>=0; k--)
 				{
-					System.out.println(path.get(k).getName());
+					//System.out.println(path.get(k).getName());
 				}
-				System.out.println("lenght percorso"+path.size()+"\n");
+				//System.out.println("lenght percorso"+path.size()+"\n");
 			}
 		}
 	}

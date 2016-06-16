@@ -16,7 +16,7 @@ public class PoliticDeck implements Deck
 	@Override
 	public PoliticsCard getFirstCard()
 	{
-		if(card.size() == 0)
+		if(card.isEmpty())
 			return null;
 		PoliticsCard singlecard = card.get(FIRST_CARD);
 		card.remove(FIRST_CARD);

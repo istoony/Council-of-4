@@ -41,7 +41,7 @@ public class CheckTurn {
 			turn = turn % 4;
 			assertTrue(m.getCurrentState().getPlayerTurnId() == turn);
 			assertTrue(m.getPlayerById(turn).getPoliticcard().size() > numberOfCard);
-			System.out.println(numberOfCard);
+			//System.out.println(numberOfCard);
 		}
 	}
 

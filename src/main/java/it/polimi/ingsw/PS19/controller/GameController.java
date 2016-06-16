@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.controller;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -7,13 +8,16 @@ import it.polimi.ingsw.PS19.controller.action.Action;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitorImp;
-import it.polimi.ingsw.PS19.message.replies.GetBusinessCardBonusReply;
-import it.polimi.ingsw.PS19.message.replies.GetCityBonusReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
+import it.polimi.ingsw.PS19.message.replies.subreplies.GetBusinessCardBonusReply;
+import it.polimi.ingsw.PS19.message.replies.subreplies.GetCityBonusReply;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.map.Region;;
 
 /**
  * The Class GameController.
@@ -89,9 +93,9 @@ public class GameController implements Observer
 		if(action.isPossible(model))
 			action.execute(model);
 		reply = action.createReplyMessage(model);		
+		reply.setId(-1);		//send to all player
 		
 		checkModelStatus();
-		reply.setId(-1);
 		
 		if(model.getCurrentState().getTimeToMarket())
 			reply.setActivePlayer(-1);
@@ -119,6 +123,8 @@ public class GameController implements Observer
 	
 	/**
 	 * Check already turn.
+	 * The turn change only if MainAction & FastAction are at 0.
+	 * If plyer doesn't play fast action the EndTurn Action set FastAction to 0
 	 */
 	private void checkAlreadyTurn()
 	{
@@ -133,9 +139,10 @@ public class GameController implements Observer
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			
+			//draw one card
 			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
 			drawPoliticsCard.execute(model);
-			
+			//set active player
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
 		}
@@ -143,6 +150,7 @@ public class GameController implements Observer
 	
 	/**
 	 * Sets the time to market.
+	 * this time is true if all player have main action to zero
 	 */
 	private void setTimeToMarket()
 	{
@@ -157,12 +165,17 @@ public class GameController implements Observer
 	
 	/**
 	 * Check time to market.
+	 * This method was called after was sended reply message. 
+	 * This method send TimeToMarket Message.
+	 * 
 	 */
 	private void checkTimeToMarket()
 	{
 		if(model.getCurrentState().getTimeToMarket())
 		{
 			Reply r = new TimeToMarketReply();
+			r.setActivePlayer(-1);		//not player turn
+			r.setId(-1);				//send to all player
 			model.createMessage(r);
 		}
 	}
@@ -173,7 +186,17 @@ public class GameController implements Observer
 	private void checkBusinessCardBonus()
 	{
 		if(model.getCurrentState().getBusinessCardRequest())
-			model.createMessage(new GetBusinessCardBonusReply(model.getCurrentState().getPlayerTurnId()));
+		{
+			List<Player> p = model.getPlayer();
+			List<Region> r = model.getMap().getListaRegioni();
+			AvailableCouncillor ac = model.getMap().getAvailableCouncillor();
+			King k = model.getMap().getKing();
+			GetBusinessCardBonusReply getBusinessCardBonus = new GetBusinessCardBonusReply(p, r, ac, k);
+			getBusinessCardBonus.setActivePlayer(model.getCurrentState().getPlayerTurnId());
+			getBusinessCardBonus.setId(-1);
+			model.createMessage(getBusinessCardBonus);
+		}
+			
 	}
 	
 	/**
@@ -182,7 +205,16 @@ public class GameController implements Observer
 	private void checkCityBonus()
 	{
 		if(model.getCurrentState().getCityBonusRequest())
-			model.createMessage(new GetCityBonusReply(model.getCurrentState().getPlayerTurnId()));
+		{
+			List<Player> p = model.getPlayer();
+			List<Region> r = model.getMap().getListaRegioni();
+			AvailableCouncillor ac = model.getMap().getAvailableCouncillor();
+			King k = model.getMap().getKing();
+			GetCityBonusReply getCityBonus = new GetCityBonusReply(p, r, ac, k);
+			getCityBonus.setActivePlayer(model.getCurrentState().getPlayerTurnId());
+			getCityBonus.setId(-1);
+			model.createMessage(getCityBonus);
+		}
 	}
 	
 	

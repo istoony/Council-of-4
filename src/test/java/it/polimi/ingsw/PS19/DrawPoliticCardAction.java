@@ -19,13 +19,13 @@ public class DrawPoliticCardAction {
 	{
 		Model m = new Model(2);
 		GameController g = new GameController(m);
-		System.out.println(m.getPlayerById(0).toString());
+		//System.out.println(m.getPlayerById(0).toString());
 		for(int i = 0; i< 5; i++)
 		{
 			DrawPoliticsCardMessage mess = new DrawPoliticsCardMessage();
 			mess.setId(0);
 			g.update(null, mess);
-			System.out.println(m.getPlayerById(0).toString());
+			//System.out.println(m.getPlayerById(0).toString());
 			
 		}
 		ArrayList<Color> pc = new ArrayList<>();
@@ -37,7 +37,7 @@ public class DrawPoliticCardAction {
 		GetBusinessCardMessage businessMessage = new GetBusinessCardMessage(card, RegionType.MOUNTAIN, pc);
 		businessMessage.setId(0);
 		g.update(null, businessMessage);
-		System.out.println(m.getPlayerById(0).toString());
+		//System.out.println(m.getPlayerById(0).toString());
 	}
 
 }

@@ -1,14 +1,9 @@
 package it.polimi.ingsw.PS19.model.card;
 
 import java.awt.Color;
-import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -63,7 +58,7 @@ public class DeckFactory
 							i++;
 						}
 					
-						businessdeck.addToDeck(card);
+						businessdeck.addToDeckRandom(card);
 					}
 				}
 			}
@@ -80,16 +75,7 @@ public class DeckFactory
 	{
 		try {
 
-			File fXmlFile = new File(pathfile);
-			
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-					
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-			doc.getDocumentElement().normalize();
-			NodeList nList = doc.getElementsByTagName(POLITICSCARD);
+			NodeList nList = FileReader.XMLReader(pathfile, POLITICSCARD);
 			
 			Node node = nList.item(0);
 			Element element = (Element) node;

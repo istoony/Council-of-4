@@ -16,10 +16,10 @@ public class RedrawBusinessCard
 
 		Model m = new Model(2);
 		GameController g = new GameController(m);
-		System.out.println(m.toString());
+		//System.out.println(m.toString());
 		RedrawBusinessCardMessage message = new RedrawBusinessCardMessage(RegionType.PLAIN);
 		message.setId(0);
 		g.update(null, message);
-		System.out.println("\n\n\n" + m.toString());
+		//System.out.println("\n\n\n" + m.toString());
 	}
 }

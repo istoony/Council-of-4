@@ -10,6 +10,8 @@ import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
+import it.polimi.ingsw.PS19.message.replies.subreplies.GetBusinessCardBonusReply;
+import it.polimi.ingsw.PS19.message.replies.subreplies.GetCityBonusReply;
 
 /**
  * Implementation of the reply visitor
@@ -71,6 +73,16 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	public ClientUpdate display(WaitingPlayerForMarketReply message) 
 	{
 		return new WaitingPlayerForMarketUpdate(message.getResult());
+	}
+	@Override
+	public ClientUpdate display(GetBusinessCardBonusReply message) 
+	{
+		return new GetBusinessBonusUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(),message.getPlayer(), message.getActivePlayer());
+	}
+	@Override
+	public ClientUpdate display(GetCityBonusReply message) 
+	{
+		return new GetCityBonusUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(),message.getPlayer(), message.getActivePlayer());
 	}
 
 }

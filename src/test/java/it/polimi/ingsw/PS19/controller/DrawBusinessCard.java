@@ -44,7 +44,17 @@ public class DrawBusinessCard {
 		assertTrue(m.getPlayerById(0).getFreebusinesscard().get(0).getId()==first.getId());
 		
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
+		//System.out.println(m.getMap().getRegionByType(RegionType.HILL).getBusinessdeck().getCard().size());
 		
+		assertTrue(m.getMap().getRegionByType(RegionType.HILL).getBusinessdeck().getCard().size() == 3-2 );
+		
+		//System.out.println(m.getMap().getRegionByType(RegionType.MOUNTAIN).getBusinessdeck().getCard().size());
+		assertTrue(m.getMap().getRegionByType(RegionType.MOUNTAIN).getBusinessdeck().getCard().size() == 6-2-1 );
+		
+		//System.out.println(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size());
+		assertTrue(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size() == 8-2 );
+		System.out.println(m.toString());
+		assertTrue(m.getPlayerById(0).getMoney() == 10 - 4 );
 		System.out.println(m.toString());
 	}
 
