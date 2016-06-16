@@ -113,7 +113,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			politicCard = userInterface.getPolitic(politicCards);
 			if(politicCard == null)
 				break;
-			politicCards.remove(politicCards.size()-1);
+			if(count > getMinimumCardsToDraw())
+				politicCards.remove(politicCards.size()-1);
 			balcony.remove(politicCard.getColor());
 			colors.add(politicCard.getColor());
 			politicCards.remove(politicCard);

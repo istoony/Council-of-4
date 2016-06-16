@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.City;
@@ -46,8 +47,7 @@ public class BuildEmporiumInputs extends ClientAction
 	@Override
 	protected Request buildMessage() 
 	{
-		//TODO create proper mex
-		return null;
+		return new BuildEmporiumMessage(city, card);
 	}
 	
 	private List<BusinessCard> getAvailableCards(List<BusinessCard> cards)

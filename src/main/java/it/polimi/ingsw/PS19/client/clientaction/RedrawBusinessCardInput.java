@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.client.clientaction;
 import it.polimi.ingsw.PS19.client.ClientUI;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
@@ -40,8 +41,7 @@ public class RedrawBusinessCardInput extends ClientAction
 	@Override
 	protected Request buildMessage() 
 	{
-		//TODO: create proper request
-		return null;
+		return new RedrawBusinessCardMessage(region);
 	}
 
 	@Override
