@@ -65,7 +65,7 @@ public class BonusFactory
 			return new DrawBusinessCard(parameter);
 		
 		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
-			return new ReuseBusinessCardBonus();
+			return new ReuseBusinessCardBonus(parameter);
 																			
 		if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
 			return new GetCityBonus(parameter);
@@ -81,7 +81,8 @@ public class BonusFactory
 		ArrayList<Integer> truthTable = new ArrayList<>();
 		ArrayList<Bonus> bon = new ArrayList<>();
 		
-		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++){
+		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++)
+		{
 			truthTable.add(1);
 		}
 		

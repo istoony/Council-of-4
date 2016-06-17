@@ -13,6 +13,12 @@ public class SupportMethod
 	private static final int MONEY_2_CARDS = 7;
 	private static final int MONEY_3_CARDS = 4;
 	
+	/**
+	 * Calculate the Money need to satisfy a balcony.
+	 * This method don't check if cards are correct.
+	 * @param politicsCard a list of Politic card used to satify balcony.
+	 * @return a number of money.
+	 */
 	protected int numberOfNeedMoney(List<Color> politicsCard)
 	{
 		if(politicsCard.size() == 1)
@@ -24,6 +30,11 @@ public class SupportMethod
 		return 0;
 	}
 	
+	/**
+	 * count a number of joker in the politicsCard
+	 * @param politicsCard a list of politics card
+	 * @return number of jocker
+	 */
 	protected int numberOfJoker(List<Color> politicsCard)
 	{
 		int count = 0;

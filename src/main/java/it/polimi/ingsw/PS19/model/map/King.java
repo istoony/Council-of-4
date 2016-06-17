@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 public class King implements Serializable
 {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4394670612565992362L;
 	
 	City currentcity;

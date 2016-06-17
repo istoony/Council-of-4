@@ -37,7 +37,8 @@ public class GeneralBonus implements Bonus {
 	}
 	
 	@Override
-	public void giveBonus(Player p) {
+	public void giveBonus(Player p) 
+	{
 		int points = this.askPoints(p);
 		p.setVictoryPoints(p.getVictoryPoints()+points);
 	}

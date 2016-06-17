@@ -50,7 +50,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.addMoney((-1)*numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) + numberOfJoker(politicCard));
 		
 		int helperscost = real.calculateMalusEmporium();
 		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);

@@ -1,6 +1,10 @@
 package it.polimi.ingsw.PS19.model.parameter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 public class Costants 
 {
@@ -10,7 +14,16 @@ public class Costants
 	public static final int BROADCAST_MESSAGE = -1;
 	public static final Random RANDOM_NUMBER = new Random();
 
-	private Costants(){
+	private Costants()
+	{
 		//così sonar è contento
+	}
+	
+	public static List<PoliticsCard> clonePoliticCard(List<PoliticsCard> politiccard) 
+	{
+		List<PoliticsCard> clone = new ArrayList<>();
+		for (PoliticsCard p : politiccard)
+			clone.add(new PoliticsCard(p.getColor()));
+		return clone;
 	}
 }

@@ -48,7 +48,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.addMoney((-1)*numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) + numberOfJoker(politicsCard));
 		
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione

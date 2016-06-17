@@ -45,7 +45,7 @@ public class GameFactory extends Thread
 		for(int i = 0; i < players.size(); i++)
 		{
 			try {
-				players.get(i).write(new GameStartedMessage(0,"Game start",i, players.size()));
+				players.get(i).write(new GameStartedMessage(0,"Game start",players.size(), i));
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);

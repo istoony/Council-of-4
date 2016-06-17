@@ -42,15 +42,7 @@ public class BusinessDeck implements Deck, Serializable
 		}
 		else
 			number = r.nextInt(card.size());
-		BusinessCard temp = card.get(number);
-		card.set(number, c);
-		
-		for(int i = number + 1 ; i<card.size() - 1; i++)
-		{
-			card.set(i, temp);
-			temp = card.get(i + 1);
-		}
-		card.add(temp);
+		addToDeck(c, number);
 	}
 	public List<BusinessCard> getCard() {
 		return card;
@@ -84,9 +76,17 @@ public class BusinessDeck implements Deck, Serializable
 	}
 
 	@Override
-	public Card addToDeck(int position) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addToDeck(Card c, int position) 
+	{
+		BusinessCard temp = card.get(position);
+		card.set(position, (BusinessCard) c);
+		
+		for(int i = position + 1 ; i<card.size() - 1; i++)
+		{
+			card.set(i, temp);
+			temp = card.get(i + 1);
+		}
+		card.add(temp);
 	}
 
 }

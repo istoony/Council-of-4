@@ -46,7 +46,7 @@ public class ElectCouncillor implements Action
 			res = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
 		if(res && mainAction)
 		{
-			model.getPlayerById(playerId).addMoney(MONEY);
+			model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney() + MONEY);
 			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);	
 		}
 		else if(res)

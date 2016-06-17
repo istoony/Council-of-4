@@ -23,6 +23,7 @@ public class PoliticDeck implements Deck
 		return singlecard;
 	}
 	
+	@Override
 	public void addToDeck(Card card) 
 	{
 		this.card.add((PoliticsCard) card);
@@ -43,11 +44,6 @@ public class PoliticDeck implements Deck
 	{
 		Collections.shuffle(card);
 	}
-	public Card addToDeck(int position) 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public String toString() {
@@ -58,5 +54,14 @@ public class PoliticDeck implements Deck
 			s = s + c.toString() + "  ";
 		}
 		return s;
+	}
+
+	@Override
+	/**
+	 * This method is Unused in this case
+	 */
+	public void addToDeck(Card c, int position)
+	{
+		return;
 	}
 }

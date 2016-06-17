@@ -12,11 +12,8 @@ import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.FileReader;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
-/**
- * @author toony_000
- *
- */
 public class Player implements Serializable
 {
 
@@ -32,21 +29,21 @@ public class Player implements Serializable
 	private int nobilityPoints;
 	
 	private int startingPoliticCard;
-	
-	private int maxemporia;
-	
+		
 	private int mainActionCounter;
 	private int fastActionCounter;
 	
 	private int politicCardToDraw;
-	
-	private List<Integer> businessCardToDrawByRegion;
-	
+		
 	private List<BusinessCard> freebusinesscard;
 	private List<BusinessCard> usedbusinesscard;
 	private List<PoliticsCard> politiccard;
 	
+	private int maxemporia;
 	private List<City> myEmporia;
+	
+	private boolean businessCardRequest;
+	private boolean cityBonusRequest;
 	
 	
 	public Player(int id) 
@@ -59,6 +56,8 @@ public class Player implements Serializable
 		connected = true;
 		mainActionCounter = 1;
 		fastActionCounter = 1;
+		businessCardRequest = false;
+		cityBonusRequest = false;
 	}
 	
 	
@@ -93,7 +92,8 @@ public class Player implements Serializable
 		return p;
 	}
 	
-	public void addCardToHand(PoliticsCard c){
+	public void addCardToHand(PoliticsCard c)
+	{
 		politiccard.add(c);
 	}
 	public void removeCardToHand(PoliticsCard c)
@@ -106,79 +106,87 @@ public class Player implements Serializable
 			}
 	}
 	
-	public void addCardToHand(BusinessCard c){
+	public void addCardToHand(BusinessCard c)
+	{
 		freebusinesscard.add(c);
 	}
 	public List<PoliticsCard> getPoliticcard() 
 	{
-		return clonePoliticCard();
+		return Costants.clonePoliticCard(politiccard);
 	}
 	
-	private ArrayList<PoliticsCard> clonePoliticCard() 
-	{
-		ArrayList<PoliticsCard> clone = new ArrayList<>();
-		for (PoliticsCard p : politiccard) 
-			clone.add(p);
-		return clone;
-	}
-
-
-	public void addMoney(int m)
-	{
-		money = money + m;
-	}
-	
-	//getter and setter
+	/**
+	 * Get player Id
+	 * @return the id of this player
+	 */
 	public int getId() 
 	{
 		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
 	}	
-	
-	public int getMainActionCounter() {
+	/*
+	 * START GETTER AND SETTER OF MAIN AND FAST ACTION
+	 */
+	public int getMainActionCounter() 
+	{
 		return mainActionCounter;
 	}
 	
-	public void setMainActionCounter(int mainActionCounter) {
+	public void setMainActionCounter(int mainActionCounter) 
+	{
 		this.mainActionCounter = mainActionCounter;
 	}
 	
-	public int getFastActionCounter() {
+	public int getFastActionCounter() 
+	{
 		return fastActionCounter;
 	}
 	
-	public void setFastActionCounter(int fastActionCounter) {
+	public void setFastActionCounter(int fastActionCounter) 
+	{
 		this.fastActionCounter = fastActionCounter;
 	}
+	/*
+	 * END GETTER AND SETTER OF MAIN AND FAST ACTION
+	 * 
+	 * START GETTER AND SETTER OF MONEY - NOBILITY POINTS - VICTORY POINTS - HELPERS
+	 */
 	
-	public int getNobilityPoints() {
+	public int getNobilityPoints() 
+	{
 		return nobilityPoints;
 	}
-	public void setNobilityPoints(int nobilityPoints) {
+	public void setNobilityPoints(int nobilityPoints) 
+	{
 		this.nobilityPoints = nobilityPoints;
 	}
-	public int getVictoryPoints() {
+	public int getVictoryPoints() 
+	{
 		return victoryPoints;
 	}
-	public void setVictoryPoints(int victoryPoints) {
+	public void setVictoryPoints(int victoryPoints) 
+	{
 		this.victoryPoints = victoryPoints;
 	}
-	public int getMoney() {
+	public int getMoney()
+	{
 		return money;
 	}
-	public void setMoney(int m) {
-		this.money = m;
+	public void setMoney(int money) 
+	{
+		this.money = money;
 	}
-	public int getHelpers() {
+	public int getHelpers() 
+	{
 		return helpers;
 	}
-	public void setHelpers(int helpers) {
+	public void setHelpers(int helpers) 
+	{
 		this.helpers = helpers;
 	}
+	
+	/*
+	 * END GETTER AND SETTER OF MONEY - VICTORY POINTS - NOBILITY POINTS - HELPERS
+	 */
 	
 	public boolean isConnected() 
 	{
@@ -225,7 +233,8 @@ public class Player implements Serializable
 		
 	}
 
-	public void addToMyEmporia(City c) {
+	public void addToMyEmporia(City c)
+	{
 		myEmporia.add(c);
 		maxemporia=maxemporia-1;
 	}
@@ -233,18 +242,11 @@ public class Player implements Serializable
 	/**
 	 * @return the myEmporia
 	 */
-	public List<City> getMyEmporia() {
+	public List<City> getMyEmporia() 
+	{
 		return myEmporia;
 	}
 
-
-	/**
-	 * @param myEmporia the myEmporia to set
-	 */
-	public void setMyEmporia(List<City> myEmporia) {
-		this.myEmporia = myEmporia;
-	}
-	
 	public Boolean findMyEmporiaById(int id)
 	{
 		for (City c : myEmporia) 
@@ -311,7 +313,6 @@ public class Player implements Serializable
 		return app;
 	}
 
-
 	/**
 	 * @param politicCardToDraw the politicCardToDraw to set
 	 */
@@ -324,19 +325,18 @@ public class Player implements Serializable
 	{
 		return startingPoliticCard;
 	}
-
-	/**
-	 * @return the businessCardToDrawByRegion
-	 */
-	public List<Integer> getBusinessCardToDrawByRegion() {
-		return businessCardToDrawByRegion;
+	
+	
+	public void setBusinessCardRequest(boolean businessCardRequest) {
+		this.businessCardRequest = businessCardRequest;
 	}
-
-
-	/**
-	 * @param businessCardToDrawByRegion the businessCardToDrawByRegion to set
-	 */
-	public void setBusinessCardToDrawByRegion(List<Integer> businessCardToDrawByRegion) {
-		this.businessCardToDrawByRegion = businessCardToDrawByRegion;
+	public void setCityBonusRequest(boolean cityBonusRequest) {
+		this.cityBonusRequest = cityBonusRequest;
+	}
+	public boolean isBusinessCardRequest() {
+		return businessCardRequest;
+	}
+	public boolean isCityBonusRequest() {
+		return cityBonusRequest;
 	}
 }
