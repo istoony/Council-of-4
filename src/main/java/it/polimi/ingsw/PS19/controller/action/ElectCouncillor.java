@@ -79,11 +79,9 @@ public class ElectCouncillor implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		ElectCouncillorReply reply;
-		reply = new ElectCouncillorReply(model.getPlayer(), model.getMap().getListaRegioni(),model.getMap().getAvailableCouncillor(), model.getMap().getKing());
-		reply.setResult(result);
-		reply.setId(-1);
-		return reply;
+		return new ElectCouncillorReply(model.getCurrentState().getPlayerTurnId(), result, 
+				model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+				model.getMap().getAvailableCouncillor());
 	}
 	
 }

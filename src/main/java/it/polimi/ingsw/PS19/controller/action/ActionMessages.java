@@ -15,6 +15,8 @@ public class ActionMessages
 	public static final String NO_BUILD = "You have already finish yours emporia!";
 	public static final String PLAYER_DISCONNECTED = "Player Disconnected. id = ";
 	public static final String NO_MARKET_TIME ="this is not Market time";
+	public static final String BUSINESS_CARD_REQUEST = "Please select a Business card";
+	public static final String TIME_TO_MARKET = "Now is time to Maket";
 	
 	
 	private ActionMessages() { }

@@ -5,13 +5,12 @@ import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetBusinessCardBonusReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetCityBonusReply;
 
 /**
  * Implementation of the reply visitor
@@ -22,7 +21,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(SendFullGameReply message) 
 	{
-		return new SendFullGameUpdate(message.getResult(), message.getKing(), message.getRegions(), message.getPlayer(), message.getActivePlayer(), message.getAvailableCouncillor(), message.getNobilitypath());
+		return new SendFullGameUpdate(message.getResult(), message.getKing(), message.getRegion(), message.getPlayer(), message.getActivePlayer(), message.getAvailableCouncillor(), message.getNobilityPath());
 	}
 	@Override
 	public ClientUpdate display(DrawBusinessCardReply message) 
@@ -62,7 +61,8 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(ChangeKingPositionReply message) 
 	{
-		return new ChangeKingPositionUpdate(message.getPlayer(), message.getKing(), message.getResult(), message.getActivePlayer());
+		return new ChangeKingPositionUpdate(message.getPlayer(), message.getKing(), 
+				message.getResult(), message.getActivePlayer());
 	}
 	@Override
 	public ClientUpdate display(TimeToMarketReply message) 
@@ -75,14 +75,13 @@ public class ReplyVisitorImpl implements ReplyVisitor
 		return new WaitingPlayerForMarketUpdate(message.getResult());
 	}
 	@Override
-	public ClientUpdate display(GetBusinessCardBonusReply message) 
+	public ClientUpdate display(GetBusinessCardOrCityBonusReply message) 
 	{
-		return new GetBusinessBonusUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(),message.getPlayer(), message.getActivePlayer());
-	}
-	@Override
-	public ClientUpdate display(GetCityBonusReply message) 
-	{
-		return new GetCityBonusUpdate(message.getResult(), message.getRegion(), message.getKing(), message.getAvailableCouncillor(),message.getPlayer(), message.getActivePlayer());
+		return new GetBusinessCardOrBonusUpdate(message.getResult(), 
+				message.getRegion(), message.getKing(), 
+				message.getAvailableCouncillor(),message.getPlayer(), 
+				message.getActivePlayer(), message.getBusinessCardBonus(), 
+				message.getCityBonus());
 	}
 
 }

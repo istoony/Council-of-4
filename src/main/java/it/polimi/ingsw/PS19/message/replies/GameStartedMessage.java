@@ -9,10 +9,12 @@ public class GameStartedMessage extends Reply
 	private int playerNumber;
 	private int numberOfPlayer;
 	
-	public GameStartedMessage(int pNum, int numOfPlayers) 
+	public GameStartedMessage(int activePlayer, String result, int numberOfPlayer, int playerNumber) 
 	{
-		playerNumber = pNum;
-		numberOfPlayer = numOfPlayers;
+		super(activePlayer, result);
+		this.numberOfPlayer = numberOfPlayer;
+		this.playerNumber = playerNumber;
+		
 	}
 	
 	public int getNumberOfPlayer() 

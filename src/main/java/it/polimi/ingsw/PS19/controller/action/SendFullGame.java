@@ -1,6 +1,8 @@
 package it.polimi.ingsw.PS19.controller.action;
 
+import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
+import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.PS19.model.Model;
 
 public class SendFullGame extends SupportMethod implements Action 
@@ -28,9 +30,9 @@ public class SendFullGame extends SupportMethod implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		Reply r = sendFullGame(model);
-		r.setResult(result);
-		return r;
+		return new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), result, 
+				model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+				model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
 	}
 
 }

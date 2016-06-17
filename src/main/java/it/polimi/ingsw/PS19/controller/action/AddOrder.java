@@ -1,12 +1,11 @@
 package it.polimi.ingsw.PS19.controller.action;
 
-import java.util.Random;
-
 import it.polimi.ingsw.PS19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Order;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public class AddOrder implements Action 
 {
@@ -42,12 +41,10 @@ public class AddOrder implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		if(model.getCurrentState().getTimeToMarket())
-			return new WaitingPlayerForMarketReply(result);
-		Random r = new Random();
-		int idTurn = model.getPlayerById(r.nextInt(model.getNumberofplayer())).getId();
+			return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result);
+		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getNumberofplayer())).getId();
 		if(model.getMarket().getSize() == model.getNumberofplayer())
 			return new CompleteMarketReply(model.getMarket().getSize(), result + ". Is Time to Buy", idTurn);
-		return new WaitingPlayerForMarketReply(result + ". Waiting For Player");
+		return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result + ". Waiting For Player");
 	}
-
 }

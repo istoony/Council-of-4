@@ -5,23 +5,16 @@ import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 
 public class CompleteMarketReply extends Reply 
 {
-
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2012056866792056947L;
 	private int marketSize;
 	
-	public CompleteMarketReply(int market, String res, int turn) 
+	public CompleteMarketReply(int activePlayer, String result, int marketSize) 
 	{
-		marketSize = market;
-		setResult(res);
-		setActivePlayer(turn);
-	}
-	
-	public CompleteMarketReply() {
-		// TODO Auto-generated constructor stub
+		super(activePlayer, result);
+		this.marketSize = marketSize;
 	}
 	
 	public int getMarketSize() 

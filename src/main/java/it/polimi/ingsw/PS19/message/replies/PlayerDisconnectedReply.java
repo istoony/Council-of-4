@@ -10,17 +10,10 @@ public class PlayerDisconnectedReply extends Reply
 	 * 
 	 */
 	private static final long serialVersionUID = -6430324408373788268L;
-	private int playerId;
 	
-	public PlayerDisconnectedReply(int id, String res) 
+	public PlayerDisconnectedReply(int activePlayer, String result) 
 	{
-		playerId = id;
-		setResult(res);
-	}
-	
-	public int getPlayerId() 
-	{
-		return playerId;
+		super(activePlayer, result);
 	}
 	
 	@Override

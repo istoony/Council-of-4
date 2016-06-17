@@ -46,9 +46,8 @@ public class BuyHelper implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		SendFullPlayerReply reply = new SendFullPlayerReply(model.getPlayer(), result);
-		reply.setId(model.getCurrentState().getPlayerTurnId());
-		return reply;
+		return new SendFullPlayerReply(model.getCurrentState().getPlayerTurnId(),
+				result,model.getPlayer());
 	}
 
 }

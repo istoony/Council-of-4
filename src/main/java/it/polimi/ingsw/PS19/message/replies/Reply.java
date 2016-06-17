@@ -11,6 +11,12 @@ public abstract class Reply extends Message
 	
 	private static final long serialVersionUID = -1984682021445434304L;
 	
+	public Reply(int activePlayer, String result)
+	{
+		this.activePlayer =activePlayer;
+		this.result = result;
+	}
+	
 	public abstract ClientUpdate display(ReplyVisitor replyvisitor);
 	
 	public void setActivePlayer(int activePlayer) 
@@ -25,9 +31,5 @@ public abstract class Reply extends Message
 	public String getResult() 
 	{
 		return result;
-	}
-	public void setResult(String result) 
-	{
-		this.result = result;
 	}
 }

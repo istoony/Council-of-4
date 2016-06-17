@@ -10,7 +10,7 @@ import it.polimi.ingsw.PS19.model.map.King;
 import it.polimi.ingsw.PS19.model.map.NobilityPath;
 import it.polimi.ingsw.PS19.model.map.Region;
 
-public class SendFullGameReply extends Reply 
+public class SendFullGameReply extends ElectCouncillorReply
 {
 
 	/**
@@ -18,46 +18,22 @@ public class SendFullGameReply extends Reply
 	 */
 	private static final long serialVersionUID = -4013509319790221079L;
 	
-	private List<Region> regions;
-	private List<Player> player;
-	private King king;
-	private NobilityPath nobilitypath;
-	private AvailableCouncillor availableCouncillor;
+	private NobilityPath nobilityPath;
 	
-	public SendFullGameReply(List<Region> regions2, List<Player> p, King k, AvailableCouncillor avc, NobilityPath nob) 
+	public SendFullGameReply(int activePlayer, String result, List<Player> player, List<Region> region, King king,
+			AvailableCouncillor availableCouncillor, NobilityPath nobilityPath) 
 	{
-		regions = regions2;
-		player = p;
-		king = k;
-		nobilitypath = nob;
-		availableCouncillor = avc;
+		super(activePlayer, result, player, region, king, availableCouncillor);
+		this.nobilityPath = nobilityPath;
 	}
-	
-	public List<Region> getRegions() {
-		return regions;
-	}
-	public List<Player> getPlayer() {
-		return player;
-	}
-	public King getKing() {
-		return king;
-	}
-	public AvailableCouncillor getAvailableCouncillor() {
-		return availableCouncillor;
-	}
-	public NobilityPath getNobilitypath() {
-		return nobilitypath;
+
+	public NobilityPath getNobilityPath() {
+		return nobilityPath;
 	}
 	
 	@Override
 	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{
 		return replyvisitor.display(this);
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

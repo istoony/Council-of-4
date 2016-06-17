@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.controller.action;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
@@ -86,9 +87,9 @@ public class MainBuildEmporium extends SupportMethod implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		Reply r = sendFullGame(model);
-		r.setResult(result);
-		return r;
+		return new ElectCouncillorReply(model.getCurrentState().getPlayerTurnId(), result, 
+				model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+				model.getMap().getAvailableCouncillor());
 	}
 
 }

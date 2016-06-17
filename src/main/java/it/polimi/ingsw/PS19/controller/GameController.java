@@ -1,23 +1,20 @@
 package it.polimi.ingsw.PS19.controller;
 
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.PS19.controller.action.Action;
+import it.polimi.ingsw.PS19.controller.action.ActionMessages;
 import it.polimi.ingsw.PS19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitorImp;
+import it.polimi.ingsw.PS19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetBusinessCardBonusReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetCityBonusReply;
 import it.polimi.ingsw.PS19.message.requests.Request;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.Region;;
+import it.polimi.ingsw.PS19.model.parameter.Costants;;
 
 /**
  * The Class GameController.
@@ -93,7 +90,6 @@ public class GameController implements Observer
 		if(action.isPossible(model))
 			action.execute(model);
 		reply = action.createReplyMessage(model);		
-		reply.setId(-1);		//send to all player
 		
 		checkModelStatus();
 		
@@ -101,6 +97,7 @@ public class GameController implements Observer
 			reply.setActivePlayer(-1);
 		else
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
+		reply.setId(-1);		//send to all player
 		model.createMessage(reply);
 
 		checkTimeToMarket();
@@ -112,8 +109,7 @@ public class GameController implements Observer
 	 */
 	private void checkModelStatus()
 	{
-		checkBusinessCardBonus();
-		checkCityBonus();		
+		checkBusinessOrCityBonus();		
 		
 		setTimeToMarket();
 		
@@ -173,49 +169,31 @@ public class GameController implements Observer
 	{
 		if(model.getCurrentState().getTimeToMarket())
 		{
-			Reply r = new TimeToMarketReply();
-			r.setActivePlayer(-1);		//not player turn
-			r.setId(-1);				//send to all player
+			Reply r = new TimeToMarketReply(Costants.NO_ACTIVE_PLAYER, ActionMessages.TIME_TO_MARKET);
+			r.setId(Costants.BROADCAST_MESSAGE);				//send to all player
 			model.createMessage(r);
 		}
 	}
 	
 	/**
-	 * Check business card bonus.
+	 * Check business card & city Bonus.
+	 * If first or second are true create a GetBusinessCardOrCityBonusReply
+	 * and server send to players all game
 	 */
-	private void checkBusinessCardBonus()
+	private void checkBusinessOrCityBonus()
 	{
-		if(model.getCurrentState().getBusinessCardRequest())
+		if(model.getCurrentState().getBusinessCardRequest() || model.getCurrentState().getCityBonusRequest())
 		{
-			List<Player> p = model.getPlayer();
-			List<Region> r = model.getMap().getListaRegioni();
-			AvailableCouncillor ac = model.getMap().getAvailableCouncillor();
-			King k = model.getMap().getKing();
-			GetBusinessCardBonusReply getBusinessCardBonus = new GetBusinessCardBonusReply(p, r, ac, k);
-			getBusinessCardBonus.setActivePlayer(model.getCurrentState().getPlayerTurnId());
-			getBusinessCardBonus.setId(-1);
-			model.createMessage(getBusinessCardBonus);
+			reply = new GetBusinessCardOrCityBonusReply(
+					model.getCurrentState().getPlayerTurnId(), 
+					ActionMessages.BUSINESS_CARD_REQUEST, 
+					model.getPlayer(), 
+					model.getMap().getListaRegioni(), 
+					model.getMap().getKing(),
+					model.getMap().getAvailableCouncillor(),
+					model.getCurrentState().getBusinessCardRequest(),
+					model.getCurrentState().getCityBonusRequest());
 		}
 			
-	}
-	
-	/**
-	 * Check city bonus.
-	 */
-	private void checkCityBonus()
-	{
-		if(model.getCurrentState().getCityBonusRequest())
-		{
-			List<Player> p = model.getPlayer();
-			List<Region> r = model.getMap().getListaRegioni();
-			AvailableCouncillor ac = model.getMap().getAvailableCouncillor();
-			King k = model.getMap().getKing();
-			GetCityBonusReply getCityBonus = new GetCityBonusReply(p, r, ac, k);
-			getCityBonus.setActivePlayer(model.getCurrentState().getPlayerTurnId());
-			getCityBonus.setId(-1);
-			model.createMessage(getCityBonus);
-		}
-	}
-	
-	
+	}	
 }

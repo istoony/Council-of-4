@@ -1,17 +1,16 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
-import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
-import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
-import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetBusinessCardBonusReply;
-import it.polimi.ingsw.PS19.message.replies.subreplies.GetCityBonusReply;
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
 import it.polimi.ingsw.PS19.message.replies.GameStartedMessage;
+import it.polimi.ingsw.PS19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
+import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
+import it.polimi.ingsw.PS19.message.replies.TimeToMarketReply;
+import it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply;
 
 /**
  * Interface which rapresents the visitor to manage the replies
@@ -77,10 +76,8 @@ public interface ReplyVisitor
 	public ClientUpdate display(TimeToMarketReply message);
 	
 	public ClientUpdate display(WaitingPlayerForMarketReply message);
-	
-	public ClientUpdate display(GetBusinessCardBonusReply message);
-	
-	public ClientUpdate display(GetCityBonusReply message);
+
+	public ClientUpdate display(GetBusinessCardOrCityBonusReply message);
 	
 	
 }

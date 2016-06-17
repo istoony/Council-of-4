@@ -11,10 +11,9 @@ public class WaitingPlayerForMarketReply extends Reply
 	 */
 	private static final long serialVersionUID = -6431400927628413970L;
 	
-	public WaitingPlayerForMarketReply(String result)
-	{
-		setResult(result);
-		
+	public WaitingPlayerForMarketReply(int activePlayer, String result) {
+		super(activePlayer, result);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

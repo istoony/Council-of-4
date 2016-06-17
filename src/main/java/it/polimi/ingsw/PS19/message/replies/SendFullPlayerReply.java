@@ -9,16 +9,13 @@ import it.polimi.ingsw.PS19.model.Player;
 public class SendFullPlayerReply extends Reply
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1117123155364033902L;
 	private List<Player> player;
 	
-	public SendFullPlayerReply(List<Player> p, String s) 
+	public SendFullPlayerReply(int activePlayer, String result, List<Player> player) 
 	{
-		player = p;
-		setResult(s);
+		super(activePlayer, result);
+		this.player = player;
 	}
 	
 	public List<Player> getPlayer() 

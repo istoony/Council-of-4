@@ -7,7 +7,7 @@ import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.Region;
 
-public class DrawBusinessCardReply extends Reply
+public class DrawBusinessCardReply extends SendFullPlayerReply
 {
 
 	/**
@@ -15,24 +15,20 @@ public class DrawBusinessCardReply extends Reply
 	 */
 	private static final long serialVersionUID = -7817867055750090348L;
 	
-	private List<Player> player;
 	private List<Region> region;
 	
-	public DrawBusinessCardReply(List<Player> p, List<Region> r, String result)
+	public DrawBusinessCardReply(int activePlayer, String result, List<Player> player, List<Region> region) 
 	{
-		player = p;
-		region = r;
-		setResult(result);
+		super(activePlayer, result, player);
+		this.region = region;
 	}
 	
-	public List<Player> getPlayer() {
-		return player;
-	}
-	public List<Region> getRegion() {
+	
+	public List<Region> getRegion() 
+	{
 		return region;
 	}
 	
-
 	@Override
 	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{

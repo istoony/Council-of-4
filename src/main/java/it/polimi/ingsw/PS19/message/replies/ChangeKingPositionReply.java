@@ -7,28 +7,21 @@ import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.King;
 
-public class ChangeKingPositionReply extends Reply {
+public class ChangeKingPositionReply extends SendFullPlayerReply {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4036516393257537545L;
-	private List<Player> player;
 	private King king;
 	
-	public ChangeKingPositionReply(List<Player> p, King k, String res, int activeId)
-	{
-		player = p;
-		king =k;
-		setResult(res);
-		setActivePlayer(activeId);
+	public ChangeKingPositionReply(int activePlayer, String result, List<Player> player, King king) {
+		super(activePlayer, result, player);
+		this.king = king;
 	}
 
 	public King getKing() {
 		return king;
-	}
-	public List<Player> getPlayer() {
-		return player;
 	}
 	
 	@Override

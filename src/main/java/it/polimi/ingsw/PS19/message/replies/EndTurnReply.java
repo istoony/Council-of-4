@@ -6,27 +6,17 @@ import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.model.Player;
 
-public class EndTurnReply extends Reply {
+public class EndTurnReply extends SendFullPlayerReply {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8131510543035792307L;
 	
-	private List<Player> player;
-	
-	public EndTurnReply(int id, List<Player> p, String s) 
+	public EndTurnReply(int activePlayer, String result, List<Player> player) 
 	{
-		setResult(s);
-		setActivePlayer(id);
-		player = p;
+		super(activePlayer, result, player);
 	}
-	
-	public List<Player> getPlayer() 
-	{
-		return player;
-	}
-
 	@Override
 	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{

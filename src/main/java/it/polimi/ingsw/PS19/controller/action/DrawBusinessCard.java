@@ -136,6 +136,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new DrawBusinessCardReply(model.getPlayer(),model.getMap().getListaRegioni(),result);
+		return new DrawBusinessCardReply(model.getCurrentState().getPlayerTurnId(), result,
+				model.getPlayer(), model.getMap().getListaRegioni());
 	}
 }

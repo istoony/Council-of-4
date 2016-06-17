@@ -118,7 +118,8 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new ChangeKingPositionReply(model.getPlayer(), model.getMap().getKing(), result, model.getCurrentState().getPlayerTurnId());
+		return new ChangeKingPositionReply(model.getCurrentState().getPlayerTurnId(), result, 
+				model.getPlayer(), model.getMap().getKing());
 	}
 
 }

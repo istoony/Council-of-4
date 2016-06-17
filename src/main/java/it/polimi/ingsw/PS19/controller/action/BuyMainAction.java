@@ -39,7 +39,8 @@ public class BuyMainAction implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new SendFullPlayerReply(model.getPlayer(), result);
+		return new SendFullPlayerReply(model.getCurrentState().getPlayerTurnId(),
+				result,model.getPlayer());
 	}
 
 }
