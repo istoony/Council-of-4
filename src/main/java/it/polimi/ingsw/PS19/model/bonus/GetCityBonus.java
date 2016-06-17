@@ -6,23 +6,16 @@ import it.polimi.ingsw.PS19.model.Player;
 
 public class GetCityBonus implements Bonus {
 
-	/**
-	 * 
-	 */
-	// TODO: write me
 	private static final long serialVersionUID = 6314285377196367956L;
 	
-	private int howmany;
 
 	public GetCityBonus(int parameter) 
-	{
-		howmany = parameter;
-	}
+	{	}
 
 	@Override
-	public void giveBonus(Player p) {
-		// TODO Auto-generated method stub
-		
+	public void giveBonus(Player p) 
+	{
+		p.setCityBonusRequest(true);
 	}
 
 }

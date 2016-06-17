@@ -43,34 +43,35 @@ public class BonusFactory
 	
 	public static Bonus getBonus(String typeofbonus, int parameter)
 	{
+		Bonus bonus = null;
 		if(typeofbonus.equals(BONUS_MORE_MONEY))
-			return new MoreMoney(parameter);
+			bonus = new MoreMoney(parameter);
 		
 		if(typeofbonus.equals(BONUS_MORE_HELPER))
-			return new MoreHelpers(parameter);
+			bonus = new MoreHelpers(parameter);
 		
 		if(typeofbonus.equals(BONUS_MORE_NOBILITYTRACK))
-			return new MoreNobilityPoints(parameter);
+			bonus = new MoreNobilityPoints(parameter);
 					
 		if(typeofbonus.equals(BONUS_MORE_POLITICSCARD))
-			return new DrawPoliticCard(parameter);
+			bonus = new DrawPoliticCard(parameter);
 						
 		if(typeofbonus.equals(BONUS_ANOTHER_TURN))
-			return new MoreMainAction(parameter);
+			bonus = new MoreMainAction(parameter);
 							
 		if(typeofbonus.equals(BONUS_MORE_VICTORY_POINTS))
-			return new MoreVictoryPoints(parameter);
+			bonus = new MoreVictoryPoints(parameter);
 					
 		if(typeofbonus.equals(BONUS_MORE_BUSINESS_CARD))
-			return new DrawBusinessCard(parameter);
+			bonus = new DrawBusinessCard(parameter);
 		
 		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
-			return new ReuseBusinessCardBonus(parameter);
+			bonus = new ReuseBusinessCardBonus(parameter);
 																			
 		if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
-			return new GetCityBonus(parameter);
+			bonus = new GetCityBonus(parameter);
 			
-		return null;	
+		return bonus;	
 	}
 	
 	public static List<Bonus> generateCityBonus(){

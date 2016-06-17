@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.FileNames;
 import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.PS19.model.card.DeckFactory;
 import it.polimi.ingsw.PS19.model.card.PoliticDeck;
 import it.polimi.ingsw.PS19.model.parameter.ColorManager;
+import it.polimi.ingsw.PS19.model.parameter.FileNames;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 

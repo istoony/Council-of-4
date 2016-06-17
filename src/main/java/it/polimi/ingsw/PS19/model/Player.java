@@ -21,7 +21,6 @@ public class Player implements Serializable
 	private static final long serialVersionUID = -505551466312267551L;
 	
 	private int id;
-	private boolean connected;
 	
 	private int money;
 	private int helpers;
@@ -46,22 +45,18 @@ public class Player implements Serializable
 	private boolean cityBonusRequest;
 	
 	
-	public Player(int id) 
+	protected Player(int id) 
 	{
 		this.id = id;
 		myEmporia = new ArrayList<>();
 		freebusinesscard = new ArrayList<>();
 		usedbusinesscard = new ArrayList<>();
 		politiccard = new ArrayList<>();
-		connected = true;
 		mainActionCounter = 1;
 		fastActionCounter = 1;
 		businessCardRequest = false;
 		cityBonusRequest = false;
 	}
-	
-	
-	//methods
 	
 	public void setStartingAction()
 	{
@@ -187,16 +182,7 @@ public class Player implements Serializable
 	/*
 	 * END GETTER AND SETTER OF MONEY - VICTORY POINTS - NOBILITY POINTS - HELPERS
 	 */
-	
-	public boolean isConnected() 
-	{
-		return connected;
-	}
-	public void disconnectPlayer()
-	{
-		connected = false;
-	}
-	
+		
 	@Override
 	public String toString() {
 		String s = "";

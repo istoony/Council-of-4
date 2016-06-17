@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.FileNames;
+import it.polimi.ingsw.PS19.model.parameter.FileNames;
 
 public class CityLoader {
 	

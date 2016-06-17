@@ -14,12 +14,11 @@ public class Model extends Observable
 	private Market market;
 	private Map map;
 	private ArrayList<Player> player;
-	private int numberofplayer;
 	private CurrentState currentState;
 	
-	public Model(int numberofplayer) 
+	public Model(int numberofPlayer) 
 	{
-		this.numberofplayer = numberofplayer;
+		currentState = new CurrentState(numberofPlayer);
 		
 		playerFactory();
 		
@@ -27,16 +26,17 @@ public class Model extends Observable
 		
 		market = new Market();
 		
-		currentState = new CurrentState();
+		
 	}
 	
 	private void playerFactory()
 	{
 		player = new ArrayList<>();
 		
-		for(int i = 0; i < numberofplayer; i++)
+		for(int i = 0; i < currentState.getNumberOfPlayer(); i++)
 		{
 			player.add(new Player(i));
+			currentState.addPlayer(i);
 		}
 		Player.setStartingItems(player, "mapfile/playerconfig.xml");
 	}
@@ -56,11 +56,6 @@ public class Model extends Observable
 		return player.get(i);
 	}
 	
-	public int getNumberofplayer() 
-	{
-		return numberofplayer;
-	}
-	
 	public List<Player> getPlayer() 
 	{
 		return player;
@@ -70,7 +65,7 @@ public class Model extends Observable
 	public String toString() 
 	{
 		String s = "++++++++++++++++++++\n";
-		s = s + "number of player: " + numberofplayer + "\n";
+		s = s + "number of player: " + currentState.getNumberOfPlayer() + "\n";
 		s = s + map.toString() + "\n*************PLAYERSSSS************\n";
 		for (Player p : player) 
 		{

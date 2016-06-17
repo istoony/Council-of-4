@@ -131,7 +131,7 @@ public class GameController implements Observer
 			if(id < model.getMaxId())
 				model.getCurrentState().setPlayerTurnId(id + 1);
 			else
-				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getNumberofplayer() + 1);
+				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getCurrentState().getNumberOfPlayer() + 1);
 	
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			

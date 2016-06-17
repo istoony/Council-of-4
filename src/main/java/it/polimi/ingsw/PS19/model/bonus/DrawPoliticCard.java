@@ -1,9 +1,6 @@
 package it.polimi.ingsw.PS19.model.bonus;
-
-
 import it.polimi.ingsw.PS19.model.Player;
 
-//not done
 public class DrawPoliticCard implements Bonus{
 	
 	/**
@@ -19,7 +16,8 @@ public class DrawPoliticCard implements Bonus{
 	
 	@Override
 	public void giveBonus(Player p) {
+		p.setPoliticCardToDraw(p.getPoliticCardToDraw()+howmany);
 
-	}	
+	}
 	
 }

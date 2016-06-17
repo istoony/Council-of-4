@@ -42,8 +42,8 @@ public class AddOrder implements Action
 	{
 		if(model.getCurrentState().getTimeToMarket())
 			return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result);
-		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getNumberofplayer())).getId();
-		if(model.getMarket().getSize() == model.getNumberofplayer())
+		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer())).getId();
+		if(model.getMarket().getSize() == model.getCurrentState().getNumberOfPlayer())
 			return new CompleteMarketReply(model.getMarket().getSize(), result + ". Is Time to Buy", idTurn);
 		return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result + ". Waiting For Player");
 	}

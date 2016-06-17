@@ -16,7 +16,7 @@ public class PlayerDisconnectedAction implements Action {
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getPlayerById(playerId).disconnectPlayer();
+		model.getCurrentState().disconnectPlayer(playerId);
 		result = ActionMessages.PLAYER_DISCONNECTED + playerId;
 		return true;
 	}
