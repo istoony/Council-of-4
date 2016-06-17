@@ -121,6 +121,7 @@ public class GameController implements Observer
 	 * Check already turn.
 	 * The turn change only if MainAction & FastAction are at 0.
 	 * If plyer doesn't play fast action the EndTurn Action set FastAction to 0
+	 *	TODO scrivere se player è disconnesso
 	 */
 	private void checkAlreadyTurn()
 	{
@@ -147,6 +148,7 @@ public class GameController implements Observer
 	/**
 	 * Sets the time to market.
 	 * this time is true if all player have main action to zero
+	 * TODO tenere conto dei player disconnessi
 	 */
 	private void setTimeToMarket()
 	{

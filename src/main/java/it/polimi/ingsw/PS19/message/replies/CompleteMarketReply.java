@@ -2,6 +2,7 @@ package it.polimi.ingsw.PS19.message.replies;
 
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.PS19.model.Market;
 
 public class CompleteMarketReply extends Reply 
 {
@@ -9,22 +10,22 @@ public class CompleteMarketReply extends Reply
 	 * 
 	 */
 	private static final long serialVersionUID = 2012056866792056947L;
-	private int marketSize;
+	private Market market;
 	
-	public CompleteMarketReply(int activePlayer, String result, int marketSize) 
+	public CompleteMarketReply(Market market, String result, int activePlayer) 
 	{
 		super(activePlayer, result);
-		this.marketSize = marketSize;
+		this.market = market;
 	}
 	
-	public int getMarketSize() 
+	public Market getMarket() 
 	{
-		return marketSize;
+		return market;
 	}
 	@Override
-	public ClientUpdate display(ReplyVisitor replyvisitor) {
-		// TODO Auto-generated method stub
-		return null;
+	public ClientUpdate display(ReplyVisitor replyvisitor) 
+	{
+		return replyvisitor.display(this);
 	}
 
 }

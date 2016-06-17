@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import it.polimi.ingsw.PS19.model.Market;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
@@ -26,6 +27,8 @@ public class ClientModel
 	private String result;
 	private NobilityPath nobilitypath;
 	private int currentId;
+	
+	private Market market;
 	
 	/**
 	 * Constructor
@@ -92,6 +95,13 @@ public class ClientModel
 		if(player.size() < currentId)
 			return null;
 		return player.get(currentId);
+	}
+	public Market getMarket() {
+		return market;
+	}
+	public void setMarket(Market market) 
+	{
+		this.market = market;
 	}
 	
 	

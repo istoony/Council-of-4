@@ -33,6 +33,7 @@ public class MainBuildEmporium extends SupportMethod implements Action
 			//CHECK SE NON C'E' GIA L'EMPORIO DEL PLAYER SU QUESTA CITTA'
 		
 				//WRITE ME!
+				//TODO finire questa azione entro DOMENICA
 		
 			//RETURN = numero di empori dentro la città di altri player
 		int numberOfHelpers = getNumberOfHelper(model, region);

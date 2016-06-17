@@ -99,5 +99,6 @@ public interface MessageInterpreterVisitor
 	public Action visit(PlayerDisconnectedMessage message);
 
 	public Action visit(BuildEmporiumMessage message);
+
 		
 }

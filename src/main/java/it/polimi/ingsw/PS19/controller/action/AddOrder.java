@@ -44,7 +44,7 @@ public class AddOrder implements Action
 			return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result);
 		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer())).getId();
 		if(model.getMarket().getSize() == model.getCurrentState().getNumberOfPlayer())
-			return new CompleteMarketReply(model.getMarket().getSize(), result + ". Is Time to Buy", idTurn);
+			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 		return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result + ". Waiting For Player");
 	}
 }

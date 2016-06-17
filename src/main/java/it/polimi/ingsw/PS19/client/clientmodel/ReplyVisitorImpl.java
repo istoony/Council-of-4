@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.client.clientmodel;
 
 import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
+import it.polimi.ingsw.PS19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.EndTurnReply;
@@ -82,6 +83,13 @@ public class ReplyVisitorImpl implements ReplyVisitor
 				message.getAvailableCouncillor(),message.getPlayer(), 
 				message.getActivePlayer(), message.getBusinessCardBonus(), 
 				message.getCityBonus());
+	}
+	@Override
+	public ClientUpdate display(CompleteMarketReply message) 
+	{
+		return new CompleteMarketUpdate(message.getResult(),
+				message.getMarket(),
+				message.getActivePlayer());
 	}
 
 }
