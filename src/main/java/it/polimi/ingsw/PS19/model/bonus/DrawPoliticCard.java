@@ -20,4 +20,9 @@ public class DrawPoliticCard implements Bonus{
 
 	}
 	
+	@Override
+	public String toString(){
+		return "draw "+howmany+" Politic Card";
+	}
+	
 }

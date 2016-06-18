@@ -18,5 +18,10 @@ public class MoreNobilityPoints implements Bonus {
 	public void giveBonus(Player p) {
 		p.setNobilityPoints(p.getNobilityPoints()+howMany);
 	}
+	
+	@Override
+	public String toString(){
+		return "gain "+howMany+" Nobility Points";
+	}
 
 }

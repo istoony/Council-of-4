@@ -139,5 +139,12 @@ public class City implements Serializable {
 	public void setEmporia(ArrayList<Integer> emporia) {
 		this.emporia = emporia;
 	}
+
+	/**
+	 * @return the bonus
+	 */
+	public ArrayList<Bonus> getBonus() {
+		return bonus;
+	}
 		
 }

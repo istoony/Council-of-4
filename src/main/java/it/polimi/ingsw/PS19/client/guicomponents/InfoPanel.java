@@ -7,8 +7,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-
 public class InfoPanel extends JPanel {
 
 	private int nplayer;
@@ -33,12 +31,29 @@ public class InfoPanel extends JPanel {
 				boxes.get(i).setInfo(m.getModel());
 			}
 			else{
-				boxes.get(i).setInfo(m.getModel().getPlayer().get(i-1));
+				if(m.getModel().getMyPlayer().getId()==m.getModel().getPlayer().get(i-1).getId()){
+					boxes.get(i).setMyInfo(m.getModel().getPlayer().get(i-1));
+				}	
+				else{
+					boxes.get(i).setInfo(m.getModel().getPlayer().get(i-1));
+				}
 			}
 		}
 	}
 	
-	protected void update(ClientModel model){
-		//TODO
+	protected void update(MainFrame m){
+		for(int i=0; i<boxes.size(); i++){
+			if(i==0){
+				boxes.get(i).updateInfo(m.getModel());
+			}
+			else{
+				if(m.getModel().getMyPlayer().getId()==m.getModel().getPlayer().get(i-1).getId()){
+					boxes.get(i).updateMyInfo(m.getModel().getPlayer().get(i-1));
+				}
+				else{
+					boxes.get(i).updateInfo(m.getModel().getPlayer().get(i-1));
+				}
+			}
+		}
 	}
 }

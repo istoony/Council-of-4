@@ -20,5 +20,10 @@ public class MoreMainAction implements Bonus {
 		p.setMainActionCounter(p.getMainActionCounter()+1);
 
 	}
+	
+	@Override
+	public String toString(){
+		return "gain "+howmany+" Main Actions";
+	}
 
 }

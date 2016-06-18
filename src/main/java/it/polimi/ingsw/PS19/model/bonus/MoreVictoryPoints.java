@@ -19,6 +19,10 @@ public class MoreVictoryPoints implements Bonus {
 
 	}
 	
+	@Override
+	public String toString(){
+		return "gain "+howMany+" Victory Points";
+	}
 	
 
 }
