@@ -17,6 +17,7 @@ public class ActionMessages
 	public static final String NO_MARKET_TIME ="this is not Market time";
 	public static final String BUSINESS_CARD_REQUEST = "Please select a Business card";
 	public static final String TIME_TO_MARKET = "Now is time to Maket";
+	public static final String COLOR_NOT_AVAILABLE = "This color is not corrected";
 	
 	
 	private ActionMessages() { }

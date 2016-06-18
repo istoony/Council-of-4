@@ -103,6 +103,10 @@ public class GameController implements Observer
 		checkTimeToMarket();
 		
 	}
+	public Reply getReply() 
+	{
+		return reply;
+	}
 	
 	/**
 	 * Check model status.

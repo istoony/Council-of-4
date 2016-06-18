@@ -66,7 +66,11 @@ public class ElectCouncillor implements Action
 			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
-		
+		if(!model.getMap().getAvailableCouncillor().findColor(color))
+		{
+			result = ActionMessages.COLOR_NOT_AVAILABLE;
+			return false;
+		}
 		if(!mainAction && model.getPlayerById(playerId).getHelpers() < HELPERS)
 		{
 			result = ActionMessages.NO_HELPERS;

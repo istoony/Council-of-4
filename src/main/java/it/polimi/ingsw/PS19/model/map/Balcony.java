@@ -46,21 +46,23 @@ public class Balcony implements Serializable
 	
 	private Color shiftRight() 
 	{
-	    //make temp variable to hold last element
 	    Color temp = councilcolor.get(NUMBER_OF_COUNCILLOR-1); 
-	    
-	    //make a loop to run through the array list
+
 	    for(int i = NUMBER_OF_COUNCILLOR-1; i > 0; i--)
-	    {
-	        //set the last element to the value of the 2nd to last element
 	    	councilcolor.set(i,councilcolor.get(i-1)); 
-	    }
 	    return temp;
 	}
+	/**
+	 * Return a list of council colors
+	 * @return
+	 */
 	public List<Color> getCouncilcolor()
 	{
 		List<Color> colors = new ArrayList<>();
-		colors.addAll(councilcolor);
+		for (Color c : councilcolor) 
+		{
+			colors.add(c);
+		}
 		return colors;
 	}
 	
