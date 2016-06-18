@@ -67,10 +67,27 @@ public class Balcony implements Serializable
 	@Override
 	public String toString() 
 	{
-		String s="*************\n";
+		String s="";
 		for ( Color c : councilcolor) 
 		{
-			s = s + " " + c.toString();
+			if(c.equals(Color.decode("#FF0000"))){
+				s+= "Red ";
+			}
+			else if(c.equals(Color.decode("#0000FF"))){
+				s+= "Blue ";
+			}
+			else if(c.equals(Color.decode("#FF7F00"))){
+				s+= "Orange ";
+			}
+			else if(c.equals(Color.decode("#000000"))){
+				s+= "White ";
+			}
+			else if(c.equals(Color.decode("#FFFFFF"))){
+				s+=  "Black ";
+			}
+			else if(c.equals(Color.decode("#FFC0CB"))){
+				s+= "Pink ";
+			}
 		}		
 		return s;
 	}

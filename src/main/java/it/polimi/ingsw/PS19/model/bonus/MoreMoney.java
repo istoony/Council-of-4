@@ -20,4 +20,8 @@ public class MoreMoney implements Bonus {
 		
 	}
 
+	@Override
+	public String toString(){
+		return "gain "+howMany+" Money";
+	}
 }

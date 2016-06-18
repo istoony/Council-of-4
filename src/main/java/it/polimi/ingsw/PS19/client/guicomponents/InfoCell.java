@@ -82,16 +82,10 @@ public class InfoCell extends JPanel{
 	private ArrayList<JLabel> constructInfoCell(ClientModel m){
 		ArrayList<JLabel> lst = new ArrayList<>();
 		String s = "";
-		ArrayList<JLabel> colors = new ArrayList<>();
 		lst.add(new JLabel(INDENTATION+"--- Information about the Game ---"));
 		lst.add(new JLabel(INDENTATION+"The King is in: "+m.getKing().getCurrentcity().getName()));
-		for(int i=0; i<m.getKing().getBalcony().getCouncilcolor().size(); i++){
-			colors.add(new JLabel());
-			colors.get(i).setBackground(m.getKing().getBalcony().getCouncilcolor().get(i));
-			colors.get(i).setVisible(true);
-		}
-		lst.add(new JLabel(INDENTATION+"The King council is: "));
-		lst.addAll(colors);
+		s=m.getKing().getBalcony().toString();
+		lst.add(new JLabel(INDENTATION+"The King council is: "+s));
 		lst.add(new JLabel(INDENTATION+"It's the turn of the player number "+m.getActiveplayer()));
 		return lst;
 	}

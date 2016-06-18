@@ -3,6 +3,9 @@ package it.polimi.ingsw.PS19.model.card;
 import java.awt.Color;
 import java.io.Serializable;
 
+import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.PS19.server.Constants;
+
 
 public class PoliticsCard implements Card, Serializable {
 	
@@ -52,6 +55,9 @@ public class PoliticsCard implements Card, Serializable {
 		}
 		else if(color.equals(Color.decode("#FFC0CB"))){
 			s= "Pink";
+		}
+		else if(color.equals(Color.decode(Costants.JOKERCOLOR))){
+			s= "Joker";
 		}
 		return s;
 	}

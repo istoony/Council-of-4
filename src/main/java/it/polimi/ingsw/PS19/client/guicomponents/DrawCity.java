@@ -1,6 +1,7 @@
 package it.polimi.ingsw.PS19.client.guicomponents;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.map.City;
 
 
@@ -103,24 +105,41 @@ public class DrawCity extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		JFrame info = createInfo();
 		info.setVisible(true);
+		info.setResizable(false);
 	}
 
 	
 	private JFrame createInfo(){
 		JFrame f = new JFrame("Info of "+mycity.getName());
-		f.setSize(300, 200);
+		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f.setLayout(new GridLayout(7, 1));
 		
+		//emporia info
 		JLabel emporiatitle = new JLabel(INDENTATION+"The following players have an emporium in "+mycity.getName());
-		String s="";
+		String s=INDENTATION;
 		for(int i=0; i<mycity.getEmporia().size(); i++){
 			s+= "player n"+mycity.getEmporia().get(i).intValue();
 		}
+		if(s==INDENTATION){
+			s+="There aren't emporia in this city";
+		}
 		JLabel emporialist = new JLabel(s);
 		
+		emporiatitle.setVisible(true);
+		emporialist.setVisible(true);
 		f.add(emporiatitle);
 		f.add(emporialist);
 		
+		//bonus info
+		JLabel bonustitle = new JLabel(INDENTATION+"This city had the following bonus:");
+		bonustitle.setVisible(true);
+		f.add(bonustitle);
+		for(Bonus b : mycity.getBonus()){
+			JLabel bonus = new JLabel(INDENTATION+b.toString());
+			bonus.setVisible(true);
+			f.add(bonus);
+		}
 		return f;
 		
 	}

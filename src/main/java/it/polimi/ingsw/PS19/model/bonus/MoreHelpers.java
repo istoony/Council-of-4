@@ -18,4 +18,9 @@ public class MoreHelpers implements Bonus {
 	public void giveBonus(Player p) {
 		p.setHelpers(p.getHelpers()+howMany);
 	}
+	
+	@Override
+	public String toString(){
+		return "gain "+howMany+" Helpers";
+	}
 }

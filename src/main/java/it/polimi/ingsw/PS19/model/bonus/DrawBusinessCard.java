@@ -19,5 +19,10 @@ public class DrawBusinessCard implements Bonus {
 		p.setPoliticCardToDraw(p.getPoliticCardToDraw()+howmany);
 
 	}
+	
+	@Override
+	public String toString(){
+		return "draw "+howmany+" Business Card";
+	}
 
 }
