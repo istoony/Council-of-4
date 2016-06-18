@@ -35,6 +35,7 @@ public class InfoCell extends JPanel{
 	}
 	
 	protected void setInfo(ClientModel m){
+		setToolTipText(TOOLTIP0);
 		infos = constructInfoCell(m);
 		for(JLabel jl : infos){
 			jl.setVisible(true);
@@ -49,6 +50,7 @@ public class InfoCell extends JPanel{
 	}
 
 	protected void setInfo(Player p){
+		setToolTipText(TOOLTIP2);
 		infos = constructPlayerCell(p);
 		for(JLabel jl : infos){
 			jl.setVisible(true);
@@ -63,6 +65,7 @@ public class InfoCell extends JPanel{
 	}
 	
 	protected void setMyInfo(Player p){
+		setToolTipText(TOOLTIP1);
 		infos = constructMyPlayerCell(p);
 		for(JLabel jl : infos){
 			jl.setVisible(true);

@@ -63,8 +63,6 @@ public class MainWindow {
 		m.getPlayer().get(1).addCardToHand(e);
 		m.getPlayer().get(1).addCardToHand(f);
 		
-		System.out.println(c.toString());
-		System.out.println("aa");
 		
 		MainWindow window = new MainWindow(m);
 		window.frame.setVisible(true);
