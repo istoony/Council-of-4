@@ -325,4 +325,5 @@ public class Player implements Serializable
 	public boolean isCityBonusRequest() {
 		return cityBonusRequest;
 	}
+	
 }
