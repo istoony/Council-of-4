@@ -21,19 +21,23 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<RegionType> availableRegions = new ArrayList<>();
 		for(Region r: model.getRegions())
-		{
-			
-			if(getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(r.getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney())
+			if(isCouncilSatisfiable(r.getBalcony()))
 				availableRegions.add(r.getType());
-		}
 		return availableRegions;
+	}
+	
+	protected boolean isCouncilSatisfiable(Balcony balcony)
+	{
+		List<PoliticsCard> playerHand = model.getMyPlayer().getPoliticcard();
+		int playerMoney = model.getMyPlayer().getMoney();
+		if(getCost(balcony, playerHand) <= 11 && getCost(balcony, playerHand) <= playerMoney)
+			return true;
+		return false;
 	}
 	
 	protected boolean kingAvailable()
 	{
-		if(getCost(model.getKing().getBalcony(), model.getMyPlayer().getPoliticcard()) <= 10 && getCost(model.getKing().getBalcony(), model.getMyPlayer().getPoliticcard()) <= model.getMyPlayer().getMoney())
-			return true;
-		return false;
+		return isCouncilSatisfiable(model.getKing().getBalcony());
 	}
 	
 	private int getCost(Balcony balcony, List<PoliticsCard> cards)
@@ -104,10 +108,13 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		DeckId balcony = new DeckId(balcon.getCouncilcolor());
 		DeckId playerHand = new DeckId(model.getMyPlayer().getPoliticcard());
 		DeckId usefulHand = getUsefulDeck(playerHand, balcony);
+		UserInterface.showNotification("usefulHand size: " + usefulHand.getDeck().size());
 		int minCards = getMinimumCardsToDraw();
+		UserInterface.showNotification("Minimum cards to draw: " + minCards);
 		List<DeckId> combinations = usefulHand.getCombination(minCards);
 		for(int i = minCards +1; i < 4; i++)
 			combinations.addAll(usefulHand.getCombination(i));
+		UserInterface.showNotification("number of combinations: " + combinations.size());
 		for(int i = 0; i < 4; i++)
 		{
 			combinations = getValidDecks(combinations, balcony);
@@ -144,20 +151,6 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		}
 		return new DeckId(mainCards);
 	}
-	/*
-	 * Metodo che fa tutto
-	 * Deve capire quante carte minimo
-	 * trova le combinazioni con quel numero di carte e more
-	 * prende le combinazioni valide
-	 * Trova i diversi colori
-	 * ne fa scegliere uno
-	 * si salva la carta
-	 * Toglie la carta dal deck del balcone
-	 * ricomincia da capo considerando solo le soluzioni contenenti quella carta
-	 * valuta se può smettere
-	 * 
-	 * Per i jokers da pensare una minima
-	 */
 	
 	/*
 	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI userInterface) throws InvalidInsertionException
@@ -310,7 +303,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	
 	private class DeckId
 	{
-		List<CardId> cardsId;
+		List<CardId> cardsId = new ArrayList<>();
 		private final CardId jolly = new CardId(Color.decode(Costants.JOKERCOLOR), 0);
 		
 		/**
@@ -353,7 +346,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		public List<CardId> getDeckClone()
 		{
 			List<CardId> clone = new ArrayList<>();
-			clone.addAll(cardsId);
+			if(!cardsId.isEmpty())
+				clone.addAll(cardsId);
 			return clone;
 		}
 		
