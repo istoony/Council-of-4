@@ -29,6 +29,16 @@ public class BuyMainAction implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
 		result = ActionMessages.EVERYTHING_IS_OK;
 		if(model.getPlayerById(playerId).getHelpers() > HELPERS_NEEDED)
 			return true;

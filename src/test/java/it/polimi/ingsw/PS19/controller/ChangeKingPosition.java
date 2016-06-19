@@ -21,6 +21,8 @@ public class ChangeKingPosition {
 		Model m = new Model(2);
 		GameController g = new GameController(m);
 		
+		assertTrue(m.getPlayerById(0).getHelpers() == 1);
+		
 		ArrayList<Color> card = new ArrayList<>();
 		
 		card.add(Color.decode("#FEFEFE"));
@@ -28,17 +30,19 @@ public class ChangeKingPosition {
 		card.add(Color.decode("#FEFEFE"));
 		card.add(Color.decode("#FEFEFE"));
 		
-		City c = m.getMap().getRegionByType(RegionType.HILL).getCityById(9);
+		City c = m.getMap().getRegionByType(RegionType.MOUNTAIN).getCityById(13);
 		assertTrue(c != null);
+		c.buildEmporium(m.getPlayerById(1));
 		
 		ChangeKingPositionMessage mess = new ChangeKingPositionMessage(c, card);
 		
 		g.update(null, mess);
 		assertTrue(g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		
-		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 9);
+		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 13);
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
-		assertTrue("Money" + m.getPlayerById(0).getMoney(),m.getPlayerById(0).getMoney() == 10 - 4 - 2);
+		assertTrue(m.getPlayerById(0).getHelpers() == 0);
+		assertTrue("Money" + m.getPlayerById(0).getMoney(),m.getPlayerById(0).getMoney() == 10 - 4 - 4);
 		
 	}
 

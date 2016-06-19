@@ -56,7 +56,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//Calcolo anche il costo del movimento del re
 			//
 		int helperscost = real.calculateMalusEmporium();
-		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size() - 1);
 		
 			//Sposto il re nella città nuova
 		model.getMap().getKing().setCurrentcity(real);
@@ -79,9 +79,19 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
 		if(model.getPlayerById(playerId).getMaxemporia()==0)
 		{
 			result = ActionMessages.NO_BUILD;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
 			return false;
 		}
 		

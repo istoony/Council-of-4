@@ -91,6 +91,11 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
+		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
 		
 		Player player = model.getPlayerById(playerId);
 		

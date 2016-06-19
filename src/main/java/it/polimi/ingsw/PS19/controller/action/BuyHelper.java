@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.controller.action;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public class BuyHelper implements Action
 {
@@ -31,6 +32,12 @@ public class BuyHelper implements Action
 		if(Action.checkPlayerTurn(id, model))
 		{
 			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		
+		if(model.getPlayerById(id).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
 			return false;
 		}
 		
