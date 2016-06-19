@@ -98,6 +98,68 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		return availableCards;
 	}
 	
+	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI UserInterface) throws InvalidInsertionException
+	{
+		List<Color> satisfyingColors = new ArrayList<>();
+		DeckId balcony = new DeckId(balcon.getCouncilcolor());
+		DeckId playerHand = new DeckId(model.getMyPlayer().getPoliticcard());
+		DeckId usefulHand = getUsefulDeck(playerHand, balcony);
+		int minCards = getMinimumCardsToDraw();
+		List<DeckId> combinations = usefulHand.getCombination(minCards);
+		for(int i = minCards +1; i < 4; i++)
+			combinations.addAll(usefulHand.getCombination(i));
+		for(int i = 0; i < 4; i++)
+		{
+			combinations = getValidDecks(combinations, balcony);
+			List<Color> differentColors = getDifferentColors(combinations);
+			if(i >= minCards-1)
+				differentColors.add(null);
+			Color chosenColor = UserInterface.getColor(differentColors);
+			if(chosenColor == null)
+				break;
+			combinations = getContainingDecks(combinations, chosenColor);
+			for(DeckId deck : combinations)
+				deck.subtractCard(new CardId(chosenColor, 0));
+			combinations = getSignificantDecks(combinations);
+			if(combinations.isEmpty())
+				break;
+			satisfyingColors.add(chosenColor);
+		}
+		return satisfyingColors;
+	}
+	
+	/**
+	 * returns deck without colors not present in reference deck
+	 * @param mainDeck: deck to reduce
+	 * @param referenceDeck: reference deck
+	 * @return
+	 */
+	private DeckId getUsefulDeck(DeckId mainDeck, DeckId referenceDeck)
+	{
+		List<CardId> mainCards = mainDeck.getDeckClone();
+		for(CardId card : mainCards)
+		{
+			if(!referenceDeck.contains(card))
+				mainCards.remove(card);
+		}
+		return new DeckId(mainCards);
+	}
+	/*
+	 * Metodo che fa tutto
+	 * Deve capire quante carte minimo
+	 * trova le combinazioni con quel numero di carte e more
+	 * prende le combinazioni valide
+	 * Trova i diversi colori
+	 * ne fa scegliere uno
+	 * si salva la carta
+	 * Toglie la carta dal deck del balcone
+	 * ricomincia da capo considerando solo le soluzioni contenenti quella carta
+	 * valuta se può smettere
+	 * 
+	 * Per i jokers da pensare una minima
+	 */
+	
+	/*
 	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI userInterface) throws InvalidInsertionException
 	{
 		List<Color> colors = new ArrayList<>();
@@ -122,7 +184,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			politicCards = getAvailablePolitics(balcony, politicCards);
 		}
 		return colors;
-	}
+	}*/
 	
 	private int getMinimumCardsToDraw()
 	{
@@ -171,27 +233,12 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				validDecks.add(deck);
 		return validDecks;
 	}
-
-	/*
-	 * TODO Metodo che fa tutto
-	 * Deve capire quante carte minimo
-	 * trova le combinazioni con quel numero di carte e more
-	 * prende le combinazioni valide
-	 * Trova i diversi colori
-	 * ne fa scegliere uno
-	 * si salva la carta
-	 * ricomincia da capo considerando solo le soluzioni contenenti quella carta
-	 * valuta se può smettere
-	 * 
-	 * Per i jokers da pensare una minima
-	 */
 	
-	
-	private List<DeckId> getContainingDecks(List<DeckId> decks, PoliticsCard polCard)
+	private List<DeckId> getContainingDecks(List<DeckId> decks, Color color)
 	{
 		if(decks.isEmpty())
 			return decks;
-		CardId card = new CardId(polCard, 0);
+		CardId card = new CardId(color, 0);
 		List<DeckId> containingDecks = new ArrayList<>();
 		for(DeckId deck : decks)
 			if(deck.contains(card))
@@ -225,12 +272,6 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		private Color color;
 		private int id;
-		public CardId(PoliticsCard card, int identifier)
-		{
-			color = card.getColor();
-			id = identifier;
-		}
-		
 		public CardId(Color c, int identifier)
 		{
 			color = c;
@@ -254,6 +295,11 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			return false;
 		}
 		
+		/**
+		 * Verifies that the passed card has the same colors as caller's
+		 * @param cardId
+		 * @return
+		 */
 		public boolean equivalent(CardId cardId)
 		{
 			if(color.equals(cardId.getColor()))
@@ -276,13 +322,6 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			if(cards.isEmpty())
 				return;
-			if(cards.get(0) instanceof PoliticsCard)
-			{
-				cardsId = new ArrayList<>();
-				for(int i = 0; i < cards.size(); i++)
-					cardsId.add(new CardId((PoliticsCard)cards.get(i), i));
-				return;
-			}
 			if(cards.get(0) instanceof CardId)
 			{
 				cardsId = new ArrayList<>();
@@ -357,11 +396,17 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		 * @param deck: Contained deck
 		 * @return
 		 */
+		@SuppressWarnings("unused")
 		public boolean equivalentOrContaining(DeckId deck)
 		{
 			return deck.equivalentOrContained(this);
 		}
 		
+		/**
+		 * returns weather the deck contains a card equivalent to the parameter
+		 * @param card
+		 * @return
+		 */
 		public boolean contains(CardId card)
 		{
 			for(CardId deckCard : cardsId)
@@ -404,18 +449,20 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			return combinations;
 		}
 		
-		public DeckId subtractCard(CardId card)
+		/**
+		 * Removes the first card of the same color as the parameter's
+		 * @param card
+		 */
+		public void subtractCard(CardId card)
 		{
 			if(!contains(card))
-				return this;
-			List<CardId> deck = getDeckClone();
-			for(CardId deckCard : deck)
+				return;
+			for(CardId deckCard : cardsId)
 				if(deckCard.equivalent(card))
 				{
-					if(deck.remove(deckCard));
+					if(cardsId.remove(deckCard));
 					break;
 				}
-			return new DeckId(deck);
 		}
 		
 		public DeckId getCleanDeck()

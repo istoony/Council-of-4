@@ -133,4 +133,6 @@ public abstract class ClientUI
 	 * @throws InvalidInsertionException 
 	 */
 	public abstract int getPrice() throws InvalidInsertionException;
-}
+	
+	public abstract String getUserString(String title) throws InvalidInsertionException;
+} 

@@ -6,9 +6,9 @@ package it.polimi.ingsw.PS19.view.connection;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
+import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
 import it.polimi.ingsw.PS19.server.Constants;
 
@@ -17,9 +17,7 @@ import it.polimi.ingsw.PS19.server.Constants;
  * Runs on a different Thread.
  */
 public abstract class Writer implements Callable<Integer>
-{
-	protected static final Logger log = Logger.getLogger("CONNECTION_LOGGER");
-	
+{	
 	protected Message message;
 	
 	/**
@@ -27,7 +25,7 @@ public abstract class Writer implements Callable<Integer>
 	 * @see java.util.concurrent.Callable#call()
 	 */
 	@Override
-	public Integer call() throws SocketWritingException
+	public Integer call() throws WriterException
 	{
 		int numOfTries = 0;
 		boolean success = false;
@@ -40,7 +38,7 @@ public abstract class Writer implements Callable<Integer>
 			}
 			catch(Exception e)
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
 				success = false;
 			}
 			finally

@@ -26,7 +26,7 @@ public class SocketWriter extends Writer
 			out.flush();
 		} catch (IOException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 	

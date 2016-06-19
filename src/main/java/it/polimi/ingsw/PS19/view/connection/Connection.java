@@ -19,7 +19,6 @@ public abstract class Connection
 	protected ConnectionStatus status;
 	protected ExecutorService executor;
 	Writer writer;
-	Reader reader;
 	
 	public void setExecutor(ExecutorService exec)
 	{
@@ -29,17 +28,26 @@ public abstract class Connection
 	/**
 	 * set connection as active
 	 */
-	public abstract void setActive();
+	public void setActive()
+	{
+		status = ConnectionStatus.ACTIVE;
+	}
 	
 	/**
 	 * set connection as inactive
 	 */
-	public abstract void setInactive();
+	public void setInactive()
+	{
+		status = ConnectionStatus.INACTIVE;
+	}
 	
 	/**
 	 * set connection ad disconnected
 	 */
-	public abstract void setDisconnected();
+	public void setDisconnected()
+	{
+		status = ConnectionStatus.DISCONNECTED;
+	}
 	
 	public ConnectionStatus getStatus()
 	{
@@ -55,8 +63,8 @@ public abstract class Connection
 	public abstract Integer write(Message message) throws WriterException;
 	
 	/**
-	 * reads message from client
-	 * @return Future reference to the message read
+	 * Runs a callable that reads a message
+	 * @return
 	 */
-	public abstract Future<Message> read();
+	public abstract Message read(long timeOut) throws TimeoutException, InterruptedException;
 }

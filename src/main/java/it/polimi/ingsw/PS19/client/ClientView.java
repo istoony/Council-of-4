@@ -5,10 +5,8 @@ package it.polimi.ingsw.PS19.client;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
@@ -19,9 +17,7 @@ import it.polimi.ingsw.PS19.view.connection.Connection;
  * Manages connection to the server
  */
 public class ClientView extends Observable implements Observer, Runnable
-{
-	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
-	
+{	
 	private boolean stop = false;
 	Connection connection = null;
 		
@@ -38,16 +34,15 @@ public class ClientView extends Observable implements Observer, Runnable
 	{
 		while(!stop)
 		{
-			Future<Message> waitMex = connection.read();
 			try
 			{
-				Message recMex = waitMex.get();
+				Message recMex = connection.read(-1);
 				setChanged();
 				notifyObservers(recMex);
 			} 
-			catch (InterruptedException | ExecutionException e) 
+			catch (TimeoutException | InterruptedException e) 
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 			} 
 		}
 		notifyObservers(null);
@@ -75,7 +70,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			connection.write(mex);
 		} catch (WriterException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 

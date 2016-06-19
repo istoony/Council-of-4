@@ -8,9 +8,9 @@ import java.net.Socket;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.PS19.server.Constants;
 
 /**
  * Class for socket connection
@@ -18,7 +18,7 @@ import it.polimi.ingsw.PS19.message.Message;
 public class SocketConnection extends Connection
 {
 	private Socket clientSocket;
-	
+	private SocketReader reader;
 	/**
 	 * Constructor
 	 * @param client: socket
@@ -32,21 +32,17 @@ public class SocketConnection extends Connection
 		reader = new SocketReader(clientSocket);
 		setExecutor(exec);
 	}
-
-	@Override
-	public void setActive()
+	
+	/**
+	 * Constructor
+	 * @param client: socket
+	 * @throws IOException
+	 */
+	public SocketConnection(Socket client) throws IOException
 	{
-		status = ConnectionStatus.ACTIVE;
-	}
-	@Override
-	public void setInactive()
-	{
-		status = ConnectionStatus.INACTIVE;
-	}
-	@Override
-	public void setDisconnected()
-	{
-		status = ConnectionStatus.DISCONNECTED;
+		clientSocket = client;
+		writer = new SocketWriter(clientSocket); 
+		reader = new SocketReader(clientSocket);
 	}
 	
 	@Override
@@ -56,21 +52,30 @@ public class SocketConnection extends Connection
 		Integer result = null;
 		try {
 			result = writer.call();
-		} catch (SocketWritingException e) 
+		} catch (WriterException e) 
 		{
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new WriterException();
 		}
 		return result;
 	}
-	
-	/**
-	 * Runs a callable that reads a message
-	 * @see connection.Connection#read()
-	 */
+
 	@Override
-	public Future<Message> read()
+	public Message read(long timeOut) throws TimeoutException 
 	{
-		return executor.submit(reader);
+		Future<Message> waitMex = executor.submit(reader);
+		Message mex;
+		try 
+		{
+			if(timeOut < 0)
+				mex = waitMex.get();
+			else
+				mex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_S, TimeUnit.SECONDS);
+		} catch (InterruptedException | ExecutionException e) 
+		{
+			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			throw new TimeoutException();
+		}
+		return mex;
 	}
 }

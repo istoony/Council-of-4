@@ -81,7 +81,7 @@ public class ClientInterpreter extends Observable implements Observer
 						valid = true;
 					} catch (InvalidInsertionException e) 
 					{
-						ClientManager.log.log(Level.SEVERE, e.toString(), e);
+						ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 						valid = false;
 					}
 				}while(!valid);

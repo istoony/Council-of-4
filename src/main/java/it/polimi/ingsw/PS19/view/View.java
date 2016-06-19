@@ -4,9 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,10 +87,9 @@ public class View extends Observable implements Observer, Runnable
 		while(!stop)
 		{
 			Connection activeConn = playerConnection.get(activeId);
-			Future<Message> waitMex = activeConn.read();
 			try 
 			{
-				Message recMex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_S, TimeUnit.SECONDS);
+				Message recMex = activeConn.read(Constants.PLAYER_TIMEOUT_TIME_S);
 				if(recMex instanceof StringMessage)
 				{
 					ServerManager.serverCLI.showNotification(recMex.toString());
@@ -105,16 +101,12 @@ public class View extends Observable implements Observer, Runnable
 				}
 			} 
 			//Timeout error => Player set disconnected
-			catch (TimeoutException e) 
+			catch (TimeoutException | InterruptedException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);
 				activeConn.setDisconnected();
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(activeId));
-			}
-			catch (InterruptedException | ExecutionException e) 
-			{
-				log.log(Level.SEVERE, e.toString(), e);
 			}
 		}
 	}

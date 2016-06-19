@@ -198,7 +198,7 @@ public class ClientCLI extends ClientUI
 		return cities.get(index);
 	}
 	
-	private int getValues(List<String> strings) throws InvalidInsertionException
+	public int getValues(List<String> strings) throws InvalidInsertionException
 	{
 		int i;
 		int n;
@@ -267,7 +267,8 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(Bonus b)
 	{
-		return b.toString().substring(b.toString().lastIndexOf('.') + 1, b.toString().lastIndexOf('@'));
+		return "";
+		//return b.toString().substring(b.toString().lastIndexOf('.') + 1, b.toString().lastIndexOf('@'));
 	}
 	
 	private String getString(City city)
@@ -451,5 +452,20 @@ public class ClientCLI extends ClientUI
 			throw new InvalidInsertionException();
 		}
 		return number;
+	}
+
+	@Override
+	public String getUserString(String title) throws InvalidInsertionException 
+	{
+		writeln(title);
+		String s;
+		try {
+			s = read();
+		} catch (IOException e) 
+		{
+			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			throw new InvalidInsertionException();
+		}
+		return s;
 	}
 }

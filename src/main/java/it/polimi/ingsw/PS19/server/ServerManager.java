@@ -5,11 +5,17 @@ package it.polimi.ingsw.PS19.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.ExportException;
+import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.polimi.ingsw.PS19.client.ClientCLI;
+import it.polimi.ingsw.PS19.view.connection.SocketConnection;
 
 import java.io.IOException;
 
@@ -17,7 +23,7 @@ import java.io.IOException;
  * Main class of the server
  * manages socket connections.
  */
-public class ServerManager 
+public class ServerManager
 {
 	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
 	private static ServerSocket serverSocket;	
@@ -34,10 +40,40 @@ public class ServerManager
 	{
 		Thread t = new StopperThread();
 		t.start();
-	
+		serverCLI.showNotification("started");
+		//RMI Init
+		try 
+		{
+			/*
+			if(System.getSecurityManager() == null)
+				System.setSecurityManager(new SecurityManager());
+			//*/
+			ServerRemoteIntf rmiServer = new RMIServer();
+			ServerRemoteIntf stub = (ServerRemoteIntf) UnicastRemoteObject.exportObject(rmiServer, 0);
+			String name = Constants.RMI_SERVER_STUB_NAME;
+			Registry registry;
+			try
+			{
+				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
+				serverCLI.showNotification("New Registry created at: localhost:" + Constants.RMI_PORT);
+			}catch(ExportException e)
+			{
+				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
+				serverCLI.showNotification("Accessing Registry at: localhost:" + Constants.RMI_PORT);
+			}
+			registry.rebind(name, stub);
+			ServerManager.serverCLI.showNotification("The RMI server creation has been successful");
+		} 
+		catch (RemoteException e) 
+		{
+			ServerManager.serverCLI.showNotification("Something went wrong in creating a RMI Server");
+			log.log(Level.SEVERE, e.toString(), e);
+		}
+		
+		//Socket Init
 		try
 		{
-			serverSocket = new ServerSocket(Constants.PORT);
+			serverSocket = new ServerSocket(Constants.SOCKET_PORT);
 			ServerManager.serverCLI.showNotification("The server socket creation has been successful");
 		}
 		catch(IOException e)
@@ -45,6 +81,8 @@ public class ServerManager
 			ServerManager.serverCLI.showNotification("Something went wrong in creating a serversocket");
 			log.log(Level.SEVERE, e.toString(), e);
 		}
+		
+		//Waitnig Room Init
 		WaitingRoom.startTimer();
 		while(!stop)
 		{
@@ -52,7 +90,7 @@ public class ServerManager
 			{
 				Socket clientSocket = serverSocket.accept();
 				ServerManager.serverCLI.showNotification(LocalDateTime.now() + " New client Connected");
-				WaitingRoom.addConnection(clientSocket);
+				WaitingRoom.addConnection(new SocketConnection(clientSocket));
 			}
 			catch(IOException e)
 			{

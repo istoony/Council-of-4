@@ -44,13 +44,12 @@ public class WaitingRoom
 	}
 	
 	/**
-	 * Method to add connection aka player to the waiting room
-	 * @param clientSocket: new socket
-	 * @throws IOException
+	 * Method to add a connection aka player to the waiting room
+	 * @param conn: new connection
 	 */
-	public static void addConnection(Socket clientSocket) throws IOException
+	public static void addConnection(Connection conn)
 	{
-		Connection conn = new SocketConnection(clientSocket, executorService);
+		conn.setExecutor(executorService);
 		try
 		{
 			conn.write(new StringMessage("Connected!"));
@@ -59,6 +58,7 @@ public class WaitingRoom
 		{
 			log.log(Level.SEVERE, e.toString(), e);
 		}
+
 		mux.lock();
 		room.add(conn);
 		ServerManager.serverCLI.showNotification(room.size() + " players in Waiting room");
