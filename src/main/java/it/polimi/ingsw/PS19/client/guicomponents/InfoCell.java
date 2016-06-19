@@ -15,10 +15,16 @@ import javax.swing.JPanel;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.NobilityPath;
 
 public class InfoCell extends JPanel implements ActionListener{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8704625760479949960L;
 	
 	private static final String TOOLTIP0 = "Information about the game.";
 	private static final String TOOLTIP1 = "Information about the player.";
@@ -32,11 +38,11 @@ public class InfoCell extends JPanel implements ActionListener{
 	protected InfoCell(){
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		setVisible(true);
-		setLayout(new GridLayout(9, 0));
 		infos = new ArrayList<>();
 	}
 	
 	protected void setInfo(ClientModel m){
+		setLayout(new GridLayout(6, 0));
 		setToolTipText(TOOLTIP0);
 		infos = constructInfoCell(m);
 		for(JLabel jl : infos){
@@ -55,6 +61,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	}
 
 	protected void setInfo(Player p){
+		setLayout(new GridLayout(8, 0));
 		setToolTipText(TOOLTIP2);
 		infos = constructPlayerCell(p);
 		for(JLabel jl : infos){
@@ -70,6 +77,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	}
 	
 	protected void setMyInfo(Player p){
+		setLayout(new GridLayout(12, 0));
 		setToolTipText(TOOLTIP1);
 		infos = constructMyPlayerCell(p);
 		for(JLabel jl : infos){
@@ -102,6 +110,7 @@ public class InfoCell extends JPanel implements ActionListener{
 		lst.add(new JLabel(INDENTATION+"Nobility Path: "+p.getNobilityPoints()));
 		lst.add(new JLabel(INDENTATION+"Money: "+p.getMoney()));
 		lst.add(new JLabel(INDENTATION+"Emporia left: "+(p.getMaxemporia()-p.getMyEmporia().size())));
+		lst.add(new JLabel(INDENTATION+"Business Cards in hand: "+p.getFreebusinesscard().size()));
 		lst.add(new JLabel(INDENTATION+"Politic Cards in hand: "+p.getPoliticcard().size()));
 		lst.add(new JLabel(INDENTATION+"Helpers: "+p.getHelpers()));
 		return lst;
@@ -109,7 +118,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	private ArrayList<JLabel> constructMyPlayerCell(Player p){
 		ArrayList<JLabel> lst = new ArrayList<>();
-		String s= "";
+		String s="";
 		String reserve= "";
 		int count=0;
 		lst.add(new JLabel(INDENTATION+"--- Information about the Player n"+p.getId()+" ---"));
@@ -131,6 +140,10 @@ public class InfoCell extends JPanel implements ActionListener{
 			lst.add(new JLabel(INDENTATION+INDENTATION_2ND_POLITIC+reserve));
 		}
 		lst.add(new JLabel(INDENTATION+"Helpers: "+p.getHelpers()));
+		lst.add(new JLabel(INDENTATION+"Business Cards: "));
+		for(BusinessCard c : p.getFreebusinesscard()){
+			lst.add(new JLabel(INDENTATION+INDENTATION+INDENTATION+"Card: "+c.toStringCities()));
+		}
 		return lst;
 		
 	}

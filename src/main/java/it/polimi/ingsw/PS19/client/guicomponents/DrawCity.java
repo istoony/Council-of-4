@@ -53,50 +53,15 @@ public class DrawCity extends JPanel implements MouseListener{
     	addMouseListener(this);
     	setToolTipText(c.getName());
     	setVisible(true);
+    	setSize(WWIDTH, HHEIGHT);
     	mycity=c;
-    	if(c.getCitycolor().equals(Color.decode(YELLOW))){
-    		try { 
-    	          image = ImageIO.read(new File(YELLOW_PATH));
-    	       } catch (IOException e) {
-    				log.log(Level.SEVERE, e.toString(), e);
-    	       }
-    	}
     	
-    	else if(c.getCitycolor().equals(Color.decode(RED))){
-    		try {      
-    	          image = ImageIO.read(new File(RED_PATH));
-    	       } catch (IOException e) {
-    				log.log(Level.SEVERE, e.toString(), e);
-    	       }
-    	}
-    	
-    	else if(c.getCitycolor().equals(Color.decode(BLUE))){
-    		try {         
-    	          image = ImageIO.read(new File(BLUE_PATH));
-    	       } catch (IOException e) {
-    				log.log(Level.SEVERE, e.toString(), e);
-    	       }
-    	}
-    	
-    	else if(c.getCitycolor().equals(Color.decode(GREY))){
-    		try {    
-    	          image = ImageIO.read(new File(GREY_PATH));
-    	       } catch (IOException e) {
-    				log.log(Level.SEVERE, e.toString(), e);
-    	       }
-    	}
-    	
-    	else if(c.getCitycolor().equals(Color.decode(VIOLET))){
-    		try {               
-    	          image = ImageIO.read(new File(VIOLET_PATH));
-    	       } catch (IOException e) {
-    				log.log(Level.SEVERE, e.toString(), e);
-    	       }
-    	}
+    	imageLoader();
     	img = new JLabel(new ImageIcon(image));
     	img.setBounds(WWIDTH/2, HHEIGHT/2, WWIDTH, HHEIGHT);
     	setBackground(Color.decode(RegionPanel.COLORBG));
     	add(img);
+    	
     }
     
 
@@ -149,6 +114,36 @@ public class DrawCity extends JPanel implements MouseListener{
 		
 	}
 	
+	private void imageLoader(){
+    	if(mycity.getCitycolor().equals(Color.decode(YELLOW))){
+    		imageLoaderCore(YELLOW_PATH);
+    	}
+    	
+    	else if(mycity.getCitycolor().equals(Color.decode(RED))){ 
+    		imageLoaderCore(RED_PATH);
+    	}
+    	
+    	else if(mycity.getCitycolor().equals(Color.decode(BLUE))){
+    		imageLoaderCore(BLUE_PATH);
+    	}
+    	
+    	else if(mycity.getCitycolor().equals(Color.decode(GREY))){
+    		imageLoaderCore(GREY_PATH);
+    	}
+    	
+    	else if(mycity.getCitycolor().equals(Color.decode(VIOLET))){
+    		imageLoaderCore(VIOLET_PATH);
+    	}
+
+	}
+	
+	private void imageLoaderCore(String fname){
+		try {               
+	          image = ImageIO.read(new File(fname));
+	       } catch (IOException e) {
+				log.log(Level.SEVERE, e.toString(), e);
+	       }
+	}
 	
 	
 	@Override

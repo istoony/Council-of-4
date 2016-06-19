@@ -59,32 +59,26 @@ public class RegionPanel extends JPanel implements MouseListener{
 		for(DrawCity dc : citylist){
 			add(dc);
 		}
-		
+	}
+	
+	protected void drawRoads(){
 		for(DrawCity dc : citylist){
 			for(DrawCity dc2 : citylist){
-				if(dc.getMycity().getId()==dc2.getMycity().getId()){
+				if(dc.getMycity().getNeighbours().contains(dc2.getMycity())){
 					Rectangle r = dc.getBounds();
 					starts.add(centerOf(r));
 					Rectangle r2 = dc2.getBounds();
 					ends.add(centerOf(r2));
-					repaint();
 				}
 			}
 		}
+		repaint();	
 	}
 	
-    protected Point centerOf(Rectangle bounds) {
+    protected static Point centerOf(Rectangle bounds) {
     	return new Point(bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2));
     }
     
-    @Override
-	public void paint(Graphics g) {
-    	super.paint(g);
-    	for(int i=0; i<starts.size(); i++){
-    		g.drawLine(starts.get(i).x, starts.get(i).y, ends.get(i).x, ends.get(i).y);
-    	}
-
-    }
     
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -117,6 +111,15 @@ public class RegionPanel extends JPanel implements MouseListener{
 		
 	}
 	
+    @Override
+	public void paint(Graphics g) {
+    	super.paint(g);
+    	for(int i=0; i<starts.size(); i++){
+    		g.drawLine(starts.get(i).x, starts.get(i).y, ends.get(i).x, ends.get(i).y);
+    		g.setColor(Color.decode("#7F5217"));
+    	}
+    }
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//non usato
@@ -135,6 +138,48 @@ public class RegionPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		//non usato
+	}
+
+	/**
+	 * @return the starts
+	 */
+	public List<Point> getStarts() {
+		return starts;
+	}
+
+	/**
+	 * @return the ends
+	 */
+	public List<Point> getEnds() {
+		return ends;
+	}
+
+	/**
+	 * @return the citylist
+	 */
+	public List<DrawCity> getCitylist() {
+		return citylist;
+	}
+
+	/**
+	 * @return the myregion
+	 */
+	public Region getMyregion() {
+		return myregion;
+	}
+
+	/**
+	 * @param starts the starts to set
+	 */
+	public void setStarts(List<Point> starts) {
+		this.starts = starts;
+	}
+
+	/**
+	 * @param ends the ends to set
+	 */
+	public void setEnds(List<Point> ends) {
+		this.ends = ends;
 	}
 	
 	

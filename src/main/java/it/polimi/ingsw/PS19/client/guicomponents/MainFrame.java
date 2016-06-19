@@ -54,6 +54,10 @@ public class MainFrame extends JFrame {
 		infobox.update(this);
 	}
 	
+	protected void drawRoads(){
+		mpanel.drawRoads();
+	}
+	
 	
 	/**
 	 * @return the model
