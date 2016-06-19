@@ -74,16 +74,6 @@ public class ColorManager implements Serializable
 		colors.add(color);
 		size++;
 	}
-	
-	@Override
-	public String toString() 
-	{
-		String s = "SIZE: " + size + "\n";
-		for (Color color : colors) 
-			s = s + color + " ";
-		return s;
-			
-	}
 
 	public int getSize() {
 		return size;

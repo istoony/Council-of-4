@@ -3,10 +3,10 @@ package it.polimi.ingsw.PS19.controller.action;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public class BuyMainAction implements Action 
 {
-	private static final int N_OF_ACTION_TO_ADD = 1;
 	private static final int HELPERS_NEEDED = 4;
 	private String result;
 	private int playerId;
@@ -20,8 +20,8 @@ public class BuyMainAction implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() + N_OF_ACTION_TO_ADD);
-		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - N_OF_ACTION_TO_ADD);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() + Costants.N_OF_ACTION_TO_ADD);
+		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() -  Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
@@ -29,6 +29,16 @@ public class BuyMainAction implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
 		result = ActionMessages.EVERYTHING_IS_OK;
 		if(model.getPlayerById(playerId).getHelpers() > HELPERS_NEEDED)
 			return true;

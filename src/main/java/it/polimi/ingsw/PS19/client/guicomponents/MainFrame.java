@@ -8,6 +8,11 @@ import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 
 public class MainFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6108686046610655235L;
+	
 	protected static final int MWIDTH = 1200;
 	protected static final int MHEIGHT = 800;
 	
@@ -47,6 +52,10 @@ public class MainFrame extends JFrame {
 	protected void updateInfoBox(ClientModel m){
 		model = m;
 		infobox.update(this);
+	}
+	
+	protected void drawRoads(){
+		mpanel.drawRoads();
 	}
 	
 	

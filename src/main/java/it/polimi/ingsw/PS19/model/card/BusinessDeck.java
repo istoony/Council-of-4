@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public class BusinessDeck implements Deck, Serializable 
 {
@@ -14,7 +15,6 @@ public class BusinessDeck implements Deck, Serializable
 	private static final long serialVersionUID = -3125331114395001758L;
 	private static final int FIRST_CARD = 0;
 	private List<BusinessCard> card;
-	Random r = new Random();
 	
 	public BusinessDeck() {
 		card = new ArrayList<>();
@@ -35,14 +35,16 @@ public class BusinessDeck implements Deck, Serializable
 	public void addToDeckRandom(BusinessCard c)
 	{
 		int number; 
-		if(card.isEmpty())
+		if(card.size() > 3)
+		{
+			number = Costants.RANDOM_NUMBER.nextInt(card.size() -3) + 3;
+			addToDeck(c, number);
+		}
+		else
 		{
 			card.add(c);
 			return;
 		}
-		else
-			number = r.nextInt(card.size());
-		addToDeck(c, number);
 	}
 	public List<BusinessCard> getCard() {
 		return card;
@@ -79,12 +81,14 @@ public class BusinessDeck implements Deck, Serializable
 	public void addToDeck(Card c, int position) 
 	{
 		BusinessCard temp = card.get(position);
-		card.set(position, (BusinessCard) c);
+		BusinessCard temp2 = (BusinessCard) c;
+		card.set(position, temp2);
 		
 		for(int i = position + 1 ; i<card.size() - 1; i++)
 		{
+			temp2 = card.get(i);
 			card.set(i, temp);
-			temp = card.get(i + 1);
+			temp = temp2;
 		}
 		card.add(temp);
 	}

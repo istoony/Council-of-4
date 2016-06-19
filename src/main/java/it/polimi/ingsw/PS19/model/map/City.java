@@ -19,8 +19,8 @@ public class City implements Serializable {
 	private String name;
 	private ArrayList<Bonus> bonus;
 	private Color citycolor;
-	private ArrayList<City> neighbours;
-	private ArrayList<Integer> emporia; //array di id giocatori
+	private List<City> neighbours;
+	private List<Integer> emporia; //array di id giocatori
 	
 	public City(int id){
 		this.id=id;
@@ -29,7 +29,13 @@ public class City implements Serializable {
 		this.generateBonus();
 	}
 	
-	public void buildEmporium(Player p){
+	/**
+	 * Add an emporium on current city and add to player emporia
+	 * this city
+	 * @param p is the full player
+	 */
+	public void buildEmporium(Player p)
+	{
 		emporia.add(p.getId());
 		p.addToMyEmporia(this);
 	}
@@ -39,22 +45,22 @@ public class City implements Serializable {
 	}
 	
 	//applica i bonus delle città collegate
-	public void applyNetBonus(Player p, List<City> visited){
-		this.applyBonus(p);
+	public List<City> applyNetBonus(Player p, List<City> visited)
+	{
+		List<City> cityNet = new ArrayList<>();
+		if(emporia.contains(p.getId()))
+			cityNet.add(this);
 		visited.add(this);
-		for(City neig : neighbours){
-			if(!visited.contains(neig)&&emporia.contains(p.getId())){
-				neig.applyNetBonus(p, visited);
+		for(City neig : neighbours)
+		{
+			if(!visited.contains(neig) && emporia.contains(p.getId()))
+			{
+				cityNet.addAll(neig.applyNetBonus(p, visited));
 			}
 		}
+		return cityNet;
 	}
-	
-	public void applyBonus(Player p){
-		for(Bonus b : bonus){
-			b.giveBonus(p);
-		}
-	}
-	
+		
 	public void setParameters(String name, String color){
 		this.name=name;
 		this.citycolor = City.translateColor(color);
@@ -129,21 +135,21 @@ public class City implements Serializable {
 	/**
 	 * @return the emporia
 	 */
-	public ArrayList<Integer> getEmporia() {
+	public List<Integer> getEmporia() {
 		return emporia;
 	}
 
 	/**
 	 * @param emporia the emporia to set
 	 */
-	public void setEmporia(ArrayList<Integer> emporia) {
+	public void setEmporia(List<Integer> emporia) {
 		this.emporia = emporia;
 	}
 
 	/**
 	 * @return the bonus
 	 */
-	public ArrayList<Bonus> getBonus() {
+	public List<Bonus> getBonus() {
 		return bonus;
 	}
 		

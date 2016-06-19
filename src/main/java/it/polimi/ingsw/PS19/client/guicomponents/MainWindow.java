@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 
 
@@ -46,6 +47,7 @@ public class MainWindow {
 		PoliticsCard h = new PoliticsCard(Color.decode("#000000"));
 		PoliticsCard j = new PoliticsCard(Color.decode("#0000FF"));
 		PoliticsCard k = new PoliticsCard(Color.decode("#FF0000"));
+		BusinessCard aa = new BusinessCard(null, null, m.getAllCities().get(0));
 		
 		m.getMyPlayer().addCardToHand(c);
 		m.getMyPlayer().addCardToHand(d);
@@ -62,10 +64,12 @@ public class MainWindow {
 		m.getPlayer().get(1).addCardToHand(c);
 		m.getPlayer().get(1).addCardToHand(e);
 		m.getPlayer().get(1).addCardToHand(f);
+		m.getMyPlayer().addCardToHand(aa);
 		
 		
 		MainWindow window = new MainWindow(m);
 		window.frame.setVisible(true);
+		window.frame.drawRoads();
 
 	}
 

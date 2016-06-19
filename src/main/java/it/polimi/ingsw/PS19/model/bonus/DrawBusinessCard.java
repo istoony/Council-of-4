@@ -15,9 +15,9 @@ public class DrawBusinessCard implements Bonus {
 	}
 	
 	@Override
-	public void giveBonus(Player p) {
-		p.setPoliticCardToDraw(p.getPoliticCardToDraw()+howmany);
-
+	public void giveBonus(Player p) 
+	{
+		p.setBusinessCardRequest(true);
 	}
 	
 	@Override

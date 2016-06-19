@@ -6,6 +6,7 @@ import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.King;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class ElectCouncillor implements Action
@@ -47,12 +48,12 @@ public class ElectCouncillor implements Action
 		if(res && mainAction)
 		{
 			model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney() + MONEY);
-			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);	
+			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);	
 		}
 		else if(res)
 		{
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
-			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - 1);
+			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		}
 		
 		return res;
@@ -66,7 +67,21 @@ public class ElectCouncillor implements Action
 			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
-		
+		if(mainAction && model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
+		else if(model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
+		if(!model.getMap().getAvailableCouncillor().findColor(color))
+		{
+			result = ActionMessages.COLOR_NOT_AVAILABLE;
+			return false;
+		}
 		if(!mainAction && model.getPlayerById(playerId).getHelpers() < HELPERS)
 		{
 			result = ActionMessages.NO_HELPERS;

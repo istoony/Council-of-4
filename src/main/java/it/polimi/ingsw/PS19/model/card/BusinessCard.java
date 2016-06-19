@@ -99,4 +99,20 @@ public class BusinessCard implements Card, Serializable{
 			return true;
 		return false;
 	}
+	
+	public String toStringBonus(){
+		String s="";
+		for(Bonus b : bonus){
+			s+=b.toString()+", ";
+		}
+		return s;
+	}
+	
+	public String toStringCities(){
+		String s="";
+		for(City c : city){
+			s+=c.getName()+", ";
+		}
+		return s;
+	}
 }

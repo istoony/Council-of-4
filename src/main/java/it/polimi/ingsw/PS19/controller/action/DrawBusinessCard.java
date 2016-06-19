@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DrawBusinessCard  extends SupportMethod implements Action 
@@ -46,9 +47,9 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			model.getMap().getPoliticdeck().addToDeck(p);
 		}
 			//
-			//in base alle carte arrivate tolgo dei soldi al player
+			//in base alle carte arrivate tolgo dei soldi al player tenendo conto dei joker
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) + numberOfJoker(politicsCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
 		
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione
@@ -65,12 +66,20 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			model.getMap().getRegionByType(region).drowSecondCard();
 		}
 		player.addCardToHand(selectedcard);
+		
+		//
+		//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
+		//nobiltà, se ho bonus da applicare applico anche quelli.
+		//
+		
+		
 		for (Bonus b : selectedcard.getBonus()) 
 		{
 			b.giveBonus(player);
+			checkNobilityPathBonus(model, player);
+				
 		}
-		
-		player.setMainActionCounter(player.getMainActionCounter() - 1);
+		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		return true;
 	}
 
@@ -80,6 +89,11 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 		if(Action.checkPlayerTurn(playerId, model))
 		{
 			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
 			return false;
 		}
 		

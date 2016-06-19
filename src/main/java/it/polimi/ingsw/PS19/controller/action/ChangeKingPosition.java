@@ -9,7 +9,6 @@ import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 
@@ -32,7 +31,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Boolean execute(Model model) 
 	{	
-		City real = getRealCity(model);
+		City real = getRealCity(model, city);
 		if(real==null){
 
 			result = ActionMessages.GENERIC_ERROR;
@@ -50,25 +49,49 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) + numberOfJoker(politicCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
+			//
+			//in base agli empori costruiti calcolo gli helper necessari
+			//Calcolo anche il costo del movimento del re
+			//
 		int helperscost = real.calculateMalusEmporium();
-		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size() - 1);
 		
+			//Sposto il re nella città nuova
 		model.getMap().getKing().setCurrentcity(real);
+			//costruisco l'emporio sulla città
 		real.buildEmporium(model.getPlayerById(playerId));
+			//aggiungo la città ai miei empori
+		model.getPlayerById(playerId).addToMyEmporia(real);
+		
+			//aggiorno tutti i parametri del giocatore
 		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers()-helperscost);
 		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
+			
+			//do al giocatore i bonus che gli spettano
+				
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
 	@Override
-	public Boolean isPossible(Model model) {
+	public Boolean isPossible(Model model) 
+	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
 		if(model.getPlayerById(playerId).getMaxemporia()==0)
 		{
 			result = ActionMessages.NO_BUILD;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
 			return false;
 		}
 		
@@ -82,17 +105,21 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		int requiredmoney = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
 		
-		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
-			City real = getRealCity(model);
-			if(real==null){	
+		if(model.getPlayerById(playerId).getMoney()>=requiredmoney)
+		{
+			City real = getRealCity(model, city);
+			if(real==null)
+			{	
 				result = ActionMessages.GENERIC_ERROR;
 				return false;
 			}
-			if(real.getEmporia().contains((Integer)playerId)){
+			if(real.getEmporia().contains((Integer)playerId))
+			{
 				result = ActionMessages.BUILD_EMPORIA;
 				return false;
 			}
-			else if(real.calculateMalusEmporium()>model.getPlayerById(playerId).getHelpers()){
+			else if(real.calculateMalusEmporium()>model.getPlayerById(playerId).getHelpers())
+			{
 				result = ActionMessages.NO_HELPERS;
 				return false;
 			}
@@ -103,18 +130,6 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		return false;
 	}
 	
-	private City getRealCity(Model m)
-	{
-		for(Region r : m.getMap().getListaRegioni()){
-			for(City c : r.getCities()){
-				if(c.getId() == city.getId()){
-					return c;
-				}
-			}
-		}
-		return null;
-	}
-
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{

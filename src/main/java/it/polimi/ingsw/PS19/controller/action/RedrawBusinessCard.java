@@ -4,6 +4,7 @@ import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class RedrawBusinessCard implements Action 
@@ -32,7 +33,7 @@ public class RedrawBusinessCard implements Action
 		model.getMap().getRegionByType(region).drowFirstCard();
 		model.getMap().getRegionByType(region).drowSecondCard();
 		
-		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - 1);
+		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
@@ -40,6 +41,16 @@ public class RedrawBusinessCard implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		if(Action.checkPlayerTurn(playerId, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		if(model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		{
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
+		}
 		result = ActionMessages.NO_HELPERS;
 		if(model.getPlayerById(playerId).getHelpers() < 1)
 			return false;

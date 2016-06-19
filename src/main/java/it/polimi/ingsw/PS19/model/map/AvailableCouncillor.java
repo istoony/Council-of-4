@@ -68,6 +68,13 @@ public class AvailableCouncillor implements Serializable
 	public ColorManager getListofcolors() {
 		return listofcolors;
 	}
+	public boolean findColor(Color color)
+	{
+		for (Color c : listofcolors.getColors())
+			if(c.equals(color))
+				return true;
+		return false;
+	}
 	
 	
 	@Override
