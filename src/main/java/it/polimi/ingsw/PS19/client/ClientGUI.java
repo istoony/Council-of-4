@@ -96,4 +96,10 @@ public class ClientGUI extends ClientUI{
 		return 0;
 	}
 
+	@Override
+	public String getUserString(String title) throws InvalidInsertionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
