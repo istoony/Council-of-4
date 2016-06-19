@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 
 public class InfoPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3525366598866007755L;
+	
 	private int nplayer;
 	private List<InfoCell> boxes;
 	

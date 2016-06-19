@@ -2,10 +2,9 @@ package it.polimi.ingsw.PS19.client.guicomponents;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +28,8 @@ public class DrawCity extends JPanel implements MouseListener{
 	private static final long serialVersionUID = -1738220878679574991L;
 	private static final String INDENTATION = "    ";
 	
-	private static final int WIDTH = 40;
-	private static final int HEIGHT = 40;
+	private static final int WWIDTH = 40;
+	private static final int HHEIGHT = 40;
 	
 	private static final String YELLOW = "#FFFF00";
 	private static final String YELLOW_PATH = "images/yellowcity.png";
@@ -47,6 +46,7 @@ public class DrawCity extends JPanel implements MouseListener{
     private BufferedImage image;
     private JLabel img;
     private City mycity;
+    JFrame info;
 
     protected DrawCity(City c) {
     	super();
@@ -94,7 +94,7 @@ public class DrawCity extends JPanel implements MouseListener{
     	       }
     	}
     	img = new JLabel(new ImageIcon(image));
-    	img.setBounds(WIDTH/2, HEIGHT/2, WIDTH, HEIGHT);
+    	img.setBounds(WWIDTH/2, HHEIGHT/2, WWIDTH, HHEIGHT);
     	setBackground(Color.decode(RegionPanel.COLORBG));
     	add(img);
     }
@@ -103,13 +103,18 @@ public class DrawCity extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		JFrame info = createInfo();
+		if(info!=null){
+			info.dispatchEvent(new WindowEvent(info, WindowEvent.WINDOW_CLOSING));
+		}
+		info = createInfo();
+		info.setLocationRelativeTo(this);
+		info.setAlwaysOnTop(true);
 		info.setVisible(true);
 		info.setResizable(false);
 	}
 
 	
-	private JFrame createInfo(){
+	protected JFrame createInfo(){
 		JFrame f = new JFrame("Info of "+mycity.getName());
 		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -148,21 +153,25 @@ public class DrawCity extends JPanel implements MouseListener{
 	
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		//not used
 	}
 
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		//not used				
 	}
 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		//not used
 	}
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		//not used
 	}
 
 

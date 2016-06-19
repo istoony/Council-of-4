@@ -17,5 +17,10 @@ public class GetCityBonus implements Bonus {
 	{
 		p.setCityBonusRequest(true);
 	}
+	
+	@Override
+	public String toString(){
+		return "Get the bonus of a city";
+	}
 
 }
