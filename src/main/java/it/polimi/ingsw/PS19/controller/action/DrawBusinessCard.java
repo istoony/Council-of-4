@@ -10,6 +10,7 @@ import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DrawBusinessCard  extends SupportMethod implements Action 
@@ -48,7 +49,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) + numberOfJoker(politicsCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
 		
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione
@@ -65,12 +66,17 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			model.getMap().getRegionByType(region).drowSecondCard();
 		}
 		player.addCardToHand(selectedcard);
+		
 		for (Bonus b : selectedcard.getBonus()) 
 		{
 			b.giveBonus(player);
+			if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
+				for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
+						player.getNobilityPoints()))
+					nobilityBonus.giveBonus(player);
+				
 		}
-		
-		player.setMainActionCounter(player.getMainActionCounter() - 1);
+		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		return true;
 	}
 

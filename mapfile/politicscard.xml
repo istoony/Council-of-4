@@ -192,7 +192,31 @@
 		<card>
 			<region>PLAIN</region>
 			<bonus>
-				<type>bonus-more-money</type>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-nobilitytrack</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>

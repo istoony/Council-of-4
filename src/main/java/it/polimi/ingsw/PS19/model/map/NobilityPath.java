@@ -3,6 +3,7 @@ package it.polimi.ingsw.PS19.model.map;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.w3c.dom.Element;
@@ -22,7 +23,7 @@ public class NobilityPath implements Serializable
 	private static final long serialVersionUID = -142212466262863614L;
 	private static final String ERROR = "file corrotto/non valido!";
 	
-	private Map<Integer, ArrayList<Bonus>> nobility;
+	private Map<Integer, List<Bonus>> nobility;
 	
 	public NobilityPath(String pathfile) 
 	{
@@ -37,7 +38,7 @@ public class NobilityPath implements Serializable
 				Element eElement = (Element) nNode;
 				
 				int position = Integer.parseInt(eElement.getElementsByTagName("position").item(0).getTextContent());
-				ArrayList<Bonus> bonusarray = new ArrayList<>();
+				List<Bonus> bonusarray = new ArrayList<>();
 				String s = eElement.getElementsByTagName("bonus").item(0).getTextContent();
 				String[] ss = s.split("\n");
 				String s1 = ss[1].trim();
@@ -47,7 +48,7 @@ public class NobilityPath implements Serializable
 					throw new IllegalFileException(ERROR);
 				}
 				bonusarray.add(bonus);
-				ArrayList<Bonus> check = nobility.putIfAbsent(position, bonusarray);
+				List<Bonus> check = nobility.putIfAbsent(position, bonusarray);
 				if(check!=null){
 					bonusarray.addAll(check);
 					nobility.put(position, bonusarray);
@@ -56,6 +57,10 @@ public class NobilityPath implements Serializable
 		}
 	}
 	
+	public List<Bonus> getBonusByPosition(int key)
+	{
+		return nobility.get(key);
+	}
 	@Override
 	public String toString() 
 	{

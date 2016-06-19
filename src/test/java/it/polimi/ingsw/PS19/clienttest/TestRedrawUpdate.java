@@ -2,27 +2,26 @@ package it.polimi.ingsw.PS19.clienttest;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Color;
-import java.util.List;
-
 import org.junit.Test;
 
 import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.ElectCouncillorUpdate;
+import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitorImpl;
 import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.PS19.controller.action.ActionMessages;
+import it.polimi.ingsw.PS19.controller.action.BuyHelper;
+import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
-public class TestCompleteModelUpdate {
+public class TestRedrawUpdate {
 
 	@Test
 	public void test() 
@@ -35,20 +34,19 @@ public class TestCompleteModelUpdate {
 		 * aggiorno il model e controllo che i dati aggiornati e vecchi del balcone siano coerenti.
 		 */
 		Model m = new Model(2);
-		ClientModel clientModel = new ClientModel(0);
-	
-		SendFullGameMessage sendFullGame = new SendFullGameMessage(0);
-		
 		GameController g = new GameController(m);
+		g.update(null, new BuyHelper(0));
+		m.getCurrentState().setPlayerTurnId(0);
+		m.getPlayerById(0).setFastActionCounter(1);
 		
+		ClientModel clientModel = new ClientModel(0);
+		SendFullGameMessage sendFullGame = new SendFullGameMessage(0);
 		g.update(null, sendFullGame);
-		
 		ReplyVisitor visitor = new ReplyVisitorImpl();
 		
 		ClientUpdate update = g.getReply().display(visitor);
 		
 		assertTrue(g.getReply() instanceof SendFullGameReply);
-		
 		assertTrue(update != null);
 		
 		update.update(clientModel);
@@ -60,32 +58,29 @@ public class TestCompleteModelUpdate {
 		assertTrue(clientModel.getRegions() != null);
 		assertTrue(clientModel.getPlayer() != null);
 		
-		Region mountain = clientModel.getRegionByType(RegionType.MOUNTAIN);
-		List<Color> first = mountain.getBalcony().getCouncilcolor();
+		BusinessCard first = clientModel.getRegionByType(RegionType.PLAIN).getFirstcard();
+		BusinessCard second = clientModel.getRegionByType(RegionType.PLAIN).getSecondcard();
 		
-		ElectCouncillorMessage electCouncillor = new ElectCouncillorMessage(Color.decode("#FF0000"), 
-				RegionType.MOUNTAIN);
-		electCouncillor.setId(0);
-		electCouncillor.setMainAction(true);
+		RedrawBusinessCardMessage redraw = new RedrawBusinessCardMessage(RegionType.PLAIN);
+		redraw.setId(0);
 		
-		g.update(null, electCouncillor);
+		g.update(null, redraw);
 		
-		assertTrue(g.getReply() instanceof ElectCouncillorReply);
+		assertTrue(g.getReply() instanceof DrawBusinessCardReply);
+		assertTrue(g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
+		Reply redrawReply = g.getReply();
 		
-		Reply electCouncillorReply = g.getReply();
+		ClientUpdate redrawUpdate = redrawReply.display(visitor);
 		
-		ClientUpdate electCouncillorUpdate = electCouncillorReply.display(visitor);
+		assertTrue(redrawUpdate instanceof DrawBusinessCardUpdate);
+		redrawUpdate.update(clientModel);
 		
-		assertTrue(electCouncillorUpdate instanceof ElectCouncillorUpdate);
-		electCouncillorUpdate.update(clientModel);
+		BusinessCard firstNew = clientModel.getRegionByType(RegionType.PLAIN).getFirstcard();
+		BusinessCard secondNew = clientModel.getRegionByType(RegionType.PLAIN).getSecondcard();
 		
-		Region mountainNew = clientModel.getRegionByType(RegionType.MOUNTAIN);
+		assertTrue(first.getId() != firstNew.getId());
+		assertTrue(second.getId() != secondNew.getId());
 		
-		List<Color> second = mountainNew.getBalcony().getCouncilcolor();
-		assertTrue(first != second);
-		assertTrue(first.get(1).equals(second.get(2)));
-		assertTrue(first.get(2).equals(second.get(3)));
-		assertTrue(Color.decode("#FF0000").equals(second.get(0)));
 	}
 
 }

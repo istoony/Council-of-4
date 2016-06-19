@@ -1,14 +1,16 @@
-package it.polimi.ingsw.PS19;
+package it.polimi.ingsw.PS19.controller;
+import org.junit.Test;
 
 import it.polimi.ingsw.PS19.controller.action.ChangeKingPosition;
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.map.City;
 
-public class CheckCityLinksAndKingsMove {
+public class CheckKingLink {
+
+	@Test
+	public void test() 
+	{
 	
-	public static void main(String[] args) {
-		
-		
 		Model m = new Model(2);
 		
 		//starting city
@@ -21,8 +23,10 @@ public class CheckCityLinksAndKingsMove {
 		
 			//check the shortest path to all the cities in the map
 			//System.out.println("my money: "+mon);
-			for(int i=0; i<m.getMap().getListaRegioni().size(); i++){
-				for(int j=0; j<m.getMap().getListaRegioni().get(i).getCities().size(); j++){
+			for(int i=0; i<m.getMap().getListaRegioni().size(); i++)
+			{
+				for(int j=0; j<m.getMap().getListaRegioni().get(i).getCities().size(); j++)
+				{
 					city2 = m.getMap().getListaRegioni().get(i).getCities().get(j);
 					move = new ChangeKingPosition(0, city2, null);
 					//System.out.println("Can i move to " +city2.getName());
@@ -30,7 +34,7 @@ public class CheckCityLinksAndKingsMove {
 				}
 			}
 		}
-
+		
 	}
-	
+
 }

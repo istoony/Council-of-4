@@ -1,7 +1,5 @@
 package it.polimi.ingsw.PS19;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;

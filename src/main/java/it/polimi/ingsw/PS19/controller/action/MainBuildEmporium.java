@@ -8,6 +8,7 @@ import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.BusinessCard;
 import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.parameter.Costants;
 import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class MainBuildEmporium extends SupportMethod implements Action 
@@ -51,7 +52,7 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		
 		//CONTROLLO SE HO ALTRI BONUS DA APPLICARE
 		
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		
 		return true;
 	}

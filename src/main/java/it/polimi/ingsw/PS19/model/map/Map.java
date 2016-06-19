@@ -63,8 +63,9 @@ public class Map
 	
 	public List<Region> getListaRegioni() 
 	{
-		ArrayList<Region> reg = new ArrayList<>();
-		reg.addAll(listaRegioni);
+		List<Region> reg = new ArrayList<>();
+		for (Region region : listaRegioni)
+			reg.add(region);
 		return reg;
 	}
 	
@@ -87,6 +88,10 @@ public class Map
 	public NobilityPath getNobilityPath() 
 	{
 		return nobilityPath;
+	}
+	public GeneralBonus getKingBonus() 
+	{
+		return kingBonus;
 	}
 	
 	@Override

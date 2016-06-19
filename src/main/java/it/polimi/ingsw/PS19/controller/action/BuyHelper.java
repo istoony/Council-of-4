@@ -21,7 +21,7 @@ public class BuyHelper implements Action
 	{
 		model.getPlayerById(id).setMoney(model.getPlayerById(id).getMoney() - MONEY);
 		model.getPlayerById(id).setHelpers(model.getPlayerById(id).getHelpers() + HELPERS);
-		model.getPlayerById(id).setFastActionCounter(0);
+		model.getPlayerById(id).setFastActionCounter(model.getPlayerById(id).getFastActionCounter() - 1);
 		return true;
 	}
 

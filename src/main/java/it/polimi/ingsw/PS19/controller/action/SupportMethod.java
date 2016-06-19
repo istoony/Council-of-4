@@ -3,8 +3,11 @@ package it.polimi.ingsw.PS19.controller.action;
 import java.awt.Color;
 import java.util.List;
 
+import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.PS19.model.map.City;
+import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 public class SupportMethod 
@@ -55,5 +58,14 @@ public class SupportMethod
 				return false;
 		}
 		return true;
+	}
+
+	protected City getRealCity(Model m, City city)
+	{
+		for(Region r : m.getMap().getListaRegioni())
+			for(City c : r.getCities())
+				if(c.getId() == city.getId())
+					return c;
+		return null;
 	}
 }

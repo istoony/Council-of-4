@@ -9,7 +9,6 @@ import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.Region;
 import it.polimi.ingsw.PS19.model.parameter.Costants;
 
 
@@ -32,7 +31,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Boolean execute(Model model) 
 	{	
-		City real = getRealCity(model);
+		City real = getRealCity(model, city);
 		if(real==null){
 
 			result = ActionMessages.GENERIC_ERROR;
@@ -50,7 +49,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//
 			//in base alle carte arrivate tolgo dei soldi al player
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) + numberOfJoker(politicCard));
+		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
 		int helperscost = real.calculateMalusEmporium();
 		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
@@ -59,13 +58,14 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		real.buildEmporium(model.getPlayerById(playerId));
 		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers()-helperscost);
 		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - 1);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
 	@Override
-	public Boolean isPossible(Model model) {
+	public Boolean isPossible(Model model) 
+	{
 		if(model.getPlayerById(playerId).getMaxemporia()==0)
 		{
 			result = ActionMessages.NO_BUILD;
@@ -82,17 +82,21 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		int requiredmoney = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
 		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
 		
-		if(model.getPlayerById(playerId).getMoney()>=requiredmoney){
-			City real = getRealCity(model);
-			if(real==null){	
+		if(model.getPlayerById(playerId).getMoney()>=requiredmoney)
+		{
+			City real = getRealCity(model, city);
+			if(real==null)
+			{	
 				result = ActionMessages.GENERIC_ERROR;
 				return false;
 			}
-			if(real.getEmporia().contains((Integer)playerId)){
+			if(real.getEmporia().contains((Integer)playerId))
+			{
 				result = ActionMessages.BUILD_EMPORIA;
 				return false;
 			}
-			else if(real.calculateMalusEmporium()>model.getPlayerById(playerId).getHelpers()){
+			else if(real.calculateMalusEmporium()>model.getPlayerById(playerId).getHelpers())
+			{
 				result = ActionMessages.NO_HELPERS;
 				return false;
 			}
@@ -103,18 +107,6 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		return false;
 	}
 	
-	private City getRealCity(Model m)
-	{
-		for(Region r : m.getMap().getListaRegioni()){
-			for(City c : r.getCities()){
-				if(c.getId() == city.getId()){
-					return c;
-				}
-			}
-		}
-		return null;
-	}
-
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{

@@ -2,8 +2,6 @@ package it.polimi.ingsw.PS19.controller;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Color;
-
 import org.junit.Test;
 
 import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
@@ -20,13 +18,13 @@ public class CheckTurn {
 		Model m = new Model(4);
 		GameController g = new GameController(m);
 		int turn = 0;
-		for(int i=0; i< 5; i++)
+		for(int i=0; i< 10; i++)
 		{
 			assertTrue(m.getCurrentState().getPlayerTurnId() == turn);
 					//Count number of card of next player
 			int numberOfCard = m.getPlayerById((turn + 1)%4).getPoliticcard().size();
 			
-			ElectCouncillorMessage message = new ElectCouncillorMessage(Color.decode("#0000FF"), RegionType.MOUNTAIN);
+			ElectCouncillorMessage message = new ElectCouncillorMessage(m.getMap().getAvailableCouncillor().getListofcolors().getRandomColor(), RegionType.MOUNTAIN);
 			message.setId(turn);
 			message.setMainAction(true);
 		
@@ -40,7 +38,7 @@ public class CheckTurn {
 			turn ++;
 			turn = turn % 4;
 			assertTrue(m.getCurrentState().getPlayerTurnId() == turn);
-			assertTrue(m.getPlayerById(turn).getPoliticcard().size() > numberOfCard);
+			assertTrue(m.getPlayerById(turn).getPoliticcard().size() == numberOfCard + 1);
 			//System.out.println(numberOfCard);
 		}
 	}
