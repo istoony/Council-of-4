@@ -95,17 +95,26 @@ public class RegionPanel extends JPanel implements MouseListener{
 		JFrame f = new JFrame("Info of "+myregion.getType().toString());
 		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		f.setLayout(new GridLayout(7, 1));
+		f.setLayout(new GridLayout(8, 1));
 		
 		//balcony info
 		JLabel balconytitle = new JLabel(INDENTATION+"The council in this region is composed by:");
-		JLabel balcony = new JLabel(INDENTATION+myregion.getBalcony().toString());
-
-		
-		balconytitle.setVisible(true);
+		JLabel balcony = new JLabel(INDENTATION+INDENTATION+myregion.getBalcony().toString());
+		JLabel title1 = new JLabel(INDENTATION+"First Business Card:");
+		JLabel fcardname = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringCities());
+		JLabel fcardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringBonus());
+		JLabel title2 = new JLabel(INDENTATION+"Second Business Card:");
+		JLabel scardname = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringCities());
+		JLabel scardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringBonus());
 		balcony.setVisible(true);
 		f.add(balconytitle);
 		f.add(balcony);
+		f.add(title1);
+		f.add(fcardname);
+		f.add(fcardbonus);
+		f.add(title2);
+		f.add(scardname);
+		f.add(scardbonus);
 		
 		return f;
 		

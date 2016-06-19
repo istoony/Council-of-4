@@ -103,7 +103,7 @@ public class BusinessCard implements Card, Serializable{
 	public String toStringBonus(){
 		String s="";
 		for(Bonus b : bonus){
-			s+=b.toString();
+			s+=b.toString()+", ";
 		}
 		return s;
 	}
@@ -111,7 +111,7 @@ public class BusinessCard implements Card, Serializable{
 	public String toStringCities(){
 		String s="";
 		for(City c : city){
-			s+=c.getName();
+			s+=c.getName()+", ";
 		}
 		return s;
 	}
