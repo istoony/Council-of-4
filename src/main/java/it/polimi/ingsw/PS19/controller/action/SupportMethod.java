@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.PS19.model.Model;
 import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.PS19.model.bonus.Bonus;
 import it.polimi.ingsw.PS19.model.card.PoliticsCard;
 import it.polimi.ingsw.PS19.model.map.City;
 import it.polimi.ingsw.PS19.model.map.Region;
@@ -67,5 +68,12 @@ public class SupportMethod
 				if(c.getId() == city.getId())
 					return c;
 		return null;
+	}
+	
+	protected static void checkNobilityPathBonus(Model model, Player player) {
+		if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
+			for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
+					player.getNobilityPoints()))
+				nobilityBonus.giveBonus(player);
 	}
 }

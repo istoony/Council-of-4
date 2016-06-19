@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.io.Serializable;
 
 import it.polimi.ingsw.PS19.model.parameter.Costants;
-import it.polimi.ingsw.PS19.server.Constants;
 
 
 public class PoliticsCard implements Card, Serializable {

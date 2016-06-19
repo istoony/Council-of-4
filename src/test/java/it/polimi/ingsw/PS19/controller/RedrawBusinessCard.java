@@ -19,23 +19,27 @@ public class RedrawBusinessCard
 		/**
 		 * Controllo che le carte iniziali e le carte dopo aver eseguito la mossa
 		 * redraw siano diverse.
+		 * TODO: se una cosa funziona 100 volte è sicuramente corretta
 		 */
+		for(int i =0; i< 100; i++)
+		{
 
-		Model m = new Model(2);
-		BusinessCard first = m.getMap().getRegionByType(RegionType.PLAIN).getFirstcard();
-		BusinessCard second = m.getMap().getRegionByType(RegionType.PLAIN).getSecondcard();
-		//System.out.print(m.getMap().getRegionByType(RegionType.PLAIN).toString());
-		GameController g = new GameController(m);
-		RedrawBusinessCardMessage message = new RedrawBusinessCardMessage(RegionType.PLAIN);
+			Model m = new Model(2);
+			BusinessCard first = m.getMap().getRegionByType(RegionType.PLAIN).getFirstcard();
+			BusinessCard second = m.getMap().getRegionByType(RegionType.PLAIN).getSecondcard();
+			//System.out.print(m.getMap().getRegionByType(RegionType.PLAIN).toString());
+			GameController g = new GameController(m);
+			RedrawBusinessCardMessage message = new RedrawBusinessCardMessage(RegionType.PLAIN);
 		
-		message.setId(0);
+			message.setId(0);
 		
-		g.update(null, message);
+			g.update(null, message);
 		
-		BusinessCard firstNew = m.getMap().getRegionByType(RegionType.PLAIN).getFirstcard();
-		BusinessCard secondNew = m.getMap().getRegionByType(RegionType.PLAIN).getSecondcard();
-		//System.out.print(m.getMap().getRegionByType(RegionType.PLAIN).toString());
-		assertTrue(first.getId() != firstNew.getId());
-		assertTrue(second.getId() != secondNew.getId());
+			BusinessCard firstNew = m.getMap().getRegionByType(RegionType.PLAIN).getFirstcard();
+			BusinessCard secondNew = m.getMap().getRegionByType(RegionType.PLAIN).getSecondcard();
+
+			assertTrue("prima " + first.getId() + " - seconda " + firstNew.getId(), first.getId() != firstNew.getId());
+			assertTrue("prima " + second.getId() + " - seconda " + secondNew.getId(), second.getId() != secondNew.getId());
+		}
 	}
 }

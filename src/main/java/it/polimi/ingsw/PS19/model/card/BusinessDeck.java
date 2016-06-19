@@ -35,9 +35,9 @@ public class BusinessDeck implements Deck, Serializable
 	public void addToDeckRandom(BusinessCard c)
 	{
 		int number; 
-		if(card.size() > 2)
+		if(card.size() > 3)
 		{
-			number = Costants.RANDOM_NUMBER.nextInt(card.size() -2) + 2;
+			number = Costants.RANDOM_NUMBER.nextInt(card.size() -3) + 3;
 			addToDeck(c, number);
 		}
 		else
@@ -81,12 +81,14 @@ public class BusinessDeck implements Deck, Serializable
 	public void addToDeck(Card c, int position) 
 	{
 		BusinessCard temp = card.get(position);
-		card.set(position, (BusinessCard) c);
+		BusinessCard temp2 = (BusinessCard) c;
+		card.set(position, temp2);
 		
 		for(int i = position + 1 ; i<card.size() - 1; i++)
 		{
+			temp2 = card.get(i);
 			card.set(i, temp);
-			temp = card.get(i + 1);
+			temp = temp2;
 		}
 		card.add(temp);
 	}

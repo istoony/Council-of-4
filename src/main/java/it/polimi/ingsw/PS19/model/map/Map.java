@@ -43,7 +43,7 @@ public class Map
 				king = new King(city);		
 	}
 	
-	private List<City> getAllCities()
+	public List<City> getAllCities()
 	{
 		List<City> cities = new ArrayList<>();
 		for (Region region : listaRegioni) 
@@ -127,7 +127,8 @@ public class Map
 	
 	
 	//hashmap for path reconstruction, <node, parentnode>
-	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree){
+	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree)
+	{
 		if(root.getId() == end.getId())
 		{
 			path.add(end);

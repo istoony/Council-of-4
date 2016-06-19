@@ -47,7 +47,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			model.getMap().getPoliticdeck().addToDeck(p);
 		}
 			//
-			//in base alle carte arrivate tolgo dei soldi al player
+			//in base alle carte arrivate tolgo dei soldi al player tenendo conto dei joker
 			//
 		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
 		
@@ -67,13 +67,16 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 		}
 		player.addCardToHand(selectedcard);
 		
+		//
+		//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
+		//nobiltà, se ho bonus da applicare applico anche quelli.
+		//
+		
+		
 		for (Bonus b : selectedcard.getBonus()) 
 		{
 			b.giveBonus(player);
-			if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
-				for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
-						player.getNobilityPoints()))
-					nobilityBonus.giveBonus(player);
+			checkNobilityPathBonus(model, player);
 				
 		}
 		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);

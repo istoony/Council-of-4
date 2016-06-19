@@ -18,6 +18,7 @@ public class CompleteModelTest {
 		assertTrue(model.getMap().getPoliticdeck().getSize() != 0);
 		
 		//initialize the game on costructor
+		//draw politic card for all players
 		GameController g = new GameController(model);
 		
 		//player 0 have > 0 cards
