@@ -79,7 +79,7 @@ public class NobilityPath implements Serializable
 		return s;
 	}
 	
-	private int getMaxKey(){
+	public int getMaxKey(){
 		int max=0;
 		for(int k : nobility.keySet()){
 			if (k>max){
@@ -87,6 +87,13 @@ public class NobilityPath implements Serializable
 			}
 		}
 		return max;
+	}
+
+	/**
+	 * @return the nobility
+	 */
+	public Map<Integer, List<Bonus>> getNobility() {
+		return nobility;
 	}
 	
 		
