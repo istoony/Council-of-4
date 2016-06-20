@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client.guicomponents;
+package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,8 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 public class RegionPanel extends JPanel implements MouseListener{
 

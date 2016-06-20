@@ -1,13 +1,13 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.bonus.BonusFactory;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 
 public class City implements Serializable {
 	

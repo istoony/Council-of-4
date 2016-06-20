@@ -1,24 +1,24 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.message.requests.BuildEmporiumMessage;
-import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
-import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
-import it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage;
-import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
-import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
+import it.polimi.ingsw.ps19.message.requests.RedrawBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 
 /**
@@ -48,7 +48,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.SendFullGameMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.SendFullGameMessage)
 	 */
 	@Override
 	public Action visit(SendFullGameMessage message) 
@@ -57,7 +57,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.BuyHelperMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.BuyHelperMessage)
 	 */
 	@Override
 	public Action visit(BuyHelperMessage message) 
@@ -67,7 +67,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.GetBusinessCardMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage)
 	 */
 	@Override
 	public Action visit(GetBusinessCardMessage message) 
@@ -80,7 +80,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.DrawPoliticsCardMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage)
 	 */
 	@Override
 	public Action visit(DrawPoliticsCardMessage message) 
@@ -90,7 +90,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 	
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.EndTurnMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.EndTurnMessage)
 	 */
 	@Override
 	public Action visit(EndTurnMessage message)
@@ -100,7 +100,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.ChangeKingPositionMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage)
 	 */
 	@Override
 	public Action visit(ChangeKingPositionMessage message) 
@@ -111,7 +111,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage)
 	 */
 	@Override
 	public Action visit(BuyMainActionMessage message) 
@@ -120,7 +120,7 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	}
 
 	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.PS19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.PS19.message.requests.SendOrderMessage)
+	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.SendOrderMessage)
 	 */
 	@Override
 	public Action visit(SendOrderMessage message) 

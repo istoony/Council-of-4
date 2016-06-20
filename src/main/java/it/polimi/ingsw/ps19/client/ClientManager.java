@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
@@ -6,8 +6,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.view.connection.Connection;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.view.connection.Connection;
 
 public abstract class ClientManager 
 {

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.ps19.model.Model;
 
 public class playerConnectionTest {
 

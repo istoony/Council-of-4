@@ -1,11 +1,10 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 
 public class CLIClientStarter 
 {

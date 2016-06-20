@@ -4,10 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.message.requests.BuyHelperMessage;
-import it.polimi.ingsw.PS19.message.requests.BuyMainActionMessage;
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.model.Model;
 
 public class BuyMainActionTest 
 {

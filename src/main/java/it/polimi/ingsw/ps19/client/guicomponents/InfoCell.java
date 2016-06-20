@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client.guicomponents;
+package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -12,12 +12,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.map.NobilityPath;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.NobilityPath;
 
 public class InfoCell extends JPanel implements ActionListener{
 	

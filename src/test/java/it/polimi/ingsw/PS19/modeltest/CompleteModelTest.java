@@ -1,11 +1,11 @@
 package it.polimi.ingsw.PS19.modeltest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.model.Model;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.model.Model;
 
 public class CompleteModelTest {
 

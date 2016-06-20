@@ -4,10 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.message.requests.ElectCouncillorMessage;
-import it.polimi.ingsw.PS19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
+import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class CheckTurn {
 

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.view;
+package it.polimi.ingsw.ps19.view;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,16 +8,16 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.StringMessage;
-import it.polimi.ingsw.PS19.message.requests.PlayerDisconnectedMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.server.Constants;
-import it.polimi.ingsw.PS19.server.ServerManager;
-import it.polimi.ingsw.PS19.view.connection.Connection;
-import it.polimi.ingsw.PS19.view.connection.ConnectionStatus;
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.StringMessage;
+import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
+import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.server.Constants;
+import it.polimi.ingsw.ps19.server.ServerManager;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.ConnectionStatus;
 
 /**
  * Class that manages the connections towards the internet

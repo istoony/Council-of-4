@@ -1,17 +1,17 @@
 /*
  * @author Andrea Milanta 
  */
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.exceptions.viewexceptions.WriterException;
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.message.requests.Request;
-import it.polimi.ingsw.PS19.view.connection.Connection;
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.requests.Request;
+import it.polimi.ingsw.ps19.view.connection.Connection;
 
 /**
  * Manages connection to the server

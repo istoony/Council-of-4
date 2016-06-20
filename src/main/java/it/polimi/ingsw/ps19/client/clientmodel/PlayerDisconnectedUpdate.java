@@ -1,6 +1,6 @@
-package it.polimi.ingsw.PS19.client.clientmodel;
+package it.polimi.ingsw.ps19.client.clientmodel;
 
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 
 /**
  * Class that updates the model if a new player has disconnected

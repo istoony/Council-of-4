@@ -1,12 +1,12 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.server.Constants;
-import it.polimi.ingsw.PS19.view.connection.SocketConnection;
+import it.polimi.ingsw.ps19.server.Constants;
+import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 
 

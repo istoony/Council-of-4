@@ -1,11 +1,11 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
-import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.parameter.Costants;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class RedrawBusinessCard implements Action 
 {

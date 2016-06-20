@@ -1,8 +1,8 @@
-package it.polimi.ingsw.PS19.model.bonus;
+package it.polimi.ingsw.ps19.model.bonus;
 
 import java.io.Serializable;
 
-import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.ps19.model.Player;
 
 @FunctionalInterface
 public interface Bonus extends Serializable{

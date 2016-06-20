@@ -1,18 +1,18 @@
-package it.polimi.ingsw.PS19.client.clientmodel.clientdata;
+package it.polimi.ingsw.ps19.client.clientmodel.clientdata;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.Market;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.NobilityPath;
-import it.polimi.ingsw.PS19.model.map.Region;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.model.Market;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.map.NobilityPath;
+import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 /**
  * Class that rappresents the local model

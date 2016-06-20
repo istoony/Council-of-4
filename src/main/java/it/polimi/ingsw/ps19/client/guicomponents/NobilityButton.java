@@ -1,10 +1,10 @@
-package it.polimi.ingsw.PS19.client.guicomponents;
+package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 
-import it.polimi.ingsw.PS19.model.map.NobilityPath;
+import it.polimi.ingsw.ps19.model.map.NobilityPath;
 
 public class NobilityButton extends JButton{
 	

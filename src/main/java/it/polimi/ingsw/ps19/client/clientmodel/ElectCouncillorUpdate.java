@@ -1,13 +1,13 @@
-package it.polimi.ingsw.PS19.client.clientmodel;
+package it.polimi.ingsw.ps19.client.clientmodel;
 
 
 import java.util.List;
 
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.map.AvailableCouncillor;
-import it.polimi.ingsw.PS19.model.map.King;
-import it.polimi.ingsw.PS19.model.map.Region;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
+import it.polimi.ingsw.ps19.model.map.King;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 /**
  * Class that updates the balconies in model

@@ -1,11 +1,11 @@
-package it.polimi.ingsw.PS19.model.card;
+package it.polimi.ingsw.ps19.model.card;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class BusinessDeck implements Deck, Serializable 
 {

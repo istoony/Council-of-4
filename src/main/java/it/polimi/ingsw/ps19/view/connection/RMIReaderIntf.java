@@ -1,9 +1,9 @@
-package it.polimi.ingsw.PS19.view.connection;
+package it.polimi.ingsw.ps19.view.connection;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import it.polimi.ingsw.PS19.message.Message;
+import it.polimi.ingsw.ps19.message.Message;
 
 /**
  * Remote interface to create the method of the reader to be remotely called

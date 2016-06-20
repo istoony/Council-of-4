@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client.guicomponents;
+package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

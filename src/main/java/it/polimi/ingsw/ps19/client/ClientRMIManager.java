@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -6,10 +6,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.server.Constants;
-import it.polimi.ingsw.PS19.server.ServerRemoteIntf;
-import it.polimi.ingsw.PS19.view.connection.RMIConnection;
-import it.polimi.ingsw.PS19.view.connection.RMIReaderIntf;
+import it.polimi.ingsw.ps19.server.Constants;
+import it.polimi.ingsw.ps19.server.ServerRemoteIntf;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
+import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 
 /**
  * Manages initial connection to the server with RMI

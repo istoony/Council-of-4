@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model;
+package it.polimi.ingsw.ps19.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.map.FileReader;
-import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.FileReader;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class Player implements Serializable
 {

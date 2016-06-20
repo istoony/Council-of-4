@@ -1,10 +1,10 @@
-package it.polimi.ingsw.PS19.model.parameter;
+package it.polimi.ingsw.ps19.model.parameter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
 public class Costants 
 {

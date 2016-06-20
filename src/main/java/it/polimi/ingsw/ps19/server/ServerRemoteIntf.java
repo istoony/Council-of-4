@@ -1,9 +1,9 @@
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import it.polimi.ingsw.PS19.view.connection.RMIReaderIntf;
+import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 
 /**
  * Public interface for RMI on server manager

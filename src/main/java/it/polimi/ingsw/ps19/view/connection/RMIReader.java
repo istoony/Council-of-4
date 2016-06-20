@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.view.connection;
+package it.polimi.ingsw.ps19.view.connection;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -9,9 +9,9 @@ import java.security.SecureRandom;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.PS19.message.Message;
-import it.polimi.ingsw.PS19.server.Constants;
-import it.polimi.ingsw.PS19.server.Mutex;
+import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.server.Constants;
+import it.polimi.ingsw.ps19.server.Mutex;
 
 /**
  * Class that implements a reader in a RMI interface

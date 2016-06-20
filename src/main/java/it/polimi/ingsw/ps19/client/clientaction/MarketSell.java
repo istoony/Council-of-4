@@ -1,16 +1,16 @@
-package it.polimi.ingsw.PS19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientaction;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.client.ClientUI;
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.message.requests.Request;
-import it.polimi.ingsw.PS19.message.requests.SendOrderMessage;
-import it.polimi.ingsw.PS19.model.Order;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.client.ClientUI;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.message.requests.Request;
+import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
+import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
 /**
  * Classe per creare un ordine

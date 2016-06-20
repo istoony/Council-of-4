@@ -4,22 +4,22 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.DrawBusinessCardUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
-import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitorImpl;
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.controller.GameController;
-import it.polimi.ingsw.PS19.controller.action.ActionMessages;
-import it.polimi.ingsw.PS19.controller.action.BuyHelper;
-import it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.message.replies.SendFullGameReply;
-import it.polimi.ingsw.PS19.message.requests.RedrawBusinessCardMessage;
-import it.polimi.ingsw.PS19.message.requests.SendFullGameMessage;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.ps19.client.clientmodel.DrawBusinessCardUpdate;
+import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.controller.action.ActionMessages;
+import it.polimi.ingsw.ps19.controller.action.BuyHelper;
+import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
+import it.polimi.ingsw.ps19.message.requests.RedrawBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class TestRedrawUpdate {
 

@@ -1,18 +1,18 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.*;
 
-import it.polimi.ingsw.PS19.client.clientaction.ClientAction;
-import it.polimi.ingsw.PS19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
+import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 /**
  * user interface abstract class

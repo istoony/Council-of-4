@@ -4,14 +4,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.PS19.controller.action.SupportMethod;
-import it.polimi.ingsw.PS19.message.requests.BuildEmporiumMessage;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.bonus.Bonus;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.controller.action.SupportMethod;
+import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class BuildEmporiumTest extends SupportMethod{
 

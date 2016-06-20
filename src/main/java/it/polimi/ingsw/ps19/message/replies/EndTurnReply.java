@@ -1,10 +1,10 @@
-package it.polimi.ingsw.PS19.message.replies;
+package it.polimi.ingsw.ps19.message.replies;
 
 import java.util.List;
 
-import it.polimi.ingsw.PS19.client.clientmodel.ClientUpdate;
-import it.polimi.ingsw.PS19.client.clientmodel.ReplyVisitor;
-import it.polimi.ingsw.PS19.model.Player;
+import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
+import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.ps19.model.Player;
 
 public class EndTurnReply extends SendFullPlayerReply {
 

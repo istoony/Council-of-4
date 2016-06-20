@@ -1,16 +1,16 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.model.bonus.GeneralBonus;
-import it.polimi.ingsw.PS19.model.card.DeckFactory;
-import it.polimi.ingsw.PS19.model.card.PoliticDeck;
-import it.polimi.ingsw.PS19.model.parameter.ColorManager;
-import it.polimi.ingsw.PS19.model.parameter.FileNames;
-import it.polimi.ingsw.PS19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
+import it.polimi.ingsw.ps19.model.card.DeckFactory;
+import it.polimi.ingsw.ps19.model.card.PoliticDeck;
+import it.polimi.ingsw.ps19.model.parameter.ColorManager;
+import it.polimi.ingsw.ps19.model.parameter.FileNames;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 
 public class Map 

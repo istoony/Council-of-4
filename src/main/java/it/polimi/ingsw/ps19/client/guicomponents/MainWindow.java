@@ -1,11 +1,11 @@
-package it.polimi.ingsw.PS19.client.guicomponents;
+package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.Color;
 
-import it.polimi.ingsw.PS19.client.clientmodel.clientdata.ClientModel;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.card.BusinessCard;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
 
 public class MainWindow {

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 import java.io.IOException;
 import java.util.logging.Level;

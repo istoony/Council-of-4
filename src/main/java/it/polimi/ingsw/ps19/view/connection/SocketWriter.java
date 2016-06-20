@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.view.connection;
+package it.polimi.ingsw.ps19.view.connection;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

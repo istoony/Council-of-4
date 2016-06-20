@@ -1,9 +1,9 @@
-package it.polimi.ingsw.PS19.model.card;
+package it.polimi.ingsw.ps19.model.card;
 
 import java.awt.Color;
 import java.io.Serializable;
 
-import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
 public class PoliticsCard implements Card, Serializable {

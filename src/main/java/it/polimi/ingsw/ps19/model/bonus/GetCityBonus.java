@@ -1,6 +1,6 @@
 
-package it.polimi.ingsw.PS19.model.bonus;
-import it.polimi.ingsw.PS19.model.Player;
+package it.polimi.ingsw.ps19.model.bonus;
+import it.polimi.ingsw.ps19.model.Player;
 
 
 

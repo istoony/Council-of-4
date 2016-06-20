@@ -1,15 +1,15 @@
-package it.polimi.ingsw.PS19.controller.action;
+package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
 import java.util.List;
 
-import it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply;
-import it.polimi.ingsw.PS19.message.replies.Reply;
-import it.polimi.ingsw.PS19.model.Model;
-import it.polimi.ingsw.PS19.model.Player;
-import it.polimi.ingsw.PS19.model.card.PoliticsCard;
-import it.polimi.ingsw.PS19.model.map.City;
-import it.polimi.ingsw.PS19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
+import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
 public class ChangeKingPosition extends SupportMethod implements Action{

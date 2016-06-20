@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="it.polimi.ingsw.PS19.message.replies.TimeToMarketReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/TimeToMarketReply.java" binary="false" 
+  <class id="1" language="java" name="it.polimi.ingsw.ps19.message.replies.TimeToMarketReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/TimeToMarketReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="441" y="5"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="it.polimi.ingsw.PS19.message.replies.EndTurnReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/EndTurnReply.java" binary="false" 
+  <class id="2" language="java" name="it.polimi.ingsw.ps19.message.replies.EndTurnReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/EndTurnReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="198" y="518"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -21,8 +21,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="it.polimi.ingsw.PS19.message.replies.CompleteMarketReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/CompleteMarketReply.java" binary="false" 
+  <class id="3" language="java" name="it.polimi.ingsw.ps19.message.replies.CompleteMarketReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/CompleteMarketReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="809" y="497"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -31,8 +31,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="it.polimi.ingsw.PS19.message.replies.GameStartedMessage" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/GameStartedMessage.java" binary="false" 
+  <class id="4" language="java" name="it.polimi.ingsw.ps19.message.replies.GameStartedMessage" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/GameStartedMessage.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1097" y="516"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -41,8 +41,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="it.polimi.ingsw.PS19.message.replies.ChangeKingPositionReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/ChangeKingPositionReply.java" binary="false" 
+  <class id="5" language="java" name="it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/ChangeKingPositionReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="864" y="742"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -51,8 +51,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="it.polimi.ingsw.PS19.message.replies.PlayerDisconnectedReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/PlayerDisconnectedReply.java" binary="false" 
+  <class id="6" language="java" name="it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/PlayerDisconnectedReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="441" y="128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -61,8 +61,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="it.polimi.ingsw.PS19.message.replies.GetBusinessCardOrCityBonusReply" 
-    project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/GetBusinessCardOrCityBonusReply.java" 
+  <class id="7" language="java" name="it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply" 
+    project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/GetBusinessCardOrCityBonusReply.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="303" y="1213"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -71,8 +71,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="it.polimi.ingsw.PS19.message.replies.DrawBusinessCardReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/DrawBusinessCardReply.java" binary="false" 
+  <class id="8" language="java" name="it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/DrawBusinessCardReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="501" y="739"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -81,8 +81,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="it.polimi.ingsw.PS19.message.replies.Reply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/Reply.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="it.polimi.ingsw.ps19.message.replies.Reply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/Reply.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="991" y="70"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -90,8 +90,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="it.polimi.ingsw.PS19.message.replies.WaitingPlayerForMarketReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/WaitingPlayerForMarketReply.java" binary="false" 
+  <class id="10" language="java" name="it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/WaitingPlayerForMarketReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="457" y="-123"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,8 +100,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="it.polimi.ingsw.PS19.message.Message" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/Message.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="it.polimi.ingsw.ps19.message.Message" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/Message.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="995" y="-143"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,8 +109,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="it.polimi.ingsw.PS19.message.replies.SendFullPlayerReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/SendFullPlayerReply.java" binary="false" 
+  <class id="12" language="java" name="it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/SendFullPlayerReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="493" y="511"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -119,8 +119,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="it.polimi.ingsw.PS19.message.replies.StringMessage" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/StringMessage.java" binary="false" 
+  <class id="13" language="java" name="it.polimi.ingsw.ps19.message.replies.StringMessage" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/StringMessage.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1328" y="490"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -129,8 +129,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="it.polimi.ingsw.PS19.message.replies.SendFullGameReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/SendFullGameReply.java" binary="false" 
+  <class id="14" language="java" name="it.polimi.ingsw.ps19.message.replies.SendFullGameReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/SendFullGameReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="901" y="1192"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -139,8 +139,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="it.polimi.ingsw.PS19.message.replies.ElectCouncillorReply" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/PS19/message/replies/ElectCouncillorReply.java" binary="false" 
+  <class id="15" language="java" name="it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/message/replies/ElectCouncillorReply.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="537" y="973"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

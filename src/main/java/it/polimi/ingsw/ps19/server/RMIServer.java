@@ -1,11 +1,11 @@
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteServer;
 
-import it.polimi.ingsw.PS19.view.connection.Connection;
-import it.polimi.ingsw.PS19.view.connection.RMIConnection;
-import it.polimi.ingsw.PS19.view.connection.RMIReaderIntf;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
+import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 
 public class RMIServer extends RemoteServer implements ServerRemoteIntf 
 {

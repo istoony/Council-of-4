@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 /**
  * Class that contains constants related to the clients

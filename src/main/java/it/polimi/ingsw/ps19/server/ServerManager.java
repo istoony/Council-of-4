@@ -1,7 +1,7 @@
 /*
  * @Author Andrea Milanta
  */
-package it.polimi.ingsw.PS19.server;
+package it.polimi.ingsw.ps19.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import it.polimi.ingsw.PS19.client.ClientCLI;
-import it.polimi.ingsw.PS19.view.connection.SocketConnection;
+import it.polimi.ingsw.ps19.client.ClientCLI;
+import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 import java.io.IOException;
 

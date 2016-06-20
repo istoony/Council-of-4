@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.client;
+package it.polimi.ingsw.ps19.client;
 
 import java.util.logging.Logger;
 

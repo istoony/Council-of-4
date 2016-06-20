@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.card;
+package it.polimi.ingsw.ps19.model.card;
 
 //TODO: WRITE COMMENTS PLEASE, HELP ME!
 /**
