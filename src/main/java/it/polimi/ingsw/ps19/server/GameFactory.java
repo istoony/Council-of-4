@@ -51,7 +51,6 @@ public class GameFactory extends Thread
 				log.log(Level.SEVERE, e.toString(), e);
 			}
 		}
-		System.out.println("GameStartedMessages Sent");
 		view = new View(players);
 		model = new Model(players.size());
 		controller = new GameController(model);

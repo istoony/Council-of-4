@@ -119,7 +119,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			{
 				combinations = getContainingDecks(combinations, chosenColor);
 				for(DeckId deck : combinations)
-					deck.subtractCard(new CardId(chosenColor, 0));
+					deck.subtractCard(new CardId(chosenColor));
 				combinations = getSignificantDecks(combinations);
 			}
 			if(combinations.isEmpty() || chosenColor == null)
@@ -201,7 +201,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		if(decks.isEmpty())
 			return decks;
-		CardId card = new CardId(color, 0);
+		CardId card = new CardId(color);
 		List<DeckId> containingDecks = new ArrayList<>();
 		for(DeckId deck : decks)
 			if(deck.contains(card))
@@ -217,7 +217,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		List<CardId> differentCards = new ArrayList<>();
 		for(DeckId deck : decks)
 			cards.addAll(deck.getDeckClone());
-		while(cards.size() > 0)
+		while(!cards.isEmpty())
 		{
 			CardId card = cards.get(0);
 			differentCards.add(card);
@@ -241,7 +241,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		private Color color;
 		
-		public CardId(Color c, int identifier)
+		public CardId(Color c)
 		{
 			color = c;
 		}
@@ -274,7 +274,6 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	private class DeckId
 	{
 		List<CardId> cardsId = new ArrayList<>();
-		private final CardId jolly = new CardId(Color.decode(Costants.JOKERCOLOR), 0);
 		
 		/**
 		 * Constructor
@@ -285,25 +284,22 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			if(cards.isEmpty())
 				return;
-			if(cards.get(0) instanceof CardId)
+			else if(cards.get(0) instanceof CardId)
 			{
 				cardsId = new ArrayList<>();
 				cardsId.addAll((ArrayList<CardId>)cards);
-				return;
 			}
-			if(cards.get(0) instanceof Color)
+			else if(cards.get(0) instanceof Color)
 			{
 				cardsId = new ArrayList<>();
 				for(int i = 0; i < cards.size(); i++)
-					cardsId.add(new CardId((Color)(cards.get(i)), i));
-				return;
+					cardsId.add(new CardId((Color)(cards.get(i))));
 			}
-			if(cards.get(0) instanceof PoliticsCard)
+			else if(cards.get(0) instanceof PoliticsCard)
 			{
 				cardsId = new ArrayList<>();
 				for(int i = 0; i < cards.size(); i++)
-					cardsId.add(new CardId(((PoliticsCard)(cards.get(i))).getColor(), i));
-				return;
+					cardsId.add(new CardId(((PoliticsCard)(cards.get(i))).getColor()));
 			}
 		}
 		
@@ -349,7 +345,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			List<CardId> secondDeck = deck.getDeckClone();
 			List<CardId> firstDeck = this.getDeckClone();
-			while(firstDeck.size() > 0)
+			while(!firstDeck.isEmpty())
 			{
 				CardId cardOne = firstDeck.get(0);
 				int j = 0;
@@ -445,7 +441,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				CardId deckCard = cardsId.get(i);
 				if(deckCard.equivalent(card))
 				{
-					if(cardsId.remove(deckCard));
+					cardsId.remove(deckCard);
 					return;
 				}
 			}
@@ -470,6 +466,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			return false;
 		}
 		
+		@Override
 		public String toString()
 		{
 			String s = "[";

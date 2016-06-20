@@ -256,10 +256,15 @@ public class ClientCLI extends ClientUI
 			s = s.concat(", ");
 		}
 		s += "Bonus: ";
-		for(Bonus b : card.getBonus())
+		if(card.getBonus().isEmpty())
+			s += "0";
+		else
 		{
-			s = s.concat(getString(b));
-			s = s.concat(", ");
+			for(Bonus b : card.getBonus())
+			{
+				s = s.concat(getString(b));
+				s = s.concat(", ");
+			}
 		}
 		s += "]\n";
 		return s;
@@ -267,8 +272,7 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(Bonus b)
 	{
-		return "";
-		//return b.toString().substring(b.toString().lastIndexOf('.') + 1, b.toString().lastIndexOf('@'));
+		return b.getClass().toString().substring(b.getClass().toString().lastIndexOf('.') + 1);
 	}
 	
 	private String getString(City city)

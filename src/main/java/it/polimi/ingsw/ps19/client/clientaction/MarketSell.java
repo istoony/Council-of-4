@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
@@ -22,6 +23,11 @@ public class MarketSell extends ClientAction
 	List<BusinessCard> businessToSell = new ArrayList<>();
 	List<Color> politicToSell = new ArrayList<>();
 	
+	public MarketSell(ClientModel m) 
+	{
+		model = m;
+	}
+
 	@Override
 	public boolean isPossible() 
 	{
@@ -46,16 +52,16 @@ public class MarketSell extends ClientAction
 		}while(card != null);
 		List<PoliticsCard> sellablePolitics = model.getMyPlayer().getPoliticcard();
 		sellablePolitics.add(null);
-		Color color;
+		PoliticsCard chosenCard;
 		do
 		{
-			color = userInterface.getPolitic(sellablePolitics).getColor();
-			if(color != null)
+			chosenCard = userInterface.getPolitic(sellablePolitics);
+			if(chosenCard != null)
 			{
-				politicToSell.add(color);
-				sellablePolitics.remove(color);
+				politicToSell.add(chosenCard.getColor());
+				sellablePolitics.remove(chosenCard);
 			}
-		}while(color != null);
+		}while(chosenCard != null);
 		price = userInterface.getPrice();
 		return buildMessage();
 	}

@@ -37,7 +37,7 @@ public class WaitingPlayerForMarketUpdate extends ClientUpdate
 		{
 			try
 			{
-				MarketSell market = new MarketSell();
+				MarketSell market = new MarketSell(model);
 				return market.execute(userInterface);
 			}
 			catch(InvalidInsertionException e)

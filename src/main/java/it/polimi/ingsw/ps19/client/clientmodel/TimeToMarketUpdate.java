@@ -20,7 +20,7 @@ public class TimeToMarketUpdate extends ClientUpdate {
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
-		MarketSell marketSell = new MarketSell();
+		MarketSell marketSell = new MarketSell(model);
 		return marketSell.execute(userInterface);
 	}
 }
