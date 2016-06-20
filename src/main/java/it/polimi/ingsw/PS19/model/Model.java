@@ -7,6 +7,7 @@ import java.util.Observable;
 import it.polimi.ingsw.PS19.message.replies.Reply;
 import it.polimi.ingsw.PS19.model.map.Map;
 import it.polimi.ingsw.PS19.model.map.MapLoader;
+import it.polimi.ingsw.PS19.model.parameter.FileNames;
 
 public class Model extends Observable
 {
@@ -38,7 +39,7 @@ public class Model extends Observable
 			player.add(new Player(i));
 			currentState.addPlayer(i);
 		}
-		Player.setStartingItems(player, "mapfile/playerconfig.xml");
+		Player.setStartingItems(player, FileNames.MAPFILE_PLAYERCONFIG_XML);
 	}
 	
 	public Map getMap() 

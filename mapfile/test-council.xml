@@ -1,0 +1,192 @@
+
+<map>
+	<citycolors>
+		<citycolor id="#FFFF00">
+			<bonus-more-victory-points>25</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="#0000FF">
+			<bonus-more-victory-points>20</bonus-more-victory-points>	
+		</citycolor>
+		<citycolor id="#FF0000">
+			<bonus-more-victory-points>15</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="#696969">
+			<bonus-more-victory-points>10</bonus-more-victory-points>
+		</citycolor>
+		<citycolor id="#8B008B">
+			<bonus-more-victory-points>0</bonus-more-victory-points>
+		</citycolor>
+	</citycolors>
+	
+	<bonus>
+		<regionbonus>10</regionbonus>
+		<numberOfKingsPrize>3</numberOfKingsPrize>
+		<kingprize>25</kingprize>
+		<kingprize>20</kingprize>
+		<kingprize>15</kingprize>
+	</bonus>
+
+
+	
+	<regiontypes>
+		<regiontype pos="0">
+			<name>Sea</name>
+		</regiontype>
+		<regiontype pos="1">
+			<name>Plain</name>
+		</regiontype>
+		<regiontype pos="2">
+			<name>Mountain</name>
+		</regiontype>
+	</regiontypes>
+
+	<regions>
+		<region id="1">
+			<type>0</type>
+			<roadsRight>3</roadsRight>
+			<roadsLeft>0</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>1</cityid>
+			<cityid>2</cityid>
+			<cityid>3</cityid>
+			<cityid>4</cityid>
+			<cityid>5</cityid>
+		</region>
+		<region id="2">
+			<type>1</type>
+			<roadsRight>3</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>6</cityid>
+			<cityid>7</cityid>
+			<cityid>8</cityid>
+			<cityid>9</cityid>
+			<cityid>10</cityid>
+		</region>
+		<region id="3">
+			<type>2</type>
+			<roadsRight>0</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
+		</region>
+	</regions>
+	<cities>
+		<city id="1">
+			<name>Atene</name>
+			<color>#0000FF</color>
+			<nOfRoads>2</nOfRoads>
+			<road>2</road>
+			<road>3</road>
+		</city>
+		<city id="2">
+			<name>Berlino</name>
+			<color>#FFFF00</color>
+			<nOfRoads>2</nOfRoads>
+			<road>1</road>
+			<road>-1</road>
+		</city>
+		<city id="3">
+			<name>Copenaghen</name>
+			<color>#FF0000</color>
+			<nOfRoads>3</nOfRoads>
+			<road>1</road>
+			<road>4</road>
+			<road>5</road>
+		</city>
+		<city id="4">
+			<name>Dublino</name>
+			<color>#696969</color>
+			<nOfRoads>2</nOfRoads>
+			<road>3</road>
+			<road>-3</road>
+		</city>
+		<city id="5">
+			<name>Firenze</name>
+			<color>#696969</color>
+			<nOfRoads>3</nOfRoads>
+			<road>3</road>
+			<road>4</road>
+			<road>-2</road>
+		</city>
+		<city id="6">
+			<name>Kiev</name>
+			<color>#FFFF00</color>
+			<nOfRoads>2</nOfRoads>
+			<road>7</road>
+			<road>-1001</road>
+		</city>
+		<city id="7">
+			<name>Lisbona</name>
+			<color>#0000FF</color>
+			<nOfRoads>3</nOfRoads>
+			<road>6</road>
+			<road>8</road>
+			<road>-1</road>
+		</city>
+		<city id="8">
+			<name>Mosca</name>
+			<color>#8B008B</color>
+			<nOfRoads>4</nOfRoads>
+			<road>7</road>
+			<road>9</road>
+			<road>10</road>
+			<road>-2</road>
+		</city>
+		<city id="9">
+			<name>Novegro</name>
+			<color>#FFFF00</color>
+			<nOfRoads>2</nOfRoads>
+			<road>8</road>
+			<road>-1002</road>
+		</city>
+		<city id="10">
+			<name>Orebro</name>
+			<color>#0000FF</color>
+			<nOfRoads>3</nOfRoads>
+			<road>8</road>
+			<road>-1003</road>
+			<road>-3</road>
+		</city>
+		<city id="11">
+			<name>Parigi</name>
+			<color>#FFFF00</color>
+			<nOfRoads>2</nOfRoads>
+			<road>12</road>
+			<road>-1001</road>
+		</city>
+		<city id="12">
+			<name>Roma</name>
+			<color>#FF0000</color>
+			<nOfRoads>2</nOfRoads>
+			<road>11</road>
+			<road>13</road>
+		</city>
+		<city id="13">
+			<name>Stoccolma</name>
+			<color>#FFFF00</color>
+			<nOfRoads>2</nOfRoads>
+			<road>12</road>
+			<road>14</road>
+			<road>15</road>
+		</city>
+		<city id="14">
+			<name>Tirana</name>
+			<color>#0000FF</color>
+			<nOfRoads>2</nOfRoads>
+			<road>13</road>
+			<road>-1002</road>
+		</city>
+		<city id="15">
+			<name>Zanzibar</name>
+			<color>#FF0000</color>
+			<nOfRoads>2</nOfRoads>
+			<road>13</road>
+			<road>-1003</road>
+		</city>
+	</cities>
+</map>

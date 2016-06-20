@@ -38,13 +38,18 @@ public class AddOrder implements Action
 	}
 
 	@Override
+	//TODO: controllare per i player disconnessi---> testare che teoricamente funziona
 	public Reply createReplyMessage(Model model) 
 	{
 		if(model.getCurrentState().getTimeToMarket())
 			return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result);
+		
 		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer())).getId();
-		if(model.getMarket().getSize() == model.getCurrentState().getNumberOfPlayer())
+		
+		if(model.getMarket().getSize() == 
+				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
+		
 		return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result + ". Waiting For Player");
 	}
 }

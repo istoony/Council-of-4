@@ -51,12 +51,36 @@ public class CurrentState
 		connection.put(id, false);
 	}
 	
+	public boolean isConnectedById(int id)
+	{
+		return connection.get(id);
+	}
+	
+	public int giveNextCorrectId(int i)
+	{
+		int next = playerTurnId;
+		if(playerTurnId == i)
+			next= (playerTurnId + 1) % numberOfPlayer;
+		while(!connection.get(next))
+			next = (next + 1) % numberOfPlayer;
+		return next;
+	}
+	
 	@Override
 	public String toString() 
 	{
 		String s = "";
 		s += "\nTimeToMarket" + timeToMarket;
 		return s;
+	}
+
+	public int getNumberOfDisconnectedPlayer() 
+	{
+		int n = 0;
+		for(int i = 0; i<connection.size(); i++)
+			if(!connection.get(i))
+				n++;
+		return n;
 	} 
 	
 	
