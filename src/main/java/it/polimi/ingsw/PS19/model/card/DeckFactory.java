@@ -18,9 +18,19 @@ import it.polimi.ingsw.PS19.model.parameter.RegionType;
 
 public class DeckFactory 
 {
-	//TODO
+	private static final String NUMBEROFJOKER = "numberofjoker";
+	private static final String NUMBEROFCARD = "numberofcard";
+	private static final String NUMBEROFCITIES = "numberofcities";
+	private static final String TYPE = "type";
+	private static final String BONUS = "bonus";
+	private static final String REGION = "region";
+	private static final String CARD = "card";
 	private static final String POLITICSCARD = "politicscard";
 	private static final String BUSINESSCARD = "businesscard";
+	
+	private DeckFactory ()
+	{}
+	
 	
 	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, List<City> cities)
 	{
@@ -31,7 +41,7 @@ public class DeckFactory
 			if(FileReader.XMLReader(pathfile, BUSINESSCARD).getLength()!=1)
 				return null;		//potrei lanciare un eccezione
 			
-			NodeList nList = FileReader.XMLReader(pathfile, "card");
+			NodeList nList = FileReader.XMLReader(pathfile, CARD);
 			for (int temp = 0; temp < nList.getLength(); temp++) 
 			{
 				Node nNode = nList.item(temp);
@@ -39,17 +49,17 @@ public class DeckFactory
 				{
 					Element eElement = (Element) nNode;
 					
-					RegionType region = RegionType.valueOf(eElement.getElementsByTagName("region").item(0).getTextContent());				
+					RegionType region = RegionType.valueOf(eElement.getElementsByTagName(REGION).item(0).getTextContent());				
 					if(region == type)
 					{
 						BusinessCard card = new BusinessCard(region);
-						int numberofbonus = eElement.getElementsByTagName("bonus").getLength();
+						int numberofbonus = eElement.getElementsByTagName(BONUS).getLength();
 						for(int i = 0; i < numberofbonus; i++)
 						{
-							Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName("type").item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));
+							Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName(TYPE).item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));
 							card.addBonus(bonus);
 						}
-						int numberofcities = Integer.parseInt(eElement.getElementsByTagName("numberofcities").item(0).getTextContent());
+						int numberofcities = Integer.parseInt(eElement.getElementsByTagName(NUMBEROFCITIES).item(0).getTextContent());
 						int i=0;
 						while(i < numberofcities)
 						{
@@ -79,8 +89,8 @@ public class DeckFactory
 			
 			Node node = nList.item(0);
 			Element element = (Element) node;
-			int numberofcard = Integer.parseInt(element.getElementsByTagName("numberofcard").item(0).getTextContent());
-			int numberofjoker = Integer.parseInt(element.getElementsByTagName("numberofjoker").item(0).getTextContent());
+			int numberofcard = Integer.parseInt(element.getElementsByTagName(NUMBEROFCARD).item(0).getTextContent());
+			int numberofjoker = Integer.parseInt(element.getElementsByTagName(NUMBEROFJOKER).item(0).getTextContent());
 			return politicscardfactory(numberofcard, numberofjoker, deckcolors);
 
 		    } catch (Exception e) {

@@ -44,8 +44,8 @@ public class Player implements Serializable
 	private boolean businessCardRequest;
 	private boolean cityBonusRequest;
 	
-	
-	protected Player(int id) 
+	//TODO cambiare da public a protected il costruttore
+	public Player(int id) 
 	{
 		this.id = id;
 		myEmporia = new ArrayList<>();
@@ -254,6 +254,7 @@ public class Player implements Serializable
 		for (BusinessCard card : freebusinesscard)
 			if(card.getId() == id)
 				b = card;
+		freebusinesscard.remove(b);
 		return b;
 	}
 	

@@ -133,16 +133,13 @@ public class GameController implements Observer
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
 				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest())
 		{		
-			if(id < model.getMaxId())
-				model.getCurrentState().setPlayerTurnId(id + 1);
-			else
-				model.getCurrentState().setPlayerTurnId(model.getMaxId() - model.getCurrentState().getNumberOfPlayer() + 1);
-	
+			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
 			
 			//draw one card
 			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
 			drawPoliticsCard.execute(model);
+			
 			//set active player
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 			
@@ -157,7 +154,7 @@ public class GameController implements Observer
 	private void setTimeToMarket()
 	{
 		for (Player p : model.getPlayer()) 
-			if(p.getMainActionCounter()!=0)
+			if(p.getMainActionCounter()!=0 && model.getCurrentState().isConnectedById(p.getId()))
 			{
 				model.getCurrentState().setTimeToMarket(false);
 				return;
