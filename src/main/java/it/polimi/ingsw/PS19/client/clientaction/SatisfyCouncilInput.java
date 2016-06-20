@@ -30,7 +30,8 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<PoliticsCard> playerHand = model.getMyPlayer().getPoliticcard();
 		int playerMoney = model.getMyPlayer().getMoney();
-		if(getCost(balcony, playerHand) <= 11 && getCost(balcony, playerHand) <= playerMoney)
+		int cost = getCost(balcony, playerHand);
+		if(cost <= 11 && cost <= playerMoney)
 			return true;
 		return false;
 	}
@@ -43,25 +44,19 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	private int getCost(Balcony balcony, List<PoliticsCard> cards)
 	{
 		int cost = 13;
-		List<Boolean> catched = new ArrayList<>();
-		for(int j = 0; j < balcony.getCouncilcolor().size(); j++)
-		{
-			catched.add(false);
-			Color balconyColor = balcony.getCouncilcolor().get(j); 
+		for(Color balconyColor : balcony.getCouncilcolor())
 			for(int i = 0; i < cards.size(); i++)
 			{
 				
 				if(balconyColor.equals(cards.get(i).getColor()))
 				{
 					cost -= 3;
-					catched.set(j, true);
 					cards.remove(i);
 					break;
 				}
 				if(cost == 1)
 					cost = 0;
 			}
-		}
 		cost -= getJollyNumber(cards) * 2; 
 		return cost;
 	}
@@ -102,33 +97,32 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		return availableCards;
 	}
 	
-	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI UserInterface) throws InvalidInsertionException
+	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI userInterface) throws InvalidInsertionException
 	{
 		List<Color> satisfyingColors = new ArrayList<>();
 		DeckId balcony = new DeckId(balcon.getCouncilcolor());
 		DeckId playerHand = new DeckId(model.getMyPlayer().getPoliticcard());
 		DeckId usefulHand = getUsefulDeck(playerHand, balcony);
-		UserInterface.showNotification("usefulHand size: " + usefulHand.getDeck().size());
 		int minCards = getMinimumCardsToDraw();
-		UserInterface.showNotification("Minimum cards to draw: " + minCards);
 		List<DeckId> combinations = usefulHand.getCombination(minCards);
-		for(int i = minCards +1; i < 4; i++)
+		for(int i = minCards +1; i <= 4; i++)
 			combinations.addAll(usefulHand.getCombination(i));
-		UserInterface.showNotification("number of combinations: " + combinations.size());
+		combinations = getValidDecks(combinations, balcony);
+		combinations = getSignificantDecks(combinations);
 		for(int i = 0; i < 4; i++)
 		{
-			combinations = getValidDecks(combinations, balcony);
 			List<Color> differentColors = getDifferentColors(combinations);
-			if(i >= minCards-1)
+			if(i >= minCards)
 				differentColors.add(null);
-			Color chosenColor = UserInterface.getColor(differentColors);
-			if(chosenColor == null)
-				break;
-			combinations = getContainingDecks(combinations, chosenColor);
-			for(DeckId deck : combinations)
-				deck.subtractCard(new CardId(chosenColor, 0));
-			combinations = getSignificantDecks(combinations);
-			if(combinations.isEmpty())
+			Color chosenColor = userInterface.getColor(differentColors);
+			if(chosenColor != null)
+			{
+				combinations = getContainingDecks(combinations, chosenColor);
+				for(DeckId deck : combinations)
+					deck.subtractCard(new CardId(chosenColor, 0));
+				combinations = getSignificantDecks(combinations);
+			}
+			if(combinations.isEmpty() || chosenColor == null)
 				break;
 			satisfyingColors.add(chosenColor);
 		}
@@ -144,40 +138,12 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	private DeckId getUsefulDeck(DeckId mainDeck, DeckId referenceDeck)
 	{
 		List<CardId> mainCards = mainDeck.getDeckClone();
+		List<CardId> usefulCards = new ArrayList<>();
 		for(CardId card : mainCards)
-		{
-			if(!referenceDeck.contains(card))
-				mainCards.remove(card);
-		}
-		return new DeckId(mainCards);
+			if(referenceDeck.contains(card))
+				usefulCards.add(card);
+		return new DeckId(usefulCards);
 	}
-	
-	/*
-	protected List<Color> satisfyCouncil(Balcony balcon, ClientUI userInterface) throws InvalidInsertionException
-	{
-		List<Color> colors = new ArrayList<>();
-		int count = 0;
-		List<Color> balcony = balcon.getCouncilcolor();
-		List<PoliticsCard> politicCards = model.getMyPlayer().getPoliticcard();
-		PoliticsCard politicCard;
-		politicCards = getAvailablePolitics(balcony, politicCards);
-		while(count < 4 && !politicCards.isEmpty())
-		{
-			if(count > getMinimumCardsToDraw())
-				politicCards.add(null);
-			politicCard = userInterface.getPolitic(politicCards);
-			if(politicCard == null)
-				break;
-			if(count > getMinimumCardsToDraw())
-				politicCards.remove(politicCards.size()-1);
-			balcony.remove(politicCard.getColor());
-			colors.add(politicCard.getColor());
-			politicCards.remove(politicCard);
-			count++;
-			politicCards = getAvailablePolitics(balcony, politicCards);
-		}
-		return colors;
-	}*/
 	
 	private int getMinimumCardsToDraw()
 	{
@@ -202,12 +168,16 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		if(decks.isEmpty())
 			return decks;
 		List<DeckId> significantDecks = new ArrayList<>();
-		for(DeckId deckComparing : decks)
+		for(int i = 0; i < decks.size(); i++)
 		{
+			DeckId deckComparing = decks.get(i);
 			significantDecks.add(deckComparing);
-			for(DeckId deckCompared : decks)
+			for(int j = i + 1; j < decks.size(); j++)
+			{
+				DeckId deckCompared = decks.get(j);
 				if(deckComparing.equivalent(deckCompared))
 					decks.remove(deckCompared);
+			}
 		}
 		return significantDecks;
 	}
@@ -222,7 +192,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<DeckId> validDecks = new ArrayList<>();
 		for(DeckId deck : decks)
-			if(deck.equivalentOrContained(referenceDeck))
+			if(deck.equivalentOrContained(referenceDeck) && deck.isCheaper(model.getMyPlayer().getMoney()))
 				validDecks.add(deck);
 		return validDecks;
 	}
@@ -243,17 +213,23 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<CardId> cards = new ArrayList<>();
 		if(decks.isEmpty())
-			return null;
+			return new ArrayList<>();
 		List<CardId> differentCards = new ArrayList<>();
 		for(DeckId deck : decks)
 			cards.addAll(deck.getDeckClone());
-		for(CardId card : cards)
+		while(cards.size() > 0)
 		{
+			CardId card = cards.get(0);
 			differentCards.add(card);
-			cards.remove(card);
-			for(CardId listCard : cards)
+			int j = 0;
+			while(j < cards.size())
+			{
+				CardId listCard = cards.get(j);
 				if(card.equivalent(listCard))
 					cards.remove(listCard);
+				else
+					j++;
+			}
 		}
 		List<Color> differentColors = new ArrayList<>();
 		for(CardId card : differentCards)
@@ -264,11 +240,10 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	private class CardId
 	{
 		private Color color;
-		private int id;
+		
 		public CardId(Color c, int identifier)
 		{
 			color = c;
-			id = identifier;
 		}
 		
 		public Color getColor()
@@ -276,26 +251,21 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			return color;
 		}
 		
-		public int getId()
+		public boolean isJoker()
 		{
-			return id;
-		}
-		
-		public boolean equals(CardId cardId)
-		{
-			if(id == cardId.getId() && color.equals(cardId.getColor()))
+			if(color.equals(Color.decode(Costants.JOKERCOLOR)))
 				return true;
 			return false;
 		}
-		
+				
 		/**
-		 * Verifies that the passed card has the same colors as caller's
+		 * Verifies that the passed card is joker or it has the same colors as caller's
 		 * @param cardId
 		 * @return
 		 */
 		public boolean equivalent(CardId cardId)
 		{
-			if(color.equals(cardId.getColor()))
+			if(color.equals(cardId.getColor()) || (Color.decode(Costants.JOKERCOLOR)).equals(cardId.getColor()))
 				return true;
 			return false;
 		}
@@ -325,7 +295,14 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			{
 				cardsId = new ArrayList<>();
 				for(int i = 0; i < cards.size(); i++)
-					cardsId.add(new CardId((Color)cards.get(i), i));
+					cardsId.add(new CardId((Color)(cards.get(i)), i));
+				return;
+			}
+			if(cards.get(0) instanceof PoliticsCard)
+			{
+				cardsId = new ArrayList<>();
+				for(int i = 0; i < cards.size(); i++)
+					cardsId.add(new CardId(((PoliticsCard)(cards.get(i))).getColor(), i));
 				return;
 			}
 		}
@@ -372,17 +349,29 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			List<CardId> secondDeck = deck.getDeckClone();
 			List<CardId> firstDeck = this.getDeckClone();
-			for(CardId cardOne : firstDeck)
-				for(CardId cardTwo : secondDeck)
+			while(firstDeck.size() > 0)
+			{
+				CardId cardOne = firstDeck.get(0);
+				int j = 0;
+				boolean found = false;
+				while(j < secondDeck.size() && !found)
+				{
+					CardId cardTwo = secondDeck.get(j);
 					if(cardOne.equivalent(cardTwo))
 					{
 						firstDeck.remove(cardOne);
 						secondDeck.remove(cardTwo);
-						break;
+						found = true;
 					}
-			if(firstDeck.isEmpty())
-				return true;
-			return false;
+					else
+					{
+						j++;
+					}
+				}
+				if(!found)
+					return false;
+			}
+			return true;
 		}
 		
 		/**
@@ -451,24 +440,48 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			if(!contains(card))
 				return;
-			for(CardId deckCard : cardsId)
+			for(int i = 0; i < cardsId.size(); i++)
+			{
+				CardId deckCard = cardsId.get(i);
 				if(deckCard.equivalent(card))
 				{
 					if(cardsId.remove(deckCard));
-					break;
+					return;
 				}
+			}
 		}
 		
-		public DeckId getCleanDeck()
+		/**
+		 * returns whether this deck costs less than the parameter
+		 * @param money
+		 * @return
+		 */
+		public boolean isCheaper(int money)
 		{
-			List<CardId> cleanDeck = new ArrayList<>();
+			int cost = 10;
+			cost -= (cardsId.size() * 3);
+			if(cost == 1)
+				cost = 0;
 			for(CardId card : cardsId)
-				if(!card.equivalent(jolly))
-					cleanDeck.add(card);
-			return new DeckId(cleanDeck);
+				if(card.isJoker())
+					cost++;
+			if(cost <= money)
+				return true;
+			return false;
 		}
-
-		private DeckId getSubset(DeckId input, int[] subset) {
+		
+		public String toString()
+		{
+			String s = "[";
+			for(CardId card : cardsId)
+			{
+				s = s.concat("#" + Integer.toHexString(card.getColor().getRGB()).substring(2).toUpperCase() + ", ");
+			}
+			s += "]";
+			return s;
+		}
+	
+ 		private DeckId getSubset(DeckId input, int[] subset) {
 			List<CardId> result = new ArrayList<>();
 		    for (int i = 0; i < subset.length; i++) 
 		        result.add(i, input.getDeck().get(subset[i]));

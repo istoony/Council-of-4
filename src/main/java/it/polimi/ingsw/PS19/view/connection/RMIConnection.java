@@ -36,7 +36,7 @@ public class RMIConnection extends Connection
 	
 	public RMIReaderIntf getReaderStub()
 	{
-		return ((RMIReader)reader).getRMIReaderStub();
+		return (reader).getRMIReaderStub();
 	}
 	
 	public void loadWriter(RMIReaderIntf stub)
@@ -47,6 +47,8 @@ public class RMIConnection extends Connection
 	@Override
 	public Integer write(Message message) throws WriterException 
 	{
+		if(status == ConnectionStatus.DISCONNECTED)
+			return -1;
 		writer.setMessage(message);
 		Integer result = null;
 		try {
@@ -60,14 +62,21 @@ public class RMIConnection extends Connection
 	}
 
 	@Override
-	public Message read(long timeOut) throws InterruptedException 
+	public Message read(long timeOut) throws TimeoutException
 	{
 		Message mex;
-		//if timeout < 0 waits virtually forever
-		if(timeOut < 0)
-			mex = fifo.poll(10, TimeUnit.DAYS);
-		else
-			mex = fifo.poll(timeOut, TimeUnit.SECONDS);
+			try 
+			{
+				//if timeout < 0 waits virtually forever
+				if(timeOut < 0)
+					mex = fifo.poll(10, TimeUnit.DAYS);
+				else
+					mex = fifo.poll(timeOut, TimeUnit.SECONDS);
+			} catch (InterruptedException e) 
+			{
+				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+				throw new TimeoutException();
+			}
 		return mex;
 	}
 

@@ -68,7 +68,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException
 	{
-		writeln("Definisci il balcolcino da shiftare");
+		writeln("Scegli la regione");
 		List<String> strings = new ArrayList<>();
 		for(RegionType region : regions)
 			strings.add(getString(region));
@@ -365,6 +365,8 @@ public class ClientCLI extends ClientUI
 
 	private String getString(Color c)
 	{
+		if(c == null)
+			return "no more cards";
 		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase();
 	}
 

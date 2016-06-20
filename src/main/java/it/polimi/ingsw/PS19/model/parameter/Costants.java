@@ -20,6 +20,11 @@ public class Costants
 		//così sonar è contento
 	}
 	
+	/**
+	 * Returns a clone of the parameter
+	 * @param politiccard
+	 * @return
+	 */
 	public static List<PoliticsCard> clonePoliticCard(List<PoliticsCard> politiccard) 
 	{
 		List<PoliticsCard> clone = new ArrayList<>();

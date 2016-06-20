@@ -48,6 +48,8 @@ public class SocketConnection extends Connection
 	@Override
 	public Integer write(Message message) throws WriterException
 	{
+		if(status == ConnectionStatus.DISCONNECTED)
+			return -1;
 		writer.setMessage(message);
 		Integer result = null;
 		try {
