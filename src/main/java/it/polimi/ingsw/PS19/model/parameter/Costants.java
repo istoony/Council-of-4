@@ -23,8 +23,9 @@ public class Costants
 	public static List<PoliticsCard> clonePoliticCard(List<PoliticsCard> politiccard) 
 	{
 		List<PoliticsCard> clone = new ArrayList<>();
-		for (PoliticsCard p : politiccard)
-			clone.add(new PoliticsCard(p.getColor()));
+		if(!politiccard.isEmpty())
+			for (PoliticsCard p : politiccard)
+				clone.add(new PoliticsCard(p.getColor()));
 		return clone;
 	}
 }
