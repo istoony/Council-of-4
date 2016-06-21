@@ -9,6 +9,8 @@ import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.Market;
+import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
@@ -100,6 +102,18 @@ public class ClientGUI extends ClientUI{
 	public String getUserString(String title) throws InvalidInsertionException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Order getOrder(List<Order> orders) throws InvalidInsertionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showMarket(Market market) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
