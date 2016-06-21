@@ -26,6 +26,19 @@ public class ClientGUI extends ClientUI{
 
 	private static final Logger log = Logger.getLogger("GUI_LOGGER");
 	
+	public ClientGUI() {
+
+	}
+	
+	public void createGUI(ClientModel m){
+		MainWindow window = new MainWindow(m);
+		try {
+			SwingUtilities.invokeAndWait(window);
+		} catch (InvocationTargetException | InterruptedException e) {
+			log.log(Level.SEVERE, e.toString(), e);
+		}
+	}
+	
 	@Override
 	public ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		// TODO Auto-generated method stub
@@ -161,7 +174,7 @@ public class ClientGUI extends ClientUI{
 		try {
 			SwingUtilities.invokeAndWait(window);
 		} catch (InvocationTargetException | InterruptedException e1) {
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(Level.SEVERE, e1.toString(), e1);
 		}
 	}
 
