@@ -12,18 +12,20 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class CheckTurn {
 
+	private static final int NUMBER_OF_PLAYER = 10;
+
 	@Test
 	public void test() 
 	{
 		//check if the turn change;
-		Model m = new Model(4);
+		Model m = new Model(NUMBER_OF_PLAYER);
 		GameController g = new GameController(m);
 		int turn = 0;
-		for(int i=0; i< 10; i++)
+		for(int i=0; i< NUMBER_OF_PLAYER; i++)
 		{
 			assertTrue(m.getCurrentState().getPlayerTurnId() == turn);
 					//Count number of card of next player
-			int numberOfCard = m.getPlayerById((turn + 1)%4).getPoliticcard().size();
+			int numberOfCard = m.getPlayerById((turn + 1)%NUMBER_OF_PLAYER).getPoliticcard().size();
 			
 			ElectCouncillorMessage message = new ElectCouncillorMessage(m.getMap().getAvailableCouncillor().getListofcolors().getRandomColor(), RegionType.MOUNTAIN);
 			message.setId(turn);
@@ -37,9 +39,11 @@ public class CheckTurn {
 			g.update(null, end);
 		
 			turn ++;
-			turn = turn % 4;
-			assertTrue(m.getCurrentState().getPlayerTurnId() == turn);
-			assertTrue(m.getPlayerById(turn).getPoliticcard().size() == numberOfCard + 1);
+			turn = turn % NUMBER_OF_PLAYER;
+			assertTrue("turn " + turn + "other" + m.getCurrentState().getPlayerTurnId(),
+					m.getCurrentState().getPlayerTurnId() == turn);
+			assertTrue("turn " + turn + "card" + m.getPlayerById(turn).getPoliticcard().size(), 
+					m.getPlayerById(turn).getPoliticcard().size() == numberOfCard + 1);
 			//System.out.println(numberOfCard);
 		}
 	}

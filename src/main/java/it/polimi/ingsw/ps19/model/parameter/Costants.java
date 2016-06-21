@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import it.polimi.ingsw.ps19.model.card.PoliticsCard;
-
 public class Costants 
 {
 	public static final String JOKERCOLOR = "#FEFEFE";
@@ -22,15 +20,16 @@ public class Costants
 	
 	/**
 	 * Returns a clone of the parameter
+	 * @param <E> a generics type of array that I want to clone
 	 * @param politiccard
 	 * @return
 	 */
-	public static List<PoliticsCard> clonePoliticCard(List<PoliticsCard> politiccard) 
+	public static <E> List<E> clone(List<E> array) 
 	{
-		List<PoliticsCard> clone = new ArrayList<>();
-		if(!politiccard.isEmpty())
-			for (PoliticsCard p : politiccard)
-				clone.add(new PoliticsCard(p.getColor()));
+		List<E> clone = new ArrayList<>();
+		if(!array.isEmpty())
+			for (E p : array)
+				clone.add(p);
 		return clone;
 	}
 }
