@@ -6,22 +6,29 @@ import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 
-public class CLIClientStarter 
+public class ClientStarter 
 {
-	private static ClientCLI userInterface = new ClientCLI();
+	private static ClientUI userInterface = new ClientCLI();
 	
 	public static void main(String[] args) 
 	{
 		List<String> typesOfConnection = new ArrayList<>();
 		typesOfConnection.add("Socket");
 		typesOfConnection.add("RMI");
+		List<String> typesOfUserInterdace = new ArrayList<>();
+		typesOfUserInterdace.add("CLI");
+		typesOfUserInterdace.add("GUI");
 		boolean valid;
 		do
 		{
-			try {
+			try 
+			{
 				valid = true;
-				int index = userInterface.getValues(typesOfConnection);
-				if(index == 0)
+				int uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
+ 				int connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
+ 				if(uiIndex == 1)
+ 					userInterface = new ClientGUI();
+				if(connIndex == 0)
 					new ClientSocketManager(userInterface);
 				else
 					new ClientRMIManager(userInterface);
