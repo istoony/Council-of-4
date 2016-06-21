@@ -62,7 +62,6 @@ public class GameController implements Observer
 	{
 		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
 		if( numberOfPoliticCards !=0)
-			for(int i=0;i<numberOfPoliticCards;i++)
 				drawForSinglePlayer(model.getPlayerById(model.getCurrentState().getPlayerTurnId()), numberOfPoliticCards);
 	}
 

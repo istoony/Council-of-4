@@ -3,6 +3,7 @@ package it.polimi.ingsw.ps19.controller.action;
 import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
@@ -99,6 +100,8 @@ public interface MessageInterpreterVisitor
 	public Action visit(PlayerDisconnectedMessage message);
 
 	public Action visit(BuildEmporiumMessage message);
+	
+	public Action visit(BuyOrderMessage message);
 
 		
 }

@@ -1,6 +1,6 @@
 <player>
 	<starting>
-		<money>10</money>
+		<money>100</money>
 		<helpers>1</helpers>
 		<politiccards>6</politiccards>
 	</starting>

@@ -22,6 +22,8 @@ public class ChangeKingPosition {
 		Model m = new Model(2);
 		GameController g = new GameController(m);
 		
+		m.getPlayerById(0).setMoney(10);
+		
 		assertTrue(m.getPlayerById(0).getHelpers() == 1);
 		
 		ArrayList<Color> card = new ArrayList<>();
@@ -50,6 +52,7 @@ public class ChangeKingPosition {
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
 		assertTrue(m.getPlayerById(0).getHelpers() == 0);
 		assertTrue("Money" + m.getPlayerById(0).getMoney(),m.getPlayerById(0).getMoney() == 10 - 4 - 4);
+		assertTrue(m.getPlayerById(0).getMaxemporia() == 9);
 		
 	}
 

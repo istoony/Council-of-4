@@ -26,7 +26,10 @@ public class Market implements Serializable
 	
 	public Map<Integer, Order> getListoforder() 
 	{
-		return listoforder;
+		Map<Integer, Order> temp = new HashMap<>();
+		for (int i=0; i<listoforder.size(); i++) 
+			temp.put(i, listoforder.get(i));
+		return temp;
 	}
 	
 	public Order getOrderById(int playerId)

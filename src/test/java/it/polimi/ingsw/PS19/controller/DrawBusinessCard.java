@@ -25,7 +25,7 @@ public class DrawBusinessCard {
 		
 		GameController g = new GameController(m);
 		
-		assertTrue(m.getPlayerById(0).getPoliticcard().size() == 50 + 6);
+		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 50 + 6);
 		
 		ArrayList<Color> card = new ArrayList<>();
 		BusinessCard first = m.getMap().getRegionByType(RegionType.MOUNTAIN).getFirstcard();
@@ -54,11 +54,11 @@ public class DrawBusinessCard {
 		//System.out.println(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size());
 		//CHECK NUMBER OF CARD ON politicscard.xml
 		//assertTrue(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size() == 8-2 );
-		System.out.println(m.toString());
+		//System.out.println(m.toString());
 		
 		//This assert depends of a random bonus geven to player
 		//assertTrue(m.getPlayerById(0).getMoney() == 10 - 4 );
-		System.out.println(m.toString());
+		//System.out.println(m.toString());
 	}
 
 }

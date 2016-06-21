@@ -38,7 +38,6 @@ public class Player implements Serializable
 	private List<BusinessCard> usedbusinesscard;
 	private List<PoliticsCard> politiccard;
 	
-	private int maxemporia;
 	private List<City> myEmporia;
 	
 	private boolean businessCardRequest;
@@ -80,7 +79,6 @@ public class Player implements Serializable
 				player.startingPoliticCard=politiccards;
 				player.money=money+p.indexOf(player);
 				player.helpers=helpers+p.indexOf(player);
-				player.maxemporia=EMPORIUM_SIZE;
 				player.politicCardToDraw = 1;
 			}
 		}
@@ -222,7 +220,6 @@ public class Player implements Serializable
 	public void addToMyEmporia(City c)
 	{
 		myEmporia.add(c);
-		maxemporia=maxemporia-1;
 	}
 
 	/**
@@ -230,7 +227,7 @@ public class Player implements Serializable
 	 */
 	public List<City> getMyEmporia() 
 	{
-		return myEmporia;
+		return Costants.clone(myEmporia);
 	}
 
 	public Boolean findMyEmporiaById(int id)
@@ -243,9 +240,7 @@ public class Player implements Serializable
 
 	public List<BusinessCard> getFreebusinesscard() 
 	{
-		List<BusinessCard> list = new ArrayList<>();
-		list.addAll(freebusinesscard);
-		return list;
+		return Costants.clone(freebusinesscard);
 	}
 	
 	public BusinessCard removeFreebusinesscardById(int id) 
@@ -261,9 +256,7 @@ public class Player implements Serializable
 	
 	public List<BusinessCard> getUsedbusinesscard() 
 	{
-		List<BusinessCard> list = new ArrayList<>();
-		list.addAll(usedbusinesscard);
-		return list;
+		return Costants.clone(usedbusinesscard);
 	}
 	
 	public void addUsedBusinessCard(BusinessCard card)
@@ -273,20 +266,12 @@ public class Player implements Serializable
 
 
 	/**
-	 * @return the maxemporia
+	 * @return Number of emporia left to win the game
 	 */
-	public int getMaxemporia() {
-		return maxemporia;
+	public int getMaxemporia() 
+	{
+		return EMPORIUM_SIZE - myEmporia.size();
 	}
-
-
-	/**
-	 * @param maxemporia the maxemporia to set
-	 */
-	public void setMaxemporia(int maxemporia) {
-		this.maxemporia = maxemporia;
-	}
-
 
 	/**
 	 * Get Number of Politic card to Draw AFTER SET

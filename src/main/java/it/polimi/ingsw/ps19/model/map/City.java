@@ -37,7 +37,6 @@ public class City implements Serializable {
 	public void buildEmporium(Player p)
 	{
 		emporia.add(p.getId());
-		p.addToMyEmporia(this);
 	}
 	
 	public int calculateMalusEmporium(){

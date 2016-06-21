@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
@@ -142,6 +143,12 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	public Action visit(BuildEmporiumMessage message) 
 	{
 		return new MainBuildEmporium(message.getCity(), message.getId(), message.getBusinessCard());
+	}
+
+	@Override
+	public Action visit(BuyOrderMessage message) 
+	{
+		return new BuyOrder(message.getId(), message.getSellerId(), message.getOrder());
 	}
 
 
