@@ -33,9 +33,12 @@ public class CompleteMarketUpdate extends ClientUpdate {
 		model.setMarket(market);
 
 	}
+	
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException 
 	{
+		if(activePlayerId != model.getActiveplayer())
+			return null;
 		userInterface.showMarket(market);
 		List<Order> availableOrders = new ArrayList<>();
 		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
@@ -46,7 +49,7 @@ public class CompleteMarketUpdate extends ClientUpdate {
 		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
 			if(entry.getValue() == chosenOrder)
 				return new BuyOrderMessage(chosenOrder, entry.getKey());
-		return null;
+		return new BuyOrderMessage(null, 0);
 	}
 	
 	private boolean affordable(Order order, ClientModel model)
