@@ -1,8 +1,13 @@
 package it.polimi.ingsw.ps19.client;
 
 import java.awt.Color;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.SwingUtilities;
 
 import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
@@ -10,6 +15,7 @@ import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
+import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
@@ -18,6 +24,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI{
 
+	private static final Logger log = Logger.getLogger("GUI_LOGGER");
 	
 	@Override
 	public ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
@@ -115,5 +122,48 @@ public class ClientGUI extends ClientUI{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public static void main(String args[]){
+		Model mm = new Model(3);
+		ClientModel m = new ClientModel(mm);
+		m.getMyPlayer().setStartingAction();
+
+		
+		PoliticsCard c = new PoliticsCard(Color.decode("#FFFFFF"));
+		PoliticsCard d = new PoliticsCard(Color.decode("#FFFFFF"));
+		PoliticsCard e = new PoliticsCard(Color.decode("#000000"));
+		PoliticsCard f = new PoliticsCard(Color.decode("#0000FF"));
+		PoliticsCard g = new PoliticsCard(Color.decode("#FF0000"));
+		PoliticsCard h = new PoliticsCard(Color.decode("#000000"));
+		PoliticsCard j = new PoliticsCard(Color.decode("#0000FF"));
+		PoliticsCard k = new PoliticsCard(Color.decode("#FF0000"));
+		BusinessCard aa = new BusinessCard(null, null, m.getAllCities().get(0));
+		
+		m.getMyPlayer().addCardToHand(c);
+		m.getMyPlayer().addCardToHand(d);
+		m.getMyPlayer().addCardToHand(e);
+		m.getMyPlayer().addCardToHand(f);
+		m.getMyPlayer().addCardToHand(g);
+		m.getMyPlayer().addCardToHand(h);
+		m.getMyPlayer().addCardToHand(j);
+		m.getMyPlayer().addCardToHand(k);
+		m.getMyPlayer().addCardToHand(g);
+		m.getMyPlayer().addCardToHand(h);
+		m.getMyPlayer().addCardToHand(j);
+		m.getMyPlayer().addCardToHand(k);
+		m.getPlayer().get(1).addCardToHand(c);
+		m.getPlayer().get(1).addCardToHand(e);
+		m.getPlayer().get(1).addCardToHand(f);
+		m.getMyPlayer().addCardToHand(aa);
+		
+		
+		MainWindow window = new MainWindow(m);
+		try {
+			SwingUtilities.invokeAndWait(window);
+		} catch (InvocationTargetException | InterruptedException e1) {
+			log.log(Level.SEVERE, e.toString(), e);
+		}
+	}
+
 
 }
