@@ -179,12 +179,12 @@ public class ClientCLI extends ClientUI
 		writeln("Scegli Città");
 		List<String> strings = new ArrayList<>();
 		for(City city : cities)
-			strings.add(getString(city));
+			if(city != null)
+				strings.add(getString(city));
 		int index = getValues(strings);
 		return cities.get(index);
 	}
 	
-
 	@Override
 	public City getCity(Map<City, Integer> citiesECosts) throws InvalidInsertionException 
 	{
@@ -485,7 +485,6 @@ public class ClientCLI extends ClientUI
 		List<String> strings = new ArrayList<>();
 		for(Order order : orders)
 			strings.add(getString(order) + "\n");
-		strings.add(null);
 		int index = getValues(strings);
 		return orders.get(index);
 	}

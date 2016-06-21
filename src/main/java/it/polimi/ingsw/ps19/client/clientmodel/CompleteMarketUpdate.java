@@ -41,6 +41,7 @@ public class CompleteMarketUpdate extends ClientUpdate {
 		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
 			if(entry.getKey() != model.getMyPlayer().getId() && affordable(entry.getValue(), model))
 				availableOrders.add(entry.getValue());
+		availableOrders.add(null);
 		chosenOrder = userInterface.getOrder(availableOrders);
 		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
 			if(entry.getValue() == chosenOrder)
