@@ -3,6 +3,10 @@ package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 import javax.swing.JFrame;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 
@@ -17,14 +21,12 @@ public class MainFrame extends JFrame {
 	protected static final int MHEIGHT = 800;
 	
 	private static final String NAME = "CO4, GAME ";
-	private int idgame;
 	private ClientModel model;
 	InfoPanel infobox;
 	MapPanel mpanel;
 	
 	protected MainFrame(int id, ClientModel model){
 		super(NAME+id);
-		idgame = id;
 		this.model=model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(true);
@@ -57,6 +59,7 @@ public class MainFrame extends JFrame {
 	protected void drawRoads(){
 		mpanel.drawRoads();
 	}
+	
 	
 	
 	/**
