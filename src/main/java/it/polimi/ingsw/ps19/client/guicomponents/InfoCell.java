@@ -1,7 +1,13 @@
 package it.polimi.ingsw.ps19.client.guicomponents;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -42,7 +48,8 @@ public class InfoCell extends JPanel implements ActionListener{
 	}
 	
 	protected void setInfo(ClientModel m){
-		setLayout(new GridLayout(6, 0));
+		//setLayout(new FlowLayout());
+		setLayout(new GridLayout(8, 0));
 		setToolTipText(TOOLTIP0);
 		infos = constructInfoCell(m);
 		for(JLabel jl : infos){
@@ -52,6 +59,9 @@ public class InfoCell extends JPanel implements ActionListener{
 		NobilityButton nb = new NobilityButton(m.getNobilitypath());
 		nb.addActionListener(this);
 		add(nb);
+		
+		ActionChooserPanel ap = new ActionChooserPanel();
+		add(ap);
 	}
 	
 	protected void updateInfo(ClientModel m){
@@ -185,6 +195,8 @@ public class InfoCell extends JPanel implements ActionListener{
 			else{
 				title = new JLabel(str);
 			}
+			pos.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			pos.setVisible(true);
 			title.setVisible(true);
 			f.add(pos);
