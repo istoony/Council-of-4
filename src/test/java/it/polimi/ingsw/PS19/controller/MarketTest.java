@@ -16,6 +16,7 @@ import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class MarketTest {
@@ -28,6 +29,8 @@ public class MarketTest {
 		
 		GameController g = new GameController(m);
 		
+		m.getPlayerById(0).setMoney(100);
+		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100);
 		//Disconnetto il 2
 		PlayerDisconnectedMessage disconnected = new PlayerDisconnectedMessage(2);
 		
@@ -37,7 +40,14 @@ public class MarketTest {
 		
 		assertTrue("turn: "+ m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 0);
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.PLAYER_DISCONNECTED + "2"));
-		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8);
+		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 7);
+
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		
 		ArrayList<Color> card = new ArrayList<>();
 		
 		card.add(Color.decode("#FEFEFE"));
@@ -53,8 +63,8 @@ public class MarketTest {
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 7);
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
-		assertTrue("money: 0" +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 10 - 4 - 2);
-		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8 - 4);
+		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100 - 4 - 2);
+		//assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8 - 4);
 
 		EndTurnMessage endTurn = new EndTurnMessage();
 		endTurn.setId(0);

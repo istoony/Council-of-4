@@ -19,11 +19,8 @@ public class PlayerDisconnectedAction implements Action {
 		model.getCurrentState().disconnectPlayer(playerId);
 		int nextTurn = model.getCurrentState().giveNextCorrectId(playerId);
 		model.getCurrentState().setPlayerTurnId(nextTurn);
-		model.getPlayerById(nextTurn).setStartingAction();
-		
-		//draw one card
-		DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
-		drawPoliticsCard.execute(model);
+		if(nextTurn != model.getCurrentState().getPlayerTurnId())
+			model.getPlayerById(nextTurn).setStartingAction();
 		
 		result = ActionMessages.PLAYER_DISCONNECTED + playerId;
 		return true;

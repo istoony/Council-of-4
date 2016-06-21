@@ -107,7 +107,7 @@ public class Player implements Serializable
 	}
 	public List<PoliticsCard> getPoliticcard() 
 	{
-		return Costants.clonePoliticCard(politiccard);
+		return Costants.clone(politiccard);
 	}
 	
 	/**

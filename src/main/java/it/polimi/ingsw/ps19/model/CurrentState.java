@@ -10,6 +10,8 @@ public class CurrentState
 	private int numberOfPlayer;
 	private Map<Integer, Boolean> connection;
 	
+	private Map<Integer, Boolean> marketState;
+	
 	
 	public CurrentState(int numberOfPlayer) 
 	{
@@ -17,11 +19,13 @@ public class CurrentState
 		timeToMarket = false;
 		this.numberOfPlayer = numberOfPlayer;
 		connection = new HashMap<>();
+		marketState = new HashMap<>();
 	}
 	
 	public void addPlayer(int id)
 	{
 		connection.put(id, true);
+		marketState.put(id, false);
 	}
 	
 	public void setPlayerTurnId(int playerTurnId) 
@@ -83,5 +87,16 @@ public class CurrentState
 		return n;
 	} 
 	
-	
+	public void playerBought(int id)
+	{
+		marketState.put(id, true);
+	}
+
+	public boolean isTimeToEndMarket() 
+	{
+		for(int i = 0; i<marketState.size(); i++)
+			if(!marketState.get(i))
+				return false;
+		return true;
+	}
 }

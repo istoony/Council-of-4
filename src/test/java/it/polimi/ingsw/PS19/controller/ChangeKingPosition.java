@@ -10,6 +10,7 @@ import it.polimi.ingsw.ps19.controller.GameController;
 import it.polimi.ingsw.ps19.controller.action.ActionMessages;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
@@ -30,6 +31,12 @@ public class ChangeKingPosition {
 		card.add(Color.decode("#FEFEFE"));
 		card.add(Color.decode("#FEFEFE"));
 		
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		
 		City c = m.getMap().getRegionByType(RegionType.MOUNTAIN).getCityById(13);
 		assertTrue(c != null);
 		c.buildEmporium(m.getPlayerById(1));
@@ -37,7 +44,7 @@ public class ChangeKingPosition {
 		ChangeKingPositionMessage mess = new ChangeKingPositionMessage(c, card);
 		
 		g.update(null, mess);
-		assertTrue(g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
+		assertTrue("result " + g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 13);
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);

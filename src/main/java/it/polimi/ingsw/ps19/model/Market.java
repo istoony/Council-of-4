@@ -1,12 +1,17 @@
 package it.polimi.ingsw.ps19.model;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class Market 
+public class Market implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5935605254196710208L;
 	private Map<Integer, Order> listoforder;
 	
 	public Market() 

@@ -22,11 +22,16 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;;
 public class GameController implements Observer
 {
 	
+	private static final int TIME_TO_MARKET_ACTIVE_PLAYER = -1;
+
 	/** The model. */
 	private Model model;
 	
 	/** The reply. */
 	private Reply reply;
+	private Request m;
+	
+	private Action action;
 	
 	/**
 	 * Instantiates a new game controller. The game Started!
@@ -36,8 +41,7 @@ public class GameController implements Observer
 	public GameController(Model m) 
 	{
 		model = m;
-		
-		drawPoliticsCard();
+		drawStartingPoliticsCard();
 	}
 	
 	/**
@@ -45,27 +49,29 @@ public class GameController implements Observer
 	 *
 	 * @param m is the model of the game
 	 */
-	private void drawPoliticsCard() 
+	private void drawStartingPoliticsCard() 
 	{
 		for (Player p : model.getPlayer()) 
-		{
-			int numberOfPoliticCards = p.getStartingPoliticCard();
-			for(int i=0;i<numberOfPoliticCards;i++)
-			{
-				DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId());
-				drawPoliticsCard.execute(model);
-			}
-		}
+			drawForSinglePlayer(p, p.getStartingPoliticCard());
 		//Fa pescare una carta al primo player
-		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
 		
+		politicCardToDrawToCurrentPlayer();
+	}
+
+	private void politicCardToDrawToCurrentPlayer() 
+	{
+		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
 		if( numberOfPoliticCards !=0)
-		{
 			for(int i=0;i<numberOfPoliticCards;i++)
-			{
-				DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
-				drawPoliticsCard.execute(model);
-			}
+				drawForSinglePlayer(model.getPlayerById(model.getCurrentState().getPlayerTurnId()), numberOfPoliticCards);
+	}
+
+	private void drawForSinglePlayer(Player p, int numberOfPoliticCards ) 
+	{
+		for(int i=0;i<numberOfPoliticCards;i++)
+		{
+			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId());
+			drawPoliticsCard.execute(model);
 		}
 	}
 	
@@ -84,25 +90,39 @@ public class GameController implements Observer
 		
 		if(!(message instanceof Request))
 			return;
-		Request m = (Request) message;
+		m = (Request) message;
 		
-		Action action = m.accept(messageInterpreter);
-		if(action.isPossible(model))
+		action = m.accept(messageInterpreter);
+		
+		boolean isPossible = action.isPossible(model);
+		if(isPossible)
+		{
 			action.execute(model);
-		reply = action.createReplyMessage(model);		
-		
-		checkModelStatus();
+			politicCardToDrawToCurrentPlayer();
+		}
+		reply = createReply();
 		
 		if(model.getCurrentState().getTimeToMarket())
-			reply.setActivePlayer(-1);
+			checkModelStatusInMarketTime();
 		else
-			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
-		reply.setId(-1);		//send to all player
-		model.createMessage(reply);
+			checkModelStatus();
+		
+		model.sendMessage(reply);
 
 		checkTimeToMarket();
 		
 	}
+	private void checkModelStatusInMarketTime() 
+	{
+		if(model.getCurrentState().isTimeToEndMarket())
+		{
+			model.getCurrentState().setTimeToMarket(false);
+			model.getCurrentState().setPlayerTurnId(0);
+			checkAlreadyTurn();
+		}
+		
+	}
+
 	public Reply getReply() 
 	{
 		return reply;
@@ -113,10 +133,8 @@ public class GameController implements Observer
 	 */
 	private void checkModelStatus()
 	{
-		checkBusinessOrCityBonus();		
 		
 		setTimeToMarket();
-		
 		checkAlreadyTurn();
 		
 	}
@@ -154,12 +172,13 @@ public class GameController implements Observer
 	private void setTimeToMarket()
 	{
 		for (Player p : model.getPlayer()) 
-			if(p.getMainActionCounter()!=0 && model.getCurrentState().isConnectedById(p.getId()))
+			if((p.getMainActionCounter()!=0 || p.getFastActionCounter()!=0) && model.getCurrentState().isConnectedById(p.getId()))
 			{
 				model.getCurrentState().setTimeToMarket(false);
 				return;
 			}
 		model.getCurrentState().setTimeToMarket(true);
+		reply.setActivePlayer(TIME_TO_MARKET_ACTIVE_PLAYER);
 	}
 	
 	/**
@@ -174,7 +193,7 @@ public class GameController implements Observer
 		{
 			Reply r = new TimeToMarketReply(Costants.NO_ACTIVE_PLAYER, ActionMessages.TIME_TO_MARKET);
 			r.setId(Costants.BROADCAST_MESSAGE);				//send to all player
-			model.createMessage(r);
+			model.sendMessage(r);
 		}
 	}
 	
@@ -183,13 +202,14 @@ public class GameController implements Observer
 	 * If first or second are true create a GetBusinessCardOrCityBonusReply
 	 * and server send to players all game
 	 */
-	private void checkBusinessOrCityBonus()
+	private Reply createReply()
 	{
 		int playerTurnId = model.getCurrentState().getPlayerTurnId();
+		Reply r;
 		if(model.getPlayerById(playerTurnId).isBusinessCardRequest() || 
 				model.getPlayerById(playerTurnId).isCityBonusRequest())
 		{
-			reply = new GetBusinessCardOrCityBonusReply(
+			r = new GetBusinessCardOrCityBonusReply(
 					model.getCurrentState().getPlayerTurnId(), 
 					ActionMessages.BUSINESS_CARD_REQUEST, 
 					model.getPlayer(), 
@@ -199,6 +219,10 @@ public class GameController implements Observer
 					model.getPlayerById(playerTurnId).isBusinessCardRequest(),
 					model.getPlayerById(playerTurnId).isCityBonusRequest());
 		}
+		else
+			r = action.createReplyMessage(model);
+		r.setId(Costants.BROADCAST_MESSAGE);
+		return r;
 			
 	}	
 }

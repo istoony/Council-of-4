@@ -77,7 +77,7 @@ public class Model extends Observable
 		return s;
 	}
 	
-	public void createMessage(Reply reply)
+	public void sendMessage(Reply reply)
 	{
 		setChanged();
 		notifyObservers(reply);

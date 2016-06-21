@@ -4,7 +4,7 @@ import it.polimi.ingsw.ps19.model.Player;
 
 public class ReuseBusinessCardBonus implements Bonus {
 	
-	//incompleto
+	//TODO SCRIVIMI
 	
 	private static final long serialVersionUID = 8181282753752840254L;
 	int howMany;
