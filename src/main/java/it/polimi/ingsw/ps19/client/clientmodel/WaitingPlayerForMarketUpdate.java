@@ -32,19 +32,7 @@ public class WaitingPlayerForMarketUpdate extends ClientUpdate
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model)
 	{
-		boolean valid = false;
-		do
-		{
-			try
-			{
-				MarketSell market = new MarketSell(model);
-				return market.execute(userInterface);
-			}
-			catch(InvalidInsertionException e)
-			{
-				valid = false;
-			}
-		}while(!valid);
+		userInterface.showNotification(result);
 		return null;
 	}
 }

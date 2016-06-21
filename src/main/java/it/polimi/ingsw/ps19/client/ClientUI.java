@@ -9,6 +9,8 @@ import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.Market;
+import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
@@ -105,6 +107,13 @@ public abstract class ClientUI
 	public abstract PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException;
 
 	/**
+	 * Makes the user choose a order from a list
+	 * @param orders
+	 * @return
+	 */
+	public abstract Order getOrder(List<Order> orders) throws InvalidInsertionException ;
+	
+	/**
 	 * Makes the user choose a city from a list
 	 * @param cities: available cities
 	 * @return chosen city
@@ -135,4 +144,6 @@ public abstract class ClientUI
 	public abstract int getPrice() throws InvalidInsertionException;
 	
 	public abstract String getUserString(String title) throws InvalidInsertionException;
+	
+	public abstract void showMarket(Market market);
 } 

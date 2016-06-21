@@ -17,6 +17,8 @@ import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.Market;
+import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
@@ -321,7 +323,7 @@ public class ClientCLI extends ClientUI
 	private String getString(Player p)
 	{
 		String s = "Player: "+ p.getId() + "\n";
-		s += "Number of Emporia Left: " + (p.getMaxemporia() - p.getMyEmporia().size()) + "\n";
+		s += "Number of Emporia Left: " + p.getMaxemporia() + "\n";
 		s += "Money: " + p.getMoney() + "\n";
 		s += "Victory Points: " + p.getVictoryPoints() + "\n";
 		s += "Nobility Points: " + p.getNobilityPoints() + "\n";
@@ -472,6 +474,57 @@ public class ClientCLI extends ClientUI
 			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
+		return s;
+	}
+
+	
+	@Override
+	public Order getOrder(List<Order> orders) throws InvalidInsertionException 
+	{
+		writeln("Choose order to buy: \n");
+		List<String> strings = new ArrayList<>();
+		for(Order order : orders)
+			strings.add(getString(order) + "\n");
+		strings.add(null);
+		int index = getValues(strings);
+		return orders.get(index);
+	}
+
+	
+	@Override
+	public void showMarket(Market market) 
+	{
+		showNotification("MARKET");
+		if(market.getListoforder().isEmpty())
+		{
+			showNotification("No Orders");
+			return;
+		}
+		showNotification("Orders:");
+		for(Entry<Integer, Order> entry : market.getListoforder().entrySet())
+		{
+			showNotification("\tPlayer: " + entry.getKey() + " " + getString(entry.getValue()));
+		}
+	}
+	
+	private String getString(Order order)
+	{
+		if(order == null)
+			return "nothing";
+		String s = "[Helpers: " + order.getHelper();
+		s += ", Politic Cards: ";
+		if(order.getPoliticscard().isEmpty())
+			s += "0,";
+		else
+			for(Color card : order.getPoliticscard())
+				s = s.concat(getString(card) + ",");
+		s += " Business Cards: ";
+		if(order.getPoliticscard().isEmpty())
+			s += "0,";
+		else
+			for(BusinessCard card : order.getBusinesscard())
+				s = s.concat(getString(card) + ",");
+		s += " Price: " + order.getPrice() + "]";
 		return s;
 	}
 }
