@@ -3,8 +3,6 @@
  */
 package it.polimi.ingsw.ps19.server;
 
-import java.io.IOException;
-import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -15,7 +13,6 @@ import java.util.logging.Logger;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.replies.StringMessage;
 import it.polimi.ingsw.ps19.view.connection.Connection;
-import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 /**
  * This static class (class with only static method) collects the users requiring to play and starts a new game when there are the conditions to do so;

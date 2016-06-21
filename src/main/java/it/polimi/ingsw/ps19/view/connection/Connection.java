@@ -30,8 +30,7 @@ public abstract class Connection
 	 */
 	public void setActive()
 	{
-		if(status != ConnectionStatus.DISCONNECTED)
-			status = ConnectionStatus.ACTIVE;
+		status = ConnectionStatus.ACTIVE;
 	}
 	
 	/**

@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 
 public abstract class ClientManager 

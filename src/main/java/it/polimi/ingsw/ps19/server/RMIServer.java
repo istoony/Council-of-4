@@ -3,17 +3,21 @@ package it.polimi.ingsw.ps19.server;
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteServer;
 
-import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 
+/**
+ * Implementation of server by RMI
+ */
 public class RMIServer extends RemoteServer implements ServerRemoteIntf 
 {
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub) throws RemoteException 
 	{
-		Connection connection = new RMIConnection(clientStub);
-		RMIReaderIntf stub = ((RMIConnection)connection).getReaderStub();
+		RMIConnection connection = new RMIConnection(clientStub);
+		RMIReaderIntf stub = connection.getReaderStub();
 		WaitingRoom.addConnection(connection);
 		return stub;
 	}
