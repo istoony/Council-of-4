@@ -19,6 +19,7 @@ import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
 import it.polimi.ingsw.ps19.message.replies.StringMessage;
 import it.polimi.ingsw.ps19.message.requests.ConnectionMessage;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.ConnectionStatus;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
@@ -178,7 +179,7 @@ public class WaitingRoom
 			return; 						//Check to avoid concurrency in one particular case		
 		mux.lock();
 		ServerManager.serverCLI.showNotification(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
-		List<Integer> fullRoom = Constants.INTCLONER.cloneList(room);
+		List<Integer> fullRoom = Costants.clone(room);
 		new GameFactory(fullRoom);
 		room.clear();
 		mux.unlock();
