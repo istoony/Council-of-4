@@ -14,16 +14,18 @@ public class Notify extends JFrame implements Runnable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4932512229185402449L;
-	private JPanel main;
+	private static final int N = 10;
 	private List<JLabel> text;
 	
 	public Notify(String s){
-		super("Messages");
+		super();
+		setResizable(false);
+		setTitle("Messages");
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		main = new JPanel();
 		text = new ArrayList<>();
 		text.add(new JLabel(s));
-		setLayout(new GridLayout(text.size(), 1));
+		setLayout(new GridLayout(N, 1));
 		setVisible(false);
 	}
 	
@@ -35,18 +37,21 @@ public class Notify extends JFrame implements Runnable{
 	@Override
 	public void run() {
 		setBounds(300, 300, 300, 400);
-		main.setVisible(true);
-		add(main);
 		pack();
 		setVisible(true);
 		setAutoRequestFocus(true);
 	}
 	
 	public void setStuff(){
-		setLayout(new GridLayout(text.size(), 1));
+		List<JLabel> temp = new ArrayList<>();
+		if(text.size()>N){
+			temp = text.subList(4, text.size());
+			text.clear();
+			text=temp;
+		}
 		for(JLabel j: text){
 			j.setVisible(true);
-			main.add(j);
+			add(j);
 		}
 	}
 }
