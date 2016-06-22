@@ -26,7 +26,8 @@ public class MainFrame extends JFrame {
 		this.model=model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(true);
-		setBounds(100, 60, MWIDTH, MHEIGHT);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//setBounds(100, 60, MWIDTH, MHEIGHT);
 		setMinimumSize(this.getSize());
 		getContentPane().setLayout(new BorderLayout());
 	}
