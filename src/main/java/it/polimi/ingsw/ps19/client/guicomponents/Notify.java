@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Notify extends JFrame implements Runnable{
 	
@@ -13,8 +14,9 @@ public class Notify extends JFrame implements Runnable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4932512229185402449L;
-	private static final int N = 10;
+	private static final int N = 11;
 	private List<JLabel> text;
+	private JPanel pan = new JPanel();
 	
 	public Notify(String s){
 		super();
@@ -24,13 +26,15 @@ public class Notify extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		text = new ArrayList<>();
 		text.add(new JLabel(s));
-		setLayout(new GridLayout(N, 1));
+		add(pan);
+		pan.setLayout(new GridLayout(N, 1));
 		setVisible(false);
 	}
 	
 	public void addMessage(String s){
 		text.add(new JLabel(s));
 		setStuff();
+		add(pan);
 	}
 		
 	@Override
@@ -41,18 +45,24 @@ public class Notify extends JFrame implements Runnable{
 		setAutoRequestFocus(true);
 	}
 	
-	public void setStuff(){
+	public synchronized void setStuff(){
 		setAutoRequestFocus(true);
 		setAlwaysOnTop(true);
-		List<JLabel> temp;
-		if(text.size()>N){
-			temp = text.subList(4, text.size());
+		List<JLabel> temp = new ArrayList<>();
+		List<JLabel> temp2 = new ArrayList<>();	
+		temp2.addAll(text);
+		if(temp2.size()>=N){
+			pan.removeAll();
+			repaint();
+			temp = temp2.subList(2, text.size());
 			text.clear();
 			text=temp;
 		}
-		for(JLabel j: text){
-			j.setVisible(true);
-			add(j);
+		for(int i=0; i<text.size(); i++){
+			text.get(i).setVisible(true);
+			pan.add(text.get(i));
 		}
+
+
 	}
 }

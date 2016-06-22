@@ -137,7 +137,7 @@ public class InfoCell extends JPanel implements ActionListener{
 		String s="";
 		String reserve= "";
 		int count=0;
-		lst.add(new JLabel(INDENTATION+"--- Information about the Player n"+p.getId()+" ---"));
+		lst.add(new JLabel(INDENTATION+"--- Information about YOU --- "));
 		lst.add(new JLabel(INDENTATION+"Victory Points: "+p.getVictoryPoints()));
 		lst.add(new JLabel(INDENTATION+"Nobility Path: "+p.getNobilityPoints()));
 		lst.add(new JLabel(INDENTATION+"Money: "+p.getMoney()));

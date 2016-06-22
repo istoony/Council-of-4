@@ -30,6 +30,8 @@ public class MainWindow implements Runnable {
 		initialize();
 		frame.setVisible(true);
 		frame.drawRoads();
+		frame.setAlwaysOnTop(true);
+		frame.setAutoRequestFocus(true);
 	}
 	
 	public void update(ClientModel m){

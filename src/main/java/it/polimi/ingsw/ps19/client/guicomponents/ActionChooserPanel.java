@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 
 public class ActionChooserPanel extends JPanel implements ActionListener {
@@ -16,12 +18,25 @@ public class ActionChooserPanel extends JPanel implements ActionListener {
 	private static final int FAST_ACTION = 5;
 	
 	private List<JButton> actionlist;
-	ClientActionChooser actionchoosen;
+	private ClientActionChooser actionchoosen;
 	
-	public ActionChooserPanel() {
+	protected ActionChooserPanel() {
 		super();
 		actionlist= new ArrayList<>();
-		//setLayout(new GridLayout(1,c.possibleActions().size()));
+
+	}
+	
+	protected void generateActions(ClientActionChooser c){
+		JButton j;
+		actionchoosen = c;
+		setLayout(new GridLayout(1,actionchoosen.possibleActions().size()));
+		for(ClientAction ca : actionchoosen.possibleActions()){
+			j=new JButton(ca.toString());
+			j.addActionListener(this);
+			j.setToolTipText(ca.toString());
+			j.setActionCommand(ca.toString());
+			actionlist.add(j);
+		}
 	}
 	
 	@Override
