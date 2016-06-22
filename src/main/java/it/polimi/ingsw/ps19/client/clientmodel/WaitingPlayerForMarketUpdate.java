@@ -29,14 +29,12 @@ public class WaitingPlayerForMarketUpdate extends ClientUpdate
 	public void update(ClientModel model) 
 	{
 		model.setResult(result);
-		model.setActiveplayer(activePlayer);
 	}
 
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model)
 	{
-		if(activePlayer == model.getMyPlayer().getId())
-			userInterface.showNotification(result);
+		userInterface.showNotification(result);
 		return null;
 	}
 }
