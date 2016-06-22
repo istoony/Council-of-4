@@ -17,7 +17,6 @@ import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.ps19.client.guicomponents.Notify;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
-import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
@@ -27,12 +26,13 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public class ClientGUI extends ClientUI{
 	MainWindow window=null;
 	Notify startpopup;
+	Notify pop = new Notify("Waiting for messages..");
 
 	private static final Logger log = Logger.getLogger("GUI_LOGGER");
 	private static final String start = "Wait the Server to generate the game..";
 	
 	public ClientGUI() {
-		Notify startpopup = new Notify(start);
+		startpopup = new Notify(start);
 		try {
 			SwingUtilities.invokeAndWait(startpopup);
 		} catch (InvocationTargetException | InterruptedException e1) {
@@ -41,7 +41,7 @@ public class ClientGUI extends ClientUI{
 	}
 	
 	public void createGUI(ClientModel m){
-		MainWindow window = new MainWindow(m);
+		window = new MainWindow(m);
 		try {
 			SwingUtilities.invokeAndWait(window);
 		} catch (InvocationTargetException | InterruptedException e) {
@@ -81,7 +81,7 @@ public class ClientGUI extends ClientUI{
 
 	@Override
 	public void showNotification(String s) {
-		Notify pop = new Notify(s);
+		pop.addMessage(s);
 		try {
 			SwingUtilities.invokeAndWait(pop);
 		} catch (InvocationTargetException | InterruptedException e1) {
