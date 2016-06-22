@@ -198,6 +198,18 @@ public class WaitingRoom
 	}
  	
 	/**
+	 * Returns whether the connection with the passed id is connected
+	 * @param id
+	 * @return
+	 */
+	public static boolean isConnected(Integer id)
+	{
+		if(connectedUsers.get(id) != null && connectedUsers.get(id).getStatus() != ConnectionStatus.DISCONNECTED)
+			return true;
+		return false;
+	}
+	
+	/**
 	 * Method to safely quit the thread
 	 * Includes a notification to all waiting users
 	 */
