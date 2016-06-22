@@ -16,7 +16,7 @@ public class CompleteMarketUpdate extends ClientUpdate {
 
 	private String result;
 	private Market market;
-	private Order chosenOrder;
+	private Order chosenOrder = null;
 	private int activePlayerId;
 	
 	public CompleteMarketUpdate(String result, Market market, int activerPlayerId) 
@@ -39,22 +39,28 @@ public class CompleteMarketUpdate extends ClientUpdate {
 	{
 		if(activePlayerId != model.getActiveplayer())
 			return null;
-		userInterface.showMarket(market);
-		List<Order> availableOrders = new ArrayList<>();
-		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
-			if(entry.getKey() != model.getMyPlayer().getId() && affordable(entry.getValue(), model))
-				availableOrders.add(entry.getValue());
-		availableOrders.add(null);
-		chosenOrder = userInterface.getOrder(availableOrders);
-		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
-			if(entry.getValue() == chosenOrder)
-				return new BuyOrderMessage(chosenOrder, entry.getKey());
+		if(market.getListoforder().isEmpty())
+			userInterface.showNotification("No Orders!");
+		else
+		{
+			userInterface.showMarket(market);
+			List<Order> availableOrders = new ArrayList<>();
+			for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
+				if(entry.getKey() != model.getMyPlayer().getId() && affordable(entry.getValue(), model))
+					availableOrders.add(entry.getValue());
+			availableOrders.add(null);
+			chosenOrder = userInterface.getOrder(availableOrders);
+		}
+		if(chosenOrder != null)
+			for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
+				if(entry.getValue() == chosenOrder)
+					return new BuyOrderMessage(chosenOrder, entry.getKey());
 		return new BuyOrderMessage(null, 0);
 	}
 	
 	private boolean affordable(Order order, ClientModel model)
 	{
-		if(order.getPrice() <= model.getMyPlayer().getMoney())
+		if(order != null && order.getPrice() <= model.getMyPlayer().getMoney())
 			return true;
 		return false;
 	}

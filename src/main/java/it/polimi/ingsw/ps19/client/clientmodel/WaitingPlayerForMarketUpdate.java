@@ -13,26 +13,30 @@ import it.polimi.ingsw.ps19.message.requests.Request;
 public class WaitingPlayerForMarketUpdate extends ClientUpdate 
 {
 	private String result;
+	private int activePlayer;
 	
 	/**
 	 * Constructor
 	 * @param res
 	 */
-	public WaitingPlayerForMarketUpdate(String res) 
+	public WaitingPlayerForMarketUpdate(String res, int ap) 
 	{
 		result = res;
+		activePlayer = ap;
 	}
 	
 	@Override
 	public void update(ClientModel model) 
 	{
 		model.setResult(result);
+		model.setActiveplayer(activePlayer);
 	}
 
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model)
 	{
-		userInterface.showNotification(result);
+		if(activePlayer == model.getMyPlayer().getId())
+			userInterface.showNotification(result);
 		return null;
 	}
 }
