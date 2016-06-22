@@ -86,4 +86,10 @@ public class MapPanel extends JPanel{
     		g.setColor(Color.decode("#7F5217"));
     	}
     }
+    
+    protected void update(MainFrame mf){
+    	for(int i=0; i<mf.getModel().getRegions().size(); i++){
+    		regionPanelList.get(i).updateInfo(mf.getModel().getRegions().get(i));  		
+    	}
+    }
 }

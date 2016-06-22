@@ -3,10 +3,6 @@ package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-
 import javax.swing.JFrame;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 
@@ -54,6 +50,11 @@ public class MainFrame extends JFrame {
 	protected void updateInfoBox(ClientModel m){
 		model = m;
 		infobox.update(this);
+	}
+	
+	protected void updateMap(ClientModel m){
+		model = m;
+		mpanel.update(this);
 	}
 	
 	protected void drawRoads(){

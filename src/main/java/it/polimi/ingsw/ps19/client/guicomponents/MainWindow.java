@@ -31,5 +31,11 @@ public class MainWindow implements Runnable {
 		frame.setVisible(true);
 		frame.drawRoads();
 	}
+	
+	public void update(ClientModel m){
+		model=m;
+		frame.updateInfoBox(model);
+		frame.updateMap(model);
+	}
 
 }

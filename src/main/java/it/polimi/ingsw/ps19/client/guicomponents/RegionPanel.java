@@ -129,6 +129,17 @@ public class RegionPanel extends JPanel implements MouseListener{
     	}
     }
 	
+    protected void updateInfo(Region r){
+		myregion = r;
+		for(City c : myregion.getCities()){
+			for(DrawCity dc : citylist){
+				if(c.getId()==dc.getMycity().getId()){
+					dc.setMycity(c);
+				}
+			}
+		}
+    }
+    
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//non usato

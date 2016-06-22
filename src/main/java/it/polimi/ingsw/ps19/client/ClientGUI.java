@@ -13,6 +13,7 @@ import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
+import it.polimi.ingsw.ps19.client.guicomponents.Notify;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Model;
@@ -23,6 +24,7 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI{
+	MainWindow window=null;
 
 	private static final Logger log = Logger.getLogger("GUI_LOGGER");
 	
@@ -71,15 +73,28 @@ public class ClientGUI extends ClientUI{
 
 	@Override
 	public void showNotification(String s) {
-		// TODO Auto-generated method stub
+		Notify pop = new Notify(s);
+		try {
+			SwingUtilities.invokeAndWait(pop);
+		} catch (InvocationTargetException | InterruptedException e1) {
+			log.log(Level.SEVERE, e1.toString(), e1);
+		}
 		
 	}
 
 	@Override
 	public void drawModel(ClientModel model) {
-		MainWindow view = new MainWindow(model);
-		// TODO Auto-generated method stub
-		
+		if(window==null){
+			window = new MainWindow(model);
+			try {
+				SwingUtilities.invokeAndWait(window);
+			} catch (InvocationTargetException | InterruptedException e1) {
+				log.log(Level.SEVERE, e1.toString(), e1);
+			}
+		}
+		else{
+			window.update(model);
+		}
 	}
 
 	@Override
