@@ -35,10 +35,10 @@ public class GameFactory extends Thread
 	@Override
 	public void run() 
 	{
-		for(int i = 0; i < players.size(); i++)
+		for (Integer playerNumber : players)
 		{
 			try {
-				WaitingRoom.getConnection(players.get(i)).write(new GameStartedMessage(0,"Game start",players.size(), i));
+				WaitingRoom.getConnection(playerNumber).write(new GameStartedMessage(0,"Game start",players.size(), playerNumber));
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);
