@@ -27,7 +27,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(DrawBusinessCardReply message) 
 	{
-		return new DrawBusinessCardUpdate(message.getPlayer(), message.getRegion());
+		return new DrawBusinessCardUpdate(message.getPlayer(), message.getRegion(), message.getActivePlayer());
 	}
 
 	@Override
