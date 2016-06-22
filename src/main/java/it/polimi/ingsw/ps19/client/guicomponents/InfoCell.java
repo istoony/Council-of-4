@@ -18,6 +18,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.ps19.client.clientaction.MainAction;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
@@ -49,7 +52,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	protected void setInfo(ClientModel m){
 		//setLayout(new FlowLayout());
-		setLayout(new GridLayout(8, 0));
+		setLayout(new GridLayout(7, 0));
 		setToolTipText(TOOLTIP0);
 		infos = constructInfoCell(m);
 		for(JLabel jl : infos){
@@ -60,8 +63,11 @@ public class InfoCell extends JPanel implements ActionListener{
 		nb.addActionListener(this);
 		add(nb);
 		
-		ActionChooserPanel ap = new ActionChooserPanel();
-		add(ap);
+		ActionChooserPanel actionsType = new ActionChooserPanel();
+		add(actionsType);
+		//TODO
+		ActionChooserPanel actions = new ActionChooserPanel(new MainAction(m));
+		add(actions);
 	}
 	
 	protected void updateInfo(ClientModel m){
