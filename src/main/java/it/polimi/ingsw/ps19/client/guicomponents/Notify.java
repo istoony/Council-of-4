@@ -15,13 +15,12 @@ public class Notify extends JFrame implements Runnable{
 	
 	public Notify(String s){
 		super();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		main = new JPanel();
 		text = new JLabel(s);
 		setVisible(false);
 	}
-	
-	
-	
+		
 	@Override
 	public void run() {
 		setBounds(200, 200, 300, 400);

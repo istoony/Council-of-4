@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.client;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,18 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI{
 	MainWindow window=null;
+	Notify startpopup;
 
 	private static final Logger log = Logger.getLogger("GUI_LOGGER");
+	private static final String start = "Wait the Server to generate the game..";
 	
 	public ClientGUI() {
-
+		Notify startpopup = new Notify(start);
+		try {
+			SwingUtilities.invokeAndWait(startpopup);
+		} catch (InvocationTargetException | InterruptedException e1) {
+			log.log(Level.SEVERE, e1.toString(), e1);
+		}
 	}
 	
 	public void createGUI(ClientModel m){
@@ -83,8 +91,9 @@ public class ClientGUI extends ClientUI{
 	}
 
 	@Override
-	public void drawModel(ClientModel model) {
+	public void drawModel(ClientModel model) {	
 		if(window==null){
+			startpopup.dispatchEvent(new WindowEvent(startpopup, WindowEvent.WINDOW_CLOSING));
 			window = new MainWindow(model);
 			try {
 				SwingUtilities.invokeAndWait(window);
