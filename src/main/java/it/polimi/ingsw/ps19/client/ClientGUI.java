@@ -151,47 +151,4 @@ public class ClientGUI extends ClientUI{
 		
 	}
 	
-	public static void main(String args[]){
-		Model mm = new Model(10);
-		ClientModel m = new ClientModel(mm);
-		m.getMyPlayer().setStartingAction();
-
-		
-		PoliticsCard c = new PoliticsCard(Color.decode("#FFFFFF"));
-		PoliticsCard d = new PoliticsCard(Color.decode("#FFFFFF"));
-		PoliticsCard e = new PoliticsCard(Color.decode("#000000"));
-		PoliticsCard f = new PoliticsCard(Color.decode("#0000FF"));
-		PoliticsCard g = new PoliticsCard(Color.decode("#FF0000"));
-		PoliticsCard h = new PoliticsCard(Color.decode("#000000"));
-		PoliticsCard j = new PoliticsCard(Color.decode("#0000FF"));
-		PoliticsCard k = new PoliticsCard(Color.decode("#FF0000"));
-		BusinessCard aa = new BusinessCard(null, null, m.getAllCities().get(0));
-		
-		m.getMyPlayer().addCardToHand(c);
-		m.getMyPlayer().addCardToHand(d);
-		m.getMyPlayer().addCardToHand(e);
-		m.getMyPlayer().addCardToHand(f);
-		m.getMyPlayer().addCardToHand(g);
-		m.getMyPlayer().addCardToHand(h);
-		m.getMyPlayer().addCardToHand(j);
-		m.getMyPlayer().addCardToHand(k);
-		m.getMyPlayer().addCardToHand(g);
-		m.getMyPlayer().addCardToHand(h);
-		m.getMyPlayer().addCardToHand(j);
-		m.getMyPlayer().addCardToHand(k);
-		m.getPlayer().get(1).addCardToHand(c);
-		m.getPlayer().get(1).addCardToHand(e);
-		m.getPlayer().get(1).addCardToHand(f);
-		m.getMyPlayer().addCardToHand(aa);
-		
-		
-		MainWindow window = new MainWindow(m);
-		try {
-			SwingUtilities.invokeAndWait(window);
-		} catch (InvocationTargetException | InterruptedException e1) {
-			log.log(Level.SEVERE, e1.toString(), e1);
-		}
-	}
-
-
 }
