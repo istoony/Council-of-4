@@ -25,16 +25,15 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI{
 	MainWindow window=null;
-	Notify startpopup;
 	Notify pop = new Notify("Waiting for messages..");
 
 	private static final Logger log = Logger.getLogger("GUI_LOGGER");
 	private static final String start = "Wait the Server to generate the game..";
 	
 	public ClientGUI() {
-		startpopup = new Notify(start);
+		pop.addMessage(start);
 		try {
-			SwingUtilities.invokeAndWait(startpopup);
+			SwingUtilities.invokeAndWait(pop);
 		} catch (InvocationTargetException | InterruptedException e1) {
 			log.log(Level.SEVERE, e1.toString(), e1);
 		}
@@ -93,7 +92,6 @@ public class ClientGUI extends ClientUI{
 	@Override
 	public void drawModel(ClientModel model) {	
 		if(window==null){
-			startpopup.dispatchEvent(new WindowEvent(startpopup, WindowEvent.WINDOW_CLOSING));
 			window = new MainWindow(model);
 			try {
 				SwingUtilities.invokeAndWait(window);
