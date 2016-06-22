@@ -40,4 +40,11 @@ public class MainWindow implements Runnable {
 		frame.updateMap(model);
 	}
 
+	/**
+	 * @return the frame
+	 */
+	public MainFrame getFrame() {
+		return frame;
+	}
+
 }

@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 		super(NAME+id);
 		this.model=model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(true);
+		setResizable(false);
 		
 		setBounds(100, 60, MWIDTH, MHEIGHT);
 		setMinimumSize(this.getSize());
@@ -70,6 +70,13 @@ public class MainFrame extends JFrame {
 	 */
 	public ClientModel getModel() {
 		return model;
+	}
+
+	/**
+	 * @return the infobox
+	 */
+	public InfoPanel getInfobox() {
+		return infobox;
 	}
 	
 }

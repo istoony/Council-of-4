@@ -61,4 +61,11 @@ public class InfoPanel extends JPanel {
 			}
 		}
 	}
+
+	/**
+	 * @return the boxes
+	 */
+	public List<InfoCell> getBoxes() {
+		return boxes;
+	}
 }

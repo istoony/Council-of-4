@@ -48,7 +48,7 @@ public class Notify extends JFrame implements Runnable{
 	public synchronized void setStuff(){
 		setAutoRequestFocus(true);
 		setAlwaysOnTop(true);
-		List<JLabel> temp = new ArrayList<>();
+		List<JLabel> temp;
 		List<JLabel> temp2 = new ArrayList<>();	
 		temp2.addAll(text);
 		if(temp2.size()>=N){
