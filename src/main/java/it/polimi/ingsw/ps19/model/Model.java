@@ -51,7 +51,10 @@ public class Model extends Observable
 	
 	public Player getPlayerById(int i)
 	{
-		return player.get(i);
+		for (Player p : player) 
+			if(p.getId() == i)
+				return p;
+		return null;
 	}
 	
 	public List<Player> getPlayer() 

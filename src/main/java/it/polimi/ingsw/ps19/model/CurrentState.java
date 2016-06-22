@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class CurrentState
 		timeToMarket = false;
 		this.numberOfPlayer = playerIdList.size();
 		marketState = new HashMap<>();
+		this.playerIdList = new ArrayList<>();
 		for (Integer playerId : playerIdList)
 		{
 			marketState.put(playerId, false);

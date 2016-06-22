@@ -126,7 +126,7 @@ public class View extends Observable implements Observer, Runnable
 			for (Integer player : playerConnection) 
 			{
 				try {
-					WaitingRoom.getConnection(playerConnection.get(player)).write(mex);
+					WaitingRoom.getConnection(player).write(mex);
 				} catch (WriterException e) 
 				{
 					log.log(Level.SEVERE, e.toString(), e);
