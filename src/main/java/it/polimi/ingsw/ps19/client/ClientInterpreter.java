@@ -77,7 +77,6 @@ public class ClientInterpreter extends Observable implements Observer
 			ClientUpdate updateAction = reply.display(visitor);
 			updateAction.update(model);
 			userInterface.drawModel(model);
-			userInterface.showNotification("Active player: " + reply.getActivePlayer());
 			if(reply.getActivePlayer() == playerId || reply.getActivePlayer() == -1)
 			{
 				boolean valid;
