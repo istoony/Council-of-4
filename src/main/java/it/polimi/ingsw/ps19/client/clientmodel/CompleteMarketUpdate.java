@@ -39,18 +39,13 @@ public class CompleteMarketUpdate extends ClientUpdate {
 	{
 		if(activePlayerId != model.getActiveplayer())
 			return null;
-		if(market.getListoforder().isEmpty())
-			userInterface.showNotification("No Orders!");
-		else
-		{
-			userInterface.showMarket(market);
-			List<Order> availableOrders = new ArrayList<>();
-			for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
-				if(entry.getKey() != model.getMyPlayer().getId() && affordable(entry.getValue(), model))
-					availableOrders.add(entry.getValue());
-			availableOrders.add(null);
-			chosenOrder = userInterface.getOrder(availableOrders);
-		}
+		userInterface.showMarket(market);
+		List<Order> availableOrders = new ArrayList<>();
+		for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
+			if(entry.getKey() != model.getMyPlayer().getId() && affordable(entry.getValue(), model))
+				availableOrders.add(entry.getValue());
+		availableOrders.add(null);
+		chosenOrder = userInterface.getOrder(availableOrders);
 		if(chosenOrder != null)
 			for(Entry<Integer,Order> entry : market.getListoforder().entrySet())
 				if(entry.getValue() == chosenOrder)
