@@ -10,6 +10,7 @@ import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.ps19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.model.Model;
@@ -101,7 +102,7 @@ public class GameController implements Observer
 		}
 		reply = createReply();
 		
-		if(model.getCurrentState().getTimeToMarket())
+		if(model.getCurrentState().isTimeToMarket())
 			checkModelStatusInMarketTime();
 		else
 			checkModelStatus();
@@ -116,8 +117,11 @@ public class GameController implements Observer
 		if(model.getCurrentState().isTimeToEndMarket())
 		{
 			model.getCurrentState().setTimeToMarket(false);
-			model.getCurrentState().setPlayerTurnId(0);
-			checkAlreadyTurn();
+			reply = new SendFullPlayerReply(model.getCurrentState().getNumberOfPlayer(), 
+					reply.getResult(), model.getPlayer());
+			
+			changeTurn();	
+			
 		}
 		
 	}
@@ -149,34 +153,41 @@ public class GameController implements Observer
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
 				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest())
-		{		
+		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
-			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
-			
-			//draw one card
-			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
-			drawPoliticsCard.execute(model);
-			
-			//set active player
-			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
-			
+			changeTurn();
 		}
+	}
+
+	private void changeTurn() 
+	{
+		model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
+		
+		//draw one card
+		DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
+		drawPoliticsCard.execute(model);
+		
+		//set active player
+		reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 	}
 	
 	/**
 	 * Sets the time to market.
-	 * this time is true if all player have main action to zero
+	 * this time is true if all player have main and fast action to zero
 	 * TODO tenere conto dei player disconnessi
 	 */
 	private void setTimeToMarket()
 	{
 		for (Player p : model.getPlayer()) 
-			if((p.getMainActionCounter()!=0 || p.getFastActionCounter()!=0) && model.getCurrentState().isConnectedById(p.getId()))
+			if((p.getMainActionCounter()!=0 || p.getFastActionCounter()!=0) && 
+					model.getCurrentState().isConnectedById(p.getId()))
 			{
 				model.getCurrentState().setTimeToMarket(false);
+				model.getCurrentState().setTimeToMarketSended(false);
 				return;
 			}
 		model.getCurrentState().setTimeToMarket(true);
+		model.getCurrentState().setTimeToMarketSended(false);
 		reply.setActivePlayer(TIME_TO_MARKET_ACTIVE_PLAYER);
 	}
 	
@@ -188,8 +199,9 @@ public class GameController implements Observer
 	 */
 	private void checkTimeToMarket()
 	{
-		if(model.getCurrentState().getTimeToMarket())
+		if(model.getCurrentState().isTimeToMarket() && !model.getCurrentState().isTimeToMarketSended())
 		{
+			model.getCurrentState().setTimeToMarketSended(true);
 			Reply r = new TimeToMarketReply(Costants.NO_ACTIVE_PLAYER, ActionMessages.TIME_TO_MARKET);
 			r.setId(Costants.BROADCAST_MESSAGE);				//send to all player
 			model.sendMessage(r);

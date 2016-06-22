@@ -31,7 +31,7 @@ public class AddOrder implements Action
 	public Boolean isPossible(Model model) 
 	{
 		result = ActionMessages.EVERYTHING_IS_OK;
-		if(model.getCurrentState().getTimeToMarket())
+		if(model.getCurrentState().isTimeToMarket())
 			return true;
 		result = ActionMessages.NO_MARKET_TIME;
 		return false;
@@ -41,10 +41,8 @@ public class AddOrder implements Action
 	//TODO: controllare per i player disconnessi---> testare che teoricamente funziona
 	public Reply createReplyMessage(Model model) 
 	{
-		if(model.getCurrentState().getTimeToMarket())
-			return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result);
-		
-		int idTurn = model.getPlayerById(Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer())).getId();
+		int idTurn = model.getCurrentState().giveNextCorrectId(
+				Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer()));
 		
 		if(model.getMarket().getSize() == 
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())

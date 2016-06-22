@@ -39,13 +39,14 @@ public class BuildEmporiumTest extends SupportMethod{
 		
 		assertTrue(m.getPlayerById(0).getFreebusinesscard().size() == 0);
 		assertTrue(m.getPlayerById(0).getUsedbusinesscard().size() == 1);
+		
 			//controllo che è presente l'Id del player dentro la città
 		assertTrue(c.getEmporia().contains(0));
 		assertTrue(m.getPlayerById(0).getMyEmporia().contains(c));
 		
 			//creo un player falso
 		Player test = new Player(0);
-		test.setMoney(10);
+		test.setMoney(100);
 		test.setHelpers(1);
 		test.setVictoryPoints(0);
 		test.setNobilityPoints(0);
