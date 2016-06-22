@@ -92,9 +92,10 @@ public class ClientModel
 	
 	public Player getMyPlayer()
 	{
-		if(player.size() < currentId)
-			return null;
-		return player.get(currentId);
+		for (Player p : player)
+			if(p.getId() == currentId)
+				return p;
+		return null;
 	}
 	public Market getMarket() {
 		return market;
