@@ -27,7 +27,7 @@ public class View extends Observable implements Observer, Runnable
 	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
 	
 	private List<Integer> playerConnection;
-	private int activeId = 0;
+	private int activeId;
 	private boolean stop = false;
 	boolean firstRun = true;
 	
@@ -38,6 +38,7 @@ public class View extends Observable implements Observer, Runnable
 	public View(List<Integer> conns) 
 	{
 		playerConnection = conns;
+		activeId = conns.get(0);
 	}
 	
 	/**
@@ -45,9 +46,9 @@ public class View extends Observable implements Observer, Runnable
 	 */
 	private void setActive(int n) 
 	{
-		if(n < playerConnection.size() && n >= 0)
+		if(playerConnection.contains(n))
 		{
-			if(WaitingRoom.getConnection(playerConnection.get(n)).getStatus() == ConnectionStatus.DISCONNECTED)
+			if(WaitingRoom.getConnection(n).getStatus() == ConnectionStatus.DISCONNECTED)
 			{
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(n));
@@ -57,11 +58,11 @@ public class View extends Observable implements Observer, Runnable
 			{
 				if(playerIndex == n)
 				{
-					WaitingRoom.getConnection(playerConnection.get(n)).setActive();
+					WaitingRoom.getConnection(n).setActive();
 					activeId = n;
 				}
-				else if(WaitingRoom.getConnection(playerConnection.get(n)).getStatus() != ConnectionStatus.DISCONNECTED) 
-					WaitingRoom.getConnection(playerConnection.get(n)).setInactive();
+				else if(WaitingRoom.getConnection(n).getStatus() != ConnectionStatus.DISCONNECTED) 
+					WaitingRoom.getConnection(n).setInactive();
 			}
 		}
 		else return;
@@ -140,7 +141,7 @@ public class View extends Observable implements Observer, Runnable
 		else
 		{
 			try {
-				WaitingRoom.getConnection(playerConnection.get(id)).write(mex);
+				WaitingRoom.getConnection(id).write(mex);
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);

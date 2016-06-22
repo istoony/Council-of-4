@@ -41,7 +41,10 @@ public class CalculateShorterPath {
 		testForCurrentMap.add(6);
 		testForCurrentMap.add(5);
 		
-		Model m = new Model(3);
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		Model m = new Model(players);
 		City start = m.getMap().getAllCities().get(0);	
 		int i = 0;
 		for (City end : m.getMap().getAllCities()) 
