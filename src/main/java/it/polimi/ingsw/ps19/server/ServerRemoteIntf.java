@@ -14,5 +14,5 @@ public interface ServerRemoteIntf extends Remote
 	/**
 	 * Adds new player to waiting Room
 	 */
-	RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub) throws RemoteException;
+	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub, boolean newGame, int key) throws RemoteException ;
 }

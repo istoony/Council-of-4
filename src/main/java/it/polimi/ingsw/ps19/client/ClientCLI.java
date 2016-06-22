@@ -32,6 +32,9 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 /**
  * CLI User Interface
  */
+/*
+ * 
+ */
 public class ClientCLI extends ClientUI 
 {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -525,5 +528,26 @@ public class ClientCLI extends ClientUI
 				s = s.concat(getString(card) + ",");
 		s += " Price: " + order.getPrice() + "]";
 		return s;
+	}
+
+	/**
+	 * get integer from user
+	 * @param title
+	 * @return
+	 * @throws InvalidInsertionException
+	 */
+	public int getInt(String title) throws InvalidInsertionException
+	{
+		int number;
+		showNotification(title);
+		try 
+		{
+			String s = read();
+			number = Integer.getInteger(s);
+		} catch (IOException | NumberFormatException e) 
+		{
+			throw new InvalidInsertionException();
+		}
+		return number;
 	}
 }

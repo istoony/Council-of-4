@@ -5,6 +5,8 @@ import java.net.Inet4Address;
 import java.net.Socket;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
+import it.polimi.ingsw.ps19.message.requests.ConnectionMessage;
 import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
@@ -21,7 +23,7 @@ public class ClientSocketManager extends ClientManager
 	 * @param ui = userInterface
 	 * @throws InterruptedException 
 	 */
-	public ClientSocketManager(ClientUI ui) 
+	public ClientSocketManager(ClientUI ui, boolean newGame, int key) 
 	{
 		userInterface = ui;
 		int tries = 0;
@@ -43,10 +45,11 @@ public class ClientSocketManager extends ClientManager
 				Socket socket = new Socket(Inet4Address.getByName(ip), port);
 				userInterface.showNotification("Socket created");
 				connection = new SocketConnection(socket, executorService);
+				connection.write(new ConnectionMessage(newGame, key));
 				success = true;
 				t.interrupt();
 				userInterface.showNotification("Connection successful");
-			} catch (IOException e) 
+			} catch (IOException | WriterException e) 
 			{
 				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 				success = false;

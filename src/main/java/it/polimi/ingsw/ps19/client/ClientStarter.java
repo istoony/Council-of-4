@@ -18,6 +18,9 @@ public class ClientStarter
 		List<String> typesOfUserInterdace = new ArrayList<>();
 		typesOfUserInterdace.add("CLI");
 		typesOfUserInterdace.add("GUI");
+		List<String> startNewGame = new ArrayList<>();
+		startNewGame.add("New Game");
+		startNewGame.add("Recconect to old game");
 		boolean valid;
 		do
 		{
@@ -26,12 +29,20 @@ public class ClientStarter
 				valid = true;
 				int uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
  				int connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
+ 				int newGameIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
+ 				boolean newGame = true;
+ 				int key = 0;
+ 				if(newGameIndex == 1)
+ 				{
+ 					newGame = false;
+ 					key = ((ClientCLI)userInterface).getInt("Insert password for old game: ");
+ 				}
  				if(uiIndex == 1)
  					userInterface = new ClientGUI();
 				if(connIndex == 0)
-					new ClientSocketManager(userInterface);
+					new ClientSocketManager(userInterface, newGame, key);
 				else
-					new ClientRMIManager(userInterface);
+					new ClientRMIManager(userInterface, newGame, key);
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;

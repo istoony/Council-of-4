@@ -14,12 +14,11 @@ public class RMIServer extends RemoteServer implements ServerRemoteIntf
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub) throws RemoteException 
+	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub, boolean newGame, int key) throws RemoteException 
 	{
 		RMIConnection connection = new RMIConnection(clientStub);
 		RMIReaderIntf stub = connection.getReaderStub();
-		WaitingRoom.addConnection(connection);
+		WaitingRoom.addConnection(connection, newGame, key);
 		return stub;
 	}
-
 }

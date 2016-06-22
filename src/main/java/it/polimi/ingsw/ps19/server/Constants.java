@@ -16,5 +16,7 @@ public final class Constants
 	public static final int MAX_WAIT_TIME_S = 5;
 	public static final long PLAYER_TIMEOUT_TIME_S = 1200;
 	
+	public static final Cloner<Integer> INTCLONER = new Cloner<>();
+	
 	private Constants() {}
 }

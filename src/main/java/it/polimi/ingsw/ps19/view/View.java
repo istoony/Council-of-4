@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps19.view;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.TimeoutException;
@@ -16,6 +15,7 @@ import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.server.ServerManager;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.ConnectionStatus;
 
@@ -26,7 +26,7 @@ public class View extends Observable implements Observer, Runnable
 {
 	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
 	
-	private Map<Integer, Connection> playerConnection;
+	private List<Integer> playerConnection;
 	private int activeId = 0;
 	private boolean stop = false;
 	boolean firstRun = true;
@@ -35,7 +35,7 @@ public class View extends Observable implements Observer, Runnable
 	 * Constructor
 	 * @param conns: HashMap to associate players ids and connections
 	 */
-	public View(Map<Integer, Connection> conns) 
+	public View(List<Integer> conns) 
 	{
 		playerConnection = conns;
 	}
@@ -47,7 +47,7 @@ public class View extends Observable implements Observer, Runnable
 	{
 		if(n < playerConnection.size() && n >= 0)
 		{
-			if(playerConnection.get(n).getStatus() == ConnectionStatus.DISCONNECTED)
+			if(WaitingRoom.getConnection(playerConnection.get(n)).getStatus() == ConnectionStatus.DISCONNECTED)
 			{
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(n));
@@ -57,11 +57,11 @@ public class View extends Observable implements Observer, Runnable
 			{
 				if(i == n)
 				{
-					playerConnection.get(n).setActive();
+					WaitingRoom.getConnection(playerConnection.get(n)).setActive();
 					activeId = n;
 				}
-				else if(playerConnection.get(n).getStatus() != ConnectionStatus.DISCONNECTED) 
-						playerConnection.get(n).setInactive();
+				else if(WaitingRoom.getConnection(playerConnection.get(n)).getStatus() != ConnectionStatus.DISCONNECTED) 
+					WaitingRoom.getConnection(playerConnection.get(n)).setInactive();
 			}
 		}
 		else return;
@@ -87,7 +87,7 @@ public class View extends Observable implements Observer, Runnable
 		notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
 		{
-			Connection activeConn = playerConnection.get(activeId);
+			Connection activeConn = WaitingRoom.getConnection(playerConnection.get(activeId));
 			try 
 			{
 				Message recMex = activeConn.read(Constants.PLAYER_TIMEOUT_TIME_S);
@@ -123,15 +123,15 @@ public class View extends Observable implements Observer, Runnable
 		// Broadcast
 		if(id < 0)
 		{
-			for (Entry<Integer, Connection> player : playerConnection.entrySet()) 
+			for (Integer player : playerConnection) 
 			{
 				try {
-					player.getValue().write(mex);
+					WaitingRoom.getConnection(playerConnection.get(player)).write(mex);
 				} catch (WriterException e) 
 				{
 					log.log(Level.SEVERE, e.toString(), e);
 					setChanged();
-					notifyObservers(new PlayerDisconnectedMessage(player.getKey()));
+					notifyObservers(new PlayerDisconnectedMessage(player));
 				}
 			}
 		}
@@ -140,7 +140,7 @@ public class View extends Observable implements Observer, Runnable
 		else
 		{
 			try {
-				playerConnection.get(id).write(mex);
+				WaitingRoom.getConnection(playerConnection.get(id)).write(mex);
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);

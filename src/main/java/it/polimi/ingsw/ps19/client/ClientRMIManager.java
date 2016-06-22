@@ -4,8 +4,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
 import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.server.ServerRemoteIntf;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
@@ -20,7 +22,7 @@ public class ClientRMIManager extends ClientManager
 	 * Constructor that actually executes the connection via RMI
 	 * @param ui
 	 */
-	public ClientRMIManager(ClientUI ui)
+	public ClientRMIManager(ClientUI ui, boolean newGame, int key)
 	{
 		userInterface = ui;
 		int tries = 0;
@@ -35,11 +37,16 @@ public class ClientRMIManager extends ClientManager
 				String name = Constants.RMI_SERVER_STUB_NAME;
 				Registry registry = LocateRegistry.getRegistry(ip, port);
 				ServerRemoteIntf server = (ServerRemoteIntf) registry.lookup(name);
-				RMIReaderIntf writerStub = server.addNewPlayerToWR(((RMIConnection)connection).getReaderStub());
+				RMIReaderIntf writerStub = server.addNewPlayerToWR(((RMIConnection)connection).getReaderStub(), newGame, key);
+				ConnectionReply reply = (ConnectionReply) connection.read(30);
+				if(reply.getSuccessful())
+					userInterface.showNotification("You have reconnected to previous game");
+				else
+					userInterface.showNotification("New Game! your password to regain access is: " + reply.getPassword());
 				((RMIConnection)connection).loadWriter(writerStub);
 				success = true;
 			}
-			catch(RemoteException | NotBoundException e)
+			catch(RemoteException | NotBoundException | TimeoutException | InterruptedException e)
 			{
 				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 				success = false;
