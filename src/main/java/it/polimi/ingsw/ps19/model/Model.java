@@ -17,11 +17,11 @@ public class Model extends Observable
 	private ArrayList<Player> player;
 	private CurrentState currentState;
 	
-	public Model(int numberofPlayer) 
+	public Model(List<Integer> playerIdList) 
 	{
-		currentState = new CurrentState(numberofPlayer);
+		currentState = new CurrentState(playerIdList);
 		
-		playerFactory();
+		playerFactory(playerIdList);
 		
 		map = MapLoader.builder();
 		
@@ -30,15 +30,12 @@ public class Model extends Observable
 		
 	}
 	
-	private void playerFactory()
+	private void playerFactory(List<Integer> playerIdList)
 	{
 		player = new ArrayList<>();
 		
-		for(int i = 0; i < currentState.getNumberOfPlayer(); i++)
-		{
-			player.add(new Player(i));
-			currentState.addPlayer(i);
-		}
+		for (Integer p : playerIdList)
+			player.add(new Player(p));
 		Player.setStartingItems(player, FileNames.MAPFILE_PLAYERCONFIG_XML);
 	}
 	

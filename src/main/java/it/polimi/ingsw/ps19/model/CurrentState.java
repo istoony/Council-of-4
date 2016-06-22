@@ -1,7 +1,10 @@
 package it.polimi.ingsw.ps19.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import it.polimi.ingsw.ps19.server.WaitingRoom;
 
 public class CurrentState 
 {
@@ -10,26 +13,24 @@ public class CurrentState
 	private Boolean timeToMarketSended;
 	
 	private int numberOfPlayer;
-	private Map<Integer, Boolean> connection;
 	
 	private Map<Integer, Boolean> marketState;
+	private List<Integer> playerIdList;
 	
 	
-	public CurrentState(int numberOfPlayer) 
+	public CurrentState(List<Integer> playerIdList) 
 	{
-		playerTurnId = 0;
+		playerTurnId = playerIdList.get(0);
 		timeToMarket = false;
-		this.numberOfPlayer = numberOfPlayer;
-		connection = new HashMap<>();
+		this.numberOfPlayer = playerIdList.size();
 		marketState = new HashMap<>();
+		for (Integer playerId : playerIdList)
+		{
+			marketState.put(playerId, false);
+			this.playerIdList.add(playerId);
+		}
 	}
-	
-	public void addPlayer(int id)
-	{
-		connection.put(id, true);
-		marketState.put(id, false);
-	}
-	
+		
 	public void setPlayerTurnId(int playerTurnId) 
 	{
 		this.playerTurnId = playerTurnId;
@@ -59,7 +60,7 @@ public class CurrentState
 	{
 		return numberOfPlayer;
 	}
-	
+	/*
 	public void disconnectPlayer(int id)
 	{
 		connection.put(id, false);
@@ -68,15 +69,22 @@ public class CurrentState
 	public boolean isConnectedById(int id)
 	{
 		return connection.get(id);
-	}
+	}*/
 	
+	/**
+	 * Questa funzione ritorna il prossimo player se gli passo
+	 * il player che sta giocando adesso
+	 * altrimenti non cambia il turno
+	 * @param i
+	 * @return
+	 */
 	public int giveNextCorrectId(int i)
 	{
 		int next = playerTurnId;
 		if(playerTurnId == i)
-			next= (playerTurnId + 1) % numberOfPlayer;
-		while(!connection.get(next))
-			next = (next + 1) % numberOfPlayer;
+			next= playerIdList.get((playerIdList.indexOf(i) + 1) % numberOfPlayer);
+		while(!WaitingRoom.isConnected(next))
+			next= playerIdList.get((playerIdList.indexOf(i) + 1) % numberOfPlayer);
 		return next;
 	}
 	
@@ -91,8 +99,8 @@ public class CurrentState
 	public int getNumberOfDisconnectedPlayer() 
 	{
 		int n = 0;
-		for(int i = 0; i<connection.size(); i++)
-			if(!connection.get(i))
+		for (Integer i : playerIdList)
+			if(!WaitingRoom.isConnected(i))
 				n++;
 		return n;
 	} 
@@ -104,8 +112,8 @@ public class CurrentState
 
 	public boolean isTimeToEndMarket() 
 	{
-		for(int i = 0; i<marketState.size(); i++)
-			if(!marketState.get(i) && connection.get(i))
+		for (Integer i : playerIdList)
+			if(!marketState.get(i) && WaitingRoom.isConnected(i))
 				return false;
 		return true;
 	}

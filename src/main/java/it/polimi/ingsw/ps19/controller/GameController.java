@@ -15,7 +15,8 @@ import it.polimi.ingsw.ps19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.parameter.Costants;;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.server.WaitingRoom;;
 
 /**
  * The Class GameController.
@@ -180,7 +181,7 @@ public class GameController implements Observer
 	{
 		for (Player p : model.getPlayer()) 
 			if((p.getMainActionCounter()!=0 || p.getFastActionCounter()!=0) && 
-					model.getCurrentState().isConnectedById(p.getId()))
+					WaitingRoom.isConnected(p.getId()))
 			{
 				model.getCurrentState().setTimeToMarket(false);
 				model.getCurrentState().setTimeToMarketSended(false);
