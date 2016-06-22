@@ -1,19 +1,21 @@
 package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class ActionTypeChooserPanel extends JPanel implements ActionListener{
+import it.polimi.ingsw.ps19.client.ClientGUI;
+
+public class ActionTypeChooserPanel extends JPanel{
+	
+	private static final long serialVersionUID = -2127659641196167037L;
 	
 	private static final String MAIN_ACTION_TEXT = "Main Actions";
 	private static final String FAST_ACTION_TEXT = "Fast Actions";
 	private static final String MAIN_ACTION_TOOLT = "Take a Main Actions";
 	private static final String FAST_ACTION_TOOLT= "Take a Fast Actions";
-	private static final String MAIN_ACTION_COMMAND = "Take a Main Actions";
-	private static final String FAST_ACTION_COMMAND= "Take a Fast Actions";
+
 	
 	private JButton mainButton;
 	private JButton fastButton;
@@ -25,14 +27,12 @@ public class ActionTypeChooserPanel extends JPanel implements ActionListener{
 
 		mainButton = new JButton(MAIN_ACTION_TEXT);
 		mainButton.setToolTipText(MAIN_ACTION_TOOLT);
-		mainButton.setActionCommand(MAIN_ACTION_COMMAND);
-		mainButton.addActionListener(this);
-		mainButton.setEnabled(true);
+
+		mainButton.setEnabled(false);
 		
 		fastButton = new JButton(FAST_ACTION_TEXT);
 		fastButton.setToolTipText(FAST_ACTION_TOOLT);
-		fastButton.setActionCommand(FAST_ACTION_COMMAND);
-		fastButton.addActionListener(this);
+
 		fastButton.setEnabled(false);
 		
 		add(mainButton);
@@ -40,15 +40,23 @@ public class ActionTypeChooserPanel extends JPanel implements ActionListener{
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent arg) {
-		if(arg.getActionCommand().equals(MAIN_ACTION_COMMAND)){
-			//TODO send command and get a clientactionchooser
-			// 
-		}
-		else if(arg.getActionCommand().equals(FAST_ACTION_COMMAND)){
-			
-		}
+	protected void setListener(ClientGUI al){
+		mainButton.setActionCommand(ClientGUI.getMainActionCommand());
+		mainButton.addActionListener(al);
+		fastButton.setActionCommand(ClientGUI.getFastActionCommand());
+		fastButton.addActionListener(al);
+	}
+	
+	protected void enableButtons(){
+		mainButton.setEnabled(true);
+		fastButton.setEnabled(true);
+		repaint();
+	}
+	
+	protected void disableButtons(){
+		mainButton.setEnabled(false);
+		fastButton.setEnabled(false);
+		repaint();
 	}
 	
 }

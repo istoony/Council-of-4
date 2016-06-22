@@ -1,13 +1,7 @@
 package it.polimi.ingsw.ps19.client.guicomponents;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -19,8 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
+import it.polimi.ingsw.ps19.client.ClientGUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
@@ -41,8 +34,12 @@ public class InfoCell extends JPanel implements ActionListener{
 	private static final String INDENTATION = "    ";
 	private static final String INDENTATION_2ND_POLITIC ="                                         ";
 	
+	ClientGUI listener;
+	
 	private List<JLabel> infos;
 	private JFrame nobility;
+	private ActionTypeChooserPanel actionsType;
+	private ActionChooserPanel actions;
 	
 	protected InfoCell(){
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -51,7 +48,6 @@ public class InfoCell extends JPanel implements ActionListener{
 	}
 	
 	protected void setInfo(ClientModel m){
-		//setLayout(new FlowLayout());
 		setLayout(new GridLayout(7, 0));
 		setToolTipText(TOOLTIP0);
 		infos = constructInfoCell(m);
@@ -63,12 +59,27 @@ public class InfoCell extends JPanel implements ActionListener{
 		nb.addActionListener(this);
 		add(nb);
 		
-		ActionTypeChooserPanel actionsType = new ActionTypeChooserPanel();
+		actionsType = new ActionTypeChooserPanel();
 		add(actionsType);
-		//TODO
-		ActionChooserPanel actions = new ActionChooserPanel();
+
+		actions = new ActionChooserPanel();
 		add(actions);
 	}
+	
+	public void setListerner(ClientGUI g){
+		listener=g;
+		actionsType.setListener(g);
+	}
+	
+	public void enableActionType(){
+		actionsType.enableButtons();
+	}
+	
+	public void disableActionType(){
+		actionsType.disableButtons();
+	}
+	
+	
 	
 	protected void updateInfo(ClientModel m){
 		removeAll();
@@ -218,6 +229,13 @@ public class InfoCell extends JPanel implements ActionListener{
 			showNobility(((NobilityButton) e.getSource()).getPath());
 		}
 		
+	}
+
+	/**
+	 * @return the actions
+	 */
+	public ActionChooserPanel getActions() {
+		return actions;
 	}
 
 }
