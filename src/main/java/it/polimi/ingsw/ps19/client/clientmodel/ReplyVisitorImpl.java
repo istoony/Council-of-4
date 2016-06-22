@@ -73,7 +73,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	@Override
 	public ClientUpdate display(WaitingPlayerForMarketReply message) 
 	{
-		return new WaitingPlayerForMarketUpdate(message.getResult(), message.getActivePlayer());
+		return new WaitingPlayerForMarketUpdate(message.getResult());
 	}
 	@Override
 	public ClientUpdate display(GetBusinessCardOrCityBonusReply message) 
