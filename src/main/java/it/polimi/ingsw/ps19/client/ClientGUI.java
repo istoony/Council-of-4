@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps19.client;
 
 import java.awt.Color;
-import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;

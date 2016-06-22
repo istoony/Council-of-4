@@ -61,7 +61,7 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 			if(		!(model.getMyPlayer().getMyEmporia().contains(c))
 				&&  c.getEmporia().size() < model.getMyPlayer().getHelpers() 
 				&&	Costants.JUMPCOST * (model.calculateShorterPath(model.getKing().getCurrentcity(), c).size() - 1) < model.getMyPlayer().getMoney())
-				availableCities.put(c, Costants.JUMPCOST * model.calculateShorterPath(model.getKing().getCurrentcity(), c).size() -1);
+				availableCities.put(c, Costants.JUMPCOST * (model.calculateShorterPath(model.getKing().getCurrentcity(), c).size() -1));
 		}
 		return availableCities;
 	}

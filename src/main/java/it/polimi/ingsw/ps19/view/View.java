@@ -87,7 +87,7 @@ public class View extends Observable implements Observer, Runnable
 		notifyObservers(new SendFullGameMessage(-1));
 		while(!stop)
 		{
-			Connection activeConn = WaitingRoom.getConnection(playerConnection.get(activeId));
+			Connection activeConn = WaitingRoom.getConnection(activeId);
 			try 
 			{
 				Message recMex = activeConn.read(Constants.PLAYER_TIMEOUT_TIME_S);

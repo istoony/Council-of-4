@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Notify extends JFrame implements Runnable{
 	
@@ -43,7 +42,9 @@ public class Notify extends JFrame implements Runnable{
 	}
 	
 	public void setStuff(){
-		List<JLabel> temp = new ArrayList<>();
+		setAutoRequestFocus(true);
+		setAlwaysOnTop(true);
+		List<JLabel> temp;
 		if(text.size()>N){
 			temp = text.subList(4, text.size());
 			text.clear();

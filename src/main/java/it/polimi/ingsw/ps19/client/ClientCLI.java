@@ -319,7 +319,8 @@ public class ClientCLI extends ClientUI
 			s = s.concat("\n\n");
 		}
 		s += "Active Player ID: " + model.getActiveplayer();
-		s += "\n--------------------------------------\n\n";
+		s += "\n--------------------------------------\n";
+		s += "You are player: " + model.getMyPlayer().getId() + "\n\n";
 		return s;
 	}
 	
@@ -480,7 +481,6 @@ public class ClientCLI extends ClientUI
 		return s;
 	}
 
-	
 	@Override
 	public Order getOrder(List<Order> orders) throws InvalidInsertionException 
 	{
@@ -492,7 +492,6 @@ public class ClientCLI extends ClientUI
 		return orders.get(index);
 	}
 
-	
 	@Override
 	public void showMarket(Market market) 
 	{
