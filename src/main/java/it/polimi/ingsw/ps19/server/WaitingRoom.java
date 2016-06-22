@@ -39,7 +39,7 @@ public class WaitingRoom
 	private static ExecutorService executorService = Executors.newFixedThreadPool(Constants.MAX_PLAYERS);	//Thread pool used by connections for writing
 	private static Mutex mux = new Mutex();																	//Mutex
 	
-	private static int counter = 0;
+	private static int counter = 10;
 	
 	private WaitingRoom(){}
 	

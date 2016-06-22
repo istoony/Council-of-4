@@ -12,6 +12,7 @@ import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
 import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.StringMessage;
@@ -60,6 +61,14 @@ public class ClientInterpreter extends Observable implements Observer
 		else if(arg instanceof StringMessage)
 		{
 			userInterface.showNotification(((StringMessage)arg).toString());
+			return;
+		}
+		else if(arg instanceof ConnectionReply)
+		{
+			if(((ConnectionReply)arg).getSuccessful())
+				userInterface.showNotification("Reconeccted to Game");
+			else
+				userInterface.showNotification("Connected! Your connection password is: " + ((ConnectionReply)arg).getPassword());
 			return;
 		}
 		else if(arg instanceof Reply)

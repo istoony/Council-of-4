@@ -543,7 +543,7 @@ public class ClientCLI extends ClientUI
 		try 
 		{
 			String s = read();
-			number = Integer.getInteger(s);
+			number = Integer.parseInt(s);
 		} catch (IOException | NumberFormatException e) 
 		{
 			throw new InvalidInsertionException();
