@@ -7,6 +7,8 @@ public class CurrentState
 {
 	private int playerTurnId;
 	private Boolean timeToMarket;
+	private Boolean timeToMarketSended;
+	
 	private int numberOfPlayer;
 	private Map<Integer, Boolean> connection;
 	
@@ -40,9 +42,17 @@ public class CurrentState
 	{
 		this.timeToMarket = timeToMarket;
 	}
-	public Boolean getTimeToMarket() 
+	public Boolean isTimeToMarket() 
 	{
 		return timeToMarket;
+	}
+	public Boolean isTimeToMarketSended() 
+	{
+		return timeToMarketSended;
+	}
+	public void setTimeToMarketSended(Boolean timeToMarketSended) 
+	{
+		this.timeToMarketSended = timeToMarketSended;
 	}
 	
 	public int getNumberOfPlayer() 
@@ -95,8 +105,13 @@ public class CurrentState
 	public boolean isTimeToEndMarket() 
 	{
 		for(int i = 0; i<marketState.size(); i++)
-			if(!marketState.get(i))
+			if(!marketState.get(i) && connection.get(i))
 				return false;
 		return true;
+	}
+
+	public boolean isPlayerBought(int playerId)
+	{
+		return marketState.get(playerId);
 	}
 }

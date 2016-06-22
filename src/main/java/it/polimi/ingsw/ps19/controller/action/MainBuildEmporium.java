@@ -39,6 +39,7 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		player.setHelpers(model.getPlayerById(playerId).getHelpers() - numberOfHelpers);
 		
 		model.getMap().getRegionByType(region).getCityById(cityid).buildEmporium(player);
+		model.getPlayerById(playerId).addToMyEmporia(model.getMap().getRegionByType(region).getCityById(cityid));
 		
 		//Assegno i bonus al player, per ogni città trovata e
 		//per ogni bonus presente nella città applico il bonus e controllo il 

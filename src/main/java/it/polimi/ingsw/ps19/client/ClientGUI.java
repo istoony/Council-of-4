@@ -137,7 +137,7 @@ public class ClientGUI extends ClientUI{
 	}
 	
 	public static void main(String args[]){
-		Model mm = new Model(3);
+		Model mm = new Model(10);
 		ClientModel m = new ClientModel(mm);
 		m.getMyPlayer().setStartingAction();
 

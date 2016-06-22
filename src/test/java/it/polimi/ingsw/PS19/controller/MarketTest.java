@@ -9,6 +9,10 @@ import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
 import it.polimi.ingsw.ps19.controller.action.ActionMessages;
+import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
+import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
+import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
+import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
@@ -88,21 +92,107 @@ public class MarketTest {
 		g.update(null, endTurn1);
 		
 		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 0);
+		/**
+		 * Finito di eseguire le azioni principali imposto il time to market
+		 */
+		assertTrue(m.getCurrentState().isTimeToMarket());
 		
-		assertTrue(m.getCurrentState().getTimeToMarket());
-		
+		/**
+		 * il player 0 crea l'ordine
+		 */
 		Order o = new Order();
 		o.setHelper(1);
 		o.addPoliticsCard(m.getPlayerById(0).getPoliticcard().get(0).getColor());
 		o.setPrice(3);
 		
 		SendOrderMessage order = new SendOrderMessage(o);
+		order.setId(0);
 	
 		g.update(null, order);
 		
+		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof WaitingPlayerForMarketReply);
+		
 		assertTrue(m.getMarket().getSize() == 1);
 		assertTrue(m.getMarket().getListoforder().get(0) == o);
+		assertTrue(!m.getCurrentState().isPlayerBought(0));
+		assertTrue(m.getCurrentState().isTimeToMarket());
 		
+		/**
+		 * il player 1 crea l'ordine
+		 */
+		Order o1 = new Order();
+		o1.setHelper(1);
+		o1.addPoliticsCard(m.getPlayerById(0).getPoliticcard().get(0).getColor());
+		o1.setPrice(3);
+		
+		SendOrderMessage order1 = new SendOrderMessage(o1);
+		order1.setId(1);
+		
+	
+		g.update(null, order1);
+		
+		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof CompleteMarketReply);
+		
+		assertTrue(m.getMarket().getSize() == 2);
+		assertTrue("marketsize: " + m.getMarket().getListoforder().get(1), m.getMarket().getListoforder().get(1) == o1);
+		assertTrue(!m.getCurrentState().isPlayerBought(1));
+		assertTrue(m.getCurrentState().isTimeToMarket());
+		
+		/**
+		 * ricevuti entrambi gli ordini controllo il messaggio che il server invia ai client
+		 */
+		
+		CompleteMarketReply market = (CompleteMarketReply) g.getReply();
+		
+		assertTrue(market.getMarket() == m.getMarket());
+		assertTrue(market.getActivePlayer() == 0 || market.getActivePlayer() == 1);
+		assertTrue(market.getId() == -1);
+		assertTrue(m.getCurrentState().isTimeToMarket());
+		assertTrue(m.getMarket().getSize() == 2);
+		
+		/**
+		 * dato che il turno è casuale creo la variabile e lavoro su questa.
+		 */
+		
+		int playerturn = market.getActivePlayer();
+		BuyOrderMessage buyOrder;
+		if(playerturn == 0)
+			buyOrder = new BuyOrderMessage(o1, 1);
+		else
+			buyOrder = new BuyOrderMessage(o, 0);
+		buyOrder.setId(playerturn);
+		
+		g.update(null, buyOrder);
+		
+		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof CompleteMarketReply);
+		assertTrue(m.getCurrentState().isTimeToMarket());
+		assertTrue(m.getMarket().getSize() == 1);
+		
+		/**
+		 * dato che il turno è casuale creo la variabile e lavoro su questa.
+		 * Leggo il turno successivo con l'active player
+		 * cambia la risposta
+		 */
+		CompleteMarketReply market2 = (CompleteMarketReply) g.getReply();
+		assertTrue(market != market2);
+		
+		int playerturn2 = market2.getActivePlayer();
+		
+		assertTrue(playerturn != playerturn2);
+		
+		BuyOrderMessage buyOrder2;
+		if(playerturn2 == 0)
+			buyOrder2 = new BuyOrderMessage(o1, 1);
+		else
+			buyOrder2 = new BuyOrderMessage(o, 0);
+		buyOrder2.setId(playerturn2);
+		
+		g.update(null, buyOrder2);
+		
+		//assertTrue("class: "+ g.getReply().getClass(),g.getReply() instanceof SendFullPlayerReply);
+		assertTrue(!m.getCurrentState().isTimeToMarket());
+		assertTrue("marketsize: " + m.getMarket().getSize(), m.getMarket().getSize() == 0);
+		assertTrue("class: "+ g.getReply().getClass(),g.getReply() instanceof SendFullPlayerReply);
 	}
 
 }
