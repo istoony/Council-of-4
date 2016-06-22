@@ -63,10 +63,10 @@ public class InfoCell extends JPanel implements ActionListener{
 		nb.addActionListener(this);
 		add(nb);
 		
-		ActionChooserPanel actionsType = new ActionChooserPanel();
+		ActionTypeChooserPanel actionsType = new ActionTypeChooserPanel();
 		add(actionsType);
 		//TODO
-		ActionChooserPanel actions = new ActionChooserPanel(new MainAction(m));
+		ActionChooserPanel actions = new ActionChooserPanel();
 		add(actions);
 	}
 	
