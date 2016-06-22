@@ -226,4 +226,13 @@ public class WaitingRoom
  			}
  		}
  	}
+ 	
+ 	/**
+ 	 * connectedUsers setter for test purposes
+ 	 * @param newMap
+ 	 */
+ 	public static void setConnection(Map<Integer,Connection> newMap)
+ 	{
+ 		connectedUsers = newMap;
+ 	}
 }

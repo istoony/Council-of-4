@@ -16,6 +16,15 @@ public class RMIConnection extends Connection
 {
 	RMIReader reader;
 	LinkedBlockingQueue<Message> fifo = new LinkedBlockingQueue<>();
+	
+	/**
+	 * Fake constructor for test purposes
+	 * @param fake
+	 */
+	public RMIConnection(boolean fake)
+	{
+		
+	}
 	/**
 	 * Constructo
 	 */

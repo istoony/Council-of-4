@@ -19,6 +19,17 @@ public class SocketConnection extends Connection
 {
 	private Socket clientSocket;
 	private SocketReader reader;
+	
+	
+	/**
+	 * Fake constructor for test purposes
+	 * @param fake
+	 */
+	public SocketConnection(boolean fake)
+	{
+		
+	}
+	
 	/**
 	 * Constructor
 	 * @param client: socket
