@@ -53,9 +53,9 @@ public class View extends Observable implements Observer, Runnable
 				notifyObservers(new PlayerDisconnectedMessage(n));
 				return;
 			}
-			for(int i = 0; i < playerConnection.size(); i++)
+			for (Integer playerIndex : playerConnection)
 			{
-				if(i == n)
+				if(playerIndex == n)
 				{
 					WaitingRoom.getConnection(playerConnection.get(n)).setActive();
 					activeId = n;
