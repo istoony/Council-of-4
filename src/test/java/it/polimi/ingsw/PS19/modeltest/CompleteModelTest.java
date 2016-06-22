@@ -2,6 +2,9 @@ package it.polimi.ingsw.PS19.modeltest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
@@ -11,7 +14,13 @@ public class CompleteModelTest {
 
 	@Test
 	public void test() {
-		Model model = new Model(4);
+		
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		players.add(2);
+		players.add(3);
+		Model model = new Model(players);
 		
 		
 		//Politic deck != 0

@@ -24,8 +24,6 @@ import it.polimi.ingsw.ps19.server.WaitingRoom;;
 public class GameController implements Observer
 {
 	
-	private static final int TIME_TO_MARKET_ACTIVE_PLAYER = -1;
-
 	/** The model. */
 	private Model model;
 	
@@ -153,7 +151,8 @@ public class GameController implements Observer
 	{
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
-				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest())
+				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest() &&
+				!model.getCurrentState().isTimeToMarket())
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			changeTurn();
@@ -189,7 +188,7 @@ public class GameController implements Observer
 			}
 		model.getCurrentState().setTimeToMarket(true);
 		model.getCurrentState().setTimeToMarketSended(false);
-		reply.setActivePlayer(TIME_TO_MARKET_ACTIVE_PLAYER);
+		reply.setActivePlayer(-1);
 	}
 	
 	/**

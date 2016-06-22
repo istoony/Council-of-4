@@ -17,7 +17,10 @@ public class NetCityBonusTest {
 	@Test
 	public void test() 
 	{
-		Model model = new Model(2);
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		Model model = new Model(players);
 		Player p = model.getPlayerById(0);
 		
 		//copio il puntatore della città dentro la variabile

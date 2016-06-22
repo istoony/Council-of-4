@@ -4,6 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -16,12 +19,14 @@ import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
-import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
 public class MarketTest {
 
@@ -29,23 +34,36 @@ public class MarketTest {
 	public void test() 
 	{
 		//ID 0 - 1 - 2
-		Model m = new Model(3);
+		Connection uno = new RMIConnection();
+		Connection due = new RMIConnection();
+		Map<Integer, Connection> wRoom = new HashMap<>();
+		wRoom.put(0, uno);
+		wRoom.put(1, due);
+		
+		WaitingRoom.setConnection(wRoom);
+		
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		//players.add(2);
+		
+		Model m = new Model(players);
 		
 		GameController g = new GameController(m);
 		
 		m.getPlayerById(0).setMoney(100);
 		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100);
 		//Disconnetto il 2
-		PlayerDisconnectedMessage disconnected = new PlayerDisconnectedMessage(2);
+		//PlayerDisconnectedMessage disconnected = new PlayerDisconnectedMessage(2);
 		
-		assertTrue(null, m.getCurrentState().getPlayerTurnId() == 0);
+		//assertTrue(null, m.getCurrentState().getPlayerTurnId() == 0);
 		
-		g.update(null, disconnected);
+		/*g.update(null, disconnected);
 		
 		assertTrue("turn: "+ m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 0);
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.PLAYER_DISCONNECTED + "2"));
 		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 7);
-
+		*/
 		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
 		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
 		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
@@ -66,7 +84,7 @@ public class MarketTest {
 		
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 7);
-		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
+		assertTrue("counter: " + m.getPlayerById(0).getMainActionCounter(), m.getPlayerById(0).getMainActionCounter() == 0);
 		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100 - 4 - 2);
 		//assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8 - 4);
 
@@ -91,7 +109,7 @@ public class MarketTest {
 		
 		g.update(null, endTurn1);
 		
-		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 0);
+		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 1);
 		/**
 		 * Finito di eseguire le azioni principali imposto il time to market
 		 */

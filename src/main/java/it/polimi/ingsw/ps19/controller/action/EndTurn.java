@@ -44,7 +44,7 @@ public class EndTurn implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		return new EndTurnReply(model.getCurrentState().getPlayerTurnId(),
-				result,model.getPlayer());
+				result, model.getPlayer());
 	}
 
 }

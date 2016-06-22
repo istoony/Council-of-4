@@ -4,6 +4,7 @@ package it.polimi.ingsw.ps19.model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class Market implements Serializable
@@ -27,8 +28,8 @@ public class Market implements Serializable
 	public Map<Integer, Order> getListoforder() 
 	{
 		Map<Integer, Order> temp = new HashMap<>();
-		for (int i=0; i<listoforder.size(); i++) 
-			temp.put(i, listoforder.get(i));
+		for (Entry<Integer, Order> entry : listoforder.entrySet())
+			temp.put(entry.getKey(), entry.getValue());
 		return temp;
 	}
 	

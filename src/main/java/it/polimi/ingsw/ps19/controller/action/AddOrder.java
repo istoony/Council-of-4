@@ -48,6 +48,6 @@ public class AddOrder implements Action
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 		
-		return new WaitingPlayerForMarketReply(Costants.NO_ACTIVE_PLAYER, result + ". Waiting For Player");
+		return new WaitingPlayerForMarketReply(model.getCurrentState().giveNextCorrectId(playerId), result + ". Waiting For Player");
 	}
 }
