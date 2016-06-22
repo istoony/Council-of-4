@@ -29,7 +29,7 @@ public class ClientStarter
 				valid = true;
 				int uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
  				int connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
- 				int newGameIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
+ 				int newGameIndex = ((ClientCLI)userInterface).getValues(startNewGame);
  				boolean newGame = true;
  				int key = 0;
  				if(newGameIndex == 1)
