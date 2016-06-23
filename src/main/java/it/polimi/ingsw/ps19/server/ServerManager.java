@@ -44,10 +44,6 @@ public class ServerManager
 		//RMI Init
 		try 
 		{
-			/*
-			if(System.getSecurityManager() == null)
-				System.setSecurityManager(new SecurityManager());
-			//*/
 			ServerRemoteIntf rmiServer = new RMIServer();
 			ServerRemoteIntf stub = (ServerRemoteIntf) UnicastRemoteObject.exportObject(rmiServer, 0);
 			String name = Constants.RMI_SERVER_STUB_NAME;
@@ -82,7 +78,7 @@ public class ServerManager
 			log.log(Level.SEVERE, e.toString(), e);
 		}
 		
-		//Waitnig Room Init
+		//Waiting Room Init
 		WaitingRoom.startTimer();
 		while(!stop)
 		{

@@ -32,11 +32,6 @@ public class RMIReader implements RMIReaderIntf, Runnable
 		fifo = fifoQueue;
 		try 
 		{
-			/*
-			if(System.getSecurityManager() == null)
-				System.setSecurityManager(new SecurityManager());
-			*/
-			//RMIReaderIntf rmiReader = this;
 			stub = (RMIReaderIntf) UnicastRemoteObject.exportObject(this, 0);
 			String name = new SecureRandom().toString();
 			Registry registry;
@@ -45,6 +40,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
 			}catch(ExportException e)
 			{
+				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
 			}
 			registry.rebind(name, stub);

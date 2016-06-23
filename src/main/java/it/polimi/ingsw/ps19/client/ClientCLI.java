@@ -134,7 +134,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				showNotification("Invalid Insertion");
+				showNotification(ClientConstants.INVALID_INSERTION);
 				log.log(Level.SEVERE, e.toString(), e);
 				strings.clear();
 			}
@@ -221,7 +221,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln("Invalid Insertion");
+			writeln(ClientConstants.INVALID_INSERTION);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
@@ -439,7 +439,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln("Invalid Insertion");
+			writeln(ClientConstants.INVALID_INSERTION);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
@@ -459,7 +459,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln("Invalid Insertion");
+			writeln(ClientConstants.INVALID_INSERTION);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}

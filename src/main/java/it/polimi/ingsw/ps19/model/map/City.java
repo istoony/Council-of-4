@@ -82,7 +82,8 @@ public class City implements Serializable {
 
 	public List<City> getNeighbours() 
 	{
-		return Costants.clone(neighbours);
+		return neighbours;
+		//return Costants.clone(neighbours);
 	}
 
 	//aggiungi vicini
