@@ -10,21 +10,24 @@ import it.polimi.ingsw.ps19.message.requests.Request;
 public class PlayerDisconnectedUpdate extends ClientUpdate {
 
 	private String result;
-	
+	private int activePlayer;
 	
 	/**
 	 * Constructor
+	 * @param activePlayer 
 	 * @param res: result
 	 */
-	public PlayerDisconnectedUpdate(String res) 
+	public PlayerDisconnectedUpdate(String res, int activeP) 
 	{
 		result = res;
+		activePlayer = activeP;
 	}
 	
 	@Override
 	public void update(ClientModel model) 
 	{
 		model.setResult(result);
+		model.setActiveplayer(activePlayer);
 	}
 	
 	@Override
