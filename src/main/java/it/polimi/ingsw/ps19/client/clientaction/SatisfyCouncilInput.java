@@ -44,6 +44,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	private int getCost(Balcony balcony, List<PoliticsCard> cards)
 	{
 		int cost = 13;
+		cost -= (getJollyNumber(cards) * 2);
 		for(Color balconyColor : balcony.getCouncilcolor())
 			for(int i = 0; i < cards.size(); i++)
 			{
@@ -56,8 +57,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				}
 				if(cost == 1)
 					cost = 0;
-			}
-		cost -= getJollyNumber(cards) * 2; 
+			} 
 		return cost;
 	}
 	
