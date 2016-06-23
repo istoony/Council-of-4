@@ -48,7 +48,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 			setTitle("Choose the color");
 			pane.setToolTipText("Choose the color");
 			for(Object  o : obj){
-				createButtons(((Color)o).toString(), gui);
+				createButtons((colorString((Color)o)), gui);
 			}
 		}
 		else if(obj.get(0) instanceof PoliticsCard){
@@ -142,6 +142,32 @@ public class QuestionFrame extends JFrame implements Runnable{
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 
+	
+	private String colorString(Color c){
+		String s="";
+		if(c.equals(Color.decode("#FF0000"))){
+			s= "Red";
+		}
+		else if(c.equals(Color.decode("#0000FF"))){
+			s= "Blue";
+		}
+		else if(c.equals(Color.decode("#FF7F00"))){
+			s= "Orange";
+		}
+		else if(c.equals(Color.decode("#000000"))){
+			s= "White";
+		}
+		else if(c.equals(Color.decode("#FFFFFF"))){
+			s=  "Black";
+		}
+		else if(c.equals(Color.decode("#FFC0CB"))){
+			s= "Pink";
+		}
+		return s;
+	}
+	
+	
+	
 
 	/**
 	 * @return the input

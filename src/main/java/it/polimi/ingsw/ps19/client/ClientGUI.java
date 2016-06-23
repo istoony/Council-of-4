@@ -31,12 +31,12 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	Notify pop = new Notify("Waiting for messages..");
 	QuestionFrame ask;
 	
-	volatile List<ClientAction> actionTemp;
-	volatile List<RegionType> regionTemp;
-	volatile List<Color> colorTemp;
-	volatile List<PoliticsCard> politicTemp;
-	volatile List<BusinessCard> businessTemp;
-	volatile List<City> cityTemp;
+	volatile List<ClientAction> actionTemp = new ArrayList<>();
+	volatile List<RegionType> regionTemp = new ArrayList<>();
+	volatile List<Color> colorTemp = new ArrayList<>();
+	volatile List<PoliticsCard> politicTemp = new ArrayList<>();
+	volatile List<BusinessCard> businessTemp = new ArrayList<>();
+	volatile List<City> cityTemp = new ArrayList<>();
 	
 	static volatile List<Integer> index;
 
@@ -78,24 +78,23 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public ClientAction getAction(List<ClientAction> actions) {
 		index.clear();
-		actionTemp=actions;
+		actionTemp.addAll(actions);
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().generateActions(actions);
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().setListener(this);
 		window.getFrame().revalidate();
 		window.getFrame().repaint();
 		while(index.isEmpty()){
-			//wait the button to be pressed
+			//wait button
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().disableButtons();
 		actionTemp.clear();
-		showNotification("here ok");
 		return actions.get(index.get(0));
 	}
 
 	@Override
 	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException {
 		index.clear();
-		regionTemp=regions;
+		regionTemp.addAll(regions);
 		ask = new QuestionFrame(this, regions);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
@@ -109,7 +108,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException {
 		index.clear();
-		colorTemp=validColors;
+		colorTemp.addAll(validColors);
 		ask = new QuestionFrame(this, validColors);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
@@ -122,8 +121,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException {
 		index.clear();
-		regionTemp=regions;
+		regionTemp.addAll(regions);
 		ask = new QuestionFrame(this, regions);
+		ask.run();
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -157,14 +157,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
 		index.clear();
-		politicTemp=cards;
+		politicTemp.addAll(cards);
 		ask = new QuestionFrame(this, cards);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
@@ -178,7 +177,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public City getCity(List<City> cities) throws InvalidInsertionException {
 		index.clear();
-		cityTemp=cities;
+		cityTemp.addAll(cities);
 		ask = new QuestionFrame(this, cities);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
@@ -191,7 +190,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public City getCity(Map<City, Integer> citiesECost) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -245,14 +243,22 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(e.getActionCommand().equals(FAST_ACTION_COMMAND)){
 			index.add(1);
 		}
-		actionCheck(e);
-		regionCheck(e);	
-		colorCheck(e);
-		cityCheck(e);
-		textReader(e);
-		numberCheck(e);
-		
-		
+		else if(!actionTemp.isEmpty()){
+			actionCheck(e);
+		}
+		else if(!regionTemp.isEmpty()){
+			regionCheck(e);	
+		}
+		else if(!colorTemp.isEmpty()){
+			colorCheck(e);
+		}
+		else if(!cityTemp.isEmpty()){
+			cityCheck(e);
+		}
+		else {
+			numberCheck(e);
+			textReader(e);
+		}					
 		// TODO Auto-generated method stub
 		
 	}
