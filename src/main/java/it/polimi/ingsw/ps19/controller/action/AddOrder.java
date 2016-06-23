@@ -22,6 +22,7 @@ public class AddOrder implements Action
 	public Boolean execute(Model model) 
 	{
 		model.getMarket().addOrder(order, playerId);
+		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
@@ -37,7 +38,6 @@ public class AddOrder implements Action
 	}
 
 	@Override
-	//TODO: controllare per i player disconnessi---> testare che teoricamente funziona
 	public Reply createReplyMessage(Model model) 
 	{
 		int idTurn = model.getCurrentState().giveRandomTurn();
@@ -46,6 +46,6 @@ public class AddOrder implements Action
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 		
-		return new WaitingPlayerForMarketReply(model.getCurrentState().giveNextCorrectId(playerId), result + ". Waiting For Player");
+		return new WaitingPlayerForMarketReply(model.getCurrentState().getPlayerTurnId(), result + ". Waiting For Player");
 	}
 }

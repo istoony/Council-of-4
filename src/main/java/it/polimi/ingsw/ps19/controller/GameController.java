@@ -118,14 +118,16 @@ public class GameController implements Observer
 			model.getCurrentState().setTimeToMarket(false);
 			model.getCurrentState().resetPlayerTurnId();
 			
-			changeTurn();
+			for (Player player : model.getPlayer())
+				player.setStartingAction();
+			
+			politicCardToDrawToCurrentPlayer();
 			
 			reply = new SendFullPlayerReply(model.getCurrentState().getPlayerTurnId(), 
 					reply.getResult(), model.getPlayer());
 			reply.setId(Costants.BROADCAST_MESSAGE);
 			
 			model.getCurrentState().resetMarket();
-			
 		}
 		
 	}
@@ -159,20 +161,11 @@ public class GameController implements Observer
 				!model.getCurrentState().isTimeToMarket())
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
-			changeTurn();
+			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
+			drawStartingPoliticsCard();
+			
+			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}
-	}
-
-	private void changeTurn() 
-	{
-		model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
-		
-		//draw one card
-		DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId());
-		drawPoliticsCard.execute(model);
-		
-		//set active player
-		reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 	}
 	
 	/**

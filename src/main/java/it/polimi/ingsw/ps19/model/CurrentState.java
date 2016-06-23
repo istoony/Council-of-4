@@ -112,6 +112,11 @@ public class CurrentState
 				n++;
 		return n;
 	} 
+	/**
+	 * TODO: write me
+	 * imposta il model dicendo che questo player ha già comprato
+	 * @param id
+	 */
 	
 	public void playerBought(int id)
 	{

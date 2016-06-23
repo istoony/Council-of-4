@@ -11,9 +11,17 @@ public class PlayerDisconnectedReply extends Reply
 	 */
 	private static final long serialVersionUID = -6430324408373788268L;
 	
-	public PlayerDisconnectedReply(int activePlayer, String result) 
+	boolean newTurn;
+	
+	public PlayerDisconnectedReply(int activePlayer, String result, boolean newTurn) 
 	{
 		super(activePlayer, result);
+		this.newTurn =  newTurn;
+	}
+	
+	public boolean isNewTurn() 
+	{
+		return newTurn;
 	}
 	
 	@Override

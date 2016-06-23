@@ -8,6 +8,7 @@ public class PlayerDisconnectedAction implements Action {
 
 	private int playerId;
 	private String result;
+	private boolean newTurn = false;
 	
 	public PlayerDisconnectedAction(int id) 
 	{
@@ -24,8 +25,10 @@ public class PlayerDisconnectedAction implements Action {
 			model.getCurrentState().setPlayerTurnId(nextTurn);
 			
 			if(nextTurn != actualPlayerId)
+			{
 				model.getPlayerById(nextTurn).setStartingAction();
-			
+				newTurn = true;
+			}
 			return true;
 	}
 
@@ -38,7 +41,7 @@ public class PlayerDisconnectedAction implements Action {
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new PlayerDisconnectedReply(model.getCurrentState().getPlayerTurnId(), result);
+		return new PlayerDisconnectedReply(model.getCurrentState().getPlayerTurnId(), result, newTurn);
 	}
 
 }

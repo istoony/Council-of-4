@@ -50,7 +50,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	
 	@Override
 	public ClientUpdate display(PlayerDisconnectedReply message) {
-		return new PlayerDisconnectedUpdate(message.getResult(), message.getActivePlayer());
+		return new PlayerDisconnectedUpdate(message.getResult(), message.getActivePlayer(), message.isNewTurn());
 	}
 	
 	@Override
