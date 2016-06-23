@@ -12,16 +12,17 @@ public class PlayerDisconnectedUpdate extends ClientUpdate {
 
 	private String result;
 	private int activePlayer;
-	
+	private boolean newTurn;
 	/**
 	 * Constructor
 	 * @param activePlayer 
 	 * @param res: result
 	 */
-	public PlayerDisconnectedUpdate(String res, int activeP) 
+	public PlayerDisconnectedUpdate(String res, int activeP, boolean newT) 
 	{
 		result = res;
 		activePlayer = activeP;
+		newTurn = newT;
 	}
 	
 	@Override
@@ -37,8 +38,8 @@ public class PlayerDisconnectedUpdate extends ClientUpdate {
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
-	//	if(model.getActiveplayer() == model.getMyPlayer().getId())
-	//		return super.execute(userInterface, model);
+		if(model.getActiveplayer() == model.getMyPlayer().getId() && newTurn)
+			return super.execute(userInterface, model);
 		return null;
 	}
 
