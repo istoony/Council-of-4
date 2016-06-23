@@ -133,6 +133,7 @@ public class View extends Observable implements Observer, Runnable
 				} catch (WriterException e) 
 				{
 					log.log(Level.SEVERE, e.toString(), e);
+					WaitingRoom.getConnection(player).setDisconnected();
 					setChanged();
 					notifyObservers(new PlayerDisconnectedMessage(player));
 				}
@@ -149,6 +150,7 @@ public class View extends Observable implements Observer, Runnable
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);
+				WaitingRoom.getConnection(id).setDisconnected();
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(id));
 			}		
