@@ -37,11 +37,15 @@ public class RMIReader implements RMIReaderIntf, Runnable
 			Registry registry;
 			try
 			{
+				System.out.println("Creating new register on: localHost:" + Constants.RMI_PORT);
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
+				System.out.println("new register created on: localHost:" + Constants.RMI_PORT);
 			}catch(ExportException e)
-			{
-				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			{				
+				System.out.println("Register on: localHost:" + Constants.RMI_PORT + " already exists");
+				ConnectionLogger.log.log(Level.OFF, e.toString(), e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
+				System.out.println("Openede register on: localHost:" + Constants.RMI_PORT);
 			}
 			registry.rebind(name, stub);
 		} 
