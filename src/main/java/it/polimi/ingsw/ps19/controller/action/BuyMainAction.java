@@ -7,7 +7,7 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class BuyMainAction implements Action 
 {
-	private static final int HELPERS_NEEDED = 4;
+	private static final int HELPERS_NEEDED = 3;
 	private String result;
 	private int playerId;
 	
@@ -40,7 +40,7 @@ public class BuyMainAction implements Action
 			return false;
 		}
 		result = ActionMessages.EVERYTHING_IS_OK;
-		if(model.getPlayerById(playerId).getHelpers() > HELPERS_NEEDED)
+		if(model.getPlayerById(playerId).getHelpers() >= HELPERS_NEEDED)
 			return true;
 		result = ActionMessages.NO_HELPERS;
 		return false;

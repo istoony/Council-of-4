@@ -28,6 +28,7 @@ public class DeckFactory
 	private static final String POLITICSCARD = "politicscard";
 	private static final String BUSINESSCARD = "businesscard";
 	
+	
 	private DeckFactory ()
 	{}
 	

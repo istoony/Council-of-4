@@ -8,6 +8,8 @@ public class PoliticDeck implements Deck
 	private static final int FIRST_CARD = 0;
 	private ArrayList<PoliticsCard> card;
 	
+	//TODO: creare che non si eliminano ma va avanti il first card
+	//ogni volta che pesco e aggiungo nel vettore ogni volta che inserisco una card
 	public PoliticDeck() 
 	{
 		card = new ArrayList<>();
