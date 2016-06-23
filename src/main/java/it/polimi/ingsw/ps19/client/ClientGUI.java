@@ -4,31 +4,19 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
-import org.hamcrest.core.IsInstanceOf;
-
-import it.polimi.ingsw.ps19.client.clientaction.BuildEmporiumInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuildWithKingInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyMainActionInput;
 import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
-import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
-import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
-import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.ps19.client.guicomponents.Notify;
+import it.polimi.ingsw.ps19.client.guicomponents.QuestionFrame;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
@@ -41,18 +29,24 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	MainWindow window=null;
 	Notify pop = new Notify("Waiting for messages..");
-	Boolean flagTypeAction = true;
-	Boolean flagAction = true;
-	ClientActionChooser actiontype;
-	ClientAction action;
+	QuestionFrame ask;
+	
+	volatile List<ClientAction> actionTemp;
+	volatile List<RegionType> regionTemp;
+	volatile List<Color> colorTemp;
+	volatile List<PoliticsCard> politicTemp;
+	volatile List<BusinessCard> businessTemp;
+	volatile List<City> cityTemp;
+	
+	static volatile List<Integer> index;
 
-	private static final Logger LOG = Logger.getLogger("GUI_LOGGER");
 	private static final String START = "Wait the Server to generate the game..";
 	
 	private static final String MAIN_ACTION_COMMAND = "Take a Main Actions";
 	private static final String FAST_ACTION_COMMAND= "Take a Fast Actions";
 	
 	public ClientGUI() {
+		index = new ArrayList<>();
 		pop.addMessage(START);
 		try {
 			SwingUtilities.invokeAndWait(pop);
@@ -71,55 +65,78 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	@Override
-	public ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
-		flagTypeAction=true;
+	public synchronized ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
+		index.clear();
 		window.getFrame().getInfobox().getBoxes().get(0).enableActionType();
-		while(flagTypeAction){
+		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).disableActionType();
-		return actiontype;
+		return actions.get(index.get(0));
 	}
 
 	@Override
 	public ClientAction getAction(List<ClientAction> actions) {
-		flagAction=true;
+		index.clear();
+		actionTemp=actions;
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().generateActions(actions);
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().setListener(this);
-		while(flagTypeAction){
+		window.getFrame().revalidate();
+		window.getFrame().repaint();
+		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().disableButtons();
-		return action;
+		actionTemp.clear();
+		showNotification("here ok");
+		return actions.get(index.get(0));
 	}
 
 	@Override
 	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		regionTemp=regions;
+		ask = new QuestionFrame(this, regions);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		ask.close();
+		regionTemp.clear();
+		return regions.get(index.get(0));
 	}
 
 	@Override
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		colorTemp=validColors;
+		ask = new QuestionFrame(this, validColors);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		ask.close();
+		return validColors.get(index.get(0));
 	}
 
 	@Override
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		regionTemp=regions;
+		ask = new QuestionFrame(this, regions);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		ask.close();
+		regionTemp.clear();
+		return regions.get(index.get(0));
 	}
 
 	@Override
 	public void showNotification(String s) {
 		pop.addMessage(s);
-		try {
-			SwingUtilities.invokeAndWait(pop);
-		} catch (InvocationTargetException | InterruptedException e1) {
-			log.log(Level.SEVERE, e1.toString(), e1);
-		}
-		
+		SwingUtilities.invokeLater(pop);
 	}
 
 	@Override
@@ -129,7 +146,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			try {
 				SwingUtilities.invokeAndWait(window);
 			} catch (InvocationTargetException | InterruptedException e1) {
-				LOG.log(Level.SEVERE, e1.toString(), e1);
+				log.log(Level.SEVERE, e1.toString(), e1);
 			}
 			registerListerner();
 		}
@@ -146,14 +163,30 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		politicTemp=cards;
+		ask = new QuestionFrame(this, cards);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		politicTemp.clear();
+		ask.close();
+		return cards.get(index.get(0));
 	}
 
 	@Override
 	public City getCity(List<City> cities) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		cityTemp=cities;
+		ask = new QuestionFrame(this, cities);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		cityTemp.clear();
+		ask.close();
+		return cities.get(index.get(0));
 	}
 
 	@Override
@@ -164,14 +197,26 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return 0;
+		index.clear();
+		ask = new QuestionFrame(this, n);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		ask.close();
+		return index.get(0);
 	}
 
 	@Override
 	public int getPrice() throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return 0;
+		index.clear();
+		ask = new QuestionFrame(this);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		ask.close();
+		return index.get(0);
 	}
 
 	@Override
@@ -191,80 +236,80 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(MAIN_ACTION_COMMAND)){
-			actiontype = new MainAction(window.getFrame().getModel());
-			flagTypeAction=false;
+			index.add(0);
 		}
 		else if(e.getActionCommand().equals(FAST_ACTION_COMMAND)){
-			actiontype = new FastAction(window.getFrame().getModel());
-			flagTypeAction=false;
+			index.add(1);
 		}
-		action = actionChooser(e);
-		if(action!=null){
-			flagAction=false;
-		}
+		actionCheck(e);
+		regionCheck(e);	
+		colorCheck(e);
+		cityCheck(e);
+		textReader(e);
+		numberCheck(e);
 		
 		
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public ClientAction actionChooser(ActionEvent e){
-		action = new BuildEmporiumInputs(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new BuildWithKingInputs(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new BuyHelperInputs(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new BuyMainActionInput(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		if(actiontype instanceof MainAction){
-			action = new ElectCouncillorInputs(window.getFrame().getModel(), true);
-			if(actionCheck(action, e)){
-				return action;
+	private void actionCheck(ActionEvent e){
+		for(ClientAction ca : actionTemp){
+			if(e.getActionCommand().equals(ca.toString())){
+				index.add(actionTemp.indexOf(ca));
 			}
 		}
-		else if(actiontype instanceof FastAction){
-			action = new ElectCouncillorInputs(window.getFrame().getModel(), false);
-			if(actionCheck(action, e)){
-				return action;
-			}
-		}
-		action = new EndTurnInput(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new GetBusinessPermitInput(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new MarketSell(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		action = new RedrawBusinessCardInput(window.getFrame().getModel());
-		if(actionCheck(action, e)){
-			return action;
-		}
-		return null;
 	}
 	
-	public boolean actionCheck(ClientAction ca, ActionEvent e){
-		if(e.getActionCommand().equals(ca.toString())){
-			return true;
+	private void regionCheck(ActionEvent e){
+		for(RegionType rt : regionTemp){
+			if(e.getActionCommand().equals(rt.toString())){
+				index.add(regionTemp.indexOf(rt));
+			}
 		}
-		return false;
+	}
+	
+	private void colorCheck(ActionEvent e){
+		for(Color c : colorTemp){
+			if(e.getActionCommand().equals(c.toString())){
+				index.add(colorTemp.indexOf(c));
+			}
+		}
+	}
+	
+	private void cityCheck(ActionEvent e){
+		for(City c : cityTemp){
+			if(e.getActionCommand().equals(c.getName())){
+				index.add(cityTemp.indexOf(c));
+			}
+		}
+	}
+	
+	private void textReader(ActionEvent e){
+		if(e.getSource() instanceof JTextField){
+			try{
+				int n = Integer.parseInt(ask.getInput().getText());
+				index.add(n);
+			}
+			catch(Exception e1){
+				log.log(Level.SEVERE, e1.toString(), e1);
+				textReader(e);
+			}
+		}
+	}
+	
+	private void numberCheck(ActionEvent e){
+		try{
+			int n = Integer.parseInt(e.getActionCommand());
+			index.add(n);
+		}
+		catch(Exception ex){
+			log.log(Level.SEVERE, ex.toString(), ex);
+		}
 	}
 	
 	

@@ -32,9 +32,13 @@ public class Notify extends JFrame implements Runnable{
 	}
 	
 	public void addMessage(String s){
-		text.add(new JLabel(s));
-		setStuff();
+		List<String> list = parse(s);
+		for(String str : list){
+			text.add(new JLabel(str));
+			setStuff();
+		}
 		add(pan);
+			 
 	}
 		
 	@Override
@@ -45,7 +49,7 @@ public class Notify extends JFrame implements Runnable{
 		setAutoRequestFocus(true);
 	}
 	
-	public synchronized void setStuff(){
+	private synchronized void setStuff(){
 		setAutoRequestFocus(true);
 		setAlwaysOnTop(true);
 		List<JLabel> temp;
@@ -62,7 +66,21 @@ public class Notify extends JFrame implements Runnable{
 			text.get(i).setVisible(true);
 			pan.add(text.get(i));
 		}
-
-
+	}
+	
+	/*
+	 * @return the string on the second line if it contains a line break
+	 */
+	private List<String> parse(String s){
+		List<String> list = new ArrayList<>();
+		if(s.contains("\n")){
+			int n=s.indexOf("\n");
+			list.add(s.substring(0, n));
+			list.add(s.substring(n));
+		}
+		else{
+			list.add(s);
+		}
+		return list;
 	}
 }

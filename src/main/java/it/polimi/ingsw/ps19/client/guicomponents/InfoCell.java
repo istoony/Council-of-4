@@ -156,10 +156,10 @@ public class InfoCell extends JPanel implements ActionListener{
 		for(PoliticsCard c : p.getPoliticcard()){
 			count++;
 			if(count<10){
-				s+=c.toString()+" ";
+				s+=c.toString()+", ";
 			}
 			else{
-				reserve +=c.toString()+" ";
+				reserve +=c.toString()+", ";
 			}
 		}
 		lst.add(new JLabel(INDENTATION+"Politic Cards in hand: "+s));

@@ -10,7 +10,7 @@ import it.polimi.ingsw.ps19.client.ClientGUI;
 import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 
 
-public class ActionChooserPanel extends JPanel{
+public class ActionChooserPanel extends JPanel implements Runnable{
 
 
 	private static final long serialVersionUID = 2060889166987765721L;
@@ -20,6 +20,7 @@ public class ActionChooserPanel extends JPanel{
 	protected ActionChooserPanel() {
 		super();
 		actionlist= new ArrayList<>();
+		setVisible(true);
 
 	}
 	
@@ -30,11 +31,16 @@ public class ActionChooserPanel extends JPanel{
 			j=new JButton(ca.toString());
 			j.setToolTipText(ca.toString());
 			j.setActionCommand(ca.toString());
+			j.setEnabled(true);
+			j.setVisible(true);
 			actionlist.add(j);
+			add(j);
 		}
+		invalidate();
+		repaint();
 	}
 	
-	public void setListener(ClientGUI al){
+	public synchronized void setListener(ClientGUI al){
 		for(JButton j : actionlist){
 			j.addActionListener(al);
 		}
@@ -45,6 +51,12 @@ public class ActionChooserPanel extends JPanel{
 			j.setEnabled(false);
 		}
 		repaint();
+	}
+
+	@Override
+	public void run() {
+		repaint();
+		
 	}
 
 }
