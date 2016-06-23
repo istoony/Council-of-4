@@ -15,6 +15,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
 import it.polimi.ingsw.ps19.message.replies.StringMessage;
@@ -98,7 +99,7 @@ public class WaitingRoom
 				conn.write(new ConnectionReply(false, key));
 			}
 		} 
-		catch (TimeoutException | WriterException e1) 
+		catch (TimeoutException | WriterException | InterruptedException | ReaderException e1) 
 		{
 			log.log(Level.SEVERE, e1.toString(), e1);
 		}

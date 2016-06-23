@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
 import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.server.ServerRemoteIntf;
@@ -46,7 +47,7 @@ public class ClientRMIManager extends ClientManager
 				((RMIConnection)connection).loadWriter(writerStub);
 				success = true;
 			}
-			catch(RemoteException | NotBoundException | TimeoutException | InterruptedException e)
+			catch(RemoteException | NotBoundException | TimeoutException | InterruptedException | ReaderException e)
 			{
 				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 				success = false;

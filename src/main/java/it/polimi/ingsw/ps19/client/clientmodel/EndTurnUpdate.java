@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.client.clientmodel;
 
 import java.util.List;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 
@@ -25,10 +26,11 @@ public class EndTurnUpdate extends ClientUpdate
 	}
 
 	@Override
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setActiveplayer(playerTurnId);
 		model.setPlayer(player);
+		userInterface.drawModel(model);
 	}
 
 }

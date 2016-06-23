@@ -10,6 +10,7 @@ import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.exceptions.PlayerDisconnectedException;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
@@ -52,6 +53,13 @@ public class ClientInterpreter extends Observable implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		if(arg == null)
+		{
+			userInterface.showNotification("Server Disconnected!!");
+			userInterface.showNotification("Game will quit now!");
+			System.exit(0);
+			return;
+		}
 		if(arg instanceof GameStartedMessage)
 		{
 			playerId = ((GameStartedMessage)arg).getPlayerNumber();
@@ -75,8 +83,7 @@ public class ClientInterpreter extends Observable implements Observer
 		{
 			Reply reply = (Reply) arg;
 			ClientUpdate updateAction = reply.display(visitor);
-			updateAction.update(model);
-			userInterface.drawModel(model);
+			updateAction.update(model, userInterface);
 			if(reply.getActivePlayer() == playerId || reply.getActivePlayer() == -1)
 			{
 				boolean valid;
@@ -93,14 +100,24 @@ public class ClientInterpreter extends Observable implements Observer
 						valid = false;
 					}
 				}while(!valid);
-				notify(mex);
+				try 
+				{
+					notify(mex);
+				} catch (PlayerDisconnectedException e)
+				{
+					ClientLogger.log.log(Level.OFF, e.toString(), e);
+					userInterface.showNotification("Server Disconnected!!");
+					userInterface.showNotification("Game will quit now!");
+					System.exit(0);
+					return;
+				}
 			}
 		}
 		else
 			userInterface.showNotification("Invalid Object received");
 	}	
 	
-	private void notify(Message mex)
+	private void notify(Message mex) throws PlayerDisconnectedException
 	{
 		if(mex == null)
 			return;

@@ -72,7 +72,7 @@ public class TestCompleteModelUpdate {
 		
 		assertTrue(update != null);
 		
-		update.update(clientModel);
+		update.update(clientModel, null);
 		
 		assertTrue(clientModel.getActiveplayer() >=0 );
 		assertTrue(clientModel.getAllCities() != null);
@@ -98,7 +98,7 @@ public class TestCompleteModelUpdate {
 		ClientUpdate electCouncillorUpdate = electCouncillorReply.display(visitor);
 		
 		assertTrue(electCouncillorUpdate instanceof ElectCouncillorUpdate);
-		electCouncillorUpdate.update(clientModel);
+		electCouncillorUpdate.update(clientModel, null);
 		
 		Region mountainNew = clientModel.getRegionByType(RegionType.MOUNTAIN);
 		

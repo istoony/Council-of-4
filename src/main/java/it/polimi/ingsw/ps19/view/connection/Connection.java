@@ -6,6 +6,7 @@ package it.polimi.ingsw.ps19.view.connection;
 import java.util.concurrent.*;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 
@@ -72,6 +73,7 @@ public abstract class Connection
 	/**
 	 * Runs a callable that reads a message
 	 * @return
+	 * @throws ReaderException 
 	 */
-	public abstract Message read(long timeOut) throws TimeoutException, InterruptedException;
+	public abstract Message read(long timeOut) throws TimeoutException, InterruptedException, ReaderException;
 }

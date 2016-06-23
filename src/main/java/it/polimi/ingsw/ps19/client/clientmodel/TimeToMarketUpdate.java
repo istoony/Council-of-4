@@ -12,7 +12,7 @@ import it.polimi.ingsw.ps19.message.requests.Request;
 public class TimeToMarketUpdate extends ClientUpdate {
 
 	@Override
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		return;
 	}
@@ -20,6 +20,7 @@ public class TimeToMarketUpdate extends ClientUpdate {
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
+		userInterface.drawModel(model);
 		MarketSell marketSell = new MarketSell(model);
 		return marketSell.execute(userInterface);
 	}

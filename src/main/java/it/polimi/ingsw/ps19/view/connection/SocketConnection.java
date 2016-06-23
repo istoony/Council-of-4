@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.server.Constants;
@@ -74,17 +75,17 @@ public class SocketConnection extends Connection
 	}
 
 	@Override
-	public Message read(long timeOut) throws TimeoutException 
+	public Message read(long timeOut) throws TimeoutException, InterruptedException, ReaderException
 	{
-		Future<Message> waitMex = executor.submit(reader);
 		Message mex;
 		try 
 		{
+			Future<Message> waitMex = executor.submit(reader);
 			if(timeOut < 0)
 				mex = waitMex.get();
 			else
 				mex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_S, TimeUnit.SECONDS);
-		} catch (InterruptedException | ExecutionException e) 
+		} catch (ExecutionException | CancellationException e) 
 		{
 			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
 			throw new TimeoutException();

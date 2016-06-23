@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.client.clientmodel;
 
 import java.util.List;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 
@@ -27,12 +28,12 @@ public class SendFullPlayerUpdate extends ClientUpdate {
 		activePlayer = ap;
 	}
 	@Override
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setPlayer(player);
 		model.setResult(result);
 		model.setActiveplayer(activePlayer);
-
+		userInterface.drawModel(model);
 	}
 
 }

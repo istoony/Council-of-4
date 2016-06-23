@@ -8,6 +8,8 @@ import java.util.Observer;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.exceptions.PlayerDisconnectedException;
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.message.requests.Request;
@@ -40,11 +42,14 @@ public class ClientView extends Observable implements Observer, Runnable
 				setChanged();
 				notifyObservers(recMex);
 			} 
-			catch (TimeoutException | InterruptedException e) 
+			catch (TimeoutException | InterruptedException | ReaderException e) 
 			{
+				setChanged();
+				notifyObservers(null);
 				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 			} 
 		}
+		setChanged();
 		notifyObservers(null);
 	}
 
@@ -57,20 +62,28 @@ public class ClientView extends Observable implements Observer, Runnable
 		Request mex = (Request) arg;
 
 		//The message is forwarded to the clients
-		forwardMessage(mex);
+		try {
+			forwardMessage(mex);
+		} catch (PlayerDisconnectedException e) 
+		{
+			setChanged();
+			notifyObservers(null);
+		}
 	}
 	
 	/**
 	 * Forwards message on connection
 	 * @param mex: message to be forwarded
+	 * @throws PlayerDisconnectedException 
 	 */
-	public void forwardMessage(Request mex)
+	public void forwardMessage(Request mex) throws PlayerDisconnectedException
 	{
 		try {
 			connection.write(mex);
 		} catch (WriterException e) 
 		{
 			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			throw new PlayerDisconnectedException(-1);
 		}
 	}
 

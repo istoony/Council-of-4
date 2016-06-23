@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.client.clientmodel;
 
 import java.util.List;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
@@ -46,7 +47,7 @@ public class SendFullGameUpdate extends ClientUpdate
 	}
 
 	@Override
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setActiveplayer(activeplayer);
 		model.setKing(king);
@@ -55,7 +56,7 @@ public class SendFullGameUpdate extends ClientUpdate
 		model.setResult(result);
 		model.setAvailablecouncillor(availablecouncillor);
 		model.setNobilitypath(nobilitypath);
-		
+		userInterface.drawModel(model);
 	}
 	
 }

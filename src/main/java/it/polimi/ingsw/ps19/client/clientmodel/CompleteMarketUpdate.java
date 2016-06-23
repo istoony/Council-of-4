@@ -26,12 +26,11 @@ public class CompleteMarketUpdate extends ClientUpdate {
 		this.activePlayerId = activerPlayerId;
 	}
 	
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setActiveplayer(activePlayerId);
 		model.setResult(result);
 		model.setMarket(market);
-
 	}
 	
 	@Override

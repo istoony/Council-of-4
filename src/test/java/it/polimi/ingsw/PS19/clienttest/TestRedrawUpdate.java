@@ -74,7 +74,7 @@ public class TestRedrawUpdate {
 		assertTrue(g.getReply() instanceof SendFullGameReply);
 		assertTrue(update != null);
 		
-		update.update(clientModel);
+		update.update(clientModel, null);
 		
 		//assertTrue(clientModel.getActiveplayer() ==0 );
 		assertTrue(clientModel.getAllCities() != null);
@@ -98,7 +98,7 @@ public class TestRedrawUpdate {
 		ClientUpdate redrawUpdate = redrawReply.display(visitor);
 		
 		assertTrue(redrawUpdate instanceof DrawBusinessCardUpdate);
-		redrawUpdate.update(clientModel);
+		redrawUpdate.update(clientModel, null);
 		
 		BusinessCard firstNew = clientModel.getRegionByType(RegionType.PLAIN).getFirstcard();
 		BusinessCard secondNew = clientModel.getRegionByType(RegionType.PLAIN).getSecondcard();

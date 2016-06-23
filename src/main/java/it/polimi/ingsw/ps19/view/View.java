@@ -7,6 +7,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.message.replies.Reply;
@@ -103,7 +104,7 @@ public class View extends Observable implements Observer, Runnable
 				}
 			} 
 			//Timeout error => Player set disconnected
-			catch (TimeoutException | InterruptedException e) 
+			catch (TimeoutException | InterruptedException | ReaderException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);
 				activeConn.setDisconnected();

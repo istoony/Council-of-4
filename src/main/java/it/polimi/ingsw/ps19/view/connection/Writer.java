@@ -4,6 +4,7 @@
 package it.polimi.ingsw.ps19.view.connection;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
@@ -47,7 +48,7 @@ public abstract class Writer implements Callable<Integer>
 			}
 		}while(!success && numOfTries < Constants.MAX_WRITING_TRIES);
 		if(!success) 
-			throw new SocketWritingException();
+			throw new WriterException();
 		return numOfTries;
 	}
 	

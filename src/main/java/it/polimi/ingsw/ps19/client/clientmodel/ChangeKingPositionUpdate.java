@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.client.clientmodel;
 
 import java.util.List;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.map.King;
@@ -31,12 +32,13 @@ public class ChangeKingPositionUpdate extends ClientUpdate
 		activePlayer = id;
 	}
 	@Override
-	public void update(ClientModel model) 
+	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setActiveplayer(activePlayer);
 		model.setPlayer(player);
 		model.setKing(king);
 		model.setResult(result);
+		userInterface.drawModel(model);
 	}
 
 }
