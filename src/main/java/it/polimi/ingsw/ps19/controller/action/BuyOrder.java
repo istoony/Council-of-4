@@ -56,7 +56,7 @@ public class BuyOrder implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		Reply r = new CompleteMarketReply(model.getMarket(), result, model.getCurrentState().getPlayerTurnId());
-		r.setId(model.getCurrentState().getPlayerTurnId());
+		//r.setId(model.getCurrentState().getPlayerTurnId());
 		return r;
 	}
 

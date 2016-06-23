@@ -40,23 +40,22 @@ public class ElectCouncillor implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		Boolean res;
 		if(king != null)
-			res = model.getMap().getKing().getBalcony().setNewCouncill(color);
+			model.getMap().getKing().getBalcony().setNewCouncill(color);
 		else
-			res = model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
-		if(res && mainAction)
+			model.getMap().getRegionByType(region).getBalcony().setNewCouncill(color);
+		
+		if(mainAction)
 		{
 			model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney() + MONEY);
 			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);	
 		}
-		else if(res)
+		else
 		{
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
 			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		}
-		
-		return res;
+		return null;
 	}
 
 	@Override
@@ -67,12 +66,8 @@ public class ElectCouncillor implements Action
 			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
 		}
-		if(mainAction && model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
-		{
-			result = ActionMessages.NO_ACTION_TO_DO_IT;
-			return false;
-		}
-		else if(model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD)
+		if((mainAction && model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD) 
+				|| (!mainAction && model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD) )
 		{
 			result = ActionMessages.NO_ACTION_TO_DO_IT;
 			return false;

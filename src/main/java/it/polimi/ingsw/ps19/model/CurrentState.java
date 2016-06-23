@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
@@ -136,5 +137,11 @@ public class CurrentState
 		this.playerTurnId = playerIdList.get(i);
 		while(!WaitingRoom.isConnected(playerTurnId))
 			playerTurnId= playerIdList.get((i + 1) % numberOfPlayer);
+	}
+	
+	public void resetMarket()
+	{
+		for (Entry<Integer, Boolean> entry : marketState.entrySet()) 
+			entry.setValue(false);
 	}
 }

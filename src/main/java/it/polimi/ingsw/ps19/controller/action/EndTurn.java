@@ -28,6 +28,12 @@ public class EndTurn implements Action
 		if(Action.checkPlayerTurn(playerId, model))
 		{
 			result = ActionMessages.NOT_YOUR_TURN;
+			
+			int nextTurn = model.getCurrentState().giveNextCorrectId(playerId);
+			model.getCurrentState().setPlayerTurnId(nextTurn);
+			
+			if(nextTurn != playerId)
+				model.getPlayerById(nextTurn).setStartingAction();
 			return false;
 		}
 		

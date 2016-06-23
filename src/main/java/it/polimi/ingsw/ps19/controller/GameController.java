@@ -124,6 +124,8 @@ public class GameController implements Observer
 					reply.getResult(), model.getPlayer());
 			reply.setId(Costants.BROADCAST_MESSAGE);
 			
+			model.getCurrentState().resetMarket();
+			
 		}
 		
 	}
