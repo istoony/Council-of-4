@@ -8,6 +8,7 @@ import java.util.List;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class City implements Serializable {
 	
@@ -64,18 +65,7 @@ public class City implements Serializable {
 		this.name=name;
 		this.citycolor = City.translateColor(color);
 	}
-	
-	public void setParameters(String name, Color color){
-		this.name=name;
-		this.citycolor = color;
-	}
-	
-	public void setParameters(String name, Color color, int id){
-		this.id=id;
-		this.name=name;
-		this.citycolor = color;
-	}
-	
+
 	private static Color translateColor(String color){
 		return Color.decode(color);
 	}
@@ -92,7 +82,7 @@ public class City implements Serializable {
 
 	public List<City> getNeighbours() 
 	{
-		return neighbours;
+		return Costants.clone(neighbours);
 	}
 
 	//aggiungi vicini
@@ -101,7 +91,8 @@ public class City implements Serializable {
 		this.neighbours.addAll(lis);
 	}
 	
-	private void generateBonus(){
+	private void generateBonus()
+	{
 		this.bonus.addAll(BonusFactory.generateCityBonus());
 	}
 	
@@ -135,21 +126,14 @@ public class City implements Serializable {
 	 * @return the emporia
 	 */
 	public List<Integer> getEmporia() {
-		return emporia;
-	}
-
-	/**
-	 * @param emporia the emporia to set
-	 */
-	public void setEmporia(List<Integer> emporia) {
-		this.emporia = emporia;
+		return Costants.clone(emporia);
 	}
 
 	/**
 	 * @return the bonus
 	 */
 	public List<Bonus> getBonus() {
-		return bonus;
+		return Costants.clone(bonus);
 	}
 		
 }

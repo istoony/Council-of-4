@@ -2,6 +2,9 @@ package it.polimi.ingsw.PS19.controller;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
@@ -19,7 +22,12 @@ public class BuildEmporiumTest extends SupportMethod{
 	@Test
 	public void test() 
 	{
-		Model m = new Model(4);
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		players.add(2);
+		players.add(3);
+		Model m = new Model(players);
 		GameController g = new GameController(m);
 		
 		BusinessCard card = m.getMap().getRegionByType(RegionType.HILL).getFirstcard();

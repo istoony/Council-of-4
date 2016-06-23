@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
 
 public class CurrentState 
@@ -62,16 +63,10 @@ public class CurrentState
 	{
 		return numberOfPlayer;
 	}
-	/*
-	public void disconnectPlayer(int id)
+	public List<Integer> getPlayerIdList() 
 	{
-		connection.put(id, false);
+		return Costants.clone(playerIdList);
 	}
-	
-	public boolean isConnectedById(int id)
-	{
-		return connection.get(id);
-	}*/
 	
 	/**
 	 * Questa funzione ritorna il prossimo player se gli passo
@@ -80,13 +75,23 @@ public class CurrentState
 	 * @param i
 	 * @return
 	 */
-	public int giveNextCorrectId(int i)
+	public/*@pure@*/ int giveNextCorrectId(int i)
 	{
 		int next = playerTurnId;
 		if(playerTurnId == i)
 			next= playerIdList.get((playerIdList.indexOf(i) + 1) % numberOfPlayer);
 		while(!WaitingRoom.isConnected(next))
-			next= playerIdList.get((playerIdList.indexOf(i) + 1) % numberOfPlayer);
+			next= playerIdList.get((playerIdList.indexOf(next) + 1) % numberOfPlayer);
+		return next;
+	}
+	
+	public/*@pure@*/ int giveRandomTurn()
+	{
+		int randomNumb = Costants.RANDOM_NUMBER.nextInt(numberOfPlayer);
+	
+		int next= playerIdList.get(randomNumb);
+		while(!WaitingRoom.isConnected(next))
+			next= playerIdList.get((randomNumb + 1) % numberOfPlayer);
 		return next;
 	}
 	
@@ -123,5 +128,13 @@ public class CurrentState
 	public boolean isPlayerBought(int playerId)
 	{
 		return marketState.get(playerId);
+	}
+
+	public void resetPlayerTurnId() 
+	{
+		int i = 0;
+		this.playerTurnId = playerIdList.get(i);
+		while(!WaitingRoom.isConnected(playerTurnId))
+			playerTurnId= playerIdList.get((i + 1) % numberOfPlayer);
 	}
 }

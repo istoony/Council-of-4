@@ -16,13 +16,6 @@ public class PlayerDisconnectedAction implements Action {
 	@Override
 	public Boolean execute(Model model) 
 	{
-		/*
-			model.getCurrentState().disconnectPlayer(playerId);
-			int nextTurn = model.getCurrentState().giveNextCorrectId(playerId);
-			model.getCurrentState().setPlayerTurnId(nextTurn);
-			if(nextTurn != model.getCurrentState().getPlayerTurnId())
-			model.getPlayerById(nextTurn).setStartingAction();
-		*/
 			result = ActionMessages.PLAYER_DISCONNECTED + playerId;
 			return true;
 	}

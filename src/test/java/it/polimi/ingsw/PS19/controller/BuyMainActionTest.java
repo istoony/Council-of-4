@@ -2,6 +2,11 @@ package it.polimi.ingsw.PS19.controller;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
@@ -9,6 +14,9 @@ import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.model.Model;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
 public class BuyMainActionTest 
 {
@@ -16,10 +24,33 @@ public class BuyMainActionTest
 	@Test
 	public void test() 
 	{
-		Model m = new Model(4);
+		Map<Integer, Connection> wRoom = new HashMap<>();
+		
+		Connection uno = new RMIConnection(true);
+			uno.setActive();
+		Connection due = new RMIConnection(true);
+			due.setActive();
+		Connection tre = new RMIConnection(true);
+			tre.setActive();
+		Connection quattro = new RMIConnection(true);
+			quattro.setActive();
+		
+		wRoom.put(0, uno);
+		wRoom.put(1, due);
+		wRoom.put(0, tre);
+		wRoom.put(1, quattro);
+	
+		WaitingRoom.setConnection(wRoom);
+		
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		players.add(2);
+		players.add(3);
+		Model m = new Model(players);
 		GameController g = new GameController(m);
 		int i = 0;
-		for(i=1; i<5;i++)
+		for(i=1; i<4;i++)
 		{
 		
 			ElectCouncillorMessage elect = new ElectCouncillorMessage(
@@ -57,7 +88,7 @@ public class BuyMainActionTest
 		
 		g.update(null, mess);
 		
-		assertTrue(m.getPlayerById(0).getMainActionCounter() == 2);
+		assertTrue("main" + m.getPlayerById(0).getMainActionCounter(), m.getPlayerById(0).getMainActionCounter() == 2);
 		assertTrue(m.getPlayerById(0).getFastActionCounter() == 0);
 	}
 

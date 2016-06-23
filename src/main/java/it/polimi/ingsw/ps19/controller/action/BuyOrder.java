@@ -31,6 +31,7 @@ public class BuyOrder implements Action
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		//imposto nel CurrentState che il player ha acquistato
 		model.getCurrentState().playerBought(playerId);
+		result = ActionMessages.PLAYER_HAS_BOUGHT;
 		return true;
 	}
 
@@ -54,7 +55,9 @@ public class BuyOrder implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new CompleteMarketReply(model.getMarket(), result, model.getCurrentState().getPlayerTurnId());
+		Reply r = new CompleteMarketReply(model.getMarket(), result, model.getCurrentState().getPlayerTurnId());
+		r.setId(model.getCurrentState().getPlayerTurnId());
+		return r;
 	}
 
 }

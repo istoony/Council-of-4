@@ -33,42 +33,49 @@ public class MarketTest {
 	@Test
 	public void test() 
 	{
-		//ID 0 - 1 - 2
-		Connection uno = new RMIConnection();
-		Connection due = new RMIConnection();
+		Connection uno = new RMIConnection(true);
+			uno.setActive();
+		Connection due = new RMIConnection(true);
+			due.setActive();
+		Connection tre = new RMIConnection(true);
+			tre.setActive();
+			tre.setDisconnected();
+		Connection quattro = new RMIConnection(true);
+			quattro.setActive();
+			quattro.setDisconnected();
+		Connection cinque = new RMIConnection(true);
+			cinque.setActive();
+			cinque.setDisconnected();
+	
 		Map<Integer, Connection> wRoom = new HashMap<>();
-		wRoom.put(0, uno);
-		wRoom.put(1, due);
-		
+		wRoom.put(10, uno);
+		wRoom.put(11, due);
+		wRoom.put(12, tre);
+		wRoom.put(13, quattro);
+		wRoom.put(14, cinque);
+	
 		WaitingRoom.setConnection(wRoom);
-		
+	
+	
 		List<Integer> players = new ArrayList<>();
-		players.add(0);
-		players.add(1);
-		//players.add(2);
+		players.add(10);
+		players.add(11);
+		players.add(12);
+		players.add(13);
+		players.add(14);
 		
 		Model m = new Model(players);
 		
 		GameController g = new GameController(m);
 		
-		m.getPlayerById(0).setMoney(100);
-		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100);
-		//Disconnetto il 2
-		//PlayerDisconnectedMessage disconnected = new PlayerDisconnectedMessage(2);
+		m.getPlayerById(10).setMoney(100);
+		assertTrue("money: " +m.getPlayerById(10).getMoney(), m.getPlayerById(10).getMoney() == 100);
 		
-		//assertTrue(null, m.getCurrentState().getPlayerTurnId() == 0);
-		
-		/*g.update(null, disconnected);
-		
-		assertTrue("turn: "+ m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 0);
-		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.PLAYER_DISCONNECTED + "2"));
-		assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 7);
-		*/
-		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
-		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
-		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
-		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
-		m.getPlayerById(0).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
+		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
 		
 		ArrayList<Color> card = new ArrayList<>();
 		
@@ -78,38 +85,38 @@ public class MarketTest {
 		card.add(Color.decode("#FEFEFE"));
 		
 		ChangeKingPositionMessage kingPos = new ChangeKingPositionMessage(m.getMap().getRegionByType(RegionType.HILL).getCityById(7), card);
-		kingPos.setId(0);
+		kingPos.setId(10);
 		
 		g.update(null, kingPos);
 		
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 7);
-		assertTrue("counter: " + m.getPlayerById(0).getMainActionCounter(), m.getPlayerById(0).getMainActionCounter() == 0);
-		assertTrue("money: " +m.getPlayerById(0).getMoney(), m.getPlayerById(0).getMoney() == 100 - 4 - 2);
+		assertTrue("counter: " + m.getPlayerById(10).getMainActionCounter(), m.getPlayerById(10).getMainActionCounter() == 0);
+		assertTrue("money: " +m.getPlayerById(10).getMoney(), m.getPlayerById(10).getMoney() == 100 - 4 - 2);
 		//assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8 - 4);
 
 		EndTurnMessage endTurn = new EndTurnMessage();
-		endTurn.setId(0);
+		endTurn.setId(10);
 		
 		g.update(null, endTurn);
 		
-		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 1);
+		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 11);
 		
 		ElectCouncillorMessage elect = new ElectCouncillorMessage(Color.decode("#FF0000"), RegionType.HILL);
-		elect.setId(1);
+		elect.setId(11);
 		elect.setMainAction(true);
 		
 		g.update(null, elect);
 		
 		assertTrue(g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
-		assertTrue(m.getPlayerById(1).getMainActionCounter() == 0);
+		assertTrue(m.getPlayerById(11).getMainActionCounter() == 0);
 		
 		EndTurnMessage endTurn1 = new EndTurnMessage();
-		endTurn1.setId(1);
+		endTurn1.setId(11);
 		
 		g.update(null, endTurn1);
 		
-		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 1);
+		assertTrue("turn: " + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 11);
 		/**
 		 * Finito di eseguire le azioni principali imposto il time to market
 		 */
@@ -120,19 +127,19 @@ public class MarketTest {
 		 */
 		Order o = new Order();
 		o.setHelper(1);
-		o.addPoliticsCard(m.getPlayerById(0).getPoliticcard().get(0).getColor());
+		o.addPoliticsCard(m.getPlayerById(10).getPoliticcard().get(0).getColor());
 		o.setPrice(3);
 		
 		SendOrderMessage order = new SendOrderMessage(o);
-		order.setId(0);
+		order.setId(10);
 	
 		g.update(null, order);
 		
 		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof WaitingPlayerForMarketReply);
 		
 		assertTrue(m.getMarket().getSize() == 1);
-		assertTrue(m.getMarket().getListoforder().get(0) == o);
-		assertTrue(!m.getCurrentState().isPlayerBought(0));
+		assertTrue(m.getMarket().getListoforder().get(10) == o);
+		assertTrue(!m.getCurrentState().isPlayerBought(10));
 		assertTrue(m.getCurrentState().isTimeToMarket());
 		
 		/**
@@ -140,11 +147,11 @@ public class MarketTest {
 		 */
 		Order o1 = new Order();
 		o1.setHelper(1);
-		o1.addPoliticsCard(m.getPlayerById(0).getPoliticcard().get(0).getColor());
+		o1.addPoliticsCard(m.getPlayerById(10).getPoliticcard().get(0).getColor());
 		o1.setPrice(3);
 		
 		SendOrderMessage order1 = new SendOrderMessage(o1);
-		order1.setId(1);
+		order1.setId(11);
 		
 	
 		g.update(null, order1);
@@ -152,18 +159,20 @@ public class MarketTest {
 		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof CompleteMarketReply);
 		
 		assertTrue(m.getMarket().getSize() == 2);
-		assertTrue("marketsize: " + m.getMarket().getListoforder().get(1), m.getMarket().getListoforder().get(1) == o1);
-		assertTrue(!m.getCurrentState().isPlayerBought(1));
+		assertTrue("marketsize: " + m.getMarket().getListoforder().get(11), m.getMarket().getListoforder().get(11) == o1);
+		assertTrue(!m.getCurrentState().isPlayerBought(11));
 		assertTrue(m.getCurrentState().isTimeToMarket());
 		
 		/**
 		 * ricevuti entrambi gli ordini controllo il messaggio che il server invia ai client
 		 */
 		
+		assertTrue(g.getReply() instanceof CompleteMarketReply);
+		
 		CompleteMarketReply market = (CompleteMarketReply) g.getReply();
 		
 		assertTrue(market.getMarket() == m.getMarket());
-		assertTrue(market.getActivePlayer() == 0 || market.getActivePlayer() == 1);
+		assertTrue(market.getActivePlayer() == 10 || market.getActivePlayer() == 11);
 		assertTrue(market.getId() == -1);
 		assertTrue(m.getCurrentState().isTimeToMarket());
 		assertTrue(m.getMarket().getSize() == 2);
@@ -174,10 +183,10 @@ public class MarketTest {
 		
 		int playerturn = market.getActivePlayer();
 		BuyOrderMessage buyOrder;
-		if(playerturn == 0)
-			buyOrder = new BuyOrderMessage(o1, 1);
+		if(playerturn == 10)
+			buyOrder = new BuyOrderMessage(o1, 11);
 		else
-			buyOrder = new BuyOrderMessage(o, 0);
+			buyOrder = new BuyOrderMessage(o, 10);
 		buyOrder.setId(playerturn);
 		
 		g.update(null, buyOrder);
@@ -199,10 +208,10 @@ public class MarketTest {
 		assertTrue(playerturn != playerturn2);
 		
 		BuyOrderMessage buyOrder2;
-		if(playerturn2 == 0)
-			buyOrder2 = new BuyOrderMessage(o1, 1);
+		if(playerturn2 == 10)
+			buyOrder2 = new BuyOrderMessage(o1, 11);
 		else
-			buyOrder2 = new BuyOrderMessage(o, 0);
+			buyOrder2 = new BuyOrderMessage(o, 10);
 		buyOrder2.setId(playerturn2);
 		
 		g.update(null, buyOrder2);

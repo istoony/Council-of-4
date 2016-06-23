@@ -5,7 +5,6 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class AddOrder implements Action 
 {
@@ -41,8 +40,7 @@ public class AddOrder implements Action
 	//TODO: controllare per i player disconnessi---> testare che teoricamente funziona
 	public Reply createReplyMessage(Model model) 
 	{
-		int idTurn = model.getCurrentState().giveNextCorrectId(
-				Costants.RANDOM_NUMBER.nextInt(model.getCurrentState().getNumberOfPlayer()));
+		int idTurn = model.getCurrentState().giveRandomTurn();
 		
 		if(model.getMarket().getSize() == 
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())

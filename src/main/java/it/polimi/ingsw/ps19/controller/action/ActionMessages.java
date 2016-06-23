@@ -20,6 +20,7 @@ public class ActionMessages
 	public static final String COLOR_NOT_AVAILABLE = "This color is not corrected";
 	public static final String NO_ACTION_TO_DO_IT= "You don't have action to do what you want";
 	public static final String YOU_ALREADY_BOUGHT ="you've already bought";
+	public static final String PLAYER_HAS_BOUGHT ="One Player has bought, now is your turn";
 	
 	
 	private ActionMessages() { }

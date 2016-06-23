@@ -2,6 +2,11 @@ package it.polimi.ingsw.PS19.clienttest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
@@ -20,6 +25,9 @@ import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
 public class TestRedrawUpdate {
 
@@ -33,7 +41,24 @@ public class TestRedrawUpdate {
 		 * la invio al server che lo cambia e ritorna il model aggiornato.
 		 * aggiorno il model e controllo che i dati aggiornati e vecchi del balcone siano coerenti.
 		 */
-		Model m = new Model(2);
+		
+		
+		Connection uno = new RMIConnection(true);
+		uno.setActive();
+	Connection due = new RMIConnection(true);
+		due.setActive();
+		
+	Map<Integer, Connection> wRoom = new HashMap<>();
+	wRoom.put(0, uno);
+	wRoom.put(1, due);
+	
+	WaitingRoom.setConnection(wRoom);
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		
+		
+		Model m = new Model(players);
 		GameController g = new GameController(m);
 		g.update(null, new BuyHelper(0));
 		m.getCurrentState().setPlayerTurnId(0);
@@ -51,7 +76,7 @@ public class TestRedrawUpdate {
 		
 		update.update(clientModel);
 		
-		assertTrue(clientModel.getActiveplayer() >=0 );
+		//assertTrue(clientModel.getActiveplayer() ==0 );
 		assertTrue(clientModel.getAllCities() != null);
 		assertTrue(clientModel.getAvailablecouncillor() != null);
 		assertTrue(clientModel.getKing() != null);

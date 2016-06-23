@@ -3,7 +3,9 @@ package it.polimi.ingsw.PS19.modeltest;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -11,12 +13,27 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
+import it.polimi.ingsw.ps19.view.connection.Connection;
+import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
 public class NetCityBonusTest {
 
 	@Test
 	public void test() 
 	{
+		
+		Connection uno = new RMIConnection(true);
+		uno.setActive();
+	Connection due = new RMIConnection(true);
+		due.setActive();
+		
+	Map<Integer, Connection> wRoom = new HashMap<>();
+	wRoom.put(0, uno);
+	wRoom.put(1, due);
+	
+	WaitingRoom.setConnection(wRoom);
+	
 		List<Integer> players = new ArrayList<>();
 		players.add(0);
 		players.add(1);

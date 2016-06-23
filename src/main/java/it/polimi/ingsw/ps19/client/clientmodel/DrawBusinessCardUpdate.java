@@ -13,7 +13,7 @@ public class DrawBusinessCardUpdate extends ClientUpdate
 {
 	private List<Player> player;
 	private List<Region> regions;
-	private int ActivePlayerId;
+	private int activePlayerId;
 
 	/**
 	 * Constructtor
@@ -24,7 +24,7 @@ public class DrawBusinessCardUpdate extends ClientUpdate
 	{
 		player = p;
 		regions = r;
-		ActivePlayerId = activeId;
+		activePlayerId = activeId;
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class DrawBusinessCardUpdate extends ClientUpdate
 	{
 		model.setRegions(regions);
 		model.setPlayer(player);
-		model.setActiveplayer(ActivePlayerId);
+		model.setActiveplayer(activePlayerId);
 	}
 
 }

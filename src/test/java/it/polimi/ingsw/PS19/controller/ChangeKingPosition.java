@@ -3,6 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -19,7 +20,10 @@ public class ChangeKingPosition {
 	@Test
 	public void test() 
 	{
-		Model m = new Model(2);
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		Model m = new Model(players);
 		GameController g = new GameController(m);
 		
 		m.getPlayerById(0).setMoney(10);
