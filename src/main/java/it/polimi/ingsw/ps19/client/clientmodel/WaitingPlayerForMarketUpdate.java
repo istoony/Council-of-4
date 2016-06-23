@@ -29,7 +29,6 @@ public class WaitingPlayerForMarketUpdate extends ClientUpdate
 	@Override
 	public Request execute(ClientUI userInterface, ClientModel model)
 	{
-		userInterface.showNotification(result);
 		return null;
 	}
 }

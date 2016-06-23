@@ -126,8 +126,10 @@ public class View extends Observable implements Observer, Runnable
 		{
 			for (Integer player : playerConnection) 
 			{
-				try {
-					WaitingRoom.getConnection(player).write(mex);
+				try 
+				{
+					if(WaitingRoom.getConnection(player).getStatus() != ConnectionStatus.DISCONNECTED)
+						WaitingRoom.getConnection(player).write(mex);
 				} catch (WriterException e) 
 				{
 					log.log(Level.SEVERE, e.toString(), e);
@@ -140,8 +142,10 @@ public class View extends Observable implements Observer, Runnable
 		// To specific client
 		else
 		{
-			try {
-				WaitingRoom.getConnection(id).write(mex);
+			try 
+			{
+				if(WaitingRoom.getConnection(id).getStatus() != ConnectionStatus.DISCONNECTED)
+					WaitingRoom.getConnection(id).write(mex);
 			} catch (WriterException e) 
 			{
 				log.log(Level.SEVERE, e.toString(), e);

@@ -318,7 +318,8 @@ public class ClientCLI extends ClientUI
 			s = s.concat(getString(p));
 			s = s.concat("\n\n");
 		}
-		s += "Active Player ID: " + model.getActiveplayer();
+		s += "Result: " + model.getResult();
+		s += "\nActive Player ID: " + model.getActiveplayer();
 		s += "\n--------------------------------------\n";
 		s += "You are player: " + model.getMyPlayer().getId() + "\n\n";
 		return s;

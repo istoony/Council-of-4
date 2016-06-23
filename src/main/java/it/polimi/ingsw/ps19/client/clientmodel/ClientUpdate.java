@@ -35,7 +35,6 @@ public abstract class ClientUpdate
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
 		Request mex = null;
-		userInterface.showNotification(model.getResult());
 		ClientActionChooser actionType = getActionType(userInterface);
 		if(actionType != null)
 		{
