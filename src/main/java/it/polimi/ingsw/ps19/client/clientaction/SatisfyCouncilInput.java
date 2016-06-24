@@ -118,8 +118,16 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			if(chosenColor != null)
 			{
 				combinations = getContainingDecks(combinations, chosenColor);
-				for(DeckId deck : combinations)
+				int j = 0;
+				while(j < combinations.size())
+				{
+					DeckId deck = combinations.get(j);
 					deck.subtractCard(new CardId(chosenColor));
+					if(deck.getDeck().isEmpty())
+						combinations.remove(deck);
+					else 
+						j++;
+				}
 				combinations = getSignificantDecks(combinations);
 			}
 			if(combinations.isEmpty() || chosenColor == null)
@@ -225,7 +233,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			while(j < cards.size())
 			{
 				CardId listCard = cards.get(j);
-				if(card.equivalent(listCard))
+				if(card.equivalentNotJolly(listCard))
 					cards.remove(listCard);
 				else
 					j++;
@@ -246,6 +254,13 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			color = c;
 		}
 		
+		public boolean equivalentNotJolly(CardId card) 
+		{
+			if(card != null && card.getColor().equals(color))
+				return true;
+			return false;
+		}
+
 		public Color getColor()
 		{
 			return color;
@@ -382,7 +397,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		}
 		
 		/**
-		 * returns weather the deck contains a card equivalent to the parameter
+		 * returns whether the deck contains a card equivalent to the parameter
 		 * @param card
 		 * @return
 		 */

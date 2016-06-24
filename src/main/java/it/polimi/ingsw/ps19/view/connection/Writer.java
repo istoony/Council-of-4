@@ -4,11 +4,9 @@
 package it.polimi.ingsw.ps19.view.connection;
 
 import java.io.IOException;
-import java.net.ConnectException;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.ps19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.server.Constants;
