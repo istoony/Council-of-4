@@ -10,6 +10,7 @@ import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
+import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.ps19.message.replies.TimeToMarketReply;
 import it.polimi.ingsw.ps19.message.requests.Request;
@@ -154,6 +155,15 @@ public class GameController implements Observer
 	 */
 	private void checkAlreadyTurn()
 	{
+		int idReconnectedPlayer = checkDisconnectedPlayer();
+		if(idReconnectedPlayer > 0)
+		{
+			Reply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
+					model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+					model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
+			game.setId(idReconnectedPlayer);
+			model.sendMessage(game);
+		}
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
 				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest() &&
@@ -165,6 +175,19 @@ public class GameController implements Observer
 			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}
+		
+	}
+	
+	private int checkDisconnectedPlayer()
+	{
+		for (Integer  id : model.getCurrentState().getDisconnectedPlayersId())
+			if(WaitingRoom.isConnected(id))
+			{
+				model.getCurrentState().reconnectPlayer(id);
+				return id;
+			}
+		return -1;
+				
 	}
 	
 	/**

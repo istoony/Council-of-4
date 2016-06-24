@@ -29,6 +29,7 @@ public class PlayerDisconnectedAction implements Action {
 				model.getPlayerById(nextTurn).setStartingAction();
 				newTurn = true;
 			}
+			model.getCurrentState().addDisconnectedPlayer(playerId);
 			return true;
 	}
 

@@ -20,6 +20,8 @@ public class CurrentState
 	private Map<Integer, Boolean> marketState;
 	private List<Integer> playerIdList;
 	
+	private List<Integer> disconnectedPlayersId;
+	
 	
 	public CurrentState(List<Integer> playerIdList) 
 	{
@@ -33,6 +35,7 @@ public class CurrentState
 			marketState.put(playerId, false);
 			this.playerIdList.add(playerId);
 		}
+		disconnectedPlayersId = new ArrayList<>();
 	}
 		
 	public void setPlayerTurnId(int playerTurnId) 
@@ -149,4 +152,19 @@ public class CurrentState
 		for (Entry<Integer, Boolean> entry : marketState.entrySet()) 
 			entry.setValue(false);
 	}
+	
+	public void addDisconnectedPlayer(Integer playerId)
+	{
+		if(!disconnectedPlayersId.contains(playerId))
+			disconnectedPlayersId.add(playerId);
+	}
+	public void reconnectPlayer(Integer playerId)
+	{
+		if(playerId>0)
+			disconnectedPlayersId.remove(playerId);
+	}
+	public List<Integer> getDisconnectedPlayersId() {
+		return Costants.clone(disconnectedPlayersId);
+	}
+	
 }
