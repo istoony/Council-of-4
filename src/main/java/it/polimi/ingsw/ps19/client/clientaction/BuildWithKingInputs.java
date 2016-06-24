@@ -58,10 +58,10 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 		Map<City, Integer> availableCities = new HashMap<>();
 		for(City c: allCities)
 		{
-			if(		!(model.getMyPlayer().getMyEmporia().contains(c))
-				&&  c.getEmporia().size() < model.getMyPlayer().getHelpers() 
-				&&	Costants.JUMPCOST * (model.calculateShorterPath(model.getKing().getCurrentcity(), c).size() - 1) < model.getMyPlayer().getMoney())
-				availableCities.put(c, Costants.JUMPCOST * (model.calculateShorterPath(model.getKing().getCurrentcity(), c).size() -1));
+			int moneyToMoveKing = Costants.JUMPCOST * (Costants.calculateShorterPath(model.getKing().getCurrentcity(), c, model.getRegions()).size() - 1);
+			if(	!(model.getMyPlayer().getMyEmporia().contains(c)) &&  c.getEmporia().size() < model.getMyPlayer().getHelpers() 
+				&&	moneyToMoveKing < model.getMyPlayer().getMoney())
+				availableCities.put(c, moneyToMoveKing);
 		}
 		return availableCities;
 	}

@@ -53,7 +53,6 @@ public class GameController implements Observer
 	{
 		for (Player p : model.getPlayer()) 
 			drawForSinglePlayer(p, p.getStartingPoliticCard());
-		//Fa pescare una carta al primo player
 		
 		politicCardToDrawToCurrentPlayer();
 	}
@@ -162,7 +161,7 @@ public class GameController implements Observer
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
-			drawStartingPoliticsCard();
+			politicCardToDrawToCurrentPlayer();
 			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}

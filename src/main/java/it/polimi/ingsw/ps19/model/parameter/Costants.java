@@ -1,8 +1,13 @@
 package it.polimi.ingsw.ps19.model.parameter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.map.Region;
 
 public class Costants 
 {
@@ -31,5 +36,67 @@ public class Costants
 			for (E p : array)
 				clone.add(p);
 		return clone;
+	}
+	
+	public static boolean containsCityId(List<City> path, City city)
+	{
+		for (City c : path) 
+			if(c.getId() == city.getId())
+				return true;
+		return false;
+	}
+	
+	/**
+	 * Gets list of cities for the shortest path
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public static List<City> calculateShorterPath(City start, City end, List<Region> regions)
+	{
+		List<City> result = new ArrayList<>();
+		for(Region r : regions){
+			for(City c : r.getCities()){
+				if(start.getId() == c.getId())
+				{
+					Map<City, City> visited = new HashMap<>(); 
+					Map<City, City> parentree = new HashMap<>(); 
+					ArrayList<City> frontier = new ArrayList<>();
+					result = recursiveBFS(start, end, result, c, visited, frontier, parentree);
+				}
+			}
+		}
+		return result;
+	}
+	
+	private static List<City> recursiveBFS(City root, City end, List<City> path, City start, Map<City, City> visited, List<City> frontier, Map<City, City> parenttree)
+	{
+		if(root.getId() == end.getId())
+		{
+			path.add(end);
+			City temp;
+			while(!Costants.containsCityId(path, start))
+			{
+				temp = parenttree.get(root);
+				path.add(temp);
+				root=temp;
+			}
+			return path;
+		}
+		
+		for(City c : root.getNeighbours()){
+			if(!parenttree.containsKey(c)){
+				parenttree.put(c, root);
+			}
+		}
+		frontier.addAll(root.getNeighbours());
+		City newroot = frontier.get(0);
+		frontier.remove(0);
+		while(visited.containsValue(newroot)){
+			newroot = frontier.get(0);
+			frontier.remove(0);
+		}
+		visited.put(newroot, root);
+		return recursiveBFS(newroot, end, path, start, visited, frontier, parenttree);
 	}
 }

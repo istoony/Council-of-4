@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps19.client.clientmodel.clientdata;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import it.polimi.ingsw.ps19.model.Market;
@@ -131,56 +130,5 @@ public class ClientModel
 		for (Region region : regions) 
 			cities.addAll(region.getCities());
 		return cities;
-	}
-	
-	/**
-	 * Gets list of cities for the shortest path
-	 * @param start
-	 * @param end
-	 * @return
-	 */
-	public List<City> calculateShorterPath(City start, City end){
-		ArrayList<City> result = new ArrayList<>();
-		for(Region r : regions){
-			for(City c : r.getCities()){
-				if(start.equals(c)){
-					HashMap<City, City> visited = new HashMap<>(); 
-					HashMap<City, City> parentree = new HashMap<>(); 
-					ArrayList<City> frontier = new ArrayList<>();
-					result = recursiveBFS(start, end, result, c, visited, frontier, parentree);
-				}
-			}
-		}
-		return result;
-	}
-	
-	private ArrayList<City> recursiveBFS(City root, City end, ArrayList<City> path, City start, HashMap<City, City> visited, ArrayList<City> frontier, HashMap<City, City> parenttree)
-	{
-		if(root.equals(end))
-		{
-			path.add(end);
-			City temp;
-			while(!path.contains(start)){
-				temp = parenttree.get(root);
-				path.add(temp);
-				root=temp;
-			}
-			return path;
-		}
-		
-		for(City c : root.getNeighbours()){
-			if(!parenttree.containsKey(c)){
-				parenttree.put(c, root);
-			}
-		}
-		frontier.addAll(root.getNeighbours());
-		City newroot = frontier.get(0);
-		frontier.remove(0);
-		while(visited.containsValue(newroot)){
-			newroot = frontier.get(0);
-			frontier.remove(0);
-		}
-		visited.put(newroot, root);
-		return recursiveBFS(newroot, end, path, start, visited, frontier, parenttree);
 	}
 }

@@ -32,6 +32,7 @@ public class BusinessDeck implements Deck, Serializable
 	{
 		this.card.add((BusinessCard) card);
 	}
+	
 	public void addToDeckRandom(BusinessCard c)
 	{
 		int number; 

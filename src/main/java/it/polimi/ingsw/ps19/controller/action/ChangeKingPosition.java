@@ -7,7 +7,6 @@ import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
@@ -40,14 +39,10 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		
 		Player player = model.getPlayerById(playerId);
 		
-		for(int i = 0; i < politicCard.size(); i++)
-		{
-			PoliticsCard p = new PoliticsCard(politicCard.get(i));
-			player.removeCardToHand(p);
-			model.getMap().getPoliticdeck().addToDeck(p);
-		}
+		removeCardToHand(model, player, politicCard);
 			//
-			//in base alle carte arrivate tolgo dei soldi al player
+			//in base alle carte arrivate tolgo dei soldi al player, non tolgo ancora i soldi
+			//dovuti al movimento del re
 			//
 		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
 		
@@ -70,6 +65,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
 			
 			//do al giocatore i bonus che gli spettano
+		giveBonusToPlayer(model, findRegion(model, real), player, real.getId());
 				
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;

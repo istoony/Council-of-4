@@ -6,7 +6,7 @@ import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 
-public class AddOrder implements Action 
+public class AddOrder extends SupportMethod implements Action 
 {
 
 	private Order order;
@@ -31,10 +31,17 @@ public class AddOrder implements Action
 	public Boolean isPossible(Model model) 
 	{
 		result = ActionMessages.EVERYTHING_IS_OK;
-		if(model.getCurrentState().isTimeToMarket())
-			return true;
-		result = ActionMessages.NO_MARKET_TIME;
-		return false;
+		if(!model.getCurrentState().isTimeToMarket())
+		{	
+			result = ActionMessages.NO_MARKET_TIME;
+			return false;
+		}
+		if(!findPoliticCard(order.getPoliticscard(), model.getPlayerById(playerId)))
+		{
+			result = ActionMessages.NOT_HAVE_POLITIC_CARD;
+			return false;
+		}
+		return true;
 	}
 
 	@Override

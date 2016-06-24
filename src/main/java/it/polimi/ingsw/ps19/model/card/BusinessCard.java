@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class BusinessCard implements Card, Serializable{
@@ -85,10 +86,7 @@ public class BusinessCard implements Card, Serializable{
 	
 	public List<City> getCity() 
 	{
-		List<City> cities = new ArrayList<>();
-		for (City c : city) 
-			cities.add(c);
-		return cities;
+		return Costants.clone(city);
 	}
 
 	@Override

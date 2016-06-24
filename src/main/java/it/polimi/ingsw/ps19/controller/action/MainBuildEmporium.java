@@ -1,13 +1,9 @@
 package it.polimi.ingsw.ps19.controller.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
@@ -44,13 +40,9 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		//Assegno i bonus al player, per ogni città trovata e
 		//per ogni bonus presente nella città applico il bonus e controllo il 
 		//percorso della nobiltà
-		List<City> myCity = model.getMap().getRegionByType(region).getCityById(cityid).applyNetBonus(player, new ArrayList<City>());
-		for (City c : myCity) 
-			for (Bonus b : c.getBonus())
-			{
-				b.giveBonus(player);
-				checkNobilityPathBonus(model, player);
-			}
+		
+		giveBonusToPlayer(model, region, player, cityid);
+		
 		//remove to my hand business card
 		player.addUsedBusinessCard(player.removeFreebusinesscardById(businessCard.getId()));
 		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);

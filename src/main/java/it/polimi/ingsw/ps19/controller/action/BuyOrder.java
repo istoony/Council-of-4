@@ -1,11 +1,15 @@
 package it.polimi.ingsw.ps19.controller.action;
 
+import java.awt.Color;
+
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.Player;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
-public class BuyOrder implements Action 
+public class BuyOrder extends SupportMethod implements Action
 {
 	private int playerId;
 	private int sellerId;
@@ -23,6 +27,16 @@ public class BuyOrder implements Action
 	public Boolean execute(Model model) 
 	{
 		//Assegno le cose al player
+		Player seller = model.getPlayerById(sellerId);
+		Player buyer = model.getPlayerById(playerId);
+		
+		seller.setHelpers(seller.getHelpers() - order.getHelper());
+		buyer.setHelpers(buyer.getHelpers() + order.getHelper());
+		
+		removeCardToHand(model, seller, order.getPoliticscard());
+		for (Color color : order.getPoliticscard())
+			buyer.addCardToHand(new PoliticsCard(color));
+		
 		
 		//rimuovo l'ordine dal market
 		model.getMarket().removeOrderById(sellerId);
@@ -55,9 +69,7 @@ public class BuyOrder implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		Reply r = new CompleteMarketReply(model.getMarket(), result, model.getCurrentState().getPlayerTurnId());
-		//r.setId(model.getCurrentState().getPlayerTurnId());
-		return r;
+		return new CompleteMarketReply(model.getMarket(), result, model.getCurrentState().getPlayerTurnId());
 	}
 
 }

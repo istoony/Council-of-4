@@ -7,21 +7,26 @@ public class PoliticDeck implements Deck
 {
 	private static final int FIRST_CARD = 0;
 	private ArrayList<PoliticsCard> card;
+	private int toDraw;
 	
 	//TODO: creare che non si eliminano ma va avanti il first card
 	//ogni volta che pesco e aggiungo nel vettore ogni volta che inserisco una card
 	public PoliticDeck() 
 	{
 		card = new ArrayList<>();
+		toDraw = FIRST_CARD;
 	}
 	
 	@Override
 	public PoliticsCard getFirstCard()
 	{
-		if(card.isEmpty())
-			return null;
-		PoliticsCard singlecard = card.get(FIRST_CARD);
-		card.remove(FIRST_CARD);
+		if(toDraw == card.size())
+		{
+			toDraw = FIRST_CARD;
+			shuffle();
+		}
+		PoliticsCard singlecard = card.get(toDraw);
+		toDraw++;
 		return singlecard;
 	}
 	

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.controller.action;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.ps19.model.Model;
@@ -10,6 +11,7 @@ import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class SupportMethod 
 {
@@ -69,11 +71,40 @@ public class SupportMethod
 					return c;
 		return null;
 	}
+	protected RegionType findRegion(Model model, City city)
+	{
+		for(Region r : model.getMap().getListaRegioni())
+			for(City c : r.getCities())
+				if(c.getId() == city.getId())
+					return r.getType();
+		return null;
+	}
 	
-	protected static void checkNobilityPathBonus(Model model, Player player) {
+	protected void giveBonusToPlayer(Model model, RegionType region, Player player, int cityid)
+	{
+		List<City> myCity = model.getMap().getRegionByType(region).getCityById(cityid).applyNetBonus(player, new ArrayList<City>());
+		for (City c : myCity) 
+			for (Bonus b : c.getBonus())
+			{
+				b.giveBonus(player);
+				checkNobilityPathBonus(model, player);
+			}
+	}
+	
+	protected static void checkNobilityPathBonus(Model model, Player player)
+	{
 		if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
 			for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
 					player.getNobilityPoints()))
 				nobilityBonus.giveBonus(player);
+	}
+	
+	protected void removeCardToHand(Model model, Player player, List<Color> politicCard) {
+		for(int i = 0; i < politicCard.size(); i++)
+		{
+			PoliticsCard p = new PoliticsCard(politicCard.get(i));
+			player.removeCardToHand(p);
+			model.getMap().getPoliticdeck().addToDeck(p);
+		}
 	}
 }
