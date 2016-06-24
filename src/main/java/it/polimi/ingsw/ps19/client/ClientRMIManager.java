@@ -40,6 +40,7 @@ public class ClientRMIManager extends ClientManager
 				ServerRemoteIntf server = (ServerRemoteIntf) registry.lookup(name);
 				RMIReaderIntf writerStub = server.addNewPlayerToWR(((RMIConnection)connection).getReaderStub(), newGame, key);
 				ConnectionReply reply = (ConnectionReply) connection.read(30);
+				playerId = reply.getPassword();
 				if(reply.getSuccessful())
 					userInterface.showNotification("You have reconnected to previous game");
 				else
@@ -49,7 +50,7 @@ public class ClientRMIManager extends ClientManager
 			}
 			catch(RemoteException | NotBoundException | TimeoutException | InterruptedException | ReaderException e)
 			{
-				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+				ClientLogger.log.log(Level.OFF, e.toString(), e);
 				success = false;
 				ip = getIP();
 				port = getPort(Constants.RMI_PORT);

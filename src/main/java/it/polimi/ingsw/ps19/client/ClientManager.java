@@ -14,11 +14,12 @@ public abstract class ClientManager
 	protected static ExecutorService executorService = Executors.newFixedThreadPool(2);	
 	protected static Connection connection;
 	protected static ClientUI userInterface;
-	
+	protected static Integer playerId = null;
+
 	protected void startClient()
 	{
 		ClientView view = new ClientView(connection);
-		ClientInterpreter interpreter = new ClientInterpreter(userInterface);
+		ClientInterpreter interpreter = new ClientInterpreter(userInterface, playerId);
 		view.addObserver(interpreter);
 		interpreter.addObserver(view);
 		new Thread(view).start();

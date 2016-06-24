@@ -66,6 +66,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			forwardMessage(mex);
 		} catch (PlayerDisconnectedException e) 
 		{
+			ClientLogger.log.log(Level.INFO, e.toString(), e);
 			setChanged();
 			notifyObservers(null);
 		}
