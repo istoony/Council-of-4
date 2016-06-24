@@ -2,18 +2,20 @@ package it.polimi.ingsw.ps19.model.card;
 
 import java.awt.Color;
 import java.util.List;
-import java.util.Random;
+import java.util.logging.Level;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.ps19.exceptions.IllegalFileException;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.FileReader;
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.FileLogger;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class DeckFactory 
@@ -36,7 +38,6 @@ public class DeckFactory
 	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, List<City> cities)
 	{
 		try {
-			Random rand = new Random();
 						
 			BusinessDeck businessdeck = new BusinessDeck();
 			if(FileReader.XMLReader(pathfile, BUSINESSCARD).getLength()!=1)
@@ -64,7 +65,7 @@ public class DeckFactory
 						int i=0;
 						while(i < numberofcities)
 						{
-							if(!card.addCity(cities.get(Math.abs(rand.nextInt(cities.size())))))
+							if(!card.addCity(cities.get(Math.abs(Costants.RANDOM_NUMBER.nextInt(cities.size())))))
 								i--;
 							i++;
 						}
@@ -76,13 +77,14 @@ public class DeckFactory
 			businessdeck.shuffle();
 			businessdeck.setCardsId();
 			return businessdeck;
-		    } catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception e)
+			{
+		    	FileLogger.log.log(Level.SEVERE, e.toString(), e);
+		    	throw new IllegalFileException("Business deck file is corrupted");
 		   }
-		return null;
 	}
 	
-	public static Deck politicsDeckFactory(String pathfile, ColorManager deckcolors) 
+	public static Deck politicsDeckFactory(String pathfile, ColorManager deckcolors) //throws IllegalFileException
 	{
 		try {
 
@@ -94,10 +96,11 @@ public class DeckFactory
 			int numberofjoker = Integer.parseInt(element.getElementsByTagName(NUMBEROFJOKER).item(0).getTextContent());
 			return politicscardfactory(numberofcard, numberofjoker, deckcolors);
 
-		    } catch (Exception e) {
-			e.printStackTrace();
+		    } catch (Exception e)
+			{
+		    	FileLogger.log.log(Level.SEVERE, e.toString(), e);
+		    	throw new IllegalFileException("Politics deck file is corrupted");
 		   }
-		return null;
 	}
 
 	private static Deck politicscardfactory(int numberofcard, int numberofjoker, ColorManager deckcolors)
