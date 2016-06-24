@@ -40,12 +40,13 @@ public class ClientInterpreter extends Observable implements Observer
 		userInterface = ui;
 	}
 	
-	private void loadInterpreter()
+	private void loadInterpreter(Integer pId)
 	{
+		if(pId != null)
+			model = new ClientModel(pId);
 		if(loaded)
 			return;
 		visitor = new ReplyVisitorImpl();
-		model = new ClientModel(playerId);
 		mainAction = new MainAction(model);
 		fastAction = new FastAction(model);
 		ClientUpdate.loadTypeOfAction(mainAction);
@@ -66,7 +67,7 @@ public class ClientInterpreter extends Observable implements Observer
 		if(arg instanceof GameStartedMessage)
 		{
 			playerId = ((GameStartedMessage)arg).getPlayerNumber();
-			loadInterpreter();
+			loadInterpreter(playerId);
 			userInterface.showNotification(((GameStartedMessage)arg).toString());
 		}
 		else if(arg instanceof StringMessage)
@@ -77,10 +78,11 @@ public class ClientInterpreter extends Observable implements Observer
 		else if(arg instanceof ConnectionReply)
 		{
 			if(((ConnectionReply)arg).getSuccessful())
+			{
 				userInterface.showNotification("Reconeccted to Game");
-			else
-				userInterface.showNotification("Connected! Your connection password is: " + ((ConnectionReply)arg).getPassword());
-			loadInterpreter();
+				loadInterpreter(((ConnectionReply)arg).getPassword());
+			}
+			userInterface.showNotification("Connected! Your connection password is: " + ((ConnectionReply)arg).getPassword());
 			return;
 		}
 		else if(arg instanceof Reply)
