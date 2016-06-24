@@ -127,7 +127,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		index.clear();
 		regionTemp.addAll(regions);
 		ask = new QuestionFrame(this, regions);
-		ask.run();
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -156,6 +155,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else{
 			window.update(model);
+			window.getFrame().repaint();
 		}
 	}
 
@@ -291,6 +291,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(!cityTemp.isEmpty()){
 			cityCheck(e);
 		}
+		else if(!politicTemp.isEmpty()){
+			politicCheck(e);
+		}
 		else if(!businessTemp.isEmpty()){
 			businessCheck(e);
 		}
@@ -298,7 +301,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			citymapCheck(e);
 		}
 		else if(!stringTemp.isEmpty()){
-			textCheck(e);
+			textCheck();
 		}
 		else {
 			numberCheck(e);
@@ -326,7 +329,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void colorCheck(ActionEvent e){
 		for(Color c : colorTemp){
-			if(e.getActionCommand().equals(c.toString())){
+			if(e.getActionCommand().equals(QuestionFrame.colorString(c))){
 				index.add(colorTemp.indexOf(c));
 			}
 		}
@@ -336,6 +339,14 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		for(City c : cityTemp){
 			if(e.getActionCommand().equals(c.getName())){
 				index.add(cityTemp.indexOf(c));
+			}
+		}
+	}
+	
+	private void politicCheck(ActionEvent e){
+		for(PoliticsCard p : politicTemp){
+			if(e.getActionCommand().equals(p.toString())){
+				index.add(cityTemp.indexOf(p));
 			}
 		}
 	}
@@ -370,7 +381,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 	}
 	
-	private void textCheck(ActionEvent e) {
+	private void textCheck() {
 		stringTemp = ask.getInput().getText();
 		index.add(0);
 	}
