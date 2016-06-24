@@ -33,16 +33,21 @@ public class ClientInterpreter extends Observable implements Observer
 	ReplyVisitor visitor;
 	
 	/**
+	 * @param pId 
+	 * @param activePlayer 
 	 * @param ui: user interface
 	 */
-	public ClientInterpreter(ClientUI ui) 
+	public ClientInterpreter(ClientUI ui, Integer pId) 
 	{
+		if(pId != null)
+			playerId = pId;
 		userInterface = ui;
 	}
 	
 	private void loadInterpreter(Integer pId)
 	{
 		if(pId != null)
+			playerId = pId;
 			model = new ClientModel(pId);
 		if(loaded)
 			return;
