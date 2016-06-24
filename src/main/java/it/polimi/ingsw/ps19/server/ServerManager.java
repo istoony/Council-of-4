@@ -52,8 +52,9 @@ public class ServerManager
 			{
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
 				serverCLI.showNotification("New Registry created at: localhost:" + Constants.RMI_PORT);
-			}catch(ExportException e)
+			}catch(RemoteException e)
 			{
+				log.log(Level.OFF, e.toString(), e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
 				serverCLI.showNotification("Accessing Registry at: localhost:" + Constants.RMI_PORT);
 			}
