@@ -24,7 +24,7 @@ import it.polimi.ingsw.ps19.message.requests.Request;
  */
 public class ClientInterpreter extends Observable implements Observer
 {
-	
+	boolean loaded = false;
 	ClientUI userInterface;
 	ClientModel model;
 	Integer playerId;
@@ -42,12 +42,15 @@ public class ClientInterpreter extends Observable implements Observer
 	
 	private void loadInterpreter()
 	{
+		if(loaded)
+			return;
 		visitor = new ReplyVisitorImpl();
 		model = new ClientModel(playerId);
 		mainAction = new MainAction(model);
 		fastAction = new FastAction(model);
 		ClientUpdate.loadTypeOfAction(mainAction);
 		ClientUpdate.loadTypeOfAction(fastAction);
+		loaded = true;
 	}
 
 	@Override
@@ -77,6 +80,7 @@ public class ClientInterpreter extends Observable implements Observer
 				userInterface.showNotification("Reconeccted to Game");
 			else
 				userInterface.showNotification("Connected! Your connection password is: " + ((ConnectionReply)arg).getPassword());
+			loadInterpreter();
 			return;
 		}
 		else if(arg instanceof Reply)
