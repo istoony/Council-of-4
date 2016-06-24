@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import javax.swing.JTextField;
@@ -37,6 +39,8 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	volatile List<PoliticsCard> politicTemp = new ArrayList<>();
 	volatile List<BusinessCard> businessTemp = new ArrayList<>();
 	volatile List<City> cityTemp = new ArrayList<>();
+	volatile Map<City, Integer> mapTemp = new HashMap<>();
+	volatile String stringTemp = new String();
 	
 	static volatile List<Integer> index;
 
@@ -157,7 +161,16 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
-		return null;
+		index.clear();
+		businessTemp.addAll(cards);
+		ask = new QuestionFrame(this, cards);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		businessTemp.clear();
+		ask.close();
+		return cards.get(index.get(0));
 	}
 
 	@Override
@@ -190,6 +203,20 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public City getCity(Map<City, Integer> citiesECost) throws InvalidInsertionException {
+		index.clear();
+		mapTemp.putAll(citiesECost);
+		ask = new QuestionFrame(this, citiesECost);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		for(Entry<City, Integer> entry: citiesECost.entrySet()){
+			if(entry.getKey().getId()==index.get(0)){
+				cityTemp.clear();
+				ask.close();
+				return entry.getKey();
+			}
+		}
 		return null;
 	}
 
@@ -208,7 +235,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public int getPrice() throws InvalidInsertionException {
 		index.clear();
-		ask = new QuestionFrame(this);
+		ask = new QuestionFrame(this, 'a');
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -219,8 +246,17 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public String getUserString(String title) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		stringTemp = title;
+		ask = new QuestionFrame(this, title);
+		SwingUtilities.invokeLater(ask);
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		String ret = stringTemp;
+		stringTemp = new String();
+		ask.close();
+		return ret;
 	}
 
 	@Override
@@ -254,6 +290,15 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else if(!cityTemp.isEmpty()){
 			cityCheck(e);
+		}
+		else if(!businessTemp.isEmpty()){
+			businessCheck(e);
+		}
+		else if(!mapTemp.isEmpty()){
+			citymapCheck(e);
+		}
+		else if(!stringTemp.isEmpty()){
+			textCheck(e);
 		}
 		else {
 			numberCheck(e);
@@ -295,7 +340,24 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 	}
 	
-	private void textReader(ActionEvent e){
+	private void businessCheck(ActionEvent e){
+		for(BusinessCard b : businessTemp){
+			if(e.getActionCommand().equals(b.toStringCities()+"\n"+b.toStringBonus())){
+				index.add(cityTemp.indexOf(b));
+			}
+		}
+	}
+	
+	private void citymapCheck(ActionEvent e){
+		for(Entry<City, Integer> entry: mapTemp.entrySet()){
+			if(e.getActionCommand().equals(entry.getKey().getName()+"("+entry.getValue()+")")){
+				index.add(entry.getKey().getId());
+			}
+		}
+	}
+	
+	
+	private void textReader(ActionEvent e) {
 		if(e.getSource() instanceof JTextField){
 			try{
 				int n = Integer.parseInt(ask.getInput().getText());
@@ -306,6 +368,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 				textReader(e);
 			}
 		}
+	}
+	
+	private void textCheck(ActionEvent e) {
+		stringTemp = ask.getInput().getText();
+		index.add(0);
 	}
 	
 	private void numberCheck(ActionEvent e){

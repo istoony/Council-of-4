@@ -32,7 +32,7 @@ public class Notify extends JFrame implements Runnable{
 	}
 	
 	public void addMessage(String s){
-		List<String> list = parse(s);
+		List<String> list = Notify.parse(s);
 		for(String str : list){
 			text.add(new JLabel(str));
 			setStuff();
@@ -69,9 +69,9 @@ public class Notify extends JFrame implements Runnable{
 	}
 	
 	/*
-	 * @return the string on the second line if it contains a line break
+	 * @return list of strings at \n;
 	 */
-	private List<String> parse(String s){
+	protected static List<String> parse(String s){
 		List<String> list = new ArrayList<>();
 		if(s.contains("\n")){
 			int n=s.indexOf("\n");
