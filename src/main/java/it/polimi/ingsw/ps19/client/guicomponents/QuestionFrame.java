@@ -18,6 +18,7 @@ import it.polimi.ingsw.ps19.client.ClientGUI;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class QuestionFrame extends JFrame implements Runnable{
@@ -73,6 +74,14 @@ public class QuestionFrame extends JFrame implements Runnable{
 			pane.setToolTipText("Choose business card");
 			for(Object  o : obj){
 				createButtons(((BusinessCard)o).toStringCities()+"\n"+((BusinessCard)o).toStringBonus(), gui);
+			}
+		}
+		
+		else if(obj.get(0)==null){
+			setTitle("Choose");
+			pane.setToolTipText("Choose");
+			for(@SuppressWarnings("unused") Object  o : obj){
+				createButtons("no more", gui);
 			}
 		}
 		
@@ -180,7 +189,10 @@ public class QuestionFrame extends JFrame implements Runnable{
 	
 	public static String colorString(Color c){
 		String s="";
-		if(c.equals(Color.decode("#FF0000"))){
+		if (c==null){
+			s = "no more cards";
+		}
+		else if(c.equals(Color.decode("#FF0000"))){
 			s= "Red";
 		}
 		else if(c.equals(Color.decode("#0000FF"))){
@@ -197,6 +209,9 @@ public class QuestionFrame extends JFrame implements Runnable{
 		}
 		else if(c.equals(Color.decode("#FFC0CB"))){
 			s= "Pink";
+		}
+		else if(c.equals(Color.decode(Costants.JOKERCOLOR))){
+			s= "Joker";
 		}
 		return s;
 	}

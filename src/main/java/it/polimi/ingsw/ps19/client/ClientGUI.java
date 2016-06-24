@@ -119,6 +119,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			//wait the button to be pressed
 		}
 		ask.close();
+		colorTemp.clear();
 		return validColors.get(index.get(0));
 	}
 
@@ -176,6 +177,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
 		index.clear();
+		showNotification("here start");
 		politicTemp.addAll(cards);
 		ask = new QuestionFrame(this, cards);
 		SwingUtilities.invokeLater(ask);
@@ -183,6 +185,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			//wait the button to be pressed
 		}
 		politicTemp.clear();
+		showNotification("here ok");
 		ask.close();
 		return cards.get(index.get(0));
 	}
@@ -273,6 +276,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		nullCheck(e);
 		if(e.getActionCommand().equals(MAIN_ACTION_COMMAND)){
 			index.add(0);
 		}
@@ -335,6 +339,12 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 	}
 	
+	private void nullCheck(ActionEvent e){
+		if(e.getActionCommand().equals("no more")){
+			index.add(0);
+		}
+	}
+	
 	private void cityCheck(ActionEvent e){
 		for(City c : cityTemp){
 			if(e.getActionCommand().equals(c.getName())){
@@ -346,7 +356,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private void politicCheck(ActionEvent e){
 		for(PoliticsCard p : politicTemp){
 			if(e.getActionCommand().equals(p.toString())){
-				index.add(cityTemp.indexOf(p));
+				index.add(politicTemp.indexOf(p));
 			}
 		}
 	}
@@ -354,7 +364,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private void businessCheck(ActionEvent e){
 		for(BusinessCard b : businessTemp){
 			if(e.getActionCommand().equals(b.toStringCities()+"\n"+b.toStringBonus())){
-				index.add(cityTemp.indexOf(b));
+				index.add(businessTemp.indexOf(b));
 			}
 		}
 	}
