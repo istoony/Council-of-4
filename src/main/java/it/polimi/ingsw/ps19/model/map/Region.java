@@ -24,10 +24,10 @@ public class Region implements Serializable{
 	private BusinessCard secondcard;
 	private Balcony balcony;
 	
-	private Region(ArrayList<City> c)
+	private Region(List<City> el)
 	{
 		cities = new ArrayList<>();
-		cities.addAll(c);
+		cities.addAll(el);
 		
 	}
 	
@@ -60,12 +60,12 @@ public class Region implements Serializable{
 	}
 	
 	//inizializzazione 
-	public static List<Region> finalRegionBuilder(List<ArrayList<City>> citiesbyregion)
+	public static List<Region> finalRegionBuilder(List<List<City>> regioncitylist)
 	{
 		
-		ArrayList<Region> returnmap = new ArrayList<>();
+		List<Region> returnmap = new ArrayList<>();
 		
-		for(ArrayList<City> el : citiesbyregion)
+		for(List<City> el : regioncitylist)
 		{
 			returnmap.add(new Region(el));
 			returnmap.get(returnmap.size()-1).setPosition(RegionType.valueOf(returnmap.size()-1));

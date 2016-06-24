@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class CalculateShorterPath {
 
@@ -49,7 +50,7 @@ public class CalculateShorterPath {
 		int i = 0;
 		for (City end : m.getMap().getAllCities()) 
 		{
-			assertTrue(m.getMap().calculateShorterPath(start, end).size() == testForCurrentMap.get(i));
+			assertTrue(Costants.calculateShorterPath(start, end, m.getMap().getListaRegioni()).size() == testForCurrentMap.get(i));
 			i++;
 		}
 	}

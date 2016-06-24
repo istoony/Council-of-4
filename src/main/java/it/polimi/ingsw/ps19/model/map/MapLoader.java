@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.model.map;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.w3c.dom.Element;
@@ -30,8 +31,8 @@ public class MapLoader {
 
 	//change return type to map
 	public static Map builder() throws IllegalMapException{
-		ArrayList<MapLoader> map;
-		ArrayList<ArrayList<City>> regioncitylist;
+		List<MapLoader> map;
+		List<List<City>> regioncitylist;
 		
 		map = MapLoader.mapFileReading(FileNames.MAP_FILE);
 		if(map.isEmpty()){
@@ -47,7 +48,7 @@ public class MapLoader {
 	}
 	
 	
-	private static ArrayList<MapLoader> findrandomLegalMap(ArrayList<MapLoader> regionlist){
+	private static List<MapLoader> findrandomLegalMap(List<MapLoader> regionlist){
 
 		ArrayList<MapLoader> legalMap;
 		ArrayList<ArrayList<MapLoader>> maplist = new ArrayList<>();
@@ -103,9 +104,9 @@ public class MapLoader {
 		
 	
 	
-	private  static ArrayList<MapLoader> mapFileReading(String xmlfile){
+	private  static List<MapLoader> mapFileReading(String xmlfile){
 		
-		ArrayList<MapLoader> maplist = new ArrayList<>();
+		List<MapLoader> maplist = new ArrayList<>();
 		
 		NodeList nList = FileReader.XMLReader(xmlfile, "region");
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.model.map;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,9 +18,9 @@ public class CityLoader {
 	
 	
 	//metodo principale, popola le protoregioni di città con annessi cammini
-	static ArrayList<ArrayList<City>> citiesReader(ArrayList<MapLoader> idlist){
+	static List<List<City>> citiesReader(List<MapLoader> idlist){
 		
-		ArrayList<ArrayList<City>> regioncitylist = new ArrayList<>();
+		List<List<City>> regioncitylist = new ArrayList<>();
 			
 		NodeList nList = FileReader.XMLReader(FileNames.MAP_FILE, "region");
 
@@ -29,7 +30,7 @@ public class CityLoader {
 				Element e = (Element) nNode;
 				for(MapLoader elem : idlist){
 					if(elem.id==Integer.parseInt(e.getAttribute("id"))){
-						ArrayList<City> citylist = new ArrayList<>();
+						List<City> citylist = new ArrayList<>();
 						for(int i=0; i<Integer.parseInt(e.getElementsByTagName("nOfCities").item(0).getTextContent()); i++){
 							citylist.add(new City(Integer.parseInt(e.getElementsByTagName("cityid").item(i).getTextContent())));
 						}
@@ -45,7 +46,8 @@ public class CityLoader {
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element e = (Element) nNode;
 				
-				for(ArrayList<City> rlist : regioncitylist){
+				for(List<City> rlist : regioncitylist)
+				{
 					for(City el : rlist){
 						if(el.getId()==Integer.parseInt(e.getAttribute("id"))){
 							el.setParameters(e.getElementsByTagName("name").item(0).getTextContent(), e.getElementsByTagName("color").item(0).getTextContent());
@@ -66,11 +68,11 @@ public class CityLoader {
 	}
 	
 	//Collega le città per nome
-	private static ArrayList<ArrayList<City>> pathBuilder(ArrayList<ArrayList<City>> citiesinregions){
-		ArrayList<City> copia = new ArrayList<>();
-		ArrayList<City> newneig = new ArrayList<>();
+	private static List<List<City>> pathBuilder(List<List<City>> citiesinregions){
+		List<City> copia = new ArrayList<>();
+		List<City> newneig = new ArrayList<>();
 		
-		for(ArrayList<City> reg : citiesinregions){	
+		for(List<City> reg : citiesinregions){	
 			copia.clear();
 			copia.addAll(reg);
 			for(City el : reg){
@@ -95,9 +97,9 @@ public class CityLoader {
 	}
 	
 	//"salda" i neighbours tra le varie regions
-	private static ArrayList<ArrayList<City>> roadWelder(ArrayList<ArrayList<City>> citiesbyregion){
-		ArrayList<ArrayList<City>> couples;
-		ArrayList<ArrayList<City>> rejoin = new ArrayList<>();
+	private static List<List<City>> roadWelder(List<List<City>> citiesbyregion){
+		List<List<City>> couples;
+		List<List<City>> rejoin = new ArrayList<>();
 
 		for(int i=0; i<citiesbyregion.size()-1; i++){
 
@@ -113,33 +115,36 @@ public class CityLoader {
 	}
 	
 	//metodo accessorio del precedente
-	private static ArrayList<ArrayList<City>> welding(ArrayList<City> regionL, ArrayList<City> regionR){
+	private static List<List<City>> welding(List<City> regionL, List<City> regionR){
 		for(City ell : regionL){
 			for(City neig : ell.getNeighbours()){
-				if(neig.getId()<0){
-					for(City elr : regionR){
-						for(City next : elr.getNeighbours()){
-							if(next.getId()+1000==neig.getId()){
-								ell.getNeighbours().set(ell.getNeighbours().indexOf(neig), elr);
-								elr.getNeighbours().set(elr.getNeighbours().indexOf(next), ell);
-
-							}
-						}
-					}
-					
-				}
+				if(neig.getId()<0)
+					addNeighbours(regionR, ell, neig);
 			}
 		}
-		ArrayList<ArrayList<City>> weld2region = new ArrayList<>();
+		List<List<City>> weld2region = new ArrayList<>();
 		weld2region.add(regionL);
 		weld2region.add(regionR);
 		return weld2region;
 		
 	}
+
+
+	private static void addNeighbours(List<City> regionR, City ell, City neig) {
+		for(City elr : regionR){
+			for(City next : elr.getNeighbours()){
+				if(next.getId()+1000==neig.getId()){
+					ell.getNeighbours().set(ell.getNeighbours().indexOf(neig), elr);
+					elr.getNeighbours().set(elr.getNeighbours().indexOf(next), ell);
+
+				}
+			}
+		}
+	}
 	
 	//trova i neighbours delle città (completa la lettura da file)
-	private static ArrayList<City> retrieveNear(Element e){
-		ArrayList<City> nearlist = new ArrayList<>();
+	private static List<City> retrieveNear(Element e){
+		List<City> nearlist = new ArrayList<>();
 		for(int i=0; i<Integer.parseInt(e.getElementsByTagName("nOfRoads").item(0).getTextContent()); i++){
 			nearlist.add(new City(Integer.parseInt(e.getElementsByTagName("road").item(i).getTextContent())));
 		}

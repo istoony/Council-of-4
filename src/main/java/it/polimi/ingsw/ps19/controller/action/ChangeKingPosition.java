@@ -51,7 +51,10 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//Calcolo anche il costo del movimento del re
 			//
 		int helperscost = real.calculateMalusEmporium();
-		int moneycost = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size() - 1);
+		int moneycost = 0;
+		if(real.getId() != model.getMap().getKing().getCurrentcity().getId())
+			moneycost = Costants.JUMPCOST*(Costants.calculateShorterPath(model.getMap().getKing().getCurrentcity(), 
+				city, model.getMap().getListaRegioni()).size() - 1);
 		
 			//Sposto il re nella città nuova
 		model.getMap().getKing().setCurrentcity(real);
@@ -98,7 +101,8 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			return false;
 		}
 		
-		int requiredmoney = Costants.JUMPCOST*(model.getMap().calculateShorterPath(model.getMap().getKing().getCurrentcity(), city).size()-1);
+		int requiredmoney =  Costants.JUMPCOST*(Costants.calculateShorterPath(model.getMap().getKing().getCurrentcity(), 
+				city, model.getMap().getListaRegioni()).size() - 1);
 		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
 		
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney)
