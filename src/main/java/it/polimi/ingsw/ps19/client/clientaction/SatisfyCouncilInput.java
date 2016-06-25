@@ -145,7 +145,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	 */
 	private DeckId getUsefulDeck(DeckId mainDeck, DeckId referenceDeck)
 	{
-		List<CardId> mainCards = mainDeck.getDeckClone();
+		List<CardId> mainCards = mainDeck.getDeck();
 		List<CardId> usefulCards = new ArrayList<>();
 		for(CardId card : mainCards)
 			if(referenceDeck.contains(card))
@@ -183,7 +183,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			for(int j = i + 1; j < decks.size(); j++)
 			{
 				DeckId deckCompared = decks.get(j);
-				if(deckComparing.equivalent(deckCompared))
+				if(deckComparing.equivalentNotJoker(deckCompared))
 					decks.remove(deckCompared);
 			}
 		}
@@ -212,7 +212,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		CardId card = new CardId(color);
 		List<DeckId> containingDecks = new ArrayList<>();
 		for(DeckId deck : decks)
-			if(deck.contains(card))
+			if(deck.containsNotJoker(card))
 				containingDecks.add(deck);
 		return containingDecks;
 	}
@@ -245,15 +245,27 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		return differentColors;
 	}
 	
-	private class CardId
+	/**
+	 * private class to properly manage cards
+	 */
+	public class CardId
 	{
 		private Color color;
 		
+		/**
+		 * constructor
+		 * @param c: color
+		 */
 		public CardId(Color c)
 		{
 			color = c;
 		}
 		
+		/**
+		 * Verifies that the passed card has the same colors as caller's
+		 * @param card
+		 * @return
+		 */
 		public boolean equivalentNotJolly(CardId card) 
 		{
 			if(card != null && card.getColor().equals(color))
@@ -280,7 +292,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		 */
 		public boolean equivalent(CardId cardId)
 		{
-			if(color.equals(cardId.getColor()) || (Color.decode(Costants.JOKERCOLOR)).equals(cardId.getColor()))
+			if(color.equals(cardId.getColor()) || cardId.getColor().equals(Color.decode(Costants.JOKERCOLOR)))
 				return true;
 			return false;
 		}
@@ -338,18 +350,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				clone.addAll(cardsId);
 			return clone;
 		}
-		
-		/**
-		 * Returns whether the two deck are equivalent
-		 * @param deck: comparing deck
-		 * @return
-		 */
-		public boolean equivalent(DeckId deck)
-		{
-			if(deck.getDeckClone().size() != cardsId.size())
-				return false;
-			return equivalentOrContained(deck);
-		}
+
 		
 		/**
 		 * Returns whether the deck calling is equivalent or contained in the parameter
@@ -368,7 +369,43 @@ public abstract class SatisfyCouncilInput extends ClientAction
 				while(j < secondDeck.size() && !found)
 				{
 					CardId cardTwo = secondDeck.get(j);
-					if(cardOne.equivalent(cardTwo))
+					if(cardTwo.equivalent(cardOne))
+					{
+						firstDeck.remove(cardOne);
+						secondDeck.remove(cardTwo);
+						found = true;
+					}
+					else
+					{
+						j++;
+					}
+				}
+				if(!found)
+					return false;
+			}
+			return true;
+		}
+		
+		/**
+		 * Returns whether the deck calling is equivalent or contained in the parameter
+		 * @param deck: Containing deck;
+		 * @return
+		 */
+		public boolean equivalentNotJoker(DeckId deck)
+		{
+			List<CardId> secondDeck = deck.getDeckClone();
+			List<CardId> firstDeck = this.getDeckClone();
+			if(firstDeck.size() != secondDeck.size())
+				return false;
+			while(!firstDeck.isEmpty())
+			{
+				CardId cardOne = firstDeck.get(0);
+				int j = 0;
+				boolean found = false;
+				while(j < secondDeck.size() && !found)
+				{
+					CardId cardTwo = secondDeck.get(j);
+					if(cardTwo.equivalentNotJolly(cardOne))
 					{
 						firstDeck.remove(cardOne);
 						secondDeck.remove(cardTwo);
@@ -404,7 +441,20 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		public boolean contains(CardId card)
 		{
 			for(CardId deckCard : cardsId)
-				if(card.equivalent(deckCard))
+				if(deckCard.equivalent(card))
+					return true;
+			return false;
+		}
+		
+		/**
+		 * returns whether the deck contains a card equivalent to the parameter and not joker
+		 * @param card
+		 * @return
+		 */
+		public boolean containsNotJoker(CardId card)
+		{
+			for(CardId deckCard : cardsId)
+				if(card.equivalentNotJolly(deckCard))
 					return true;
 			return false;
 		}
@@ -454,7 +504,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			for(int i = 0; i < cardsId.size(); i++)
 			{
 				CardId deckCard = cardsId.get(i);
-				if(deckCard.equivalent(card))
+				if(deckCard.equivalentNotJolly(card))
 				{
 					cardsId.remove(deckCard);
 					return;
@@ -470,6 +520,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		public boolean isCheaper(int money)
 		{
 			int cost = 10;
+			int nJoker = 0;
 			cost -= (cardsId.size() * 3);
 			if(cost == 1)
 				cost = 0;
