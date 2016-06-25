@@ -21,7 +21,8 @@ public class AddOrder extends SupportMethod implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getMarket().addOrder(order, playerId);
+		if(order!=null)
+			model.getMarket().addOrder(order, playerId);
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;

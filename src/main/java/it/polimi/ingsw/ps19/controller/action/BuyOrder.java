@@ -26,25 +26,30 @@ public class BuyOrder extends SupportMethod implements Action
 	@Override
 	public Boolean execute(Model model) 
 	{
-		//Assegno le cose al player
-		Player seller = model.getPlayerById(sellerId);
-		Player buyer = model.getPlayerById(playerId);
+		if(order!= null)
+		{
+			//Assegno le cose al player
+			Player seller = model.getPlayerById(sellerId);
+			Player buyer = model.getPlayerById(playerId);
+			
+			seller.setHelpers(seller.getHelpers() - order.getHelper());
+			buyer.setHelpers(buyer.getHelpers() + order.getHelper());
+			
+			removeCardToHand(model, seller, order.getPoliticscard());
+			for (Color color : order.getPoliticscard())
+				buyer.addCardToHand(new PoliticsCard(color));
+			
+			//rimuovo l'ordine dal market
+			//l'ordine esiste solo se order è diverso da null
+			model.getMarket().removeOrderById(sellerId);
+			
+		}
 		
-		seller.setHelpers(seller.getHelpers() - order.getHelper());
-		buyer.setHelpers(buyer.getHelpers() + order.getHelper());
-		
-		removeCardToHand(model, seller, order.getPoliticscard());
-		for (Color color : order.getPoliticscard())
-			buyer.addCardToHand(new PoliticsCard(color));
-		
-		
-		//rimuovo l'ordine dal market
-		model.getMarket().removeOrderById(sellerId);
+		//imposto nel CurrentState che il player ha acquistato
+		model.getCurrentState().playerBought(playerId);
 		
 		//cambio l'id del player attivo
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
-		//imposto nel CurrentState che il player ha acquistato
-		model.getCurrentState().playerBought(playerId);
 		result = ActionMessages.PLAYER_HAS_BOUGHT;
 		return true;
 	}
@@ -63,7 +68,6 @@ public class BuyOrder extends SupportMethod implements Action
 			return false;
 		}
 		return true;
-			
 	}
 	
 	@Override
