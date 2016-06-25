@@ -23,8 +23,8 @@
 	
 	<politicscard>
 
-		<numberofcard>20</numberofcard>
-		<numberofjoker>100</numberofjoker>
+		<numberofcard>100</numberofcard>
+		<numberofjoker>10</numberofjoker>
 
 	</politicscard>
 	
