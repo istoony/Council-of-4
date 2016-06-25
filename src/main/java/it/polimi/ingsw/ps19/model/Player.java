@@ -20,9 +20,6 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
  */
 public class Player implements Serializable
 {
-	
-	private static final int EMPORIUM_SIZE=10;
-	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -505551466312267551L;
 	
@@ -400,13 +397,11 @@ public class Player implements Serializable
 
 
 	/**
-	 * Gets the maxemporia.
-	 *
 	 * @return Number of emporia left to win the game
 	 */
 	public int getMaxemporia() 
 	{
-		return EMPORIUM_SIZE - myEmporia.size();
+		return Costants.EMPORIUM_SIZE - myEmporia.size();
 	}
 
 	/**
@@ -477,6 +472,11 @@ public class Player implements Serializable
 	 */
 	public boolean isCityBonusRequest() {
 		return cityBonusRequest;
+	}
+
+	public boolean isBusinessCardOrCityBonusRequest() 
+	{
+		return isCityBonusRequest() || isBusinessCardRequest();
 	}
 	
 }

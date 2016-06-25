@@ -8,6 +8,7 @@ import it.polimi.ingsw.ps19.controller.action.ActionMessages;
 import it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp;
+import it.polimi.ingsw.ps19.controller.action.SupportMethod;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
@@ -22,7 +23,7 @@ import it.polimi.ingsw.ps19.server.WaitingRoom;;
 /**
  * The Class GameController.
  */
-public class GameController implements Observer
+public class GameController extends SupportMethod implements Observer
 {
 	
 	/** The model. */
@@ -53,25 +54,11 @@ public class GameController implements Observer
 	private void drawStartingPoliticsCard() 
 	{
 		for (Player p : model.getPlayer()) 
-			drawForSinglePlayer(p, p.getStartingPoliticCard());
-		
-		politicCardToDrawToCurrentPlayer();
-	}
-
-	private void politicCardToDrawToCurrentPlayer() 
-	{
-		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
-		if( numberOfPoliticCards !=0)
-				drawForSinglePlayer(model.getPlayerById(model.getCurrentState().getPlayerTurnId()), numberOfPoliticCards);
-	}
-
-	private void drawForSinglePlayer(Player p, int numberOfPoliticCards ) 
-	{
-		for(int i=0;i<numberOfPoliticCards;i++)
 		{
-			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId());
+			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId(), p.getStartingPoliticCard());
 			drawPoliticsCard.execute(model);
 		}
+		politicCardToDrawToCurrentPlayer(model);
 	}
 	
 	/* (non-Javadoc)
@@ -97,7 +84,6 @@ public class GameController implements Observer
 		if(isPossible)
 		{
 			action.execute(model);
-			politicCardToDrawToCurrentPlayer();
 		}
 		reply = createReply();
 		
@@ -120,8 +106,6 @@ public class GameController implements Observer
 			
 			for (Player player : model.getPlayer())
 				player.setStartingAction();
-			
-			politicCardToDrawToCurrentPlayer();
 			
 			reply = new SendFullPlayerReply(model.getCurrentState().getPlayerTurnId(), 
 					reply.getResult(), model.getPlayer());
@@ -166,12 +150,12 @@ public class GameController implements Observer
 		}
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
-				&& !model.getPlayerById(id).isCityBonusRequest() && !model.getPlayerById(id).isBusinessCardRequest() &&
+				&& !model.getPlayerById(id).isBusinessCardOrCityBonusRequest() &&
 				!model.getCurrentState().isTimeToMarket())
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
-			politicCardToDrawToCurrentPlayer();
+			politicCardToDrawToCurrentPlayer(model);
 			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}
@@ -235,8 +219,7 @@ public class GameController implements Observer
 	{
 		int playerTurnId = model.getCurrentState().getPlayerTurnId();
 		Reply r;
-		if(model.getPlayerById(playerTurnId).isBusinessCardRequest() || 
-				model.getPlayerById(playerTurnId).isCityBonusRequest())
+		if(model.getPlayerById(playerTurnId).isBusinessCardOrCityBonusRequest())
 		{
 			r = new GetBusinessCardOrCityBonusReply(
 					model.getCurrentState().getPlayerTurnId(), 

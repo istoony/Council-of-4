@@ -8,7 +8,6 @@ import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
@@ -78,16 +77,6 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 		int playerId = message.getId();
 		List<Color> politicscard = message.getPoliticsCard();
 		return new DrawBusinessCard(playerId, region, card, politicscard);
-	}
-
-	/* (non-Javadoc)
-	 * @see it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor#visit(it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage)
-	 */
-	@Override
-	public Action visit(DrawPoliticsCardMessage message) 
-	{
-			int playerId = message.getId();
-		return new DrawPoliticsCard(playerId);
 	}
 	
 	/* (non-Javadoc)

@@ -16,6 +16,7 @@ public class CurrentState
 	private Boolean timeToMarketSended;
 	
 	private int numberOfPlayer;
+	private Boolean lastTurn;
 	
 	private Map<Integer, Boolean> marketState;
 	private List<Integer> playerIdList;
@@ -165,6 +166,12 @@ public class CurrentState
 	}
 	public List<Integer> getDisconnectedPlayersId() {
 		return Costants.clone(disconnectedPlayersId);
+	}
+	public void setLastTurn(Boolean lastTurn) {
+		this.lastTurn = lastTurn;
+	}
+	public Boolean getLastTurn() {
+		return lastTurn;
 	}
 	
 }

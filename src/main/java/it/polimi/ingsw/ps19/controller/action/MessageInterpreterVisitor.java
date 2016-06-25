@@ -5,7 +5,6 @@ import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
-import it.polimi.ingsw.ps19.message.requests.DrawPoliticsCardMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
@@ -53,14 +52,6 @@ public interface MessageInterpreterVisitor
 	 * @return the action
 	 */
 	public Action visit(GetBusinessCardMessage message);
-	
-	/**
-	 * Visit for DrawPoliticsCardMessage
-	 *
-	 * @param message the message
-	 * @return the action
-	 */
-	public Action visit(DrawPoliticsCardMessage message);
 	
 	/**
 	 * Visit for EndTurnMessage

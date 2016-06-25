@@ -72,6 +72,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 				
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
+		
 		return true;
 	}
 

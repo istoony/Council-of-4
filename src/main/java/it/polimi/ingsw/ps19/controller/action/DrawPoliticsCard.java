@@ -7,16 +7,19 @@ import it.polimi.ingsw.ps19.model.Model;
 public class DrawPoliticsCard implements Action 
 {
 	private int playerId;
+	private int numberOfCard;
 	private String result;
 	
-	public DrawPoliticsCard(int id) 
+	public DrawPoliticsCard(int id, int numberOfCard) 
 	{
 		playerId = id;
+		this.numberOfCard = numberOfCard;
 	}
 	@Override
 	public Boolean execute(Model model) 
 	{
-		model.getPlayerById(playerId).addCardToHand(model.getMap().getPoliticdeck().getFirstCard());
+		for(int i = 0; i<numberOfCard; i++)
+			model.getPlayerById(playerId).addCardToHand(model.getMap().getPoliticdeck().getFirstCard());
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}

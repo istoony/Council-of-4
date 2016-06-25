@@ -25,7 +25,7 @@ public class SupportMethod
 	 * @param politicsCard a list of Politic card used to satify balcony.
 	 * @return a number of money.
 	 */
-	protected int numberOfNeedMoney(List<Color> politicsCard)
+	protected static int numberOfNeedMoney(List<Color> politicsCard)
 	{
 		if(politicsCard.size() == 1)
 			return MONEY_1_CARDS;
@@ -41,7 +41,7 @@ public class SupportMethod
 	 * @param politicsCard a list of politics card
 	 * @return number of jocker
 	 */
-	protected int numberOfJoker(List<Color> politicsCard)
+	protected static int numberOfJoker(List<Color> politicsCard)
 	{
 		int count = 0;
 		for (Color color : politicsCard) 
@@ -52,7 +52,7 @@ public class SupportMethod
 		return count;
 	}
 		
-	protected boolean findPoliticCard(List<Color> politicsCard, Player player)
+	protected static boolean findPoliticCard(List<Color> politicsCard, Player player)
 	{
 		for (Color color : politicsCard) 
 		{
@@ -63,7 +63,7 @@ public class SupportMethod
 		return true;
 	}
 
-	protected City getRealCity(Model m, City city)
+	protected static City getRealCity(Model m, City city)
 	{
 		for(Region r : m.getMap().getListaRegioni())
 			for(City c : r.getCities())
@@ -71,7 +71,7 @@ public class SupportMethod
 					return c;
 		return null;
 	}
-	protected RegionType findRegion(Model model, City city)
+	protected static RegionType findRegion(Model model, City city)
 	{
 		for(Region r : model.getMap().getListaRegioni())
 			for(City c : r.getCities())
@@ -80,7 +80,7 @@ public class SupportMethod
 		return null;
 	}
 	
-	protected void giveBonusToPlayer(Model model, RegionType region, Player player, int cityid)
+	protected static void giveBonusToPlayer(Model model, RegionType region, Player player, int cityid)
 	{
 		List<City> myCity = model.getMap().getRegionByType(region).getCityById(cityid).applyNetBonus(player, new ArrayList<City>());
 		for (City c : myCity) 
@@ -89,6 +89,17 @@ public class SupportMethod
 				b.giveBonus(player);
 				checkNobilityPathBonus(model, player);
 			}
+		politicCardToDrawToCurrentPlayer(model);
+	}
+	
+	protected static void politicCardToDrawToCurrentPlayer(Model model) 
+	{
+		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
+		if( numberOfPoliticCards !=0)
+		{
+			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(model.getCurrentState().getPlayerTurnId(), numberOfPoliticCards);
+			drawPoliticsCard.execute(model);
+		}
 	}
 	
 	protected static void checkNobilityPathBonus(Model model, Player player)
@@ -99,12 +110,21 @@ public class SupportMethod
 				nobilityBonus.giveBonus(player);
 	}
 	
-	protected void removeCardToHand(Model model, Player player, List<Color> politicCard) {
+	protected static void removeCardToHand(Model model, Player player, List<Color> politicCard){
 		for(int i = 0; i < politicCard.size(); i++)
 		{
 			PoliticsCard p = new PoliticsCard(politicCard.get(i));
 			player.removeCardToHand(p);
 			model.getMap().getPoliticdeck().addToDeck(p);
+		}
+	}
+	
+	protected static void checkPlayerVictory(Model model, Player player, String result)
+	{
+		if(player.getMaxemporia() == 0)
+		{
+			model.getCurrentState().setLastTurn(true);
+			result = ActionMessages.PLAYER_WIN_GAME + player.getId();
 		}
 	}
 }

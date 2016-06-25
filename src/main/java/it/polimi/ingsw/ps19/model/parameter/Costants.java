@@ -17,6 +17,7 @@ public class Costants
 	public static final int BROADCAST_MESSAGE = -1;
 	public static final Random RANDOM_NUMBER = new Random();
 	public static final int N_OF_ACTION_TO_ADD = 1;
+	public static final int EMPORIUM_SIZE=10;
 
 	private Costants()
 	{
