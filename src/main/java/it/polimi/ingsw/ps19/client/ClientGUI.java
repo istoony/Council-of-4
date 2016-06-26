@@ -66,16 +66,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			log.log(Level.SEVERE, e1.toString(), e1);
 		}
 	}
-	/*
-	public void createGUI(ClientModel m){
-		window = new MainWindow(m);
-		try {
-			SwingUtilities.invokeAndWait(window);
-		} catch (InvocationTargetException | InterruptedException e) {
-			log.log(Level.SEVERE, e.toString(), e);
-		}
-	}
-	*/
+
 	@Override
 	public synchronized ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		index.clear();
@@ -164,21 +155,19 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else{
 			window.update(model);
-			window.getFrame().repaint();
+			//window.getFrame().repaint();
 		}
 	}
 
 	@Override
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
-		index.clear();
-		businessTemp.addAll(cards);
-		try{
-			ask = new QuestionFrame(this, cards);
-			SwingUtilities.invokeLater(ask);
-		}
-		catch(NullPointerException e){
+		if(cards.isEmpty()){
 			return null;
 		}
+		index.clear();
+		businessTemp.addAll(cards);
+		ask = new QuestionFrame(this, cards);
+		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
@@ -189,15 +178,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
-		index.clear();
-		politicTemp.addAll(cards);
-		try{
-			ask = new QuestionFrame(this, cards);
-			SwingUtilities.invokeLater(ask);
-		}
-		catch(NullPointerException e){
+		if(cards.isEmpty()){
 			return null;
 		}
+		index.clear();
+		politicTemp.addAll(cards);
+		ask = new QuestionFrame(this, cards);
+		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
@@ -243,14 +230,16 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
 		pop.addMessage("Market phase");
 		index.clear();
+		numberflag=true;
+		pop.addMessage("here ok");
 		ask = new QuestionFrame(this, n);
 		SwingUtilities.invokeLater(ask);
-		numberflag=true;
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
-		ask.close();
 		numberflag=false;
+		pop.addMessage("here okkk");
+		ask.close();
 		return index.get(0);
 	}
 
@@ -304,7 +293,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		nullCheck(e);
+		if(nullCheck(e)){
+			return;
+		}
 		if(e.getActionCommand().equals(MAIN_ACTION_COMMAND)){
 			index.add(0);
 		}
@@ -372,10 +363,12 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 	}
 	
-	private void nullCheck(ActionEvent e){
+	private boolean nullCheck(ActionEvent e){
 		if(e.getActionCommand().equals("no more")){
 			index.add(0);
+			return true;
 		}
+		return false;
 	}
 	
 	private void cityCheck(ActionEvent e){
@@ -434,13 +427,8 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	private void numberCheck(ActionEvent e){
-		try{
-			int n = Integer.parseInt(e.getActionCommand());
-			index.add(n);
-		}
-		catch(Exception ex){
-			log.log(Level.SEVERE, ex.toString(), ex);
-		}
+		pop.addMessage("here n");
+		index.add(Integer.parseInt(e.getActionCommand()));
 	}
 	
 	

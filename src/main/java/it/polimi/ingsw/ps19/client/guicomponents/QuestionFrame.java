@@ -41,7 +41,14 @@ public class QuestionFrame extends JFrame implements Runnable{
 		choices = new ArrayList<>();
 		pane = new JPanel();
 		
-		if(obj.get(0) instanceof RegionType){
+		if(obj.get(0)==null){
+			setTitle("Choose");
+			pane.setToolTipText("Choose");
+			for(@SuppressWarnings("unused") Object  o : obj){
+				createButtons("no more", gui);
+			}
+		}
+		else if(obj.get(0) instanceof RegionType){
 			setTitle("Choose the region");
 			pane.setToolTipText("Choose the region");
 			for(Object  o : obj){
@@ -74,14 +81,6 @@ public class QuestionFrame extends JFrame implements Runnable{
 			pane.setToolTipText("Choose business card");
 			for(Object  o : obj){
 				createButtons(((BusinessCard)o).toStringCities()+"\n"+((BusinessCard)o).toStringBonus(), gui);
-			}
-		}
-		
-		else if(obj.get(0)==null){
-			setTitle("Choose");
-			pane.setToolTipText("Choose");
-			for(@SuppressWarnings("unused") Object  o : obj){
-				createButtons("no more", gui);
 			}
 		}
 		

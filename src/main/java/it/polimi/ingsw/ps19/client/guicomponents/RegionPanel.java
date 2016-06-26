@@ -138,6 +138,7 @@ public class RegionPanel extends JPanel implements MouseListener{
 				}
 			}
 		}
+		repaint();
     }
     
 	@Override
