@@ -29,7 +29,6 @@ public class MainFrame extends JFrame {
 		
 		setBounds(100, 60, MWIDTH, MHEIGHT);
 		setMinimumSize(this.getSize());
-		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		getContentPane().setLayout(new BorderLayout());
 	}
 	

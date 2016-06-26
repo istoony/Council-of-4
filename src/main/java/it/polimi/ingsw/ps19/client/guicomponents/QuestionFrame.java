@@ -97,6 +97,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 		choices = new ArrayList<>();
 		pane = new JPanel();
 		setTitle("Choose how many Helpers to sell");
+		pane.setToolTipText("Choose how many Helpers to sell");
 		for(Integer i=0; i<=n; i++){
 			createButtons(i.toString(), gui);
 		}

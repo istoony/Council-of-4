@@ -17,6 +17,8 @@ import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
+import it.polimi.ingsw.ps19.client.guicomponents.MarketFrame;
+import it.polimi.ingsw.ps19.client.guicomponents.MarketShow;
 import it.polimi.ingsw.ps19.client.guicomponents.Notify;
 import it.polimi.ingsw.ps19.client.guicomponents.QuestionFrame;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
@@ -29,9 +31,15 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ClientGUI extends ClientUI implements ActionListener{
 	
-	MainWindow window=null;
-	Notify pop = new Notify("Waiting for messages..");
-	QuestionFrame ask;
+	private MainWindow window=null;
+	private Notify pop = new Notify("Waiting for messages..");
+	private QuestionFrame ask;
+	private MarketFrame market;
+	private MarketShow showmarket;
+	
+	private boolean marketflag=false;
+	private boolean numberflag=false;
+	
 	
 	volatile List<ClientAction> actionTemp = new ArrayList<>();
 	volatile List<RegionType> regionTemp = new ArrayList<>();
@@ -58,7 +66,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			log.log(Level.SEVERE, e1.toString(), e1);
 		}
 	}
-	
+	/*
 	public void createGUI(ClientModel m){
 		window = new MainWindow(m);
 		try {
@@ -67,7 +75,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			log.log(Level.SEVERE, e.toString(), e);
 		}
 	}
-	
+	*/
 	@Override
 	public synchronized ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		index.clear();
@@ -164,8 +172,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
 		index.clear();
 		businessTemp.addAll(cards);
-		ask = new QuestionFrame(this, cards);
-		SwingUtilities.invokeLater(ask);
+		try{
+			ask = new QuestionFrame(this, cards);
+			SwingUtilities.invokeLater(ask);
+		}
+		catch(NullPointerException e){
+			return null;
+		}
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
@@ -177,15 +190,18 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
 		index.clear();
-		showNotification("here start");
 		politicTemp.addAll(cards);
-		ask = new QuestionFrame(this, cards);
-		SwingUtilities.invokeLater(ask);
+		try{
+			ask = new QuestionFrame(this, cards);
+			SwingUtilities.invokeLater(ask);
+		}
+		catch(NullPointerException e){
+			return null;
+		}
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
 		politicTemp.clear();
-		showNotification("here ok");
 		ask.close();
 		return cards.get(index.get(0));
 	}
@@ -225,13 +241,16 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
+		pop.addMessage("Market phase");
 		index.clear();
 		ask = new QuestionFrame(this, n);
 		SwingUtilities.invokeLater(ask);
+		numberflag=true;
 		while(index.isEmpty()){
 			//wait the button to be pressed
 		}
 		ask.close();
+		numberflag=false;
 		return index.get(0);
 	}
 
@@ -264,14 +283,23 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public Order getOrder(List<Order> orders) throws InvalidInsertionException {
-		// TODO Auto-generated method stub
-		return null;
+		index.clear();
+		market = new MarketFrame(orders, this);
+		SwingUtilities.invokeLater(market);
+		marketflag=true;
+		while(index.isEmpty()){
+			//wait the button to be pressed
+		}
+		market.close();
+		marketflag=false;
+		return orders.get(index.get(0));
 	}
 
 	@Override
 	public void showMarket(Market market) {
-		// TODO Auto-generated method stub
-		
+		showmarket = new MarketShow(market);
+		SwingUtilities.invokeLater(showmarket);
+		return;
 	}
 	
 	@Override
@@ -307,8 +335,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(!stringTemp.isEmpty()){
 			textCheck();
 		}
-		else {
+		else if(marketflag){
+			marketCheck(e);
+		}
+		else if(numberflag){
 			numberCheck(e);
+		}
+		else {
 			textReader(e);
 		}					
 		// TODO Auto-generated method stub
@@ -389,6 +422,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 				textReader(e);
 			}
 		}
+	}
+	
+	private void marketCheck(ActionEvent e){
+		index.add(Integer.parseInt(e.getActionCommand()));
 	}
 	
 	private void textCheck() {
