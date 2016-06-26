@@ -38,8 +38,7 @@ public class ServerManager
 	 */
 	public static void main(String[] args) 
 	{
-		Thread t = new StopperThread();
-		t.start();
+		Thread stopperThread = new StopperThread();
 		serverCLI.showNotification("started");
 		boolean valid;
 		Integer maxPlayers = null;
@@ -47,12 +46,11 @@ public class ServerManager
 		{
 			try
 			{
-				String s = serverCLI.getUserString("Max players per turn");
-				maxPlayers = Integer.parseInt(s);
+				maxPlayers = serverCLI.getInt("Max players per turn");
 				valid = true;
-				if(maxPlayers > 1)
+				if(maxPlayers < 1)
 					valid = false;
-			}catch(NumberFormatException | InvalidInsertionException e)
+			}catch(InvalidInsertionException e)
 			{
 				log.log(Level.OFF, e.toString(), e);
 				valid = false;
@@ -99,6 +97,7 @@ public class ServerManager
 		
 		//Waiting Room Init
 		WaitingRoom.startTimer();
+		stopperThread.start();
 		while(!stop)
 		{
 			try

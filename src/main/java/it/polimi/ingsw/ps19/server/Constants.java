@@ -20,7 +20,7 @@ public final class Constants
 	
 	public static void setMaxPlayers(final int mp)
 	{
-		if(MAX_PLAYERS != null)
+		if(MAX_PLAYERS == null)
 			MAX_PLAYERS = mp;
 	}
 }

@@ -245,6 +245,8 @@ public class ClientCLI extends ClientUI
 	 */
 	public String read() throws IOException
 	{
+		if(in.ready())
+			in.readLine();
 		String s = in.readLine();
 		return s;
 	}
@@ -521,7 +523,7 @@ public class ClientCLI extends ClientUI
 			for(Color card : order.getPoliticscard())
 				s = s.concat(getString(card) + ",");
 		s += " Business Cards: ";
-		if(order.getPoliticscard().isEmpty())
+		if(order.getBusinesscard().isEmpty())
 			s += "0,";
 		else
 			for(BusinessCard card : order.getBusinesscard())
@@ -546,6 +548,7 @@ public class ClientCLI extends ClientUI
 			number = Integer.parseInt(s);
 		} catch (IOException | NumberFormatException e) 
 		{
+			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
 		return number;

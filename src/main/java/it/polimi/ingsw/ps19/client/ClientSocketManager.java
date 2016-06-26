@@ -37,13 +37,13 @@ public class ClientSocketManager extends ClientManager
 		{
 			//Start thread to write string while connecting
 			t = new WaitingWriterThread("Trying to connect..", userInterface);
-			t.start();
 			
 			//Tries to connect: First time with player input, after with standard input
 			try
 			{	
 				Socket socket = new Socket(Inet4Address.getByName(ip), port);
 				userInterface.showNotification("Socket created");
+				t.start();
 				connection = new SocketConnection(socket, executorService);
 				connection.write(new ConnectionMessage(newGame, key));
 				success = true;

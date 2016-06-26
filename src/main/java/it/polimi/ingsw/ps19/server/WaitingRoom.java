@@ -37,7 +37,7 @@ public class WaitingRoom
 	private static Map<Integer,Connection> connectedUsers = new HashMap<>();
 	private static long secondPlayerTime = -1;																//Time of connection of second player in queue
 	private static Thread t = null;																			//Timer Thread. We keep it's reference for closing it properly
-	private static ExecutorService executorService = Executors.newFixedThreadPool(Constants.MAX_PLAYERS);	//Thread pool used by connections for writing
+	private static ExecutorService executorService;																			//Thread pool used by connections for writing
 	private static Mutex mux = new Mutex();																	//Mutex
 	
 	private static int counter = 10;
@@ -49,6 +49,7 @@ public class WaitingRoom
 	 */
 	public static void startTimer()
 	{
+		executorService = Executors.newFixedThreadPool(Constants.MAX_PLAYERS);
 		if(t != null) 
 			return;
 		t = new TimerThread();
