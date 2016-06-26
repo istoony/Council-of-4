@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.polimi.ingsw.ps19.client.ClientCLI;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 import java.io.IOException;
@@ -40,6 +41,24 @@ public class ServerManager
 		Thread t = new StopperThread();
 		t.start();
 		serverCLI.showNotification("started");
+		boolean valid;
+		Integer maxPlayers = null;
+		do
+		{
+			try
+			{
+				String s = serverCLI.getUserString("Max players per turn");
+				maxPlayers = Integer.parseInt(s);
+				valid = true;
+				if(maxPlayers > 1)
+					valid = false;
+			}catch(NumberFormatException | InvalidInsertionException e)
+			{
+				log.log(Level.OFF, e.toString(), e);
+				valid = false;
+			}
+		}while(!valid);
+		Constants.setMaxPlayers(maxPlayers);
 		//RMI Init
 		try 
 		{
