@@ -19,7 +19,6 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 	private int playerId;
 	private RegionType region;
 	private BusinessCard card;
-	private Boolean isFirstCard;
 	private List<Color> politicsCard;
 	
 	private String result;
@@ -34,7 +33,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 	
 	@Override
 	public Boolean execute(Model model) 
-	{
+	{		
 		Player player = model.getPlayerById(playerId);
 			//
 			//Per ogni carta arrivata dal Messaggio rimuovo la carta dal player e la aggiungo alla
@@ -54,23 +53,12 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione
 			//
-		BusinessCard selectedcard;
-		if(isFirstCard)
-		{
-			selectedcard = model.getMap().getRegionByType(region).getFirstcard();
-			model.getMap().getRegionByType(region).drowFirstCard();
-		}
-		else
-		{
-			selectedcard = model.getMap().getRegionByType(region).getSecondcard();
-			model.getMap().getRegionByType(region).drowSecondCard();
-		}
-		player.addCardToHand(selectedcard);
+		BusinessCard selectedcard = removeCardFromRegionAndAddToPlayer(model, player, card, region);
 		
-		//
-		//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
-		//nobiltà, se ho bonus da applicare applico anche quelli.
-		//
+			//
+			//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
+			//nobiltà, se ho bonus da applicare applico anche quelli.
+			//
 		
 		
 		giveListOfBonus(model, player, selectedcard.getBonus());
@@ -107,31 +95,12 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			return false;
 		}
 		
-			//controlla se esistono queste carte dentro la regione, per adesso uso == ma probabilmente
-			//non funziona quindi
-		
-		if(findFirstSecondCard(model))
+		if(findExistBusinessCard(model,region,card))
+		{
+			result = ActionMessages.EVERYTHING_IS_OK;
 			return true;
+		}
 		result = ActionMessages.NO_BUSINESS_CARD;
-		return false;
-	}
-
-	private boolean findFirstSecondCard(Model model) 
-	{
-		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
-		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
-		
-		result = ActionMessages.EVERYTHING_IS_OK;
-		if(firstCard.getId() ==card.getId())
-		{
-			isFirstCard = true;
-			return true;
-		}
-		if(secondCard.getId() == card.getId())
-		{
-			isFirstCard = false;
-			return true;
-		}
 		return false;
 	}
 

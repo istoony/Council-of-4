@@ -12,6 +12,7 @@ import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.controller.support.SupportMethod;
 import it.polimi.ingsw.ps19.message.replies.EndGameReply;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
+import it.polimi.ingsw.ps19.message.replies.GetBusinessToDrawReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
@@ -144,9 +145,13 @@ public class GameController extends SupportMethod implements Observer
 	 */
 	private void checkModelStatus()
 	{
-		setTimeToMarket();
-		checkReconnectedPlayer();
-		checkAlreadyTurn();
+		int id = model.getCurrentState().getPlayerTurnId();
+		if(!model.getPlayerById(id).isBusinessCardOrCityBonusRequest() && !model.getPlayerById(id).isBusinessCardToDraw())
+		{
+			setTimeToMarket();
+			checkReconnectedPlayer();
+			checkAlreadyTurn();
+		}
 	}
 	
 	private void checkReconnectedPlayer()
@@ -171,8 +176,7 @@ public class GameController extends SupportMethod implements Observer
 	{
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
-				&& !model.getPlayerById(id).isBusinessCardOrCityBonusRequest() &&
-				!model.getCurrentState().isTimeToMarket())
+				&& !model.getCurrentState().isTimeToMarket())
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
@@ -252,7 +256,16 @@ public class GameController extends SupportMethod implements Observer
 					model.getPlayerById(playerTurnId).isBusinessCardRequest(),
 					model.getPlayerById(playerTurnId).isCityBonusRequest());
 		}
-		else
+		else if(model.getPlayerById(playerTurnId).isBusinessCardToDraw())
+			r = new GetBusinessToDrawReply(
+					model.getCurrentState().getPlayerTurnId(), 
+					ActionMessages.BUSINESS_CARD_TO_DRAW_REQUEST, 
+					model.getPlayer(), 
+					model.getMap().getRegionList(), 
+					model.getMap().getKing(),
+					model.getMap().getAvailableCouncillor(),
+					model.getPlayerById(playerTurnId).getDrawBusinessCard());
+			
 			r = action.createReplyMessage(model);
 		r.setId(Costants.BROADCAST_MESSAGE);
 		return r;

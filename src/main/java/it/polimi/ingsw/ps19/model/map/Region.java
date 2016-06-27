@@ -94,12 +94,12 @@ public class Region implements Serializable{
 	{
 		return secondcard;
 	}
-	public void drowFirstCard()
+	public void drawFirstCard()
 	{
 		firstcard = businessdeck.getFirstCard();
 	}
 	
-	public void drowSecondCard()
+	public void drawSecondCard()
 	{
 		secondcard = businessdeck.getFirstCard();
 	}

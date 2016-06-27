@@ -8,6 +8,7 @@ import it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
@@ -223,9 +224,45 @@ public class SupportMethod
 	 * @param m the m
 	 * @return the boolean
 	 */
-	public static Boolean checkPlayerTurn(int id, Model m)
+	protected static Boolean checkPlayerTurn(int id, Model m)
 	{
 		return id != m.getCurrentState().getPlayerTurnId();
+	}
+	
+	protected static boolean findFirstSecondCard(Model model, RegionType region, BusinessCard card) 
+	{
+		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
+		
+		if(firstCard.getId() == card.getId())
+			return true;
+		return false;
+	}
+
+	protected static boolean findExistBusinessCard(Model model, RegionType region, BusinessCard card) 
+	{
+		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
+		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
+		
+		if(firstCard.getId() == card.getId() || secondCard.getId() == card.getId())
+			return true;
+		return false;
+	}
+	
+	protected static BusinessCard removeCardFromRegionAndAddToPlayer(Model model, Player player, BusinessCard card, RegionType region)
+	{
+		BusinessCard selectedcard;
+		if(findFirstSecondCard(model, region, card))
+		{
+			selectedcard = model.getMap().getRegionByType(region).getFirstcard();
+			model.getMap().getRegionByType(region).drawFirstCard();
+		}
+		else
+		{
+			selectedcard = model.getMap().getRegionByType(region).getSecondcard();
+			model.getMap().getRegionByType(region).drawSecondCard();
+		}
+		player.addCardToHand(selectedcard);
+		return selectedcard;
 	}
 	
 }

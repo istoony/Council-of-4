@@ -6,7 +6,7 @@ import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 
-public class EndTurn implements Action 
+public class EndTurn extends SupportMethod implements Action 
 {
 	private int playerId;
 	private String result;
@@ -27,7 +27,7 @@ public class EndTurn implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(SupportMethod.checkPlayerTurn(playerId, model))
+		if(checkPlayerTurn(playerId, model))
 		{
 			result = ActionMessages.NOT_YOUR_TURN;
 			return false;

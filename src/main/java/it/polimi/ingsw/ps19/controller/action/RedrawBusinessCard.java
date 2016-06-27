@@ -31,8 +31,8 @@ public class RedrawBusinessCard implements Action
 		model.getMap().getRegionByType(region).getBusinessdeck().addToDeckRandom(first);
 		model.getMap().getRegionByType(region).getBusinessdeck().addToDeckRandom(second);
 		
-		model.getMap().getRegionByType(region).drowFirstCard();
-		model.getMap().getRegionByType(region).drowSecondCard();
+		model.getMap().getRegionByType(region).drawFirstCard();
+		model.getMap().getRegionByType(region).drawSecondCard();
 		
 		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;

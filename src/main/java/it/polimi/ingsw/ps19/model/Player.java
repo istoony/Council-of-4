@@ -486,9 +486,14 @@ public class Player implements Serializable
 			return true;
 		return false;
 	}
+	
 	public void setDrawBusinessCard(int drawBusinessCard) 
 	{
 		this.drawBusinessCard = drawBusinessCard;
 	}
 	
+	public int getDrawBusinessCard() 
+	{
+		return drawBusinessCard;
+	}
 }

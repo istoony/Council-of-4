@@ -15,7 +15,7 @@ public class ActionMessages
 	public static final String NO_BUILD = "You have already finish yours emporia!";
 	public static final String PLAYER_DISCONNECTED = "Player Disconnected. id = ";
 	public static final String NO_MARKET_TIME ="this is not Market time";
-	public static final String BUSINESS_CARD_REQUEST = "Please select a Business card";
+	public static final String BUSINESS_CARD_REQUEST = "Please select a Business card or City to give a Bonus";
 	public static final String TIME_TO_MARKET = "Now is time to Maket";
 	public static final String COLOR_NOT_AVAILABLE = "This color is not corrected";
 	public static final String NO_ACTION_TO_DO_IT= "You don't have action to do what you want";
@@ -24,6 +24,8 @@ public class ActionMessages
 	public static final String PLAYER_WIN_GAME ="The game was won by the player with id ";
 	public static final String END_GAME = "Enjoy your life, the game is over";
 	public static final String NO_TIME_TO_BONUS = "You don't have Business Card or City Bonus pending requests";
+	public static final String BUSINESS_CARD_TO_DRAW_REQUEST = "Please select a Business card to draw";
+	public static final String NO_BUSINESS_CARD_TO_SELECT = "You don't have business card to draw";
 	
 	
 	private ActionMessages() { }
