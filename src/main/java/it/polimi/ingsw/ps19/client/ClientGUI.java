@@ -161,9 +161,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
-		if(cards.isEmpty()){
-			return null;
-		}
 		index.clear();
 		businessTemp.addAll(cards);
 		ask = new QuestionFrame(this, cards);
@@ -178,9 +175,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
-		if(cards.isEmpty()){
-			return null;
-		}
 		index.clear();
 		politicTemp.addAll(cards);
 		ask = new QuestionFrame(this, cards);
@@ -228,7 +222,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
-		pop.addMessage("Market phase");
+		showNotification("Market Phase");
 		index.clear();
 		numberflag=true;
 		pop.addMessage("here ok");

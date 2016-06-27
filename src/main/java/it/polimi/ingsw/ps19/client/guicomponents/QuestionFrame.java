@@ -40,8 +40,8 @@ public class QuestionFrame extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		choices = new ArrayList<>();
 		pane = new JPanel();
-		
-		if(obj.get(0)==null){
+		try{
+			if(obj.get(0)==null){
 			setTitle("Choose");
 			pane.setToolTipText("Choose");
 			for(@SuppressWarnings("unused") Object  o : obj){
@@ -82,6 +82,10 @@ public class QuestionFrame extends JFrame implements Runnable{
 			for(Object  o : obj){
 				createButtons(((BusinessCard)o).toStringCities()+"\n"+((BusinessCard)o).toStringBonus(), gui);
 			}
+		}
+		}
+		catch(NullPointerException e){
+			createButtons("no more", gui);
 		}
 		
 		addButtons();
