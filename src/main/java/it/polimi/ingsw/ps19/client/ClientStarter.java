@@ -6,10 +6,20 @@ import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 
+/**
+ * class with main to start the client
+ */
 public class ClientStarter 
 {
 	private static ClientUI userInterface = new ClientCLI();
 	
+	private ClientStarter()
+	{}
+	
+	/**
+	 * starting main of the client
+	 * @param args
+	 */
 	public static void main(String[] args) 
 	{
 		List<String> typesOfConnection = new ArrayList<>();

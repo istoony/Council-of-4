@@ -75,9 +75,6 @@ public class View extends Observable implements Observer, Runnable
 		if(!(arg instanceof Reply))
 			return;
 		setActive(((Reply)arg).getActivePlayer());
-		//TODO togli i println
-		System.out.println("ID: " + ((Reply) arg).getActivePlayer());
-		System.out.println("RESULT: " + ((Reply) arg).getResult());
 		Reply mex = (Reply) arg;
 		forwardMessage(mex);
 	}

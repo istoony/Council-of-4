@@ -15,6 +15,9 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.Region;
 
+/**
+ * update to choose an extra bonus from cards or/and cities
+ */
 public class GetBusinessCardOrBonusUpdate extends ElectCouncillorUpdate 
 {
 	

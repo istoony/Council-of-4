@@ -12,6 +12,9 @@ import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
 
+/**
+ * Client updato to buy an order from the market
+ */
 public class CompleteMarketUpdate extends ClientUpdate {
 
 	private String result;
@@ -19,6 +22,12 @@ public class CompleteMarketUpdate extends ClientUpdate {
 	private Order chosenOrder = null;
 	private int activePlayerId;
 	
+	/**
+	 * Constructor
+	 * @param result: result of previous operation
+	 * @param market: market situation
+	 * @param activerPlayerId: id of active player
+	 */
 	public CompleteMarketUpdate(String result, Market market, int activerPlayerId) 
 	{
 		this.result = result;
@@ -26,6 +35,7 @@ public class CompleteMarketUpdate extends ClientUpdate {
 		this.activePlayerId = activerPlayerId;
 	}
 	
+	@Override
 	public void update(ClientModel model, ClientUI userInterface) 
 	{
 		model.setActiveplayer(activePlayerId);

@@ -78,7 +78,12 @@ public class BusinessDeck implements Deck, Serializable
 		}
 	}
 
-	@Override
+	/**
+	 * Adds the to deck.
+	 *
+	 * @param c the c
+	 * @param position the position
+	 */
 	public void addToDeck(Card c, int position) 
 	{
 		BusinessCard temp = card.get(position);

@@ -24,7 +24,6 @@ public class ConnectionReply extends Reply
 	@Override
 	public ClientUpdate display(ReplyVisitor replyvisitor) 
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

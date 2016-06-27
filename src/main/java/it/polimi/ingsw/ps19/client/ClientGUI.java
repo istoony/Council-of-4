@@ -334,9 +334,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else {
 			textReader(e);
-		}					
-		// TODO Auto-generated method stub
-		
+		}							
 	}
 	
 	private void actionCheck(ActionEvent e){

@@ -117,12 +117,11 @@ public class CurrentState
 				n++;
 		return n;
 	} 
+	
 	/**
-	 * TODO: write me
-	 * imposta il model dicendo che questo player ha già comprato
+	 * set player state in market as "true",  meaning that the player has bought something (or nothing)
 	 * @param id
 	 */
-	
 	public void playerBought(int id)
 	{
 		marketState.put(id, true);

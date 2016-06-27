@@ -21,6 +21,8 @@ public class ClientSocketManager extends ClientManager
 	/**
 	 * Constructor
 	 * @param ui = userInterface
+	 * @param newGame: request for a new game or rconnection to a prevoius game
+	 * @param key: password to use to recconect to an old game
 	 * @throws InterruptedException 
 	 */
 	public ClientSocketManager(ClientUI ui, boolean newGame, int key) 

@@ -45,7 +45,6 @@ public class GameFactory extends Thread
 			}
 		}
 		view = new View(players);
-		//TODO Model intialize with arraylist of integer
 		model = new Model(players);
 		controller = new GameController(model);
 		view.addObserver(controller);
