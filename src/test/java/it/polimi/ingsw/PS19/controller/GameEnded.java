@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
+import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
@@ -20,7 +21,7 @@ public class GameEnded {
 	@Test
 	public void test() 
 	{
-Map<Integer, Connection> wRoom = new HashMap<>();
+		Map<Integer, Connection> wRoom = new HashMap<>();
 		
 		Connection uno = new RMIConnection(true);
 			uno.setActive();
@@ -45,6 +46,8 @@ Map<Integer, Connection> wRoom = new HashMap<>();
 		players.add(3);
 		Model m = new Model(players);
 		GameController g = new GameController(m);
+		
+		
 	
 	}
 

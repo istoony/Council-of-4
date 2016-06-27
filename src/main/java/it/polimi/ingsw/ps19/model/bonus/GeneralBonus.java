@@ -43,26 +43,28 @@ public class GeneralBonus implements Bonus {
 		p.setVictoryPoints(p.getVictoryPoints()+points);
 	}
 	
-	private int askPoints(Player p){
+	private int askPoints(Player p)
+	{
 		int pointsR=0;
 		int pointsC=0;
-		for(List<City> citylist : regionsBonus){
-			if(p.getMyEmporia().containsAll(citylist)){
+		for(List<City> citylist : regionsBonus)
+		{
+			if(p.getMyEmporia().containsAll(citylist))
+			{
 				regionsBonus.remove(regionsBonus.indexOf(citylist));
 				pointsR += singleRegionBonus;
-				if(pointsR>0){
+				if(pointsR>0)
 					pointsR += this.askKingBonus();
-				}
 			}
 		}
-		
-		for(CityColorBonus c : colorBonus){
-			if(p.getMyEmporia().containsAll(c.getCitylist())){
-				colorBonus.remove(colorBonus.indexOf(c));
-				pointsC += c.getPoints();
-				if(pointsC>0){
+		for(int i = 0; i < colorBonus.size(); i++)
+		{
+			if(p.getMyEmporia().containsAll(colorBonus.get(i).getCitylist()))
+			{
+				pointsC += colorBonus.get(i).getPoints();
+				if(pointsC>0)
 					pointsC += this.askKingBonus();
-				}
+				colorBonus.remove(i);
 			}
 		}
 		return pointsC+pointsR;
