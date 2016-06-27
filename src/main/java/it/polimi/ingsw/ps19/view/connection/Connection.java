@@ -71,6 +71,11 @@ public abstract class Connection
 	public abstract Integer write(Message message) throws WriterException;
 	
 	/**
+	 * Closes connection
+	 */
+	public abstract void close();
+	
+	/**
 	 * Runs a callable that reads a message
 	 * @return
 	 * @throws ReaderException 

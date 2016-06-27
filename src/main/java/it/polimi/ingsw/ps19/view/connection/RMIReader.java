@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.view.connection;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -11,17 +12,17 @@ import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.server.Constants;
-import it.polimi.ingsw.ps19.server.Mutex;
 
 /**
  * Class that implements a reader in a RMI interface
  */
 public class RMIReader implements RMIReaderIntf, Runnable
 {
-	Message message = null;
-	Mutex mux = new Mutex();
-	RMIReaderIntf stub;
-	LinkedBlockingQueue<Message> fifo;
+	private boolean stop;
+	private RMIReaderIntf stub;
+	private Registry registry;
+	private String name;
+	private LinkedBlockingQueue<Message> fifo;
 	
 	/**
 	 * Initializes the RMI interface
@@ -33,8 +34,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 		try 
 		{
 			stub = (RMIReaderIntf) UnicastRemoteObject.exportObject(this, 0);
-			String name = new SecureRandom().toString();
-			Registry registry;
+			name = new SecureRandom().toString();
 			try
 			{
 				System.out.println("Creating new register on: localHost:" + Constants.RMI_PORT);
@@ -69,6 +69,22 @@ public class RMIReader implements RMIReaderIntf, Runnable
 	@Override
 	public void run() 
 	{
-		while(true);
+		while(!stop);
+		try 
+		{
+			registry.unbind(name);
+			UnicastRemoteObject.unexportObject(stub, true);
+		} catch (RemoteException | NotBoundException e) 
+		{
+			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+		}
+	}
+	
+	/**
+	 * stops reading, hence closes connection
+	 */
+	public void stop()
+	{
+		stop = true;
 	}
 }

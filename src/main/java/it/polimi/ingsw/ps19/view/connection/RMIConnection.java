@@ -88,5 +88,10 @@ public class RMIConnection extends Connection
 			}
 		return mex;
 	}
+	@Override
+	public void close() 
+	{
+		reader.stop();
+	}
 
 }

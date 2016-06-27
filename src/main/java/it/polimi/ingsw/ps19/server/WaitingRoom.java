@@ -221,7 +221,8 @@ public class WaitingRoom
  		for(Entry<Integer,Connection> entry : connectedUsers.entrySet())
  		{
 			try {
-				entry.getValue().write(new StringMessage("ServerQuits"));
+				entry.getValue().write(new StringMessage("Server Quits"));
+				remove(entry.getKey());
 			} catch (WriterException e) 
  			{
 				log.log(Level.SEVERE, e.toString(), e);
@@ -236,5 +237,25 @@ public class WaitingRoom
  	public static void setConnection(Map<Integer,Connection> newMap)
  	{
  		connectedUsers = newMap;
+ 	}
+ 	
+ 	/**
+ 	 * removes the list of connection with id passed
+ 	 * @param ids
+ 	 */
+ 	public static void removeMany(List<Integer> ids)
+ 	{
+ 		for(Integer id : ids)
+ 			remove(id);
+ 	}
+ 	
+ 	/**
+ 	 * removes connection from hashmap
+ 	 * @param id
+ 	 */
+ 	public static void remove(int id)
+ 	{
+ 		connectedUsers.get(id).close();
+ 		connectedUsers.remove(id);
  	}
 }

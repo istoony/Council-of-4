@@ -92,4 +92,15 @@ public class SocketConnection extends Connection
 		}
 		return mex;
 	}
+
+	@Override
+	public void close() 
+	{
+		try {
+			clientSocket.close();
+		} catch (IOException e) 
+		{
+			log.log(Level.SEVERE, e.toString(), e);
+		}
+	}
 }
