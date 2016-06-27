@@ -38,25 +38,25 @@ public class ClientSocketManager extends ClientManager
 		do
 		{
 			//Start thread to write string while connecting
-			t = new WaitingWriterThread("Trying to connect..", userInterface);
+			t = new WaitingWriterThread(userInterface.getLanguage().waiting, userInterface);
 			
 			//Tries to connect: First time with player input, after with standard input
 			try
 			{	
 				Socket socket = new Socket(Inet4Address.getByName(ip), port);
-				userInterface.showNotification("Socket created");
+				userInterface.showNotification(userInterface.getLanguage().socketCreated);
 				t.start();
 				connection = new SocketConnection(socket, executorService);
 				connection.write(new ConnectionMessage(newGame, key));
 				success = true;
 				t.interrupt();
-				userInterface.showNotification("Connection successful");
+				userInterface.showNotification(userInterface.getLanguage().connSuccess);
 			} catch (IOException | WriterException e) 
 			{
 				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 				success = false;
 				t.interrupt();
-				userInterface.showNotification("Connection Unsuccessful");
+				userInterface.showNotification(userInterface.getLanguage().connInsucces);
 				ip = getIP();
 				port = getPort(Constants.SOCKET_PORT);
 			} 
@@ -67,7 +67,7 @@ public class ClientSocketManager extends ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			userInterface.showNotification("Connection Unsuccessful, the program will now close");
+			userInterface.showNotification(userInterface.getLanguage().killClient);
 			System.exit(0);
 		}
 		startClient();

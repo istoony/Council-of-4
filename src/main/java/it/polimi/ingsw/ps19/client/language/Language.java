@@ -11,6 +11,16 @@ import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
 import it.polimi.ingsw.ps19.client.clientaction.MainAction;
 import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
 import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
+import it.polimi.ingsw.ps19.model.bonus.DrawPoliticCard;
+import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
+import it.polimi.ingsw.ps19.model.bonus.GetCityBonus;
+import it.polimi.ingsw.ps19.model.bonus.MoreHelpers;
+import it.polimi.ingsw.ps19.model.bonus.MoreMainAction;
+import it.polimi.ingsw.ps19.model.bonus.MoreMoney;
+import it.polimi.ingsw.ps19.model.bonus.MoreNobilityPoints;
+import it.polimi.ingsw.ps19.model.bonus.MoreVictoryPoints;
+import it.polimi.ingsw.ps19.model.bonus.ReuseBusinessCardBonus;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 /**
@@ -37,9 +47,24 @@ public abstract class Language
 	public static final String GUI = "RMI";
 	
 	//setup
+	public String insertIp;
+	public String insertPort;
+	public String tryConn;
+	public String useStdIp;
+	public String useStdPort;
 	public String newGame;
 	public String reconnect;
 	public String insertPassword;
+	public String connSuccess;
+	public String connInsucces;
+	public String killClient;
+	public String waiting;
+	public String invalidInsertion;
+	public String socketCreated;
+	public String serverQuits;
+	public String reconnected;
+	public String connPass;
+	public String invalidObj;
 	
 	//general
 	public String nothing;
@@ -99,6 +124,7 @@ public abstract class Language
 	public String mountain;
 	public String hill;
 	public String plain;
+	
 	//Actions
 	public abstract String getString(BuildWithKingInputs input);
 	public abstract String getString(BuildEmporiumInputs input);
@@ -112,6 +138,17 @@ public abstract class Language
 	
 	public abstract String getString(FastAction input);
 	public abstract String getString(MainAction input);
+	
+	public abstract String getString(DrawBusinessCard input);
+	public abstract String getString(DrawPoliticCard input, int howMany);
+	public abstract String getString(GeneralBonus input);
+	public abstract String getString(GetCityBonus input);
+	public abstract String getString(MoreHelpers input, int howMany);
+	public abstract String getString(MoreMainAction input, int howMany);
+	public abstract String getString(MoreMoney input, int howMany);
+	public abstract String getString(MoreNobilityPoints input, int howMany);
+	public abstract String getString(MoreVictoryPoints input, int howMany);
+	public abstract String getString(ReuseBusinessCardBonus input);
 	
 	/**
 	 * returns string

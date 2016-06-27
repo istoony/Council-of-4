@@ -11,6 +11,16 @@ import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
 import it.polimi.ingsw.ps19.client.clientaction.MainAction;
 import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
 import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
+import it.polimi.ingsw.ps19.model.bonus.DrawPoliticCard;
+import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
+import it.polimi.ingsw.ps19.model.bonus.GetCityBonus;
+import it.polimi.ingsw.ps19.model.bonus.MoreHelpers;
+import it.polimi.ingsw.ps19.model.bonus.MoreMainAction;
+import it.polimi.ingsw.ps19.model.bonus.MoreMoney;
+import it.polimi.ingsw.ps19.model.bonus.MoreNobilityPoints;
+import it.polimi.ingsw.ps19.model.bonus.MoreVictoryPoints;
+import it.polimi.ingsw.ps19.model.bonus.ReuseBusinessCardBonus;
 
 /**
  * English language
@@ -20,11 +30,26 @@ public class English extends Language
 	public English()
 	{
 		//setup
+		invalidInsertion = "Invalid Insertion!";
 		newGame = "new game";
 		reconnect = "reconnect to existing game";
 		insertPassword = "insert password";
-	
+		insertIp = "Insert server IP address";
+		insertPort = "Insert server port";
+		useStdIp = invalidInsertion + " trying with standard IP address";
+		useStdPort = invalidInsertion + "trying with standard port";
+		connSuccess = "Connection successful";
+		connInsucces = "Connection unsuccessful";
+		killClient = connInsucces + "! The program will now close";
+		waiting = "Trying to connect...";
+		socketCreated = "Socket created";
+		serverQuits = "Server has quitted!";
+		reconnected = "Reconnected to the game!";
+		connPass = "Your connection password is";
+		invalidObj = "Invalid object received!";
+		
 		//general
+		helpers = "helpers";
 		nothing = "nothing";
 		numberOf = "number of";
 		available = "available";
@@ -51,10 +76,10 @@ public class English extends Language
 		money = "coins";
 		victoryPoints = "victory points";
 		nobilityPoints = "nobility points";
-		main = "main";
+		main = "main actions";
 		freeBusiness = "free " + businessCards;
 		usedBusiness = "used " + businessCards;
-		quick = "quick";
+		quick = "quick actions";
 		result = "result";
 		activePlayerId = "active " + player;
 		youArePlayer = "you are " + player;
@@ -77,7 +102,6 @@ public class English extends Language
 		noOrders = nothing;
 		orders = "orders";
 		price = "price";
-		helpers = "helpers";
 	
 		mountain = "mountain";
 		hill = "hill";
@@ -132,16 +156,67 @@ public class English extends Language
 
 	@Override
 	public String getString(MarketSell input) {
-		return "sell on market";
+		return "sell on " + market;
 	}
 
 	@Override
 	public String getString(FastAction input) {
-		return "quick action";
+		return quick + " action";
 	}
 
 	@Override
 	public String getString(MainAction input) {
-		return "main action";
+		return main + " action";
+	}
+
+	@Override
+	public String getString(DrawBusinessCard input) {
+		return "draw a permit tile from a region";
+	}
+
+	@Override
+	public String getString(DrawPoliticCard input, int howMany) {
+		return "+ " + howMany + " " + politicCards;
+	}
+
+	@Override
+	public String getString(GeneralBonus input) {
+		return "general bonus";
+	}
+
+	@Override
+	public String getString(GetCityBonus input) {
+		return "get bonus from one of your " + cities;
+	}
+
+	@Override
+	public String getString(MoreHelpers input, int howMany) {
+		return "+ " + howMany + " " + helpers;
+
+	}
+
+	@Override
+	public String getString(MoreMainAction input, int howMany) {
+		return "+ " + howMany + " " + main + "actions";
+	}
+
+	@Override
+	public String getString(MoreMoney input, int howMany) {
+		return "+ " + howMany + " " + money;
+	}
+
+	@Override
+	public String getString(MoreNobilityPoints input, int howMany) {
+		return "+ " + howMany + " " + nobilityPoints;
+	}
+
+	@Override
+	public String getString(MoreVictoryPoints input, int howMany) {
+		return "+ " + howMany + " " + victoryPoints;
+	}
+
+	@Override
+	public String getString(ReuseBusinessCardBonus input) {
+		return "bonus from on of your " + businessCards;
 	}
 }

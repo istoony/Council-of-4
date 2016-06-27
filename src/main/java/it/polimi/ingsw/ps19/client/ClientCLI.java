@@ -142,7 +142,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				showNotification(ClientConstants.INVALID_INSERTION);
+				showNotification(language.invalidInsertion);
 				log.log(Level.SEVERE, e.toString(), e);
 				strings.clear();
 			}
@@ -229,7 +229,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln(ClientConstants.INVALID_INSERTION);
+			writeln(language.invalidInsertion);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
@@ -287,8 +287,7 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(Bonus b)
 	{
-		//TODO visitor on bonus for strings
-		return b.getClass().toString().substring(b.getClass().toString().lastIndexOf('.') + 1);
+		return b.toString(language);
 	}
 	
 	private String getString(City city)
@@ -451,7 +450,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln(ClientConstants.INVALID_INSERTION);
+			writeln(language.invalidInsertion);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
@@ -471,7 +470,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln(ClientConstants.INVALID_INSERTION);
+			writeln(language.invalidInsertion);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}

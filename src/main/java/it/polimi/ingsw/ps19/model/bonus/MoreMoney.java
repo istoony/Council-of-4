@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.model.bonus;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 public class MoreMoney implements Bonus {
@@ -21,7 +22,7 @@ public class MoreMoney implements Bonus {
 	}
 
 	@Override
-	public String toString(){
-		return "gain "+howMany+" Money";
+	public String toString(Language l) {
+		return l.getString(this, howMany);
 	}
 }

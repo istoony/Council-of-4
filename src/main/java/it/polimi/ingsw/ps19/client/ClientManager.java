@@ -30,7 +30,7 @@ public abstract class ClientManager
 		String ip = null;
 		try 
 		{
-			ip = userInterface.getUserString("Insert server IP Address: ");
+			ip = userInterface.getUserString(userInterface.getLanguage().insertIp + ": ");
 			if(ip.isEmpty())
 				throw new UnknownHostException();
 			Inet4Address.getByName(ip);
@@ -38,7 +38,7 @@ public abstract class ClientManager
 		{
 			ip = ClientConstants.IP_ADDRESS;
 			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
-			userInterface.showNotification("Invalid Insertion, using standard IP address: " + ClientConstants.IP_ADDRESS);
+			userInterface.showNotification(userInterface.getLanguage().useStdIp + ": " + ClientConstants.IP_ADDRESS);
 		}
 		return ip;
 	}
@@ -48,7 +48,7 @@ public abstract class ClientManager
 		Integer port = null;
 		try 
 		{
-			String portString = userInterface.getUserString("Insert server Port: ");
+			String portString = userInterface.getUserString(userInterface.getLanguage().insertPort + ": ");
 			if(portString.isEmpty())
 				throw new NumberFormatException();
 			port = Integer.parseUnsignedInt(portString);
@@ -58,7 +58,7 @@ public abstract class ClientManager
 		{
 			port = standardPort;
 			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
-			userInterface.showNotification("Invalid Insertion, using standard port: " + standardPort);
+			userInterface.showNotification(userInterface.getLanguage().useStdPort + ": " + standardPort);
 		}
 		return port;
 	}

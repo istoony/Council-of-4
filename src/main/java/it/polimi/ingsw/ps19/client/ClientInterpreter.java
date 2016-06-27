@@ -64,8 +64,8 @@ public class ClientInterpreter extends Observable implements Observer
 	{
 		if(arg == null)
 		{
-			userInterface.showNotification("Server Disconnected!!");
-			userInterface.showNotification("Game will quit now!");
+			userInterface.showNotification(userInterface.getLanguage().serverQuits);
+			userInterface.showNotification(userInterface.getLanguage().killClient);
 			System.exit(0);
 			return;
 		}
@@ -84,10 +84,10 @@ public class ClientInterpreter extends Observable implements Observer
 		{
 			if(((ConnectionReply)arg).getSuccessful())
 			{
-				userInterface.showNotification("Reconeccted to Game");
+				userInterface.showNotification(userInterface.getLanguage().reconnected);
 				loadInterpreter(((ConnectionReply)arg).getPassword());
 			}
-			userInterface.showNotification("Connected! Your connection password is: " + ((ConnectionReply)arg).getPassword());
+			userInterface.showNotification(userInterface.getLanguage().connPass + ": " + ((ConnectionReply)arg).getPassword());
 			return;
 		}
 		else if(arg instanceof Reply)
@@ -117,16 +117,16 @@ public class ClientInterpreter extends Observable implements Observer
 				} catch (PlayerDisconnectedException e)
 				{
 					ClientLogger.log.log(Level.OFF, e.toString(), e);
-					userInterface.showNotification("Server Disconnected!!");
-					userInterface.showNotification("Game will quit now!");
+					userInterface.showNotification(userInterface.getLanguage().serverQuits);
+					userInterface.showNotification(userInterface.getLanguage().killClient);
 					System.exit(0);
 					return;
 				}
 			}
 		}
 		else
-			userInterface.showNotification("Invalid Object received");
-	}	
+			userInterface.showNotification(userInterface.getLanguage().invalidObj);
+		}	
 	
 	private void notify(Message mex) throws PlayerDisconnectedException
 	{

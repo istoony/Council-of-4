@@ -146,4 +146,9 @@ public abstract class ClientUI
 	public abstract String getUserString(String title) throws InvalidInsertionException;
 	
 	public abstract void showMarket(Market market);
+	
+	public Language getLanguage()
+	{
+		return language;
+	}
 } 

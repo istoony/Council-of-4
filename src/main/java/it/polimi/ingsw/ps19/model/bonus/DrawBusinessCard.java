@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.model.bonus;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 //not done
@@ -8,10 +9,10 @@ public class DrawBusinessCard implements Bonus {
 
 	private static final long serialVersionUID = -2837340240553560706L;
 	
-	int howmany;
+	int howMany;
 	
 	public DrawBusinessCard(int n){
-		howmany=n;
+		howMany=n;
 	}
 	
 	@Override
@@ -19,10 +20,10 @@ public class DrawBusinessCard implements Bonus {
 	{
 		p.setBusinessCardRequest(true);
 	}
-	
+
 	@Override
-	public String toString(){
-		return "draw "+howmany+" Business Card";
+	public String toString(Language l) {
+		return l.getString(this);
 	}
 
 }

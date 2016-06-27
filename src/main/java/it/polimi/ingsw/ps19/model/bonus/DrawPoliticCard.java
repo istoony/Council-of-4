@@ -1,4 +1,5 @@
 package it.polimi.ingsw.ps19.model.bonus;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 public class DrawPoliticCard implements Bonus{
@@ -7,22 +8,22 @@ public class DrawPoliticCard implements Bonus{
 	 * 
 	 */
 	private static final long serialVersionUID = -597116955305207082L;
-	int howmany;
+	int howMany;
 	
 	public DrawPoliticCard(int n) {
-		howmany=n;
+		howMany=n;
 
 	}
 	
 	@Override
 	public void giveBonus(Player p) {
-		p.setPoliticCardToDraw(p.getPoliticCardToDraw()+howmany);
+		p.setPoliticCardToDraw(p.getPoliticCardToDraw()+howMany);
 
 	}
 	
 	@Override
-	public String toString(){
-		return "draw "+howmany+" Politic Card";
+	public String toString(Language l) {
+		return l.getString(this, howMany);
 	}
 	
 }

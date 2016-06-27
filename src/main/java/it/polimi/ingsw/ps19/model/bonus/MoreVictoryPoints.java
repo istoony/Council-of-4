@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.model.bonus;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 public class MoreVictoryPoints implements Bonus {
@@ -20,9 +21,7 @@ public class MoreVictoryPoints implements Bonus {
 	}
 	
 	@Override
-	public String toString(){
-		return "gain "+howMany+" Victory Points";
-	}
-	
-
+	public String toString(Language l) {
+		return l.getString(this, howMany);
+	}	
 }

@@ -28,5 +28,10 @@ public abstract class ClientAction
 	
 	protected abstract Request buildMessage();
 	
+	/**
+	 * to string in specified language
+	 * @param l
+	 * @return
+	 */
 	public abstract String toString(Language l);
 }

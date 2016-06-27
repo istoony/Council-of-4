@@ -1,5 +1,6 @@
 
 package it.polimi.ingsw.ps19.model.bonus;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 
@@ -17,10 +18,9 @@ public class GetCityBonus implements Bonus {
 	{
 		p.setCityBonusRequest(true);
 	}
-	
-	@Override
-	public String toString(){
-		return "Get the bonus of a city";
-	}
 
+	@Override
+	public String toString(Language l) {
+		return l.getString(this);
+	}
 }

@@ -14,7 +14,6 @@ public final class ClientConstants
 	public static final Integer MAX_CONN_TRIES = 2;
 	public static final Integer MAX_WRITING_TRIES = 5;
 	public static final Integer MAX_SERVER_TIMEOUT_S = 120;
-	public static final String INVALID_INSERTION = "Invalid Insertion!";
 	
 	private ClientConstants() { }
 }

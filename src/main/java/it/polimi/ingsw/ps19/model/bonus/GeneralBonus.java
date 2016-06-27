@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.FileReader;
@@ -125,4 +126,8 @@ public class GeneralBonus implements Bonus {
 		}
 	}
 	
+	@Override
+	public String toString(Language l) {
+		return l.getString(this);
+	}
 }

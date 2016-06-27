@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.model.bonus;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
 public class MoreMainAction implements Bonus {
@@ -9,10 +10,10 @@ public class MoreMainAction implements Bonus {
 	 */
 	private static final long serialVersionUID = 6021222002046817299L;
 	
-	int howmany;
+	int howMany;
 	
 	public MoreMainAction(int n) {
-		howmany = n;
+		howMany = n;
 	}
 
 	@Override
@@ -22,8 +23,8 @@ public class MoreMainAction implements Bonus {
 	}
 	
 	@Override
-	public String toString(){
-		return "gain "+howmany+" Main Actions";
+	public String toString(Language l) {
+		return l.getString(this, howMany);
 	}
 
 }
