@@ -160,7 +160,7 @@ public class Player implements Serializable
 	 *
 	 * @return the id of this player
 	 */
-	public /**@pure*/ int getId() 
+	public /*@pure*/ int getId() 
 	{
 		return id;
 	}	

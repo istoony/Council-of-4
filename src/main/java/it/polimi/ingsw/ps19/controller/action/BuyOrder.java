@@ -30,16 +30,24 @@ public class BuyOrder extends SupportMethod implements Action
 	{
 		if(order!= null)
 		{
-			//Assegno le cose al player
 			Player seller = model.getPlayerById(sellerId);
 			Player buyer = model.getPlayerById(playerId);
 			
 			seller.setHelpers(seller.getHelpers() - order.getHelper());
 			buyer.setHelpers(buyer.getHelpers() + order.getHelper());
 			
-			removeCardToHand(model, seller, order.getPoliticscard());
+			removePoliticCardToHand(model, seller, order.getPoliticscard());
 			for (Color color : order.getPoliticscard())
 				buyer.addCardToHand(new PoliticsCard(color));
+			
+			for(int i = 0; i < order.getBusinesscard().size(); i++)
+			{
+				seller.removeFreebusinesscardById(order.getBusinesscard().get(i).getId());
+				buyer.addCardToHand(order.getBusinesscard().get(i));
+			}
+			
+			seller.setMoney(seller.getMoney() + order.getPrice());
+			buyer.setMoney(buyer.getMoney() - order.getPrice());
 			
 			//rimuovo l'ordine dal market
 			//l'ordine esiste solo se order è diverso da null

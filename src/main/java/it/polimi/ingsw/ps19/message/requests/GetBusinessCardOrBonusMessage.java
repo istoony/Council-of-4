@@ -24,8 +24,7 @@ public class GetBusinessCardOrBonusMessage extends Request
 	@Override
 	public Action accept(MessageInterpreterVisitor messageInterpreter) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return messageInterpreter.visit(this);
 	}
 	
 	public BusinessCard getCard() 

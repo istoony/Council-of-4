@@ -82,10 +82,8 @@ public class Region implements Serializable{
 	public City getCityById(int id)
 	{
 		for (City c : cities) 
-		{
 			if(c.getId() == id)
 				return c;
-		}
 		return null;
 	}
 	public BusinessCard getFirstcard() 
