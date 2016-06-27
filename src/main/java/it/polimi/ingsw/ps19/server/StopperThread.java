@@ -2,15 +2,12 @@ package it.polimi.ingsw.ps19.server;
 
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * reads server input and waits for stop;
  */
 public class StopperThread extends Thread 
 {
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
-	
 	@Override
 	public void run()
 	{
@@ -28,7 +25,7 @@ public class StopperThread extends Thread
 			} 
 			catch (IOException e) 
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				ServerManager.log.log(Level.SEVERE, e.toString(), e);
 			}
 		}
 	}

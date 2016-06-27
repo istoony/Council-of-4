@@ -5,6 +5,7 @@ package it.polimi.ingsw.ps19.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -28,6 +29,8 @@ public class ServerManager
 	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
 	private static ServerSocket serverSocket;	
 	private static boolean stop = false;
+	private static Registry registry;
+	private static ServerRemoteIntf rmiServer;
 	public static final ClientCLI serverCLI =  new ClientCLI();
 	
 	private ServerManager(){}
@@ -60,10 +63,9 @@ public class ServerManager
 		//RMI Init
 		try 
 		{
-			ServerRemoteIntf rmiServer = new RMIServer();
+			rmiServer = new RMIServer();
 			ServerRemoteIntf stub = (ServerRemoteIntf) UnicastRemoteObject.exportObject(rmiServer, 0);
 			String name = Constants.RMI_SERVER_STUB_NAME;
-			Registry registry;
 			try
 			{
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
@@ -112,6 +114,14 @@ public class ServerManager
 			}
 		}
 		WaitingRoom.quit();
+		try {
+			UnicastRemoteObject.unexportObject(rmiServer, true);
+		} catch (NoSuchObjectException e) 
+		{
+			log.log(Level.OFF, e.toString(), e);
+		}
+		serverCLI.showNotification("server quits");
+		System.exit(0);
 	}
 	
 	/**
@@ -120,5 +130,11 @@ public class ServerManager
 	public static void stop()
 	{
 		stop = true;
+		try {
+			serverSocket.close();
+		} catch (IOException e) 
+		{
+			log.log(Level.SEVERE, e.toString(), e);
+		}
 	}
 }
