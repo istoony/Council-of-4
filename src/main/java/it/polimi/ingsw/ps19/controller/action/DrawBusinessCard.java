@@ -9,7 +9,6 @@ import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
@@ -74,12 +73,8 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 		//
 		
 		
-		for (Bonus b : selectedcard.getBonus()) 
-		{
-			b.giveBonus(player);
-			checkNobilityPathBonus(model, player);
-				
-		}
+		giveListOfBonus(model, player, selectedcard.getBonus());
+		
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		return true;
 	}

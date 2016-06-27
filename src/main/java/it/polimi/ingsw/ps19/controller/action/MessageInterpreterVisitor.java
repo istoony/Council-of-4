@@ -8,6 +8,7 @@ import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardOrBonusMessage;
 import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
@@ -93,6 +94,8 @@ public interface MessageInterpreterVisitor
 	public Action visit(BuildEmporiumMessage message);
 	
 	public Action visit(BuyOrderMessage message);
+	
+	public Action visit(GetBusinessCardOrBonusMessage message);
 
 		
 }

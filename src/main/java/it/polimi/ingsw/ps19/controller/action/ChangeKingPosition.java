@@ -42,7 +42,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		
 		Player player = model.getPlayerById(playerId);
 		
-		removeCardToHand(model, player, politicCard);
+		removePoliticCardToHand(model, player, politicCard);
 			//
 			//in base alle carte arrivate tolgo dei soldi al player, non tolgo ancora i soldi
 			//dovuti al movimento del re

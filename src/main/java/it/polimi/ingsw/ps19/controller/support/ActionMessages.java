@@ -23,6 +23,7 @@ public class ActionMessages
 	public static final String PLAYER_HAS_BOUGHT ="One Player has bought, now is your turn";
 	public static final String PLAYER_WIN_GAME ="The game was won by the player with id ";
 	public static final String END_GAME = "Enjoy your life, the game is over";
+	public static final String NO_TIME_TO_BONUS = "You don't have Business Card or City Bonus pending requests";
 	
 	
 	private ActionMessages() { }

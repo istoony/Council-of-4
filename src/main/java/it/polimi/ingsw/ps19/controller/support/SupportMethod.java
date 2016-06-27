@@ -14,6 +14,7 @@ import it.polimi.ingsw.ps19.model.map.Region;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+//TODO: questa classe va commentata tutta bene che contiene i 3/4 della logica del GAME
 public class SupportMethod 
 {
 	private static final int MONEY_1_CARDS = 10;
@@ -116,7 +117,7 @@ public class SupportMethod
 				nobilityBonus.giveBonus(player);
 	}
 	
-	protected static void removeCardToHand(Model model, Player player, List<Color> politicCard){
+	protected static void removePoliticCardToHand(Model model, Player player, List<Color> politicCard){
 		for(int i = 0; i < politicCard.size(); i++)
 		{
 			PoliticsCard p = new PoliticsCard(politicCard.get(i));
@@ -196,16 +197,22 @@ public class SupportMethod
 				return false;
 			}
 		}
-		else if(type.equals(FAST_ACTION))
+		else if(type.equals(FAST_ACTION) && model.getPlayerById(id).getFastActionCounter() < N_OF_ACTION_TO_ADD)
 		{
-			if(model.getPlayerById(id).getFastActionCounter() < N_OF_ACTION_TO_ADD)
-			{
-				result = ActionMessages.NO_ACTION_TO_DO_IT;
-				return false;
-			}
+			result = ActionMessages.NO_ACTION_TO_DO_IT;
+			return false;
 		}
 	
 		return true;
+	}
+	
+	protected void giveListOfBonus(Model model, Player player, List<Bonus> bonus) 
+	{
+		for (Bonus b : bonus) 
+		{
+			b.giveBonus(player);
+			checkNobilityPathBonus(model, player);	
+		}
 	}
 	
 

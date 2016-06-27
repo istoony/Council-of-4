@@ -11,6 +11,7 @@ import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
+import it.polimi.ingsw.ps19.message.requests.GetBusinessCardOrBonusMessage;
 import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
@@ -138,6 +139,15 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 	public Action visit(BuyOrderMessage message) 
 	{
 		return new BuyOrder(message.getId(), message.getSellerId(), message.getOrder());
+	}
+
+	@Override
+	public Action visit(GetBusinessCardOrBonusMessage message) 
+	{
+		if(message.getCity() == null)
+			return new BusinessCardOrCityBonus(message.getCard(), message.getId());
+		return new BusinessCardOrCityBonus(message.getCity(), message.getId());
+		
 	}
 
 
