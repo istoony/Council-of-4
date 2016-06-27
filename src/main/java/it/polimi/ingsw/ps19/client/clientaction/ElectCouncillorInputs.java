@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.Request;
@@ -57,11 +58,11 @@ public class ElectCouncillorInputs extends ClientAction
 		request.setMainAction(mainAction);
 		return request;
 	}
-
+	
 	@Override
-	public String toString() 
+	public String toString(Language l) 
 	{
-		return "Elect Councillor";
+		return l.getString(this);
 	}
 
 }

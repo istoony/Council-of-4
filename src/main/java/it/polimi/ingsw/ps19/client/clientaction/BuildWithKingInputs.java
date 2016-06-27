@@ -7,6 +7,7 @@ import java.util.Map;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.message.requests.Request;
@@ -67,8 +68,8 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 	}
 
 	@Override
-	public String toString() 
+	public String toString(Language l) 
 	{
-		return "Build With King";
+		return l.getString(this);
 	}
 }

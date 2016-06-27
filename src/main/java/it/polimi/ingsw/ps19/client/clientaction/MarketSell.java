@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.message.requests.SendOrderMessage;
@@ -37,31 +38,40 @@ public class MarketSell extends ClientAction
 	@Override
 	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
-		numberOfHelpers = userInterface.getNumberOfHelpers(model.getMyPlayer().getHelpers());
+		if(model.getMyPlayer().getHelpers() > 0)
+			numberOfHelpers = userInterface.getNumberOfHelpers(model.getMyPlayer().getHelpers());
+		else
+			numberOfHelpers = 0;
 		List<BusinessCard> sellableBusiness = model.getMyPlayer().getFreebusinesscard();
-		sellableBusiness.add(null);
-		BusinessCard card;
-		do
+		if(!sellableBusiness.isEmpty())	
 		{
-			card = userInterface.getBusiness(sellableBusiness);
-			if(card != null)
+			sellableBusiness.add(null);
+			BusinessCard card;
+			do
 			{
-				businessToSell.add(card);
-				sellableBusiness.remove(card);
-			}
-		}while(card != null);
+				card = userInterface.getBusiness(sellableBusiness);
+				if(card != null)
+				{
+					businessToSell.add(card);
+					sellableBusiness.remove(card);
+				}
+			}while(card != null);
+		}
 		List<PoliticsCard> sellablePolitics = model.getMyPlayer().getPoliticcard();
-		sellablePolitics.add(null);
-		PoliticsCard chosenCard;
-		do
+		if(!sellablePolitics.isEmpty())
 		{
-			chosenCard = userInterface.getPolitic(sellablePolitics);
-			if(chosenCard != null)
+			sellablePolitics.add(null);
+			PoliticsCard chosenCard;
+			do
 			{
-				politicToSell.add(chosenCard.getColor());
-				sellablePolitics.remove(chosenCard);
-			}
-		}while(chosenCard != null);
+				chosenCard = userInterface.getPolitic(sellablePolitics);
+				if(chosenCard != null)
+				{
+					politicToSell.add(chosenCard.getColor());
+					sellablePolitics.remove(chosenCard);
+				}
+			}while(chosenCard != null);
+		}
 		price = userInterface.getPrice();
 		return buildMessage();
 	}
@@ -73,9 +83,9 @@ public class MarketSell extends ClientAction
 	}
 
 	@Override
-	public String toString() 
+	public String toString(Language l) 
 	{
-		return "Sellin:";
+		return l.getString(this);
 	}
 
 }

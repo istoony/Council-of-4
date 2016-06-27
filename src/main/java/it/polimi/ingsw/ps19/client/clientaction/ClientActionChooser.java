@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 /**
  * Class that rapresent a type of action
@@ -50,4 +51,11 @@ public abstract class ClientActionChooser
 		}
 		return availableActions;
 	}
+
+	/**
+	 * gets to string in the proper language
+	 * @param l: language
+	 * @return
+	 */
+	public abstract String toString(Language l);
 }

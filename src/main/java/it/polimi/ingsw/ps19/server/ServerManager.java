@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.polimi.ingsw.ps19.client.ClientCLI;
+import it.polimi.ingsw.ps19.client.language.English;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
@@ -31,7 +33,7 @@ public class ServerManager
 	private static boolean stop = false;
 	private static Registry registry;
 	private static ServerRemoteIntf rmiServer;
-	public static final ClientCLI serverCLI =  new ClientCLI();
+	public static final ClientCLI serverCLI =  new ClientCLI(new English());
 	
 	private ServerManager(){}
 	
@@ -42,14 +44,14 @@ public class ServerManager
 	public static void main(String[] args) 
 	{
 		Thread stopperThread = new StopperThread();
-		serverCLI.showNotification("started");
+		serverCLI.showNotification(Language.START);
 		boolean valid;
 		Integer maxPlayers = null;
 		do
 		{
 			try
 			{
-				maxPlayers = serverCLI.getInt("Max players per turn");
+				maxPlayers = serverCLI.getInt(Language.SET_MAX_P);
 				valid = true;
 				if(maxPlayers < 1)
 					valid = false;
@@ -69,19 +71,19 @@ public class ServerManager
 			try
 			{
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
-				serverCLI.showNotification("New Registry created at: localhost:" + Constants.RMI_PORT);
+				serverCLI.showNotification(Language.REG_CREATED + Constants.RMI_PORT);
 			}catch(RemoteException e)
 			{
 				log.log(Level.OFF, e.toString(), e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
-				serverCLI.showNotification("Accessing Registry at: localhost:" + Constants.RMI_PORT);
+				serverCLI.showNotification(Language.REG_ACCESSED + Constants.RMI_PORT);
 			}
 			registry.rebind(name, stub);
-			ServerManager.serverCLI.showNotification("The RMI server creation has been successful");
+			ServerManager.serverCLI.showNotification(Language.RMI_SUCCESS);
 		} 
 		catch (RemoteException e) 
 		{
-			ServerManager.serverCLI.showNotification("Something went wrong in creating a RMI Server");
+			ServerManager.serverCLI.showNotification(Language.RMI_INSUCCESS);
 			log.log(Level.SEVERE, e.toString(), e);
 		}
 		
@@ -89,11 +91,11 @@ public class ServerManager
 		try
 		{
 			serverSocket = new ServerSocket(Constants.SOCKET_PORT);
-			ServerManager.serverCLI.showNotification("The server socket creation has been successful");
+			ServerManager.serverCLI.showNotification(Language.SOCKET_SUCCESS);
 		}
 		catch(IOException e)
 		{
-			ServerManager.serverCLI.showNotification("Something went wrong in creating a serversocket");
+			ServerManager.serverCLI.showNotification(Language.SOCKET_INSUCCESS);
 			log.log(Level.SEVERE, e.toString(), e);
 		}
 		
@@ -105,7 +107,7 @@ public class ServerManager
 			try
 			{
 				Socket clientSocket = serverSocket.accept();
-				ServerManager.serverCLI.showNotification(LocalDateTime.now() + " New client Connected");
+				ServerManager.serverCLI.showNotification(LocalDateTime.now() + " - " + Language.NEW_CLIENT_CONN);
 				WaitingRoom.addConnection(new SocketConnection(clientSocket));
 			}
 			catch(IOException e)
@@ -120,7 +122,7 @@ public class ServerManager
 		{
 			log.log(Level.OFF, e.toString(), e);
 		}
-		serverCLI.showNotification("server quits");
+		serverCLI.showNotification(Language.SERVER_QUIT);
 		System.exit(0);
 	}
 	

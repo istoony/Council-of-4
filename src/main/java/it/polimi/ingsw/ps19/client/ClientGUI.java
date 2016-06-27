@@ -58,6 +58,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private static final String MAIN_ACTION_COMMAND = "Take a Main Actions";
 	private static final String FAST_ACTION_COMMAND= "Take a Fast Actions";
 	
+	/**
+	 * @param l: language
+	 */
 	public ClientGUI(Language l) 
 	{
 		language = l;

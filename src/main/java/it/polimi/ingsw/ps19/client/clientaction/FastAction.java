@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.client.clientaction;
 
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 /**
  * Class that contains the fast actions
@@ -29,10 +30,12 @@ public class FastAction extends ClientActionChooser
 			return true;
 		return false;
 	}
-	
+
 	@Override
-	public String toString() 
+	public String toString(Language l)
 	{
-		return "Fast Action";
+		return l.getString(this);
 	}
+	
+
 }

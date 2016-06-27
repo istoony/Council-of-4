@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.client.clientaction;
 
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 /**
  * Class that contains the main actions
@@ -19,11 +20,11 @@ public class MainAction extends ClientActionChooser
 		actions.add(new ElectCouncillorInputs(model, true));
 		actions.add(new GetBusinessPermitInput(model));
 	}
-
+	
 	@Override
-	public String toString() 
+	public String toString(Language l)
 	{
-		return "Main Action";
+		return l.getString(this);
 	}
 
 	@Override
