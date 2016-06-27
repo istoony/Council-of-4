@@ -65,7 +65,7 @@ public class SupportMethod
 
 	protected static City getRealCity(Model m, City city)
 	{
-		for(Region r : m.getMap().getListaRegioni())
+		for(Region r : m.getMap().getRegionList())
 			for(City c : r.getCities())
 				if(c.getId() == city.getId())
 					return c;
@@ -73,7 +73,7 @@ public class SupportMethod
 	}
 	protected static RegionType findRegion(Model model, City city)
 	{
-		for(Region r : model.getMap().getListaRegioni())
+		for(Region r : model.getMap().getRegionList())
 			for(City c : r.getCities())
 				if(c.getId() == city.getId())
 					return r.getType();
@@ -121,10 +121,56 @@ public class SupportMethod
 	
 	protected static void checkPlayerVictory(Model model, Player player, String result)
 	{
-		if(player.getMaxemporia() == 0)
+		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() == null)
 		{
-			model.getCurrentState().setLastTurn(true);
+			model.getCurrentState().setLastTurn(player.getId());
 			result = ActionMessages.PLAYER_WIN_GAME + player.getId();
 		}
+	}
+
+	protected static void calculateLastPoints(Model model)
+	{
+		List<Player> players = model.getPlayer();
+		Player temp;
+		
+		//Guardo chi ha più punti nobiltà, sort mettendo in prima posizione chi ha
+		//più punti nobiltà
+		for (int i = 0; i< players.size() - 1; i++)
+			for (int j = i+1; j< players.size(); j++)
+				if(players.get(i).getNobilityPoints() > players.get(j).getNobilityPoints())
+				{
+					temp = players.get(i);
+					players.set(i, players.get(j));
+					players.set(j, temp);
+				}
+		players = sendPoints(players, 5);
+		sendPoints(players, 2);
+	}
+
+	private static List<Player> sendPoints(List<Player> players, int numberOfPoints) 
+	{
+		int max = players.get(0).getNobilityPoints();		
+		for (int i = 0; i< players.size() - 1; i++)
+		{
+			if(players.get(i).getNobilityPoints() == max)
+			{
+				players.get(i).setVictoryPoints(players.get(i).getVictoryPoints() + numberOfPoints);
+				players.remove(i);
+			}
+		}
+		return players;
+	}
+	protected static List<Player> sortByVictoryPoints(List<Player> players)
+	{
+		Player temp;
+		for (int i = 0; i< players.size() - 1; i++)
+			for (int j = i+1; j< players.size(); j++)
+				if(players.get(i).getVictoryPoints() > players.get(j).getVictoryPoints())
+				{
+					temp = players.get(i);
+					players.set(i, players.get(j));
+					players.set(j, temp);
+				}
+		return players;
 	}
 }

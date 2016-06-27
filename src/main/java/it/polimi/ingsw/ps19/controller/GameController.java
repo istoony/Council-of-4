@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps19.controller;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -46,21 +47,6 @@ public class GameController extends SupportMethod implements Observer
 		drawStartingPoliticsCard();
 	}
 	
-	/**
-	 * Draw POLITICS_CARD for each player.
-	 *
-	 * @param m is the model of the game
-	 */
-	private void drawStartingPoliticsCard() 
-	{
-		for (Player p : model.getPlayer()) 
-		{
-			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId(), p.getStartingPoliticCard());
-			drawPoliticsCard.execute(model);
-		}
-		politicCardToDrawToCurrentPlayer(model);
-	}
-	
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
@@ -87,16 +73,33 @@ public class GameController extends SupportMethod implements Observer
 		}
 		reply = createReply();
 		
-		if(model.getCurrentState().isTimeToMarket())
+		if(model.getCurrentState().isTimeToMarket() && model.getCurrentState().getLastTurn() != null)
 			checkModelStatusInMarketTime();
-		else
+		else if(model.getCurrentState().getLastTurn() != null)
 			checkModelStatus();
-		
+		else
+			checkModelStatusLastTurn();
 		model.sendMessage(reply);
 
 		checkTimeToMarket();
 		
 	}
+	
+	/**
+	 * Draw POLITICS_CARD for each player.
+	 *
+	 * @param m is the model of the game
+	 */
+	private void drawStartingPoliticsCard() 
+	{
+		for (Player p : model.getPlayer()) 
+		{
+			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId(), p.getStartingPoliticCard());
+			drawPoliticsCard.execute(model);
+		}
+		politicCardToDrawToCurrentPlayer(model);
+	}
+	
 	private void checkModelStatusInMarketTime() 
 	{
 		if(model.getCurrentState().isTimeToEndMarket())
@@ -112,8 +115,21 @@ public class GameController extends SupportMethod implements Observer
 			reply.setId(Costants.BROADCAST_MESSAGE);
 			
 			model.getCurrentState().resetMarket();
+			model.getMarket().reset();
 		}
 		
+	}
+	private void checkModelStatusLastTurn() 
+	{
+		if(model.getCurrentState().getLastTurn()!= null)
+		{
+			for (Player player : model.getPlayer())
+				if(player.getMainActionCounter() == 0 && player.getFastActionCounter() ==0)
+					calculateLastPoints(model);
+			List<Player> orderList = sortByVictoryPoints(model.getPlayer());
+			reply = new EndGameReply(orderList);
+			reply.setId(Costants.BROADCAST_MESSAGE);
+		}
 	}
 
 	public Reply getReply() 
@@ -128,8 +144,21 @@ public class GameController extends SupportMethod implements Observer
 	{
 		
 		setTimeToMarket();
+		checkReconnectedPlayer();
 		checkAlreadyTurn();
-		
+	}
+	
+	private void checkReconnectedPlayer()
+	{
+		int idReconnectedPlayer = checkDisconnectedPlayer();
+		if(idReconnectedPlayer > 0)
+		{
+			Reply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
+					model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
+					model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
+			game.setId(idReconnectedPlayer);
+			model.sendMessage(game);
+		}
 	}
 	
 	/**
@@ -139,15 +168,6 @@ public class GameController extends SupportMethod implements Observer
 	 */
 	private void checkAlreadyTurn()
 	{
-		int idReconnectedPlayer = checkDisconnectedPlayer();
-		if(idReconnectedPlayer > 0)
-		{
-			Reply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
-					model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
-					model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
-			game.setId(idReconnectedPlayer);
-			model.sendMessage(game);
-		}
 		int id = model.getCurrentState().getPlayerTurnId();
 		if(model.getPlayerById(id).getMainActionCounter() == 0 && model.getPlayerById(id).getFastActionCounter()==0
 				&& !model.getPlayerById(id).isBusinessCardOrCityBonusRequest() &&
@@ -225,7 +245,7 @@ public class GameController extends SupportMethod implements Observer
 					model.getCurrentState().getPlayerTurnId(), 
 					ActionMessages.BUSINESS_CARD_REQUEST, 
 					model.getPlayer(), 
-					model.getMap().getListaRegioni(), 
+					model.getMap().getRegionList(), 
 					model.getMap().getKing(),
 					model.getMap().getAvailableCouncillor(),
 					model.getPlayerById(playerTurnId).isBusinessCardRequest(),

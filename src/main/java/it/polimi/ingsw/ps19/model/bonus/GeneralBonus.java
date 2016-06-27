@@ -55,6 +55,7 @@ public class GeneralBonus implements Bonus {
 				}
 			}
 		}
+		
 		for(CityColorBonus c : colorBonus){
 			if(p.getMyEmporia().containsAll(c.getCitylist())){
 				colorBonus.remove(colorBonus.indexOf(c));

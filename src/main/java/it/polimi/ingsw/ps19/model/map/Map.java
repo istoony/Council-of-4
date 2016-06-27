@@ -8,13 +8,14 @@ import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
 import it.polimi.ingsw.ps19.model.card.DeckFactory;
 import it.polimi.ingsw.ps19.model.card.PoliticDeck;
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 
 public class Map 
 {	
-	ArrayList<Region> listaRegioni;
+	ArrayList<Region> regionList;
 	private PoliticDeck politicdeck;
 	private AvailableCouncillor councilcolors;
 	private King king;
@@ -24,13 +25,13 @@ public class Map
 	
 	private Map(List<Region> list)
 	{
-		listaRegioni = new ArrayList<>();
-		listaRegioni.addAll(list);
+		regionList = new ArrayList<>();
+		regionList.addAll(list);
 		
 		kingFactory();	
-		councilcolors = BalconyFactory.createBalcony(listaRegioni, king, FileNames.CARD_FILE);
+		councilcolors = BalconyFactory.createBalcony(regionList, king, FileNames.CARD_FILE);
 		politicdeck = (PoliticDeck) DeckFactory.politicsDeckFactory(FileNames.CARD_FILE, councilcolors.getListofcolors());
-		kingBonus = new GeneralBonus(FileNames.MAP_FILE, listaRegioni);
+		kingBonus = new GeneralBonus(FileNames.MAP_FILE, regionList);
 		nobilityPath = new NobilityPath(FileNames.CARD_FILE);
 	}
 	
@@ -45,14 +46,14 @@ public class Map
 	public List<City> getAllCities()
 	{
 		List<City> cities = new ArrayList<>();
-		for (Region region : listaRegioni) 
+		for (Region region : regionList) 
 			cities.addAll(region.getCities());
 		return cities;
 	}
 	
 	public Region getRegionByType(RegionType r)
 	{
-		for (Region region : listaRegioni) 
+		for (Region region : regionList) 
 		{
 			if(region.getType() == r)
 				return region;
@@ -60,12 +61,9 @@ public class Map
 		return null;
 	}
 	
-	public List<Region> getListaRegioni() 
+	public List<Region> getRegionList() 
 	{
-		List<Region> reg = new ArrayList<>();
-		for (Region region : listaRegioni)
-			reg.add(region);
-		return reg;
+		return Costants.clone(regionList);
 	}
 	
 	public King getKing() 
@@ -97,7 +95,7 @@ public class Map
 	public String toString() 
 	{
 		String s = "";
-		for (Region region : listaRegioni) 
+		for (Region region : regionList) 
 			s += region.toString() + "\n";
 		s += "KING:  " + king.toString();
 		return s;

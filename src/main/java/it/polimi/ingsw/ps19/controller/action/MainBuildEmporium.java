@@ -47,6 +47,8 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		player.addUsedBusinessCard(player.removeFreebusinesscardById(businessCard.getId()));
 		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		
+		checkPlayerVictory(model, player, result);
+		
 		return true;
 	}
 
@@ -87,7 +89,7 @@ public class MainBuildEmporium extends SupportMethod implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		return new ElectCouncillorReply(model.getCurrentState().getPlayerTurnId(), result, 
-				model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+				model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
 				model.getMap().getAvailableCouncillor());
 	}
 

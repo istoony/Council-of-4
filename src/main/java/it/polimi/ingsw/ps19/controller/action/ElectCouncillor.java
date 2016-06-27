@@ -90,7 +90,7 @@ public class ElectCouncillor implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		return new ElectCouncillorReply(model.getCurrentState().getPlayerTurnId(), result, 
-				model.getPlayer(), model.getMap().getListaRegioni(), model.getMap().getKing(),
+				model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
 				model.getMap().getAvailableCouncillor());
 	}
 	

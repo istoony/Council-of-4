@@ -54,7 +54,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		int moneycost = 0;
 		if(real.getId() != model.getMap().getKing().getCurrentcity().getId())
 			moneycost = Costants.JUMPCOST*(Costants.calculateShorterPath(model.getMap().getKing().getCurrentcity(), 
-				city, model.getMap().getListaRegioni()).size() - 1);
+				city, model.getMap().getRegionList()).size() - 1);
 		
 			//Sposto il re nella città nuova
 		model.getMap().getKing().setCurrentcity(real);
@@ -72,7 +72,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 				
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
-		
+		checkPlayerVictory(model, player, result);
 		return true;
 	}
 
@@ -103,7 +103,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		}
 		
 		int requiredmoney =  Costants.JUMPCOST*(Costants.calculateShorterPath(model.getMap().getKing().getCurrentcity(), 
-				city, model.getMap().getListaRegioni()).size() - 1);
+				city, model.getMap().getRegionList()).size() - 1);
 		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
 		
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney)

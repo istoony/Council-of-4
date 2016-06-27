@@ -47,4 +47,8 @@ public class Market implements Serializable
 	{
 		return listoforder.size();
 	}
+	public void reset()
+	{
+		listoforder = new HashMap<>();
+	}
 }
