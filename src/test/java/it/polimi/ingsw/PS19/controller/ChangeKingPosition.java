@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
-import it.polimi.ingsw.ps19.controller.action.ActionMessages;
+import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;

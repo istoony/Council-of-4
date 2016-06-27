@@ -1,9 +1,10 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.ps19.controller.support;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
@@ -90,6 +91,7 @@ public class SupportMethod
 				checkNobilityPathBonus(model, player);
 			}
 		politicCardToDrawToCurrentPlayer(model);
+		model.getMap().getKingBonus().giveBonus(player);
 	}
 	
 	protected static void politicCardToDrawToCurrentPlayer(Model model) 

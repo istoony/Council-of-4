@@ -38,8 +38,12 @@ public class ClientModel
 		currentId = id;
 	}
 	
+	/**
+	 * ONLY FOR TESTS
+	 * @param m
+	 */
 	public ClientModel(Model m){
-		regions = m.getMap().getListaRegioni();
+		regions = m.getMap().getRegionList();
 		king = m.getMap().getKing();
 		player = m.getPlayer();
 		nobilitypath = m.getMap().getNobilityPath();

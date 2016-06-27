@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import it.polimi.ingsw.ps19.controller.GameController;
-import it.polimi.ingsw.ps19.controller.action.SupportMethod;
+import it.polimi.ingsw.ps19.controller.support.SupportMethod;
 import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;

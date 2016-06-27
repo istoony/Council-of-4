@@ -5,11 +5,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.polimi.ingsw.ps19.controller.action.Action;
-import it.polimi.ingsw.ps19.controller.action.ActionMessages;
 import it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp;
-import it.polimi.ingsw.ps19.controller.action.SupportMethod;
+import it.polimi.ingsw.ps19.controller.support.ActionMessages;
+import it.polimi.ingsw.ps19.controller.support.SupportMethod;
+import it.polimi.ingsw.ps19.message.replies.EndGameReply;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
@@ -127,7 +128,7 @@ public class GameController extends SupportMethod implements Observer
 				if(player.getMainActionCounter() == 0 && player.getFastActionCounter() ==0)
 					calculateLastPoints(model);
 			List<Player> orderList = sortByVictoryPoints(model.getPlayer());
-			reply = new EndGameReply(orderList);
+			reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);
 			reply.setId(Costants.BROADCAST_MESSAGE);
 		}
 	}

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.ps19.controller.support;
 
 public class ActionMessages 
 {
@@ -22,6 +22,7 @@ public class ActionMessages
 	public static final String YOU_ALREADY_BOUGHT ="you've already bought";
 	public static final String PLAYER_HAS_BOUGHT ="One Player has bought, now is your turn";
 	public static final String PLAYER_WIN_GAME ="The game was won by the player with id ";
+	public static final String END_GAME = "Enjoy your life, the game is over";
 	
 	
 	private ActionMessages() { }

@@ -50,7 +50,7 @@ public class CalculateShorterPath {
 		int i = 0;
 		for (City end : m.getMap().getAllCities()) 
 		{
-			assertTrue(Costants.calculateShorterPath(start, end, m.getMap().getListaRegioni()).size() == testForCurrentMap.get(i));
+			assertTrue(Costants.calculateShorterPath(start, end, m.getMap().getRegionList()).size() == testForCurrentMap.get(i));
 			i++;
 		}
 	}
