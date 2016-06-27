@@ -74,9 +74,9 @@ public class GameController extends SupportMethod implements Observer
 		}
 		reply = createReply();
 		
-		if(model.getCurrentState().isTimeToMarket() && model.getCurrentState().getLastTurn() != null)
+		if(model.getCurrentState().isTimeToMarket() && model.getCurrentState().getLastTurn() == Costants.INVALID_ID)
 			checkModelStatusInMarketTime();
-		else if(model.getCurrentState().getLastTurn() != null)
+		else if(model.getCurrentState().getLastTurn()  == Costants.INVALID_ID)
 			checkModelStatus();
 		else
 			checkModelStatusLastTurn();
@@ -122,7 +122,7 @@ public class GameController extends SupportMethod implements Observer
 	}
 	private void checkModelStatusLastTurn() 
 	{
-		if(model.getCurrentState().getLastTurn()!= null)
+		if(model.getCurrentState().getLastTurn() == Costants.INVALID_ID)
 		{
 			for (Player player : model.getPlayer())
 				if(player.getMainActionCounter() == 0 && player.getFastActionCounter() ==0)
@@ -143,7 +143,7 @@ public class GameController extends SupportMethod implements Observer
 	 */
 	private void checkModelStatus()
 	{
-		
+		System.out.println("in");
 		setTimeToMarket();
 		checkReconnectedPlayer();
 		checkAlreadyTurn();

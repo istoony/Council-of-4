@@ -33,19 +33,5 @@ public interface Action
 	 * @return the specific reply message
 	 */
 	public Reply createReplyMessage(Model model);
-		
-	
-	/**
-	 * Check player turn.
-	 *
-	 * @param id the id
-	 * @param m the m
-	 * @return the boolean
-	 */
-	public static Boolean checkPlayerTurn(int id, Model m)
-	{
-		return id != m.getCurrentState().getPlayerTurnId();
-	}
-	
 
 }

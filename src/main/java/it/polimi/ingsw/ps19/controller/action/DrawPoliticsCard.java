@@ -28,12 +28,6 @@ public class DrawPoliticsCard implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.checkPlayerTurn(playerId, model))
-		{
-			result = ActionMessages.NOT_YOUR_TURN;
-			return false;
-		}
-		
 		if(model.getMap().getPoliticdeck().getSize() == 0)
 		{
 			result = ActionMessages.POLITIC_DECK_IS_OVER;

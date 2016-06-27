@@ -12,7 +12,6 @@ import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class DrawBusinessCard  extends SupportMethod implements Action 
@@ -81,23 +80,15 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			checkNobilityPathBonus(model, player);
 				
 		}
-		player.setMainActionCounter(player.getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
+		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		return true;
 	}
 
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.checkPlayerTurn(playerId, model))
-		{
-			result = ActionMessages.NOT_YOUR_TURN;
+		if(!SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.MAIN_ACTION))
 			return false;
-		}
-		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
-		{
-			result = ActionMessages.NO_ACTION_TO_DO_IT;
-			return false;
-		}
 		
 		Player player = model.getPlayerById(playerId);
 		
