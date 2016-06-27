@@ -91,5 +91,6 @@ public class ReplyVisitorImpl implements ReplyVisitor
 				message.getMarket(),
 				message.getActivePlayer());
 	}
-
+	
+	
 }
