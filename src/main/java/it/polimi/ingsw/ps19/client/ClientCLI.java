@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
@@ -39,6 +40,13 @@ public class ClientCLI extends ClientUI
 {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
+	/**
+	 * @param l: language
+	 */
+	public ClientCLI(Language l)
+	{
+		language = l;
+	}
 	@Override
 	public ClientActionChooser requestActionType(List<ClientActionChooser> actionList) 
 	{

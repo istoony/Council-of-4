@@ -21,6 +21,7 @@ import it.polimi.ingsw.ps19.client.guicomponents.MarketFrame;
 import it.polimi.ingsw.ps19.client.guicomponents.MarketShow;
 import it.polimi.ingsw.ps19.client.guicomponents.Notify;
 import it.polimi.ingsw.ps19.client.guicomponents.QuestionFrame;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
@@ -57,7 +58,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private static final String MAIN_ACTION_COMMAND = "Take a Main Actions";
 	private static final String FAST_ACTION_COMMAND= "Take a Fast Actions";
 	
-	public ClientGUI() {
+	public ClientGUI(Language l) 
+	{
+		language = l;
 		index = new ArrayList<>();
 		pop.addMessage(START);
 		try {

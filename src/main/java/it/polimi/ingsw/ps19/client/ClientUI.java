@@ -8,6 +8,7 @@ import java.util.logging.*;
 import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
@@ -20,9 +21,8 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
  * user interface abstract class
  */
 public abstract class ClientUI
-
-
-{	
+{
+	protected Language language;
 	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
 	
 	/**
