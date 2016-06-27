@@ -3,11 +3,11 @@ package it.polimi.ingsw.ps19.controller.action;
 import java.awt.Color;
 
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
+import it.polimi.ingsw.ps19.controller.support.SupportMethod;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.map.King;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class ElectCouncillor implements Action
@@ -49,12 +49,12 @@ public class ElectCouncillor implements Action
 		if(mainAction)
 		{
 			model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney() + MONEY);
-			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);	
+			model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);	
 		}
 		else
 		{
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
-			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - Costants.N_OF_ACTION_TO_ADD);
+			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		}
 		return null;
 	}
@@ -62,17 +62,9 @@ public class ElectCouncillor implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.checkPlayerTurn(playerId, model))
-		{
-			result = ActionMessages.NOT_YOUR_TURN;
+		if((mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.MAIN_ACTION))
+				|| (!mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.FAST_ACTION)))
 			return false;
-		}
-		if((mainAction && model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD) 
-				|| (!mainAction && model.getPlayerById(playerId).getFastActionCounter() < Costants.N_OF_ACTION_TO_ADD) )
-		{
-			result = ActionMessages.NO_ACTION_TO_DO_IT;
-			return false;
-		}
 		if(!model.getMap().getAvailableCouncillor().findColor(color))
 		{
 			result = ActionMessages.COLOR_NOT_AVAILABLE;

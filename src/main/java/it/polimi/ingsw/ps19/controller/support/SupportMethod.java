@@ -20,6 +20,10 @@ public class SupportMethod
 	private static final int MONEY_2_CARDS = 7;
 	private static final int MONEY_3_CARDS = 4;
 	
+	public static final int N_OF_ACTION_TO_ADD = 1;
+	public static final String MAIN_ACTION = "MAIN_ACTION";
+	public static final String FAST_ACTION = "FAST_ACTION";
+	
 	/**
 	 * Calculate the Money need to satisfy a balcony.
 	 * This method don't check if cards are correct.
@@ -123,10 +127,10 @@ public class SupportMethod
 	
 	protected static void checkPlayerVictory(Model model, Player player, String result)
 	{
-		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() == null)
+		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
 			model.getCurrentState().setLastTurn(player.getId());
-			result = ActionMessages.PLAYER_WIN_GAME + player.getId();
+			result = ActionMessages.playerWinGameResultBuilder(player.getId());
 		}
 	}
 
@@ -175,4 +179,46 @@ public class SupportMethod
 				}
 		return players;
 	}
+
+	public static boolean checkPlayerTurnAndAction(Model model, int id, String result, String type) 
+	{
+		if(checkPlayerTurn(id, model))
+		{
+			result = ActionMessages.NOT_YOUR_TURN;
+			return false;
+		}
+		
+		if(type.equals(MAIN_ACTION))
+		{
+			if(model.getPlayerById(id).getMainActionCounter() < N_OF_ACTION_TO_ADD)
+			{
+				result = ActionMessages.NO_ACTION_TO_DO_IT;
+				return false;
+			}
+		}
+		else if(type.equals(FAST_ACTION))
+		{
+			if(model.getPlayerById(id).getFastActionCounter() < N_OF_ACTION_TO_ADD)
+			{
+				result = ActionMessages.NO_ACTION_TO_DO_IT;
+				return false;
+			}
+		}
+	
+		return true;
+	}
+	
+
+	/**
+	 * Check player turn.
+	 *
+	 * @param id the id
+	 * @param m the m
+	 * @return the boolean
+	 */
+	public static Boolean checkPlayerTurn(int id, Model m)
+	{
+		return id != m.getCurrentState().getPlayerTurnId();
+	}
+	
 }

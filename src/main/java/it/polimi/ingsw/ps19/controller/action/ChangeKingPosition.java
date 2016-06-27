@@ -72,7 +72,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			//do al giocatore i bonus che gli spettano
 		giveBonusToPlayer(model, findRegion(model, real), player, real.getId());
 				
-		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - Costants.N_OF_ACTION_TO_ADD);
+		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		checkPlayerVictory(model, player, result);
 		return true;
@@ -81,22 +81,13 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(Action.checkPlayerTurn(playerId, model))
-		{
-			result = ActionMessages.NOT_YOUR_TURN;
+		if(!SupportMethod.checkPlayerTurnAndAction(model,playerId, result, SupportMethod.MAIN_ACTION))
 			return false;
-		}
 		if(model.getPlayerById(playerId).getMaxemporia()==0)
 		{
 			result = ActionMessages.NO_BUILD;
 			return false;
 		}
-		if(model.getPlayerById(playerId).getMainActionCounter() < Costants.N_OF_ACTION_TO_ADD)
-		{
-			result = ActionMessages.NO_ACTION_TO_DO_IT;
-			return false;
-		}
-		
 		Player player = model.getPlayerById(playerId);
 		if(!(findPoliticCard(politicCard, player)))
 		{

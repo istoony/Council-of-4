@@ -28,7 +28,7 @@ public class CurrentState
 	{
 		playerTurnId = playerIdList.get(0);
 		timeToMarket = false;
-		lastTurn = null;
+		lastTurn = Costants.INVALID_ID;
 		this.numberOfPlayer = playerIdList.size();
 		marketState = new HashMap<>();
 		this.playerIdList = new ArrayList<>();

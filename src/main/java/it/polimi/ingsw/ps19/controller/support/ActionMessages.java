@@ -26,4 +26,9 @@ public class ActionMessages
 	
 	
 	private ActionMessages() { }
+	
+	protected static String playerWinGameResultBuilder(int id)
+	{
+		return PLAYER_WIN_GAME + id;
+	}
 }
