@@ -81,8 +81,6 @@ public class GameController extends SupportMethod implements Observer
 		else
 			checkModelStatusLastTurn();
 		
-		//System.out.println(model.toString());
-		
 		model.sendMessage(reply);
 
 		checkTimeToMarket();
@@ -146,7 +144,6 @@ public class GameController extends SupportMethod implements Observer
 	 */
 	private void checkModelStatus()
 	{
-		System.out.println("in");
 		setTimeToMarket();
 		checkReconnectedPlayer();
 		checkAlreadyTurn();

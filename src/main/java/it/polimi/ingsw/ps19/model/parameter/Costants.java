@@ -17,7 +17,7 @@ public class Costants
 	public static final int INVALID_ID = NO_ACTIVE_PLAYER;
 	public static final int BROADCAST_MESSAGE = -1;
 	public static final Random RANDOM_NUMBER = new Random();
-	public static final int EMPORIUM_SIZE = 2;
+	public static final int EMPORIUM_SIZE = 10;
 
 	private Costants()
 	{

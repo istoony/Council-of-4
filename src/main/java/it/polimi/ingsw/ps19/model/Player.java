@@ -52,6 +52,7 @@ public class Player implements Serializable
 	/** The business card bonus and city token bonus */
 	private boolean businessCardRequest;
 	private boolean cityBonusRequest;
+	private int drawBusinessCard;
 	
 	/**
 	 * Instantiates a new player.
@@ -69,6 +70,7 @@ public class Player implements Serializable
 		fastActionCounter = 1;
 		businessCardRequest = false;
 		cityBonusRequest = false;
+		drawBusinessCard = 0;
 	}
 	
 	/**
@@ -477,6 +479,16 @@ public class Player implements Serializable
 	public boolean isBusinessCardOrCityBonusRequest() 
 	{
 		return isCityBonusRequest() || isBusinessCardRequest();
+	}
+	public boolean isBusinessCardToDraw()
+	{
+		if(drawBusinessCard > 0)
+			return true;
+		return false;
+	}
+	public void setDrawBusinessCard(int drawBusinessCard) 
+	{
+		this.drawBusinessCard = drawBusinessCard;
 	}
 	
 }

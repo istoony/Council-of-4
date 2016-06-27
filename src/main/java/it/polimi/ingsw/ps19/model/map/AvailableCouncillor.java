@@ -57,14 +57,6 @@ public class AvailableCouncillor implements Serializable
 		return availableColors;
 	}
 	
-	public List<Color> getAllColors()
-	{
-		List<Color> availableColors = new ArrayList<>();
-		for (Color c : listofcolors.getColors())
-			availableColors.add(c);
-		return availableColors;
-	}
-	
 	public ColorManager getListofcolors() {
 		return listofcolors;
 	}
@@ -74,18 +66,5 @@ public class AvailableCouncillor implements Serializable
 			if(c.equals(color))
 				return true;
 		return false;
-	}
-	
-	
-	@Override
-	public String toString() 
-	{
-		String s = "\n+++++++++++++\n          ";
-		for (Color c : listofcolors.getColors()) 
-		{
-			s = s + c.toString() + "-->" + councillor.get(c) + "\n          ";
-		}
-		return s;
-	}
-	
+	}	
 }

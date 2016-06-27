@@ -29,7 +29,7 @@ import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
 public class MarketTest {
-
+	
 	@Test
 	public void test() 
 	{

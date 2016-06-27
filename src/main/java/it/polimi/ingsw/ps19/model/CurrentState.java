@@ -97,18 +97,13 @@ public class CurrentState
 	
 		int next= playerIdList.get(randomNumb);
 		while(!WaitingRoom.isConnected(next))
-			next= playerIdList.get((randomNumb + 1) % numberOfPlayer);
+		{
+			randomNumb++;
+			next= playerIdList.get((randomNumb) % numberOfPlayer);
+		}
 		return next;
 	}
 	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		s += "\nTimeToMarket" + timeToMarket;
-		return s;
-	}
-
 	public int getNumberOfDisconnectedPlayer() 
 	{
 		int n = 0;
