@@ -93,7 +93,7 @@ public class Player implements Serializable
 	 */
 	public static List<Player> setStartingItems(List<Player> p, String xmlfile){
 		
-		NodeList nList = FileReader.XMLReader(xmlfile, "starting");
+		NodeList nList = FileReader.xMLReader(xmlfile, "starting");
 		Node nNode = nList.item(0);
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			Element e = (Element) nNode;

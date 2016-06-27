@@ -33,9 +33,9 @@ public class ColorManager implements Serializable
 		colors = new ArrayList<>();
 		try {
 			
-			NodeList numberofcolors = FileReader.XMLReader(pathfile, COLOR_MARKER);
+			NodeList numberofcolors = FileReader.xMLReader(pathfile, COLOR_MARKER);
 			
-			NodeList nList = FileReader.XMLReader(pathfile,COLORS_MARKER);
+			NodeList nList = FileReader.xMLReader(pathfile,COLORS_MARKER);
 			Element eElement = (Element) nList.item(0);
 						
 			for(int k=0; k<numberofcolors.getLength(); k++)

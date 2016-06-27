@@ -13,7 +13,7 @@ public class BalconyFactory
 	{
 		ColorManager colors = new ColorManager(pathfile);
 		
-		NodeList nList = FileReader.XMLReader(pathfile, "councillornumber");
+		NodeList nList = FileReader.xMLReader(pathfile, "councillornumber");
 		
 		int numberofcouncillor = Integer.parseInt(nList.item(0).getTextContent());
 		

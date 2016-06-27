@@ -19,7 +19,7 @@ public class FileReader {
 		
 	}
 	
-	public static NodeList XMLReader(String nomefile, String nomeNodo){
+	public static NodeList xMLReader(String nomefile, String nomeNodo){
 		try {
 
 			File fXmlFile = new File(nomefile);

@@ -83,7 +83,7 @@ public class GeneralBonus implements Bonus {
 		
 	//metodo ausilio costruttore 1, bonus del re
 	private void inizializeKing(String xmlfile){
-		NodeList nList = FileReader.XMLReader(xmlfile, "bonus");
+		NodeList nList = FileReader.xMLReader(xmlfile, "bonus");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
@@ -102,7 +102,7 @@ public class GeneralBonus implements Bonus {
 	
 	//metodo ausilio costruttore 2, bonus per colore
 	private void inizializeCity(String xmlfile){
-		NodeList nList = FileReader.XMLReader(xmlfile, "citycolor");
+		NodeList nList = FileReader.xMLReader(xmlfile, "citycolor");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);

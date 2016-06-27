@@ -22,7 +22,7 @@ public class CityLoader {
 		
 		List<List<City>> regioncitylist = new ArrayList<>();
 			
-		NodeList nList = FileReader.XMLReader(FileNames.MAP_FILE, "region");
+		NodeList nList = FileReader.xMLReader(FileNames.MAP_FILE, "region");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
@@ -39,7 +39,7 @@ public class CityLoader {
 				}					
 			}
 		}	
-		nList = FileReader.XMLReader(FileNames.MAP_FILE, "city");
+		nList = FileReader.xMLReader(FileNames.MAP_FILE, "city");
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);

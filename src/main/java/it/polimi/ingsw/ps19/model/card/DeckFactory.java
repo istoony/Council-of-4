@@ -40,10 +40,10 @@ public class DeckFactory
 		try {
 						
 			BusinessDeck businessdeck = new BusinessDeck();
-			if(FileReader.XMLReader(pathfile, BUSINESSCARD).getLength()!=1)
+			if(FileReader.xMLReader(pathfile, BUSINESSCARD).getLength()!=1)
 				return null;		//potrei lanciare un eccezione
 			
-			NodeList nList = FileReader.XMLReader(pathfile, CARD);
+			NodeList nList = FileReader.xMLReader(pathfile, CARD);
 			for (int temp = 0; temp < nList.getLength(); temp++) 
 			{
 				Node nNode = nList.item(temp);
@@ -88,7 +88,7 @@ public class DeckFactory
 	{
 		try {
 
-			NodeList nList = FileReader.XMLReader(pathfile, POLITICSCARD);
+			NodeList nList = FileReader.xMLReader(pathfile, POLITICSCARD);
 			
 			Node node = nList.item(0);
 			Element element = (Element) node;

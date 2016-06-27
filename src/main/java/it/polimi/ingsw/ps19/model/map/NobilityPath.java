@@ -28,7 +28,7 @@ public class NobilityPath implements Serializable
 	public NobilityPath(String pathfile) 
 	{
 		nobility = new HashMap<>();
-		NodeList nList = FileReader.XMLReader(pathfile, "cell");
+		NodeList nList = FileReader.xMLReader(pathfile, "cell");
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) 
 		{

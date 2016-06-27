@@ -108,7 +108,7 @@ public class MapLoader {
 		
 		List<MapLoader> maplist = new ArrayList<>();
 		
-		NodeList nList = FileReader.XMLReader(xmlfile, "region");
+		NodeList nList = FileReader.xMLReader(xmlfile, "region");
 
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Node nNode = nList.item(temp);
