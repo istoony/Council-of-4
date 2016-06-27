@@ -80,6 +80,9 @@ public class GameController extends SupportMethod implements Observer
 			checkModelStatus();
 		else
 			checkModelStatusLastTurn();
+		
+		//System.out.println(model.toString());
+		
 		model.sendMessage(reply);
 
 		checkTimeToMarket();

@@ -104,15 +104,20 @@ public class City implements Serializable {
 		String s = "";
 		s += "   id:" + id + "\n";
 		s += "   name:" + name + "\n";
+		s += "   emporium: ";
+		for (Integer i : emporia) {
+			s += " " + i + ", ";
+		}
 		for (Bonus b : bonus) 
 		{
 			s += "   bonus:" + b.toString();
 		}
 		s += "\n   citycolor:" + citycolor + "\n";
-		s += "\n neighbours:\n"; 
+	/*	TODO: gbe
+	 * 	s += "\n neighbours:\n"; 
 		for(City c : neighbours){
 			s+=c.name+"\n";
-		}
+		}*/
 		return s;
 	}
 

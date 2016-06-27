@@ -33,7 +33,8 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	public Boolean execute(Model model) 
 	{	
 		City real = getRealCity(model, city);
-		if(real==null){
+		if(real==null)
+		{
 
 			result = ActionMessages.GENERIC_ERROR;
 			return false;
