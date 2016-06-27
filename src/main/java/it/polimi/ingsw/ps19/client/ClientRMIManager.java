@@ -21,6 +21,8 @@ public class ClientRMIManager extends ClientManager
 {
 	/**
 	 * Constructor that actually executes the connection via RMI
+	 * @param newGame
+	 * @param key
 	 * @param ui
 	 */
 	public ClientRMIManager(ClientUI ui, boolean newGame, int key)
@@ -42,9 +44,9 @@ public class ClientRMIManager extends ClientManager
 				ConnectionReply reply = (ConnectionReply) connection.read(30);
 				playerId = reply.getPassword();
 				if(reply.getSuccessful())
-					userInterface.showNotification("You have reconnected to previous game");
+					userInterface.showNotification(userInterface.getLanguage().reconnected);
 				else
-					userInterface.showNotification("New Game! your password to regain access is: " + reply.getPassword());
+					userInterface.showNotification(userInterface.getLanguage().connPass + ": " + reply.getPassword());
 				((RMIConnection)connection).loadWriter(writerStub);
 				success = true;
 			}
@@ -62,7 +64,7 @@ public class ClientRMIManager extends ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			userInterface.showNotification("Connection Unsuccessful, the program will now close");
+			userInterface.showNotification(userInterface.getLanguage().connInsucces + "! " + userInterface.getLanguage().killClient);
 			System.exit(0);
 		}
 		startClient();
