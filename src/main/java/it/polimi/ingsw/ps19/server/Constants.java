@@ -14,7 +14,7 @@ public final class Constants
 	public static Integer MAX_PLAYERS = null;
 	public static final int MAX_WRITING_TRIES = 5;
 	public static final int MAX_WAIT_TIME_S = 10;
-	public static final long PLAYER_TIMEOUT_TIME_S = 1200;
+	public static final long PLAYER_TIMEOUT_TIME_S = 60;
 		
 	private Constants() {}
 	

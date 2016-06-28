@@ -2,7 +2,8 @@ package it.polimi.ingsw.ps19.model.bonus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class BonusFactory 
 {
@@ -18,13 +19,13 @@ public class BonusFactory
 	private static final String BONUS_MORE_MONEY = "bonus-more-money";
 
 	//BOUNDS FOR CITY BONUS
-	private static final int MAX_CITY_HELPERS = 2;
-	private static final int MAX_CITY_CARDS = 2;
-	private static final int MAX_CITY_MONEY = 3;
-	private static final int MAX_CITY_VP = 3;
-	private static final int MAX_CITY_NOBILITY = 2;
+	private static final int MAX_CITY_HELPERS = 5;
+	private static final int MAX_CITY_CARDS = 3;
+	private static final int MAX_CITY_MONEY = 4;
+	private static final int MAX_CITY_VP = 5;
+	private static final int MAX_CITY_NOBILITY = 3;
 	private static final int NUMBER_OF_KIND_OF_BONUS = 5;
-	private static final int MAX_BONUS_PER_CITY = 2;
+	private static final int MAX_BONUS_PER_CITY = 4;
 	
 	/*bonus-more-money
     bonus-more-helper
@@ -78,9 +79,8 @@ public class BonusFactory
 		return bonus;
 	}
 	
-	public static List<Bonus> generateCityBonus(){
-		Random k = new Random();
-		Random r = new Random();
+	public static List<Bonus> generateCityBonus()
+	{
 		int n;
 		int i;
 		ArrayList<Integer> truthTable = new ArrayList<>();
@@ -91,37 +91,38 @@ public class BonusFactory
 			truthTable.add(1);
 		}
 		
-		int max = k.nextInt(MAX_BONUS_PER_CITY-1)+1;
+		int max = Costants.RANDOM_NUMBER.nextInt(MAX_BONUS_PER_CITY-1)+1;
 		for(int count=0; count<max; count++){
 			
-			i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
+			i = Costants.RANDOM_NUMBER.nextInt(NUMBER_OF_KIND_OF_BONUS);
 			while(truthTable.get(i)==0){
-				i = r.nextInt(NUMBER_OF_KIND_OF_BONUS);
+				i = Costants.RANDOM_NUMBER.nextInt(NUMBER_OF_KIND_OF_BONUS);
 			}
 		
-			switch(i){
+			switch(i)
+			{
 				case 0 : {
-					n = r.nextInt(MAX_CITY_CARDS-1)+1;
+					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_CARDS-1)+1;
 					bon.add(new DrawPoliticCard(n));
 					break;
 				}
 				case 1 : {
-					n = r.nextInt(MAX_CITY_HELPERS-1)+1;
+					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_HELPERS-1)+1;
 					bon.add(new MoreHelpers(n));
 					break;
 				}
 				case 2 : {
-					n = r.nextInt(MAX_CITY_MONEY-1)+1;
+					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_MONEY-1)+1;
 					bon.add(new MoreMoney(n));
 					break;
 				}
 				case 3 : {
-					n = r.nextInt(MAX_CITY_NOBILITY-1)+1;
+					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_NOBILITY-1)+1;
 					bon.add(new MoreNobilityPoints(n));
 					break;
 				}		
 				case 4 : {
-					n = r.nextInt(MAX_CITY_VP-1)+1;
+					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_VP-1)+1;
 					bon.add(new MoreVictoryPoints(n));
 					break;
 				}

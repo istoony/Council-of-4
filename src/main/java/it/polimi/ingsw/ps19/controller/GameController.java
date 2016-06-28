@@ -83,7 +83,7 @@ public class GameController implements Observer
 			checkModelStatusLastTurn();
 		
 		model.sendMessage(reply);
-
+		System.out.println(reply.toString());
 		checkTimeToMarket();
 		
 	}
