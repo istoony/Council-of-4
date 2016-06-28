@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="it.polimi.ingsw.ps19.controller.GameController" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="207" x="723" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCardBonus" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/bonus/DrawBusinessCardBonus.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="271" x="4188" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.PlayerDisconnectedAction" 
+    project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/serveraction/PlayerDisconnectedAction.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="194" x="970" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="it.polimi.ingsw.ps19.controller.action.Action" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/Action.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="194" x="2569" y="1002"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="it.polimi.ingsw.ps19.controller.action.DrawPoliticsCard" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/DrawPoliticsCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="194" x="1204" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="it.polimi.ingsw.ps19.controller.action.AddOrder" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/AddOrder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="194" x="1438" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="it.polimi.ingsw.ps19.controller.action.ChangeKingPosition" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/ChangeKingPosition.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="217" x="1672" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="it.polimi.ingsw.ps19.controller.action.MainBuildEmporium" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/MainBuildEmporium.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="230" x="1929" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="it.polimi.ingsw.ps19.controller.action.BuyHelper" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/BuyHelper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="194" x="2199" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="it.polimi.ingsw.ps19.controller.action.BuyOrder" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/BuyOrder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="194" x="2433" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCard" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/bonus/DrawBusinessCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="327" x="4499" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="it.polimi.ingsw.ps19.controller.action.BusinessCardOrCityBonus" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/BusinessCardOrCityBonus.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="245" x="2667" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="it.polimi.ingsw.ps19.controller.action.BuyMainAction" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/BuyMainAction.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="194" x="2952" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor" 
+    project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/MessageInterpreterVisitor.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="259" x="424" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="15" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.SendFullGame" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/serveraction/SendFullGame.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="194" x="3186" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="it.polimi.ingsw.ps19.controller.support.ActionMessages" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/support/ActionMessages.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="531" width="255" x="1983" y="40"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="it.polimi.ingsw.ps19.controller.action.RedrawBusinessCard" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/RedrawBusinessCard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="211" x="3420" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="it.polimi.ingsw.ps19.controller.action.ElectCouncillor" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/ElectCouncillor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="297" width="243" x="3671" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp" 
+    project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/MessageInterpreterVisitorImp.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="259" x="424" y="40"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="it.polimi.ingsw.ps19.controller.support.SupportMethod" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/support/SupportMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3270" y="329"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.EndTurn" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/serveraction/EndTurn.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="194" x="3954" y="611"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="22">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="23">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="24">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="25">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="26">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="28">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="29">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="30">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="31" name="action"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="33">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="36">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="37">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <realization id="39">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,5 +1,6 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.ps19.controller.action.serveraction;
 
+import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
@@ -31,6 +32,10 @@ public class PlayerDisconnectedAction implements Action {
 				newTurn = true;
 			}
 			model.getCurrentState().addDisconnectedPlayer(playerId);
+			
+			if(model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer() == 1)
+				model.getCurrentState().setLastTurn(model.getCurrentState().getPlayerTurnId());
+				
 			return true;
 	}
 

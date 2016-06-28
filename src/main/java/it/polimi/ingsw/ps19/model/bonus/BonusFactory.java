@@ -64,14 +64,18 @@ public class BonusFactory
 					
 		if(typeofbonus.equals(BONUS_MORE_BUSINESS_CARD))
 			bonus = new DrawBusinessCard(parameter);
-		
-		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
-			bonus = new ReuseBusinessCardBonus(parameter);
-																			
-		if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
-			bonus = new GetCityBonus(parameter);
 			
 		return bonus;	
+	}
+	public static Bonus getBonus(String typeofbonus)
+	{
+		Bonus bonus = null;
+		if(typeofbonus.equals(BONUS_GET_BUSINESS_CARD_BONUS))
+			bonus = new ReuseBusinessCardBonus();
+																			
+		if(typeofbonus.equals(BONUS_GET_CITY_BONUS))
+			bonus = new GetCityBonus();
+		return bonus;
 	}
 	
 	public static List<Bonus> generateCityBonus(){

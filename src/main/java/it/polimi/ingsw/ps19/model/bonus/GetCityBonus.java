@@ -8,10 +8,6 @@ import it.polimi.ingsw.ps19.model.Player;
 public class GetCityBonus implements Bonus {
 
 	private static final long serialVersionUID = 6314285377196367956L;
-	
-
-	public GetCityBonus(int parameter) 
-	{	}
 
 	@Override
 	public void giveBonus(Player p) 

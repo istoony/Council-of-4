@@ -5,9 +5,9 @@
     bonus-another-turn
     bonus-more-victory-points
     bonus-more-business-card
-    bonus-get-business-card-bonus
+    bonus-get-business-card-bonus __  SET PARAMETER = 0
     bonus-get-two-token
-    bonus-get-city-bonus -->
+    bonus-get-city-bonus ____  SET PARAMETER = 0 -->
 
 <mapcolor>	
 	<colors>	
@@ -34,6 +34,30 @@
 			<bonus>
 				<type>bonus-more-helper</type>
 				<parameter>1</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-get-business-card-bonus</type>
+				<parameter>0</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-get-business-card-bonus</type>
+				<parameter>0</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-get-city-bonus</type>
+				<parameter>0</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -242,7 +266,7 @@
 			<position>4</position>
 			<bonus>
 				<type>bonus-get-city-bonus</type>
-				<value>1</value>
+				<value>0</value>
 			</bonus>
 		</cell>
 		<cell>
@@ -263,7 +287,7 @@
 			<position>8</position>
 			<bonus>
 				<type>bonus-more-politicscard</type>
-				<value>1</value>
+				<value>2</value>
 			</bonus>
 		</cell>		
 		<cell>
@@ -291,14 +315,14 @@
 			<position>14</position>
 			<bonus>
 				<type>bonus-get-business-card-bonus</type>
-				<value>1</value>
+				<value>0</value>
 			</bonus>
 		</cell>	
 		<cell>
 			<position>16</position>
 			<bonus>
 				<type>bonus-get-city-bonus</type>
-				<value>2</value>
+				<value>0</value>
 			</bonus>
 		</cell>		
 		<cell>

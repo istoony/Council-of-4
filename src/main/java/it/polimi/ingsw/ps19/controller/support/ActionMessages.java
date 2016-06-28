@@ -21,7 +21,7 @@ public class ActionMessages
 	public static final String NO_ACTION_TO_DO_IT= "You don't have action to do what you want";
 	public static final String YOU_ALREADY_BOUGHT ="you've already bought";
 	public static final String PLAYER_HAS_BOUGHT ="One Player has bought, now is your turn";
-	public static final String PLAYER_WIN_GAME ="The game was won by the player with id ";
+	public static final String PLAYER_WIN_GAME ="The 10th emporia has been built by player: ";
 	public static final String END_GAME = "Enjoy your life, the game is over";
 	public static final String NO_TIME_TO_BONUS = "You don't have Business Card or City Bonus pending requests";
 	public static final String BUSINESS_CARD_TO_DRAW_REQUEST = "Please select a Business card to draw";
