@@ -13,7 +13,7 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
-public class ChangeKingPosition extends SupportMethod implements Action{
+public class ChangeKingPosition implements Action{
 
 	int playerId;
 	City city;
@@ -32,7 +32,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 	@Override
 	public Boolean execute(Model model) 
 	{	
-		City real = getRealCity(model, city);
+		City real = SupportMethod.getRealCity(model, city);
 		if(real==null)
 		{
 
@@ -42,12 +42,12 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		
 		Player player = model.getPlayerById(playerId);
 		
-		removePoliticCardToHand(model, player, politicCard);
+		SupportMethod.removePoliticCardToHand(model, player, politicCard);
 			//
 			//in base alle carte arrivate tolgo dei soldi al player, non tolgo ancora i soldi
 			//dovuti al movimento del re
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicCard) - numberOfJoker(politicCard));
+		player.setMoney(player.getMoney() - SupportMethod.numberOfNeedMoney(politicCard) - SupportMethod.numberOfJoker(politicCard));
 		
 			//
 			//in base agli empori costruiti calcolo gli helper necessari
@@ -71,10 +71,10 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		model.getPlayerById(playerId).setMoney(model.getPlayerById(playerId).getMoney()-moneycost);
 			
 			//do al giocatore i bonus che gli spettano
-		giveBonusToPlayer(model, findRegion(model, real), player, real.getId());
+		SupportMethod.giveBonusToPlayer(model, SupportMethod.findRegion(model, real), player, real.getId());
 				
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
-		result = checkPlayerVictory(model, player);
+		result = SupportMethod.checkPlayerVictory(model, player);
 		return true;
 	}
 
@@ -89,7 +89,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 			return false;
 		}
 		Player player = model.getPlayerById(playerId);
-		if(!(findPoliticCard(politicCard, player)))
+		if(!(SupportMethod.findPoliticCard(politicCard, player)))
 		{
 			result = ActionMessages.NO_MONEY;
 			return false;
@@ -97,11 +97,11 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		
 		int requiredmoney =  Costants.JUMPCOST*(Costants.calculateShorterPath(model.getMap().getKing().getCurrentcity(), 
 				city, model.getMap().getRegionList()).size() - 1);
-		requiredmoney += numberOfNeedMoney(politicCard) + numberOfJoker(politicCard);
+		requiredmoney += SupportMethod.numberOfNeedMoney(politicCard) + SupportMethod.numberOfJoker(politicCard);
 		
 		if(model.getPlayerById(playerId).getMoney()>=requiredmoney)
 		{
-			City real = getRealCity(model, city);
+			City real = SupportMethod.getRealCity(model, city);
 			if(real==null)
 			{	
 				result = ActionMessages.GENERIC_ERROR;

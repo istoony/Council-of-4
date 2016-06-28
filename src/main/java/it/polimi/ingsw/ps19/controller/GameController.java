@@ -26,7 +26,7 @@ import it.polimi.ingsw.ps19.server.WaitingRoom;;
 /**
  * The Class GameController.
  */
-public class GameController extends SupportMethod implements Observer
+public class GameController implements Observer
 {
 	
 	/** The model. */
@@ -101,7 +101,7 @@ public class GameController extends SupportMethod implements Observer
 			DrawPoliticsCard drawPoliticsCard = new DrawPoliticsCard(p.getId(), p.getStartingPoliticCard());
 			drawPoliticsCard.execute(model);
 		}
-		politicCardToDrawToCurrentPlayer(model);
+		SupportMethod.politicCardToDrawToCurrentPlayer(model);
 	}
 	
 	private void checkModelStatusInMarketTime() 
@@ -129,8 +129,8 @@ public class GameController extends SupportMethod implements Observer
 		{
 			for (Player player : model.getPlayer())
 				if(player.getMainActionCounter() == 0 && player.getFastActionCounter() ==0)
-					calculateLastPoints(model);
-			List<Player> orderList = sortByVictoryPoints(model.getPlayer());
+					SupportMethod.calculateLastPoints(model);
+			List<Player> orderList = SupportMethod.sortByVictoryPoints(model.getPlayer());
 			reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);
 			reply.setId(Costants.BROADCAST_MESSAGE);
 		}
@@ -181,7 +181,7 @@ public class GameController extends SupportMethod implements Observer
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
-			politicCardToDrawToCurrentPlayer(model);
+			SupportMethod.politicCardToDrawToCurrentPlayer(model);
 			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}

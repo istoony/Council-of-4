@@ -8,7 +8,7 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.map.City;
 
-public class BusinessCardOrCityBonus extends SupportMethod implements Action 
+public class BusinessCardOrCityBonus implements Action 
 {
 	private BusinessCard card;
 	private City city;
@@ -31,9 +31,9 @@ public class BusinessCardOrCityBonus extends SupportMethod implements Action
 	public Boolean execute(Model model) 
 	{
 		if(city == null)
-			giveListOfBonus(model, model.getPlayerById(playerId), card.getBonus());
+			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), card.getBonus());
 		else
-			giveListOfBonus(model, model.getPlayerById(playerId), city.getBonus());
+			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), city.getBonus());
 		
 		model.getPlayerById(playerId).setBusinessCardRequest(false);
 		model.getPlayerById(playerId).setCityBonusRequest(false);

@@ -8,7 +8,7 @@ import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 
-public class AddOrder extends SupportMethod implements Action 
+public class AddOrder implements Action 
 {
 
 	private Order order;
@@ -39,7 +39,7 @@ public class AddOrder extends SupportMethod implements Action
 			result = ActionMessages.NO_MARKET_TIME;
 			return false;
 		}
-		if(!findPoliticCard(order.getPoliticscard(), model.getPlayerById(playerId)))
+		if(!SupportMethod.findPoliticCard(order.getPoliticscard(), model.getPlayerById(playerId)))
 		{
 			result = ActionMessages.NOT_HAVE_POLITIC_CARD;
 			return false;

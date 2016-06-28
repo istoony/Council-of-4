@@ -11,7 +11,7 @@ import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
-public class BuyOrder extends SupportMethod implements Action
+public class BuyOrder implements Action
 {
 	private int playerId;
 	private int sellerId;
@@ -36,7 +36,7 @@ public class BuyOrder extends SupportMethod implements Action
 			seller.setHelpers(seller.getHelpers() - order.getHelper());
 			buyer.setHelpers(buyer.getHelpers() + order.getHelper());
 			
-			removePoliticCardToHand(model, seller, order.getPoliticscard());
+			SupportMethod.removePoliticCardToHand(model, seller, order.getPoliticscard());
 			for (Color color : order.getPoliticscard())
 				buyer.addCardToHand(new PoliticsCard(color));
 			

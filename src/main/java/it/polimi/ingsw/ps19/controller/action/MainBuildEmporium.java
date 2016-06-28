@@ -10,7 +10,7 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-public class MainBuildEmporium extends SupportMethod implements Action 
+public class MainBuildEmporium implements Action 
 {
 	private int cityid;
 	private int playerId;
@@ -42,13 +42,13 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		//per ogni bonus presente nella città applico il bonus e controllo il 
 		//percorso della nobiltà
 		
-		giveBonusToPlayer(model, region, player, cityid);
+		SupportMethod.giveBonusToPlayer(model, region, player, cityid);
 		
 		//remove to my hand business card
 		player.addUsedBusinessCard(player.removeFreebusinesscardById(businessCard.getId()));
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		
-		result = checkPlayerVictory(model, player);
+		result = SupportMethod.checkPlayerVictory(model, player);
 		
 		return true;
 	}

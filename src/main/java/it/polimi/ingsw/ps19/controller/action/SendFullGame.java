@@ -1,12 +1,11 @@
 package it.polimi.ingsw.ps19.controller.action;
 
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
-import it.polimi.ingsw.ps19.controller.support.SupportMethod;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.ps19.model.Model;
 
-public class SendFullGame extends SupportMethod implements Action 
+public class SendFullGame implements Action 
 {
 
 	private String result;

@@ -32,7 +32,7 @@ public class SupportMethod
 	 * @param politicsCard a list of Politic card used to satify balcony.
 	 * @return a number of money.
 	 */
-	protected static int numberOfNeedMoney(List<Color> politicsCard)
+	public static int numberOfNeedMoney(List<Color> politicsCard)
 	{
 		if(politicsCard.size() == 1)
 			return MONEY_1_CARDS;
@@ -48,7 +48,7 @@ public class SupportMethod
 	 * @param politicsCard a list of politics card
 	 * @return number of jocker
 	 */
-	protected static int numberOfJoker(List<Color> politicsCard)
+	public static int numberOfJoker(List<Color> politicsCard)
 	{
 		int count = 0;
 		for (Color color : politicsCard) 
@@ -59,7 +59,7 @@ public class SupportMethod
 		return count;
 	}
 		
-	protected static boolean findPoliticCard(List<Color> politicsCard, Player player)
+	public static boolean findPoliticCard(List<Color> politicsCard, Player player)
 	{
 		for (Color color : politicsCard) 
 		{
@@ -70,7 +70,7 @@ public class SupportMethod
 		return true;
 	}
 
-	protected static City getRealCity(Model m, City city)
+	public static City getRealCity(Model m, City city)
 	{
 		for(Region r : m.getMap().getRegionList())
 			for(City c : r.getCities())
@@ -78,7 +78,7 @@ public class SupportMethod
 					return c;
 		return null;
 	}
-	protected static RegionType findRegion(Model model, City city)
+	public static RegionType findRegion(Model model, City city)
 	{
 		for(Region r : model.getMap().getRegionList())
 			for(City c : r.getCities())
@@ -87,7 +87,7 @@ public class SupportMethod
 		return null;
 	}
 	
-	protected static void giveBonusToPlayer(Model model, RegionType region, Player player, int cityid)
+	public static void giveBonusToPlayer(Model model, RegionType region, Player player, int cityid)
 	{
 		List<City> myCity = model.getMap().getRegionByType(region).getCityById(cityid).applyNetBonus(player, new ArrayList<City>());
 		for (City c : myCity) 
@@ -100,7 +100,7 @@ public class SupportMethod
 		model.getMap().getKingBonus().giveBonus(player);
 	}
 	
-	protected static void politicCardToDrawToCurrentPlayer(Model model) 
+	public static void politicCardToDrawToCurrentPlayer(Model model) 
 	{
 		int numberOfPoliticCards = model.getPlayerById(model.getCurrentState().getPlayerTurnId()).getPoliticCardToDraw();
 		if( numberOfPoliticCards !=0)
@@ -110,7 +110,7 @@ public class SupportMethod
 		}
 	}
 	
-	protected static void checkNobilityPathBonus(Model model, Player player)
+	public static void checkNobilityPathBonus(Model model, Player player)
 	{
 		if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
 			for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
@@ -118,7 +118,7 @@ public class SupportMethod
 				nobilityBonus.giveBonus(player);
 	}
 	
-	protected static void removePoliticCardToHand(Model model, Player player, List<Color> politicCard){
+	public static void removePoliticCardToHand(Model model, Player player, List<Color> politicCard){
 		for(int i = 0; i < politicCard.size(); i++)
 		{
 			PoliticsCard p = new PoliticsCard(politicCard.get(i));
@@ -127,7 +127,7 @@ public class SupportMethod
 		}
 	}
 	
-	protected static String checkPlayerVictory(Model model, Player player)
+	public static String checkPlayerVictory(Model model, Player player)
 	{
 		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
@@ -137,7 +137,7 @@ public class SupportMethod
 		return ActionMessages.EVERYTHING_IS_OK;
 	}
 
-	protected static void calculateLastPoints(Model model)
+	public static void calculateLastPoints(Model model)
 	{
 		List<Player> players = model.getPlayer();
 		Player temp;
@@ -170,7 +170,7 @@ public class SupportMethod
 		}
 		return players;
 	}
-	protected static List<Player> sortByVictoryPoints(List<Player> players)
+	public static List<Player> sortByVictoryPoints(List<Player> players)
 	{
 		Player temp;
 		for (int i = 0; i< players.size() - 1; i++)
@@ -209,7 +209,7 @@ public class SupportMethod
 		return true;
 	}
 	
-	protected void giveListOfBonus(Model model, Player player, List<Bonus> bonus) 
+	public static void giveListOfBonus(Model model, Player player, List<Bonus> bonus) 
 	{
 		for (Bonus b : bonus) 
 		{
@@ -226,12 +226,12 @@ public class SupportMethod
 	 * @param m the m
 	 * @return the boolean
 	 */
-	protected static Boolean checkPlayerTurn(int id, Model m)
+	public static Boolean checkPlayerTurn(int id, Model m)
 	{
 		return id != m.getCurrentState().getPlayerTurnId();
 	}
 	
-	protected static boolean findFirstSecondCard(Model model, RegionType region, BusinessCard card) 
+	public static boolean findFirstSecondCard(Model model, RegionType region, BusinessCard card) 
 	{
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		
@@ -240,7 +240,7 @@ public class SupportMethod
 		return false;
 	}
 
-	protected static boolean findExistBusinessCard(Model model, RegionType region, BusinessCard card) 
+	public static boolean findExistBusinessCard(Model model, RegionType region, BusinessCard card) 
 	{
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
@@ -250,7 +250,7 @@ public class SupportMethod
 		return false;
 	}
 	
-	protected static BusinessCard removeCardFromRegionAndAddToPlayer(Model model, Player player, BusinessCard card, RegionType region)
+	public static BusinessCard removeCardFromRegionAndAddToPlayer(Model model, Player player, BusinessCard card, RegionType region)
 	{
 		BusinessCard selectedcard;
 		if(findFirstSecondCard(model, region, card))
