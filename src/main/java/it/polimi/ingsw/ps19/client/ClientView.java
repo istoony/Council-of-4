@@ -12,6 +12,7 @@ import it.polimi.ingsw.ps19.exceptions.PlayerDisconnectedException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.requests.EndGameRequest;
 import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 
@@ -59,6 +60,11 @@ public class ClientView extends Observable implements Observer, Runnable
 		//Checks whether the object passed is a message or not
 		if(!(arg instanceof Request))
 			return;
+		if(arg instanceof EndGameRequest)
+		{
+			stop = true;
+			connection.close();
+		}
 		Request mex = (Request) arg;
 
 		//The message is forwarded to the clients

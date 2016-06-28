@@ -571,4 +571,14 @@ public class ClientCLI extends ClientUI
 		}
 		return number;
 	}
+	
+	@Override
+	public void showWinner(List<Player> players, String result) 
+	{
+		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
+		for(Player p : players)
+			s = s.concat(getString(p));
+		s += "\n\n" + language.result + ": " + result;
+		showNotification(s);
+	}
 }

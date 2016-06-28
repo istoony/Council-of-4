@@ -12,6 +12,7 @@ import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
@@ -146,6 +147,8 @@ public abstract class ClientUI
 	public abstract String getUserString(String title) throws InvalidInsertionException;
 	
 	public abstract void showMarket(Market market);
+	
+	public abstract void showWinner(List<Player> players, String result);
 	
 	public Language getLanguage()
 	{

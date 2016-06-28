@@ -4,6 +4,7 @@ import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.EndGameReply;
 import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
 import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
@@ -82,5 +83,5 @@ public interface ReplyVisitor
 
 	public ClientUpdate display(CompleteMarketReply completeMarketReply);
 	
-	
+	public ClientUpdate display(EndGameReply message);
 }

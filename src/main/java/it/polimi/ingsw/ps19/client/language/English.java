@@ -106,6 +106,8 @@ public class English extends Language
 		mountain = "mountain";
 		hill = "hill";
 		plain = "plain";
+		
+		winner = "Winner";
 	}		
 	
 	@Override

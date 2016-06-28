@@ -107,6 +107,8 @@ public final class Italiano extends Language
 		mountain = "montagna";
 		hill = "collina";
 		plain = "pianura";
+		
+		winner = "Vincitore";
 	}
 	
 	@Override

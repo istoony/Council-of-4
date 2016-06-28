@@ -1,9 +1,11 @@
 package it.polimi.ingsw.ps19.client.clientmodel;
 
+import it.polimi.ingsw.ps19.client.clientmodel.clientdata.EndGameUpdate;
 import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.EndGameReply;
 import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
 import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
 import it.polimi.ingsw.ps19.message.replies.GetBusinessCardOrCityBonusReply;
@@ -90,6 +92,11 @@ public class ReplyVisitorImpl implements ReplyVisitor
 		return new CompleteMarketUpdate(message.getResult(),
 				message.getMarket(),
 				message.getActivePlayer());
+	}
+	@Override
+	public ClientUpdate display(EndGameReply message) 
+	{
+		return new EndGameUpdate(message.getPlayer(), message.getResult());
 	}
 	
 	

@@ -128,6 +128,8 @@ public abstract class Language
 	public String hill;
 	public String plain;
 	
+	public String winner;
+	
 	//Actions
 	public abstract String getString(BuildWithKingInputs input);
 	public abstract String getString(BuildEmporiumInputs input);
