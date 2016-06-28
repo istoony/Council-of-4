@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
 
@@ -34,10 +35,13 @@ public class RegionPanel extends JPanel implements MouseListener{
 	private Region myregion;
 	private List<Point> starts;
 	private List<Point> ends;
+	private Language language;
 	JFrame info;
 	
-	protected RegionPanel(Region re){
+	protected RegionPanel(Region re, Language l)
+	{
     	super();
+    	language = l;
     	addMouseListener(this);
 		citylist = new ArrayList<>();
 		starts = new ArrayList<>();
@@ -53,7 +57,7 @@ public class RegionPanel extends JPanel implements MouseListener{
 		setLayout(new GridLayout(4, 2));
 		
 		for(City c : myregion.getCities()){
-			citylist.add(new DrawCity(c));
+			citylist.add(new DrawCity(c, language));
 		}
 		
 		for(DrawCity dc : citylist){

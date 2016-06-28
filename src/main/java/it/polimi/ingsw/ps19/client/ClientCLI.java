@@ -24,7 +24,6 @@ import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
-import it.polimi.ingsw.ps19.model.map.Balcony;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.Region;
@@ -84,7 +83,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseRegionTitle + ":");
 		List<String> strings = new ArrayList<>();
 		for(RegionType region : regions)
-			strings.add(getString(region));
+			strings.add(language.getString(region));
 		int index = getValues(strings);
 		return regions.get(index);
 	}
@@ -98,7 +97,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseColor + ":");
 		List<String> strings = new ArrayList<>();
 		for(Color c : validColors)
-			strings.add(getString(c));
+			strings.add(language.getString(c));
 		return validColors.get(getValues(strings));
 	}
 
@@ -108,7 +107,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseRegionTitle + ":");
 		List<String> strings = new ArrayList<>();
 		for(RegionType region : regions)
-			strings.add(getString(region));
+			strings.add(language.getString(region));
 		strings.add(language.king.toUpperCase());
 		int index = getValues(strings);
 		if(index == regions.size())
@@ -130,7 +129,7 @@ public class ClientCLI extends ClientUI
 		int i = 0;
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
-			strings.add(getString(a));
+			strings.add(language.getString(a));
 		while(!valid)
 		{
 			writeln(language.chooseActionTitle + ":");
@@ -168,7 +167,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseBusinessCardTitle + ":");
 		List<String> strings = new ArrayList<>();
 		for(BusinessCard card : cards)
-			strings.add(getString(card));
+			strings.add(language.getString(card));
 		int index = getValues(strings);
 		return cards.get(index);
 	}
@@ -179,7 +178,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.choosePoliticCardTitle + ":");
 		List<String> strings = new ArrayList<>();
 		for(PoliticsCard card : cards)
-			strings.add(getString(card));
+			strings.add(language.getString(card));
 		int index = getValues(strings);
 		return cards.get(index);
 	}
@@ -191,7 +190,7 @@ public class ClientCLI extends ClientUI
 		List<String> strings = new ArrayList<>();
 		for(City city : cities)
 			if(city != null)
-				strings.add(getString(city));
+				strings.add(language.getString(city));
 		int index = getValues(strings);
 		return cities.get(index);
 	}
@@ -204,7 +203,7 @@ public class ClientCLI extends ClientUI
 		List<City> cities = new ArrayList<>();
 		for(Entry<City, Integer> entry : citiesECosts.entrySet())
 		{
-			strings.add(getString(entry.getKey()) + "(" + entry.getValue().toString() + ")");
+			strings.add(language.getString(entry.getKey()) + "(" + entry.getValue().toString() + ")");
 			cities.add(entry.getKey());
 		}
 		int index = getValues(strings);
@@ -259,47 +258,11 @@ public class ClientCLI extends ClientUI
 		return s;
 	}
 	
-	private String getString(BusinessCard card)
-	{
-		if(card == null)
-			return language.nothing;
-		String s = "[";
-		s = s.concat(language.cities + ": ");
-		for(City city: card.getCity())
-		{
-			s = s.concat(getString(city));
-			s = s.concat(", ");
-		}
-		s += language.bonuses + ": ";
-		if(card.getBonus().isEmpty())
-			s += "0";
-		else
-		{
-			for(Bonus b : card.getBonus())
-			{
-				s = s.concat(getString(b));
-				s = s.concat(", ");
-			}
-		}
-		s += "]\n";
-		return s;
-	}
-	
-	private String getString(Bonus b)
-	{
-		return b.toString(language);
-	}
-	
-	private String getString(City city)
-	{
-		return city.getName();
-	}
-	
 	private String getFullString(City city)
 	{
 		String s = city.getName();
 		s += ":(";
-		s += getString(city.getCitycolor());
+		s += language.getString(city.getCitycolor());
 		s += ", " + language.bonuses + ":";
 		if(city.getBonus().isEmpty())
 			s += " 0, ";
@@ -361,7 +324,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "[";
 			for(PoliticsCard card : p.getPoliticcard())
-				s = s.concat(getString(card) + ", ");
+				s = s.concat(language.getString(card) + ", ");
 			s += "]\n";
 		}
 		s += language.freeBusiness + ":";
@@ -371,7 +334,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getFreebusinesscard())
-				s = s.concat(getString(card));
+				s = s.concat(language.getString(card));
 		}
 		s += language.usedBusiness + ":";
 		if(p.getUsedbusinesscard().isEmpty())
@@ -380,7 +343,7 @@ public class ClientCLI extends ClientUI
 		{
 			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
-				s = s.concat(getString(card));
+				s = s.concat(language.getString(card));
 		}
 		return s;
 	}
@@ -388,51 +351,16 @@ public class ClientCLI extends ClientUI
 	private String getString(King king)
 	{
 		String s = language.king.toUpperCase() + "\n";
-		s += language.currentCity + ": " + getString(king.getCurrentcity()) + "\n";
-		s += getString(king.getBalcony()) + "\n";
-		return s;
-	}
-
-	private String getString(Color c)
-	{
-		if(c == null)
-			return language.nothing;
-		return "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase();
-	}
-
-	private String getString(PoliticsCard card)
-	{
-		if(card == null)
-			return language.nothing;
-		return getString(card.getColor());
-	}
-	
-	private String getString(RegionType region)
-	{
-		return language.getString(region).toUpperCase();
-	}
-	
-	private String getString(ClientAction input)
-	{
-		return input.toString(language);
-	}
-
-	private String getString(Balcony b)
-	{
-		String s = language.balcony + ": [";
-		for(Color c : b.getCouncilcolor())
-		{
-			s = s.concat(getString(c) + ", ");
-		}
-		s += "]\n";
+		s += language.currentCity + ": " + language.getString(king.getCurrentcity()) + "\n";
+		s += language.getString(king.getBalcony()) + "\n";
 		return s;
 	}
 	
 	private String getString(Region region)
 	{
 		String s = language.region + ": ";
-		s += getString(region.getType()) + "\n";
-		s += getString(region.getBalcony());
+		s += language.getString(region.getType()) + "\n";
+		s += language.getString(region.getBalcony());
 		s += language.cities + ":\n";
 		for(City c : region.getCities())
 		{
@@ -440,9 +368,9 @@ public class ClientCLI extends ClientUI
 		}
 		s += language.businessCards + ":\n";
 		s += "\t" + language.firstCard + ": ";
-		s += getString(region.getFirstcard());
+		s += language.getString(region.getFirstcard());
 		s += "\t" + language.secondCard + ": ";
-		s += getString(region.getSecondcard());
+		s += language.getString(region.getSecondcard());
 		return s;
 	}
 	
@@ -507,7 +435,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseOrder + ": \n");
 		List<String> strings = new ArrayList<>();
 		for(Order order : orders)
-			strings.add(getString(order) + "\n");
+			strings.add(language.getString(order) + "\n");
 		int index = getValues(strings);
 		return orders.get(index);
 	}
@@ -524,31 +452,11 @@ public class ClientCLI extends ClientUI
 		marketString += language.orders + ":\n";
 		for(Entry<Integer, Order> entry : market.getListoforder().entrySet())
 		{
-			marketString = marketString.concat("\t" + language.player + ": " + entry.getKey() + " " + getString(entry.getValue()));
+			marketString = marketString.concat("\t" + language.player + ": " + entry.getKey() + " " + language.getString(entry.getValue()) + "\n");
 		}
 		showNotification(marketString);
 	}
-	
-	private String getString(Order order)
-	{
-		if(order == null)
-			return language.nothing;
-		String s = "[" + language.helpers + ": " + order.getHelper();
-		s += ", " + language.politicCards + ": ";
-		if(order.getPoliticscard().isEmpty())
-			s += "0,";
-		else
-			for(Color card : order.getPoliticscard())
-				s = s.concat(getString(card) + ",");
-		s += " " + language.businessCards + ": ";
-		if(order.getBusinesscard().isEmpty())
-			s += "0,";
-		else
-			for(BusinessCard card : order.getBusinesscard())
-				s = s.concat(getString(card) + ",");
-		s += " " + language.price + ": " + order.getPrice() + "]";
-		return s;
-	}
+
 
 	/**
 	 * get integer from user

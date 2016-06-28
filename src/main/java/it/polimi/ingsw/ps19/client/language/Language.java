@@ -1,9 +1,12 @@
 package it.polimi.ingsw.ps19.client.language;
 
+import java.awt.Color;
+
 import it.polimi.ingsw.ps19.client.clientaction.BuildEmporiumInputs;
 import it.polimi.ingsw.ps19.client.clientaction.BuildWithKingInputs;
 import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
 import it.polimi.ingsw.ps19.client.clientaction.BuyMainActionInput;
+import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
 import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
 import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
 import it.polimi.ingsw.ps19.client.clientaction.FastAction;
@@ -11,6 +14,8 @@ import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
 import it.polimi.ingsw.ps19.client.clientaction.MainAction;
 import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
 import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
 import it.polimi.ingsw.ps19.model.bonus.DrawPoliticCard;
 import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
@@ -21,6 +26,11 @@ import it.polimi.ingsw.ps19.model.bonus.MoreMoney;
 import it.polimi.ingsw.ps19.model.bonus.MoreNobilityPoints;
 import it.polimi.ingsw.ps19.model.bonus.MoreVictoryPoints;
 import it.polimi.ingsw.ps19.model.bonus.ReuseBusinessCardBonus;
+import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.card.PoliticsCard;
+import it.polimi.ingsw.ps19.model.map.Balcony;
+import it.polimi.ingsw.ps19.model.map.City;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 /**
@@ -130,6 +140,23 @@ public abstract class Language
 	
 	public String winner;
 	
+	public String info;
+	public String infoCity;
+	public String infoGame;
+	public String infoYou;
+	public String infoOthers;
+	public String infoPlayer;
+	public String position;
+	
+	//Colors
+	public String c_FF0000;
+	public String c_0000FF;
+	public String c_FF7F00;
+	public String c_000000;
+	public String c_FFFFFF;
+	public String c_FFC0CB;
+	public String c_Joker;
+	
 	//Actions
 	public abstract String getString(BuildWithKingInputs input);
 	public abstract String getString(BuildEmporiumInputs input);
@@ -154,6 +181,118 @@ public abstract class Language
 	public abstract String getString(MoreNobilityPoints input, int howMany);
 	public abstract String getString(MoreVictoryPoints input, int howMany);
 	public abstract String getString(ReuseBusinessCardBonus input);
+
+	public String getString(PoliticsCard card)
+	{
+		if(card == null)
+			return nothing;
+		return getString(card.getColor());
+	}
+	
+	public String getString(ClientAction input)
+	{
+		return input.toString(this);
+	}
+
+	public String getString(Balcony b)
+	{
+		String s = balcony + ": [";
+		for(Color c : b.getCouncilcolor())
+		{
+			s = s.concat(getString(c) + ", ");
+		}
+		s += "]\n";
+		return s;
+	}
+	
+	public String getString(Order order)
+	{
+		if(order == null)
+			return nothing;
+		String s = "[" + helpers + ": " + order.getHelper();
+		s += ", " + politicCards + ": ";
+		if(order.getPoliticscard().isEmpty())
+			s += "0,";
+		else
+			for(Color card : order.getPoliticscard())
+				s = s.concat(getString(card) + ",");
+		s += " " + businessCards + ": ";
+		if(order.getBusinesscard().isEmpty())
+			s += "0,";
+		else
+			for(BusinessCard card : order.getBusinesscard())
+				s = s.concat(getString(card) + ",");
+		s += " " + price + ": " + order.getPrice() + "]";
+		return s;
+	}
+
+	public String getString(BusinessCard card)
+	{
+		if(card == null)
+			return nothing;
+		String s = "[";
+		s = s.concat(cities + ": ");
+		for(City city: card.getCity())
+		{
+			s = s.concat(getString(city));
+			s = s.concat(", ");
+		}
+		s += bonuses + ": ";
+		if(card.getBonus().isEmpty())
+			s += "0";
+		else
+		{
+			for(Bonus b : card.getBonus())
+			{
+				s = s.concat(getString(b));
+				s = s.concat(", ");
+			}
+		}
+		s += "]\n";
+		return s;
+	}
+	
+	public String getString(Bonus b)
+	{
+		return b.toString(this);
+	}
+	
+	public String getString(City city)
+	{
+		return city.getName();
+	}
+	
+	public String getString(Color c){
+		String s="";
+		if (c==null){
+			s = nothing;
+		}
+		else if(c.equals(Color.decode("#FF0000"))){
+			s= c_FF0000;
+		}
+		else if(c.equals(Color.decode("#0000FF"))){
+			s= c_0000FF;
+		}
+		else if(c.equals(Color.decode("#FF7F00"))){
+			s= c_FF7F00;
+		}
+		else if(c.equals(Color.decode("#000000"))){
+			s= c_000000;
+		}
+		else if(c.equals(Color.decode("#FFFFFF"))){
+			s=  c_FFFFFF;
+		}
+		else if(c.equals(Color.decode("#FFC0CB"))){
+			s= c_FFC0CB;
+		}
+		else if(c.equals(Color.decode(Costants.JOKERCOLOR))){
+			s= c_Joker;
+		}
+		else{
+			s = "#" + Integer.toHexString(c.getRGB()).substring(2).toUpperCase();
+		}
+		return s;
+	}
 	
 	/**
 	 * returns string

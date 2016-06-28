@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.map.City;
 
@@ -46,12 +47,15 @@ public class DrawCity extends JPanel implements MouseListener{
     private BufferedImage image;
     private JLabel img;
     private City mycity;
+    private Language language;
     JFrame info;
 
-    protected DrawCity(City c) {
+    protected DrawCity(City c, Language l) 
+    {
     	super();
+    	language = l;
     	addMouseListener(this);
-    	setToolTipText(c.getName());
+    	setToolTipText(language.getString(c));
     	setVisible(true);
     	setSize(WWIDTH, HHEIGHT);
     	mycity=c;
@@ -80,19 +84,22 @@ public class DrawCity extends JPanel implements MouseListener{
 
 	
 	protected JFrame createInfo(){
-		JFrame f = new JFrame("Info of "+mycity.getName());
+		JFrame f = new JFrame(language.infoCity + ": " + language.getString(mycity));
 		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setLayout(new GridLayout(7, 1));
 		
 		//emporia info
-		JLabel emporiatitle = new JLabel(INDENTATION+"The following players have an emporium in "+mycity.getName());
+		JLabel emporiatitle = new JLabel(INDENTATION + language.emporiaOfPlayers);
 		String s=INDENTATION;
-		for(int i=0; i<mycity.getEmporia().size(); i++){
-			s+= "player n"+mycity.getEmporia().get(i).intValue();
-		}
-		if(s==INDENTATION){
-			s+="There aren't emporia in this city";
+		if(mycity.getEmporia().isEmpty())
+			s += language.noEmporia;
+		else
+		{
+			s += language.emporiaOfPlayers + ": ";
+			s += mycity.getEmporia().get(0).toString();
+			for(int i = 1; i < mycity.getEmporia().size(); i++)
+				s = s.concat(", " + mycity.getEmporia().get(i).toString());
 		}
 		JLabel emporialist = new JLabel(s);
 		
@@ -102,11 +109,11 @@ public class DrawCity extends JPanel implements MouseListener{
 		f.add(emporialist);
 		
 		//bonus info
-		JLabel bonustitle = new JLabel(INDENTATION+"This city had the following bonus:");
+		JLabel bonustitle = new JLabel(INDENTATION + language.bonuses + ": ");
 		bonustitle.setVisible(true);
 		f.add(bonustitle);
 		for(Bonus b : mycity.getBonus()){
-			JLabel bonus = new JLabel(INDENTATION+b.toString());
+			JLabel bonus = new JLabel(INDENTATION + language.getString(b));
 			bonus.setVisible(true);
 			f.add(bonus);
 		}

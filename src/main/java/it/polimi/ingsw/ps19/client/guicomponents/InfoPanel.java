@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import it.polimi.ingsw.ps19.client.language.Language;
+
 public class InfoPanel extends JPanel {
 
 	/**
@@ -16,9 +18,12 @@ public class InfoPanel extends JPanel {
 	
 	private int nplayer;
 	private List<InfoCell> boxes;
+	private Language language;
 	
-	protected InfoPanel(){
+	protected InfoPanel(Language l)
+	{
 		super();
+		language = l;
 		boxes= new ArrayList<>();
 	}
 	
@@ -28,7 +33,7 @@ public class InfoPanel extends JPanel {
 		setLayout(new GridLayout(nplayer+1, 0));
 		
 		for(int i=0; i<=nplayer; i++){
-			boxes.add(new InfoCell());
+			boxes.add(new InfoCell(language));
 		}
 		for(int i=0; i<boxes.size(); i++){
 			add(boxes.get(i));

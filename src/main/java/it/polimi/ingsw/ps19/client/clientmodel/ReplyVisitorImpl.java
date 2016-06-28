@@ -1,6 +1,5 @@
 package it.polimi.ingsw.ps19.client.clientmodel;
 
-import it.polimi.ingsw.ps19.client.clientmodel.clientdata.EndGameUpdate;
 import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;

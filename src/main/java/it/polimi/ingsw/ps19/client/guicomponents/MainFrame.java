@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 public class MainFrame extends JFrame {
 
@@ -18,11 +19,14 @@ public class MainFrame extends JFrame {
 	
 	private static final String NAME = "CO4, GAME ";
 	private ClientModel model;
+	private Language language;
 	InfoPanel infobox;
 	MapPanel mpanel;
 	
-	protected MainFrame(int id, ClientModel model){
+	protected MainFrame(int id, ClientModel model, Language l)
+	{
 		super(NAME+id);
+		language = l;
 		this.model=model;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -33,7 +37,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	protected void initialize(){
-		mpanel = new MapPanel();
+		mpanel = new MapPanel(language);
 		mpanel.initialize(model);
 
 		getContentPane().add(mpanel, BorderLayout.CENTER);
@@ -41,7 +45,7 @@ public class MainFrame extends JFrame {
 		mpanel.setVisible(true);
 
 		
-		infobox = new InfoPanel();
+		infobox = new InfoPanel(language);
 		infobox.initialize(this);
 		getContentPane().add(infobox, BorderLayout.EAST);
 		infobox.setPreferredSize(new Dimension((int) (0.35*MWIDTH), MHEIGHT));

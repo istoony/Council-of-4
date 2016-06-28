@@ -6,11 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import it.polimi.ingsw.ps19.client.ClientGUI;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 public class ActionTypeChooserPanel extends JPanel{
 	
 	private static final long serialVersionUID = -2127659641196167037L;
 	
+	//TODO Remove
 	private static final String MAIN_ACTION_TEXT = "Main Actions";
 	private static final String FAST_ACTION_TEXT = "Fast Actions";
 	private static final String MAIN_ACTION_TOOLT = "Take a Main Actions";
@@ -19,19 +21,21 @@ public class ActionTypeChooserPanel extends JPanel{
 	
 	private JButton mainButton;
 	private JButton fastButton;
-
+	private Language language;
 	
-	public ActionTypeChooserPanel() {
+	public ActionTypeChooserPanel(Language l) 
+	{
 		super();
+		language = l;
 		setLayout(new GridLayout(1,2));
 
-		mainButton = new JButton(MAIN_ACTION_TEXT);
-		mainButton.setToolTipText(MAIN_ACTION_TOOLT);
+		mainButton = new JButton(language.main);
+		mainButton.setToolTipText(language.main);
 
 		mainButton.setEnabled(false);
 		
-		fastButton = new JButton(FAST_ACTION_TEXT);
-		fastButton.setToolTipText(FAST_ACTION_TOOLT);
+		fastButton = new JButton(language.quick);
+		fastButton.setToolTipText(language.quick);
 
 		fastButton.setEnabled(false);
 		

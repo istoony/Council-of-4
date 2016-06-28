@@ -2,7 +2,6 @@ package it.polimi.ingsw.ps19.client.guicomponents;
 
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,28 +9,32 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import it.polimi.ingsw.ps19.client.ClientGUI;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Order;
-import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
 public class MarketFrame extends JFrame implements Runnable{
 	
 	private static final long serialVersionUID = -2543651389696923487L;
+	private Language language;
 	private JPanel pane;
 	private JLabel text;
 	private List<JButton> choices;		
 		
-	public MarketFrame(List<Order> orders, ClientGUI gui){
+	public MarketFrame(List<Order> orders, ClientGUI gui, Language l){
 		super();
+		language = l;
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLayout(new BorderLayout());
 		choices = new ArrayList<>();
 		pane = new JPanel();
+		//TODO language?
 		text = new JLabel("Buttons indicate price, look the tooltip for more info about the Order");
-		setTitle("Market");
-		text.setToolTipText("Choose what to buy");
+		setTitle(language.market);
+		text.setToolTipText(language.chooseOrder);
 		add(text, BorderLayout.NORTH);
 		int i=0;
 		for(Order  o : orders){
@@ -43,44 +46,12 @@ public class MarketFrame extends JFrame implements Runnable{
 		
 	private void createButtons(Order order, ClientGUI c, int code){
 		JButton j = new JButton(((Integer)order.getPrice()).toString());
-		j.setToolTipText(orderToString(order));
+		j.setToolTipText(language.getString(order));
 		j.setActionCommand(((Integer)code).toString());
 		j.addActionListener(c);
 		j.setEnabled(true);
 		j.setVisible(true);
 		choices.add(j);
-	}
-		
-	private String orderToString(Order order){
-		String s="Business cards: ";
-		if(order.getBusinesscard().isEmpty()){
-			s="Politic cards: ";
-		}
-		else{
-			for(BusinessCard b : order.getBusinesscard()){
-				s+= b.toStringCities()+", ";
-			}	
-			s+="Politic cards: ";
-		}
-		if(order.getPoliticscard().isEmpty()){
-			if(order.getBusinesscard().isEmpty()){
-				s = "Helpers: ";
-			}
-			s+="Helpers: ";
-		}
-		else{
-			for(Color c : order.getPoliticscard()){
-				s+= QuestionFrame.colorString(c)+", ";
-			}
-			s+="Helpers: ";
-		}
-		if(order.getHelper()==0){
-			return s;
-		}
-		else {
-			s+= ((Integer)order.getHelper()).toString();
-		}
-		return s;
 	}
 	
 	

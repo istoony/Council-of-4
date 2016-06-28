@@ -109,6 +109,24 @@ public final class Italiano extends Language
 		plain = "pianura";
 		
 		winner = "Vincitore";
+		
+		info = "informazioni";
+		infoCity = info + " relative alla città";
+		infoGame = info + " relative al gioco";
+		infoYou = info + " del tuo " + player;
+		infoOthers = info + " riguardo gli altri giocatori";
+		infoPlayer = info + " riguardo il " + player;
+		position = "posizione";
+		
+		//Colors
+		 c_FF0000 = "Rosso";
+		 c_0000FF = "Blu";
+		 c_FF7F00 = "Arancione";
+		 c_000000 = "Bianco";
+		 c_FFFFFF = "Nero";
+		 c_FFC0CB = "Rosa";
+		 c_Joker = "Joker";
+	
 	}
 	
 	@Override

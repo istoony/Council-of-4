@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps19.client.guicomponents;
 
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 
 public class MainWindow implements Runnable {
@@ -8,12 +9,15 @@ public class MainWindow implements Runnable {
 	private MainFrame frame;
 	private ClientModel model;
 	private static int idgame=0;
+	private Language language;
 
 	
 	/**
 	 * Create the application.
 	 */
-	public MainWindow(ClientModel m) {
+	public MainWindow(ClientModel m, Language l) 
+	{
+		language = l;
 		model = m;
 	}
 
@@ -21,7 +25,7 @@ public class MainWindow implements Runnable {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new MainFrame(idgame, model);
+		frame = new MainFrame(idgame, model, language);
 		frame.initialize();
 	}
 

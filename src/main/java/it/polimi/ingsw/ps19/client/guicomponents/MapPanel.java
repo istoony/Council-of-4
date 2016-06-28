@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
+import it.polimi.ingsw.ps19.client.language.Language;
 
 
 public class MapPanel extends JPanel{
@@ -26,10 +27,12 @@ public class MapPanel extends JPanel{
 	private List<String> positions; 
 	private List<Point> starts;
 	private List<Point> ends;
-
+	Language language;
 	
-	protected MapPanel(){
+	protected MapPanel(Language l)
+	{
 		super();
+		language = l;
 		regionPanelList = new ArrayList<>();
 		positions = new ArrayList<>();
 		starts = new ArrayList<>();
@@ -44,7 +47,7 @@ public class MapPanel extends JPanel{
 		setLayout(new GridLayout(1, 3));
 		
 		for(int i=0; i<m.getRegions().size(); i++){
-			regionPanelList.add(new RegionPanel(m.getRegions().get(i)));
+			regionPanelList.add(new RegionPanel(m.getRegions().get(i), language));
 		}
 		for(RegionPanel rp : regionPanelList){
 			this.add(rp);

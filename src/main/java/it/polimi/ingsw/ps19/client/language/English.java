@@ -108,6 +108,22 @@ public class English extends Language
 		plain = "plain";
 		
 		winner = "Winner";
+		info = "informations";
+		infoCity = info + " about the city";
+		infoGame = info + " about the game";
+		infoYou = info + " about you";
+		infoOthers = info + " about the other players";
+		infoPlayer = info +  " about " + player;
+		position = "position";
+		
+		//Colors
+		 c_FF0000 = "Red";
+		 c_0000FF = "Blue";
+		 c_FF7F00 = "Orange";
+		 c_000000 = "White";
+		 c_FFFFFF = "Black";
+		 c_FFC0CB = "Pink";
+		 c_Joker = "Joker";
 	}		
 	
 	@Override

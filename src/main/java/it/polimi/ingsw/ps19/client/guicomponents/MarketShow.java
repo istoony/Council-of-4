@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
-import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
 public class MarketShow extends JFrame implements Runnable{
 	
@@ -21,9 +21,11 @@ public class MarketShow extends JFrame implements Runnable{
 	
 	private List<JPanel> panels;
 	private List<JLabel> text;
+	Language language = null;
 		
-	public MarketShow(Market market){
+	public MarketShow(Market market, Language l){
 		super();
+		language = l;
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,42 +45,40 @@ public class MarketShow extends JFrame implements Runnable{
 		JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		p.setLayout(new GridLayout(6, 1));
-		JLabel l = new JLabel("Order of player "+id);
+		JLabel l = new JLabel(language.player + ": " + id);
 		text.add(l);
-		
-		String s="Business cards: ";
-		if(order.getBusinesscard().isEmpty()){
-			s+="none";
-		}
-		else{
-			for(BusinessCard b : order.getBusinesscard()){
-				s+= b.toStringCities()+", ";
-			}	
+		String s= language.businessCards + ": ";
+		if(order.getBusinesscard().isEmpty())
+			s+="0";
+		else
+		{
+			s += language.getString(order.getBusinesscard().get(0));
+			for(int i = 1; i < order.getBusinesscard().size(); i++)
+				s = s.concat(language.getString(order.getBusinesscard().get(i)) + ", ");
 		}	
 		l = new JLabel(s);
 		text.add(l);
 		
-		s="Politic cards: ";
-		if(order.getPoliticscard().isEmpty()){
-			s+="none";
-		}
-		else{
-			for(Color c : order.getPoliticscard()){
-				s+= QuestionFrame.colorString(c)+", ";
-			}	
+		s = language.politicCards + ": ";
+		if(order.getPoliticscard().isEmpty())
+			s+="0";
+		else
+		{
+			s += language.getString(order.getPoliticscard().get(0));
+			for(int i = 1; i < order.getPoliticscard().size(); i++)
+				s = s.concat(language.getString(order.getPoliticscard().get(i)) + ", ");
 		}	
 		l = new JLabel(s);
 		text.add(l);
 		
-		l = new JLabel("Helpers: "+order.getHelper());
+		l = new JLabel(language.helpers + ": " + order.getHelper());
 		text.add(l);
 		
-		l = new JLabel("Price: "+order.getPrice());
+		l = new JLabel(language.price + ": " + order.getPrice());
 		text.add(l);
 		
-		for(JLabel t : text){
+		for(JLabel t : text)
 			p.add(t);
-		}
 		
 		return p;
 	}		

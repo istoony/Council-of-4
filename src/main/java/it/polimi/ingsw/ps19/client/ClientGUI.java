@@ -104,7 +104,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException {
 		index.clear();
 		regionTemp.addAll(regions);
-		ask = new QuestionFrame(this, regions);
+		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -118,7 +118,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException {
 		index.clear();
 		colorTemp.addAll(validColors);
-		ask = new QuestionFrame(this, validColors);
+		ask = new QuestionFrame(this, validColors, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -132,7 +132,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException {
 		index.clear();
 		regionTemp.addAll(regions);
-		ask = new QuestionFrame(this, regions);
+		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -151,7 +151,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public void drawModel(ClientModel model) {
 		if(window==null){
-			window = new MainWindow(model);
+			window = new MainWindow(model, language);
 			try {
 				SwingUtilities.invokeAndWait(window);
 			} catch (InvocationTargetException | InterruptedException e1) {
@@ -169,7 +169,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
 		index.clear();
 		businessTemp.addAll(cards);
-		ask = new QuestionFrame(this, cards);
+		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -183,7 +183,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
 		index.clear();
 		politicTemp.addAll(cards);
-		ask = new QuestionFrame(this, cards);
+		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -197,7 +197,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public City getCity(List<City> cities) throws InvalidInsertionException {
 		index.clear();
 		cityTemp.addAll(cities);
-		ask = new QuestionFrame(this, cities);
+		ask = new QuestionFrame(this, cities, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -211,7 +211,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public City getCity(Map<City, Integer> citiesECost) throws InvalidInsertionException {
 		index.clear();
 		mapTemp.putAll(citiesECost);
-		ask = new QuestionFrame(this, citiesECost);
+		ask = new QuestionFrame(this, citiesECost, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -232,7 +232,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		index.clear();
 		numberflag=true;
 		pop.addMessage("here ok");
-		ask = new QuestionFrame(this, n);
+		ask = new QuestionFrame(this, n, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -246,7 +246,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public int getPrice() throws InvalidInsertionException {
 		index.clear();
-		ask = new QuestionFrame(this, 'a');
+		ask = new QuestionFrame(this, 'a', language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -259,7 +259,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public String getUserString(String title) throws InvalidInsertionException {
 		index.clear();
 		stringTemp = title;
-		ask = new QuestionFrame(this, title);
+		ask = new QuestionFrame(this, title, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
 			//wait the button to be pressed
@@ -273,7 +273,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public Order getOrder(List<Order> orders) throws InvalidInsertionException {
 		index.clear();
-		market = new MarketFrame(orders, this);
+		market = new MarketFrame(orders, this, language);
 		SwingUtilities.invokeLater(market);
 		marketflag=true;
 		while(index.isEmpty()){
@@ -286,7 +286,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public void showMarket(Market market) {
-		showmarket = new MarketShow(market);
+		showmarket = new MarketShow(market, language);
 		SwingUtilities.invokeLater(showmarket);
 		return;
 	}
@@ -355,14 +355,14 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void colorCheck(ActionEvent e){
 		for(Color c : colorTemp){
-			if(e.getActionCommand().equals(QuestionFrame.colorString(c))){
+			if(e.getActionCommand().equals(language.getString(c))){
 				index.add(colorTemp.indexOf(c));
 			}
 		}
 	}
 	
 	private boolean nullCheck(ActionEvent e){
-		if(e.getActionCommand().equals("no more")){
+		if(e.getActionCommand().equals(language.nothing)){
 			index.add(0);
 			return true;
 		}

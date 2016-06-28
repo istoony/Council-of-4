@@ -15,10 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.polimi.ingsw.ps19.client.ClientGUI;
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class QuestionFrame extends JFrame implements Runnable{
@@ -30,11 +30,14 @@ public class QuestionFrame extends JFrame implements Runnable{
 	
 	private JPanel pane;
 	private List<JButton> choices;
+	private Language language = null;
 	
 	private JTextField input;
 	
-	public QuestionFrame(ClientGUI gui, List<?> obj){
+	public QuestionFrame(ClientGUI gui, List<?> obj, Language l)
+	{
 		super();
+		setLanguage(l);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -44,71 +47,75 @@ public class QuestionFrame extends JFrame implements Runnable{
 			if(obj.get(0)==null){
 			setTitle("Choose");
 			pane.setToolTipText("Choose");
-			for(@SuppressWarnings("unused") Object  o : obj){
-				createButtons("no more", gui);
+			for(int i = 0; i < obj.size(); i++){
+				createButtons(language.nothing, gui);
 			}
 		}
 		else if(obj.get(0) instanceof RegionType){
-			setTitle("Choose the region");
-			pane.setToolTipText("Choose the region");
+			setTitle(language.chooseRegionTitle);
+			pane.setToolTipText(language.chooseRegionTitle);
 			for(Object  o : obj){
-				createButtons(((RegionType)o).toString(), gui);
+				createButtons(language.getString((RegionType)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof Color){
-			setTitle("Choose the color");
-			pane.setToolTipText("Choose the color");
+			setTitle(language.chooseColor);
+			pane.setToolTipText(language.chooseColor);
 			for(Object  o : obj){
-				createButtons(QuestionFrame.colorString((Color)o), gui);
+				createButtons(language.getString((Color)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof PoliticsCard){
-			setTitle("Choose the card");
-			pane.setToolTipText("Choose the card");
+			setTitle(language.choosePoliticCardTitle);
+			pane.setToolTipText(language.choosePoliticCardTitle);
 			for(Object  o : obj){
-				createButtons(((PoliticsCard)o).toString(), gui);
+				createButtons(language.getString((PoliticsCard)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof City){
-			setTitle("Choose the city");
-			pane.setToolTipText("Choose the city");
+			setTitle(language.chooseCityTitle);
+			pane.setToolTipText(language.chooseCityTitle);
 			for(Object  o : obj){
-				createButtons(((City)o).getName(), gui);
+				createButtons(language.getString((City)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof BusinessCard){
-			setTitle("Choose the business card");
-			pane.setToolTipText("Choose business card");
+			setTitle(language.chooseBusinessCardTitle);
+			pane.setToolTipText(language.chooseBusinessCardTitle);
 			for(Object  o : obj){
-				createButtons(((BusinessCard)o).toStringCities()+"\n"+((BusinessCard)o).toStringBonus(), gui);
+				createButtons(language.getString((BusinessCard)o), gui);
 			}
 		}
 		}
 		catch(NullPointerException e){
-			createButtons("no more", gui);
+			createButtons(language.nothing, gui);
 		}
 		
 		addButtons();
 	}
 	
 	
-	public QuestionFrame(ClientGUI gui, int n){
+	public QuestionFrame(ClientGUI gui, int n, Language l)
+	{
 		super();
+		setLanguage(l);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		choices = new ArrayList<>();
 		pane = new JPanel();
-		setTitle("Choose how many Helpers to sell");
-		pane.setToolTipText("Choose how many Helpers to sell");
+		setTitle(language.howManyHelpersToSell);
+		pane.setToolTipText(language.howManyHelpersToSell);
 		for(Integer i=0; i<=n; i++){
 			createButtons(i.toString(), gui);
 		}
 		addButtons();
 	}
 	
-	public QuestionFrame(ClientGUI gui, String s){
+	public QuestionFrame(ClientGUI gui, String s, Language l)
+	{
 		super();
+		setLanguage(l);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -116,8 +123,8 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane = new JPanel();
 		JLabel text = new JLabel();
 		if(s.equals("")){
-			setTitle("Insert the Price");
-			text.setText("Insert the price");
+			setTitle(language.setPrice);
+			text.setText(language.setPrice);
 		}
 		else {
 			setTitle("Insertion Panel");
@@ -138,8 +145,10 @@ public class QuestionFrame extends JFrame implements Runnable{
 	}
 	
 	
-	public QuestionFrame(ClientGUI gui, Map<City, Integer> citiesECost) {
+	public QuestionFrame(ClientGUI gui, Map<City, Integer> citiesECost, Language l)
+	{
 		super();
+		setLanguage(l);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -147,10 +156,10 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane = new JPanel();
 		
 		
-		setTitle("Choose the city");
-		pane.setToolTipText("Choose the city");
+		setTitle(language.chooseCityTitle);
+		pane.setToolTipText(language.chooseCityTitle);
 		for(Entry<City, Integer> entry: citiesECost.entrySet()){
-			createButtons(entry.getKey().getName()+"("+entry.getValue()+")", gui);
+			createButtons(language.getString(entry.getKey()) + "(" + entry.getValue().toString() + ")", gui);
 		}
 		
 		addButtons();
@@ -189,45 +198,18 @@ public class QuestionFrame extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
-
 	
-	public static String colorString(Color c){
-		String s="";
-		if (c==null){
-			s = "no more cards";
-		}
-		else if(c.equals(Color.decode("#FF0000"))){
-			s= "Red";
-		}
-		else if(c.equals(Color.decode("#0000FF"))){
-			s= "Blue";
-		}
-		else if(c.equals(Color.decode("#FF7F00"))){
-			s= "Orange";
-		}
-		else if(c.equals(Color.decode("#000000"))){
-			s= "White";
-		}
-		else if(c.equals(Color.decode("#FFFFFF"))){
-			s=  "Black";
-		}
-		else if(c.equals(Color.decode("#FFC0CB"))){
-			s= "Pink";
-		}
-		else if(c.equals(Color.decode(Costants.JOKERCOLOR))){
-			s= "Joker";
-		}
-		return s;
-	}
-	
-	
-	
-
 	/**
 	 * @return the input
 	 */
 	public JTextField getInput() {
 		return input;
+	}
+	
+	private void setLanguage(Language l)
+	{
+		if(language == null)
+			language = l;
 	}
 	
 }

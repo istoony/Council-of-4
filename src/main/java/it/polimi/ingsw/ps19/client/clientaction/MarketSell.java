@@ -21,6 +21,7 @@ public class MarketSell extends ClientAction
 {
 	int numberOfHelpers;
 	int price;
+	boolean empty = false;
 	List<BusinessCard> businessToSell = new ArrayList<>();
 	List<Color> politicToSell = new ArrayList<>();
 	
@@ -72,14 +73,19 @@ public class MarketSell extends ClientAction
 				}
 			}while(chosenCard != null);
 		}
-		price = userInterface.getPrice();
+		if(!(numberOfHelpers == 0 && sellableBusiness.isEmpty() && sellablePolitics.isEmpty()))
+			price = userInterface.getPrice();
+		else 
+			empty = true;
 		return buildMessage();
 	}
 
 	@Override
 	protected Request buildMessage() 
 	{
-		return new SendOrderMessage(new Order(businessToSell, politicToSell, numberOfHelpers, price));
+		if(!empty)
+			return new SendOrderMessage(new Order(businessToSell, politicToSell, numberOfHelpers, price));
+		return new SendOrderMessage(null);
 	}
 
 	@Override
