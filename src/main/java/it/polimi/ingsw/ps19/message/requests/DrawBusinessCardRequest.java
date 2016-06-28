@@ -8,6 +8,10 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
 public class DrawBusinessCardRequest extends Request 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8932787830759702149L;
 	private List<BusinessCard> chosenCards;
 	
 	public DrawBusinessCardRequest(List<BusinessCard> cards) 
@@ -15,10 +19,15 @@ public class DrawBusinessCardRequest extends Request
 		chosenCards = cards;
 	}
 	
+	public List<BusinessCard> getChosenCards() 
+	{
+		return chosenCards;
+	}
+	
 	@Override
 	public Action accept(MessageInterpreterVisitor messageInterpreter) 
 	{
-		return null;
+		return messageInterpreter.visit(this);
 	}
 
 }
