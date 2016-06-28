@@ -137,7 +137,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 		title.add(text);
 		add(title);
 		
-		input = new JTextField();
+		input = new JTextField(20);
 		input.addActionListener(gui);
 		pane.add(input);
 		pane.setVisible(true);

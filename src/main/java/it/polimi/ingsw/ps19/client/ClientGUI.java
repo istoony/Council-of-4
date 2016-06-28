@@ -25,6 +25,7 @@ import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
+import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
@@ -161,7 +162,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else{
 			window.update(model);
-			//window.getFrame().repaint();
 		}
 	}
 
@@ -339,7 +339,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void actionCheck(ActionEvent e){
 		for(ClientAction ca : actionTemp){
-			if(e.getActionCommand().equals(ca.toString())){
+			if(e.getActionCommand().equals(language.getString(ca))){
 				index.add(actionTemp.indexOf(ca));
 			}
 		}
@@ -347,7 +347,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void regionCheck(ActionEvent e){
 		for(RegionType rt : regionTemp){
-			if(e.getActionCommand().equals(rt.toString())){
+			if(e.getActionCommand().equals(language.getString(rt))){
 				index.add(regionTemp.indexOf(rt));
 			}
 		}
@@ -371,7 +371,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void cityCheck(ActionEvent e){
 		for(City c : cityTemp){
-			if(e.getActionCommand().equals(c.getName())){
+			if(e.getActionCommand().equals(language.getString(c))){
 				index.add(cityTemp.indexOf(c));
 			}
 		}
@@ -379,7 +379,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void politicCheck(ActionEvent e){
 		for(PoliticsCard p : politicTemp){
-			if(e.getActionCommand().equals(p.toString())){
+			if(e.getActionCommand().equals(language.getString(p))){
 				index.add(politicTemp.indexOf(p));
 			}
 		}
@@ -387,7 +387,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void businessCheck(ActionEvent e){
 		for(BusinessCard b : businessTemp){
-			if(e.getActionCommand().equals(b.toStringCities()+"\n"+b.toStringBonus())){
+			if(e.getActionCommand().equals(language.getString(b))){
 				index.add(businessTemp.indexOf(b));
 			}
 		}
@@ -395,7 +395,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void citymapCheck(ActionEvent e){
 		for(Entry<City, Integer> entry: mapTemp.entrySet()){
-			if(e.getActionCommand().equals(entry.getKey().getName()+"("+entry.getValue()+")")){
+			if(e.getActionCommand().equals(language.getString(entry.getKey()) + "(" + entry.getValue().toString() + ")")){
 				index.add(entry.getKey().getId());
 			}
 		}
@@ -425,7 +425,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	private void numberCheck(ActionEvent e){
-		pop.addMessage("here n");
 		index.add(Integer.parseInt(e.getActionCommand()));
 	}
 	
@@ -447,6 +446,15 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	 */
 	public static String getFastActionCommand() {
 		return FAST_ACTION_COMMAND;
+	}
+
+	@Override
+	public void showWinner(List<Player> players, String result) {
+		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
+		for(Player p : players)
+			s = s.concat(((Integer)p.getId()).toString());
+		s += "\n\n" + language.result + ": " + result;
+		showNotification(s);
 	}
 	
 }

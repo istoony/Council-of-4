@@ -29,9 +29,6 @@ public class InfoCell extends JPanel implements ActionListener{
 	 */
 	private static final long serialVersionUID = 8704625760479949960L;
 	
-	private static final String TOOLTIP0 = "Information about the game.";
-	private static final String TOOLTIP1 = "Information about the player.";
-	private static final String TOOLTIP2 = "Information about the other players.";
 	private static final String INDENTATION = "    ";
 	private static final String INDENTATION_2ND_POLITIC ="                                         ";
 	
@@ -143,6 +140,7 @@ public class InfoCell extends JPanel implements ActionListener{
 		lst.add(new JLabel(INDENTATION + language.numEmporiaLeft + ": " + (p.getMaxemporia())));
 		lst.add(new JLabel(INDENTATION + language.freeBusiness + ": " + p.getFreebusinesscard().size()));
 		//TODO used business cards?
+		//answer: no why?
 		lst.add(new JLabel(INDENTATION + language.politicCards + ": " + p.getPoliticcard().size()));
 		lst.add(new JLabel(INDENTATION + language.helpers + ": " + p.getHelpers()));
 		return lst;
