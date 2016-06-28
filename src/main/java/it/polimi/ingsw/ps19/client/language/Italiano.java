@@ -63,9 +63,9 @@ public final class Italiano extends Language
 		region = "regione";
 		firstCard = "prima carta";
 		secondCard = "seconda carta";
-		king = "RE";
+		king = "re";
 		politicCards = "carte politica";
-		businessCards = "tessere permesse";
+		businessCards = "tessere permesso";
 		noEmporia = "numero di empori";
 		emporiaOfPlayers = "empori dei giocatori";
 		map = "mappa";
@@ -97,12 +97,12 @@ public final class Italiano extends Language
 				
 		//market
 		howManyHelpersToSell = "quanti " + helpers + "vuoi vendere?";
+		price = "prezzo";
 		setPrice = "definisci il " + price;
 		chooseOrder = "scegli l'ordine da comprare";
 		market = "mercato";
 		noOrders = "numero di ordini";
 		orders = "ordini";
-		price = "prezzo";
 		
 		mountain = "montagna";
 		hill = "collina";
@@ -117,7 +117,7 @@ public final class Italiano extends Language
 
 	@Override
 	public String getString(BuildWithKingInputs input) {
-		return "Costruisci con l'aiuto del re";
+		return "Costruisci con l'aiuto del " + king;
 	}
 
 	@Override

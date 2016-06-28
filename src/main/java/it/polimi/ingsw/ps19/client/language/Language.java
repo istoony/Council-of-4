@@ -29,6 +29,9 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public abstract class Language 
 {
 	//Server constants
+	public static final String ENGLISH = "English";
+	public static final String ITALIANO = "Italiano";
+	
 	public static final String START = "started";
 	public static final String SET_MAX_P = "set the maximum number of players per game";
 	public static final String REG_CREATED = "New Registry created at: localhost:";
@@ -44,7 +47,7 @@ public abstract class Language
 	public static final String SOCKET = "Socket";
 	public static final String RMI = "RMI";
 	public static final String CLI = "CLI";
-	public static final String GUI = "RMI";
+	public static final String GUI = "GUI";
 	
 	//setup
 	public String insertIp;

@@ -96,12 +96,12 @@ public class English extends Language
 				
 		//market
 		howManyHelpersToSell = "how many " + helpers + " do you want to sell?";
+		price = "price";
 		setPrice = "set the " + price + " for your order";
 		chooseOrder = "choose an order";
 		market = "market";
 		noOrders = nothing;
 		orders = "orders";
-		price = "price";
 	
 		mountain = "mountain";
 		hill = "hill";
@@ -161,12 +161,12 @@ public class English extends Language
 
 	@Override
 	public String getString(FastAction input) {
-		return quick + " action";
+		return quick;
 	}
 
 	@Override
 	public String getString(MainAction input) {
-		return main + " action";
+		return main;
 	}
 
 	@Override

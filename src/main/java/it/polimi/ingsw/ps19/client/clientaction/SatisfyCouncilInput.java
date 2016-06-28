@@ -117,6 +117,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			Color chosenColor = userInterface.getColor(differentColors);
 			if(chosenColor != null)
 			{
+				satisfyingColors.add(chosenColor);
 				combinations = getContainingDecks(combinations, chosenColor);
 				int j = 0;
 				while(j < combinations.size())
@@ -128,11 +129,10 @@ public abstract class SatisfyCouncilInput extends ClientAction
 					else 
 						j++;
 				}
-				combinations = getSignificantDecks(combinations);
+				//combinations = getSignificantDecks(combinations);
 			}
 			if(combinations.isEmpty() || chosenColor == null)
 				break;
-			satisfyingColors.add(chosenColor);
 		}
 		return satisfyingColors;
 	}
@@ -180,11 +180,14 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		{
 			DeckId deckComparing = decks.get(i);
 			significantDecks.add(deckComparing);
-			for(int j = i + 1; j < decks.size(); j++)
+			int j = i + 1;
+			while(j < decks.size())
 			{
 				DeckId deckCompared = decks.get(j);
 				if(deckComparing.equivalentNotJoker(deckCompared))
 					decks.remove(deckCompared);
+				else
+					j++;
 			}
 		}
 		return significantDecks;

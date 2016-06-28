@@ -300,7 +300,16 @@ public class ClientCLI extends ClientUI
 		String s = city.getName();
 		s += ":(";
 		s += getString(city.getCitycolor());
-		s += ",";
+		s += ", " + language.bonuses + ":";
+		if(city.getBonus().isEmpty())
+			s += " 0, ";
+		else
+		{
+			s += "(";
+			for(Bonus bonus : city.getBonus())
+				s = s.concat(bonus.toString(language) + ", ");
+			s += ")";
+		}
 		if(city.getEmporia().isEmpty())
 			s += language.noEmporia;
 		else
@@ -378,7 +387,7 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(King king)
 	{
-		String s = language.king + "\n";
+		String s = language.king.toUpperCase() + "\n";
 		s += language.currentCity + ": " + getString(king.getCurrentcity()) + "\n";
 		s += getString(king.getBalcony()) + "\n";
 		return s;

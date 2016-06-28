@@ -34,8 +34,8 @@ public class ClientStarter
 		typesOfUserInterdace.add(Language.CLI);
 		typesOfUserInterdace.add(Language.GUI);
 		List<String> languages = new ArrayList<>();
-		languages.add(new English().toString());
-		languages.add(new Italiano().toString());
+		languages.add(Language.ITALIANO);
+		languages.add(Language.ENGLISH);
 		List<String> startNewGame = new ArrayList<>();
 		
 		boolean valid;
@@ -47,7 +47,7 @@ public class ClientStarter
 				int uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
  				int connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
  				int languageIndex = ((ClientCLI)userInterface).getValues(languages);
- 				if(languageIndex == 1)
+ 				if(languageIndex == 0)
  				{
  					language = new Italiano();
  					userInterface = new ClientCLI(language);
