@@ -10,10 +10,12 @@ import java.util.logging.Logger;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
+import it.polimi.ingsw.ps19.message.replies.EndGameReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.StringMessage;
 import it.polimi.ingsw.ps19.message.requests.PlayerDisconnectedMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.server.Constants;
 import it.polimi.ingsw.ps19.server.ServerManager;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
@@ -74,16 +76,24 @@ public class View extends Observable implements Observer, Runnable
 	{
 		if(!(arg instanceof Reply))
 			return;
-		setActive(((Reply)arg).getActivePlayer());
-		Reply mex = (Reply) arg;
-		forwardMessage(mex);
+		else if(arg instanceof EndGameReply)
+		{
+			forwardMessage((Reply)arg);
+			stop();
+		}
+		else
+		{
+			setActive(((Reply)arg).getActivePlayer());
+			Reply mex = (Reply) arg;
+			forwardMessage(mex);
+		}
 	}
 
 	@Override
 	public void run() 
 	{
 		setChanged();
-		notifyObservers(new SendFullGameMessage(-1));
+		notifyObservers(new SendFullGameMessage(Costants.BROADCAST_MESSAGE));
 		while(!stop)
 		{
 			Connection activeConn = WaitingRoom.getConnection(activeId);
@@ -111,6 +121,11 @@ public class View extends Observable implements Observer, Runnable
 		}
 	}
 	
+	private void stop()
+	{
+		stop = true;
+		WaitingRoom.removeMany(playerConnection);
+	}
 	
 	/**
 	 * Forwards message to right player
