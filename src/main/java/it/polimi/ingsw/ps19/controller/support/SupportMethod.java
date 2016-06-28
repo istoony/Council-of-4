@@ -127,13 +127,14 @@ public class SupportMethod
 		}
 	}
 	
-	protected static void checkPlayerVictory(Model model, Player player, String result)
+	protected static String checkPlayerVictory(Model model, Player player)
 	{
 		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
 			model.getCurrentState().setLastTurn(player.getId());
-			result = ActionMessages.playerWinGameResultBuilder(player.getId());
+			return ActionMessages.playerWinGameResultBuilder(player.getId());
 		}
+		return ActionMessages.EVERYTHING_IS_OK;
 	}
 
 	protected static void calculateLastPoints(Model model)
@@ -145,25 +146,26 @@ public class SupportMethod
 		//più punti nobiltà
 		for (int i = 0; i< players.size() - 1; i++)
 			for (int j = i+1; j< players.size(); j++)
-				if(players.get(i).getNobilityPoints() > players.get(j).getNobilityPoints())
+				if(players.get(i).getNobilityPoints() < players.get(j).getNobilityPoints())
 				{
 					temp = players.get(i);
 					players.set(i, players.get(j));
 					players.set(j, temp);
 				}
 		players = sendPoints(players, 5);
-		sendPoints(players, 2);
+		if(players.size() == model.getPlayer().size() - 1)
+			sendPoints(players, 2);
 	}
 
 	private static List<Player> sendPoints(List<Player> players, int numberOfPoints) 
 	{
 		int max = players.get(0).getNobilityPoints();		
-		for (int i = 0; i< players.size() - 1; i++)
+		for (int i = 0; i< players.size(); i++)
 		{
-			if(players.get(i).getNobilityPoints() == max)
+			if(players.get(0).getNobilityPoints() == max)
 			{
-				players.get(i).setVictoryPoints(players.get(i).getVictoryPoints() + numberOfPoints);
-				players.remove(i);
+				players.get(0).setVictoryPoints(players.get(i).getVictoryPoints() + numberOfPoints);
+				players.remove(0);
 			}
 		}
 		return players;
@@ -173,7 +175,7 @@ public class SupportMethod
 		Player temp;
 		for (int i = 0; i< players.size() - 1; i++)
 			for (int j = i+1; j< players.size(); j++)
-				if(players.get(i).getVictoryPoints() > players.get(j).getVictoryPoints())
+				if(players.get(i).getVictoryPoints() < players.get(j).getVictoryPoints())
 				{
 					temp = players.get(i);
 					players.set(i, players.get(j));

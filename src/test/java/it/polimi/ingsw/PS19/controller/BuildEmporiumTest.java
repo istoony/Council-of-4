@@ -31,7 +31,7 @@ public class BuildEmporiumTest extends SupportMethod{
 		GameController g = new GameController(m);
 		
 		BusinessCard card = m.getMap().getRegionByType(RegionType.HILL).getFirstcard();
-		m.getMap().getRegionByType(RegionType.HILL).drowFirstCard();
+		m.getMap().getRegionByType(RegionType.HILL).drawFirstCard();
 		
 		m.getPlayerById(0).addCardToHand(card);
 	

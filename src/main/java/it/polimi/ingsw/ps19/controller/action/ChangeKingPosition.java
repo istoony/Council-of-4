@@ -74,8 +74,7 @@ public class ChangeKingPosition extends SupportMethod implements Action{
 		giveBonusToPlayer(model, findRegion(model, real), player, real.getId());
 				
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
-		result = ActionMessages.EVERYTHING_IS_OK;
-		checkPlayerVictory(model, player, result);
+		result = checkPlayerVictory(model, player);
 		return true;
 	}
 

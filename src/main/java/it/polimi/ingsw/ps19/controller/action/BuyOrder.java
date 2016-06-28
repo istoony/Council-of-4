@@ -59,6 +59,7 @@ public class BuyOrder extends SupportMethod implements Action
 		model.getCurrentState().playerBought(playerId);
 		
 		//cambio l'id del player attivo
+		model.getCurrentState().setPlayerTurnId(playerId);
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		result = ActionMessages.PLAYER_HAS_BOUGHT;
 		return true;

@@ -48,7 +48,7 @@ public class MainBuildEmporium extends SupportMethod implements Action
 		player.addUsedBusinessCard(player.removeFreebusinesscardById(businessCard.getId()));
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		
-		checkPlayerVictory(model, player, result);
+		result = checkPlayerVictory(model, player);
 		
 		return true;
 	}

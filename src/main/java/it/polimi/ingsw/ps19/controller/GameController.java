@@ -82,6 +82,7 @@ public class GameController extends SupportMethod implements Observer
 		else
 			checkModelStatusLastTurn();
 		
+		System.out.println(model.toString());
 		model.sendMessage(reply);
 
 		checkTimeToMarket();
@@ -265,7 +266,7 @@ public class GameController extends SupportMethod implements Observer
 					model.getMap().getKing(),
 					model.getMap().getAvailableCouncillor(),
 					model.getPlayerById(playerTurnId).getDrawBusinessCard());
-			
+		else	
 			r = action.createReplyMessage(model);
 		r.setId(Costants.BROADCAST_MESSAGE);
 		return r;

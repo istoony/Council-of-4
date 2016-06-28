@@ -23,6 +23,7 @@ public class BuyMainAction implements Action
 	{
 		model.getPlayerById(playerId).setMainActionCounter(model.getPlayerById(playerId).getMainActionCounter() + SupportMethod.N_OF_ACTION_TO_ADD);
 		model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() -  SupportMethod.N_OF_ACTION_TO_ADD);
+		model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS_NEEDED);
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}

@@ -47,6 +47,7 @@ public class ClientModel
 		king = m.getMap().getKing();
 		player = m.getPlayer();
 		nobilitypath = m.getMap().getNobilityPath();
+		availablecouncillor = m.getMap().getAvailableCouncillor();
 	}
 	
 	

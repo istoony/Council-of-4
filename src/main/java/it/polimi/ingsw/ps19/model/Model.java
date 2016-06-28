@@ -7,6 +7,7 @@ import java.util.Observable;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.map.Map;
 import it.polimi.ingsw.ps19.model.map.MapLoader;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 
 public class Model extends Observable
@@ -59,7 +60,7 @@ public class Model extends Observable
 	
 	public List<Player> getPlayer() 
 	{
-		return player;
+		return Costants.clone(player);
 	}
 	
 	@Override
