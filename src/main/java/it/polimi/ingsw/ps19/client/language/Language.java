@@ -148,6 +148,9 @@ public abstract class Language
 	public String infoPlayer;
 	public String position;
 	
+	public String youNoEmporia;
+	public String youNoBusiness;
+	
 	//Colors
 	public String c_FF0000;
 	public String c_0000FF;

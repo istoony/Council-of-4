@@ -116,6 +116,9 @@ public class English extends Language
 		infoPlayer = info +  " about " + player;
 		position = "position";
 		
+		youNoEmporia = "You don't have any emporia";
+		youNoBusiness = "You don't have any " + businessCards;
+		
 		//Colors
 		 c_FF0000 = "Red";
 		 c_0000FF = "Blue";

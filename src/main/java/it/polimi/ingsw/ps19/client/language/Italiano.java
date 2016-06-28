@@ -96,7 +96,7 @@ public final class Italiano extends Language
 		chooseColor = "scegli color";
 				
 		//market
-		howManyHelpersToSell = "quanti " + helpers + "vuoi vendere?";
+		howManyHelpersToSell = "quanti " + helpers + " vuoi vendere?";
 		price = "prezzo";
 		setPrice = "definisci il " + price;
 		chooseOrder = "scegli l'ordine da comprare";
@@ -117,6 +117,9 @@ public final class Italiano extends Language
 		infoOthers = info + " riguardo gli altri giocatori";
 		infoPlayer = info + " riguardo il " + player;
 		position = "posizione";
+		
+		youNoEmporia = "Non hai ancora nessu emporio";
+		youNoBusiness = "Non hai nessuna " + businessCards;
 		
 		//Colors
 		 c_FF0000 = "Rosso";

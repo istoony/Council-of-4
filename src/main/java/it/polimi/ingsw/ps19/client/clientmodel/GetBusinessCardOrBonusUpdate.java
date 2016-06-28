@@ -41,19 +41,31 @@ public class GetBusinessCardOrBonusUpdate extends ElectCouncillorUpdate
 		
 		if(getBusinessCardBonus)
 		{	
-			List<BusinessCard> availableCards = new ArrayList<>();
-			availableCards.addAll(model.getMyPlayer().getFreebusinesscard());
-			availableCards.addAll(model.getMyPlayer().getUsedbusinesscard());
-			card = userInterface.getBusiness(availableCards);
+			if(model.getMyPlayer().getFreebusinesscard().isEmpty() && model.getMyPlayer().getUsedbusinesscard().isEmpty())
+				userInterface.showNotification(userInterface.getLanguage().youNoBusiness);
+			else
+			{
+				List<BusinessCard> availableCards = new ArrayList<>();
+				if(!model.getMyPlayer().getFreebusinesscard().isEmpty())
+					availableCards.addAll(model.getMyPlayer().getFreebusinesscard());
+				if(!model.getMyPlayer().getUsedbusinesscard().isEmpty())
+					availableCards.addAll(model.getMyPlayer().getUsedbusinesscard());
+				card = userInterface.getBusiness(availableCards);
+			}
 		}
 		if(getCityCardBonus)
 		{
-			List<City> availableCities = new ArrayList<>();
-			for(City c : model.getMyPlayer().getMyEmporia())
-				if(!c.getBonus().isEmpty())
-					availableCities.add(c);
-			city = userInterface.getCity(availableCities);
- 		}
+			if(model.getMyPlayer().getMyEmporia().isEmpty())
+				userInterface.showNotification(userInterface.getLanguage().youNoEmporia);
+			else
+			{
+				List<City> availableCities = new ArrayList<>();
+				for(City c : model.getMyPlayer().getMyEmporia())
+					if(!c.getBonus().isEmpty())
+						availableCities.add(c);
+				city = userInterface.getCity(availableCities);
+			}
+		}
 		return new GetBusinessCardOrBonusMessage(city, card);
 	}
 }
