@@ -3,11 +3,14 @@ package it.polimi.ingsw.ps19.controller.action;
 import java.awt.Color;
 import java.util.List;
 
+import it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCard;
+import it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCardBonus;
 import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyHelperMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
 import it.polimi.ingsw.ps19.message.requests.BuyOrderMessage;
 import it.polimi.ingsw.ps19.message.requests.ChangeKingPositionMessage;
+import it.polimi.ingsw.ps19.message.requests.DrawBusinessCardRequest;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.EndTurnMessage;
 import it.polimi.ingsw.ps19.message.requests.GetBusinessCardMessage;
@@ -148,6 +151,12 @@ public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 			return new BusinessCardOrCityBonus(message.getCard(), message.getId());
 		return new BusinessCardOrCityBonus(message.getCity(), message.getId());
 		
+	}
+
+	@Override
+	public Action visit(DrawBusinessCardRequest message)
+	{
+		return new DrawBusinessCardBonus(message.getId(), message.getChosenCards());
 	}
 
 
