@@ -82,7 +82,6 @@ public class GameController implements Observer
 		else
 			checkModelStatusLastTurn();
 		
-		System.out.println(model.toString());
 		model.sendMessage(reply);
 
 		checkTimeToMarket();
@@ -114,6 +113,8 @@ public class GameController implements Observer
 			for (Player player : model.getPlayer())
 				player.setStartingAction();
 			
+			SupportMethod.politicCardToDrawToCurrentPlayer(model);
+			
 			reply = new SendFullPlayerReply(model.getCurrentState().getPlayerTurnId(), 
 					reply.getResult(), model.getPlayer());
 			reply.setId(Costants.BROADCAST_MESSAGE);
@@ -125,11 +126,20 @@ public class GameController implements Observer
 	}
 	private void checkModelStatusLastTurn() 
 	{
-		if(model.getCurrentState().getLastTurn() == Costants.INVALID_ID)
+		if(model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
 			for (Player player : model.getPlayer())
-				if(player.getMainActionCounter() == 0 && player.getFastActionCounter() ==0)
-					SupportMethod.calculateLastPoints(model);
+				if((player.getMainActionCounter() != 0 || player.getFastActionCounter() !=0) &&
+						WaitingRoom.isConnected(player.getId()))
+				{
+					model.getCurrentState().setPlayerTurnId(
+							model.getCurrentState().giveNextCorrectId(
+									model.getCurrentState().getPlayerTurnId()));
+					
+					SupportMethod.politicCardToDrawToCurrentPlayer(model);
+					return;
+				}
+			SupportMethod.calculateLastPoints(model);
 			List<Player> orderList = SupportMethod.sortByVictoryPoints(model.getPlayer());
 			reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);
 			reply.setId(Costants.BROADCAST_MESSAGE);
@@ -181,6 +191,7 @@ public class GameController implements Observer
 		{
 			model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));
 			model.getPlayerById(model.getCurrentState().getPlayerTurnId()).setStartingAction();
+			
 			SupportMethod.politicCardToDrawToCurrentPlayer(model);
 			
 			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());

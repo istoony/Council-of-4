@@ -132,6 +132,10 @@ public class SupportMethod
 		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
 			model.getCurrentState().setLastTurn(player.getId());
+			for (Player p : model.getPlayer())
+				if(p.getId() != player.getId())
+					p.setStartingAction();
+			
 			return ActionMessages.playerWinGameResultBuilder(player.getId());
 		}
 		return ActionMessages.EVERYTHING_IS_OK;

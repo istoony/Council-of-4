@@ -10,7 +10,7 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
-public class DrawBusinessCardBonus extends SupportMethod implements Action
+public class DrawBusinessCardBonus implements Action
 {
 	private static final int NO_OTHER_BUSINESS_CARD = 0;
 	private int playerId;
@@ -29,9 +29,9 @@ public class DrawBusinessCardBonus extends SupportMethod implements Action
 	{
 		for (BusinessCard businessCard : card) 
 		{
-			removeCardFromRegionAndAddToPlayer(model, model.getPlayerById(playerId), businessCard, businessCard.getType());
+			SupportMethod.removeCardFromRegionAndAddToPlayer(model, model.getPlayerById(playerId), businessCard, businessCard.getType());
 			
-			giveListOfBonus(model, model.getPlayerById(playerId), businessCard.getBonus());
+			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), businessCard.getBonus());
 		}
 			model.getPlayerById(playerId).setDrawBusinessCard(NO_OTHER_BUSINESS_CARD);
 			result = ActionMessages.EVERYTHING_IS_OK;
@@ -47,7 +47,7 @@ public class DrawBusinessCardBonus extends SupportMethod implements Action
 			return false;
 		}
 		for (BusinessCard businessCard : card) 
-			if(!findExistBusinessCard(model, businessCard.getType(), businessCard))
+			if(!SupportMethod.findExistBusinessCard(model, businessCard.getType(), businessCard))
 			{
 				result = ActionMessages.GENERIC_ERROR;
 				return false;

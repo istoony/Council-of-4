@@ -58,7 +58,12 @@ public class DeckFactory
 						int numberofbonus = eElement.getElementsByTagName(BONUS).getLength();
 						for(int i = 0; i < numberofbonus; i++)
 						{
-							Bonus bonus = BonusFactory.getBonus(eElement.getElementsByTagName(TYPE).item(i).getTextContent(), Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent()));
+							int parameter = Integer.parseInt(eElement.getElementsByTagName("parameter").item(i).getTextContent());
+							Bonus bonus;
+							if(parameter != 0)
+								bonus = BonusFactory.getBonus(eElement.getElementsByTagName(TYPE).item(i).getTextContent(), parameter);
+							else 
+								bonus = BonusFactory.getBonus(eElement.getElementsByTagName(TYPE).item(i).getTextContent());
 							card.addBonus(bonus);
 						}
 						int numberofcities = Integer.parseInt(eElement.getElementsByTagName(NUMBEROFCITIES).item(0).getTextContent());

@@ -43,7 +43,11 @@ public class NobilityPath implements Serializable
 				String[] ss = s.split("\n");
 				String s1 = ss[1].trim();
 				int k = Integer.parseInt(ss[2].trim());
-				Bonus bonus = BonusFactory.getBonus(s1, k);
+				Bonus bonus = null;
+				if(k!=0)
+					bonus = BonusFactory.getBonus(s1, k);
+				else
+					bonus = BonusFactory.getBonus(s1);
 				if(bonus==null){
 					throw new IllegalFileException(ERROR);
 				}

@@ -1,5 +1,6 @@
-package it.polimi.ingsw.ps19.controller.action;
+package it.polimi.ingsw.ps19.controller.action.serveraction;
 
+import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;

@@ -14,7 +14,7 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-public class DrawBusinessCard  extends SupportMethod implements Action 
+public class DrawBusinessCard implements Action 
 {
 
 	private int playerId;
@@ -49,12 +49,12 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//
 			//in base alle carte arrivate tolgo dei soldi al player tenendo conto dei joker
 			//
-		player.setMoney(player.getMoney() - numberOfNeedMoney(politicsCard) - numberOfJoker(politicsCard));
+		player.setMoney(player.getMoney() - SupportMethod.numberOfNeedMoney(politicsCard) - SupportMethod.numberOfJoker(politicsCard));
 		
 			//
 			//Tolgo la carta dal mazzo, la do al player e pesco una carta dalla regione
 			//
-		BusinessCard selectedcard = removeCardFromRegionAndAddToPlayer(model, player, card, region);
+		BusinessCard selectedcard = SupportMethod.removeCardFromRegionAndAddToPlayer(model, player, card, region);
 		
 			//
 			//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
@@ -62,7 +62,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//
 		
 		
-		giveListOfBonus(model, player, selectedcard.getBonus());
+		SupportMethod.giveListOfBonus(model, player, selectedcard.getBonus());
 		
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		return true;
@@ -81,7 +81,7 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			 *Se non ho nessuna carta di quel colore RETURN FALSE
 			 */
 		
-		if(!(findPoliticCard(politicsCard, player)))
+		if(!(SupportMethod.findPoliticCard(politicsCard, player)))
 		{
 			result = ActionMessages.NO_MONEY;
 			return false;
@@ -90,13 +90,13 @@ public class DrawBusinessCard  extends SupportMethod implements Action
 			//Controlla se hai abbastanza MONEY in base al numero di carte che hai e in base ai joker
 		int money = player.getMoney();
 		
-		if(money < numberOfNeedMoney(politicsCard) + numberOfJoker(politicsCard))
+		if(money < SupportMethod.numberOfNeedMoney(politicsCard) + SupportMethod.numberOfJoker(politicsCard))
 		{
 			result = ActionMessages.NO_MONEY;
 			return false;
 		}
 		
-		if(findExistBusinessCard(model,region,card))
+		if(SupportMethod.findExistBusinessCard(model,region,card))
 		{
 			result = ActionMessages.EVERYTHING_IS_OK;
 			return true;
