@@ -234,8 +234,7 @@ public abstract class Language
 	{
 		if(card == null)
 			return nothing;
-		String s = "[";
-		s = s.concat(cities + ": ");
+		String s = cities + ": ";
 		for(City city: card.getCity())
 		{
 			s = s.concat(getString(city));
@@ -252,7 +251,6 @@ public abstract class Language
 				s = s.concat(", ");
 			}
 		}
-		s += "]";
 		return s;
 	}
 	

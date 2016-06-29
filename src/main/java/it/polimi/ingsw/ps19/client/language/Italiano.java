@@ -111,12 +111,12 @@ public final class Italiano extends Language
 		
 		winner = "Vincitore";
 		
-		info = "informazioni";
-		infoCity = info + " relative alla città";
-		infoGame = info + " relative al gioco";
-		infoYou = info + " del tuo " + player;
-		infoOthers = info + " riguardo gli altri giocatori";
-		infoPlayer = info + " riguardo il " + player;
+		info = "informazioni riguardo";
+		infoCity = info + " la città";
+		infoGame = info + " il gioco";
+		infoYou = info + " il tuo " + player;
+		infoOthers = info + " gli altri giocatori";
+		infoPlayer = info + " il " + player;
 		position = "posizione";
 		
 		youNoEmporia = "Non hai ancora nessu emporio";

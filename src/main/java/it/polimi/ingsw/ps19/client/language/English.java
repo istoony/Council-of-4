@@ -109,12 +109,12 @@ public class English extends Language
 		plain = "plain";
 		
 		winner = "Winner";
-		info = "informations";
-		infoCity = info + " about the city";
-		infoGame = info + " about the game";
-		infoYou = info + " about you";
-		infoOthers = info + " about the other players";
-		infoPlayer = info +  " about " + player;
+		info = "informations about";
+		infoCity = info + " the city";
+		infoGame = info + " the game";
+		infoYou = info + " you";
+		infoOthers = info + " the other players";
+		infoPlayer = info +  " " + player;
 		position = "position";
 		
 		youNoEmporia = "You don't have any emporia";

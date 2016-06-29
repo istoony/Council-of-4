@@ -334,18 +334,16 @@ public class ClientCLI extends ClientUI
 			s += 0 + "\n";
 		else
 		{
-			s += "\n";
 			for(BusinessCard card : p.getFreebusinesscard())
-				s = s.concat(language.getString(card));
+				s = s.concat("\n\t[" + language.getString(card) + "]");
 		}
-		s += language.usedBusiness + ":";
+		s += "\n" + language.usedBusiness + ":";
 		if(p.getUsedbusinesscard().isEmpty())
 			s += 0 + "\n";
 		else
 		{
-			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
-				s = s.concat(language.getString(card));
+				s = s.concat("\n\t[" + language.getString(card) + "]");
 		}
 		return s;
 	}
@@ -371,7 +369,7 @@ public class ClientCLI extends ClientUI
 		s += language.businessCards + ":\n";
 		s += "\t" + language.firstCard + ": ";
 		s += language.getString(region.getFirstcard());
-		s += "\t" + language.secondCard + ": ";
+		s += "\n\t" + language.secondCard + ": ";
 		s += language.getString(region.getSecondcard());
 		return s;
 	}

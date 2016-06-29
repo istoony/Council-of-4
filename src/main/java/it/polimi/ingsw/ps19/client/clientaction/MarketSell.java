@@ -56,7 +56,7 @@ public class MarketSell extends ClientAction
 					businessToSell.add(card);
 					sellableBusiness.remove(card);
 				}
-			}while(card != null && sellableBusiness.size() <= 1);
+			}while(card != null && sellableBusiness.size() > 1);
 		}
 		List<PoliticsCard> sellablePolitics = model.getMyPlayer().getPoliticcard();
 		if(!sellablePolitics.isEmpty())
