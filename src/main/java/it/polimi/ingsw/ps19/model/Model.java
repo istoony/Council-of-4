@@ -63,21 +63,6 @@ public class Model extends Observable
 		return Costants.clone(player);
 	}
 	
-	@Override
-	public String toString() 
-	{
-		String s = "++++++++++++++++++++\n";
-		s = s + "number of player: " + currentState.getNumberOfPlayer() + "\n";
-		s = s + map.toString() + "\n*************PLAYERSSSS************\n";
-		for (Player p : player) 
-		{
-			s = s + p.toString() + "\n";
-		}
-		
-		s += "\n++++++++++++++++++++\n";
-		return s;
-	}
-	
 	public void sendMessage(Reply reply)
 	{
 		setChanged();

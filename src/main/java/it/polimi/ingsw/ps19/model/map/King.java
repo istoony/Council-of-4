@@ -28,15 +28,6 @@ public class King implements Serializable
 	{
 		return balcony;
 	}
-	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		s += balcony.toString() + "\n";
-		s += "CITY:  " + currentcity.toString() + "\n";
-		return s;
-	}
 	/**
 	 * @param currentcity the currentcity to set
 	 */

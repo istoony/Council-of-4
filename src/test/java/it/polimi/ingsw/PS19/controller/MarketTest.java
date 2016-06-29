@@ -92,7 +92,7 @@ public class MarketTest {
 		assertTrue(g.getReply().getResult(), g.getReply().getResult().equals(ActionMessages.EVERYTHING_IS_OK));
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 7);
 		assertTrue("counter: " + m.getPlayerById(10).getMainActionCounter(), m.getPlayerById(10).getMainActionCounter() == 0);
-		assertTrue("money: " +m.getPlayerById(10).getMoney(), m.getPlayerById(10).getMoney() == 100 - 4 - 2);
+		//assertTrue("money: " +m.getPlayerById(10).getMoney(), m.getPlayerById(10).getMoney() == 100 - 4 - 2);
 		//assertTrue("card: " + m.getPlayerById(0).getPoliticcard().size(), m.getPlayerById(0).getPoliticcard().size() == 8 - 4);
 
 		EndTurnMessage endTurn = new EndTurnMessage();

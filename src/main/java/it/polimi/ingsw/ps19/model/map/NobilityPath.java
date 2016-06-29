@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,7 +13,6 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.ps19.exceptions.IllegalFileException;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
 public class NobilityPath implements Serializable
@@ -80,7 +78,7 @@ public class NobilityPath implements Serializable
 
 	/**
 	 * @return the nobility
-	 */
+	 *
 	public Map<Integer, List<Bonus>> getNobility() 
 	{
 		Map<Integer, List<Bonus>> clone = new HashMap<>();
@@ -93,6 +91,6 @@ public class NobilityPath implements Serializable
 		}
 		return clone;
 	}
-	
+	*/
 		
 }

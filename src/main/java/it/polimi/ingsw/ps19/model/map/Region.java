@@ -106,25 +106,5 @@ public class Region implements Serializable{
 	public BusinessDeck getBusinessdeck() 
 	{
 		return businessdeck;
-	}
-	
-	@Override
-	public String toString() {
-		String s = "\n";
-		s += "REGION POSITION: " + type.toString() + "\n";
-		for (City city : cities) 
-		{
-			s += city.toString() + "\n";
-		}
-		s += "-----CARDS-----\n   FIRST CARD: \n     " + firstcard.toString();
-		s += "   SECOND CARD: \n     " + secondcard.toString();
-		s += "MAZZO\n";
-		for (BusinessCard p : businessdeck.getCard()) 
-		{
-			s += p.toString() + "\n";
-		}
-		s += "\n   BALCONY:   " + balcony.toString();
-		return s;
-	}
-	
+	}	
 }

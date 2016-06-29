@@ -116,5 +116,30 @@ public class NobilityPathTest extends SupportMethod
 		
 	}
 
+	public void getMaxTest()
+	{
+		Connection uno = new RMIConnection(true);
+			uno.setActive();
+		Connection due = new RMIConnection(true);
+			due.setActive();
 
+		Connection tre = new RMIConnection(true);
+			tre.setActive();
+	
+		Map<Integer, Connection> wRoom = new HashMap<>();
+			wRoom.put(0, uno);
+			wRoom.put(1, due);
+			wRoom.put(3, tre);
+	
+		WaitingRoom.setConnection(wRoom);
+	
+	
+		List<Integer> players = new ArrayList<>();
+		players.add(0);
+		players.add(1);
+		players.add(2);
+		Model m = new Model(players);
+
+		assertTrue(m.getMap().getNobilityPath().getMaxKey() == 30);
+	}
 }

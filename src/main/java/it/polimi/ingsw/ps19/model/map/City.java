@@ -96,31 +96,6 @@ public class City implements Serializable {
 	{
 		this.bonus.addAll(BonusFactory.generateCityBonus());
 	}
-	
-	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		s += "   id:" + id + "\n";
-		s += "   name:" + name + "\n";
-		s += "   emporium: ";
-		for (Integer i : emporia) {
-			s += " " + i + ", ";
-		}
-		for (Bonus b : bonus) 
-		{
-			s += "   bonus:" + b.toString();
-		}
-		s += "\n   citycolor:" + citycolor + "\n";
-	/*	TODO: gbe
-	 * 	s += "\n neighbours:\n"; 
-		for(City c : neighbours){
-			s+=c.name+"\n";
-		}*/
-		return s;
-	}
-
 	/**
 	 * @return the name
 	 */
