@@ -79,7 +79,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		index.clear();
 		window.getFrame().getInfobox().getBoxes().get(0).enableActionType();
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).disableActionType();
 		return actions.get(index.get(0));
@@ -94,7 +94,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		window.getFrame().revalidate();
 		window.getFrame().repaint();
 		while(index.isEmpty()){
-			//wait button
+
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().disableButtons();
 		actionTemp.clear();
@@ -108,7 +108,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		ask.close();
 		regionTemp.clear();
@@ -122,7 +122,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, validColors, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		ask.close();
 		colorTemp.clear();
@@ -136,7 +136,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		ask.close();
 		regionTemp.clear();
@@ -172,7 +172,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		businessTemp.clear();
 		ask.close();
@@ -186,7 +186,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		politicTemp.clear();
 		ask.close();
@@ -200,7 +200,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, cities, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		cityTemp.clear();
 		ask.close();
@@ -214,7 +214,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, citiesECost, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		for(Entry<City, Integer> entry: citiesECost.entrySet()){
 			if(entry.getKey().getId()==index.get(0)){
@@ -235,7 +235,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, n, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		numberflag=false;
 		pop.addMessage("here okkk");
@@ -246,10 +246,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public int getPrice() throws InvalidInsertionException {
 		index.clear();
-		ask = new QuestionFrame(this, 'a', language);
+		ask = new QuestionFrame(this, "", true, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		ask.close();
 		return index.get(0);
@@ -259,10 +259,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public String getUserString(String title) throws InvalidInsertionException {
 		index.clear();
 		stringTemp = title;
-		ask = new QuestionFrame(this, title, language);
+		ask = new QuestionFrame(this, title, false, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-			//wait the button to be pressed
+
 		}
 		String ret = stringTemp;
 		stringTemp = new String();
@@ -277,13 +277,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		SwingUtilities.invokeLater(market);
 		marketflag=true;
 		while(index.isEmpty()){
-			//wait the button to be pressed
+			
 		}
 		market.close();
 		marketflag=false;
 		return orders.get(index.get(0));
 	}
-
+	
 	@Override
 	public void showMarket(Market market) {
 		showmarket = new MarketShow(market, language);

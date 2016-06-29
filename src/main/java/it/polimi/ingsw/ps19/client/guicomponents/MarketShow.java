@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.client.guicomponents;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -25,6 +26,8 @@ public class MarketShow extends JFrame implements Runnable{
 		
 	public MarketShow(Market market, Language l){
 		super();
+		text = new ArrayList<>();
+		panels = new ArrayList<>();
 		language = l;
 		setResizable(false);
 		setAlwaysOnTop(true);

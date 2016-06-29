@@ -112,7 +112,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 		addButtons();
 	}
 	
-	public QuestionFrame(ClientGUI gui, String s, Language l)
+	public QuestionFrame(ClientGUI gui, String s, boolean code, Language l)
 	{
 		super();
 		setLanguage(l);
@@ -122,12 +122,12 @@ public class QuestionFrame extends JFrame implements Runnable{
 		choices = new ArrayList<>();
 		pane = new JPanel();
 		JLabel text = new JLabel();
-		if(s.equals("")){
+		if(code){
 			setTitle(language.setPrice);
 			text.setText(language.setPrice);
 		}
 		else {
-			setTitle("Insertion Panel");
+			setTitle(s);
 			text.setText(s);
 		}
 		JPanel title = new JPanel();
