@@ -39,9 +39,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private MarketFrame market;
 	private MarketShow showmarket;
 	
-	private boolean numberflag=false;
-	
-	
+	volatile int numberflag=1000;
 	volatile List<ClientAction> actionTemp = new ArrayList<>();
 	volatile List<RegionType> regionTemp = new ArrayList<>();
 	volatile List<Color> colorTemp = new ArrayList<>();
@@ -235,15 +233,14 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
 		showNotification("Market Phase");
 		index.clear();
-		numberflag=true;
+		numberflag=-1;
 		ask = new QuestionFrame(this, n, language);
 		SwingUtilities.invokeLater(ask);
-		while(index.isEmpty()){
+		while(numberflag<0){
 			//wait button
 		}
 		ask.close();
-		numberflag=false;
-		return index.get(0);
+		return numberflag;
 	}
 
 	@Override
@@ -333,7 +330,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(!orderTemp.isEmpty()){
 			marketCheck(e);
 		}
-		else if(numberflag){
+		else if(numberflag<0){
 			numberCheck(e);
 		}
 		else {
@@ -430,7 +427,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	private void numberCheck(ActionEvent e){
-		index.add(Integer.parseInt(e.getActionCommand()));
+		numberflag=Integer.parseInt(e.getActionCommand());
 	}
 	
 	
