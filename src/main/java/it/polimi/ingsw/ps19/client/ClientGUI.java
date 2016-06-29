@@ -79,6 +79,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public synchronized ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		index.clear();
 		window.getFrame().getInfobox().getBoxes().get(0).enableActionType();
+		window.getFrame().getInfobox().getBoxes().get(0).setListerner(this);
 		while(index.isEmpty()){
 			//wait button
 		}
@@ -240,8 +241,8 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		while(index.isEmpty()){
 			//wait button
 		}
-		numberflag=false;
 		ask.close();
+		numberflag=false;
 		return index.get(0);
 	}
 
@@ -295,6 +296,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		index.clear();
 		if(nullCheck(e)){
 			return;
 		}
@@ -418,12 +420,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	private void marketCheck(ActionEvent e){
-		for(Order o : orderTemp){
-			if(e.getActionCommand().equals(language.getString(o))){
-				index.add(orderTemp.indexOf(o));
-			}
-		}
+		index.add(Integer.parseInt(e.getActionCommand()));
 	}
+	
 	
 	private void textCheck() {
 		stringTemp = ask.getInput().getText();
