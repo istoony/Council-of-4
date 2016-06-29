@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,6 +14,7 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.ps19.exceptions.IllegalFileException;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
 public class NobilityPath implements Serializable
@@ -65,23 +67,6 @@ public class NobilityPath implements Serializable
 	{
 		return nobility.get(key);
 	}
-	@Override
-	public String toString() 
-	{
-		String s = "\n------------";
-		for (int i = 0; i <= this.getMaxKey(); i++) 
-		{
-			s = s + "\nposition: " + i + "\n";
-			if(nobility.get(i) != null)
-			{
-				for (Bonus b : nobility.get(i)) 
-				{
-					s = s + " -----bonus: " + b + "\n";
-				}
-			}
-		}
-		return s;
-	}
 	
 	public int getMaxKey(){
 		int max=0;
@@ -96,8 +81,17 @@ public class NobilityPath implements Serializable
 	/**
 	 * @return the nobility
 	 */
-	public Map<Integer, List<Bonus>> getNobility() {
-		return nobility;
+	public Map<Integer, List<Bonus>> getNobility() 
+	{
+		Map<Integer, List<Bonus>> clone = new HashMap<>();
+		for(Entry<Integer, List<Bonus>> entry : nobility.entrySet())
+		{
+			List<Bonus> cloneList = null;
+			if(entry.getValue() != null && entry.getValue().isEmpty())
+				cloneList = Costants.clone(entry.getValue());
+			clone.put(entry.getKey(), cloneList);
+		}
+		return clone;
 	}
 	
 		
