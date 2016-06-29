@@ -38,7 +38,7 @@ public class ActionTypeChooserPanel extends JPanel{
 	}
 	
 	protected void setListener(ClientGUI al){
-		mainButton.setActionCommand(ClientGUI.getFastActionCommand());
+		mainButton.setActionCommand(ClientGUI.getMainActionCommand());
 		mainButton.addActionListener(al);
 		fastButton.setActionCommand(ClientGUI.getFastActionCommand());
 		fastButton.addActionListener(al);
