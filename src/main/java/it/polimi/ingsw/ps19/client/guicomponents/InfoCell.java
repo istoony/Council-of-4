@@ -206,9 +206,9 @@ public class InfoCell extends JPanel implements ActionListener{
 		for(int i = 0; i <= p.getMaxKey(); i++){
 			String str = INDENTATION;
 			pos = new JLabel(INDENTATION+i);
-			if(p.getNobility().get(i)!=null){
-				for(Bonus b : p.getNobility().get(i)){
-					str += language.getString(b)+", ";
+			if(p.getBonusByPosition(i)!=null){
+				for(Bonus b : p.getBonusByPosition(i)){
+					str = str.concat(language.getString(b) + ", ");
 				}
 				title = new JLabel(str);
 			}

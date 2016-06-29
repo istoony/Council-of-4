@@ -412,21 +412,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public int getPrice() throws InvalidInsertionException 
 	{
-		int number;
-		writeln(language.setPrice + ":");
-		try
-		{
-			String s = read();
-			number = Integer.parseInt(s);
-			if(number < 0)
-				throw new IOException();
-		}catch(IOException | NumberFormatException e)
-		{
-			writeln(language.invalidInsertion);
-			log.log(Level.SEVERE, e.toString(), e);
-			throw new InvalidInsertionException();
-		}
-		return number;
+		return getInt(language.setPrice);
 	}
 
 	@Override
@@ -482,7 +468,7 @@ public class ClientCLI extends ClientUI
 	public int getInt(String title) throws InvalidInsertionException
 	{
 		int number;
-		showNotification(title);
+		showNotification(title + ": ");
 		try 
 		{
 			String s = read();

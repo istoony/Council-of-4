@@ -74,7 +74,11 @@ public class MarketSell extends ClientAction
 			}while(chosenCard != null);
 		}
 		if(!(numberOfHelpers == 0 && sellableBusiness.isEmpty() && sellablePolitics.isEmpty()))
+		{
 			price = userInterface.getPrice();
+			if(price < 0)
+				throw new InvalidInsertionException();
+		}
 		else 
 			empty = true;
 		return buildMessage();
