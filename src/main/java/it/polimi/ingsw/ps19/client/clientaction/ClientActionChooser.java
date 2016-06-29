@@ -6,6 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.language.Language;
+import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 
 /**
  * Class that rapresent a type of action
@@ -31,8 +32,9 @@ public abstract class ClientActionChooser
 	 * Makes the user choose one action from the ones available in the class
 	 * @param userInterface
 	 * @return clientaction
+	 * @throws InvalidInsertionException 
 	 */
-	public ClientAction getAction(ClientUI userInterface)
+	public ClientAction getAction(ClientUI userInterface) throws InvalidInsertionException
 	{
 		return userInterface.getAction(this.possibleActions());
 	}

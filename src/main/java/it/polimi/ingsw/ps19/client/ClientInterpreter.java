@@ -106,6 +106,7 @@ public class ClientInterpreter extends Observable implements Observer
 						valid = true;
 					} catch (InvalidInsertionException e) 
 					{
+						userInterface.showNotification(userInterface.getLanguage().invalidInsertion);
 						ClientLogger.log.log(Level.SEVERE, e.toString(), e);
 						valid = false;
 					}

@@ -37,8 +37,9 @@ public abstract class ClientUI
 	 * Makes the user choose an action to perform from a list
 	 * @param actions: list of possible actions
 	 * @return chose action
+	 * @throws InvalidInsertionException 
 	 */
-	public abstract ClientAction getAction(List<ClientAction> actions);
+	public abstract ClientAction getAction(List<ClientAction> actions) throws InvalidInsertionException;
 	
 	/**
 	 * Makes the user choose a region from all the possible regions

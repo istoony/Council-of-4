@@ -122,36 +122,15 @@ public class ClientCLI extends ClientUI
 	}
 
 	@Override
-	public ClientAction getAction(List<ClientAction> actionList) 
+	public ClientAction getAction(List<ClientAction> actionList) throws InvalidInsertionException
 	{
-		boolean valid = false;
 		ClientAction action = null;
-		int i = 0;
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
 			strings.add(language.getString(a));
-		while(!valid)
-		{
-			writeln(language.chooseActionTitle + ":");
-			try 
-			{
-				int index = getValues(strings);
-				action = actionList.get(index);
-				valid = true;
-			} catch (InvalidInsertionException e) 
-			{
-				valid = false;
-				showNotification(language.invalidInsertion);
-				log.log(Level.SEVERE, e.toString(), e);
-				strings.clear();
-			}
-			finally
-			{
-				i++;
-				if(i >= ClientConstants.MAX_INPUT_ERRORS)
-				valid = true;
-			}
-		}
+		writeln(language.chooseActionTitle + ":");
+		int index = getValues(strings);
+		action = actionList.get(index);
 		return action;
 	}
 
@@ -218,17 +197,25 @@ public class ClientCLI extends ClientUI
 			throw new InvalidInsertionException();
 		try
 		{
-			write("(0 = " + strings.get(0));
+			if(strings.get(0).contains("\n"))
+				write("\t0 = " + strings.get(0));
+			else
+				write("(0 = " + strings.get(0));
 			for(i = 1; i < strings.size(); i++)
-				write(", " + i + " = " + strings.get(i));
-			writeln(")");
+			{
+				if(strings.get(0).contains("\n"))
+					write("\t" + i + " = " + strings.get(i));
+				else
+					write(", " + i + " = " + strings.get(i));
+			}
+			if(!strings.get(0).contains("\n"))
+				writeln(")");
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln(language.invalidInsertion);
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}

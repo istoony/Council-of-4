@@ -56,7 +56,7 @@ public class MarketSell extends ClientAction
 					businessToSell.add(card);
 					sellableBusiness.remove(card);
 				}
-			}while(card != null);
+			}while(card != null && sellableBusiness.size() <= 1);
 		}
 		List<PoliticsCard> sellablePolitics = model.getMyPlayer().getPoliticcard();
 		if(!sellablePolitics.isEmpty())
@@ -71,7 +71,7 @@ public class MarketSell extends ClientAction
 					politicToSell.add(chosenCard.getColor());
 					sellablePolitics.remove(chosenCard);
 				}
-			}while(chosenCard != null);
+			}while(chosenCard != null && sellablePolitics.size() <= 1);
 		}
 		if(!(numberOfHelpers == 0 && sellableBusiness.isEmpty() && sellablePolitics.isEmpty()))
 		{
