@@ -252,7 +252,7 @@ public abstract class Language
 				s = s.concat(", ");
 			}
 		}
-		s += "]\n";
+		s += "]";
 		return s;
 	}
 	

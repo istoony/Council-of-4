@@ -167,7 +167,7 @@ public class ClientCLI extends ClientUI
 		writeln(language.chooseBusinessCardTitle + ":");
 		List<String> strings = new ArrayList<>();
 		for(BusinessCard card : cards)
-			strings.add(language.getString(card));
+			strings.add(language.getString(card) + "\n");
 		int index = getValues(strings);
 		return cards.get(index);
 	}
@@ -218,10 +218,10 @@ public class ClientCLI extends ClientUI
 			throw new InvalidInsertionException();
 		try
 		{
-			write("(");
-			for(i = 0; i < strings.size()-1; i++)
-				write(i + " = " + strings.get(i) + ", ");
-			writeln(i + " = " + strings.get(i) + ")");
+			write("(0 = " + strings.get(0));
+			for(i = 1; i < strings.size(); i++)
+				write(", " + i + " = " + strings.get(i));
+			writeln(")");
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
