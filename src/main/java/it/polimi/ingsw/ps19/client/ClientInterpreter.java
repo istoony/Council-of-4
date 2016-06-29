@@ -64,8 +64,7 @@ public class ClientInterpreter extends Observable implements Observer
 	{
 		if(arg == null)
 		{
-			userInterface.showNotification(userInterface.getLanguage().serverQuits);
-			userInterface.showNotification(userInterface.getLanguage().killClient);
+			userInterface.showNotification(userInterface.getLanguage().serverQuits + "\n" + userInterface.getLanguage().killClient);
 			System.exit(0);
 			return;
 		}

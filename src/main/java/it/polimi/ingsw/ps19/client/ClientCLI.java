@@ -485,8 +485,8 @@ public class ClientCLI extends ClientUI
 	{
 		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
 		for(Player p : players)
-			s = s.concat(getString(p));
-		s += "\n\n" + language.result + ": " + result;
+			s = s.concat(getString(p) + "\n");
+		s += "\n" + language.result + ": " + result;
 		showNotification(s);
 	}
 }

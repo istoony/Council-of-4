@@ -40,7 +40,7 @@ public class English extends Language
 		useStdPort = invalidInsertion + "trying with standard port";
 		connSuccess = "Connection successful";
 		connInsucces = "Connection unsuccessful";
-		killClient = connInsucces + "! The program will now close";
+		killClient = "The program will now close";
 		waiting = "Trying to connect...";
 		socketCreated = "Socket created";
 		serverQuits = "Server has quitted!";

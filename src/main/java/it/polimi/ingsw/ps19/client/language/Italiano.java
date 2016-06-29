@@ -41,7 +41,7 @@ public final class Italiano extends Language
 		useStdPort = invalidInsertion + " tentativo con porta di default";
 		connSuccess = "La connessione è avvenuta con successo!";
 		connInsucces = "La connessione non ha avuto successo";
-		killClient = connInsucces + " Il programma si chiude";
+		killClient = "Il programma si chiude";
 		waiting = "Connessione in corso...";
 		socketCreated = "socket creato";
 		serverQuits = "il server è stato disconnesso!";
@@ -90,10 +90,10 @@ public final class Italiano extends Language
 		chooseActionTitle = "scegli un azione";
 		chooseRegionTitle = "scegli la regione";
 		chooseBalconyTitle = "scegli il balcone";
-		choosePoliticCardTitle = "scegli la carta politica";
+		choosePoliticCardTitle = "scegli una carta politica";
 		chooseBusinessCardTitle = "scegli la tessera permesso";
 		chooseCityTitle = "scegli la città";
-		chooseColor = "scegli color";
+		chooseColor = "scegli un colore";
 				
 		//market
 		howManyHelpersToSell = "quanti " + helpers + " vuoi vendere?";

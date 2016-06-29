@@ -67,7 +67,7 @@ public class ClientSocketManager extends ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			userInterface.showNotification(userInterface.getLanguage().killClient);
+			userInterface.showNotification(userInterface.getLanguage().connInsucces + "!\n" + userInterface.getLanguage().killClient);
 			System.exit(0);
 		}
 		startClient();

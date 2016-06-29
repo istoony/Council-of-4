@@ -306,11 +306,11 @@ public abstract class Language
 	{
 		String s = nothing;
 		if(r.equals(RegionType.PLAIN))
-			s = plain;
+			s = plain.toUpperCase();
 		else if(r.equals(RegionType.HILL))
-			s = hill;
+			s = hill.toUpperCase();
 		else if(r.equals(RegionType.MOUNTAIN))
-			s = mountain;
+			s = mountain.toUpperCase();
 		return s;
 	}
 }
