@@ -1,6 +1,5 @@
 package it.polimi.ingsw.ps19.client.clientmodel;
 
-import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
@@ -67,13 +66,6 @@ public interface ReplyVisitor
 	 * @return
 	 */
 	public ClientUpdate display(EndTurnReply message);
-	
-	/**
-	 * return the proper ClientUpdate wrt the message
-	 * @param message
-	 * @return
-	 */
-	public ClientUpdate display(ChangeKingPositionReply message);
 	
 	public ClientUpdate display(TimeToMarketReply message);
 	

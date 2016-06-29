@@ -48,11 +48,11 @@ public class GeneralBonus implements Bonus {
 	{
 		int pointsR=0;
 		int pointsC=0;
-		for(List<City> citylist : regionsBonus)
+		for(int i = 0; i < regionsBonus.size(); i++)
 		{
-			if(p.getMyEmporia().containsAll(citylist))
+			if(p.getMyEmporia().containsAll(regionsBonus.get(i)))
 			{
-				regionsBonus.remove(regionsBonus.indexOf(citylist));
+				regionsBonus.remove(regionsBonus.indexOf(regionsBonus.get(i)));
 				pointsR += singleRegionBonus;
 				if(pointsR>0)
 					pointsR += this.askKingBonus();

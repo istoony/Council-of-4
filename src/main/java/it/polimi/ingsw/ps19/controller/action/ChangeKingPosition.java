@@ -5,7 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.controller.support.SupportMethod;
-import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
+import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
@@ -127,8 +127,9 @@ public class ChangeKingPosition implements Action{
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		return new ChangeKingPositionReply(model.getCurrentState().getPlayerTurnId(), result, 
-				model.getPlayer(), model.getMap().getKing());
+		return new ElectCouncillorReply(model.getCurrentState().getPlayerTurnId(),
+				result, model.getPlayer(), model.getMap().getRegionList(),
+				model.getMap().getKing(), model.getMap().getAvailableCouncillor());
 	}
 
 }

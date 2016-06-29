@@ -1,6 +1,5 @@
 package it.polimi.ingsw.ps19.client.clientmodel;
 
-import it.polimi.ingsw.ps19.message.replies.ChangeKingPositionReply;
 import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.DrawBusinessCardReply;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
@@ -60,12 +59,6 @@ public class ReplyVisitorImpl implements ReplyVisitor
 		return new EndTurnUpdate(message.getActivePlayer(), message.getPlayer());
 	}
 	
-	@Override
-	public ClientUpdate display(ChangeKingPositionReply message) 
-	{
-		return new ChangeKingPositionUpdate(message.getPlayer(), message.getKing(), 
-				message.getResult(), message.getActivePlayer());
-	}
 	@Override
 	public ClientUpdate display(TimeToMarketReply message) 
 	{
