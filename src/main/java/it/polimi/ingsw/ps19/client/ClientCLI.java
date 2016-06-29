@@ -300,6 +300,21 @@ public class ClientCLI extends ClientUI
 			s = s.concat(getString(p));
 			s = s.concat("\n\n");
 		}
+		s += language.nobilityPath.toUpperCase() + ":\n";
+		for(int i = 0; i <= model.getNobilitypath().getMaxKey(); i++)
+		{
+			s = s.concat(i + ": [");
+			if(model.getNobilitypath().getBonusByPosition(i) == null || model.getNobilitypath().getBonusByPosition(i).isEmpty())
+				s = s.concat("0");
+			else
+			{
+				s = s.concat(language.getString(model.getNobilitypath().getBonusByPosition(i).get(0)));
+				for(int j = 1; j < model.getNobilitypath().getBonusByPosition(i).size(); j++)
+					s = s.concat(", " + language.getString(model.getNobilitypath().getBonusByPosition(i).get(j)));
+			}
+			s = s.concat("]\n");
+		}
+		s += "\n";
 		s += language.result + ": " + model.getResult();
 		s += "\n\n" + language.activePlayerId + ": " + model.getActiveplayer();
 		s += "\n--------------------------------------\n";

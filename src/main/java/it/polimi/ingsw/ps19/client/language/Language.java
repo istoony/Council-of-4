@@ -98,6 +98,7 @@ public abstract class Language
 	public String noEmporia;
 	public String emporiaOfPlayers;
 	public String map;
+	public String nobilityPath;
 	
 	//players
 	public String player;

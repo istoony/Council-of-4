@@ -69,6 +69,7 @@ public final class Italiano extends Language
 		noEmporia = "numero di empori";
 		emporiaOfPlayers = "empori dei giocatori";
 		map = "mappa";
+		nobilityPath = "Percorso Nobiltà";
 		
 		//players
 		player = "giocatore";

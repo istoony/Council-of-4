@@ -68,7 +68,8 @@ public class English extends Language
 		noEmporia = "number of emporia";
 		emporiaOfPlayers = "emporia of players";
 		map = "map";
-	
+		nobilityPath = "Nobility Path";
+		
 		//players
 		player = "player";
 		numEmporiaLeft = "number of emporia left";

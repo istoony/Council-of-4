@@ -53,7 +53,7 @@ public class ServerManager
 			{
 				maxPlayers = serverCLI.getInt(Language.SET_MAX_P);
 				valid = true;
-				if(maxPlayers < 1)
+				if(maxPlayers < 2)
 					valid = false;
 			}catch(InvalidInsertionException e)
 			{
