@@ -201,10 +201,9 @@ public abstract class Language
 	public String getString(Balcony b)
 	{
 		String s = balcony + ": [";
-		for(Color c : b.getCouncilcolor())
-		{
-			s = s.concat(getString(c) + ", ");
-		}
+		s += getString(b.getCouncilcolor().get(0));
+		for(int i = 1; i < b.getCouncilcolor().size(); i++)
+			s = s.concat(", " + getString(b.getCouncilcolor().get(i)));
 		s += "]\n";
 		return s;
 	}
@@ -234,25 +233,21 @@ public abstract class Language
 	{
 		if(card == null)
 			return nothing;
-		String s = "[";
-		s = s.concat(cities + ": ");
+		String s = cities.toUpperCase() + ": ";
 		for(City city: card.getCity())
 		{
 			s = s.concat(getString(city));
 			s = s.concat(", ");
 		}
-		s += bonuses + ": ";
+		s += bonuses.toUpperCase() + ": ";
 		if(card.getBonus().isEmpty())
 			s += "0";
 		else
 		{
-			for(Bonus b : card.getBonus())
-			{
-				s = s.concat(getString(b));
-				s = s.concat(", ");
-			}
+			s = s.concat(getString(card.getBonus().get(0)));
+			for(int i = 1; i <card.getBonus().size(); i++)
+				s = s.concat(", " + getString(card.getBonus().get(i)));
 		}
-		s += "]";
 		return s;
 	}
 	

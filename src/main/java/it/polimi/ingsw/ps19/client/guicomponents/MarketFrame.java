@@ -44,14 +44,25 @@ public class MarketFrame extends JFrame implements Runnable{
 		addButtons();
 		}
 		
-	private void createButtons(Order order, ClientGUI c, int code){
-		JButton j = new JButton(((Integer)order.getPrice()).toString());
-		j.setToolTipText(language.getString(order));
-		j.setActionCommand(((Integer)code).toString());
-		j.addActionListener(c);
-		j.setEnabled(true);
-		j.setVisible(true);
-		choices.add(j);
+	private void createButtons(Order order, ClientGUI c, int code){	
+		try{
+			JButton j = new JButton(((Integer)order.getPrice()).toString());
+			j.setToolTipText(language.getString(order));
+			j.setActionCommand(((Integer)code).toString());
+			j.addActionListener(c);
+			j.setEnabled(true);
+			j.setVisible(true);
+			choices.add(j);
+		}
+		catch(NullPointerException e){
+			JButton j = new JButton(language.nothing);
+			j.setToolTipText(language.nothing);
+			j.setActionCommand(language.nothing);
+			j.addActionListener(c);
+			j.setEnabled(true);
+			j.setVisible(true);
+			choices.add(j);
+		}
 	}
 	
 	

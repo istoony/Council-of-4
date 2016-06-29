@@ -21,7 +21,6 @@ import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionExceptio
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.Player;
-import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
@@ -255,20 +254,20 @@ public class ClientCLI extends ClientUI
 			s += " 0, ";
 		else
 		{
-			s += "(";
-			for(Bonus bonus : city.getBonus())
-				s = s.concat(bonus.toString(language) + ", ");
+			s = s.concat("(" + city.getBonus().get(0).toString(language));
+			for(int i = 1; i < city.getBonus().size(); i++)
+				s = s.concat(", " + city.getBonus().get(i).toString(language));
 			s += ")";
 		}
 		if(city.getEmporia().isEmpty())
 			s += language.noEmporia;
 		else
 		{
-			s += language.emporiaOfPlayers + ": ";
-			for(Integer playerId : city.getEmporia())
-				s = s.concat(playerId.toString() + ", ");
+			s += language.emporiaOfPlayers + ": " + city.getEmporia().get(0);
+			for(int i = 1; i < city.getEmporia().size(); i++)
+				s = s.concat(", " + city.getEmporia().get(i).toString());
+			s += ")";
 		}
-		s += ")";
 		return s;
 	}
 	
@@ -324,9 +323,9 @@ public class ClientCLI extends ClientUI
 			s += 0 + "\n";
 		else
 		{
-			s += "[";
-			for(PoliticsCard card : p.getPoliticcard())
-				s = s.concat(language.getString(card) + ", ");
+			s += "[" + p.getPoliticcard().get(0);
+			for(int i = 1; i < p.getPoliticcard().size(); i++)
+				s = s.concat(", " + language.getString(p.getPoliticcard().get(i)));
 			s += "]\n";
 		}
 		s += language.freeBusiness + ":";
@@ -334,18 +333,16 @@ public class ClientCLI extends ClientUI
 			s += 0 + "\n";
 		else
 		{
-			s += "\n";
 			for(BusinessCard card : p.getFreebusinesscard())
-				s = s.concat(language.getString(card));
+				s = s.concat("\n\t[" + language.getString(card) + "]");
 		}
-		s += language.usedBusiness + ":";
+		s += "\n" + language.usedBusiness + ":";
 		if(p.getUsedbusinesscard().isEmpty())
 			s += 0 + "\n";
 		else
 		{
-			s += "\n";
 			for(BusinessCard card : p.getUsedbusinesscard())
-				s = s.concat(language.getString(card));
+				s = s.concat("\n\t[" + language.getString(card) + "]");
 		}
 		return s;
 	}
@@ -371,7 +368,7 @@ public class ClientCLI extends ClientUI
 		s += language.businessCards + ":\n";
 		s += "\t" + language.firstCard + ": ";
 		s += language.getString(region.getFirstcard());
-		s += "\t" + language.secondCard + ": ";
+		s += "\n\t" + language.secondCard + ": ";
 		s += language.getString(region.getSecondcard());
 		return s;
 	}

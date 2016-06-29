@@ -39,7 +39,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private MarketFrame market;
 	private MarketShow showmarket;
 	
-	private boolean marketflag=false;
 	private boolean numberflag=false;
 	
 	
@@ -50,7 +49,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	volatile List<BusinessCard> businessTemp = new ArrayList<>();
 	volatile List<City> cityTemp = new ArrayList<>();
 	volatile Map<City, Integer> mapTemp = new HashMap<>();
+	volatile List<Order> orderTemp = new ArrayList<>();
 	volatile String stringTemp = new String();
+	volatile int lastindex;
 	
 	static volatile List<Integer> index;
 
@@ -78,8 +79,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public synchronized ClientActionChooser requestActionType(List<ClientActionChooser> actions) {
 		index.clear();
 		window.getFrame().getInfobox().getBoxes().get(0).enableActionType();
+		window.getFrame().getInfobox().getBoxes().get(0).setListerner(this);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).disableActionType();
 		return actions.get(index.get(0));
@@ -94,7 +96,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		window.getFrame().revalidate();
 		window.getFrame().repaint();
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		window.getFrame().getInfobox().getBoxes().get(0).getActions().disableButtons();
 		actionTemp.clear();
@@ -108,7 +110,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		ask.close();
 		regionTemp.clear();
@@ -119,10 +121,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException {
 		index.clear();
 		colorTemp.addAll(validColors);
+		lastindex = colorTemp.size()-2;
 		ask = new QuestionFrame(this, validColors, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		ask.close();
 		colorTemp.clear();
@@ -136,7 +139,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		ask.close();
 		regionTemp.clear();
@@ -169,10 +172,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException {
 		index.clear();
 		businessTemp.addAll(cards);
+		lastindex = businessTemp.size()-1;
 		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		businessTemp.clear();
 		ask.close();
@@ -183,10 +187,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException {
 		index.clear();
 		politicTemp.addAll(cards);
+		lastindex = politicTemp.size()-1;
 		ask = new QuestionFrame(this, cards, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		politicTemp.clear();
 		ask.close();
@@ -200,7 +205,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, cities, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		cityTemp.clear();
 		ask.close();
@@ -214,7 +219,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, citiesECost, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		for(Entry<City, Integer> entry: citiesECost.entrySet()){
 			if(entry.getKey().getId()==index.get(0)){
@@ -231,15 +236,13 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		showNotification("Market Phase");
 		index.clear();
 		numberflag=true;
-		pop.addMessage("here ok");
 		ask = new QuestionFrame(this, n, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
-		numberflag=false;
-		pop.addMessage("here okkk");
 		ask.close();
+		numberflag=false;
 		return index.get(0);
 	}
 
@@ -249,7 +252,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, "", true, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		ask.close();
 		return index.get(0);
@@ -262,7 +265,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		ask = new QuestionFrame(this, title, false, language);
 		SwingUtilities.invokeLater(ask);
 		while(index.isEmpty()){
-
+			//wait button
 		}
 		String ret = stringTemp;
 		stringTemp = new String();
@@ -273,14 +276,15 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public Order getOrder(List<Order> orders) throws InvalidInsertionException {
 		index.clear();
+		orderTemp.addAll(orders);
+		lastindex=orders.size()-1;
 		market = new MarketFrame(orders, this, language);
 		SwingUtilities.invokeLater(market);
-		marketflag=true;
 		while(index.isEmpty()){
-			
+			//wait button
 		}
 		market.close();
-		marketflag=false;
+		orderTemp.clear();
 		return orders.get(index.get(0));
 	}
 	
@@ -288,11 +292,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public void showMarket(Market market) {
 		showmarket = new MarketShow(market, language);
 		SwingUtilities.invokeLater(showmarket);
-		return;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		index.clear();
 		if(nullCheck(e)){
 			return;
 		}
@@ -326,7 +330,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(!stringTemp.isEmpty()){
 			textCheck();
 		}
-		else if(marketflag){
+		else if(!orderTemp.isEmpty()){
 			marketCheck(e);
 		}
 		else if(numberflag){
@@ -363,7 +367,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private boolean nullCheck(ActionEvent e){
 		if(e.getActionCommand().equals(language.nothing)){
-			index.add(0);
+			index.add(lastindex);
 			return true;
 		}
 		return false;
@@ -418,6 +422,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private void marketCheck(ActionEvent e){
 		index.add(Integer.parseInt(e.getActionCommand()));
 	}
+	
 	
 	private void textCheck() {
 		stringTemp = ask.getInput().getText();
