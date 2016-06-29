@@ -1,9 +1,12 @@
 package it.polimi.ingsw.ps19.message.replies;
 
+import java.util.List;
+
 import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
+import it.polimi.ingsw.ps19.model.Player;
 
-public class PlayerDisconnectedReply extends Reply 
+public class PlayerDisconnectedReply extends SendFullPlayerReply
 {
 
 	/**
@@ -13,9 +16,9 @@ public class PlayerDisconnectedReply extends Reply
 	
 	boolean newTurn;
 	
-	public PlayerDisconnectedReply(int activePlayer, String result, boolean newTurn) 
+	public PlayerDisconnectedReply(int activePlayer, List<Player> player, String result, boolean newTurn) 
 	{
-		super(activePlayer, result);
+		super(activePlayer, result, player);
 		this.newTurn =  newTurn;
 	}
 	

@@ -130,7 +130,7 @@ public class GameController implements Observer
 		{
 			for (Player player : model.getPlayer())
 				if((player.getMainActionCounter() != 0 || player.getFastActionCounter() !=0) &&
-						WaitingRoom.isConnected(player.getId()))
+						model.getCurrentState().isConnected(player.getId()))
 				{
 					model.getCurrentState().setPlayerTurnId(
 							model.getCurrentState().giveNextCorrectId(
@@ -167,15 +167,24 @@ public class GameController implements Observer
 	
 	private void checkReconnectedPlayer()
 	{
-		int idReconnectedPlayer = checkDisconnectedPlayer();
-		if(idReconnectedPlayer > 0)
-		{
-			Reply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
-					model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
-					model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
-			game.setId(idReconnectedPlayer);
-			model.sendMessage(game);
-		}
+			int idReconnectedPlayer = checkDisconnectedPlayer();
+			if(idReconnectedPlayer > 0)
+			{
+				model.getPlayerById(idReconnectedPlayer).setMainActionCounter(0);
+				model.getPlayerById(idReconnectedPlayer).setFastActionCounter(0);
+				
+				SendFullPlayerReply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
+						model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
+						model.getMap().getAvailableCouncillor(), model.getMap().getNobilityPath());
+				game.setId(idReconnectedPlayer);
+				model.sendMessage(game);
+				if(model.getCurrentState().isTimeToMarket())
+				{
+					TimeToMarketReply r = new TimeToMarketReply(Costants.NO_ACTIVE_PLAYER, ActionMessages.TIME_TO_MARKET);
+					r.setId(idReconnectedPlayer);			//send to all player
+					model.sendMessage(r);
+				}
+			}
 	}
 	
 	/**
@@ -219,7 +228,7 @@ public class GameController implements Observer
 	{
 		for (Player p : model.getPlayer()) 
 			if((p.getMainActionCounter()!=0 || p.getFastActionCounter()!=0) && 
-					WaitingRoom.isConnected(p.getId()))
+					model.getCurrentState().isConnected(p.getId()))
 			{
 				model.getCurrentState().setTimeToMarket(false);
 				model.getCurrentState().setTimeToMarketSended(false);

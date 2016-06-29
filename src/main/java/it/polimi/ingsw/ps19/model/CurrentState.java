@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import it.polimi.ingsw.ps19.model.parameter.Costants;
-import it.polimi.ingsw.ps19.server.WaitingRoom;
 
 public class CurrentState 
 {
@@ -86,7 +85,7 @@ public class CurrentState
 		int next = playerTurnId;
 		if(playerTurnId == i)
 			next= playerIdList.get((playerIdList.indexOf(i) + 1) % numberOfPlayer);
-		while(!WaitingRoom.isConnected(next))
+		while(!isConnected(next))
 			next= playerIdList.get((playerIdList.indexOf(next) + 1) % numberOfPlayer);
 		return next;
 	}
@@ -96,7 +95,7 @@ public class CurrentState
 		int randomNumb = Costants.RANDOM_NUMBER.nextInt(numberOfPlayer);
 	
 		int next= playerIdList.get(randomNumb);
-		while(!WaitingRoom.isConnected(next))
+		while(!isConnected(next))
 		{
 			randomNumb++;
 			next= playerIdList.get((randomNumb) % numberOfPlayer);
@@ -108,7 +107,7 @@ public class CurrentState
 	{
 		int n = 0;
 		for (Integer i : playerIdList)
-			if(!WaitingRoom.isConnected(i))
+			if(!isConnected(i))
 				n++;
 		return n;
 	} 
@@ -125,7 +124,7 @@ public class CurrentState
 	public boolean isTimeToEndMarket() 
 	{
 		for (Integer i : playerIdList)
-			if(!marketState.get(i) && WaitingRoom.isConnected(i))
+			if(!marketState.get(i) && isConnected(i))
 				return false;
 		return true;
 	}
@@ -139,7 +138,7 @@ public class CurrentState
 	{
 		int i = 0;
 		this.playerTurnId = playerIdList.get(i);
-		while(!WaitingRoom.isConnected(playerTurnId))
+		while(!isConnected(playerTurnId))
 			playerTurnId= playerIdList.get((i + 1) % numberOfPlayer);
 	}
 	
@@ -162,7 +161,15 @@ public class CurrentState
 	public List<Integer> getDisconnectedPlayersId() {
 		return Costants.clone(disconnectedPlayersId);
 	}
-	public void setLastTurn(Integer lastTurn) {
+	public boolean isConnected(int id)
+	{
+		for (Integer i : disconnectedPlayersId)
+			if(i == id)
+				return false;
+		return true;
+	}
+	public void setLastTurn(Integer lastTurn) 
+	{
 		this.lastTurn = lastTurn;
 	}
 	public Integer getLastTurn() {
