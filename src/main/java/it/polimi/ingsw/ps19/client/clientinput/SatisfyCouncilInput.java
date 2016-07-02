@@ -17,6 +17,8 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
  */
 public abstract class SatisfyCouncilInput extends ClientAction 
 {	
+	private int minimum = 0;
+	
 	protected List<RegionType> getAvailableRegions()
 	{
 		List<RegionType> availableRegions = new ArrayList<>();
@@ -36,8 +38,9 @@ public abstract class SatisfyCouncilInput extends ClientAction
 		return false;
 	}
 	
-	protected boolean kingAvailable()
+	protected boolean kingAvailable(int min)
 	{
+		minimum = min;
 		return isCouncilSatisfiable(model.getKing().getBalcony());
 	}
 	
@@ -155,7 +158,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	
 	private int getMinimumCardsToDraw()
 	{
-		int money = model.getMyPlayer().getMoney();
+		int money = model.getMyPlayer().getMoney() - minimum;
 		if(money >= 10)
 			return 1;
 		else if(money >= 7)

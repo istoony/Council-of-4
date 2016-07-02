@@ -3,6 +3,7 @@ package it.polimi.ingsw.ps19.client.clientinput;
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
@@ -34,7 +35,12 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 	@Override
 	public boolean isPossible() 
 	{
-		if(!getCities().isEmpty() && kingAvailable())
+		int min = 0;
+		Map<City, Integer> availableCities = getCities();
+		for(Entry<City, Integer> entry :  availableCities.entrySet())
+			if(entry.getValue() < min)
+				min = entry.getValue();
+		if(!getCities().isEmpty() && kingAvailable(min))
 			return true;
 		return false;
 	}
@@ -67,16 +73,22 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 					i++;
 			}
 		}
-		return allCities.stream().filter(c -> getCost(c) < model.getMyPlayer().getMoney() &&  c.getEmporia().size() < model.getMyPlayer().getHelpers()).collect(Collectors.toMap(c -> c, c -> getCost(c)));
-		/*
-		for(City c: allCities)
-		{
-			int moneyToMoveKing = Costants.JUMPCOST * (Costants.calculateShorterPath(model.getKing().getCurrentcity(), c, model.getRegions()).size() - 1);
-			if(	!(model.getMyPlayer().getMyEmporia().contains(c)) &&  c.getEmporia().size() < model.getMyPlayer().getHelpers() 
-				&&	moneyToMoveKing < model.getMyPlayer().getMoney())
-				availableCities.put(c, moneyToMoveKing);
-		}
-		*/
+		return allCities.stream().filter(c -> getCost(c) < (model.getMyPlayer().getMoney() - getSatisfyCost()) &&  c.getEmporia().size() < model.getMyPlayer().getHelpers()).collect(Collectors.toMap(c -> c, c -> getCost(c)));
+		
+	}
+	
+	private int getSatisfyCost()
+	{
+		if(colors == null || colors.isEmpty())
+			return 0;
+		int cost = 13;
+		cost -= (-3)*colors.size();
+		if(cost == 1)
+			cost = 0;
+		for(Color color : colors)
+			if((Color.decode(Costants.JOKERCOLOR)).equals(color))
+				cost++;	
+		return cost;
 	}
 	
 	private int getCost(City c)

@@ -221,7 +221,7 @@ public class English extends Language
 
 	@Override
 	public String getString(MoreMainAction input, int howMany) {
-		return "+ " + howMany + " " + main + "actions";
+		return "+ " + howMany + " " + main;
 	}
 
 	@Override

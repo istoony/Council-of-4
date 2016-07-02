@@ -39,14 +39,44 @@ public class ClientStarter
 		List<String> startNewGame = new ArrayList<>();
 		
 		boolean valid;
+		int uiIndex = 0;
+		int connIndex = 0;
+		int languageIndex = 0;
+		do{
+			try {
+				uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
+			} catch (InvalidInsertionException e) 
+			{
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				uiIndex = -1;
+			}
+		}while(uiIndex != 0 && uiIndex != 1);
+		
+		do{
+			try {
+ 				connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
+			} catch (InvalidInsertionException e) 
+			{
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				connIndex = -1;
+			}
+		}while(connIndex != 0 && connIndex != 1);
+		
+		do{
+			try {
+ 				languageIndex = ((ClientCLI)userInterface).getValues(languages);
+			} catch (InvalidInsertionException e) 
+			{
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				languageIndex = -1;
+			}
+		}while(languageIndex != 0 && languageIndex != 1);
+		
 		do
 		{
 			try 
 			{
 				valid = true;
-				int uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
- 				int connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
- 				int languageIndex = ((ClientCLI)userInterface).getValues(languages);
  				if(languageIndex == 0)
  				{
  					language = new Italiano();

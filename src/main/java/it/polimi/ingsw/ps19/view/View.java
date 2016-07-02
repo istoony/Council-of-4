@@ -51,12 +51,6 @@ public class View extends Observable implements Observer, Runnable
 	{
 		if(playerConnection.contains(n))
 		{
-			if(WaitingRoom.getConnection(n).getStatus() == ConnectionStatus.DISCONNECTED)
-			{
-				setChanged();
-				notifyObservers(new PlayerDisconnectedMessage(n));
-				return;
-			}
 			for (Integer playerIndex : playerConnection)
 			{
 				if(playerIndex == n)
