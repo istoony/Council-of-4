@@ -1,7 +1,7 @@
 /*
  * @author Andrea Milanta e ha la mamma puttana
  */
-package it.polimi.ingsw.ps19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientinput;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;

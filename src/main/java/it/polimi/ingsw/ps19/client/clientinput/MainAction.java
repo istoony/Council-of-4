@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientinput;
 
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.language.Language;

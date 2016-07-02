@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientinput;
 
 import java.util.ArrayList;
 import java.util.List;

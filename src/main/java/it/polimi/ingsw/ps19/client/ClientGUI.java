@@ -13,8 +13,9 @@ import java.util.logging.Level;
 
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
-import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+
+import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
+import it.polimi.ingsw.ps19.client.clientinput.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.guicomponents.MainWindow;
 import it.polimi.ingsw.ps19.client.guicomponents.MarketFrame;

@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
-import it.polimi.ingsw.ps19.client.clientaction.ClientActionChooser;
+import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
+import it.polimi.ingsw.ps19.client.clientinput.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
@@ -123,7 +123,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public ClientAction getAction(List<ClientAction> actionList) throws InvalidInsertionException
 	{
-		ClientAction action = null;
+		ClientAction action;
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
 			strings.add(language.getString(a));
@@ -240,8 +240,7 @@ public class ClientCLI extends ClientUI
 	{
 		if(in.ready())
 			in.readLine();
-		String s = in.readLine();
-		return s;
+		return in.readLine();
 	}
 	
 	private String getFullString(City city)
@@ -469,8 +468,11 @@ public class ClientCLI extends ClientUI
 	public void showWinner(List<Player> players, String result) 
 	{
 		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
+		players.forEach(p -> writeln(getString(p)));
+		/*
 		for(Player p : players)
 			s = s.concat(getString(p) + "\n");
+		*/
 		s += "\n" + language.result + ": " + result;
 		showNotification(s);
 	}

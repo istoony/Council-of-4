@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import it.polimi.ingsw.ps19.client.ClientGUI;
-import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
+import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
 import it.polimi.ingsw.ps19.client.language.Language;
 
 

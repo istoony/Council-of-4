@@ -1,16 +1,16 @@
 package it.polimi.ingsw.ps19.client.language;
 
-import it.polimi.ingsw.ps19.client.clientaction.BuildEmporiumInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuildWithKingInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyMainActionInput;
-import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
-import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
-import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.client.clientinput.BuildEmporiumInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuildWithKingInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyHelperInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyMainActionInput;
+import it.polimi.ingsw.ps19.client.clientinput.ElectCouncillorInputs;
+import it.polimi.ingsw.ps19.client.clientinput.EndTurnInput;
+import it.polimi.ingsw.ps19.client.clientinput.FastAction;
+import it.polimi.ingsw.ps19.client.clientinput.GetBusinessPermitInput;
+import it.polimi.ingsw.ps19.client.clientinput.MainAction;
+import it.polimi.ingsw.ps19.client.clientinput.MarketSell;
+import it.polimi.ingsw.ps19.client.clientinput.RedrawBusinessCardInput;
 import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
 import it.polimi.ingsw.ps19.model.bonus.DrawPoliticCard;
 import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
@@ -27,6 +27,8 @@ import it.polimi.ingsw.ps19.model.bonus.ReuseBusinessCardBonus;
  */
 public final class Italiano extends Language
 {
+	private static final long serialVersionUID = -531768609514819291L;
+
 	public Italiano()
 	{
 		//setup
@@ -44,7 +46,7 @@ public final class Italiano extends Language
 		killClient = "Il programma si chiude";
 		waiting = "Connessione in corso...";
 		socketCreated = "socket creato";
-		serverQuits = "il server è stato disconnesso!";
+		serverQuits = "La connessione è stata terminata!";
 		reconnected = "riconnesso al gioco!";
 		connPass = "La tua password di connessione è";
 		invalidObj = "Oggetto ricevuto non valido";

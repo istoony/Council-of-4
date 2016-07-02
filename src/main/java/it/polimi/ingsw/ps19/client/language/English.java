@@ -1,16 +1,16 @@
 package it.polimi.ingsw.ps19.client.language;
 
-import it.polimi.ingsw.ps19.client.clientaction.BuildEmporiumInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuildWithKingInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyMainActionInput;
-import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
-import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
-import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.client.clientinput.BuildEmporiumInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuildWithKingInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyHelperInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyMainActionInput;
+import it.polimi.ingsw.ps19.client.clientinput.ElectCouncillorInputs;
+import it.polimi.ingsw.ps19.client.clientinput.EndTurnInput;
+import it.polimi.ingsw.ps19.client.clientinput.FastAction;
+import it.polimi.ingsw.ps19.client.clientinput.GetBusinessPermitInput;
+import it.polimi.ingsw.ps19.client.clientinput.MainAction;
+import it.polimi.ingsw.ps19.client.clientinput.MarketSell;
+import it.polimi.ingsw.ps19.client.clientinput.RedrawBusinessCardInput;
 import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
 import it.polimi.ingsw.ps19.model.bonus.DrawPoliticCard;
 import it.polimi.ingsw.ps19.model.bonus.GeneralBonus;
@@ -27,6 +27,8 @@ import it.polimi.ingsw.ps19.model.bonus.ReuseBusinessCardBonus;
  */
 public class English extends Language 
 {
+	private static final long serialVersionUID = 6039022854625788953L;
+
 	public English()
 	{
 		//setup
@@ -43,7 +45,7 @@ public class English extends Language
 		killClient = "The program will now close";
 		waiting = "Trying to connect...";
 		socketCreated = "Socket created";
-		serverQuits = "Server has quitted!";
+		serverQuits = "Connection has quitted!";
 		reconnected = "Reconnected to the game!";
 		connPass = "Your connection password is";
 		invalidObj = "Invalid object received!";
@@ -163,7 +165,7 @@ public class English extends Language
 
 	@Override
 	public String getString(RedrawBusinessCardInput input) {
-		return "redraw business permits";
+		return "redraw " + businessCards;
 	}
 
 	@Override
@@ -173,7 +175,7 @@ public class English extends Language
 
 	@Override
 	public String getString(BuyMainActionInput input) {
-		return "buy an extra main action";
+		return "buy an extra " + main;
 	}
 
 	@Override

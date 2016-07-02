@@ -4,8 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
+import it.polimi.ingsw.ps19.client.clientinput.FastAction;
+import it.polimi.ingsw.ps19.client.clientinput.MainAction;
 import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitorImpl;
@@ -47,8 +47,10 @@ public class ClientInterpreter extends Observable implements Observer
 	private void loadInterpreter(Integer pId)
 	{
 		if(pId != null)
+		{
 			playerId = pId;
 			model = new ClientModel(pId);
+		}
 		if(loaded)
 			return;
 		visitor = new ReplyVisitorImpl();

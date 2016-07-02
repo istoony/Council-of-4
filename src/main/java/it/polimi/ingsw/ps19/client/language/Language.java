@@ -1,19 +1,20 @@
 package it.polimi.ingsw.ps19.client.language;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-import it.polimi.ingsw.ps19.client.clientaction.BuildEmporiumInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuildWithKingInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyHelperInputs;
-import it.polimi.ingsw.ps19.client.clientaction.BuyMainActionInput;
-import it.polimi.ingsw.ps19.client.clientaction.ClientAction;
-import it.polimi.ingsw.ps19.client.clientaction.ElectCouncillorInputs;
-import it.polimi.ingsw.ps19.client.clientaction.EndTurnInput;
-import it.polimi.ingsw.ps19.client.clientaction.FastAction;
-import it.polimi.ingsw.ps19.client.clientaction.GetBusinessPermitInput;
-import it.polimi.ingsw.ps19.client.clientaction.MainAction;
-import it.polimi.ingsw.ps19.client.clientaction.MarketSell;
-import it.polimi.ingsw.ps19.client.clientaction.RedrawBusinessCardInput;
+import it.polimi.ingsw.ps19.client.clientinput.BuildEmporiumInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuildWithKingInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyHelperInputs;
+import it.polimi.ingsw.ps19.client.clientinput.BuyMainActionInput;
+import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
+import it.polimi.ingsw.ps19.client.clientinput.ElectCouncillorInputs;
+import it.polimi.ingsw.ps19.client.clientinput.EndTurnInput;
+import it.polimi.ingsw.ps19.client.clientinput.FastAction;
+import it.polimi.ingsw.ps19.client.clientinput.GetBusinessPermitInput;
+import it.polimi.ingsw.ps19.client.clientinput.MainAction;
+import it.polimi.ingsw.ps19.client.clientinput.MarketSell;
+import it.polimi.ingsw.ps19.client.clientinput.RedrawBusinessCardInput;
 import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.DrawBusinessCard;
@@ -36,8 +37,10 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 /**
  * Class with string constants for language
  */
-public abstract class Language 
+public abstract class Language implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	//Server constants
 	public static final String ENGLISH = "English";
 	public static final String ITALIANO = "Italiano";

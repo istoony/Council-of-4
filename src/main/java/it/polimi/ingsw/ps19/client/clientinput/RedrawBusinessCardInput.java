@@ -1,22 +1,25 @@
-package it.polimi.ingsw.ps19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientinput;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.message.requests.BuyMainActionMessage;
+import it.polimi.ingsw.ps19.message.requests.RedrawBusinessCardMessage;
 import it.polimi.ingsw.ps19.message.requests.Request;
+import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 /**
- * Class that creates a new NewMainActionMessage from user inputs and local model
+ * Class that creates a new ReDraweBusinessCardMessage from user inputs and local model
  */
-public class BuyMainActionInput extends ClientAction 
+public class RedrawBusinessCardInput extends ClientAction 
 {
+	RegionType region;
+	
 	/**
 	 * Constructor
 	 * @param m
 	 */
-	public BuyMainActionInput(ClientModel m) 
+	public RedrawBusinessCardInput(ClientModel m)
 	{
 		model = m;
 	}
@@ -24,7 +27,7 @@ public class BuyMainActionInput extends ClientAction
 	@Override
 	public boolean isPossible() 
 	{
-		if(model.getMyPlayer().getHelpers() >= 3)
+		if(model.getMyPlayer().getHelpers() >= 1)
 			return true;
 		return false;
 	}
@@ -32,13 +35,14 @@ public class BuyMainActionInput extends ClientAction
 	@Override
 	public Request execute(ClientUI userInterface) throws InvalidInsertionException 
 	{
+		region = userInterface.getRegion();
 		return buildMessage();
 	}
 
 	@Override
 	protected Request buildMessage() 
 	{
-		return new BuyMainActionMessage();
+		return new RedrawBusinessCardMessage(region);
 	}
 
 	@Override
@@ -46,5 +50,5 @@ public class BuyMainActionInput extends ClientAction
 	{
 		return l.getString(this);
 	}
-
 }
+

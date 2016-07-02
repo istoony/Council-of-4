@@ -1,9 +1,9 @@
-package it.polimi.ingsw.ps19.client.clientaction;
+package it.polimi.ingsw.ps19.client.clientinput;
 
 import java.awt.Color;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
@@ -55,8 +55,20 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 	
 	private Map<City, Integer> getCities()
 	{
-		List<City> allCities = model.getAllCities();
-		Map<City, Integer> availableCities = new HashMap<>();
+		List<City> allCities = Costants.clone(model.getAllCities());
+		for(City city : model.getMyPlayer().getMyEmporia())
+		{
+			int i = 0;
+			while(i < allCities.size())
+			{
+				if(city.getId() == allCities.get(i).getId())
+					allCities.remove(i);
+				else
+					i++;
+			}
+		}
+		return allCities.stream().filter(c -> getCost(c) < model.getMyPlayer().getMoney() &&  c.getEmporia().size() < model.getMyPlayer().getHelpers()).collect(Collectors.toMap(c -> c, c -> getCost(c)));
+		/*
 		for(City c: allCities)
 		{
 			int moneyToMoveKing = Costants.JUMPCOST * (Costants.calculateShorterPath(model.getKing().getCurrentcity(), c, model.getRegions()).size() - 1);
@@ -64,11 +76,16 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 				&&	moneyToMoveKing < model.getMyPlayer().getMoney())
 				availableCities.put(c, moneyToMoveKing);
 		}
-		return availableCities;
+		*/
+	}
+	
+	private int getCost(City c)
+	{
+		return Costants.JUMPCOST * (Costants.calculateShorterPath(model.getKing().getCurrentcity(), c, model.getRegions()).size() - 1);
 	}
 
 	@Override
-	public String toString(Language l) 
+	public String toString(Language l)
 	{
 		return l.getString(this);
 	}
