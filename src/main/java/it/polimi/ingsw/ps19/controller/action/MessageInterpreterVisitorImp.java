@@ -3,7 +3,7 @@ package it.polimi.ingsw.ps19.controller.action;
 import java.awt.Color;
 import java.util.List;
 
-import it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCard;
+import it.polimi.ingsw.ps19.controller.action.bonus.BusinessCardOrCityBonus;
 import it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCardBonus;
 import it.polimi.ingsw.ps19.controller.action.serveraction.EndTurn;
 import it.polimi.ingsw.ps19.controller.action.serveraction.PlayerDisconnectedAction;

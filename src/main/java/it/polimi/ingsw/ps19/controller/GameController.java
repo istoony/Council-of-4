@@ -43,9 +43,9 @@ public class GameController implements Observer
 	 *
 	 * @param m the m
 	 */
-	public GameController(Model m) 
+	public GameController(Model model) 
 	{
-		model = m;
+		this.model = model;
 		drawStartingPoliticsCard();
 	}
 	
@@ -61,7 +61,8 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
-		checkReconnectedPlayer();
+		if(!model.getCurrentState().isTimeToMarket())
+			checkReconnectedPlayer();
 		
 		if(!(message instanceof Request))
 			return;
@@ -238,7 +239,7 @@ public class GameController implements Observer
 			}
 		model.getCurrentState().setTimeToMarket(true);
 		model.getCurrentState().setTimeToMarketSended(false);
-		reply.setActivePlayer(-1);
+		reply.setActivePlayer(model.getCurrentState().giveRandomTurn());
 	}
 	
 	/**
