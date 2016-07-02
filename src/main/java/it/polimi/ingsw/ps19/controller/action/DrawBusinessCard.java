@@ -64,6 +64,7 @@ public class DrawBusinessCard implements Action
 		SupportMethod.giveListOfBonus(model, player, selectedcard.getBonus());
 		
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
+		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
 	}
 
