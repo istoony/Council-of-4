@@ -71,9 +71,9 @@ public class MarketSell extends ClientAction
 					politicToSell.add(chosenCard.getColor());
 					sellablePolitics.remove(chosenCard);
 				}
-			}while(chosenCard != null && sellablePolitics.size() <= 1);
+			}while(chosenCard != null && sellablePolitics.size() > 1);
 		}
-		if(!(numberOfHelpers == 0 && sellableBusiness.isEmpty() && sellablePolitics.isEmpty()))
+		if(!(numberOfHelpers == 0 && businessToSell.isEmpty() && politicToSell.isEmpty()))
 		{
 			price = userInterface.getPrice();
 			if(price < 0)
