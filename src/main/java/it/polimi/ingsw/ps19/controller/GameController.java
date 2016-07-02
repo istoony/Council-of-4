@@ -61,6 +61,7 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
+		checkReconnectedPlayer();
 		
 		if(!(message instanceof Request))
 			return;
@@ -137,6 +138,9 @@ public class GameController implements Observer
 									model.getCurrentState().getPlayerTurnId()));
 					
 					SupportMethod.politicCardToDrawToCurrentPlayer(model);
+					
+					reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
+					
 					return;
 				}
 			SupportMethod.calculateLastPoints(model);
@@ -160,7 +164,6 @@ public class GameController implements Observer
 		if(!model.getPlayerById(id).isBusinessCardOrCityBonusRequest() && !model.getPlayerById(id).isBusinessCardToDraw())
 		{
 			setTimeToMarket();
-			checkReconnectedPlayer();
 			checkAlreadyTurn();
 		}
 	}
@@ -170,8 +173,7 @@ public class GameController implements Observer
 			int idReconnectedPlayer = checkDisconnectedPlayer();
 			if(idReconnectedPlayer > 0)
 			{
-				model.getPlayerById(idReconnectedPlayer).setMainActionCounter(0);
-				model.getPlayerById(idReconnectedPlayer).setFastActionCounter(0);
+				model.getPlayerById(idReconnectedPlayer).setStartingAction();
 				
 				SendFullPlayerReply game = new SendFullGameReply(model.getCurrentState().getPlayerTurnId(), "Player Reconnected", 
 						model.getPlayer(), model.getMap().getRegionList(), model.getMap().getKing(),
@@ -181,7 +183,7 @@ public class GameController implements Observer
 				if(model.getCurrentState().isTimeToMarket())
 				{
 					TimeToMarketReply r = new TimeToMarketReply(Costants.NO_ACTIVE_PLAYER, ActionMessages.TIME_TO_MARKET);
-					r.setId(idReconnectedPlayer);			//send to all player
+					r.setId(idReconnectedPlayer);			//send to this player
 					model.sendMessage(r);
 				}
 			}
