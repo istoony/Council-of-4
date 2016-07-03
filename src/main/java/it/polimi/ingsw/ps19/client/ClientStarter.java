@@ -2,11 +2,11 @@ package it.polimi.ingsw.ps19.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.client.language.English;
 import it.polimi.ingsw.ps19.client.language.Italiano;
 import it.polimi.ingsw.ps19.client.language.Language;
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 
 /**
@@ -15,6 +15,7 @@ import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionExceptio
 public class ClientStarter 
 {
 	private static ClientUI userInterface;
+	static LocalLogger log;
 	
 	private ClientStarter()
 	{}
@@ -24,18 +25,23 @@ public class ClientStarter
 	 * @param args
 	 */
 	public static void main(String[] args) 
-	{
+	{			
 		Language language = new English();
 		userInterface = new ClientCLI(language);
+		log = new LocalLogger("ClientStarter");
+		
 		List<String> typesOfConnection = new ArrayList<>();
 		typesOfConnection.add(Language.SOCKET);
 		typesOfConnection.add(Language.RMI);
+		
 		List<String> typesOfUserInterdace = new ArrayList<>();
 		typesOfUserInterdace.add(Language.CLI);
 		typesOfUserInterdace.add(Language.GUI);
+		
 		List<String> languages = new ArrayList<>();
 		languages.add(Language.ITALIANO);
 		languages.add(Language.ENGLISH);
+		
 		List<String> startNewGame = new ArrayList<>();
 		
 		boolean valid;
@@ -47,6 +53,7 @@ public class ClientStarter
 				uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
 			} catch (InvalidInsertionException e) 
 			{
+				log.log(e);
 				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
 				uiIndex = -1;
 			}
@@ -57,6 +64,7 @@ public class ClientStarter
  				connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
 			} catch (InvalidInsertionException e) 
 			{
+				log.log(e);
 				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
 				connIndex = -1;
 			}
@@ -67,6 +75,7 @@ public class ClientStarter
  				languageIndex = ((ClientCLI)userInterface).getValues(languages);
 			} catch (InvalidInsertionException e) 
 			{
+				log.log(e);
 				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
 				languageIndex = -1;
 			}
@@ -101,7 +110,7 @@ public class ClientStarter
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+				log.log(e);
 			}
 		}while(!valid);
 	}

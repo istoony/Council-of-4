@@ -212,7 +212,7 @@ public class ClientCLI extends ClientUI
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
-				throw new IOException();
+				throw new NumberFormatException();
 		}catch(IOException | NumberFormatException e)
 		{
 			log.log(Level.SEVERE, e.toString(), e);
@@ -322,7 +322,7 @@ public class ClientCLI extends ClientUI
 			s += 0 + "\n";
 		else
 		{
-			s += "[" + p.getPoliticcard().get(0);
+			s += "[" + language.getString(p.getPoliticcard().get(0));
 			for(int i = 1; i < p.getPoliticcard().size(); i++)
 				s = s.concat(", " + language.getString(p.getPoliticcard().get(i)));
 			s += "]\n";
@@ -407,7 +407,7 @@ public class ClientCLI extends ClientUI
 			s = read();
 		} catch (IOException e) 
 		{
-			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			ClientStarter.log.log(e);
 			throw new InvalidInsertionException();
 		}
 		return s;

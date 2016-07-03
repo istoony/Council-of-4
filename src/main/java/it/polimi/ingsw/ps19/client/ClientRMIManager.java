@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.message.replies.ConnectionReply;
@@ -52,7 +51,7 @@ public class ClientRMIManager extends ClientManager
 			}
 			catch(RemoteException | NotBoundException | TimeoutException | InterruptedException | ReaderException e)
 			{
-				ClientLogger.log.log(Level.OFF, e.toString(), e);
+				ClientStarter.log.log(e);
 				success = false;
 				ip = getIP();
 				port = getPort(Constants.RMI_PORT);

@@ -87,7 +87,7 @@ public class SocketConnection extends Connection
 				mex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_S, TimeUnit.SECONDS);
 		} catch (ExecutionException | CancellationException e) 
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 			throw new TimeoutException();
 		}
 		return mex;

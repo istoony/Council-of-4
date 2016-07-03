@@ -1,8 +1,8 @@
 package it.polimi.ingsw.ps19.view.connection;
 
-import java.util.logging.Logger;
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 
 public class ConnectionLogger 
 {
-	public static final Logger log = Logger.getLogger("CONNECTION_LOGGER");
+	public static final LocalLogger log = new LocalLogger("ConnectionLogger");
 }

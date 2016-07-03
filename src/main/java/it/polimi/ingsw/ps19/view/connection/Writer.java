@@ -5,7 +5,6 @@ package it.polimi.ingsw.ps19.view.connection;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
@@ -37,7 +36,7 @@ public abstract class Writer implements Callable<Integer>
 			}
 			catch(Exception e)
 			{
-				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+				ConnectionLogger.log.log(e);
 				success = false;
 			}
 			finally

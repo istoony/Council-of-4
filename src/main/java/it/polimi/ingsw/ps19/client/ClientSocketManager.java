@@ -3,7 +3,6 @@ package it.polimi.ingsw.ps19.client;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.Socket;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.requests.ConnectionMessage;
@@ -53,7 +52,7 @@ public class ClientSocketManager extends ClientManager
 				userInterface.showNotification(userInterface.getLanguage().connSuccess);
 			} catch (IOException | WriterException e) 
 			{
-				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+				ClientStarter.log.log(e);
 				success = false;
 				t.interrupt();
 				userInterface.showNotification(userInterface.getLanguage().connInsucces);

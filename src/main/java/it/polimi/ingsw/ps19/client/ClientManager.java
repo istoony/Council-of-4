@@ -4,7 +4,6 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.view.connection.Connection;
@@ -18,6 +17,7 @@ public abstract class ClientManager
 
 	protected void startClient()
 	{
+		System.setErr(null);
 		ClientView view = new ClientView(connection);
 		ClientInterpreter interpreter = new ClientInterpreter(userInterface, playerId);
 		view.addObserver(interpreter);
@@ -37,7 +37,7 @@ public abstract class ClientManager
 		} catch (UnknownHostException | InvalidInsertionException e) 
 		{
 			ip = ClientConstants.IP_ADDRESS;
-			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			ClientStarter.log.log(e);
 			userInterface.showNotification(userInterface.getLanguage().useStdIp + ": " + ClientConstants.IP_ADDRESS);
 		}
 		return ip;
@@ -57,7 +57,7 @@ public abstract class ClientManager
 		} catch (NumberFormatException | InvalidInsertionException e) 
 		{
 			port = standardPort;
-			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			ClientStarter.log.log(e);
 			userInterface.showNotification(userInterface.getLanguage().useStdPort + ": " + standardPort);
 		}
 		return port;

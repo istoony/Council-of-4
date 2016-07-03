@@ -8,7 +8,6 @@ import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 import java.security.SecureRandom;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.server.Constants;
@@ -43,7 +42,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 			}catch(ExportException e)
 			{				
 				System.out.println("Register on: localHost:" + Constants.RMI_PORT + " already exists");
-				ConnectionLogger.log.log(Level.OFF, e.toString(), e);
+				ConnectionLogger.log.log(e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
 				System.out.println("Openede register on: localHost:" + Constants.RMI_PORT);
 			}
@@ -51,7 +50,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 		} 
 		catch (RemoteException e) 
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 		}
 	}
 	
@@ -76,7 +75,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 			UnicastRemoteObject.unexportObject(stub, true);
 		} catch (RemoteException | NotBoundException e) 
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 		}
 	}
 	

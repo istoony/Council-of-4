@@ -8,8 +8,8 @@ package it.polimi.ingsw.ps19.server;
  */
 public final class Constants
 {
-	public static final int SOCKET_PORT = 49126;
-	public static final int RMI_PORT = 49127;
+	public static final int SOCKET_PORT = 49153;
+	public static final int RMI_PORT = 49154;
 	public static final String RMI_SERVER_STUB_NAME = "RMI Server";
 	public static Integer MAX_PLAYERS = null;
 	public static final int MAX_WRITING_TRIES = 5;

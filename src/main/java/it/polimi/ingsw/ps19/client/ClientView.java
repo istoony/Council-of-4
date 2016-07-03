@@ -6,7 +6,6 @@ package it.polimi.ingsw.ps19.client;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.PlayerDisconnectedException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
@@ -47,7 +46,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			{
 				setChanged();
 				notifyObservers(null);
-				ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+				ClientStarter.log.log(e);
 			} 
 		}
 		setChanged();
@@ -72,7 +71,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			forwardMessage(mex);
 		} catch (PlayerDisconnectedException e) 
 		{
-			ClientLogger.log.log(Level.INFO, e.toString(), e);
+			ClientStarter.log.log(e);
 			setChanged();
 			notifyObservers(null);
 		}
@@ -89,7 +88,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			connection.write(mex);
 		} catch (WriterException e) 
 		{
-			ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+			ClientStarter.log.log(e);
 			throw new PlayerDisconnectedException(-1);
 		}
 	}

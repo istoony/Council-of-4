@@ -83,7 +83,7 @@ public class RMIConnection extends Connection
 					mex = fifo.poll(timeOut, TimeUnit.SECONDS);
 			} catch (InterruptedException e) 
 			{
-				ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+				ConnectionLogger.log.log(e);
 				throw new TimeoutException();
 			}
 		return mex;

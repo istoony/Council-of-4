@@ -2,7 +2,6 @@ package it.polimi.ingsw.ps19.client;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.client.clientinput.FastAction;
 import it.polimi.ingsw.ps19.client.clientinput.MainAction;
@@ -109,7 +108,7 @@ public class ClientInterpreter extends Observable implements Observer
 					} catch (InvalidInsertionException e) 
 					{
 						userInterface.showNotification(userInterface.getLanguage().invalidInsertion);
-						ClientLogger.log.log(Level.SEVERE, e.toString(), e);
+						ClientStarter.log.log(e);
 						valid = false;
 					}
 				}while(!valid);
@@ -118,7 +117,7 @@ public class ClientInterpreter extends Observable implements Observer
 					notify(mex);
 				} catch (PlayerDisconnectedException e)
 				{
-					ClientLogger.log.log(Level.OFF, e.toString(), e);
+					ClientStarter.log.log(e);
 					userInterface.showNotification(userInterface.getLanguage().serverQuits);
 					userInterface.showNotification(userInterface.getLanguage().killClient);
 					System.exit(0);

@@ -11,12 +11,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import it.polimi.ingsw.ps19.client.ClientCLI;
 import it.polimi.ingsw.ps19.client.language.English;
 import it.polimi.ingsw.ps19.client.language.Language;
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
@@ -28,7 +27,7 @@ import java.io.IOException;
  */
 public class ServerManager
 {
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
+	protected static LocalLogger log = new LocalLogger("ServerLogger");
 	private static ServerSocket serverSocket;	
 	private static boolean stop = false;
 	private static Registry registry;
@@ -57,7 +56,7 @@ public class ServerManager
 					valid = false;
 			}catch(InvalidInsertionException e)
 			{
-				log.log(Level.OFF, e.toString(), e);
+				log.log(e);
 				valid = false;
 			}
 		}while(!valid);
@@ -74,7 +73,7 @@ public class ServerManager
 				serverCLI.showNotification(Language.REG_CREATED + Constants.RMI_PORT);
 			}catch(RemoteException e)
 			{
-				log.log(Level.OFF, e.toString(), e);
+				log.log(e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
 				serverCLI.showNotification(Language.REG_ACCESSED + Constants.RMI_PORT);
 			}
@@ -84,7 +83,7 @@ public class ServerManager
 		catch (RemoteException e) 
 		{
 			ServerManager.serverCLI.showNotification(Language.RMI_INSUCCESS);
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(e);
 		}
 		
 		//Socket Init
@@ -96,12 +95,14 @@ public class ServerManager
 		catch(IOException e)
 		{
 			ServerManager.serverCLI.showNotification(Language.SOCKET_INSUCCESS);
-			log.log(Level.SEVERE, e.toString(), e);
+			e.printStackTrace();
+			log.log(e);
 		}
 		
 		//Waiting Room Init
 		WaitingRoom.startTimer();
 		stopperThread.start();
+		
 		while(!stop)
 		{
 			try
@@ -112,15 +113,16 @@ public class ServerManager
 			}
 			catch(IOException e)
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				log.log(e);
 			}
 		}
+		
 		WaitingRoom.quit();
 		try {
 			UnicastRemoteObject.unexportObject(rmiServer, true);
 		} catch (NoSuchObjectException e) 
 		{
-			log.log(Level.OFF, e.toString(), e);
+			log.log(e);
 		}
 		serverCLI.showNotification(Language.SERVER_QUIT);
 		System.exit(0);
@@ -136,7 +138,7 @@ public class ServerManager
 			serverSocket.close();
 		} catch (IOException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(e);
 		}
 	}
 }

@@ -3,17 +3,13 @@
  */
 package it.polimi.ingsw.ps19.server;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This class works as a timer for the waiting room
  * When the timer runs out the threads check weather the first players have changed, if not it begins a new game;
  */
 public class TimerThread extends Thread 
-{
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
-	
+{	
 	long time;											//Time to sleep (timeout time): set at runtime
 	int defaultTime;									//DefaulTime is default waiting time
 	long t0;											//Time of the connection of the second player waiting
@@ -46,7 +42,7 @@ public class TimerThread extends Thread
 			} 	
 			catch (InterruptedException e) 
 			{
-				log.log(Level.OFF, e.toString(), e);
+				ServerManager.log.log(e);
 				this.interrupt();
 			}
 			if(WaitingRoom.getStartTime() == t0) 

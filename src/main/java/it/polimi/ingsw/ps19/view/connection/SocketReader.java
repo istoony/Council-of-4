@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.message.Message;
@@ -30,7 +29,7 @@ public class SocketReader implements Callable<Message>
 			reader = new ObjectInputStream(cs.getInputStream());
 		} catch (IOException e) 
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 		}
 	}
 	
@@ -51,7 +50,7 @@ public class SocketReader implements Callable<Message>
 		}
 		catch(Exception e)
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 			throw new ReaderException();
 		}
 	}

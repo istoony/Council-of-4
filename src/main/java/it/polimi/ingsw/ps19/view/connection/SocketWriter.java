@@ -6,7 +6,6 @@ package it.polimi.ingsw.ps19.view.connection;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
 
 /**
  * Implements Writer for Socket Communication
@@ -26,7 +25,7 @@ public class SocketWriter extends Writer
 			out.flush();
 		} catch (IOException e) 
 		{
-			ConnectionLogger.log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 		}
 	}
 	
