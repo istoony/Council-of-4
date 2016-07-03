@@ -6,7 +6,6 @@ import it.polimi.ingsw.ps19.message.replies.CompleteMarketReply;
 import it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 public class PlayerDisconnectedAction implements Action {
 
@@ -36,9 +35,12 @@ public class PlayerDisconnectedAction implements Action {
 				//model.getCurrentState().setPlayerTurnId(nextTurn);
 				//model.getPlayerById(nextTurn).setStartingAction();
 				newTurn = true;
+				if(model.getCurrentState().isTimeToMarket())
+					model.getCurrentState().setPlayerTurnId(nextTurn);
 			}
 				//aggiungo il player alla lista dei disconnessi
 			model.getCurrentState().addDisconnectedPlayer(playerId);
+				
 			
 				//se rimane solo un player dico che è l'ultimo turno
 			if(model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer() == 1)
@@ -56,15 +58,19 @@ public class PlayerDisconnectedAction implements Action {
 	public Reply createReplyMessage(Model model) 
 	{
 		int idTurn;
-		if(model.getCurrentState().isTimeToMarket() && model.getMarket().getSize() <= 
-				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
-			idTurn = Costants.NO_ACTIVE_PLAYER;
-		else
+		//if(model.getCurrentState().isTimeToMarket() && model.getMarket().getSize() <= 
+		//		model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
+		//	idTurn = Costants.NO_ACTIVE_PLAYER;
+		//else
 			idTurn = model.getCurrentState().getPlayerTurnId();
 		
 		Reply r = new PlayerDisconnectedReply(idTurn, model.getPlayer() ,result, newTurn);
 		
-		if(model.getMarket().getSize() == 
+		//
+		//Se il player si disconnette dentro il market invo il messaggio di CompleteMarket per permettere
+		//di comprare al prossimo player
+		//
+		if(model.getMarket().getSize() >= 
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 			

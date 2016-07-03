@@ -77,6 +77,8 @@ public class View extends Observable implements Observer, Runnable
 		}
 		else
 		{
+			System.out.println("RESULT: " + ((Reply) arg).getResult());
+			System.out.println("ActiveP: " + ((Reply) arg).getActivePlayer());
 			setActive(((Reply)arg).getActivePlayer());
 			Reply mex = (Reply) arg;
 			forwardMessage(mex);

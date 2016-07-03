@@ -25,6 +25,7 @@ public class AddOrder implements Action
 	{
 		if(order!=null)
 			model.getMarket().addOrder(order, playerId);
+		model.getCurrentState().setPlayerTurnId(playerId);
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		result = ActionMessages.EVERYTHING_IS_OK;
 		return true;
@@ -34,6 +35,8 @@ public class AddOrder implements Action
 	public Boolean isPossible(Model model) 
 	{
 		result = ActionMessages.EVERYTHING_IS_OK;
+		if(order == null)
+			return true;
 		if(!model.getCurrentState().isTimeToMarket())
 		{	
 			result = ActionMessages.NO_MARKET_TIME;

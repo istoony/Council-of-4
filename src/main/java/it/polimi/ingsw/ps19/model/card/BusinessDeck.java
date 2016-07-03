@@ -62,6 +62,10 @@ public class BusinessDeck implements Deck, Serializable
 		return s;
 	}
 
+	public int size()
+	{
+		return card.size();
+	}
 	@Override
 	public void shuffle() 
 	{

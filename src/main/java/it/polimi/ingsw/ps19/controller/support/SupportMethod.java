@@ -260,12 +260,18 @@ public class SupportMethod
 		if(findFirstSecondCard(model, region, card))
 		{
 			selectedcard = model.getMap().getRegionByType(region).getFirstcard();
-			model.getMap().getRegionByType(region).drawFirstCard();
+			if(model.getMap().getRegionByType(region).getBusinessdeck().size() > 0)
+				model.getMap().getRegionByType(region).drawFirstCard();
+			else 
+				model.getMap().getRegionByType(region).setEmptyFirstCard();
 		}
 		else
 		{
 			selectedcard = model.getMap().getRegionByType(region).getSecondcard();
-			model.getMap().getRegionByType(region).drawSecondCard();
+			if(model.getMap().getRegionByType(region).getBusinessdeck().size() > 0)
+				model.getMap().getRegionByType(region).drawSecondCard();
+			else 
+				model.getMap().getRegionByType(region).setEmptySecondCard();
 		}
 		player.addCardToHand(selectedcard);
 		return selectedcard;

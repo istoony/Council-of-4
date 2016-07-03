@@ -58,9 +58,7 @@ public class DrawBusinessCard implements Action
 			//
 			//Assegno i bonus della carta, dopo ogni bonus assegnato controllo avanzamenti sul percorso della
 			//nobiltà, se ho bonus da applicare applico anche quelli.
-			//
-		
-		
+			//		
 		SupportMethod.giveListOfBonus(model, player, selectedcard.getBonus());
 		
 		player.setMainActionCounter(player.getMainActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);

@@ -103,8 +103,19 @@ public class Region implements Serializable{
 	{
 		secondcard = businessdeck.getFirstCard();
 	}
+
+	public void setEmptyFirstCard()
+	{
+		firstcard = null;
+	}
+	
+	public void setEmptySecondCard()
+	{
+		secondcard = null;
+	}
 	public BusinessDeck getBusinessdeck() 
 	{
 		return businessdeck;
-	}	
+	}
+	
 }
