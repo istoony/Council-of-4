@@ -55,6 +55,7 @@ public abstract class Language implements Serializable
 	public static final String SOCKET_INSUCCESS = "Something went wrong in creating a serversocket";
 	public static final String NEW_CLIENT_CONN = "New Client connected";
 	public static final String SERVER_QUIT = "Server quits";
+	public static final String SET_MAX_P_TO = "set the player timeout time (in s)";
 	
 	//General
 	public static final String SOCKET = "Socket";

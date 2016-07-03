@@ -31,7 +31,7 @@ public class LocalLogger
 	 * Logs the exception;
 	 * @param e
 	 */
-	public void log(Exception e)
+	public synchronized void log(Exception e)
 	{
 		log.log(Level.SEVERE, e.toString(), e);
 	}

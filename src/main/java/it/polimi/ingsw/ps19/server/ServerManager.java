@@ -17,6 +17,7 @@ import it.polimi.ingsw.ps19.client.language.English;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class ServerManager
 		serverCLI.showNotification(Language.START);
 		boolean valid;
 		Integer maxPlayers = null;
+		long playerTimeout = 0;
 		do
 		{
 			try
@@ -60,7 +62,22 @@ public class ServerManager
 				valid = false;
 			}
 		}while(!valid);
+		do
+		{
+			try
+			{
+				playerTimeout = serverCLI.getInt(Language.SET_MAX_P_TO);
+				valid = true;
+				if(playerTimeout < 10)
+					valid = false;
+			}catch(InvalidInsertionException e)
+			{
+				log.log(e);
+				valid = false;
+			}
+		}while(!valid);
 		Constants.setMaxPlayers(maxPlayers);
+		Constants.setPlayerTimeout(playerTimeout);
 		//RMI Init
 		try 
 		{

@@ -23,7 +23,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	{
 		List<RegionType> availableRegions = new ArrayList<>();
 		for(Region r: model.getRegions())
-			if(isCouncilSatisfiable(r.getBalcony()))
+			if(isCouncilSatisfiable(r.getBalcony()) && !(r.getFirstcard()== null && r.getSecondcard() == null))
 				availableRegions.add(r.getType());
 		return availableRegions;
 	}

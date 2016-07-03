@@ -21,7 +21,7 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
 public class BuildWithKingInputs extends SatisfyCouncilInput 
 {
 	City city;
-	List<Color> colors;
+	List<Color> colors = null;
 	
 	/**
 	 * Constructor
@@ -73,7 +73,7 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 					i++;
 			}
 		}
-		return allCities.stream().filter(c -> getCost(c) < (model.getMyPlayer().getMoney() - getSatisfyCost()) &&  c.getEmporia().size() < model.getMyPlayer().getHelpers()).collect(Collectors.toMap(c -> c, c -> getCost(c)));
+		return allCities.stream().filter(c -> getCost(c) <= (model.getMyPlayer().getMoney() - getSatisfyCost()) &&  c.getEmporia().size() < model.getMyPlayer().getHelpers()).collect(Collectors.toMap(c -> c, c -> getCost(c)));
 		
 	}
 	

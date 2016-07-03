@@ -27,7 +27,6 @@ public class RegionPanel extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = -2830688492660763889L;
 	
-	private static final String TOOLTIP = "Region ";
 	protected static final String COLORBG = "#55AE3A";
 	private static final String INDENTATION = "    ";
 	

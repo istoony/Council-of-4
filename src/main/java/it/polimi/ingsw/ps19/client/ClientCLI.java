@@ -282,7 +282,10 @@ public class ClientCLI extends ClientUI
 		s += "\n";
 		for(Player p : model.getPlayer())
 		{
-			s = s.concat(getString(p));
+			if(p.equals(model.getMyPlayer()))
+				s = s.concat(getString(p, true));
+			else
+				s = s.concat(getString(p, false));
 			s = s.concat("\n\n");
 		}
 		s += language.nobilityPath.toUpperCase() + ":\n";
@@ -307,7 +310,7 @@ public class ClientCLI extends ClientUI
 		return s;
 	}
 	
-	private String getString(Player p)
+	private String getString(Player p, boolean me)
 	{
 		String s = language.player + ": "+ p.getId() + "\n";
 		s += language.numEmporiaLeft + ": " + p.getMaxemporia() + "\n";
@@ -320,16 +323,19 @@ public class ClientCLI extends ClientUI
 		s += language.politicCards + ": ";
 		if(p.getPoliticcard().isEmpty())
 			s += 0 + "\n";
-		else
+		else if(me)
 		{
 			s += "[" + language.getString(p.getPoliticcard().get(0));
 			for(int i = 1; i < p.getPoliticcard().size(); i++)
 				s = s.concat(", " + language.getString(p.getPoliticcard().get(i)));
 			s += "]\n";
 		}
+		else
+			s += p.getPoliticcard().size() + "\n";
+		
 		s += language.freeBusiness + ":";
 		if(p.getFreebusinesscard().isEmpty())
-			s += 0 + "\n";
+			s += 0;
 		else
 		{
 			for(BusinessCard card : p.getFreebusinesscard())
@@ -337,7 +343,7 @@ public class ClientCLI extends ClientUI
 		}
 		s += "\n" + language.usedBusiness + ":";
 		if(p.getUsedbusinesscard().isEmpty())
-			s += 0 + "\n";
+			s += 0;
 		else
 		{
 			for(BusinessCard card : p.getUsedbusinesscard())
@@ -376,7 +382,7 @@ public class ClientCLI extends ClientUI
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException 
 	{
 		int number;
-		writeln(language.howManyHelpersToSell + "(" + language.available + ": " + n + ")\n");
+		writeln(language.howManyHelpersToSell + "(" + language.available + ": " + n);
 		try
 		{
 			String s = read();
@@ -427,7 +433,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showMarket(Market market) 
 	{
-		String marketString = language.market.toUpperCase() + "\n";
+		String marketString = "\n" + language.market.toUpperCase() + "\n";
 		if(market.getListoforder().isEmpty())
 		{
 			showNotification(marketString + language.orders + ": " + language.nothing);
@@ -468,7 +474,7 @@ public class ClientCLI extends ClientUI
 	public void showWinner(List<Player> players, String result) 
 	{
 		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
-		players.forEach(p -> writeln(getString(p)));
+		players.forEach(p -> writeln(getString(p, true) + "\n"));
 		/*
 		for(Player p : players)
 			s = s.concat(getString(p) + "\n");
