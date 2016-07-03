@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps19.exceptions.IllegalMapException;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
+import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
 
 public class MapLoader {

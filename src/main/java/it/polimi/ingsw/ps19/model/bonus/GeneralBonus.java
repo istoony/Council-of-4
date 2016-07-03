@@ -10,8 +10,8 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.map.FileReader;
 import it.polimi.ingsw.ps19.model.map.Region;
+import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
 public class GeneralBonus implements Bonus {
 

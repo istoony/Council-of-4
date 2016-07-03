@@ -11,8 +11,6 @@ import java.util.logging.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.ps19.model.map.FileReader;
-
 public class ColorManager implements Serializable
 {
 	/**

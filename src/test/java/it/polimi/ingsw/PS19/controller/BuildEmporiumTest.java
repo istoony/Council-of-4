@@ -54,7 +54,7 @@ public class BuildEmporiumTest extends SupportMethod{
 		
 			//creo un player falso
 		Player test = new Player(0);
-		test.setMoney(100);
+		test.setMoney(10);
 		test.setHelpers(1);
 		test.setVictoryPoints(0);
 		test.setNobilityPoints(0);

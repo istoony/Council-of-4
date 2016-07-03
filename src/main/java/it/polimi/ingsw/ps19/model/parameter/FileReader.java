@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.model.map;
+package it.polimi.ingsw.ps19.model.parameter;
 
 import java.io.File;
 import java.util.logging.Level;

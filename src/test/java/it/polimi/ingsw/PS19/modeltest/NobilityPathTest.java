@@ -48,7 +48,7 @@ public class NobilityPathTest extends SupportMethod
 		m.getPlayerById(0).setNobilityPoints(2);
 		
 		checkNobilityPathBonus(m, m.getPlayerById(0));	
-		assertTrue(m.getPlayerById(0).getMoney() == 100 + 2);
+		assertTrue(m.getPlayerById(0).getMoney() == 10 + 2);
 		assertTrue(m.getPlayerById(0).getVictoryPoints() == 2);
 		
 		m.getPlayerById(0).setNobilityPoints(4);
@@ -91,7 +91,7 @@ public class NobilityPathTest extends SupportMethod
 		m.getPlayerById(0).setNobilityPoints(2);
 		
 		checkNobilityPathBonus(m, m.getPlayerById(0));	
-		assertTrue(m.getPlayerById(0).getMoney() == 100 + 2);
+		assertTrue(m.getPlayerById(0).getMoney() == 10 + 2);
 		assertTrue(m.getPlayerById(0).getVictoryPoints() == 2);
 		
 		m.getPlayerById(0).setNobilityPoints(4);

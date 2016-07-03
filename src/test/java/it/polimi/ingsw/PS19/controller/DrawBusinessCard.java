@@ -81,6 +81,12 @@ public class DrawBusinessCard {
 		//This assert depends of a random bonus geven to player
 		//assertTrue(m.getPlayerById(0).getMoney() == 10 - 4 );
 		//System.out.println(m.toString());
+		m.getPlayerById(0).setMainActionCounter(1);
+		GetBusinessCardMessage mess2 = new GetBusinessCardMessage(m.getMap().getRegionByType(RegionType.MOUNTAIN).getSecondcard(),RegionType.MOUNTAIN);
+		mess2.setId(0);
+		assertTrue(mess2.getCard().getId() == m.getMap().getRegionByType(RegionType.MOUNTAIN).getSecondcard().getId());
+		
+		g.update(null, mess2);
 	}
 
 }

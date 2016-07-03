@@ -45,6 +45,9 @@ public class BusinessCardOrCityBonus implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
+		result = ActionMessages.GENERIC_ERROR;
+		if(city == null && card == null)
+			return false;
 		result = ActionMessages.EVERYTHING_IS_OK;
 		if(model.getPlayerById(playerId).isBusinessCardOrCityBonusRequest())
 			return true;

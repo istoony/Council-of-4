@@ -74,7 +74,7 @@ public class BuyMainActionTest
 			assertTrue("fast: " + m.getPlayerById(0).getFastActionCounter(), 
 					m.getPlayerById(0).getFastActionCounter() == 0);
 			assertTrue("money: " + m.getPlayerById(0).getMoney(), 
-					m.getPlayerById(0).getMoney() == 100 + i);
+					m.getPlayerById(0).getMoney() == 10 + i);
 			assertTrue("helper: "+ m.getPlayerById(0).getHelpers(), 
 					m.getPlayerById(0).getHelpers() == 1 + i);
 			m.getCurrentState().setPlayerTurnId(0);

@@ -65,9 +65,7 @@ public class playerConnectionTest {
 		for(int i = 10; i<15; i++)
 			assertTrue(model.getPlayerById(i) != null);
 		
-		//model.getCurrentState().disconnectPlayer(3);
-		//model.getCurrentState().disconnectPlayer(5);
-		//model.getCurrentState().disconnectPlayer(1);
+		model.getCurrentState().addDisconnectedPlayer(12);
 		
 		assertTrue("id = " + model.getCurrentState().getPlayerTurnId(), model.getCurrentState().getPlayerTurnId() == 10);
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(model.getCurrentState().getPlayerTurnId()));

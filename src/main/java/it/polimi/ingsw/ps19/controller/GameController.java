@@ -130,7 +130,7 @@ public class GameController implements Observer
 		if(model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
 			for (Player player : model.getPlayer())
-				if((player.getMainActionCounter() != 0 || player.getFastActionCounter() !=0) &&
+				if((player.getMainActionCounter() != 0 && player.getFastActionCounter() !=0) &&
 						model.getCurrentState().isConnected(player.getId()))
 				{
 					model.getCurrentState().setPlayerTurnId(

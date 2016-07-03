@@ -8,6 +8,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
+import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
 public class CityLoader {
 	

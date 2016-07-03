@@ -25,6 +25,8 @@ public class AddOrder implements Action
 	{
 		if(order!=null)
 			model.getMarket().addOrder(order, playerId);
+		else 
+			model.getMarket().addNullOrder();
 		model.getCurrentState().setPlayerTurnId(playerId);
 		model.getCurrentState().setPlayerTurnId(model.getCurrentState().giveNextCorrectId(playerId));
 		result = ActionMessages.EVERYTHING_IS_OK;
@@ -56,7 +58,7 @@ public class AddOrder implements Action
 	{
 		int idTurn = model.getCurrentState().giveRandomTurn();
 		
-		if(model.getMarket().getSize() == 
+		if(model.getMarket().getSize() + model.getMarket().getNullOrder() >= 
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 		

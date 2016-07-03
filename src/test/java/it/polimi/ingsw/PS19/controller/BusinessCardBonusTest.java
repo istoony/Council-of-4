@@ -52,10 +52,4 @@ public class BusinessCardBonusTest {
 		
 	}
 
-	@Test
-	public void testBusinessCardOrCityBonusCityInt() 
-	{
-		fail("Not yet implemented");
-	}
-
 }

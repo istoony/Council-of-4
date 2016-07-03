@@ -65,6 +65,11 @@ public class MarketTest {
 		players.add(14);
 		
 		Model m = new Model(players);
+		m.getCurrentState().addDisconnectedPlayer(12);
+
+		m.getCurrentState().addDisconnectedPlayer(13);
+
+		m.getCurrentState().addDisconnectedPlayer(14);
 		
 		GameController g = new GameController(m);
 		

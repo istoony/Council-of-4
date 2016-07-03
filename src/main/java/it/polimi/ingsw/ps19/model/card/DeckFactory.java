@@ -12,10 +12,10 @@ import it.polimi.ingsw.ps19.exceptions.IllegalFileException;
 import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.map.FileReader;
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileLogger;
+import it.polimi.ingsw.ps19.model.parameter.FileReader;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class DeckFactory 

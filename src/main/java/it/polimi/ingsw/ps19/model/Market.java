@@ -14,10 +14,12 @@ public class Market implements Serializable
 	 */
 	private static final long serialVersionUID = -5935605254196710208L;
 	private Map<Integer, Order> listoforder;
+	private int nullOrder;
 	
 	public Market() 
 	{
 		listoforder = new HashMap<>();
+		nullOrder = 0;
 	}
 	
 	public void addOrder(Order order, int playerId)
@@ -50,5 +52,16 @@ public class Market implements Serializable
 	public void reset()
 	{
 		listoforder = new HashMap<>();
+		nullOrder = 0;
+	}
+
+	public void addNullOrder() 
+	{
+		nullOrder++;
+		
+	}
+	public int getNullOrder() 
+	{
+		return nullOrder;
 	}
 }

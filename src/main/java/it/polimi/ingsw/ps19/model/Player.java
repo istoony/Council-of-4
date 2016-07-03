@@ -11,8 +11,8 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
-import it.polimi.ingsw.ps19.model.map.FileReader;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
+import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
 /**
  * The Class Player.

@@ -129,7 +129,7 @@ public class SupportMethod
 	
 	public static String checkPlayerVictory(Model model, Player player)
 	{
-		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
+		if(player.getMaxemporia() == 0 && model.getCurrentState().getLastTurn() == Costants.INVALID_ID)
 		{
 			model.getCurrentState().setLastTurn(player.getId());
 			for (Player p : model.getPlayer())
