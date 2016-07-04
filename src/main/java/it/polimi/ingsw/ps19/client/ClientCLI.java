@@ -194,21 +194,21 @@ public class ClientCLI extends ClientUI
 		int n;
 		if (strings.isEmpty())
 			throw new InvalidInsertionException();
-		try
+		if(strings.get(0).contains("\n"))
+			write("\t0 = " + strings.get(0));
+		else
+			write("(0 = " + strings.get(0));
+		for(i = 1; i < strings.size(); i++)
 		{
 			if(strings.get(0).contains("\n"))
-				write("\t0 = " + strings.get(0));
+				write("\t" + i + " = " + strings.get(i));
 			else
-				write("(0 = " + strings.get(0));
-			for(i = 1; i < strings.size(); i++)
-			{
-				if(strings.get(0).contains("\n"))
-					write("\t" + i + " = " + strings.get(i));
-				else
-					write(", " + i + " = " + strings.get(i));
-			}
-			if(!strings.get(0).contains("\n"))
-				writeln(")");
+				write(", " + i + " = " + strings.get(i));
+		}
+		if(!strings.get(0).contains("\n"))
+			writeln(")");
+		try
+		{
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
@@ -239,7 +239,7 @@ public class ClientCLI extends ClientUI
 	public String read() throws IOException
 	{
 		if(in.ready())
-			in.readLine();
+			in.readLine();		//flush buffer
 		return in.readLine();
 	}
 	
@@ -335,7 +335,7 @@ public class ClientCLI extends ClientUI
 		
 		s += language.getFreeBusiness() + ":";
 		if(p.getFreebusinesscard().isEmpty())
-			s += 0;
+			s += "0";
 		else
 		{
 			for(BusinessCard card : p.getFreebusinesscard())
@@ -343,7 +343,7 @@ public class ClientCLI extends ClientUI
 		}
 		s += "\n" + language.getUsedBusiness() + ":";
 		if(p.getUsedbusinesscard().isEmpty())
-			s += 0;
+			s += "0";
 		else
 		{
 			for(BusinessCard card : p.getUsedbusinesscard())
@@ -475,10 +475,6 @@ public class ClientCLI extends ClientUI
 	{
 		String s = "\n" + language.getWinner().toUpperCase() + ": " + players.get(0).getId() + "\n\n";
 		players.forEach(p -> writeln(getString(p, true) + "\n"));
-		/*
-		for(Player p : players)
-			s = s.concat(getString(p) + "\n");
-		*/
 		s += "\n" + language.getResult() + ": " + result;
 		showNotification(s);
 	}

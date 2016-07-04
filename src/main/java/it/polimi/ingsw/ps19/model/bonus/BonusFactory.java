@@ -81,10 +81,9 @@ public class BonusFactory
 	
 	public static List<Bonus> generateCityBonus()
 	{
-		int n;
 		int i;
-		ArrayList<Integer> truthTable = new ArrayList<>();
-		ArrayList<Bonus> bon = new ArrayList<>();
+		List<Integer> truthTable = new ArrayList<>();
+		List<Bonus> bon = new ArrayList<>();
 		
 		for(int count=0; count<NUMBER_OF_KIND_OF_BONUS; count++)
 		{
@@ -101,35 +100,51 @@ public class BonusFactory
 		
 			switch(i)
 			{
-				case 0 : {
-					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_CARDS-1)+1;
-					bon.add(new DrawPoliticCard(n));
-					break;
-				}
-				case 1 : {
-					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_HELPERS-1)+1;
-					bon.add(new MoreHelpers(n));
-					break;
-				}
-				case 2 : {
-					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_MONEY-1)+1;
-					bon.add(new MoreMoney(n));
-					break;
-				}
-				case 3 : {
-					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_NOBILITY-1)+1;
-					bon.add(new MoreNobilityPoints(n));
-					break;
-				}		
-				case 4 : {
-					n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_VP-1)+1;
-					bon.add(new MoreVictoryPoints(n));
-					break;
-				}
+				case 0 : cardsBonus(bon);
+						break;
+				case 1 : helpersBonus(bon);
+						break;
+				case 2 : moneyBonus(bon);
+						break;
+				case 3 : nobilityBonus(bon);
+						break;		
+				case 4 :vpBonus(bon);
+						break;
+				default: return bon;
 			}
 			truthTable.set(i, 0);
 			
 		}
 		return bon;
+	}
+	
+	private static void cardsBonus(List<Bonus> list)
+	{
+		int n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_CARDS-1)+1;
+		list.add(new MoreVictoryPoints(n));
+	}
+	
+	private static void helpersBonus(List<Bonus> list)
+	{
+		int n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_HELPERS-1)+1;
+		list.add(new MoreVictoryPoints(n));
+	}
+	
+	private static void moneyBonus(List<Bonus> list)
+	{
+		int n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_MONEY-1)+1;
+		list.add(new MoreVictoryPoints(n));
+	}
+	
+	private static void nobilityBonus(List<Bonus> list)
+	{
+		int n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_NOBILITY-1)+1;
+		list.add(new MoreVictoryPoints(n));
+	}
+	
+	private static void vpBonus(List<Bonus> list)
+	{
+		int n = Costants.RANDOM_NUMBER.nextInt(MAX_CITY_VP-1)+1;
+		list.add(new MoreVictoryPoints(n));
 	}
 }

@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.security.SecureRandom;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.message.Message;
 import it.polimi.ingsw.ps19.server.Constants;
 
@@ -27,7 +28,7 @@ public class RMIReader implements RMIReaderIntf, Runnable
 	 * Initializes the RMI interface
 	 * @param fifoQueue: fifo in which to write new messages
 	 */
-	public RMIReader(LinkedBlockingQueue<Message> fifoQueue)
+	public RMIReader(LinkedBlockingQueue<Message> fifoQueue, ClientUI userInterface)
 	{
 		fifo = fifoQueue;
 		try 
@@ -36,15 +37,15 @@ public class RMIReader implements RMIReaderIntf, Runnable
 			name = new SecureRandom().toString();
 			try
 			{
-				System.out.println("Creating new register on: localHost:" + Constants.RMI_PORT);
+				userInterface.showNotification("Creating new register on: localHost:" + Constants.RMI_PORT);
 				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
-				System.out.println("new register created on: localHost:" + Constants.RMI_PORT);
+				userInterface.showNotification("new register created on: localHost:" + Constants.RMI_PORT);
 			}catch(ExportException e)
 			{				
-				System.out.println("Register on: localHost:" + Constants.RMI_PORT + " already exists");
+				userInterface.showNotification("Register on: localHost:" + Constants.RMI_PORT + " already exists");
 				ConnectionLogger.log.log(e);
 				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
-				System.out.println("Openede register on: localHost:" + Constants.RMI_PORT);
+				userInterface.showNotification("Openede register on: localHost:" + Constants.RMI_PORT);
 			}
 			registry.rebind(name, stub);
 		} 

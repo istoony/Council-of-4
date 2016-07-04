@@ -66,7 +66,6 @@ public class ClientInterpreter extends Observable implements Observer
 		if(arg == null)
 		{
 			userInterface.showNotification(userInterface.getLanguage().getServerQuits() + "\n" + userInterface.getLanguage().getKillClient());
-			System.exit(0);
 			return;
 		}
 		if(arg instanceof GameStartedMessage)
@@ -120,7 +119,6 @@ public class ClientInterpreter extends Observable implements Observer
 					ClientStarter.log.log(e);
 					userInterface.showNotification(userInterface.getLanguage().getServerQuits());
 					userInterface.showNotification(userInterface.getLanguage().getKillClient());
-					System.exit(0);
 					return;
 				}
 			}

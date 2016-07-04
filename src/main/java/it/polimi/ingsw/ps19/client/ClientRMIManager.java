@@ -31,7 +31,7 @@ public class ClientRMIManager extends ClientManager
 		boolean success = false;
 		String ip = ClientConstants.IP_ADDRESS;
 		Integer port = Constants.RMI_PORT;
-		connection = new RMIConnection();
+		connection = new RMIConnection(ui);
 		do
 		{
 			try

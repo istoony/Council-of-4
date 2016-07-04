@@ -48,44 +48,14 @@ public class ClientStarter
 		int uiIndex;
 		int connIndex;
 		int languageIndex;
-		do{
-			try {
-				uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
-				uiIndex = -1;
-			}
-		}while(uiIndex != 0 && uiIndex != 1);
-		
-		do{
-			try {
- 				connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
-				connIndex = -1;
-			}
-		}while(connIndex != 0 && connIndex != 1);
-		
-		do{
-			try {
- 				languageIndex = ((ClientCLI)userInterface).getValues(languages);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
-				languageIndex = -1;
-			}
-		}while(languageIndex != 0 && languageIndex != 1);
-		
 		do
 		{
 			try 
 			{
 				valid = true;
+				languageIndex =  getValue(languages);
+				uiIndex = getValue(typesOfUserInterdace);
+				connIndex = getValue(typesOfConnection);
  				if(languageIndex == 0)
  				{
  					language = new Italiano();
@@ -113,5 +83,21 @@ public class ClientStarter
 				log.log(e);
 			}
 		}while(!valid);
+	}
+	
+	private static int getValue(List<String> list)
+	{
+		int index;
+		do{
+			try {
+				index = ((ClientCLI)userInterface).getValues(list);
+			} catch (InvalidInsertionException e) 
+			{
+				log.log(e);
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
+				index = -1;
+			}
+		}while(index < 0 || index >= list.size()-1);
+		return index;
 	}
 }

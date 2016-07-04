@@ -21,7 +21,7 @@ public abstract class ClientUpdate
 	
 	/**
 	 * Updates model
-	 * @param userInterface TODO
+	 * @param userInterface: userInterface
 	 * @param model: model to be updated
 	 */
 	public abstract void update(ClientModel model, ClientUI userInterface);

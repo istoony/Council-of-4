@@ -51,6 +51,7 @@ public class ClientView extends Observable implements Observer, Runnable
 		}
 		setChanged();
 		notifyObservers(null);
+		connection.close();
 	}
 
 	@Override
@@ -62,7 +63,6 @@ public class ClientView extends Observable implements Observer, Runnable
 		if(arg instanceof EndGameRequest)
 		{
 			stop = true;
-			connection.close();
 		}
 		Request mex = (Request) arg;
 
@@ -74,6 +74,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			ClientStarter.log.log(e);
 			setChanged();
 			notifyObservers(null);
+			stop = true;
 		}
 	}
 	
@@ -92,5 +93,4 @@ public class ClientView extends Observable implements Observer, Runnable
 			throw new PlayerDisconnectedException(-1);
 		}
 	}
-
 }

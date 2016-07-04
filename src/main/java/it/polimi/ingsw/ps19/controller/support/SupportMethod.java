@@ -187,6 +187,7 @@ public class SupportMethod
 		return players;
 	}
 
+	//TODO result??
 	public static boolean checkPlayerTurnAndAction(Model model, int id, String result, String type) 
 	{
 		if(checkPlayerTurn(id, model))

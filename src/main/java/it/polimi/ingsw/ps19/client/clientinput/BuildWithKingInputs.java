@@ -62,12 +62,12 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 	private Map<City, Integer> getCities()
 	{
 		List<City> allCities = Costants.clone(model.getAllCities());
-		for(City city : model.getMyPlayer().getMyEmporia())
+		for(City c : model.getMyPlayer().getMyEmporia())
 		{
 			int i = 0;
 			while(i < allCities.size())
 			{
-				if(city.getId() == allCities.get(i).getId())
+				if(c.getId() == allCities.get(i).getId())
 					allCities.remove(i);
 				else
 					i++;
@@ -88,7 +88,6 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 		for(Color color : colors)
 			if((Color.decode(Costants.JOKERCOLOR)).equals(color))
 				cost++;	
-		System.out.println("Cost is: " + cost);
 		return cost;
 	}
 	

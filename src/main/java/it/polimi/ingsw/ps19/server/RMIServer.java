@@ -16,7 +16,7 @@ public class RMIServer extends RemoteServer implements ServerRemoteIntf
 	@Override
 	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub, boolean newGame, int key) throws RemoteException 
 	{
-		RMIConnection connection = new RMIConnection(clientStub);
+		RMIConnection connection = new RMIConnection(clientStub, ServerManager.serverCLI);
 		RMIReaderIntf stub = connection.getReaderStub();
 		WaitingRoom.addConnection(connection, newGame, key);
 		return stub;
