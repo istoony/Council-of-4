@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
@@ -27,7 +26,7 @@ import it.polimi.ingsw.ps19.view.connection.ConnectionStatus;
  */
 public class View extends Observable implements Observer, Runnable
 {
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
+	protected static final LocalLogger log = new LocalLogger("ServerView");
 	
 	private List<Integer> playerConnection;
 	private int activeId;
@@ -107,7 +106,7 @@ public class View extends Observable implements Observer, Runnable
 			//Timeout error => Player set disconnected
 			catch (TimeoutException | InterruptedException | ReaderException e) 
 			{
-				log.log(Level.SEVERE, e.toString(), e);
+				log.log(e);
 				activeConn.setDisconnected();
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(activeId));
@@ -128,39 +127,20 @@ public class View extends Observable implements Observer, Runnable
 	public void forwardMessage(Reply mex)
 	{
 		Integer id = mex.getId();
-		// Broadcast
-		if(id < 0)
-		{
-			for (Integer player : playerConnection) 
-			{
-				try 
-				{
-					if(WaitingRoom.getConnection(player).getStatus() != ConnectionStatus.DISCONNECTED)
-						WaitingRoom.getConnection(player).write(mex);
-				} catch (WriterException e) 
-				{
-					log.log(Level.SEVERE, e.toString(), e);
-					WaitingRoom.getConnection(player).setDisconnected();
-					setChanged();
-					notifyObservers(new PlayerDisconnectedMessage(player));
-				}
-			}
-		}
-		
-		// To specific client
-		else
+		for (Integer player : playerConnection) 
 		{
 			try 
 			{
-				if(WaitingRoom.getConnection(id).getStatus() != ConnectionStatus.DISCONNECTED)
-					WaitingRoom.getConnection(id).write(mex);
+				if(WaitingRoom.getConnection(player).getStatus() != ConnectionStatus.DISCONNECTED
+						&& (id == player || id < 0))
+					WaitingRoom.getConnection(player).write(mex);
 			} catch (WriterException e) 
 			{
-				log.log(Level.SEVERE, e.toString(), e);
-				WaitingRoom.getConnection(id).setDisconnected();
+				log.log(e);
+				WaitingRoom.getConnection(player).setDisconnected();
 				setChanged();
-				notifyObservers(new PlayerDisconnectedMessage(id));
-			}		
+				notifyObservers(new PlayerDisconnectedMessage(player));
+			}
 		}
 	}
 }
