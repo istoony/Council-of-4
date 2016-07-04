@@ -82,12 +82,13 @@ public class BuildWithKingInputs extends SatisfyCouncilInput
 		if(colors == null || colors.isEmpty())
 			return 0;
 		int cost = 13;
-		cost -= (-3)*colors.size();
+		cost -= ((3)*colors.size());
 		if(cost == 1)
 			cost = 0;
 		for(Color color : colors)
 			if((Color.decode(Costants.JOKERCOLOR)).equals(color))
 				cost++;	
+		System.out.println("Cost is: " + cost);
 		return cost;
 	}
 	

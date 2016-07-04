@@ -118,22 +118,21 @@ public abstract class SatisfyCouncilInput extends ClientAction
 			if(i >= minCards)
 				differentColors.add(null);
 			Color chosenColor = userInterface.getColor(differentColors);
-			if(chosenColor != null)
+			if(chosenColor == null)
+				return satisfyingColors;
+			satisfyingColors.add(chosenColor);
+			combinations = getContainingDecks(combinations, chosenColor);
+			int j = 0;
+			while(j < combinations.size())
 			{
-				satisfyingColors.add(chosenColor);
-				combinations = getContainingDecks(combinations, chosenColor);
-				int j = 0;
-				while(j < combinations.size())
-				{
-					DeckId deck = combinations.get(j);
-					deck.subtractCard(new CardId(chosenColor));
-					if(deck.getDeck().isEmpty())
-						combinations.remove(deck);
-					else 
-						j++;
-				}
-				//combinations = getSignificantDecks(combinations);
+				DeckId deck = combinations.get(j);
+				deck.subtractCard(new CardId(chosenColor));
+				if(deck.getDeck().isEmpty())
+					combinations.remove(deck);
+				else 
+					j++;
 			}
+				combinations = getSignificantDecks(combinations);
 			if(combinations.isEmpty() || chosenColor == null)
 				break;
 		}

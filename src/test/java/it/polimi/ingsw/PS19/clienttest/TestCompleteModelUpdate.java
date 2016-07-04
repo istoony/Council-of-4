@@ -16,7 +16,6 @@ import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.ps19.model.Model;
-import it.polimi.ingsw.ps19.model.map.Region;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
@@ -74,9 +73,6 @@ public class TestCompleteModelUpdate {
 		assertTrue(clientModel.getKing() != null);
 		assertTrue(clientModel.getRegions() != null);
 		assertTrue(clientModel.getPlayer() != null);
-		
-		Region mountain = clientModel.getRegionByType(RegionType.MOUNTAIN);
-		List<Color> first = mountain.getBalcony().getCouncilcolor();
 		
 		ElectCouncillorMessage electCouncillor = new ElectCouncillorMessage(Color.decode("#FF0000"), 
 				RegionType.MOUNTAIN);

@@ -1,7 +1,5 @@
 package it.polimi.ingsw.PS19.controller;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +7,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.ps19.controller.GameController;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
@@ -45,7 +42,6 @@ public class BusinessCardBonusTest {
 		players.add(2);
 		players.add(3);
 		Model m = new Model(players);
-		GameController g = new GameController(m);
 		
 		m.getPlayerById(0).setBusinessCardRequest(true);
 		
