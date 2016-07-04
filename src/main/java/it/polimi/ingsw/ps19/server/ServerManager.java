@@ -17,7 +17,6 @@ import it.polimi.ingsw.ps19.client.language.English;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 import java.io.IOException;
