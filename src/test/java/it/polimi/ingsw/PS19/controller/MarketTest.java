@@ -126,6 +126,29 @@ public class MarketTest {
 		 * Finito di eseguire le azioni principali imposto il time to market
 		 */
 		assertTrue(m.getCurrentState().isTimeToMarket());
+		assertTrue("idTurn" + m.getCurrentState().getPlayerTurnId(), m.getCurrentState().getPlayerTurnId() == 11);
+
+		/**
+		 * il player 1 crea l'ordine
+		 */
+		Order o1 = new Order();
+		o1.setHelper(1);
+		o1.addPoliticsCard(m.getPlayerById(11).getPoliticcard().get(0).getColor());
+		o1.setPrice(3);
+		
+		SendOrderMessage order1 = new SendOrderMessage(o1);
+		order1.setId(11);
+		
+	
+		g.update(null, order1);
+		
+		
+		assertTrue("class: " + g.getReply().getResult(), (g.getReply() instanceof WaitingPlayerForMarketReply));
+		
+		assertTrue("size" + m.getMarket().getSize(), m.getMarket().getSize() == 1);
+		assertTrue("marketsize: " + m.getMarket().getListoforder().get(11), m.getMarket().getListoforder().get(11) == o1);
+		assertTrue(!m.getCurrentState().isPlayerBought(11));
+		assertTrue(m.getCurrentState().isTimeToMarket());
 		
 		/**
 		 * il player 0 crea l'ordine
@@ -140,33 +163,13 @@ public class MarketTest {
 	
 		g.update(null, order);
 		
-		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof WaitingPlayerForMarketReply);
+		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof CompleteMarketReply);
 		
-		assertTrue(m.getMarket().getSize() == 1);
+		assertTrue(m.getMarket().getSize() == 2);
 		assertTrue(m.getMarket().getListoforder().get(10) == o);
 		assertTrue(!m.getCurrentState().isPlayerBought(10));
 		assertTrue(m.getCurrentState().isTimeToMarket());
 		
-		/**
-		 * il player 1 crea l'ordine
-		 */
-		Order o1 = new Order();
-		o1.setHelper(1);
-		o1.addPoliticsCard(m.getPlayerById(10).getPoliticcard().get(0).getColor());
-		o1.setPrice(3);
-		
-		SendOrderMessage order1 = new SendOrderMessage(o1);
-		order1.setId(11);
-		
-	
-		g.update(null, order1);
-		
-		assertTrue("class: " + g.getReply().getClass(), g.getReply() instanceof CompleteMarketReply);
-		
-		assertTrue(m.getMarket().getSize() == 2);
-		assertTrue("marketsize: " + m.getMarket().getListoforder().get(11), m.getMarket().getListoforder().get(11) == o1);
-		assertTrue(!m.getCurrentState().isPlayerBought(11));
-		assertTrue(m.getCurrentState().isTimeToMarket());
 		
 		/**
 		 * ricevuti entrambi gli ordini controllo il messaggio che il server invia ai client
@@ -226,5 +229,4 @@ public class MarketTest {
 		assertTrue("marketsize: " + m.getMarket().getSize(), m.getMarket().getSize() == 0);
 		assertTrue("class: "+ g.getReply().getClass(),g.getReply() instanceof SendFullPlayerReply);
 	}
-
 }

@@ -28,7 +28,7 @@ public class PlayerDisconnectedAction implements Action {
 				//azzero il player disconnesso
 			model.getPlayerById(playerId).setFastActionCounter(0);
 			model.getPlayerById(playerId).setMainActionCounter(0);
-				//imposto le starting action per il prossimo player solo se effettivamente cambia
+				//nel caso il player si disconnette dentro il market cambio il turno
 				//nel caso si è disconnesso un player che non stava giocando allora non faccio niente
 			if(nextTurn != actualPlayerId)
 			{
@@ -42,9 +42,10 @@ public class PlayerDisconnectedAction implements Action {
 			model.getCurrentState().addDisconnectedPlayer(playerId);
 				
 			
-				//se rimane solo un player dico che è l'ultimo turno
+				//se rimane solo un player dico che è l'ultimo turno, impostando che 
+				//l'unico player rimanente vince la partita.
 			if(model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer() == 1)
-				model.getCurrentState().setLastTurn(model.getCurrentState().getPlayerTurnId());
+				model.getCurrentState().setLastTurn(nextTurn);
 			return true;
 	}
 

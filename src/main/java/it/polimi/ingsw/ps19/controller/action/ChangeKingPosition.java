@@ -81,8 +81,11 @@ public class ChangeKingPosition implements Action{
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(!SupportMethod.checkPlayerTurnAndAction(model,playerId, result, SupportMethod.MAIN_ACTION))
+		if(!SupportMethod.checkPlayerTurnAndAction(model,playerId, SupportMethod.MAIN_ACTION))
+		{
+			result = ActionMessages.GENERIC_ERROR;
 			return false;
+		}
 		if(model.getPlayerById(playerId).getMaxemporia()==0)
 		{
 			result = ActionMessages.NO_BUILD;

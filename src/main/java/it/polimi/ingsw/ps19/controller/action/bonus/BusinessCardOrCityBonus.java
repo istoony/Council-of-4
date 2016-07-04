@@ -32,12 +32,15 @@ public class BusinessCardOrCityBonus implements Action
 	public Boolean execute(Model model) 
 	{
 		if(city == null)
+		{
 			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), card.getBonus());
+			model.getPlayerById(playerId).setBusinessCardRequest(false);
+		}
 		else
+		{
 			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), city.getBonus());
-		
-		model.getPlayerById(playerId).setBusinessCardRequest(false);
-		model.getPlayerById(playerId).setCityBonusRequest(false);
+			model.getPlayerById(playerId).setCityBonusRequest(false);
+		}
 		
 		return true;
 	}

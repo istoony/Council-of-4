@@ -31,8 +31,11 @@ public class BuyMainAction implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(!SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.FAST_ACTION))
+		if(!SupportMethod.checkPlayerTurnAndAction(model, playerId, SupportMethod.FAST_ACTION))
+		{
+			result = ActionMessages.GENERIC_ERROR;
 			return false;
+		}
 		result = ActionMessages.EVERYTHING_IS_OK;
 		if(model.getPlayerById(playerId).getHelpers() >= HELPERS_NEEDED)
 			return true;

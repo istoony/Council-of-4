@@ -150,6 +150,11 @@ public class GameController implements Observer
 				//
 			if(model.getCurrentState().getPlayerTurnId() == model.getCurrentState().getLastTurn())
 			{
+					//
+					//se il gioco è finito sovrascrivo la risposta inserendo i player in ordine di punteggio
+					//e inviando il messaggio di end game
+					//
+				
 				SupportMethod.calculateLastPoints(model);
 				List<Player> orderList = SupportMethod.sortByVictoryPoints(model.getPlayer());
 				reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);

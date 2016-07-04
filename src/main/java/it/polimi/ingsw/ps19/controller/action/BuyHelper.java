@@ -30,8 +30,11 @@ public class BuyHelper implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if(!SupportMethod.checkPlayerTurnAndAction(model,id, result, SupportMethod.FAST_ACTION))
+		if(!SupportMethod.checkPlayerTurnAndAction(model,id, SupportMethod.FAST_ACTION))
+		{
+			result = ActionMessages.GENERIC_ERROR;
 			return false;
+		}
 			
 		if(model.getPlayerById(id).getMoney() < MONEY)
 		{

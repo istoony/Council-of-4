@@ -20,15 +20,6 @@ public class BusinessCard implements Card, Serializable{
 	private List<City> city;
 	private int id;
 	
-	public BusinessCard(RegionType type, Bonus bonus, City city) 
-	{
-		this.bonus = new ArrayList<>();
-		this.city = new ArrayList<>();
-		this.type = type;
-		this.bonus.add(bonus);
-		this.city.add(city);
-	}
-	
 	public BusinessCard(RegionType type) 
 	{
 		this.bonus = new ArrayList<>();
@@ -68,22 +59,6 @@ public class BusinessCard implements Card, Serializable{
 		return id;
 	}
 	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		s = s + "ID: " + id;
-		s = s + "REGION: " + type.name() + "  ";
-		for (Bonus b : bonus) 
-			s = s + b.getClass().getName() + "  ";
-		s += "cities: " + city.size() + "   \n";
-		for (City c : city) 
-			s = s + c.toString() + "  ";
-		s = s + "\n";
-		
-		return s;
-	}
-	
 	public List<City> getCity() 
 	{
 		return Costants.clone(city);
@@ -96,21 +71,5 @@ public class BusinessCard implements Card, Serializable{
 		if(b.getId() == id)
 			return true;
 		return false;
-	}
-	
-	public String toStringBonus(){
-		String s="";
-		for(Bonus b : bonus){
-			s+=b.toString()+", ";
-		}
-		return s;
-	}
-	
-	public String toStringCities(){
-		String s="";
-		for(City c : city){
-			s+=c.getName()+", ";
-		}
-		return s;
 	}
 }

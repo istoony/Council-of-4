@@ -187,27 +187,15 @@ public class SupportMethod
 		return players;
 	}
 
-	public static boolean checkPlayerTurnAndAction(Model model, int id, String result, String type) 
+	public static boolean checkPlayerTurnAndAction(Model model, int id, String type) 
 	{
 		if(checkPlayerTurn(id, model))
-		{
-			result = ActionMessages.NOT_YOUR_TURN;
 			return false;
-		}
 		
-		if(type.equals(MAIN_ACTION))
-		{
-			if(model.getPlayerById(id).getMainActionCounter() < N_OF_ACTION_TO_ADD)
-			{
-				result = ActionMessages.NO_ACTION_TO_DO_IT;
-				return false;
-			}
-		}
-		else if(type.equals(FAST_ACTION) && model.getPlayerById(id).getFastActionCounter() < N_OF_ACTION_TO_ADD)
-		{
-			result = ActionMessages.NO_ACTION_TO_DO_IT;
+		if(type.equals(MAIN_ACTION) && model.getPlayerById(id).getMainActionCounter() < N_OF_ACTION_TO_ADD)
 			return false;
-		}
+		else if(type.equals(FAST_ACTION) && model.getPlayerById(id).getFastActionCounter() < N_OF_ACTION_TO_ADD)
+			return false;
 	
 		return true;
 	}

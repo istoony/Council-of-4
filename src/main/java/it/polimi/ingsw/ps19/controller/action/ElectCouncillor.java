@@ -62,9 +62,12 @@ public class ElectCouncillor implements Action
 	@Override
 	public Boolean isPossible(Model model) 
 	{
-		if((mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.MAIN_ACTION))
-				|| (!mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, result, SupportMethod.FAST_ACTION)))
+		if((mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, SupportMethod.MAIN_ACTION))
+				|| (!mainAction && !SupportMethod.checkPlayerTurnAndAction(model, playerId, SupportMethod.FAST_ACTION)))
+		{
+			result = ActionMessages.GENERIC_ERROR;
 			return false;
+		}
 		if(!model.getMap().getAvailableCouncillor().findColor(color))
 		{
 			result = ActionMessages.COLOR_NOT_AVAILABLE;
