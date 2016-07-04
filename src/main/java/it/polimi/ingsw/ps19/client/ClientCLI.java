@@ -56,7 +56,7 @@ public class ClientCLI extends ClientUI
 			strings.add(a.toString(language));
 		while(!valid)
 		{
-			writeln(language.chooseActionTypeTitle + ":");
+			writeln(language.getChooseActionTypeTitle() + ":");
 			try {
 				int index = getValues(strings);
 				action = actionList.get(index);
@@ -79,7 +79,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public RegionType getRegion(List<RegionType> regions) throws InvalidInsertionException
 	{
-		writeln(language.chooseRegionTitle + ":");
+		writeln(language.getChooseRegionTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		for(RegionType region : regions)
 			strings.add(language.getString(region));
@@ -93,7 +93,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public Color getColor(List<Color> validColors) throws InvalidInsertionException
 	{
-		writeln(language.chooseColor + ":");
+		writeln(language.getChooseColor() + ":");
 		List<String> strings = new ArrayList<>();
 		for(Color c : validColors)
 			strings.add(language.getString(c));
@@ -103,11 +103,11 @@ public class ClientCLI extends ClientUI
 	@Override
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException 
 	{ 
-		writeln(language.chooseRegionTitle + ":");
+		writeln(language.getChooseRegionTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		for(RegionType region : regions)
 			strings.add(language.getString(region));
-		strings.add(language.king.toUpperCase());
+		strings.add(language.getKing().toUpperCase());
 		int index = getValues(strings);
 		if(index == regions.size())
 			return null;
@@ -127,7 +127,7 @@ public class ClientCLI extends ClientUI
 		List<String> strings = new ArrayList<>();
 		for(ClientAction a : actionList)
 			strings.add(language.getString(a));
-		writeln(language.chooseActionTitle + ":");
+		writeln(language.getChooseActionTitle() + ":");
 		int index = getValues(strings);
 		action = actionList.get(index);
 		return action;
@@ -142,7 +142,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public BusinessCard getBusiness(List<BusinessCard> cards) throws InvalidInsertionException
 	{
-		writeln(language.chooseBusinessCardTitle + ":");
+		writeln(language.getChooseBusinessCardTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		for(BusinessCard card : cards)
 			strings.add(language.getString(card) + "\n");
@@ -153,7 +153,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public PoliticsCard getPolitic(List<PoliticsCard> cards) throws InvalidInsertionException 
 	{
-		writeln(language.choosePoliticCardTitle + ":");
+		writeln(language.getChoosePoliticCardTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		for(PoliticsCard card : cards)
 			strings.add(language.getString(card));
@@ -164,7 +164,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public City getCity(List<City> cities) throws InvalidInsertionException
 	{
-		writeln(language.chooseCityTitle + ":");
+		writeln(language.getChooseCityTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		for(City city : cities)
 			if(city != null)
@@ -176,7 +176,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public City getCity(Map<City, Integer> citiesECosts) throws InvalidInsertionException 
 	{
-		writeln(language.chooseCityTitle + ":");
+		writeln(language.getChooseCityTitle() + ":");
 		List<String> strings = new ArrayList<>();
 		List<City> cities = new ArrayList<>();
 		for(Entry<City, Integer> entry : citiesECosts.entrySet())
@@ -194,25 +194,25 @@ public class ClientCLI extends ClientUI
 		int n;
 		if (strings.isEmpty())
 			throw new InvalidInsertionException();
-		try
+		if(strings.get(0).contains("\n"))
+			write("\t0 = " + strings.get(0));
+		else
+			write("(0 = " + strings.get(0));
+		for(i = 1; i < strings.size(); i++)
 		{
 			if(strings.get(0).contains("\n"))
-				write("\t0 = " + strings.get(0));
+				write("\t" + i + " = " + strings.get(i));
 			else
-				write("(0 = " + strings.get(0));
-			for(i = 1; i < strings.size(); i++)
-			{
-				if(strings.get(0).contains("\n"))
-					write("\t" + i + " = " + strings.get(i));
-				else
-					write(", " + i + " = " + strings.get(i));
-			}
-			if(!strings.get(0).contains("\n"))
-				writeln(")");
+				write(", " + i + " = " + strings.get(i));
+		}
+		if(!strings.get(0).contains("\n"))
+			writeln(")");
+		try
+		{
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
-				throw new NumberFormatException();
+				throw new InvalidInsertionException();
 		}catch(IOException | NumberFormatException e)
 		{
 			log.log(Level.SEVERE, e.toString(), e);
@@ -239,7 +239,7 @@ public class ClientCLI extends ClientUI
 	public String read() throws IOException
 	{
 		if(in.ready())
-			in.readLine();
+			in.readLine();		//flush buffer
 		return in.readLine();
 	}
 	
@@ -248,7 +248,7 @@ public class ClientCLI extends ClientUI
 		String s = city.getName();
 		s += ":(";
 		s += language.getString(city.getCitycolor());
-		s += ", " + language.bonuses + ":";
+		s += ", " + language.getBonuses() + ":";
 		if(city.getBonus().isEmpty())
 			s += " 0, ";
 		else
@@ -259,10 +259,10 @@ public class ClientCLI extends ClientUI
 			s += ")";
 		}
 		if(city.getEmporia().isEmpty())
-			s += language.noEmporia;
+			s += language.getNoEmporia();
 		else
 		{
-			s += language.emporiaOfPlayers + ": " + city.getEmporia().get(0);
+			s += language.getEmporiaOfPlayers() + ": " + city.getEmporia().get(0);
 			for(int i = 1; i < city.getEmporia().size(); i++)
 				s = s.concat(", " + city.getEmporia().get(i).toString());
 			s += ")";
@@ -272,7 +272,7 @@ public class ClientCLI extends ClientUI
 	
 	private String modelToString(ClientModel model)
 	{
-		String s = "----------------------------------- \n " + language.map.toUpperCase() + "\n \n \n";
+		String s = "----------------------------------- \n " + language.getMap().toUpperCase() + "\n \n \n";
 		for(Region region: model.getRegions())
 		{
 			s = s.concat(getString(region));
@@ -288,7 +288,7 @@ public class ClientCLI extends ClientUI
 				s = s.concat(getString(p, false));
 			s = s.concat("\n\n");
 		}
-		s += language.nobilityPath.toUpperCase() + ":\n";
+		s += language.getNobilityPath().toUpperCase() + ":\n";
 		for(int i = 0; i <= model.getNobilitypath().getMaxKey(); i++)
 		{
 			s = s.concat(i + ": [");
@@ -303,24 +303,24 @@ public class ClientCLI extends ClientUI
 			s = s.concat("]\n");
 		}
 		s += "\n";
-		s += language.result + ": " + model.getResult();
-		s += "\n\n" + language.activePlayerId + ": " + model.getActiveplayer();
+		s += language.getResult() + ": " + model.getResult();
+		s += "\n\n" + language.getActivePlayerId() + ": " + model.getActiveplayer();
 		s += "\n--------------------------------------\n";
-		s += language.youArePlayer + ": " + model.getMyPlayer().getId() + "\n\n";
+		s += language.getYouArePlayer() + ": " + model.getMyPlayer().getId() + "\n\n";
 		return s;
 	}
 	
 	private String getString(Player p, boolean me)
 	{
-		String s = language.player + ": "+ p.getId() + "\n";
-		s += language.numEmporiaLeft + ": " + p.getMaxemporia() + "\n";
-		s += language.money + ": " + p.getMoney() + "\n";
-		s += language.victoryPoints + ": " + p.getVictoryPoints() + "\n";
-		s += language.nobilityPoints + ": " + p.getNobilityPoints() + "\n";
-		s += language.numOfHelpers + ": " + p.getHelpers() + "\n";
-		s += language.numberOf + " " + language.main + " " + language.available + ": " + p.getMainActionCounter() + "\n";
-		s += language.numberOf + " " + language.quick + " " + language.available + ": " + p.getFastActionCounter() + "\n";
-		s += language.politicCards + ": ";
+		String s = language.getPlayer() + ": "+ p.getId() + "\n";
+		s += language.getNumEmporiaLeft() + ": " + p.getMaxemporia() + "\n";
+		s += language.getMoney() + ": " + p.getMoney() + "\n";
+		s += language.getVictoryPoints() + ": " + p.getVictoryPoints() + "\n";
+		s += language.getNobilityPoints() + ": " + p.getNobilityPoints() + "\n";
+		s += language.getNumOfHelpers() + ": " + p.getHelpers() + "\n";
+		s += language.getNumberOf() + " " + language.getMain() + " " + language.getAvailable() + ": " + p.getMainActionCounter() + "\n";
+		s += language.getNumberOf() + " " + language.getQuick() + " " + language.getAvailable() + ": " + p.getFastActionCounter() + "\n";
+		s += language.getPoliticCards() + ": ";
 		if(p.getPoliticcard().isEmpty())
 			s += 0 + "\n";
 		else if(me)
@@ -333,17 +333,17 @@ public class ClientCLI extends ClientUI
 		else
 			s += p.getPoliticcard().size() + "\n";
 		
-		s += language.freeBusiness + ":";
+		s += language.getFreeBusiness() + ":";
 		if(p.getFreebusinesscard().isEmpty())
-			s += 0;
+			s += "0";
 		else
 		{
 			for(BusinessCard card : p.getFreebusinesscard())
 				s = s.concat("\n\t[" + language.getString(card) + "]");
 		}
-		s += "\n" + language.usedBusiness + ":";
+		s += "\n" + language.getUsedBusiness() + ":";
 		if(p.getUsedbusinesscard().isEmpty())
-			s += 0;
+			s += "0";
 		else
 		{
 			for(BusinessCard card : p.getUsedbusinesscard())
@@ -354,26 +354,26 @@ public class ClientCLI extends ClientUI
 	
 	private String getString(King king)
 	{
-		String s = language.king.toUpperCase() + "\n";
-		s += language.currentCity + ": " + language.getString(king.getCurrentcity()) + "\n";
+		String s = language.getKing().toUpperCase() + "\n";
+		s += language.getCurrentCity() + ": " + language.getString(king.getCurrentcity()) + "\n";
 		s += language.getString(king.getBalcony()) + "\n";
 		return s;
 	}
 	
 	private String getString(Region region)
 	{
-		String s = language.region + ": ";
+		String s = language.getRegion() + ": ";
 		s += language.getString(region.getType()) + "\n";
 		s += language.getString(region.getBalcony());
-		s += language.cities + ":\n";
+		s += language.getCities() + ":\n";
 		for(City c : region.getCities())
 		{
 			s = s.concat("\t" + getFullString(c) + "\n");
 		}
-		s += language.businessCards + ":\n";
-		s += "\t" + language.firstCard + ": ";
+		s += language.getBusinessCards() + ":\n";
+		s += "\t" + language.getFirstCard() + ": ";
 		s += language.getString(region.getFirstcard());
-		s += "\n\t" + language.secondCard + ": ";
+		s += "\n\t" + language.getSecondCard() + ": ";
 		s += language.getString(region.getSecondcard());
 		return s;
 	}
@@ -382,7 +382,7 @@ public class ClientCLI extends ClientUI
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException 
 	{
 		int number;
-		writeln(language.howManyHelpersToSell + "(" + language.available + ": " + n);
+		writeln(language.getHowManyHelpersToSell() + "(" + language.getAvailable() + ": " + n);
 		try
 		{
 			String s = read();
@@ -391,7 +391,7 @@ public class ClientCLI extends ClientUI
 				throw new IOException();
 		}catch(IOException | NumberFormatException e)
 		{
-			writeln(language.invalidInsertion);
+			writeln(language.getInvalidInsertion());
 			log.log(Level.SEVERE, e.toString(), e);
 			throw new InvalidInsertionException();
 		}
@@ -401,7 +401,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public int getPrice() throws InvalidInsertionException 
 	{
-		return getInt(language.setPrice);
+		return getInt(language.getSetPrice());
 	}
 
 	@Override
@@ -422,7 +422,7 @@ public class ClientCLI extends ClientUI
 	@Override
 	public Order getOrder(List<Order> orders) throws InvalidInsertionException 
 	{
-		writeln(language.chooseOrder + ": \n");
+		writeln(language.getChooseOrder() + ": \n");
 		List<String> strings = new ArrayList<>();
 		for(Order order : orders)
 			strings.add(language.getString(order) + "\n");
@@ -433,16 +433,16 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showMarket(Market market) 
 	{
-		String marketString = "\n" + language.market.toUpperCase() + "\n";
+		String marketString = "\n" + language.getMarket().toUpperCase() + "\n";
 		if(market.getListoforder().isEmpty())
 		{
-			showNotification(marketString + language.orders + ": " + language.nothing);
+			showNotification(marketString + language.getOrders() + ": " + language.getNothing());
 			return;
 		}
-		marketString += language.orders + ":\n";
+		marketString += language.getOrders() + ":\n";
 		for(Entry<Integer, Order> entry : market.getListoforder().entrySet())
 		{
-			marketString = marketString.concat("\t" + language.player + ": " + entry.getKey() + " " + language.getString(entry.getValue()) + "\n");
+			marketString = marketString.concat("\t" + language.getPlayer() + ": " + entry.getKey() + " " + language.getString(entry.getValue()) + "\n");
 		}
 		showNotification(marketString);
 	}
@@ -473,13 +473,9 @@ public class ClientCLI extends ClientUI
 	@Override
 	public void showWinner(List<Player> players, String result) 
 	{
-		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
+		String s = "\n" + language.getWinner().toUpperCase() + ": " + players.get(0).getId() + "\n\n";
 		players.forEach(p -> writeln(getString(p, true) + "\n"));
-		/*
-		for(Player p : players)
-			s = s.concat(getString(p) + "\n");
-		*/
-		s += "\n" + language.result + ": " + result;
+		s += "\n" + language.getResult() + ": " + result;
 		showNotification(s);
 	}
 }

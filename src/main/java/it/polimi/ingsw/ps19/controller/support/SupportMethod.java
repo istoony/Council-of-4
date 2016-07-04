@@ -186,7 +186,7 @@ public class SupportMethod
 				}
 		return players;
 	}
-
+	
 	public static boolean checkPlayerTurnAndAction(Model model, int id, String type) 
 	{
 		if(checkPlayerTurn(id, model))

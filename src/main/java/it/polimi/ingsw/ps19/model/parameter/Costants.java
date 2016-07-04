@@ -72,32 +72,31 @@ public class Costants
 	
 	private static List<City> recursiveBFS(City root, City end, List<City> path, City start, Map<City, City> visited, List<City> frontier, Map<City, City> parenttree)
 	{
-		if(root.getId() == end.getId())
+		City temp = root;
+		if(temp.getId() == end.getId())
 		{
 			path.add(end);
-			City temp;
 			while(!Costants.containsCityId(path, start))
 			{
-				temp = parenttree.get(root);
+				temp = parenttree.get(temp);
 				path.add(temp);
-				root=temp;
 			}
 			return path;
 		}
 		
-		for(City c : root.getNeighbours()){
+		for(City c : temp.getNeighbours()){
 			if(!parenttree.containsKey(c)){
-				parenttree.put(c, root);
+				parenttree.put(c, temp);
 			}
 		}
-		frontier.addAll(root.getNeighbours());
-		City newroot = frontier.get(0);
+		frontier.addAll(temp.getNeighbours());
+		City newRoot = frontier.get(0);
 		frontier.remove(0);
-		while(visited.containsValue(newroot)){
-			newroot = frontier.get(0);
+		while(visited.containsValue(newRoot)){
+			newRoot = frontier.get(0);
 			frontier.remove(0);
 		}
-		visited.put(newroot, root);
-		return recursiveBFS(newroot, end, path, start, visited, frontier, parenttree);
+		visited.put(newRoot, temp);
+		return recursiveBFS(newRoot, end, path, start, visited, frontier, parenttree);
 	}
 }

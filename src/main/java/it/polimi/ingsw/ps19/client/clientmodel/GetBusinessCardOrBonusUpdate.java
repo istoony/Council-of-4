@@ -42,7 +42,7 @@ public class GetBusinessCardOrBonusUpdate extends ElectCouncillorUpdate
 		if(getBusinessCardBonus)
 		{	
 			if(model.getMyPlayer().getFreebusinesscard().isEmpty() && model.getMyPlayer().getUsedbusinesscard().isEmpty())
-				userInterface.showNotification(userInterface.getLanguage().youNoBusiness);
+				userInterface.showNotification(userInterface.getLanguage().getYouNoBusiness());
 			else
 			{
 				List<BusinessCard> availableCards = new ArrayList<>();
@@ -56,7 +56,7 @@ public class GetBusinessCardOrBonusUpdate extends ElectCouncillorUpdate
 		if(getCityCardBonus)
 		{
 			if(model.getMyPlayer().getMyEmporia().isEmpty())
-				userInterface.showNotification(userInterface.getLanguage().youNoEmporia);
+				userInterface.showNotification(userInterface.getLanguage().getYouNoEmporia());
 			else
 			{
 				List<City> availableCities = new ArrayList<>();

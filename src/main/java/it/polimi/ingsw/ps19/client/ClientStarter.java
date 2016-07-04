@@ -45,61 +45,31 @@ public class ClientStarter
 		List<String> startNewGame = new ArrayList<>();
 		
 		boolean valid;
-		int uiIndex = 0;
-		int connIndex = 0;
-		int languageIndex = 0;
-		do{
-			try {
-				uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
-				uiIndex = -1;
-			}
-		}while(uiIndex != 0 && uiIndex != 1);
-		
-		do{
-			try {
- 				connIndex = ((ClientCLI)userInterface).getValues(typesOfConnection);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
-				connIndex = -1;
-			}
-		}while(connIndex != 0 && connIndex != 1);
-		
-		do{
-			try {
- 				languageIndex = ((ClientCLI)userInterface).getValues(languages);
-			} catch (InvalidInsertionException e) 
-			{
-				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
-				languageIndex = -1;
-			}
-		}while(languageIndex != 0 && languageIndex != 1);
-		
+		int uiIndex;
+		int connIndex;
+		int languageIndex;
 		do
 		{
 			try 
 			{
 				valid = true;
+				languageIndex =  getValue(languages);
+				uiIndex = getValue(typesOfUserInterdace);
+				connIndex = getValue(typesOfConnection);
  				if(languageIndex == 0)
  				{
  					language = new Italiano();
  					userInterface = new ClientCLI(language);
  				}
- 				startNewGame.add(language.newGame);
- 				startNewGame.add(language.reconnect);
+ 				startNewGame.add(language.getNewGame());
+ 				startNewGame.add(language.getReconnect());
  				int newGameIndex = ((ClientCLI)userInterface).getValues(startNewGame);
  				boolean newGame = true;
  				int key = 0;
  				if(newGameIndex == 1)
  				{
  					newGame = false;
- 					key = ((ClientCLI)userInterface).getInt(language.insertPassword);
+ 					key = ((ClientCLI)userInterface).getInt(language.getInsertPassword());
  				}
  				if(uiIndex == 1)
  					userInterface = new ClientGUI(language);
@@ -113,5 +83,21 @@ public class ClientStarter
 				log.log(e);
 			}
 		}while(!valid);
+	}
+	
+	private static int getValue(List<String> list)
+	{
+		int index;
+		do{
+			try {
+				index = ((ClientCLI)userInterface).getValues(list);
+			} catch (InvalidInsertionException e) 
+			{
+				log.log(e);
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
+				index = -1;
+			}
+		}while(index < 0 || index >= list.size()-1);
+		return index;
 	}
 }

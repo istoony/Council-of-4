@@ -22,13 +22,13 @@ public class ActionTypeChooserPanel extends JPanel{
 		language = l;
 		setLayout(new GridLayout(1,2));
 
-		mainButton = new JButton(language.main);
-		mainButton.setToolTipText(language.main);
+		mainButton = new JButton(language.getMain());
+		mainButton.setToolTipText(language.getMain());
 
 		mainButton.setEnabled(false);
 		
-		fastButton = new JButton(language.quick);
-		fastButton.setToolTipText(language.quick);
+		fastButton = new JButton(language.getQuick());
+		fastButton.setToolTipText(language.getQuick());
 
 		fastButton.setEnabled(false);
 		

@@ -5,12 +5,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.SocketWritingException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
 import it.polimi.ingsw.ps19.message.Message;
 
 /**
  * Class for RMI connection
+ */
+/*
+ * 
+ */
+/*
+ * 
  */
 public class RMIConnection extends Connection 
 {
@@ -27,18 +34,24 @@ public class RMIConnection extends Connection
 	}
 	/**
 	 * Constructo
+	 * @param ui
 	 */
-	public RMIConnection() 
+	public RMIConnection(ClientUI ui) 
 	{
-		reader = new RMIReader(fifo);
+		reader = new RMIReader(fifo, ui);
 		Thread t = new Thread(reader);
 		t.start();
 	}
 	
-	public RMIConnection(RMIReaderIntf stub) 
+	/**
+	 * Constructor
+	 * @param stub: stub to write to
+	 * @param ui
+	 */
+	public RMIConnection(RMIReaderIntf stub, ClientUI ui) 
 	{
 		loadWriter(stub);
-		reader = new RMIReader(fifo);
+		reader = new RMIReader(fifo, ui);
 		Thread t = new Thread(reader);
 		t.start();
 	}

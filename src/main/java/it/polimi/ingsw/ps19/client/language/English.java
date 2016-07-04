@@ -29,6 +29,9 @@ public class English extends Language
 {
 	private static final long serialVersionUID = 6039022854625788953L;
 
+	/**
+	 * English language
+	 */
 	public English()
 	{
 		//setup
@@ -123,13 +126,13 @@ public class English extends Language
 		youNoBusiness = "You don't have any " + businessCards;
 		
 		//Colors
-		 c_FF0000 = "Red";
-		 c_0000FF = "Blue";
-		 c_FF7F00 = "Orange";
-		 c_000000 = "White";
-		 c_FFFFFF = "Black";
-		 c_FFC0CB = "Pink";
-		 c_Joker = "Joker";
+		 cFF0000 = "Red";
+		 c0000FF = "Blue";
+		 cFF7F00 = "Orange";
+		 c000000 = "White";
+		 cFFFFFF = "Black";
+		 cFFC0CB = "Pink";
+		 cJoker = "Joker";
 	}		
 	
 	@Override

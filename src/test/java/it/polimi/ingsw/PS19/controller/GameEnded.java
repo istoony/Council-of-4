@@ -1,6 +1,5 @@
 package it.polimi.ingsw.PS19.controller;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +8,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.ps19.controller.GameController;
-import it.polimi.ingsw.ps19.message.requests.BuildEmporiumMessage;
-import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
@@ -44,8 +40,6 @@ public class GameEnded {
 		players.add(1);
 		players.add(2);
 		players.add(3);
-		Model m = new Model(players);
-		GameController g = new GameController(m);
 		
 		
 	

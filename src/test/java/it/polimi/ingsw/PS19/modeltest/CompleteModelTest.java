@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import it.polimi.ingsw.ps19.controller.GameController;
 import it.polimi.ingsw.ps19.model.Model;
 
 public class CompleteModelTest {
@@ -28,7 +27,6 @@ public class CompleteModelTest {
 		
 		//initialize the game on costructor
 		//draw politic card for all players
-		GameController g = new GameController(model);
 		
 		//player 0 have > 0 cards
 			assertTrue(model.getPlayerById(0).getPoliticcard().size() == 7);

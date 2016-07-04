@@ -17,7 +17,6 @@ import it.polimi.ingsw.ps19.client.language.English;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
-import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.view.connection.SocketConnection;
 
 import java.io.IOException;
@@ -45,37 +44,8 @@ public class ServerManager
 	{
 		Thread stopperThread = new StopperThread();
 		serverCLI.showNotification(Language.START);
-		boolean valid;
-		Integer maxPlayers = null;
-		long playerTimeout = 0;
-		do
-		{
-			try
-			{
-				maxPlayers = serverCLI.getInt(Language.SET_MAX_P);
-				valid = true;
-				if(maxPlayers < 2)
-					valid = false;
-			}catch(InvalidInsertionException e)
-			{
-				log.log(e);
-				valid = false;
-			}
-		}while(!valid);
-		do
-		{
-			try
-			{
-				playerTimeout = serverCLI.getInt(Language.SET_MAX_P_TO);
-				valid = true;
-				if(playerTimeout < 10)
-					valid = false;
-			}catch(InvalidInsertionException e)
-			{
-				log.log(e);
-				valid = false;
-			}
-		}while(!valid);
+		Integer maxPlayers = getValue(Language.SET_MAX_P, 2);
+		long playerTimeout = getValue(Language.SET_MAX_P_TO, 10);
 		Constants.setMaxPlayers(maxPlayers);
 		Constants.setPlayerTimeout(playerTimeout);
 		//RMI Init
@@ -84,16 +54,7 @@ public class ServerManager
 			rmiServer = new RMIServer();
 			ServerRemoteIntf stub = (ServerRemoteIntf) UnicastRemoteObject.exportObject(rmiServer, 0);
 			String name = Constants.RMI_SERVER_STUB_NAME;
-			try
-			{
-				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
-				serverCLI.showNotification(Language.REG_CREATED + Constants.RMI_PORT);
-			}catch(RemoteException e)
-			{
-				log.log(e);
-				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
-				serverCLI.showNotification(Language.REG_ACCESSED + Constants.RMI_PORT);
-			}
+			rmiConnect();			
 			registry.rebind(name, stub);
 			ServerManager.serverCLI.showNotification(Language.RMI_SUCCESS);
 		} 
@@ -112,7 +73,6 @@ public class ServerManager
 		catch(IOException e)
 		{
 			ServerManager.serverCLI.showNotification(Language.SOCKET_INSUCCESS);
-			e.printStackTrace();
 			log.log(e);
 		}
 		
@@ -157,5 +117,41 @@ public class ServerManager
 		{
 			log.log(e);
 		}
+	}
+	
+	private static int getValue(String title, int minValue)
+	{
+		int value = 0;
+		boolean valid;
+		do
+		{
+			try
+			{
+				value = serverCLI.getInt(title);
+				valid = true;
+				if(value < minValue)
+					valid = false;
+			}catch(InvalidInsertionException e)
+			{
+				log.log(e);
+				valid = false;
+			}
+		}while(!valid);
+		return value;
+	}
+	
+	private static void rmiConnect() throws RemoteException
+	{
+		try
+		{
+			registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
+			serverCLI.showNotification(Language.REG_CREATED + Constants.RMI_PORT);
+		}catch(RemoteException e)
+		{
+			log.log(e);
+			registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
+			serverCLI.showNotification(Language.REG_ACCESSED + Constants.RMI_PORT);
+		}
+
 	}
 }

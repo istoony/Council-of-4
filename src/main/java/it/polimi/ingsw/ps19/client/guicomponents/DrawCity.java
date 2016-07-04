@@ -84,19 +84,19 @@ public class DrawCity extends JPanel implements MouseListener{
 
 	
 	protected JFrame createInfo(){
-		JFrame f = new JFrame(language.infoCity + ": " + language.getString(mycity));
+		JFrame f = new JFrame(language.getInfoCity() + ": " + language.getString(mycity));
 		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setLayout(new GridLayout(7, 1));
 		
 		//emporia info
-		JLabel emporiatitle = new JLabel(INDENTATION + language.emporiaOfPlayers);
+		JLabel emporiatitle = new JLabel(INDENTATION + language.getEmporiaOfPlayers());
 		String s=INDENTATION;
 		if(mycity.getEmporia().isEmpty())
-			s += language.noEmporia;
+			s += language.getNoEmporia();
 		else
 		{
-			s += language.emporiaOfPlayers + ": ";
+			s += language.getEmporiaOfPlayers() + ": ";
 			s += mycity.getEmporia().get(0).toString();
 			for(int i = 1; i < mycity.getEmporia().size(); i++)
 				s = s.concat(", " + mycity.getEmporia().get(i).toString());
@@ -109,7 +109,7 @@ public class DrawCity extends JPanel implements MouseListener{
 		f.add(emporialist);
 		
 		//bonus info
-		JLabel bonustitle = new JLabel(INDENTATION + language.bonuses + ": ");
+		JLabel bonustitle = new JLabel(INDENTATION + language.getBonuses() + ": ");
 		bonustitle.setVisible(true);
 		f.add(bonustitle);
 		for(Bonus b : mycity.getBonus()){

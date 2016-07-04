@@ -50,7 +50,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	protected void setInfo(ClientModel m){
 		setLayout(new GridLayout(7, 0));
-		setToolTipText(language.infoGame);
+		setToolTipText(language.getInfoGame());
 		infos = constructInfoCell(m);
 		for(JLabel jl : infos){
 			jl.setVisible(true);
@@ -90,7 +90,7 @@ public class InfoCell extends JPanel implements ActionListener{
 
 	protected void setInfo(Player p){
 		setLayout(new GridLayout(8, 0));
-		setToolTipText(language.infoOthers);
+		setToolTipText(language.getInfoOthers());
 		infos = constructPlayerCell(p);
 		for(JLabel jl : infos){
 			jl.setVisible(true);
@@ -106,7 +106,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	protected void setMyInfo(Player p){
 		setLayout(new GridLayout(12, 0));
-		setToolTipText(language.infoYou);
+		setToolTipText(language.getInfoYou());
 		infos = constructMyPlayerCell(p);
 		for(JLabel jl : infos){
 			jl.setVisible(true);
@@ -123,26 +123,26 @@ public class InfoCell extends JPanel implements ActionListener{
 	private ArrayList<JLabel> constructInfoCell(ClientModel m){
 		ArrayList<JLabel> lst = new ArrayList<>();
 		String s = "";
-		lst.add(new JLabel(INDENTATION + "--- " + language.infoGame +" ---"));
-		lst.add(new JLabel(INDENTATION + language.king + ": " + language.currentCity + ": " + language.getString(m.getKing().getCurrentcity())));
+		lst.add(new JLabel(INDENTATION + "--- " + language.getInfoGame() +" ---"));
+		lst.add(new JLabel(INDENTATION + language.getKing() + ": " + language.getCurrentCity() + ": " + language.getString(m.getKing().getCurrentcity())));
 		s = language.getString(m.getKing().getBalcony());
-		lst.add(new JLabel(INDENTATION + language.balcony + ": "+s));
-		lst.add(new JLabel(INDENTATION + language.activePlayerId + ": " + m.getActiveplayer()));
+		lst.add(new JLabel(INDENTATION + language.getBalcony() + ": "+s));
+		lst.add(new JLabel(INDENTATION + language.getActivePlayerId() + ": " + m.getActiveplayer()));
 		return lst;
 	}
 	
 	private ArrayList<JLabel> constructPlayerCell(Player p){
 		ArrayList<JLabel> lst = new ArrayList<>();
-		lst.add(new JLabel(INDENTATION + "--- " + language.infoPlayer + ": " + p.getId() + " ---"));
-		lst.add(new JLabel(INDENTATION + language.victoryPoints + ": " + p.getVictoryPoints()));
-		lst.add(new JLabel(INDENTATION + language.nobilityPoints + ": " + p.getNobilityPoints()));
-		lst.add(new JLabel(INDENTATION + language.money + ": " + p.getMoney()));
-		lst.add(new JLabel(INDENTATION + language.numEmporiaLeft + ": " + (p.getMaxemporia())));
-		lst.add(new JLabel(INDENTATION + language.freeBusiness + ": " + p.getFreebusinesscard().size()));
+		lst.add(new JLabel(INDENTATION + "--- " + language.getInfoPlayer() + ": " + p.getId() + " ---"));
+		lst.add(new JLabel(INDENTATION + language.getVictoryPoints() + ": " + p.getVictoryPoints()));
+		lst.add(new JLabel(INDENTATION + language.getNobilityPoints() + ": " + p.getNobilityPoints()));
+		lst.add(new JLabel(INDENTATION + language.getMoney() + ": " + p.getMoney()));
+		lst.add(new JLabel(INDENTATION + language.getNumEmporiaLeft() + ": " + (p.getMaxemporia())));
+		lst.add(new JLabel(INDENTATION + language.getFreeBusiness() + ": " + p.getFreebusinesscard().size()));
 		//TODO used business cards?
 		//answer: no why?
-		lst.add(new JLabel(INDENTATION + language.politicCards + ": " + p.getPoliticcard().size()));
-		lst.add(new JLabel(INDENTATION + language.helpers + ": " + p.getHelpers()));
+		lst.add(new JLabel(INDENTATION + language.getPoliticCards() + ": " + p.getPoliticcard().size()));
+		lst.add(new JLabel(INDENTATION + language.getHelpers() + ": " + p.getHelpers()));
 		return lst;
 	}
 	
@@ -151,11 +151,11 @@ public class InfoCell extends JPanel implements ActionListener{
 		String s="";
 		String reserve= "";
 		int count=0;
-		lst.add(new JLabel(INDENTATION+"--- " + language.infoYou + " --- "));
-		lst.add(new JLabel(INDENTATION + language.victoryPoints + ": " + p.getVictoryPoints()));
-		lst.add(new JLabel(INDENTATION + language.nobilityPoints + ": " + p.getNobilityPoints()));
-		lst.add(new JLabel(INDENTATION + language.money + ": " + p.getMoney()));
-		lst.add(new JLabel(INDENTATION + language.numEmporiaLeft + ": " + (p.getMaxemporia())));
+		lst.add(new JLabel(INDENTATION+"--- " + language.getInfoYou() + " --- "));
+		lst.add(new JLabel(INDENTATION + language.getVictoryPoints() + ": " + p.getVictoryPoints()));
+		lst.add(new JLabel(INDENTATION + language.getNobilityPoints() + ": " + p.getNobilityPoints()));
+		lst.add(new JLabel(INDENTATION + language.getMoney() + ": " + p.getMoney()));
+		lst.add(new JLabel(INDENTATION + language.getNumEmporiaLeft() + ": " + (p.getMaxemporia())));
 		for(PoliticsCard c : p.getPoliticcard()){
 			count++;
 			if(count<10){
@@ -165,12 +165,12 @@ public class InfoCell extends JPanel implements ActionListener{
 				reserve = reserve.concat(language.getString(c) + ", ");
 			}
 		}
-		lst.add(new JLabel(INDENTATION + language.politicCards + ": " + s));
+		lst.add(new JLabel(INDENTATION + language.getPoliticCards() + ": " + s));
 		if(reserve!=""){
 			lst.add(new JLabel(INDENTATION + INDENTATION_2ND_POLITIC + reserve));
 		}
-		lst.add(new JLabel(INDENTATION + language.helpers + ": " + p.getHelpers()));
-		lst.add(new JLabel(INDENTATION + language.businessCards + ": "));
+		lst.add(new JLabel(INDENTATION + language.getHelpers() + ": " + p.getHelpers()));
+		lst.add(new JLabel(INDENTATION + language.getBusinessCards() + ": "));
 		for(BusinessCard c : p.getFreebusinesscard()){
 			lst.add(new JLabel(INDENTATION+INDENTATION+INDENTATION + language.getString(c)));
 		}
@@ -196,7 +196,7 @@ public class InfoCell extends JPanel implements ActionListener{
 		f.setLayout(new GridLayout(30, 2));
 		
 		JLabel pos = new JLabel(INDENTATION + "position:");
-		JLabel title = new JLabel(language.bonuses);
+		JLabel title = new JLabel(language.getBonuses());
 		pos.setVisible(true);
 		title.setVisible(true);
 		
