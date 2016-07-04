@@ -4,9 +4,7 @@
 package it.polimi.ingsw.ps19.client;
 
 import java.awt.Color;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +32,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
  * 
  */
 public class ClientCLI extends ClientUI 
-{
-	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	
+{	
 	/**
 	 * @param l: language
 	 */
@@ -222,12 +218,12 @@ public class ClientCLI extends ClientUI
 	
 	private void write(String s)
 	{
-		System.out.print(s);
+		System.console().writer().print(s);
 	}
 	
 	private void writeln(String s)
 	{
-		System.out.println(s);
+		System.console().writer().println(s);
 	}
 	
 	/**
@@ -237,11 +233,8 @@ public class ClientCLI extends ClientUI
 	 */
 	public String read() throws IOException
 	{
-		String s;
-		while(in.ready())
-			s = in.readLine();
-		s = in.readLine();
-		return s;
+		System.console().flush();
+		return System.console().readLine();
 	}
 	
 	private String getFullString(City city)

@@ -44,10 +44,6 @@ public class ServerManager
 	{
 		Thread stopperThread = new StopperThread();
 		serverCLI.showNotification(Language.START);
-		Integer maxPlayers = getValue(Language.SET_MAX_P, 2);
-		long playerTimeout = getValue(Language.SET_MAX_P_TO, 10);
-		Constants.setMaxPlayers(maxPlayers);
-		Constants.setPlayerTimeout(playerTimeout);
 		//RMI Init
 		try 
 		{
@@ -61,6 +57,7 @@ public class ServerManager
 		catch (RemoteException e) 
 		{
 			ServerManager.serverCLI.showNotification(Language.RMI_INSUCCESS);
+			stop = true;
 			log.log(e);
 		}
 		
@@ -73,12 +70,23 @@ public class ServerManager
 		catch(IOException e)
 		{
 			ServerManager.serverCLI.showNotification(Language.SOCKET_INSUCCESS);
+			stop = true;
 			log.log(e);
 		}
 		
-		//Waiting Room Init
-		WaitingRoom.startTimer();
-		stopperThread.start();
+		if(!stop)
+		{
+			Integer maxPlayers = getValue(Language.SET_MAX_P, 2);
+			long playerTimeout = getValue(Language.SET_MAX_P_TO, 10);
+			Constants.setMaxPlayers(maxPlayers);
+			Constants.setPlayerTimeout(playerTimeout);
+			WaitingRoom.startTimer();
+			stopperThread.start();
+		}
+		else
+		{
+			ServerManager.serverCLI.showNotification("Another server is already running!");
+		}
 		
 		while(!stop)
 		{
@@ -88,16 +96,17 @@ public class ServerManager
 				ServerManager.serverCLI.showNotification(LocalDateTime.now() + " - " + Language.NEW_CLIENT_CONN);
 				WaitingRoom.addConnection(new SocketConnection(clientSocket));
 			}
-			catch(IOException e)
+			catch(IOException | NullPointerException e)
 			{
 				log.log(e);
 			}
 		}
 		
-		WaitingRoom.quit();
-		try {
+		try 
+		{
+			WaitingRoom.quit();
 			UnicastRemoteObject.unexportObject(rmiServer, true);
-		} catch (NoSuchObjectException e) 
+		} catch (NoSuchObjectException | NullPointerException e) 
 		{
 			log.log(e);
 		}

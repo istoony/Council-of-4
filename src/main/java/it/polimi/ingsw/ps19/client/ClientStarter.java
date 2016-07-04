@@ -43,19 +43,9 @@ public class ClientStarter
 		languages.add(Language.ENGLISH);
 		
 		List<String> startNewGame = new ArrayList<>();
-		
-		boolean valid;
-		int uiIndex;
-		int connIndex;
-		int languageIndex;
-		do
-		{
-			try 
-			{
-				valid = true;
-				languageIndex =  getValue(languages);
-				uiIndex = getValue(typesOfUserInterdace);
-				connIndex = getValue(typesOfConnection);
+				int languageIndex =  getValue(languages);
+				int uiIndex = getValue(typesOfUserInterdace);
+				int connIndex = getValue(typesOfConnection);
  				if(languageIndex == 0)
  				{
  					language = new Italiano();
@@ -63,13 +53,25 @@ public class ClientStarter
  				}
  				startNewGame.add(language.getNewGame());
  				startNewGame.add(language.getReconnect());
- 				int newGameIndex = ((ClientCLI)userInterface).getValues(startNewGame);
+ 				int newGameIndex = getValue(startNewGame);
  				boolean newGame = true;
  				int key = 0;
  				if(newGameIndex == 1)
  				{
  					newGame = false;
- 					key = ((ClientCLI)userInterface).getInt(language.getInsertPassword());
+ 					do
+ 					{
+	 					try 
+	 					{
+							key = ((ClientCLI)userInterface).getInt(language.getInsertPassword());
+						} catch (InvalidInsertionException e) 
+	 					{
+							key = -1;
+							((ClientCLI)userInterface).showNotification(language.getInvalidInsertion());
+							log.log(e);
+						}
+ 					}
+	 				while(key < 0);
  				}
  				if(uiIndex == 1)
  					userInterface = new ClientGUI(language);
@@ -77,12 +79,7 @@ public class ClientStarter
 					new ClientSocketManager(userInterface, newGame, key);
 				else
 					new ClientRMIManager(userInterface, newGame, key);
-			} catch (InvalidInsertionException e) 
-			{
-				valid = false;
-				log.log(e);
-			}
-		}while(!valid);
+
 	}
 	
 	private static int getValue(List<String> list)
@@ -97,7 +94,7 @@ public class ClientStarter
 				log.log(e);
 				index = -1;
 			}
-		}while(index < 0 || index >= list.size()-1);
+		}while(index < 0 || index >= list.size());
 		return index;
 	}
 }

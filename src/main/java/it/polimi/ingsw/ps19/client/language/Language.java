@@ -60,6 +60,15 @@ public abstract class Language implements Serializable
 	public static final String SERVER_QUIT = "Server quits";
 	public static final String SET_MAX_P_TO = "set the player timeout time (in s)";
 	
+	/**
+	 * Return string notifying of a player disconnected
+	 * @param id
+	 * @return
+	 */
+	public static final String playerDisconnected(int id)
+	{
+		return "Player " + id + " has disconnected";
+	}
 	//General
 	public static final String SOCKET = "Socket";
 	public static final String RMI = "RMI";

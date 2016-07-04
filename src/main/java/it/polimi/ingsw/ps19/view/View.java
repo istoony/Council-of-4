@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.TimeoutException;
 
+import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
@@ -108,10 +109,12 @@ public class View extends Observable implements Observer, Runnable
 			{
 				log.log(e);
 				activeConn.setDisconnected();
+				ServerManager.serverCLI.showNotification(Language.playerDisconnected(activeId));
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(activeId));
 			}
 		}
+		ServerManager.serverCLI.showNotification("game has stopped");
 	}
 	
 	private void stop()
@@ -138,6 +141,7 @@ public class View extends Observable implements Observer, Runnable
 			{
 				log.log(e);
 				WaitingRoom.getConnection(player).setDisconnected();
+				ServerManager.serverCLI.showNotification(Language.playerDisconnected(player));
 				setChanged();
 				notifyObservers(new PlayerDisconnectedMessage(player));
 			}

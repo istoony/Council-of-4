@@ -12,8 +12,6 @@ import java.util.Map.Entry;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
@@ -30,9 +28,7 @@ import it.polimi.ingsw.ps19.view.connection.SocketConnection;
  * This static class (class with only static method) collects the users requiring to play and starts a new game when there are the conditions to do so;
  */
 public class WaitingRoom 
-{
-	protected static final Logger log = Logger.getLogger("SERVER_LOGGER");
-	
+{	
 	private static List<Integer> room = new ArrayList<>();								//List of users(connections) waiting to play
 	private static Map<Integer,Connection> connectedUsers = new HashMap<>();
 	private static long secondPlayerTime = -1;																//Time of connection of second player in queue
@@ -77,7 +73,7 @@ public class WaitingRoom
 		} 
 		catch (WriterException e1) 
 		{
-			log.log(Level.SEVERE, e1.toString(), e1);
+			ServerManager.log.log(e1);
 		}
 
 	}
@@ -102,7 +98,7 @@ public class WaitingRoom
 		} 
 		catch (TimeoutException | WriterException | InterruptedException | ReaderException e1) 
 		{
-			log.log(Level.SEVERE, e1.toString(), e1);
+			ServerManager.log.log(e1);
 		}
 	}
 	
@@ -225,7 +221,7 @@ public class WaitingRoom
 				remove(entry.getKey());
 			} catch (WriterException e) 
  			{
-				log.log(Level.SEVERE, e.toString(), e);
+				ServerManager.log.log(e);
  			}
  		}
  	}
