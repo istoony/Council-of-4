@@ -238,9 +238,11 @@ public class ClientCLI extends ClientUI
 	 */
 	public String read() throws IOException
 	{
-		if(in.ready())
-			in.readLine();		//flush buffer
-		return in.readLine();
+		String s;
+		while(in.ready())
+			s = in.readLine();
+		s = in.readLine();
+		return s;
 	}
 	
 	private String getFullString(City city)
