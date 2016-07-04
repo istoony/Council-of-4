@@ -129,24 +129,36 @@ public class GameController implements Observer
 	{
 		if(model.getCurrentState().getLastTurn() != Costants.INVALID_ID)
 		{
-			for (Player player : model.getPlayer())
-				if((player.getMainActionCounter() != 0 && player.getFastActionCounter() !=0) &&
-						model.getCurrentState().isConnected(player.getId()))
-				{
-					model.getCurrentState().setPlayerTurnId(
-							model.getCurrentState().giveNextCorrectId(
-									model.getCurrentState().getPlayerTurnId()));
-					
-					SupportMethod.politicCardToDrawToCurrentPlayer(model);
-					
-					reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
-					
-					return;
-				}
-			SupportMethod.calculateLastPoints(model);
-			List<Player> orderList = SupportMethod.sortByVictoryPoints(model.getPlayer());
-			reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);
-			reply.setId(Costants.BROADCAST_MESSAGE);
+			int currentPlayer = model.getCurrentState().getPlayerTurnId();
+				//
+				//Se il player ha ancora mosse da fare return
+				//
+			
+			if((model.getPlayerById(currentPlayer).getMainActionCounter() != 0 || model.getPlayerById(currentPlayer).getFastActionCounter() !=0) 
+					&& model.getCurrentState().isConnected(currentPlayer))
+				return;
+				
+				//
+				//Else: se il player corrente ha finito le mosse lo cambio
+				//
+			model.getCurrentState().setPlayerTurnId(
+				model.getCurrentState().giveNextCorrectId(
+					model.getCurrentState().getPlayerTurnId()));
+				//
+				//se il player corrente è quello che ha vinto allora invio il messaggio
+				//di end game
+				//
+			if(model.getCurrentState().getPlayerTurnId() == model.getCurrentState().getLastTurn())
+			{
+				SupportMethod.calculateLastPoints(model);
+				List<Player> orderList = SupportMethod.sortByVictoryPoints(model.getPlayer());
+				reply = new EndGameReply(Costants.NO_ACTIVE_PLAYER,ActionMessages.END_GAME, orderList);
+				reply.setId(Costants.BROADCAST_MESSAGE);
+				return;
+			}
+			SupportMethod.politicCardToDrawToCurrentPlayer(model);
+				
+			reply.setActivePlayer(model.getCurrentState().getPlayerTurnId());
 		}
 	}
 

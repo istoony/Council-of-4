@@ -113,8 +113,7 @@ public class SupportMethod
 	public static void checkNobilityPathBonus(Model model, Player player)
 	{
 		if(model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints())!=null)
-			for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(
-					player.getNobilityPoints()))
+			for (Bonus nobilityBonus : model.getMap().getNobilityPath().getBonusByPosition(player.getNobilityPoints()))
 				nobilityBonus.giveBonus(player);
 	}
 	
@@ -168,7 +167,7 @@ public class SupportMethod
 		{
 			if(players.get(0).getNobilityPoints() == max)
 			{
-				players.get(0).setVictoryPoints(players.get(i).getVictoryPoints() + numberOfPoints);
+				players.get(0).setVictoryPoints(players.get(0).getVictoryPoints() + numberOfPoints);
 				players.remove(0);
 			}
 		}
