@@ -212,7 +212,7 @@ public class ClientCLI extends ClientUI
 			String s = read();
 			n = Integer.parseInt(s);
 			if(n >= strings.size() || n < 0)
-				throw new NumberFormatException();
+				throw new InvalidInsertionException();
 		}catch(IOException | NumberFormatException e)
 		{
 			log.log(Level.SEVERE, e.toString(), e);

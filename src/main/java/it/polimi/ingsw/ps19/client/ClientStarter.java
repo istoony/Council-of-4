@@ -45,9 +45,9 @@ public class ClientStarter
 		List<String> startNewGame = new ArrayList<>();
 		
 		boolean valid;
-		int uiIndex = 0;
-		int connIndex = 0;
-		int languageIndex = 0;
+		int uiIndex;
+		int connIndex;
+		int languageIndex;
 		do{
 			try {
 				uiIndex = ((ClientCLI)userInterface).getValues(typesOfUserInterdace);

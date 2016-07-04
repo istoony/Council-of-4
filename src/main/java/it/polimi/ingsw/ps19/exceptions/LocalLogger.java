@@ -7,11 +7,18 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Logger class that creates and properly initializes a logger
+ */
 public class LocalLogger
 {
 	private final Logger log;
 	FileHandler fh;
 	
+	/**
+	 * Constructor
+	 * @param logName: name of the logger
+	 */
 	public LocalLogger(String logName)
 	{
 		log = Logger.getLogger(logName.toUpperCase());
@@ -40,7 +47,6 @@ public class LocalLogger
 			fh = new FileHandler(filePath);
 			log.addHandler(fh);
 			log.setUseParentHandlers(false);
-			System.out.println("new log file created at: " + filePath);
 		} catch (SecurityException | IOException e) 
 		{
 			log.log(Level.SEVERE, e.toString());
