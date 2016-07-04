@@ -54,7 +54,7 @@ public class ClientStarter
 			} catch (InvalidInsertionException e) 
 			{
 				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
 				uiIndex = -1;
 			}
 		}while(uiIndex != 0 && uiIndex != 1);
@@ -65,7 +65,7 @@ public class ClientStarter
 			} catch (InvalidInsertionException e) 
 			{
 				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
 				connIndex = -1;
 			}
 		}while(connIndex != 0 && connIndex != 1);
@@ -76,7 +76,7 @@ public class ClientStarter
 			} catch (InvalidInsertionException e) 
 			{
 				log.log(e);
-				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().invalidInsertion);
+				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
 				languageIndex = -1;
 			}
 		}while(languageIndex != 0 && languageIndex != 1);
@@ -91,15 +91,15 @@ public class ClientStarter
  					language = new Italiano();
  					userInterface = new ClientCLI(language);
  				}
- 				startNewGame.add(language.newGame);
- 				startNewGame.add(language.reconnect);
+ 				startNewGame.add(language.getNewGame());
+ 				startNewGame.add(language.getReconnect());
  				int newGameIndex = ((ClientCLI)userInterface).getValues(startNewGame);
  				boolean newGame = true;
  				int key = 0;
  				if(newGameIndex == 1)
  				{
  					newGame = false;
- 					key = ((ClientCLI)userInterface).getInt(language.insertPassword);
+ 					key = ((ClientCLI)userInterface).getInt(language.getInsertPassword());
  				}
  				if(uiIndex == 1)
  					userInterface = new ClientGUI(language);

@@ -47,7 +47,7 @@ public class RegionPanel extends JPanel implements MouseListener{
 		ends = new ArrayList<>();
 		myregion = re;
 		setVisible(true);
-		setToolTipText(language.region + ": " + language.getString(myregion.getType()));
+		setToolTipText(language.getRegion() + ": " + language.getString(myregion.getType()));
 	}
 	
 	protected void initialize(){
@@ -95,18 +95,18 @@ public class RegionPanel extends JPanel implements MouseListener{
 	}
 
 	protected JFrame createInfo(){
-		JFrame f = new JFrame(language.info + language.getString(myregion.getType()));
+		JFrame f = new JFrame(language.getInfo() + language.getString(myregion.getType()));
 		f.setSize(400, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setLayout(new GridLayout(8, 1));
 		
 		//balcony info
-		JLabel balconytitle = new JLabel(INDENTATION + language.balcony);
+		JLabel balconytitle = new JLabel(INDENTATION + language.getBalcony());
 		JLabel balcony = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getBalcony()));
-		JLabel title1 = new JLabel(INDENTATION + language.firstCard + ": ");
+		JLabel title1 = new JLabel(INDENTATION + language.getFirstCard() + ": ");
 		JLabel fcardname = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getFirstcard()));
 		//JLabel fcardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringBonus());
-		JLabel title2 = new JLabel(INDENTATION + language.secondCard + ": ");
+		JLabel title2 = new JLabel(INDENTATION + language.getSecondCard() + ": ");
 		JLabel scardname = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getSecondcard()));
 		//JLabel scardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getSecondcard().toStringBonus());
 		balcony.setVisible(true);

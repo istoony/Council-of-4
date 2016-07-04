@@ -48,47 +48,47 @@ public class QuestionFrame extends JFrame implements Runnable{
 			setTitle("Choose");
 			pane.setToolTipText("Choose");
 			for(int i = 0; i < obj.size(); i++){
-				createButtons(language.nothing, gui);
+				createButtons(language.getNothing(), gui);
 			}
 		}
 		else if(obj.get(0) instanceof RegionType){
-			setTitle(language.chooseRegionTitle);
-			pane.setToolTipText(language.chooseRegionTitle);
+			setTitle(language.getChooseRegionTitle());
+			pane.setToolTipText(language.getChooseRegionTitle());
 			for(Object  o : obj){
 				createButtons(language.getString((RegionType)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof Color){
-			setTitle(language.chooseColor);
-			pane.setToolTipText(language.chooseColor);
+			setTitle(language.getChooseColor());
+			pane.setToolTipText(language.getChooseColor());
 			for(Object  o : obj){
 				createButtons(language.getString((Color)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof PoliticsCard){
-			setTitle(language.choosePoliticCardTitle);
-			pane.setToolTipText(language.choosePoliticCardTitle);
+			setTitle(language.getChoosePoliticCardTitle());
+			pane.setToolTipText(language.getChoosePoliticCardTitle());
 			for(Object  o : obj){
 				createButtons(language.getString((PoliticsCard)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof City){
-			setTitle(language.chooseCityTitle);
-			pane.setToolTipText(language.chooseCityTitle);
+			setTitle(language.getChooseCityTitle());
+			pane.setToolTipText(language.getChooseCityTitle());
 			for(Object  o : obj){
 				createButtons(language.getString((City)o), gui);
 			}
 		}
 		else if(obj.get(0) instanceof BusinessCard){
-			setTitle(language.chooseBusinessCardTitle);
-			pane.setToolTipText(language.chooseBusinessCardTitle);
+			setTitle(language.getChooseBusinessCardTitle());
+			pane.setToolTipText(language.getChooseBusinessCardTitle());
 			for(Object  o : obj){
 				createButtons(language.getString((BusinessCard)o), gui);
 			}
 		}
 		}
 		catch(NullPointerException e){
-			createButtons(language.nothing, gui);
+			createButtons(language.getNothing(), gui);
 		}
 		
 		addButtons();
@@ -104,8 +104,8 @@ public class QuestionFrame extends JFrame implements Runnable{
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		choices = new ArrayList<>();
 		pane = new JPanel();
-		setTitle(language.howManyHelpersToSell);
-		pane.setToolTipText(language.howManyHelpersToSell);
+		setTitle(language.getHowManyHelpersToSell());
+		pane.setToolTipText(language.getHowManyHelpersToSell());
 		for(Integer i=0; i<=n; i++){
 			createButtons(i.toString(), gui);
 		}
@@ -123,8 +123,8 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane = new JPanel();
 		JLabel text = new JLabel();
 		if(code){
-			setTitle(language.setPrice);
-			text.setText(language.setPrice);
+			setTitle(language.getSetPrice());
+			text.setText(language.getSetPrice());
 		}
 		else {
 			setTitle(s);
@@ -156,8 +156,8 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane = new JPanel();
 		
 		
-		setTitle(language.chooseCityTitle);
-		pane.setToolTipText(language.chooseCityTitle);
+		setTitle(language.getChooseCityTitle());
+		pane.setToolTipText(language.getChooseCityTitle());
 		for(Entry<City, Integer> entry: citiesECost.entrySet()){
 			createButtons(language.getString(entry.getKey()) + "(" + entry.getValue().toString() + ")", gui);
 		}

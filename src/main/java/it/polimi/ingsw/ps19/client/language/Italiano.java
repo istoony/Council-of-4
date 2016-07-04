@@ -29,6 +29,9 @@ public final class Italiano extends Language
 {
 	private static final long serialVersionUID = -531768609514819291L;
 
+	/**
+	 * 
+	 */
 	public Italiano()
 	{
 		//setup
@@ -125,13 +128,13 @@ public final class Italiano extends Language
 		youNoBusiness = "Non hai nessuna " + businessCards;
 		
 		//Colors
-		 c_FF0000 = "Rosso";
-		 c_0000FF = "Blu";
-		 c_FF7F00 = "Arancione";
-		 c_000000 = "Bianco";
-		 c_FFFFFF = "Nero";
-		 c_FFC0CB = "Rosa";
-		 c_Joker = "Joker";
+		 cFF0000 = "Rosso";
+		 c0000FF = "Blu";
+		 cFF7F00 = "Arancione";
+		 c000000 = "Bianco";
+		 cFFFFFF = "Nero";
+		 cFFC0CB = "Rosa";
+		 cJoker = "Joker";
 	
 	}
 	

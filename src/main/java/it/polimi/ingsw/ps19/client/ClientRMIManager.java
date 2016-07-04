@@ -43,9 +43,9 @@ public class ClientRMIManager extends ClientManager
 				ConnectionReply reply = (ConnectionReply) connection.read(30);
 				playerId = reply.getPassword();
 				if(reply.getSuccessful())
-					userInterface.showNotification(userInterface.getLanguage().reconnected);
+					userInterface.showNotification(userInterface.getLanguage().getReconnected());
 				else
-					userInterface.showNotification(userInterface.getLanguage().connPass + ": " + reply.getPassword());
+					userInterface.showNotification(userInterface.getLanguage().getConnPass() + ": " + reply.getPassword());
 				((RMIConnection)connection).loadWriter(writerStub);
 				success = true;
 			}
@@ -63,7 +63,7 @@ public class ClientRMIManager extends ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			userInterface.showNotification(userInterface.getLanguage().connInsucces + "!\n" + userInterface.getLanguage().killClient);
+			userInterface.showNotification(userInterface.getLanguage().getConnInsucces() + "!\n" + userInterface.getLanguage().getKillClient());
 			System.exit(0);
 		}
 		startClient();

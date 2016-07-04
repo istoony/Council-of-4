@@ -48,9 +48,9 @@ public class MarketShow extends JFrame implements Runnable{
 		JPanel p = new JPanel();
 		p.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		p.setLayout(new GridLayout(6, 1));
-		JLabel l = new JLabel(language.player + ": " + id);
+		JLabel l = new JLabel(language.getPlayer() + ": " + id);
 		text.add(l);
-		String s= language.businessCards + ": ";
+		String s= language.getBusinessCards() + ": ";
 		if(order.getBusinesscard().isEmpty())
 			s+="0";
 		else
@@ -62,7 +62,7 @@ public class MarketShow extends JFrame implements Runnable{
 		l = new JLabel(s);
 		text.add(l);
 		
-		s = language.politicCards + ": ";
+		s = language.getPoliticCards() + ": ";
 		if(order.getPoliticscard().isEmpty())
 			s+="0";
 		else
@@ -74,10 +74,10 @@ public class MarketShow extends JFrame implements Runnable{
 		l = new JLabel(s);
 		text.add(l);
 		
-		l = new JLabel(language.helpers + ": " + order.getHelper());
+		l = new JLabel(language.getHelpers() + ": " + order.getHelper());
 		text.add(l);
 		
-		l = new JLabel(language.price + ": " + order.getPrice());
+		l = new JLabel(language.getPrice() + ": " + order.getPrice());
 		text.add(l);
 		
 		for(JLabel t : text)

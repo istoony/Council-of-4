@@ -37,25 +37,25 @@ public class ClientSocketManager extends ClientManager
 		do
 		{
 			//Start thread to write string while connecting
-			t = new WaitingWriterThread(userInterface.getLanguage().waiting, userInterface);
+			t = new WaitingWriterThread(userInterface.getLanguage().getWaiting(), userInterface);
 			
 			//Tries to connect: First time with player input, after with standard input
 			try
 			{	
 				Socket socket = new Socket(Inet4Address.getByName(ip), port);
-				userInterface.showNotification(userInterface.getLanguage().socketCreated);
+				userInterface.showNotification(userInterface.getLanguage().getSocketCreated());
 				t.start();
 				connection = new SocketConnection(socket, executorService);
 				connection.write(new ConnectionMessage(newGame, key));
 				success = true;
 				t.interrupt();
-				userInterface.showNotification(userInterface.getLanguage().connSuccess);
+				userInterface.showNotification(userInterface.getLanguage().getConnSuccess());
 			} catch (IOException | WriterException e) 
 			{
 				ClientStarter.log.log(e);
 				success = false;
 				t.interrupt();
-				userInterface.showNotification(userInterface.getLanguage().connInsucces);
+				userInterface.showNotification(userInterface.getLanguage().getConnInsucces());
 				ip = getIP();
 				port = getPort(Constants.SOCKET_PORT);
 			} 
@@ -66,7 +66,7 @@ public class ClientSocketManager extends ClientManager
 		}while(!success && tries < ClientConstants.MAX_CONN_TRIES);
 		if(!success)
 		{
-			userInterface.showNotification(userInterface.getLanguage().connInsucces + "!\n" + userInterface.getLanguage().killClient);
+			userInterface.showNotification(userInterface.getLanguage().getConnInsucces() + "!\n" + userInterface.getLanguage().getKillClient());
 			System.exit(0);
 		}
 		startClient();

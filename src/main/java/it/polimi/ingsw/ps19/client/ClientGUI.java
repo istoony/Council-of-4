@@ -364,7 +364,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	}
 	
 	private boolean nullCheck(ActionEvent e){
-		if(e.getActionCommand().equals(language.nothing)){
+		if(e.getActionCommand().equals(language.getNothing())){
 			index.add(lastindex);
 			return true;
 		}
@@ -453,10 +453,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public void showWinner(List<Player> players, String result) {
-		String s = "\n" + language.winner.toUpperCase() + ": " + players.get(0).getId() + "\n\n";
+		String s = "\n" + language.getWinner().toUpperCase() + ": " + players.get(0).getId() + "\n\n";
 		for(Player p : players)
 			s = s.concat(((Integer)p.getId()).toString());
-		s += "\n\n" + language.result + ": " + result;
+		s += "\n\n" + language.getResult() + ": " + result;
 		showNotification(s);
 	}
 	

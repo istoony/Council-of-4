@@ -65,7 +65,7 @@ public class ClientInterpreter extends Observable implements Observer
 	{
 		if(arg == null)
 		{
-			userInterface.showNotification(userInterface.getLanguage().serverQuits + "\n" + userInterface.getLanguage().killClient);
+			userInterface.showNotification(userInterface.getLanguage().getServerQuits() + "\n" + userInterface.getLanguage().getKillClient());
 			System.exit(0);
 			return;
 		}
@@ -84,10 +84,10 @@ public class ClientInterpreter extends Observable implements Observer
 		{
 			if(((ConnectionReply)arg).getSuccessful())
 			{
-				userInterface.showNotification(userInterface.getLanguage().reconnected);
+				userInterface.showNotification(userInterface.getLanguage().getReconnected());
 				loadInterpreter(((ConnectionReply)arg).getPassword());
 			}
-			userInterface.showNotification(userInterface.getLanguage().connPass + ": " + ((ConnectionReply)arg).getPassword());
+			userInterface.showNotification(userInterface.getLanguage().getConnPass() + ": " + ((ConnectionReply)arg).getPassword());
 			return;
 		}
 		else if(arg instanceof Reply)
@@ -107,7 +107,7 @@ public class ClientInterpreter extends Observable implements Observer
 						valid = true;
 					} catch (InvalidInsertionException e) 
 					{
-						userInterface.showNotification(userInterface.getLanguage().invalidInsertion);
+						userInterface.showNotification(userInterface.getLanguage().getInvalidInsertion());
 						ClientStarter.log.log(e);
 						valid = false;
 					}
@@ -118,15 +118,15 @@ public class ClientInterpreter extends Observable implements Observer
 				} catch (PlayerDisconnectedException e)
 				{
 					ClientStarter.log.log(e);
-					userInterface.showNotification(userInterface.getLanguage().serverQuits);
-					userInterface.showNotification(userInterface.getLanguage().killClient);
+					userInterface.showNotification(userInterface.getLanguage().getServerQuits());
+					userInterface.showNotification(userInterface.getLanguage().getKillClient());
 					System.exit(0);
 					return;
 				}
 			}
 		}
 		else
-			userInterface.showNotification(userInterface.getLanguage().invalidObj);
+			userInterface.showNotification(userInterface.getLanguage().getInvalidObj());
 		}	
 	
 	private void notify(Message mex) throws PlayerDisconnectedException

@@ -33,8 +33,8 @@ public class MarketFrame extends JFrame implements Runnable{
 		pane = new JPanel();
 		//TODO language?
 		text = new JLabel("Buttons indicate price, look the tooltip for more info about the Order");
-		setTitle(language.market);
-		text.setToolTipText(language.chooseOrder);
+		setTitle(language.getMarket());
+		text.setToolTipText(language.getChooseOrder());
 		add(text, BorderLayout.NORTH);
 		int i=0;
 		for(Order  o : orders){
@@ -55,9 +55,9 @@ public class MarketFrame extends JFrame implements Runnable{
 			choices.add(j);
 		}
 		catch(NullPointerException e){
-			JButton j = new JButton(language.nothing);
-			j.setToolTipText(language.nothing);
-			j.setActionCommand(language.nothing);
+			JButton j = new JButton(language.getNothing());
+			j.setToolTipText(language.getNothing());
+			j.setActionCommand(language.getNothing());
 			j.addActionListener(c);
 			j.setEnabled(true);
 			j.setVisible(true);
