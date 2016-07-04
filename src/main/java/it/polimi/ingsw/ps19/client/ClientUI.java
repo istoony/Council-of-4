@@ -3,12 +3,12 @@ package it.polimi.ingsw.ps19.client;
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.*;
 
 import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
 import it.polimi.ingsw.ps19.client.clientinput.ClientActionChooser;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.client.language.Language;
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 import it.polimi.ingsw.ps19.exceptions.clientexceptions.InvalidInsertionException;
 import it.polimi.ingsw.ps19.model.Market;
 import it.polimi.ingsw.ps19.model.Order;
@@ -24,7 +24,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public abstract class ClientUI
 {
 	protected Language language;
-	protected static final Logger log = Logger.getLogger("CLIENT_LOGGER");
+	protected static final LocalLogger log = new LocalLogger("UserInterface");
 	
 	/**
 	 * Makes the user choose which type of action to perform

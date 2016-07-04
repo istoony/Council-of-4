@@ -37,7 +37,7 @@ public class LocalLogger
 			String part2 = dateTime.substring(dateTime.indexOf(":") + 1);
 			dateTime = part1.concat(part2);
 		}
-		dateTime = dateTime.substring(0, dateTime.indexOf(".") - 1);
+		dateTime = dateTime.substring(0, dateTime.indexOf(".") - 3);
 		String path = "C:\\Logs\\CouncilOfFour\\" + dateTime;
 		String filePath = path + "\\" + logName + ".log";
 		try {
@@ -59,6 +59,6 @@ public class LocalLogger
 	 */
 	public synchronized void log(Exception e)
 	{
-		log.log(Level.SEVERE, e.toString(), e);
+		log.log(Level.FINE, e.toString(), e);
 	}
 }

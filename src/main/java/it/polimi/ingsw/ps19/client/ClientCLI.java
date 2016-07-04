@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.client.clientinput.ClientAction;
 import it.polimi.ingsw.ps19.client.clientinput.ClientActionChooser;
@@ -64,7 +63,7 @@ public class ClientCLI extends ClientUI
 			} catch (InvalidInsertionException e) 
 			{
 				valid = false;
-				log.log(Level.SEVERE, e.toString(), e);
+				log.log(e);
 			}
 			finally
 			{
@@ -215,7 +214,7 @@ public class ClientCLI extends ClientUI
 				throw new InvalidInsertionException();
 		}catch(IOException | NumberFormatException e)
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(e);
 			throw new InvalidInsertionException();
 		}
 		return n;
@@ -394,7 +393,7 @@ public class ClientCLI extends ClientUI
 		}catch(IOException | NumberFormatException e)
 		{
 			writeln(language.getInvalidInsertion());
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(e);
 			throw new InvalidInsertionException();
 		}
 		return number;
@@ -466,7 +465,7 @@ public class ClientCLI extends ClientUI
 			number = Integer.parseInt(s);
 		} catch (IOException | NumberFormatException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			log.log(e);
 			throw new InvalidInsertionException();
 		}
 		return number;

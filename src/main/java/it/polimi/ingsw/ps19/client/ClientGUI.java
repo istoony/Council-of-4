@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -70,7 +69,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		try {
 			SwingUtilities.invokeAndWait(pop);
 		} catch (InvocationTargetException | InterruptedException e1) {
-			log.log(Level.SEVERE, e1.toString(), e1);
+			log.log(e1);
 		}
 	}
 
@@ -158,7 +157,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			try {
 				SwingUtilities.invokeAndWait(window);
 			} catch (InvocationTargetException | InterruptedException e1) {
-				log.log(Level.SEVERE, e1.toString(), e1);
+				log.log(e1);
 			}
 			registerListerner();
 		}
@@ -411,7 +410,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 				index.add(n);
 			}
 			catch(Exception e1){
-				log.log(Level.SEVERE, e1.toString(), e1);
+				log.log(e1);
 				textReader(e);
 			}
 		}

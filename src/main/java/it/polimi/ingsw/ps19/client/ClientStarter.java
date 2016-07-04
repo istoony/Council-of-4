@@ -91,10 +91,10 @@ public class ClientStarter
 		do{
 			try {
 				index = ((ClientCLI)userInterface).getValues(list);
-			} catch (InvalidInsertionException e) 
+			} catch (InvalidInsertionException | NumberFormatException e) 
 			{
-				log.log(e);
 				((ClientCLI)userInterface).showNotification(userInterface.getLanguage().getInvalidInsertion());
+				log.log(e);
 				index = -1;
 			}
 		}while(index < 0 || index >= list.size()-1);
