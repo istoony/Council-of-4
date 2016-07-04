@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps19.exceptions;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,13 +15,32 @@ public class LocalLogger
 	public LocalLogger(String logName)
 	{
 		log = Logger.getLogger(logName.toUpperCase());
-		String path = "C:\\Users\\Andrea\\Desktop" + logName + ".log";
+		String dateTime =  LocalDateTime.now().toString();
+		while(dateTime.contains("-"))
+		{
+			
+			String part1 = dateTime.substring(0, dateTime.indexOf("-") - 1);
+			String part2 = dateTime.substring(dateTime.indexOf("-") + 1);
+			dateTime = part1.concat(part2);
+		}
+		while(dateTime.contains(":"))
+		{
+			
+			String part1 = dateTime.substring(0, dateTime.indexOf(":") - 1);
+			String part2 = dateTime.substring(dateTime.indexOf(":") + 1);
+			dateTime = part1.concat(part2);
+		}
+		dateTime = dateTime.substring(0, dateTime.indexOf(".") - 1);
+		String path = "C:\\Logs\\CouncilOfFour\\" + dateTime;
+		String filePath = path + "\\" + logName + ".log";
 		try {
-			File logFile = new File(path);
+			new File(path).mkdirs();
+			File logFile = new File(filePath);
 			logFile.createNewFile();
-			fh = new FileHandler(path);
+			fh = new FileHandler(filePath);
 			log.addHandler(fh);
 			log.setUseParentHandlers(false);
+			System.out.println("new log file created at: " + filePath);
 		} catch (SecurityException | IOException e) 
 		{
 			log.log(Level.SEVERE, e.toString());
