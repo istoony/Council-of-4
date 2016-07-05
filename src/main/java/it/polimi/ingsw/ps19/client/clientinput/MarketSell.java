@@ -25,6 +25,10 @@ public class MarketSell extends ClientAction
 	List<BusinessCard> businessToSell = new ArrayList<>();
 	List<Color> politicToSell = new ArrayList<>();
 	
+	/**
+	 * Constructor to create a new order
+	 * @param m
+	 */
 	public MarketSell(ClientModel m) 
 	{
 		model = m;

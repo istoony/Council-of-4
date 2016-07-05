@@ -34,6 +34,7 @@ public class EndGameUpdate extends ClientUpdate
 		userInterface.showWinner(players, result);
 	}
 	
+	@Override
 	public Request execute(ClientUI userInterface, ClientModel model) throws InvalidInsertionException
 	{
 		return new EndGameRequest();

@@ -20,6 +20,7 @@ public class DrawBusinessCardUpdate extends ClientUpdate
 	 * Constructtor
 	 * @param p: List of players
 	 * @param r: List of regions
+	 * @param activeId: active player id
 	 */
 	public DrawBusinessCardUpdate(List<Player> p, List<Region> r, int activeId) 
 	{

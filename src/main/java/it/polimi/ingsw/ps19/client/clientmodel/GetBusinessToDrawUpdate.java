@@ -14,11 +14,24 @@ import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.Region;
 
+/**
+ * Draw a business card from one of yours (bonus action)
+ */
 public class GetBusinessToDrawUpdate extends ElectCouncillorUpdate 
 {
 	private int howMany;
 	private List<BusinessCard> chosenCards;
 	
+	/**
+	 * Constructo
+	 * @param res
+	 * @param r
+	 * @param k
+	 * @param ac
+	 * @param p
+	 * @param active
+	 * @param hM
+	 */
 	public GetBusinessToDrawUpdate(String res, List<Region> r, King k, AvailableCouncillor ac, List<Player> p,
 			int active, int hM) 
 	{

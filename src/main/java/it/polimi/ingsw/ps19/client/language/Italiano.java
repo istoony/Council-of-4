@@ -30,7 +30,7 @@ public final class Italiano extends Language
 	private static final long serialVersionUID = -531768609514819291L;
 
 	/**
-	 * 
+	 * Constructor which initializes every string
 	 */
 	public Italiano()
 	{
@@ -38,7 +38,7 @@ public final class Italiano extends Language
 		invalidInsertion = "Inserimento non valido!";
 		newGame = "nuovo gioco";
 		reconnect = "riconnettiti a un gioco già esistente";
-		insertPassword = "inserisci password" ;
+		insertPass = "inserisci password" ;
 		insertIp = "inserisci l'indirizzo IP del server";
 		insertPort = "inserisci il numero di porta del server";
 		tryConn = "connessione in corso ...";

@@ -24,6 +24,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	{
 		return new SendFullGameUpdate(message.getResult(), message.getKing(), message.getRegion(), message.getPlayer(), message.getActivePlayer(), message.getAvailableCouncillor(), message.getNobilityPath());
 	}
+	
 	@Override
 	public ClientUpdate display(DrawBusinessCardReply message) 
 	{
@@ -64,11 +65,13 @@ public class ReplyVisitorImpl implements ReplyVisitor
 	{
 		return new TimeToMarketUpdate();
 	}
+	
 	@Override
 	public ClientUpdate display(WaitingPlayerForMarketReply message) 
 	{
 		return new WaitingPlayerForMarketUpdate(message.getResult());
 	}
+	
 	@Override
 	public ClientUpdate display(GetBusinessCardOrCityBonusReply message) 
 	{
@@ -78,6 +81,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 				message.getActivePlayer(), message.getBusinessCardBonus(), 
 				message.getCityBonus());
 	}
+	
 	@Override
 	public ClientUpdate display(CompleteMarketReply message) 
 	{
@@ -85,6 +89,7 @@ public class ReplyVisitorImpl implements ReplyVisitor
 				message.getMarket(),
 				message.getActivePlayer());
 	}
+	
 	@Override
 	public ClientUpdate display(EndGameReply message) 
 	{

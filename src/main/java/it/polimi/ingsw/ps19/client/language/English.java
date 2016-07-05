@@ -38,7 +38,7 @@ public class English extends Language
 		invalidInsertion = "Invalid Insertion!";
 		newGame = "new game";
 		reconnect = "reconnect to existing game";
-		insertPassword = "insert password";
+		insertPass = "insert password";
 		insertIp = "Insert server IP address";
 		insertPort = "Insert server port";
 		useStdIp = invalidInsertion + " trying with standard IP address";

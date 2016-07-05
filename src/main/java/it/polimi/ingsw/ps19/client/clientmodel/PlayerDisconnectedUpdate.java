@@ -17,10 +17,13 @@ public class PlayerDisconnectedUpdate extends ClientUpdate {
 	private int activePlayer;
 	private List<Player> player;
 	private boolean newTurn;
+	
 	/**
 	 * Constructor
-	 * @param activePlayer 
-	 * @param res: result
+	 * @param res
+	 * @param player
+	 * @param activeP
+	 * @param newT: turn has changed
 	 */
 	public PlayerDisconnectedUpdate(String res, List<Player> player, int activeP, boolean newT) 
 	{

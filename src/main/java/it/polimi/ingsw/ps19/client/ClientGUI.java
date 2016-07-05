@@ -31,6 +31,9 @@ import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * GUI User Interface
+ */
 public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private MainWindow window=null;

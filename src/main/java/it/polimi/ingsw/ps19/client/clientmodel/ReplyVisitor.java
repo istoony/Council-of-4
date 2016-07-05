@@ -67,13 +67,38 @@ public interface ReplyVisitor
 	 */
 	public ClientUpdate display(EndTurnReply message);
 	
+	/**
+	 * visitor
+	 * @param message
+	 * @return specific ClientUpdate
+	 */
 	public ClientUpdate display(TimeToMarketReply message);
 	
+	/**
+	 * visitor
+	 * @param message
+	 * @return specific ClientUpdate
+	 */
 	public ClientUpdate display(WaitingPlayerForMarketReply message);
-
-	public ClientUpdate display(GetBusinessCardOrCityBonusReply message);
-
-	public ClientUpdate display(CompleteMarketReply completeMarketReply);
 	
+	/**
+	 * visitor
+	 * @param message
+	 * @return specific ClientUpdate
+	 */
+	public ClientUpdate display(GetBusinessCardOrCityBonusReply message);
+	
+	/**
+	 * visitor
+	 * @param message
+	 * @return specific ClientUpdate
+	 */
+	public ClientUpdate display(CompleteMarketReply message);
+	
+	/**
+	 * visitor
+	 * @param message
+	 * @return specific ClientUpdate
+	 */
 	public ClientUpdate display(EndGameReply message);
 }

@@ -74,7 +74,7 @@ public abstract class Language implements Serializable
 	protected String useStdPort;
 	protected String newGame;
 	protected String reconnect;
-	protected String insertPassword;
+	protected String insertPass;
 	protected String connSuccess;
 	protected String connInsucces;
 	protected String killClient;
@@ -514,7 +514,7 @@ public abstract class Language implements Serializable
 	 * @return the insertPassword
 	 */
 	public String getInsertPassword() {
-		return insertPassword;
+		return insertPass;
 	}
 
 	/**
