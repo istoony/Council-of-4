@@ -43,9 +43,9 @@ public class ClientStarter
 		languages.add(Language.ENGLISH);
 		
 		List<String> startNewGame = new ArrayList<>();
-				int languageIndex =  getValue(languages);
 				int uiIndex = getValue(typesOfUserInterdace);
 				int connIndex = getValue(typesOfConnection);
+				int languageIndex =  getValue(languages);
  				if(languageIndex == 0)
  				{
  					language = new Italiano();

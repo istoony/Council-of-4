@@ -24,7 +24,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public abstract class ClientUI
 {
 	protected Language language;
-	protected static final LocalLogger log = new LocalLogger("UserInterface");
+	public static final LocalLogger log = new LocalLogger("UserInterface");
 	
 	/**
 	 * Makes the user choose which type of action to perform

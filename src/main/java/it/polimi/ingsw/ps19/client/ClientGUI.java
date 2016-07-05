@@ -234,7 +234,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 
 	@Override
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
-		showNotification("Market Phase");
+		showNotification(language.getMarket());
 		index.clear();
 		numberflag=-1;
 		ask = new QuestionFrame(this, n, language);
@@ -405,7 +405,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 	}
 	
-	
 	private void textReader(ActionEvent e) {
 		if(e.getSource() instanceof JTextField){
 			try{
@@ -423,7 +422,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		index.add(Integer.parseInt(e.getActionCommand()));
 	}
 	
-	
 	private void textCheck() {
 		stringTemp = ask.getInput().getText();
 		index.add(0);
@@ -433,12 +431,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		numberflag=Integer.parseInt(e.getActionCommand());
 	}
 	
-	
 	private void registerListerner(){
 		window.getFrame().getInfobox().getBoxes().get(0).setListerner(this);
 	}
 	
-
 	/**
 	 * @return the mainActionCommand
 	 */

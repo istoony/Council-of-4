@@ -26,18 +26,18 @@ public class LocalLogger
 		while(dateTime.contains("-"))
 		{
 			
-			String part1 = dateTime.substring(0, dateTime.indexOf('-') - 1);
+			String part1 = dateTime.substring(0, dateTime.indexOf('-') );
 			String part2 = dateTime.substring(dateTime.indexOf('-') + 1);
 			dateTime = part1.concat(part2);
 		}
 		while(dateTime.contains(":"))
 		{
 			
-			String part1 = dateTime.substring(0, dateTime.indexOf(':') - 1);
+			String part1 = dateTime.substring(0, dateTime.indexOf(':'));
 			String part2 = dateTime.substring(dateTime.indexOf(':') + 1);
 			dateTime = part1.concat(part2);
 		}
-		dateTime = dateTime.substring(0, dateTime.indexOf('.') - 3);
+		dateTime = dateTime.substring(0, dateTime.indexOf('.') - 2);
 		String path = "C:\\Logs\\CouncilOfFour\\" + dateTime;
 		String filePath = path + "\\" + logName + ".log";
 		try {

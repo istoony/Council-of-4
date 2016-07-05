@@ -49,8 +49,6 @@ public class ClientView extends Observable implements Observer, Runnable
 				ClientStarter.log.log(e);
 			} 
 		}
-		setChanged();
-		notifyObservers(null);
 		connection.close();
 	}
 

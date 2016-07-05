@@ -22,6 +22,9 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.NobilityPath;
 
+/**
+ * Cell for information
+ */
 public class InfoCell extends JPanel implements ActionListener{
 	
 	/**
@@ -32,7 +35,7 @@ public class InfoCell extends JPanel implements ActionListener{
 	private static final String INDENTATION = "    ";
 	private static final String INDENTATION_2ND_POLITIC ="                                         ";
 	
-	ClientGUI listener;
+	transient ClientGUI listener;
 	
 	private List<JLabel> infos;
 	private JFrame nobility;
@@ -72,10 +75,16 @@ public class InfoCell extends JPanel implements ActionListener{
 		actionsType.setListener(g);
 	}
 	
+	/**
+	 * Enable button for Action type
+	 */
 	public void enableActionType(){
 		actionsType.enableButtons();
 	}
 	
+	/**
+	 * Disables buttons for action type
+	 */
 	public void disableActionType(){
 		actionsType.disableButtons();
 	}
@@ -122,10 +131,9 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	private ArrayList<JLabel> constructInfoCell(ClientModel m){
 		ArrayList<JLabel> lst = new ArrayList<>();
-		String s = "";
 		lst.add(new JLabel(INDENTATION + "--- " + language.getInfoGame() +" ---"));
 		lst.add(new JLabel(INDENTATION + language.getKing() + ": " + language.getCurrentCity() + ": " + language.getString(m.getKing().getCurrentcity())));
-		s = language.getString(m.getKing().getBalcony());
+		String s = language.getString(m.getKing().getBalcony());
 		lst.add(new JLabel(INDENTATION + language.getBalcony() + ": "+s));
 		lst.add(new JLabel(INDENTATION + language.getActivePlayerId() + ": " + m.getActiveplayer()));
 		return lst;
@@ -139,8 +147,6 @@ public class InfoCell extends JPanel implements ActionListener{
 		lst.add(new JLabel(INDENTATION + language.getMoney() + ": " + p.getMoney()));
 		lst.add(new JLabel(INDENTATION + language.getNumEmporiaLeft() + ": " + (p.getMaxemporia())));
 		lst.add(new JLabel(INDENTATION + language.getFreeBusiness() + ": " + p.getFreebusinesscard().size()));
-		//TODO used business cards?
-		//answer: no why?
 		lst.add(new JLabel(INDENTATION + language.getPoliticCards() + ": " + p.getPoliticcard().size()));
 		lst.add(new JLabel(INDENTATION + language.getHelpers() + ": " + p.getHelpers()));
 		return lst;

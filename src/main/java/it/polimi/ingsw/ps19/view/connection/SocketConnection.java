@@ -6,7 +6,6 @@ package it.polimi.ingsw.ps19.view.connection;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.*;
-import java.util.logging.Level;
 
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.ReaderException;
 import it.polimi.ingsw.ps19.exceptions.viewexceptions.WriterException;
@@ -68,7 +67,7 @@ public class SocketConnection extends Connection
 			result = writer.call();
 		} catch (WriterException e) 
 		{
-			log.log(Level.SEVERE, e.toString(), e);
+			ConnectionLogger.log.log(e);
 			throw new WriterException();
 		}
 		return result;
@@ -96,11 +95,12 @@ public class SocketConnection extends Connection
 	@Override
 	public void close() 
 	{
+		if(clientSocket == null || clientSocket.isClosed())
+			return;
 		try {
 			clientSocket.close();
-		} catch (IOException e) 
-		{
-			log.log(Level.SEVERE, e.toString(), e);
+		} catch (IOException e) {
+			ConnectionLogger.log.log(e);
 		}
 	}
 }

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.polimi.ingsw.ps19.client.ClientGUI;
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
@@ -87,13 +88,14 @@ public class QuestionFrame extends JFrame implements Runnable{
 			}
 		}
 		}
-		catch(NullPointerException e){
+		catch(NullPointerException e)
+		{
+			ClientUI.log.log(e);
 			createButtons(language.getNothing(), gui);
 		}
 		
 		addButtons();
 	}
-	
 	
 	public QuestionFrame(ClientGUI gui, int n, Language l)
 	{
@@ -143,8 +145,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane.setVisible(true);
 		add(pane);
 	}
-	
-	
+		
 	public QuestionFrame(ClientGUI gui, Map<City, Integer> citiesECost, Language l)
 	{
 		super();
@@ -165,7 +166,6 @@ public class QuestionFrame extends JFrame implements Runnable{
 		addButtons();
 	}
 
-
 	private void createButtons(String s, ClientGUI c){
 		JButton j = new JButton(s);
 		j.setToolTipText(s);
@@ -183,8 +183,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 		pane.setVisible(true);
 		add(pane);
 	}
-	
-	
+
 	
 	@Override
 	public void run() {
@@ -194,6 +193,9 @@ public class QuestionFrame extends JFrame implements Runnable{
 		setAutoRequestFocus(true);
 	}
 	
+	/**
+	 * Close method
+	 */
 	public void close(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
