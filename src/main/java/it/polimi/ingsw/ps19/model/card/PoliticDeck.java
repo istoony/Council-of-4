@@ -44,15 +44,4 @@ public class PoliticDeck implements Deck
 	{
 		Collections.shuffle(card);
 	}
-	
-	@Override
-	public String toString() {
-		String s = "\n+++++++++++++\n";
-		
-		for (Card c : card) 
-		{
-			s = s + c.toString() + "  ";
-		}
-		return s;
-	}
 }

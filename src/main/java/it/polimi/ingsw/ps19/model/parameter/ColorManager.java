@@ -50,23 +50,6 @@ public class ColorManager implements Serializable
 		    	}
 	}
 	
-	public ColorManager(List<String> listofcolors)
-	{
-		colors = new ArrayList<>();
-		for(String s : listofcolors)
-		{
-				colors.add(Color.decode(s));
-				size++;	
-		}
-	}
-	
-	public ColorManager(Color color)
-	{
-		colors = new ArrayList<>();
-		colors.add(color);
-		size++;	
-	}
-	
 	public void addColor(Color color)
 	{
 		colors.add(color);

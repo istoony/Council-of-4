@@ -253,7 +253,7 @@ public abstract class SatisfyCouncilInput extends ClientAction
 	/**
 	 * private class to properly manage cards
 	 */
-	public class CardId
+	private class CardId
 	{
 		private Color color;
 		

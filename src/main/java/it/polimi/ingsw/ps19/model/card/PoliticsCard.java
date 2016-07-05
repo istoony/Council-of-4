@@ -3,8 +3,6 @@ package it.polimi.ingsw.ps19.model.card;
 import java.awt.Color;
 import java.io.Serializable;
 
-import it.polimi.ingsw.ps19.model.parameter.Costants;
-
 
 public class PoliticsCard implements Card, Serializable {
 	
@@ -32,33 +30,4 @@ public class PoliticsCard implements Card, Serializable {
 			return true;
 		return false;
 	}
-	
-	@Override
-	public String toString() 
-	{
-		String s = "";
-		if(color.equals(Color.decode("#FF0000"))){
-			s= "Red";
-		}
-		else if(color.equals(Color.decode("#0000FF"))){
-			s= "Blue";
-		}
-		else if(color.equals(Color.decode("#FF7F00"))){
-			s= "Orange";
-		}
-		else if(color.equals(Color.decode("#000000"))){
-			s= "White";
-		}
-		else if(color.equals(Color.decode("#FFFFFF"))){
-			s=  "Black";
-		}
-		else if(color.equals(Color.decode("#FFC0CB"))){
-			s= "Pink";
-		}
-		else if(color.equals(Color.decode(Costants.JOKERCOLOR))){
-			s= "Joker";
-		}
-		return s;
-	}
-
 }

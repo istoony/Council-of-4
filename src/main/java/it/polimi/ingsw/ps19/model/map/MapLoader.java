@@ -31,6 +31,7 @@ public class MapLoader {
 	
 
 	//change return type to map
+	//TODO: ma è da lasciare l'illegal map exception? sonar dice che lo possiamo togliere
 	public static Map builder() throws IllegalMapException{
 		List<MapLoader> map;
 		List<List<City>> regioncitylist;
