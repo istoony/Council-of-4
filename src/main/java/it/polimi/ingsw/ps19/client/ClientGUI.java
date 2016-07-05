@@ -453,7 +453,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public void showWinner(List<Player> players, String result) {
 		String s = "\n" + language.getWinner().toUpperCase() + ": " + players.get(0).getId() + "\n\n";
 		for(Player p : players)
-			s = s.concat(((Integer)p.getId()).toString());
+			s = s.concat("\t" + ((Integer)p.getId()).toString() + "\n");
 		s += "\n\n" + language.getResult() + ": " + result;
 		showNotification(s);
 	}

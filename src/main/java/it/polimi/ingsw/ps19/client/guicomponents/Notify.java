@@ -31,6 +31,10 @@ public class Notify extends JFrame implements Runnable{
 		setVisible(false);
 	}
 	
+	/**
+	 * add new message
+	 * @param s
+	 */
 	public void addMessage(String s){
 		List<String> list = Notify.parse(s);
 		for(String str : list){
@@ -69,12 +73,12 @@ public class Notify extends JFrame implements Runnable{
 	}
 	
 	/*
-	 * @return list of strings at \n;
+	 * @return list of strings at \n
 	 */
 	protected static List<String> parse(String s){
 		List<String> list = new ArrayList<>();
 		if(s.contains("\n")){
-			int n=s.indexOf("\n");
+			int n=s.indexOf('\n');
 			list.add(s.substring(0, n));
 			list.add(s.substring(n));
 		}
