@@ -61,6 +61,10 @@ public class RMIConnection extends Connection
 		return (reader).getRMIReaderStub();
 	}
 	
+	/**
+	 * Constructor for when a writer stub is already know
+	 * @param stub: stub to write to;
+	 */
 	public void loadWriter(RMIReaderIntf stub)
 	{
 		writer = new RMIWriter(stub);

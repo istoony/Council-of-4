@@ -11,22 +11,30 @@ public final class Constants
 	public static final int SOCKET_PORT = 49153;
 	public static final int RMI_PORT = 49154;
 	public static final String RMI_SERVER_STUB_NAME = "RMI Server";
-	public static Integer MAX_PLAYERS = null;
+	private static Integer maxPlayers = null;
 	public static final int MAX_WRITING_TRIES = 5;
 	public static final int MAX_WAIT_TIME_S = 10;
-	public static long PLAYER_TIMEOUT_TIME_S;
+	private static long playerTimeout;
 		
 	private Constants() {}
 	
 	public static void setMaxPlayers(final int mp)
 	{
-		if(MAX_PLAYERS == null)
-			MAX_PLAYERS = mp;
+		if(maxPlayers == null)
+			maxPlayers = mp;
 	}
 	
 	public static void setPlayerTimeout(final long pt)
 	{
-		if(PLAYER_TIMEOUT_TIME_S == 0)
-			PLAYER_TIMEOUT_TIME_S = pt;
+		if(playerTimeout == 0)
+			playerTimeout = pt;
+	}
+	
+	public static Integer getMaxPlayers() {
+		return maxPlayers;
+	}
+	
+	public static long getPlayerTimeout() {
+		return playerTimeout;
 	}
 }

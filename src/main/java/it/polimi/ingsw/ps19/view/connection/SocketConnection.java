@@ -84,7 +84,7 @@ public class SocketConnection extends Connection
 			if(timeOut < 0)
 				mex = waitMex.get();
 			else
-				mex = waitMex.get(Constants.PLAYER_TIMEOUT_TIME_S, TimeUnit.SECONDS);
+				mex = waitMex.get(Constants.getPlayerTimeout(), TimeUnit.SECONDS);
 		} catch (ExecutionException | CancellationException e) 
 		{
 			ConnectionLogger.log.log(e);

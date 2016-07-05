@@ -145,10 +145,25 @@ public abstract class ClientUI
 	 */
 	public abstract int getPrice() throws InvalidInsertionException;
 	
+	/**
+	 * get a string input from user
+	 * @param title: string to set as title
+	 * @return user string
+	 * @throws InvalidInsertionException
+	 */
 	public abstract String getUserString(String title) throws InvalidInsertionException;
 	
+	/**
+	 * show market
+	 * @param market
+	 */
 	public abstract void showMarket(Market market);
 	
+	/**
+	 * Show final result
+	 * @param players: list of player in final order
+	 * @param result: string of result
+	 */
 	public abstract void showWinner(List<Player> players, String result);
 	
 	public Language getLanguage()

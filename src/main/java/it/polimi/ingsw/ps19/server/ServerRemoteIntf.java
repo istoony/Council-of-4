@@ -12,7 +12,11 @@ import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 public interface ServerRemoteIntf extends Remote
 {
 	/**
-	 * Adds new player to waiting Room
+	 * @param clientStub: stub of client
+	 * @param newGame: false if you want to reconnect to an old game
+	 * @param key: key for reconnection
+	 * @return stub to write to
+	 * @throws RemoteException
 	 */
 	public RMIReaderIntf addNewPlayerToWR(RMIReaderIntf clientStub, boolean newGame, int key) throws RemoteException ;
 }

@@ -93,7 +93,7 @@ public class View extends Observable implements Observer, Runnable
 			Connection activeConn = WaitingRoom.getConnection(activeId);
 			try 
 			{
-				Message recMex = activeConn.read(Constants.PLAYER_TIMEOUT_TIME_S);
+				Message recMex = activeConn.read(Constants.getPlayerTimeout());
 				if(recMex instanceof StringMessage)
 				{
 					ServerManager.serverCLI.showNotification(recMex.toString());

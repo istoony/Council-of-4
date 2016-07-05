@@ -5,7 +5,6 @@ package it.polimi.ingsw.ps19.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -105,8 +104,10 @@ public class ServerManager
 		try 
 		{
 			WaitingRoom.quit();
+			if(!serverSocket.isClosed())
+				serverSocket.close();
 			UnicastRemoteObject.unexportObject(rmiServer, true);
-		} catch (NoSuchObjectException | NullPointerException e) 
+		} catch (IOException | NullPointerException e) 
 		{
 			log.log(e);
 		}
@@ -161,6 +162,5 @@ public class ServerManager
 			registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
 			serverCLI.showNotification(Language.REG_ACCESSED + Constants.RMI_PORT);
 		}
-
 	}
 }

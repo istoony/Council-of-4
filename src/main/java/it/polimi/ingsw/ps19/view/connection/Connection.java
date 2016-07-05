@@ -52,6 +52,9 @@ public abstract class Connection
 		status = ConnectionStatus.DISCONNECTED;
 	}
 	
+	/**
+	 * Reconnect the connection
+	 */
 	public void reconnect()
 	{
 		status = ConnectionStatus.INACTIVE;

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps19.view.connection;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 /**
  * Class that implements a writer in a RMI interface
@@ -20,7 +19,7 @@ public class RMIWriter extends Writer
 	}
 
 	@Override
-	protected void write() throws IOException, RemoteException
+	protected void write() throws IOException
 	{
 		readerStub.setNewMessage(message);
 	}

@@ -45,7 +45,7 @@ public class WaitingRoom
 	 */
 	public static void startTimer()
 	{
-		executorService = Executors.newFixedThreadPool(Constants.MAX_PLAYERS);
+		executorService = Executors.newFixedThreadPool(Constants.getMaxPlayers());
 		if(t != null) 
 			return;
 		t = new TimerThread();
@@ -144,7 +144,7 @@ public class WaitingRoom
 	 */
 	private static boolean roomIsFull()
 	{
-		if(room.size() >= Constants.MAX_PLAYERS) 
+		if(room.size() >= Constants.getMaxPlayers()) 
 		{
 			startGame();
 			return true;

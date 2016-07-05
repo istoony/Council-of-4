@@ -26,18 +26,18 @@ public class LocalLogger
 		while(dateTime.contains("-"))
 		{
 			
-			String part1 = dateTime.substring(0, dateTime.indexOf("-") - 1);
-			String part2 = dateTime.substring(dateTime.indexOf("-") + 1);
+			String part1 = dateTime.substring(0, dateTime.indexOf('-') - 1);
+			String part2 = dateTime.substring(dateTime.indexOf('-') + 1);
 			dateTime = part1.concat(part2);
 		}
 		while(dateTime.contains(":"))
 		{
 			
-			String part1 = dateTime.substring(0, dateTime.indexOf(":") - 1);
-			String part2 = dateTime.substring(dateTime.indexOf(":") + 1);
+			String part1 = dateTime.substring(0, dateTime.indexOf(':') - 1);
+			String part2 = dateTime.substring(dateTime.indexOf(':') + 1);
 			dateTime = part1.concat(part2);
 		}
-		dateTime = dateTime.substring(0, dateTime.indexOf(".") - 3);
+		dateTime = dateTime.substring(0, dateTime.indexOf('.') - 3);
 		String path = "C:\\Logs\\CouncilOfFour\\" + dateTime;
 		String filePath = path + "\\" + logName + ".log";
 		try {
@@ -49,7 +49,7 @@ public class LocalLogger
 			log.setUseParentHandlers(false);
 		} catch (SecurityException | IOException e) 
 		{
-			log.log(Level.SEVERE, e.toString());
+			log.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 	

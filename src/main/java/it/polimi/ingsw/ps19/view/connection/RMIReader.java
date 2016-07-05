@@ -23,30 +23,22 @@ public class RMIReader implements RMIReaderIntf, Runnable
 	private Registry registry;
 	private String name;
 	private LinkedBlockingQueue<Message> fifo;
+	private ClientUI userInterface;
 	
 	/**
 	 * Initializes the RMI interface
 	 * @param fifoQueue: fifo in which to write new messages
+	 * @param ui: userInterface to notify of proper connection
 	 */
-	public RMIReader(LinkedBlockingQueue<Message> fifoQueue, ClientUI userInterface)
+	public RMIReader(LinkedBlockingQueue<Message> fifoQueue, ClientUI ui)
 	{
 		fifo = fifoQueue;
+		userInterface = ui;
 		try 
 		{
 			stub = (RMIReaderIntf) UnicastRemoteObject.exportObject(this, 0);
 			name = new SecureRandom().toString();
-			try
-			{
-				userInterface.showNotification("Creating new register on: localHost:" + Constants.RMI_PORT);
-				registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
-				userInterface.showNotification("new register created on: localHost:" + Constants.RMI_PORT);
-			}catch(ExportException e)
-			{				
-				userInterface.showNotification("Register on: localHost:" + Constants.RMI_PORT + " already exists");
-				ConnectionLogger.log.log(e);
-				registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
-				userInterface.showNotification("Openede register on: localHost:" + Constants.RMI_PORT);
-			}
+			rmiConnect();
 			registry.rebind(name, stub);
 		} 
 		catch (RemoteException e) 
@@ -77,6 +69,22 @@ public class RMIReader implements RMIReaderIntf, Runnable
 		} catch (RemoteException | NotBoundException e) 
 		{
 			ConnectionLogger.log.log(e);
+		}
+	}
+	
+	private void rmiConnect() throws RemoteException
+	{
+		try
+		{
+			userInterface.showNotification("Creating new register on: localHost:" + Constants.RMI_PORT);
+			registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
+			userInterface.showNotification("new register created on: localHost:" + Constants.RMI_PORT);
+		}catch(ExportException e)
+		{				
+			userInterface.showNotification("Register on: localHost:" + Constants.RMI_PORT + " already exists");
+			ConnectionLogger.log.log(e);
+			registry = LocateRegistry.getRegistry(Constants.RMI_PORT);
+			userInterface.showNotification("Openede register on: localHost:" + Constants.RMI_PORT);
 		}
 	}
 	
