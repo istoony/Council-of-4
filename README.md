@@ -25,6 +25,8 @@ To lauch the client please follow these steps:
  4. Follow instructions on screen
 
 ###Notes
+The game cannot be started directly from eclipse as it uses the System.console() has standard I/O
+
 Default server IP address is 127.0.0.1  
 If the server is not found the user will be prompted to insert a new IP address
 

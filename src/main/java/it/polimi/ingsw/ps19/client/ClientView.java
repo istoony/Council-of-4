@@ -50,6 +50,7 @@ public class ClientView extends Observable implements Observer, Runnable
 			} 
 		}
 		connection.close();
+		System.exit(0);
 	}
 
 	@Override
