@@ -2,10 +2,12 @@ Council Of Four - PS19
 ======================
 Progetto di Ingegneria del Software
 -----------------------------------
-###Antonio Gianola  
+###Authors
+Antonio Gianola  
 Andrea Facchini  
 Andrea Milanta  
 
+###How to use
 Both the server and the client have to be started by console.
 
 To launch the server please follow these steps:
@@ -22,4 +24,5 @@ To lauch the client please follow these steps:
  3. Execute the command 'java -jar "CouncilOfFour.jar"'
  4. Follow instructions on screen
 
+###Notes
 For further information please refer to the complete game manual at '\Documentation\Manuals' in the repository
