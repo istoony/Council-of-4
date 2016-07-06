@@ -2,9 +2,9 @@ Council Of Four - PS19
 ======================
 Progetto di Ingegneria del Software
 -----------------------------------
-###Antonio Gianola
-###Andrea Facchini
-###Andrea Milanta
+###Antonio Gianola  
+###Andrea Facchini  
+###Andrea Milanta  
 
 Both the server and the client have to be started by console.
 
