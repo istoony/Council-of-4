@@ -317,7 +317,9 @@ public class SupportMethod
 	{
 		BusinessCard firstCard = model.getMap().getRegionByType(region).getFirstcard();
 		BusinessCard secondCard = model.getMap().getRegionByType(region).getSecondcard();
-		if(firstCard.getId() == card.getId() || secondCard.getId() == card.getId())
+		if((firstCard == null && secondCard == null) || card == null)
+			return false;
+		if((firstCard!=null && firstCard.getId() == card.getId()) || (secondCard !=null && secondCard.getId() == card.getId()))
 			return true;
 		return false;
 	}
