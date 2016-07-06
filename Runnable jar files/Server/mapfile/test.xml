@@ -1,0 +1,82 @@
+<map>
+	<regiontypes>
+		<regiontype pos="0">
+			<name>Sea</name>
+		</regiontype>
+		<regiontype pos="1">
+			<name>Plain</name>
+		</regiontype>
+		<regiontype pos="2">
+			<name>Mountain</name>
+		</regiontype>
+	</regiontypes>
+
+	<regions>
+		<region id="1">
+			<type>0</type>
+			<roadsRight>3</roadsRight>
+			<roadsLeft>0</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>1</cityid>
+			<cityid>2</cityid>
+			<cityid>3</cityid>
+			<cityid>4</cityid>
+			<cityid>5</cityid>
+		</region>
+		<region id="2">
+			<type>1</type>
+			<roadsRight>3</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>6</cityid>
+			<cityid>7</cityid>
+			<cityid>8</cityid>
+			<cityid>9</cityid>
+			<cityid>10</cityid>
+		</region>
+		<region id="3">
+			<type>2</type>
+			<roadsRight>0</roadsRight>
+			<roadsLeft>3</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
+		</region>
+		<region id="4">
+			<type>2</type>
+			<roadsRight>0</roadsRight>
+			<roadsLeft>2</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
+		</region>
+		<region id="5">
+			<type>1</type>
+			<roadsRight>2</roadsRight>
+			<roadsLeft>2</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
+		</region>
+		<region id="6">
+			<type>0</type>
+			<roadsRight>2</roadsRight>
+			<roadsLeft>0</roadsLeft>
+			<nOfCities>5</nOfCities>
+			<cityid>11</cityid>
+			<cityid>12</cityid>
+			<cityid>13</cityid>
+			<cityid>14</cityid>
+			<cityid>15</cityid>
+		</region>
+	</regions>
+</map>
