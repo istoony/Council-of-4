@@ -8,6 +8,9 @@ import java.util.Map.Entry;
 
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
+/**
+ * Class that contains the current state of the model
+ */
 public class CurrentState 
 {
 	private int playerTurnId;
@@ -23,6 +26,10 @@ public class CurrentState
 	private List<Integer> disconnectedPlayersId;
 	
 	
+	/**
+	 * Constructor
+	 * @param playerIdList: list of players
+	 */
 	public CurrentState(List<Integer> playerIdList) 
 	{
 		playerTurnId = playerIdList.get(0);
@@ -90,6 +97,10 @@ public class CurrentState
 		return next;
 	}
 	
+	/**
+	 * Randomly gets the id of the next active player
+	 * @return
+	 */
 	public/*@pure@*/ int giveRandomTurn()
 	{
 		int randomNumb = Costants.RANDOM_NUMBER.nextInt(numberOfPlayer);
@@ -128,12 +139,20 @@ public class CurrentState
 				return false;
 		return true;
 	}
-
+	
+	/**
+	 * Checks whether a player has bought or not
+	 * @param playerId
+	 * @return true <==> player has bougth
+	 */
 	public boolean isPlayerBought(int playerId)
 	{
 		return marketState.get(playerId);
 	}
 
+	/**
+	 * Reset the active player to the lowest id connected
+	 */
 	public void resetPlayerTurnId() 
 	{
 		int i = 0;
@@ -142,25 +161,43 @@ public class CurrentState
 			playerTurnId= playerIdList.get((i + 1) % numberOfPlayer);
 	}
 	
+	/**
+	 * Empties the market
+	 */
 	public void resetMarket()
 	{
 		for (Entry<Integer, Boolean> entry : marketState.entrySet()) 
 			entry.setValue(false);
 	}
 	
+	/**
+	 * Add a new player to the list of disconnected players
+	 * @param playerId: new disconnected player id
+	 */
 	public void addDisconnectedPlayer(Integer playerId)
 	{
 		if(!disconnectedPlayersId.contains(playerId))
 			disconnectedPlayersId.add(playerId);
 	}
+	/**
+	 * Removes a player from the list of disconnected players
+	 * @param playerId
+	 */
 	public void reconnectPlayer(Integer playerId)
 	{
 		if(playerId>0)
 			disconnectedPlayersId.remove(playerId);
+	
 	}
 	public List<Integer> getDisconnectedPlayersId() {
 		return Costants.clone(disconnectedPlayersId);
 	}
+	
+	/**
+	 * Checks whether a player with given id is connected or not
+	 * @param id: player id to check
+	 * @return true <==> connected
+	 */
 	public boolean isConnected(int id)
 	{
 		for (Integer i : disconnectedPlayersId)
@@ -168,10 +205,12 @@ public class CurrentState
 				return false;
 		return true;
 	}
+	
 	public void setLastTurn(Integer lastTurn) 
 	{
 		this.lastTurn = lastTurn;
 	}
+	
 	public Integer getLastTurn() {
 		return lastTurn;
 	}

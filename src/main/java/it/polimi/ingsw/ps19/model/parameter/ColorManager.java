@@ -11,11 +11,14 @@ import java.util.logging.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+/**
+ * Class to manage colors
+ */
+/*
+ * 
+ */
 public class ColorManager implements Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 477874054352268861L;
 	private static final String COLOR_MARKER = "color";
 	private static final String COLORS_MARKER = "colors";
@@ -26,6 +29,10 @@ public class ColorManager implements Serializable
 	
 	private int size = 0;
 	
+	/**
+	 * Constructor from file
+	 * @param pathfile: file path to get colors
+	 */
 	public ColorManager(String pathfile) 
 	{
 		colors = new ArrayList<>();
@@ -50,6 +57,39 @@ public class ColorManager implements Serializable
 		    	}
 	}
 	
+<<<<<<< HEAD
+	/**
+	 * Constructor with a given list of colors
+	 * @param listofcolors
+	 */
+	public ColorManager(List<String> listofcolors)
+	{
+		colors = new ArrayList<>();
+		for(String s : listofcolors)
+		{
+				colors.add(Color.decode(s));
+				size++;	
+		}
+	}
+	
+	
+	/**
+	 * Constructor with a single color
+	 * @param color
+	 */
+	public ColorManager(Color color)
+	{
+		colors = new ArrayList<>();
+		colors.add(color);
+		size++;	
+	}
+	
+	/**
+	 * adds a color
+	 * @param color
+	 */
+=======
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public void addColor(Color color)
 	{
 		colors.add(color);

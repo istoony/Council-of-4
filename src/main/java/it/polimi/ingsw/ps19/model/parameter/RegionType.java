@@ -3,10 +3,18 @@ package it.polimi.ingsw.ps19.model.parameter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Type of region enum
+ */
 public enum RegionType 
 {
 	MOUNTAIN, HILL, PLAIN;
 	
+	/**
+	 * return enum correleted to number
+	 * @param n
+	 * @return
+	 */
 	public static RegionType valueOf(int n)
 	{
 		if(n == 0)

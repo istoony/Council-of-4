@@ -3,6 +3,9 @@ package it.polimi.ingsw.ps19.model.bonus;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
+/**
+ * Bonus to add nobility points
+ */
 public class MoreNobilityPoints implements Bonus {
 	/**
 	 * 
@@ -11,6 +14,10 @@ public class MoreNobilityPoints implements Bonus {
 	
 	int howMany; 
 	
+	/**
+	 * Constructor for a bonus adding n nobility points
+	 * @param n
+	 */
 	public MoreNobilityPoints(int n) {
 		howMany=n;
 	}

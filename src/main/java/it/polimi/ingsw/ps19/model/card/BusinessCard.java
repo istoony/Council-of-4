@@ -9,17 +9,21 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-public class BusinessCard implements Card, Serializable{
-
-	/**
-	 * 
-	 */
+/**
+ * Class rapresenting a business card
+ */
+public class BusinessCard implements Card, Serializable
+{
 	private static final long serialVersionUID = 1L;
 	private RegionType type;
 	private List<Bonus> bonus;
 	private List<City> city;
 	private int id;
 	
+	/**
+	 * Create a card of the given region
+	 * @param type: region
+	 */
 	public BusinessCard(RegionType type) 
 	{
 		this.bonus = new ArrayList<>();
@@ -31,6 +35,11 @@ public class BusinessCard implements Card, Serializable{
 	{
 		return bonus;
 	}
+	
+	/**
+	 * adds bonus to business card
+	 * @param bonus
+	 */
 	public void addBonus(Bonus bonus) 
 	{
 		this.bonus.add(bonus);

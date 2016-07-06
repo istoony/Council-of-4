@@ -15,8 +15,8 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
 /**
- * The Class Player.
- * OVERVIEW: Classe che rappresenta il singolo giocatore in una partita.
+ * The Class Player
+ * Contains all the information of a player
  */
 public class Player implements Serializable
 {
@@ -86,7 +86,6 @@ public class Player implements Serializable
 	
 	/**
 	 * Sets the starting items. This items are readed from file
-	 *
 	 * @param p the list of Player.
 	 * @param xmlfile the path to find configuration file.
 	 * @return the updated list of player.
@@ -114,7 +113,6 @@ public class Player implements Serializable
 	
 	/**
 	 * Adds the card to hand.
-	 *
 	 * @param c the c
 	 */
 	public void addCardToHand(PoliticsCard c)
@@ -124,7 +122,6 @@ public class Player implements Serializable
 	
 	/**
 	 * Removes the card to hand.
-	 *
 	 * @param c the c
 	 */
 	public void removeCardToHand(PoliticsCard c)
@@ -139,7 +136,6 @@ public class Player implements Serializable
 	
 	/**
 	 * Adds the card to hand.
-	 *
 	 * @param c the c
 	 */
 	public void addCardToHand(BusinessCard c)
@@ -149,7 +145,6 @@ public class Player implements Serializable
 	
 	/**
 	 * Gets the politiccard.
-	 *
 	 * @return the politiccard
 	 */
 	public List<PoliticsCard> getPoliticcard() 

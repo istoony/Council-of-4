@@ -2,7 +2,6 @@ package it.polimi.ingsw.ps19.model.card;
 
 import java.awt.Color;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,6 +17,9 @@ import it.polimi.ingsw.ps19.model.parameter.FileLogger;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Factory class to create decks
+ */
 public class DeckFactory 
 {
 	private static final String NUMBEROFJOKER = "numberofjoker";
@@ -35,6 +37,13 @@ public class DeckFactory
 	{}
 	
 	
+	/**
+	 * Creates a business deck for a region from a list of cities and a file
+	 * @param pathfile
+	 * @param type
+	 * @param cities
+	 * @return
+	 */
 	public static BusinessDeck businessDeckFactory(String pathfile, RegionType type, List<City> cities)
 	{
 		try {
@@ -84,11 +93,17 @@ public class DeckFactory
 			return businessdeck;
 			} catch (Exception e)
 			{
-		    	FileLogger.log.log(Level.SEVERE, e.toString(), e);
+		    	FileLogger.log.log(e);
 		    	throw new IllegalFileException("Business deck file is corrupted");
 		   }
 	}
 	
+	/**
+	 * Creates a new politic cards deck from a file with specified colors only
+	 * @param pathfile
+	 * @param deckcolors
+	 * @return
+	 */
 	public static Deck politicsDeckFactory(String pathfile, ColorManager deckcolors) //throws IllegalFileException
 	{
 		try {
@@ -103,7 +118,7 @@ public class DeckFactory
 
 		    } catch (Exception e)
 			{
-		    	FileLogger.log.log(Level.SEVERE, e.toString(), e);
+		    	FileLogger.log.log(e);
 		    	throw new IllegalFileException("Politics deck file is corrupted");
 		   }
 	}

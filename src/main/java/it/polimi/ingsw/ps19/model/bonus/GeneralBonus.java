@@ -13,19 +13,24 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
-public class GeneralBonus implements Bonus {
-
-	/**
-	 * 
-	 */
+/**
+ * General bonus for map 
+ */
+public class GeneralBonus implements Bonus 
+{
 	private static final long serialVersionUID = -1328598681393239063L;
 
-	private List<List<City>> regionsBonus;
+	private transient List<List<City>> regionsBonus;
 	private int singleRegionBonus;
 	private List<Integer> kingBonus;  //first to achieve
 	private List<CityColorBonus> colorBonus;
 	
 	
+	/**
+	 * Construct the general bonus from file with the five regions
+	 * @param xmlfile
+	 * @param regionlist
+	 */
 	public GeneralBonus(String xmlfile, List<Region> regionlist){
 		regionsBonus = new ArrayList<>();
 		kingBonus = new ArrayList<>();

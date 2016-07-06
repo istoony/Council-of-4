@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 
+/**
+ * Market
+ */
 public class Market implements Serializable
 {
 	/**
@@ -16,12 +19,20 @@ public class Market implements Serializable
 	private Map<Integer, Order> listoforder;
 	private int nullOrder;
 	
+	/**
+	 * Constructor
+	 */
 	public Market() 
 	{
 		listoforder = new HashMap<>();
 		nullOrder = 0;
 	}
 	
+	/**
+	 * Add order to market
+	 * @param order
+	 * @param playerId: selling player
+	 */
 	public void addOrder(Order order, int playerId)
 	{
 		listoforder.put(playerId,order);
@@ -35,26 +46,44 @@ public class Market implements Serializable
 		return temp;
 	}
 	
+	/**
+	 * Get the order sold by the playerId
+	 * @param playerId: selling player
+	 * @return order of playerId
+	 */
 	public Order getOrderById(int playerId)
 	{
 		return listoforder.get(playerId);
 	}
 	
+	/**
+	 * Removes the order sold by the playerId
+	 * @param playerId
+	 * @return
+	 */
 	public boolean removeOrderById(int playerId)
 	{
 		return listoforder.remove(playerId)!= null;
 		
 	}
+	
 	public int getSize()
 	{
 		return listoforder.size();
 	}
+	
+	/**
+	 * Clears all orders
+	 */
 	public void reset()
 	{
 		listoforder = new HashMap<>();
 		nullOrder = 0;
 	}
 
+	/**
+	 * Adds empty order
+	 */
 	public void addNullOrder() 
 	{
 		nullOrder++;

@@ -3,6 +3,9 @@ package it.polimi.ingsw.ps19.model.bonus;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
+/**
+ * Bonus for more victory points
+ */
 public class MoreVictoryPoints implements Bonus {
 	
 
@@ -10,7 +13,12 @@ public class MoreVictoryPoints implements Bonus {
 	
 	int howMany;
 	
-	public MoreVictoryPoints(int n) {
+	/**
+	 * Constructor for a bonus adding n victory points
+	 * @param n
+	 */
+	public MoreVictoryPoints(int n) 
+	{
 		howMany=n;
 	}
 	
