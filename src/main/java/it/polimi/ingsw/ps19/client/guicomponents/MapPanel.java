@@ -29,6 +29,9 @@ public class MapPanel extends JPanel{
 	private List<Point> ends;
 	Language language;
 	
+	/**
+	 * @param l current language
+	 */
 	protected MapPanel(Language l)
 	{
 		super();
@@ -42,6 +45,10 @@ public class MapPanel extends JPanel{
 		positions.add("East");
 	}
 	
+	/**
+	 * create the map with the current clientmodel
+	 * @param m
+	 */
 	protected void initialize(ClientModel m){
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		setLayout(new GridLayout(1, 3));
@@ -55,6 +62,9 @@ public class MapPanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * draws roads between the cities
+	 */
 	protected void drawRoads(){
 		for(RegionPanel rp : regionPanelList){
 			rp.drawRoads();
@@ -90,6 +100,10 @@ public class MapPanel extends JPanel{
     	}
     }
     
+    /**
+     * update the infos of the map
+     * @param mf
+     */
     protected void update(MainFrame mf){
     	for(int i=0; i<mf.getModel().getRegions().size(); i++){
     		regionPanelList.get(i).updateInfo(mf.getModel().getRegions().get(i));  		

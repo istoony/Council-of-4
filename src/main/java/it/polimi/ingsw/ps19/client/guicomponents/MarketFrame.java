@@ -23,6 +23,11 @@ public class MarketFrame extends JFrame implements Runnable{
 	private JLabel text;
 	private List<JButton> choices;		
 		
+	/**
+	 * @param orders current orders
+	 * @param gui the GUI
+	 * @param l language
+	 */
 	public MarketFrame(List<Order> orders, ClientGUI gui, Language l){
 		super();
 		language = l;
@@ -32,7 +37,6 @@ public class MarketFrame extends JFrame implements Runnable{
 		setLayout(new BorderLayout());
 		choices = new ArrayList<>();
 		pane = new JPanel();
-		//TODO language?
 		text = new JLabel("Buttons indicate price, look the tooltip for more info about the Order");
 		setTitle(language.getMarket());
 		text.setToolTipText(language.getChooseOrder());
@@ -86,6 +90,9 @@ public class MarketFrame extends JFrame implements Runnable{
 		setAutoRequestFocus(true);
 	}
 		
+	/**
+	 * close the frame
+	 */
 	public void close(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

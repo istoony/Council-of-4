@@ -37,6 +37,11 @@ public class RegionPanel extends JPanel implements MouseListener{
 	private Language language;
 	JFrame info;
 	
+	/**
+	 * create a panel for the received region
+	 * @param re
+	 * @param l
+	 */
 	protected RegionPanel(Region re, Language l)
 	{
     	super();
@@ -64,6 +69,9 @@ public class RegionPanel extends JPanel implements MouseListener{
 		}
 	}
 	
+	/**
+	 * draws roads between the cities
+	 */
 	protected void drawRoads(){
 		for(DrawCity dc : citylist){
 			for(DrawCity dc2 : citylist){
@@ -78,6 +86,10 @@ public class RegionPanel extends JPanel implements MouseListener{
 		repaint();	
 	}
 	
+    /**
+     * @param bounds
+     * @return the center of the rectangle
+     */
     protected static Point centerOf(Rectangle bounds) {
     	return new Point(bounds.x + (bounds.width / 2), bounds.y + (bounds.height / 2));
     }
@@ -94,9 +106,12 @@ public class RegionPanel extends JPanel implements MouseListener{
 		info.setVisible(true);
 	}
 
+	/**
+	 * @return a JFrame with the regions infos in text form
+	 */
 	protected JFrame createInfo(){
 		JFrame f = new JFrame(language.getInfo() + language.getString(myregion.getType()));
-		f.setSize(400, 250);
+		f.setSize(500, 250);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setLayout(new GridLayout(8, 1));
 		

@@ -43,6 +43,10 @@ public class InfoCell extends JPanel implements ActionListener{
 	private ActionChooserPanel actions;
 	private Language language;
 	
+	/**
+	 * create an infocell of language l
+	 * @param l
+	 */
 	protected InfoCell(Language l)
 	{
 		language = l;
@@ -51,6 +55,10 @@ public class InfoCell extends JPanel implements ActionListener{
 		infos = new ArrayList<>();
 	}
 	
+	/**
+	 * create an InfoCell for the general informations
+	 * @param m informations from the model
+	 */
 	protected void setInfo(ClientModel m){
 		setLayout(new GridLayout(7, 0));
 		setToolTipText(language.getInfoGame());
@@ -70,6 +78,10 @@ public class InfoCell extends JPanel implements ActionListener{
 		add(actions);
 	}
 	
+	/**
+	 * set the actionlistener
+	 * @param g actionlistener
+	 */
 	public void setListerner(ClientGUI g){
 		listener=g;
 		actionsType.setListener(g);
@@ -91,12 +103,19 @@ public class InfoCell extends JPanel implements ActionListener{
 	
 	
 	
+	/**
+	 * @param m updated clientmodel
+	 */
 	protected void updateInfo(ClientModel m){
 		removeAll();
 		infos.clear();
 		setInfo(m);
 	}
 
+	/**
+	 * create an infocell for the player information
+	 * @param p the player
+	 */
 	protected void setInfo(Player p){
 		setLayout(new GridLayout(8, 0));
 		setToolTipText(language.getInfoOthers());
@@ -107,12 +126,20 @@ public class InfoCell extends JPanel implements ActionListener{
 		}
 	}
 	
+	/**
+	 * udpdate player information
+	 * @param p the player
+	 */
 	protected void updateInfo(Player p){
 		removeAll();
 		infos.clear();
 		setInfo(p);
 	}
 	
+	/**
+	 * set the information of the own player
+	 * @param p the player himself
+	 */
 	protected void setMyInfo(Player p){
 		setLayout(new GridLayout(12, 0));
 		setToolTipText(language.getInfoYou());
@@ -123,6 +150,10 @@ public class InfoCell extends JPanel implements ActionListener{
 		}
 	}
 	
+	/**
+	 * update infos of the player
+	 * @param p the player himself
+	 */
 	protected void updateMyInfo(Player p){
 		removeAll();
 		infos.clear();

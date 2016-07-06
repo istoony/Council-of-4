@@ -35,6 +35,12 @@ public class QuestionFrame extends JFrame implements Runnable{
 	
 	private JTextField input;
 	
+	/**
+	 * create a frame with a buttons for every element in obj
+	 * @param gui actionlistener
+	 * @param obj list of objects
+	 * @param l language
+	 */
 	public QuestionFrame(ClientGUI gui, List<?> obj, Language l)
 	{
 		super();
@@ -97,6 +103,12 @@ public class QuestionFrame extends JFrame implements Runnable{
 		addButtons();
 	}
 	
+	/**
+	 * create a frame with a buttons for every int between 0 and n
+	 * @param gui actionlistener
+	 * @param n max number 
+	 * @param l language
+	 */
 	public QuestionFrame(ClientGUI gui, int n, Language l)
 	{
 		super();
@@ -114,6 +126,13 @@ public class QuestionFrame extends JFrame implements Runnable{
 		addButtons();
 	}
 	
+	/**
+	 * create a frame with a string insertion form
+	 * @param gui
+	 * @param s
+	 * @param code
+	 * @param l
+	 */
 	public QuestionFrame(ClientGUI gui, String s, boolean code, Language l)
 	{
 		super();
@@ -146,6 +165,12 @@ public class QuestionFrame extends JFrame implements Runnable{
 		add(pane);
 	}
 		
+	/**
+	 * create a frame with a button for every couple in citiesECost
+	 * @param gui
+	 * @param citiesECost
+	 * @param l
+	 */
 	public QuestionFrame(ClientGUI gui, Map<City, Integer> citiesECost, Language l)
 	{
 		super();
@@ -194,7 +219,7 @@ public class QuestionFrame extends JFrame implements Runnable{
 	}
 	
 	/**
-	 * Close method
+	 * Close the frame
 	 */
 	public void close(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

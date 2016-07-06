@@ -16,6 +16,10 @@ public class ActionTypeChooserPanel extends JPanel{
 	private JButton fastButton;
 	private Language language;
 	
+	/**
+	 * Create an ActionTypeChooserPanel with disabled button and language l
+	 * @param l
+	 */
 	public ActionTypeChooserPanel(Language l) 
 	{
 		super();
@@ -37,6 +41,10 @@ public class ActionTypeChooserPanel extends JPanel{
 		
 	}
 	
+	/**
+	 * register the parameter al as actionlistener of the buttons, set also the actioncommand
+	 * @param al
+	 */
 	protected void setListener(ClientGUI al){
 		mainButton.setActionCommand(ClientGUI.getMainActionCommand());
 		mainButton.addActionListener(al);
@@ -44,12 +52,19 @@ public class ActionTypeChooserPanel extends JPanel{
 		fastButton.addActionListener(al);
 	}
 	
+	/**
+	 * enable all the buttons in this
+	 */
 	protected void enableButtons(){
 		mainButton.setEnabled(true);
 		fastButton.setEnabled(true);
 		repaint();
 	}
 	
+
+	/**
+	 * disable all the buttons in this
+	 */
 	protected void disableButtons(){
 		mainButton.setEnabled(false);
 		fastButton.setEnabled(false);

@@ -15,6 +15,10 @@ public class NobilityButton extends JButton{
 	protected static final String NOBILITY_COMMAND = "nobility";
 	private NobilityPath path;
 	
+	/**
+	 * store the informations of the nobility path
+	 * @param p
+	 */
 	protected NobilityButton(NobilityPath p){
 		super();
 		path = p;

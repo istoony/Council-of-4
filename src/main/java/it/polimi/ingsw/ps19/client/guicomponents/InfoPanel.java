@@ -20,6 +20,9 @@ public class InfoPanel extends JPanel {
 	private List<InfoCell> boxes;
 	private Language language;
 	
+	/**
+	 * @param l language choosen
+	 */
 	protected InfoPanel(Language l)
 	{
 		super();
@@ -27,6 +30,9 @@ public class InfoPanel extends JPanel {
 		boxes= new ArrayList<>();
 	}
 	
+	/**
+	 * @param m mainframe with updated clientmodel
+	 */
 	protected void initialize(MainFrame m){
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		nplayer = m.getModel().getPlayer().size();
@@ -51,6 +57,10 @@ public class InfoPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * update the infoCells in boxes
+	 * @param m update Mainframe
+	 */
 	protected void update(MainFrame m){
 		for(int i=0; i<boxes.size(); i++){
 			if(i==0){

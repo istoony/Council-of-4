@@ -23,6 +23,12 @@ public class MainFrame extends JFrame {
 	InfoPanel infobox;
 	MapPanel mpanel;
 	
+	/**
+	 * create a mainframe with the current parameters
+	 * @param id
+	 * @param model
+	 * @param l
+	 */
 	protected MainFrame(int id, ClientModel model, Language l)
 	{
 		super(NAME+id);
@@ -36,6 +42,9 @@ public class MainFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout());
 	}
 	
+	/**
+	 * start the GUI with the current clientmodel
+	 */
 	protected void initialize(){
 		mpanel = new MapPanel(language);
 		mpanel.initialize(model);
@@ -52,16 +61,27 @@ public class MainFrame extends JFrame {
 	}
 
 	
+	/**
+	 * update the info side
+	 * @param m
+	 */
 	protected void updateInfoBox(ClientModel m){
 		model = m;
 		infobox.update(this);
 	}
 	
+	/**
+	 * update the map frame
+	 * @param m
+	 */
 	protected void updateMap(ClientModel m){
 		model = m;
 		mpanel.update(this);
 	}
 	
+	/**
+	 * draw roads between cities
+	 */
 	protected void drawRoads(){
 		mpanel.drawRoads();
 	}

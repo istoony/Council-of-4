@@ -24,6 +24,11 @@ public class MarketShow extends JFrame implements Runnable{
 	private List<JLabel> text;
 	Language language = null;
 		
+	/**
+	 * create a frame of the selected market and language
+	 * @param market
+	 * @param l
+	 */
 	public MarketShow(Market market, Language l){
 		super();
 		text = new ArrayList<>();

@@ -18,6 +18,10 @@ public class Notify extends JFrame implements Runnable{
 	private List<JLabel> text;
 	private JPanel pan = new JPanel();
 	
+	/**
+	 * create a frame for showing messages to the player
+	 * @param s
+	 */
 	public Notify(String s){
 		super();
 		setResizable(false);
@@ -72,7 +76,7 @@ public class Notify extends JFrame implements Runnable{
 		}
 	}
 	
-	/*
+	/**
 	 * @return list of strings at \n
 	 */
 	protected static List<String> parse(String s){

@@ -50,6 +50,12 @@ public class DrawCity extends JPanel implements MouseListener{
     private Language language;
     JFrame info;
 
+    
+    /**
+     * Create a JPanel with the correct img of the city c and language l
+     * @param c
+     * @param l
+     */
     protected DrawCity(City c, Language l) 
     {
     	super();
@@ -83,6 +89,10 @@ public class DrawCity extends JPanel implements MouseListener{
 	}
 
 	
+	/**
+	 * create a popup with the information of this.mycity
+	 * @return the info JFrame
+	 */
 	protected JFrame createInfo(){
 		JFrame f = new JFrame(language.getInfoCity() + ": " + language.getString(mycity));
 		f.setSize(400, 250);

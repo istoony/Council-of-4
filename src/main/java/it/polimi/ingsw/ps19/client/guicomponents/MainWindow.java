@@ -38,6 +38,10 @@ public class MainWindow implements Runnable {
 		frame.setAutoRequestFocus(true);
 	}
 	
+	/**
+	 * update the clientodel
+	 * @param m
+	 */
 	public void update(ClientModel m){
 		model=m;
 		frame.updateInfoBox(model);
