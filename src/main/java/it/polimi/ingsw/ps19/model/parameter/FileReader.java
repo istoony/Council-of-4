@@ -1,8 +1,6 @@
 package it.polimi.ingsw.ps19.model.parameter;
 
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,15 +8,20 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-
+/**
+ * Class to read from file
+ */
 public class FileReader {
-	
-	private static final Logger log = Logger.getLogger("FILE_READER_LOGGER");
-	
-	private FileReader(){
 		
+	private FileReader(){
 	}
 	
+	/**
+	 * Read XML file
+	 * @param nomefile
+	 * @param nomeNodo
+	 * @return
+	 */
 	public static NodeList xMLReader(String nomefile, String nomeNodo){
 		try {
 
@@ -36,7 +39,7 @@ public class FileReader {
 
 		}
 		catch (Exception e) {
-			log.log(Level.SEVERE, e.toString(), e);
+			FileLogger.log.log(e);
 			return null;
 		}
 

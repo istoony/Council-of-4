@@ -3,14 +3,19 @@ package it.polimi.ingsw.ps19.model.bonus;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Player;
 
-public class MoreHelpers implements Bonus {
-	/**
-	 * 
-	 */
+/**
+ * Bonus to add more helpers
+ */
+public class MoreHelpers implements Bonus 
+{
 	private static final long serialVersionUID = -7916908846822869862L;
 	
 	int howMany; //how many helpers to give
 	
+	/**
+	 * Constructor for a bonus adding n helpers
+	 * @param n
+	 */
 	public MoreHelpers(int n) {
 		howMany=n;
 	}

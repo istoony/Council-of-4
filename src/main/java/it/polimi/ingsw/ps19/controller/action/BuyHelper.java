@@ -6,6 +6,9 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.ps19.model.Model;
 
+/**
+ * Action to buy a helper
+ */
 public class BuyHelper implements Action
 {
 	private static final int HELPERS = 1;
@@ -13,6 +16,10 @@ public class BuyHelper implements Action
 	private int id;
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 */
 	public BuyHelper(int id) 
 	{
 		this.id = id;

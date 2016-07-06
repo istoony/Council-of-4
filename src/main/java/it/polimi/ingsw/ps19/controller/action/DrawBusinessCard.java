@@ -13,6 +13,9 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Action to draw a business card
+ */
 public class DrawBusinessCard implements Action 
 {
 
@@ -23,6 +26,13 @@ public class DrawBusinessCard implements Action
 	
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 * @param r: region
+	 * @param c: card
+	 * @param politicsCard: council satisfier
+	 */
 	public DrawBusinessCard(int id, RegionType r, BusinessCard c, List<Color> politicsCard) 
 	{
 		playerId = id;

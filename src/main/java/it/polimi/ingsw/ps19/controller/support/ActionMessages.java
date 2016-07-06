@@ -1,5 +1,8 @@
 package it.polimi.ingsw.ps19.controller.support;
 
+/**
+ * action result messages
+ */
 public class ActionMessages 
 {
 	public static final String NOT_YOUR_TURN = "It's not Your Turn";

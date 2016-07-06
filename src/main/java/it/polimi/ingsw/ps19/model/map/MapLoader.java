@@ -1,6 +1,5 @@
 package it.polimi.ingsw.ps19.model.map;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,10 +12,11 @@ import it.polimi.ingsw.ps19.exceptions.IllegalMapException;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
-
-public class MapLoader {
-	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
-	
+/**
+ * Class to load map from file
+ */
+public class MapLoader 
+{	
 	int type;
 	int id;
 	int outRight;
@@ -29,9 +29,13 @@ public class MapLoader {
 		outLeft=sx;
 	}
 	
-
-	//change return type to map
-	public static Map builder() throws IllegalMapException{
+	/**
+	 * Creates a map
+	 * @return
+	 * @throws IllegalMapException: file not valid
+	 */
+	public static Map builder()
+	{
 		List<MapLoader> map;
 		List<List<City>> regioncitylist;
 		

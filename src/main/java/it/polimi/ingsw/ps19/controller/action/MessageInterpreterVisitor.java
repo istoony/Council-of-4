@@ -88,17 +88,45 @@ public interface MessageInterpreterVisitor
 	 */
 	public Action visit(SendOrderMessage message);
 	
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
 	public Action visit(RedrawBusinessCardMessage message);
 	
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
 	public Action visit(PlayerDisconnectedMessage message);
 
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
 	public Action visit(BuildEmporiumMessage message);
 	
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
 	public Action visit(BuyOrderMessage message);
 	
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
 	public Action visit(GetBusinessCardOrBonusMessage message);
-
-	public Action visit(DrawBusinessCardRequest message);
-
-		
+	
+	/**
+	 * Visitor for messages
+	 * @param message
+	 * @return
+	 */
+	public Action visit(DrawBusinessCardRequest message);	
 }

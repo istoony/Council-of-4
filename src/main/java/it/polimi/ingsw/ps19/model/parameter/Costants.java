@@ -9,6 +9,9 @@ import java.util.Random;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
 
+/**
+ * Class with constants related to the model
+ */
 public class Costants 
 {
 	public static final String JOKERCOLOR = "#FEFEFE";
@@ -26,8 +29,7 @@ public class Costants
 	
 	/**
 	 * Returns a clone of the parameter
-	 * @param <E> a generics type of array that I want to clone
-	 * @param politiccard
+	 * @param array: the generic type of array to clone
 	 * @return
 	 */
 	public static <E> List<E> clone(List<E> array) 
@@ -39,6 +41,12 @@ public class Costants
 		return clone;
 	}
 	
+	/**
+	 * Returns whether the path contains the city
+	 * @param path
+	 * @param city
+	 * @return
+	 */
 	public static boolean containsCityId(List<City> path, City city)
 	{
 		for (City c : path) 
@@ -51,6 +59,7 @@ public class Costants
 	 * Gets list of cities for the shortest path
 	 * @param start
 	 * @param end
+	 * @param regions
 	 * @return
 	 */
 	public static List<City> calculateShorterPath(City start, City end, List<Region> regions)

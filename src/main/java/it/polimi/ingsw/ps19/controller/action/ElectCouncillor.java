@@ -10,6 +10,9 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Elect a new councillor
+ */
 public class ElectCouncillor implements Action
 {
 	private static final int MONEY = 4;
@@ -22,6 +25,13 @@ public class ElectCouncillor implements Action
 	
 	private String result;
 
+	/**
+	 * Constructor for electing a cuncillor in a region balcony
+	 * @param color: color of new councillor
+	 * @param id: player id
+	 * @param region: region of balcony
+	 * @param mainAction: is main(true) or qquick(false)
+	 */
 	public ElectCouncillor(Color color, int id, RegionType region, Boolean mainAction) 
 	{
 		this.color = color;
@@ -30,6 +40,13 @@ public class ElectCouncillor implements Action
 		this.mainAction = mainAction;
 	}
 	
+	/**
+	 * Constructor for electing a councillor in the king balcony
+	 * @param color
+	 * @param id
+	 * @param k
+	 * @param mainAction
+	 */
 	public ElectCouncillor(Color color, int id, King k, Boolean mainAction) 
 	{
 		this.color = color;
@@ -56,7 +73,7 @@ public class ElectCouncillor implements Action
 			model.getPlayerById(playerId).setHelpers(model.getPlayerById(playerId).getHelpers() - HELPERS);
 			model.getPlayerById(playerId).setFastActionCounter(model.getPlayerById(playerId).getFastActionCounter() - SupportMethod.N_OF_ACTION_TO_ADD);
 		}
-		return null;
+		return false;
 	}
 
 	@Override

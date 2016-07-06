@@ -21,7 +21,7 @@ import it.polimi.ingsw.ps19.message.requests.Request;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
-import it.polimi.ingsw.ps19.server.WaitingRoom;;
+import it.polimi.ingsw.ps19.server.WaitingRoom;
 
 /**
  * The Class GameController.
@@ -40,8 +40,7 @@ public class GameController implements Observer
 	
 	/**
 	 * Instantiates a new game controller. The game Started!
-	 *
-	 * @param m the m
+	 * @param model: model on which the controller will operate on
 	 */
 	public GameController(Model model) 
 	{
@@ -61,6 +60,7 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
+		//TODO: capire se serve
 		//if(!model.getCurrentState().isTimeToMarket())
 			checkReconnectedPlayer();
 		

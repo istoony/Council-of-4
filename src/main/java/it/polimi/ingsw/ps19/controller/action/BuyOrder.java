@@ -11,6 +11,9 @@ import it.polimi.ingsw.ps19.model.Order;
 import it.polimi.ingsw.ps19.model.Player;
 import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 
+/**
+ * Action to buy an order
+ */
 public class BuyOrder implements Action
 {
 	private int playerId;
@@ -18,6 +21,12 @@ public class BuyOrder implements Action
 	private Order order;
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param playerId: player id
+	 * @param sellerId: id of selling player
+	 * @param order
+	 */
 	public BuyOrder(int playerId, int sellerId, Order order) 
 	{
 		this.playerId = playerId;

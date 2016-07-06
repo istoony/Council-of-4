@@ -10,6 +10,9 @@ import it.polimi.ingsw.ps19.model.card.DeckFactory;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Class to rappresent a region
+ */
 public class Region implements Serializable{
 	
 	/**
@@ -58,8 +61,12 @@ public class Region implements Serializable{
 	{
 		return type;
 	}
-	
-	//inizializzazione 
+	 
+	/**
+	 * Initializes the regions
+	 * @param regioncitylist
+	 * @return regions
+	 */
 	public static List<Region> finalRegionBuilder(List<List<City>> regioncitylist)
 	{
 		
@@ -79,6 +86,11 @@ public class Region implements Serializable{
 		return cities;
 	}
 	
+	/**
+	 * returns the city with the given id if contained, else null
+	 * @param id: city id
+	 * @return
+	 */
 	public City getCityById(int id)
 	{
 		for (City c : cities) 
@@ -94,25 +106,39 @@ public class Region implements Serializable{
 	{
 		return secondcard;
 	}
+	
+	/**
+	 * Sets a new first card
+	 */
 	public void drawFirstCard()
 	{
 		firstcard = businessdeck.getFirstCard();
 	}
 	
+	/**
+	 * Sets a new second card
+	 */
 	public void drawSecondCard()
 	{
 		secondcard = businessdeck.getFirstCard();
 	}
 
+	/**
+	 * sets the fist card as empty (eg if the deck is finished)
+	 */
 	public void setEmptyFirstCard()
 	{
 		firstcard = null;
 	}
 	
+	/**
+	 * Sets the second card as empty 
+	 */
 	public void setEmptySecondCard()
 	{
 		secondcard = null;
 	}
+	
 	public BusinessDeck getBusinessdeck() 
 	{
 		return businessdeck;

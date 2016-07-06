@@ -7,6 +7,9 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
+/**
+ * Deck of business cards
+ */
 public class BusinessDeck implements Deck, Serializable 
 {
 	/**
@@ -16,6 +19,9 @@ public class BusinessDeck implements Deck, Serializable
 	private static final int FIRST_CARD = 0;
 	private List<BusinessCard> card;
 	
+	/**
+	 * Constructor
+	 */
 	public BusinessDeck() {
 		card = new ArrayList<>();
 	}
@@ -33,6 +39,10 @@ public class BusinessDeck implements Deck, Serializable
 		this.card.add((BusinessCard) card);
 	}
 	
+	/**
+	 * Adds the given business card in the deck at a random position
+	 * @param c
+	 */
 	public void addToDeckRandom(BusinessCard c)
 	{
 		int number; 
@@ -57,11 +67,15 @@ public class BusinessDeck implements Deck, Serializable
 		
 		for (Card c : card) 
 		{
-			s = s + c.toString() + "  ";
+			s = s.concat(c.toString() + "  ");
 		}
 		return s;
 	}
 
+	/**
+	 * gets the deck size
+	 * @return
+	 */
 	public int size()
 	{
 		return card.size();

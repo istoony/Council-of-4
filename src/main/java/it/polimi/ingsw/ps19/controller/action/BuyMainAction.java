@@ -6,12 +6,19 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.ps19.model.Model;
 
+/**
+ * Action to buy an extra main action
+ */
 public class BuyMainAction implements Action 
 {
 	private static final int HELPERS_NEEDED = 3;
 	private String result;
 	private int playerId;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 */
 	public BuyMainAction(int id) 
 	{
 		playerId =id;

@@ -15,7 +15,9 @@ import it.polimi.ingsw.ps19.model.bonus.Bonus;
 import it.polimi.ingsw.ps19.model.bonus.BonusFactory;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
-
+/**
+ * Class to rappresent the nobility path
+ */
 public class NobilityPath implements Serializable
 {
 	/**
@@ -24,8 +26,12 @@ public class NobilityPath implements Serializable
 	private static final long serialVersionUID = -142212466262863614L;
 	private static final String ERROR = "file corrotto/non valido!";
 	
-	private Map<Integer, List<Bonus>> nobility;
+	private transient Map<Integer, List<Bonus>> nobility;
 	
+	/**
+	 * Creates the nobility path from the pathfile
+	 * @param pathfile
+	 */
 	public NobilityPath(String pathfile) 
 	{
 		nobility = new HashMap<>();
@@ -62,6 +68,11 @@ public class NobilityPath implements Serializable
 		}
 	}
 	
+	/**
+	 * Gets a bonus in the given position
+	 * @param key: position
+	 * @return bonus in position(key)
+	 */
 	public List<Bonus> getBonusByPosition(int key)
 	{
 		return nobility.get(key);

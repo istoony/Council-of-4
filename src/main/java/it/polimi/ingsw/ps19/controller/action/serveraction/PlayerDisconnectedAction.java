@@ -7,12 +7,19 @@ import it.polimi.ingsw.ps19.message.replies.PlayerDisconnectedReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 
-public class PlayerDisconnectedAction implements Action {
-
+/**
+ * Action to deal with a disconnected player
+ */
+public class PlayerDisconnectedAction implements Action 
+{
 	private int playerId;
 	private String result;
 	private boolean newTurn = false;
 	
+	/**
+	 * Constructor
+	 * @param id: player disconnected id
+	 */
 	public PlayerDisconnectedAction(int id) 
 	{
 		playerId = id;

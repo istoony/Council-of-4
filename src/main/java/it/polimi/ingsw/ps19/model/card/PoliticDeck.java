@@ -3,12 +3,18 @@ package it.polimi.ingsw.ps19.model.card;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Deck of politic cards
+ */
 public class PoliticDeck implements Deck
 {
 	private static final int FIRST_CARD = 0;
 	private ArrayList<PoliticsCard> card;
 	private int toDraw;
 	
+	/**
+	 * Constructor
+	 */
 	public PoliticDeck() 
 	{
 		card = new ArrayList<>();
@@ -48,10 +54,9 @@ public class PoliticDeck implements Deck
 	@Override
 	public String toString() {
 		String s = "\n+++++++++++++\n";
-		
 		for (Card c : card) 
 		{
-			s = s + c.toString() + "  ";
+			s = s.concat(c.toString() + "  ");
 		}
 		return s;
 	}

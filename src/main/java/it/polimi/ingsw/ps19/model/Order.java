@@ -7,6 +7,9 @@ import java.util.List;
 
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
+/**
+ * Order
+ */
 public class Order implements Serializable{
 	/**
 	 * 
@@ -17,6 +20,9 @@ public class Order implements Serializable{
 	private int helper;
 	private int price;
 	
+	/**
+	 * Constructor
+	 */
 	public Order() 
 	{
 		businesscard = new ArrayList<>();
@@ -24,6 +30,13 @@ public class Order implements Serializable{
 		helper = 0;
 	}
 	
+	/**
+	 * Constructor for a full order
+	 * @param businesscard: business cards to sell
+	 * @param politicscards: politic cards to sell
+	 * @param helper: helpers to sell
+	 * @param price
+	 */
 	public Order(List<BusinessCard> businesscard, List<Color> politicscards, int helper, int price)
 	{
 		this.businesscard = businesscard;
@@ -32,23 +45,34 @@ public class Order implements Serializable{
 		this.price = price;
 	}
 	
+	/**
+	 * Add a business card to the order
+	 * @param card
+	 */
 	public void addBusinessCard(BusinessCard card)
 	{
 		businesscard.add(card);
 	}
 	
+	/**
+	 * add politic card to the order
+	 * @param card
+	 */
 	public void addPoliticsCard(Color card)
 	{
 		politicscard.add(card);
 	}
+
 	public void setHelper(int helper) 
 	{
 		this.helper = helper;
 	}
+
 	public void setPrice(int price) 
 	{
 		this.price = price;
 	}
+	
 	public int getPrice() {
 		return price;
 	}

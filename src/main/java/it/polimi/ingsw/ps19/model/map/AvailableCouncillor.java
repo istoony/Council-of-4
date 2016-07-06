@@ -9,17 +9,19 @@ import java.util.Map;
 
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 
+/**
+ * Class to rappresent councillor not in balconies
+ */
 public class AvailableCouncillor implements Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Map<Color,Integer> councillor;
 	private ColorManager listofcolors;
 	
 	/**
-	 * Impostare per ogni colore il numero di consiglieri disponibili
+	 * Sets the number of councillor for color
+	 * @param numberoffreecouncillor
+	 * @param colors
 	 */
 	public AvailableCouncillor(int numberoffreecouncillor, ColorManager colors) 
 	{
@@ -30,6 +32,11 @@ public class AvailableCouncillor implements Serializable
 			councillor.put(color, numberoffreecouncillor);
 	}
 	
+	/**
+	 * decrement the number of councillor of the given color available
+	 * @param color
+	 * @return true <==> there was at least one councillor of that color
+	 */
 	public boolean decrement(Color color)
 	{
 		Integer numberofcouncillor = councillor.get(color);
