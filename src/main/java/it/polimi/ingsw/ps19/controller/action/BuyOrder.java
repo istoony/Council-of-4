@@ -36,14 +36,20 @@ public class BuyOrder implements Action
 			seller.setHelpers(seller.getHelpers() - order.getHelper());
 			buyer.setHelpers(buyer.getHelpers() + order.getHelper());
 			
-			SupportMethod.removePoliticCardToHand(model, seller, order.getPoliticscard());
-			for (Color color : order.getPoliticscard())
-				buyer.addCardToHand(new PoliticsCard(color));
-			
-			for(int i = 0; i < order.getBusinesscard().size(); i++)
+			if(order.getPoliticscard() != null)
 			{
-				seller.removeFreebusinesscardById(order.getBusinesscard().get(i).getId());
-				buyer.addCardToHand(order.getBusinesscard().get(i));
+				SupportMethod.removePoliticCardToHand(model, seller, order.getPoliticscard());
+				for (Color color : order.getPoliticscard())
+					buyer.addCardToHand(new PoliticsCard(color));
+				
+			}
+			if(order.getBusinesscard() != null)
+			{
+				for(int i = 0; i < order.getBusinesscard().size(); i++)
+				{
+					seller.removeFreebusinesscardById(order.getBusinesscard().get(i).getId());
+					buyer.addCardToHand(order.getBusinesscard().get(i));
+				}
 			}
 			
 			seller.setMoney(seller.getMoney() + order.getPrice());

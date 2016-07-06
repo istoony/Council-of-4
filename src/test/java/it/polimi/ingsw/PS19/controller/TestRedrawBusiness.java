@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19.controller;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,17 +18,17 @@ import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
-public class RedrawBusinessCard 
-{
+public class TestRedrawBusiness {
 
 	@Test
 	public void test() 
 	{
 		/**
-		 * Controllo che le carte iniziali e le carte dopo aver eseguito la mossa
-		 * redraw siano diverse.
-		 * TODO: se una cosa funziona 100 volte è sicuramente corretta
+		 * Inizializzo il gioco, salvo la prima e la seconda carta business della regione PLAIN in due variabili
+		 * successivamente eseguo la mossa di RedrawBusinessCard ed infine controllo che le due nuove carte siano diverse
+		 * da quelle iniziali.
 		 */
+		
 		for(int i =0; i< 100; i++)
 		{
 			Connection uno = new RMIConnection(true);
@@ -47,9 +47,10 @@ public class RedrawBusinessCard
 		players.add(0);
 		players.add(1);
 		Model m = new Model(players);
+			
 			BusinessCard first = m.getMap().getRegionByType(RegionType.PLAIN).getFirstcard();
 			BusinessCard second = m.getMap().getRegionByType(RegionType.PLAIN).getSecondcard();
-			//System.out.print(m.getMap().getRegionByType(RegionType.PLAIN).toString());
+			
 			GameController g = new GameController(m);
 			RedrawBusinessCardMessage message = new RedrawBusinessCardMessage(RegionType.PLAIN);
 		
@@ -64,4 +65,5 @@ public class RedrawBusinessCard
 			assertTrue("prima " + second.getId() + " - seconda " + secondNew.getId(), second.getId() != secondNew.getId());
 		}
 	}
+
 }

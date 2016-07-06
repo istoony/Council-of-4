@@ -1,5 +1,6 @@
 package it.polimi.ingsw.PS19.controller;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -15,11 +16,14 @@ import it.polimi.ingsw.ps19.model.card.PoliticsCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-public class ChangeKingPosition {
+public class TestChangeKingPosition {
 
 	@Test
 	public void test() 
 	{
+		/**
+		 * In questo test muovo il re su una città e costruisco un emporio.
+		 */
 		List<Integer> players = new ArrayList<>();
 		players.add(0);
 		players.add(1);
@@ -54,11 +58,11 @@ public class ChangeKingPosition {
 		
 		assertTrue(m.getMap().getKing().getCurrentcity().getId() == 13);
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
+		
 		//MONEY E HELPER DIPENDONO DAL BONUS DELLE CITTA'
 		//assertTrue("h: "+ m.getPlayerById(0).getHelpers(), m.getPlayerById(0).getHelpers() == 0);
 		//assertTrue("Money" + m.getPlayerById(0).getMoney(),m.getPlayerById(0).getMoney() == 10 - 4 - 4);
 		assertTrue(m.getPlayerById(0).getMaxemporia() == 9);
-		
 	}
 
 }

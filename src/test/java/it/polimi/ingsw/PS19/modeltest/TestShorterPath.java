@@ -1,6 +1,6 @@
 package it.polimi.ingsw.PS19.modeltest;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
-public class CalculateShorterPath {
+public class TestShorterPath {
 
 	@Test
-	public void test()
+	public void test() 
 	{
 		/**
 		 * Test per il calcolo dei cammini minimi.
@@ -22,7 +22,8 @@ public class CalculateShorterPath {
 		 * Una volta calcolato il numero di salti lo confronto con il vettore testForCurrentMap
 		 * che contiene i valori corretti dei "salti".
 		 * 
-		 * Creando un nuovo vettore per i "salti" posso eseguire il test su qualsiasi città di partenza
+		 * Creando un nuovo vettore per i "salti" posso eseguire il test su qualsiasi città di partenza.
+		 * 
 		 */
 
 		List<Integer> testForCurrentMap = new ArrayList<>();

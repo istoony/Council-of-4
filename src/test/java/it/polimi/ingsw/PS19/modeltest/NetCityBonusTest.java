@@ -22,17 +22,23 @@ public class NetCityBonusTest {
 	@Test
 	public void test() 
 	{
+		/**
+		 * Costruisco empori su una serie di città, 
+		 * creo un mio vettore di test di città collegate 
+		 * faccio partire l'algoritmo che mi ritorna una lista di città in base alle città su cui possiedo un emporio
+		 * confronto che il vettore di ritorno della funzione sia uguale al vettore test.
+		 */
 		
 		Connection uno = new RMIConnection(true);
-		uno.setActive();
-	Connection due = new RMIConnection(true);
-		due.setActive();
+			uno.setActive();
+		Connection due = new RMIConnection(true);
+			due.setActive();
+			
+		Map<Integer, Connection> wRoom = new HashMap<>();
+		wRoom.put(0, uno);
+		wRoom.put(1, due);
 		
-	Map<Integer, Connection> wRoom = new HashMap<>();
-	wRoom.put(0, uno);
-	wRoom.put(1, due);
-	
-	WaitingRoom.setConnection(wRoom);
+		WaitingRoom.setConnection(wRoom);
 	
 		List<Integer> players = new ArrayList<>();
 		players.add(0);
@@ -57,12 +63,12 @@ public class NetCityBonusTest {
 		id9.buildEmporium(p);
 		
 		//in base alla mappa creo il vettore degli id corretti
-		List<Integer> correct = new ArrayList<>();
-		correct.add(7);
-		correct.add(8);
-		correct.add(14);
-		correct.add(10);
-		correct.add(9);
+		List<Integer> test = new ArrayList<>();
+		test.add(7);
+		test.add(8);
+		test.add(14);
+		test.add(10);
+		test.add(9);
 		
 		//chiamo l' applyNetBonus a questa funzione serve un vettore vuoto  ritorna 
 		//un vettore con le città collegate alla prima e dove ho costruito
@@ -71,7 +77,7 @@ public class NetCityBonusTest {
 
 		//confronto il valore ritornato dalla funzione con il vettore corretto di id
 		for (City city : total)
-			assertTrue(correct.contains(city.getId()));
+			assertTrue(test.contains(city.getId()));
 	}
 
 }

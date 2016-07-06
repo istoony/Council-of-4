@@ -11,6 +11,22 @@ import org.junit.Test;
 import it.polimi.ingsw.ps19.model.Model;
 
 public class AvalialbleCouncillorTest {
+	
+	/**
+	 * Questi tre tests servono a controllare se i metodi della classi di Available councillor eseguono le operazioni in modo corretto.
+	 * Available councillor è un insieme di consiglieri colorati, a cui è associato il numero presente.
+	 * 
+	 * nel primo test controllo che su tutti i colori available  è possibile eseguire l'operazione di decrement
+	 * 
+	 * Il secondo test controlla che il totale dei colori presenti in Available Councillor sia coerente con quello del model
+	 * 
+	 * il terzo controlla che siano presenti i colori letti dal file di configurazione, nello specifico:
+	 * 		FF0000
+	 * 		FFFFFF
+	 * 		FE1200
+	 * 		FF4567
+	 */
+	
 
 	@Test
 	public void testGetAvailableColors() 
@@ -25,18 +41,8 @@ public class AvalialbleCouncillorTest {
 		List<Color> color = model.getMap().getAvailableCouncillor().getAvailableColors();
 		for (Color c : color) 
 		{
-			if(model.getMap().getAvailableCouncillor().getListofcolors().getColors().contains(c))
-			{
 				assertTrue(model.getMap().getAvailableCouncillor().getListofcolors().getColors().contains(c));
 				assertTrue(model.getMap().getAvailableCouncillor().decrement(c));
-			}
-			else
-			{
-				assertTrue(!model.getMap().getAvailableCouncillor().getListofcolors().getColors().contains(c));
-				assertTrue(!model.getMap().getAvailableCouncillor().decrement(c));
-				model.getMap().getAvailableCouncillor().increment(c);
-				assertTrue(model.getMap().getAvailableCouncillor().decrement(c));
-			}
 		}
 	}
 

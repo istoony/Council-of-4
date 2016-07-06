@@ -26,6 +26,9 @@ public class ReconnectedPlayerTest {
 	public void ReconnectPlayer() 
 	{
 		/**
+		 * Questo test controlla se il controller si accorge della riconnessione dei player.
+		 * riconnetto il player con id 12 e invio il messaggio di un azione al player 10. alla fine dell'azione
+		 * controllo se il numero dei Disconnected Player è diminuito di uno.
 		 * Creo 5 player nella waitingroom, ne disconnetto subito 3
 		 */
 		Connection uno = new RMIConnection(true);
@@ -70,6 +73,10 @@ public class ReconnectedPlayerTest {
 	m.getCurrentState().addDisconnectedPlayer(14);
 	
 	GameController g = new GameController(m);
+	
+	//controllo il numero di player disconnessi
+	assertTrue("disconnected" + m.getCurrentState().getNumberOfDisconnectedPlayer(), m.getCurrentState().getNumberOfDisconnectedPlayer() == 3);
+		
 	
 		//Riconnetto il player 12 e faccio eseguire un azione al player 10
 	tre.reconnect();

@@ -15,6 +15,10 @@ public class CompleteModelTest {
 	@Test
 	public void test() {
 		
+		/**
+		 * Questo test avvia il model e controlla che il numero di PoliticCard presenti in mano ad ogni player sia corretto.
+		 */
+		
 		List<Integer> players = new ArrayList<>();
 		players.add(0);
 		players.add(1);

@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
+import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
 public class GetBusinessCardMessage extends Request 
@@ -38,7 +39,7 @@ public class GetBusinessCardMessage extends Request
 	
 	public List<Color> getPoliticsCard() 
 	{
-		return politicsCard;
+		return Costants.clone(politicsCard);
 	}
 	
 	public BusinessCard getCard() 

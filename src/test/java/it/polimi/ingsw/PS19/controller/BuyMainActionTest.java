@@ -24,6 +24,14 @@ public class BuyMainActionTest
 	@Test
 	public void test() 
 	{
+		/**
+		 * Test della Buy helper e Buy main action:
+		 * Inizializzo il model con 4 player. con un for ripeto 4 volte la mossa di comprare un aiutante
+		 * Controllando ad ogni iterazione che i parametri del player siano corretti.
+		 * 
+		 * finito il ciclo creo un messaggio di BuyMainAction e lo invio al controller, infine controllo nuovamente i parametri
+		 * del player per avere la certezza che l'azione è andata a buon fine.
+		 */
 		Map<Integer, Connection> wRoom = new HashMap<>();
 		
 		Connection uno = new RMIConnection(true);

@@ -19,11 +19,17 @@ import it.polimi.ingsw.ps19.server.WaitingRoom;
 import it.polimi.ingsw.ps19.view.connection.Connection;
 import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 
-public class DrawBusinessCard {
+public class TestDrawBusinessCard {
 
 	@Test
 	public void test() 
 	{
+		/**
+		 * In questo test provo a pescare sia la prima che la seconda business permit card della regione mountain.
+		 * Per iniziare do al player tante carte politica (50) 
+		 * Creo successivamente due messaggii di DrawBusiness Card e li invio al controller, il primo serve per pescare la prima carta,
+		 * il secondo per la seconda.
+		 */
 		Connection uno = new RMIConnection(true);
 			uno.setActive();
 		Connection due = new RMIConnection(true);
@@ -41,7 +47,7 @@ public class DrawBusinessCard {
 		players.add(1);
 		Model m = new Model(players);
 			
-		//Set to player 0 many cards
+		//Set to player 0 many cards (50)
 		m.getPlayerById(0).setPoliticCardToDraw(50);
 		
 		GameController g = new GameController(m);
@@ -54,10 +60,10 @@ public class DrawBusinessCard {
 		card.add(Color.decode("#FEFEFE"));
 		card.add(Color.decode("#FEFEFE"));
 		card.add(Color.decode("#FEFEFE"));
-		card.add(Color.decode("#FEFEFE"));
-		
-		GetBusinessCardMessage mess = new GetBusinessCardMessage(m.getMap().getRegionByType(RegionType.MOUNTAIN).getFirstcard(),RegionType.MOUNTAIN);
+				
+		GetBusinessCardMessage mess = new GetBusinessCardMessage(m.getMap().getRegionByType(RegionType.MOUNTAIN).getFirstcard(),RegionType.MOUNTAIN, card);
 		mess.setId(0);
+		mess.addPoliticCard(Color.decode("#FEFEFE"));
 		assertTrue(mess.getCard().getId() == first.getId());
 		
 		g.update(null, mess);
@@ -65,28 +71,17 @@ public class DrawBusinessCard {
 		assertTrue(m.getPlayerById(0).getFreebusinesscard().get(0).getId()==first.getId());
 		
 		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
-		//System.out.println(m.getMap().getRegionByType(RegionType.HILL).getBusinessdeck().getCard().size());
 		
-		assertTrue(m.getMap().getRegionByType(RegionType.HILL).getBusinessdeck().getCard().size() == 3-2 );
-		
-		//System.out.println(m.getMap().getRegionByType(RegionType.MOUNTAIN).getBusinessdeck().getCard().size());
-		//Cam
-		//assertTrue(m.getMap().getRegionByType(RegionType.MOUNTAIN).getBusinessdeck().getCard().size() == 6-2-1 );
-		
-		//System.out.println(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size());
-		//CHECK NUMBER OF CARD ON politicscard.xml
-		//assertTrue(m.getMap().getRegionByType(RegionType.PLAIN).getBusinessdeck().getCard().size() == 8-2 );
-		//System.out.println(m.toString());
-		
-		//This assert depends of a random bonus geven to player
-		//assertTrue(m.getPlayerById(0).getMoney() == 10 - 4 );
-		//System.out.println(m.toString());
 		m.getPlayerById(0).setMainActionCounter(1);
 		GetBusinessCardMessage mess2 = new GetBusinessCardMessage(m.getMap().getRegionByType(RegionType.MOUNTAIN).getSecondcard(),RegionType.MOUNTAIN);
 		mess2.setId(0);
+		
 		assertTrue(mess2.getCard().getId() == m.getMap().getRegionByType(RegionType.MOUNTAIN).getSecondcard().getId());
 		
 		g.update(null, mess2);
+		
+		assertTrue(m.getPlayerById(0).getMainActionCounter() == 0);
+		assertTrue(m.getPlayerById(0).getFreebusinesscard().size() == 2);
 	}
 
 }

@@ -41,6 +41,15 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public class LanguageTest 
 {
 
+	/**
+	 * Test sulle classi delle lingue del client.
+	 * Ogni metodo appartenente alla classe Language viene richiamato
+	 * e si dimostra che non ritorni Null.
+	 * ogni metodo non può ritornare null perchè non ci sarebbe nulla da stampare su schermo
+	 * creando un NullPointerExcemption
+	 */
+	
+	
 	@Test
 	public void testPlayerDisconnected() 
 	{

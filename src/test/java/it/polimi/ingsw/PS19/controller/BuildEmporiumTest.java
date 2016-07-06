@@ -22,6 +22,15 @@ public class BuildEmporiumTest extends SupportMethod{
 	@Test
 	public void test() 
 	{
+		/**
+		 * Inizializzo il model con 4 player e associo al player 0 la prima carta della regione HILL.
+		 * Successivamente creo un messaggio di BuildEmporium contenente la carta, la città su cui voglio costruire e 
+		 * l'Id del player che sta costruendo e lo invio al controller che eseguirà la mossa.
+		 * 
+		 * Finito il lavoro del controller controllo che i risultati siano coerenti con le aspettative:
+		 * creo un player falso con gli stessi punti del primo, do i bonus della città (che non conosco) a questo player
+		 * e successivamente confronto che tutti i punteggi fra i due player siano coerenti.
+		 */
 		List<Integer> players = new ArrayList<>();
 		players.add(0);
 		players.add(1);

@@ -49,7 +49,6 @@ public class AddOrder implements Action
 			result = ActionMessages.NOT_HAVE_POLITIC_CARD;
 			return false;
 		}
-		//TODO: CONTROLLARE SE L'ORDINE è GIUSTO
 		return true;
 	}
 

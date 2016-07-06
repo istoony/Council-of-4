@@ -33,6 +33,17 @@ public class MarketTest {
 	@Test
 	public void test() 
 	{
+		/**
+		 * Creo 5 player e ne disconnetto subito 3 in modo da avere la certezza che il market funziona 
+		 * anche quando alcuni player si sono disconnessi.
+		 * Faccio compiere una main action e una fast action ai due player rimanenti controllando i risultati,
+		 * finite le azioni controllo se il server è entrato nella fase di "TimeToMarket".
+		 * 
+		 * i due player creano un ordine e lo inseriscono nel messaggio di SendOrderMessage inviandolo al controller.
+		 * Il controller sceglie a caso il turno del primo player che deve comprare, e il player attivo invia
+		 * il messaggio di BuyOrderMessage. La stessa cosa avviene anche per il secondo player.
+		 * Infine controllo che i riultati ottenuti siano coerenti.
+		 */
 		Connection uno = new RMIConnection(true);
 			uno.setActive();
 		Connection due = new RMIConnection(true);
@@ -73,9 +84,11 @@ public class MarketTest {
 		
 		GameController g = new GameController(m);
 		
+		//Do al player 100 money per poter eseguire mosse senza errori
 		m.getPlayerById(10).setMoney(100);
 		assertTrue("money: " +m.getPlayerById(10).getMoney(), m.getPlayerById(10).getMoney() == 100);
 		
+		//Do al player 4 joker in modo da poter eseguire la mossa di change king senza problemi.
 		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
 		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
 		m.getPlayerById(10).addCardToHand(new PoliticsCard(Color.decode("#FEFEFE")));
@@ -225,6 +238,9 @@ public class MarketTest {
 		g.update(null, buyOrder2);
 		
 		//assertTrue("class: "+ g.getReply().getClass(),g.getReply() instanceof SendFullPlayerReply);
+		/**
+		 * Controllo che non è più TimeToMarket e controllo che la grandezza del mercato sia zero
+		 */
 		assertTrue(!m.getCurrentState().isTimeToMarket());
 		assertTrue("marketsize: " + m.getMarket().getSize(), m.getMarket().getSize() == 0);
 		assertTrue("class: "+ g.getReply().getClass(),g.getReply() instanceof SendFullPlayerReply);
