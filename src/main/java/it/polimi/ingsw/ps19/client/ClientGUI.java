@@ -427,7 +427,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 					ask.getInput().setEditable(true);
 					textReader(e);
 				}
-			
+			System.out.println("index: " + index);
 		}
 	}
 	
@@ -451,6 +451,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		{
 			ex.printStackTrace();
 		}
+			System.out.println("in numberCheck con e:" + e.getActionCommand());
 	}
 	
 	private void registerListerner(){
