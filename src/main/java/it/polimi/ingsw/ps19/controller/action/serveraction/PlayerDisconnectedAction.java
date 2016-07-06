@@ -63,25 +63,17 @@ public class PlayerDisconnectedAction implements Action
 	@Override
 	public Reply createReplyMessage(Model model) 
 	{
-		int idTurn;
-		//TODO: decidersi
-		//if(model.getCurrentState().isTimeToMarket() && model.getMarket().getSize() <= 
-		//		model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
-		//	idTurn = Costants.NO_ACTIVE_PLAYER;
-		//else
-			idTurn = model.getCurrentState().getPlayerTurnId();
-		
-		Reply r = new PlayerDisconnectedReply(idTurn, model.getPlayer() ,result, newTurn);
-		
-		//
-		//Se il player si disconnette dentro il market invo il messaggio di CompleteMarket per permettere
-		//di comprare al prossimo player
-		//
+		int idTurn = model.getCurrentState().getPlayerTurnId();
+	
+			//
+			//Se il player si disconnette dentro il market invo il messaggio di CompleteMarket per permettere
+			//di comprare al prossimo player
+			//
 		if(model.getMarket().getSize() >= 
 				model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 			return new CompleteMarketReply(model.getMarket(), result + ". Is Time to Buy", idTurn);
 			
-		return r;
+		return new PlayerDisconnectedReply(idTurn, model.getPlayer() ,result, newTurn);
 	}
 
 }

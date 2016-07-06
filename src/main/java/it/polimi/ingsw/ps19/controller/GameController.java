@@ -60,8 +60,7 @@ public class GameController implements Observer
 		 */
 		reply = null;
 		MessageInterpreterVisitor messageInterpreter = new MessageInterpreterVisitorImp();
-		//TODO: capire se serve
-		//if(!model.getCurrentState().isTimeToMarket())
+		
 			checkReconnectedPlayer();
 		
 		if(!(message instanceof Request))
