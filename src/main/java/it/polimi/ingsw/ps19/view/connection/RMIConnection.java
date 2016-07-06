@@ -98,6 +98,8 @@ public class RMIConnection extends Connection
 					mex = fifo.poll(10, TimeUnit.DAYS);
 				else
 					mex = fifo.poll(timeOut, TimeUnit.SECONDS);
+				if(mex == null)
+					throw new TimeoutException();
 			} catch (InterruptedException e) 
 			{
 				ConnectionLogger.log.log(e);
