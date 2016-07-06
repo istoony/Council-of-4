@@ -125,6 +125,8 @@ public class English extends Language
 		youNoEmporia = "You don't have any emporia";
 		youNoBusiness = "You don't have any " + businessCards;
 		
+		messages = "Messages";
+		
 		//Colors
 		 cFF0000 = "Red";
 		 c0000FF = "Blue";

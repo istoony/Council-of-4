@@ -127,6 +127,8 @@ public final class Italiano extends Language
 		youNoEmporia = "Non hai ancora nessu emporio";
 		youNoBusiness = "Non hai nessuna " + businessCards;
 		
+		messages = "Messaggi";
+		
 		//Colors
 		 cFF0000 = "Rosso";
 		 c0000FF = "Blu";

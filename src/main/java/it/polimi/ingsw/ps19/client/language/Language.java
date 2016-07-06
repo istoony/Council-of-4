@@ -159,6 +159,9 @@ public abstract class Language implements Serializable
 	protected String youNoEmporia;
 	protected String youNoBusiness;
 	
+	protected String messages;
+	
+	
 	//Colors
 	protected String cFF0000;
 	protected String c0000FF;
@@ -993,5 +996,13 @@ public abstract class Language implements Serializable
 	public String getYouNoEmporia() {
 		return youNoEmporia;
 	}
+	
+	/**
+	 * @return messages
+	 */
+	public String getMessages() {
+		return messages;
+	}
+	
 }
 
