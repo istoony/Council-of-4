@@ -435,8 +435,12 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		index.add(0);
 	}
 	
-	private void numberCheck(ActionEvent e){
-		numberflag=Integer.parseInt(e.getActionCommand());
+	private void numberCheck(ActionEvent e)
+	{
+		try{
+			numberflag=Integer.parseInt(e.getActionCommand());
+		}catch(NumberFormatException e1)
+		{e1.printStackTrace();}
 	}
 	
 	private void registerListerner(){
