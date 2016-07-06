@@ -13,14 +13,18 @@ import it.polimi.ingsw.ps19.model.Model;
 public class AvalialbleCouncillorTest {
 	
 	/**
-	 * Questi tre tests servono a controllare se i metodi della classi di Available councillor eseguono le operazioni in modo corretto.
-	 * Available councillor è un insieme di consiglieri colorati, a cui è associato il numero presente.
+	 * This test checks if the class AvailableCouncillor works properly.
+	 * The class contains the available councillors (aka councillors not in the balcony) which are 
+	 * rappresented as a map of colors and number (of councillors available of that color).
 	 * 
-	 * nel primo test controllo che su tutti i colori available  è possibile eseguire l'operazione di decrement
+	 * The first test checks that it is possible to execute 'decrement' on all available councillors
+	 * 
+	 * The second test checks that the colors match the colors of the councillors in the balconies.
 	 * 
 	 * Il secondo test controlla che il totale dei colori presenti in Available Councillor sia coerente con quello del model
 	 * 
-	 * il terzo controlla che siano presenti i colori letti dal file di configurazione, nello specifico:
+	 * The third test makes sure that the colors match the colors read from the configuration file.
+	 * In particular:
 	 * 		FF0000
 	 * 		FFFFFF
 	 * 		FE1200

@@ -21,11 +21,12 @@ public class NobilityPathTest extends SupportMethod
 {
 
 	/**
-	 * In questo test controllo se i bonus del percorso della nobiltà siano effettivamente applicati al player.
-	 * do al player 2 punti nobiltà e chiamo la funzione checkNobilityPathBonus.
-	 * Successivamente aggiungo al player altri due punti e richiamo la funzione.
+	 * This tests checks if the bonus of the nobility path are correctly given to the players when supposed to.
+	 * The player is given +2 nobility points and, by calling the 'checkNobilityPathBonus' method,
+	 * the method in the nobility path is applied.
+	 * Then we check if the updated player's parameters are correct.
 	 * 
-	 * Dopo ogni chiamata controllo che i parametri del player siano corretti.
+	 * The test is repeated until the player reaches the end of the nobility path
 	 */
 	@Test
 	public void test() 

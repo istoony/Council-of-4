@@ -23,10 +23,10 @@ public class NetCityBonusTest {
 	public void test() 
 	{
 		/**
-		 * Costruisco empori su una serie di città, 
-		 * creo un mio vettore di test di città collegate 
-		 * faccio partire l'algoritmo che mi ritorna una lista di città in base alle città su cui possiedo un emporio
-		 * confronto che il vettore di ritorno della funzione sia uguale al vettore test.
+		 * This tests checks if, after an emporium is built on a city, the correct net of connected cities is returned.
+		 * We build an emporia un some cities.
+		 * We 'manually' build a vector of the connected cities
+		 * The algorithm is executed and the returned vector is confronted with the "manual" one
 		 */
 		
 		Connection uno = new RMIConnection(true);

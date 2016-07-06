@@ -17,13 +17,11 @@ public class TestShorterPath {
 	public void test() 
 	{
 		/**
-		 * Test per il calcolo dei cammini minimi.
-		 * Partendo dalla prima città eseguo l'algoritmo su tutte le altre.
-		 * Una volta calcolato il numero di salti lo confronto con il vettore testForCurrentMap
-		 * che contiene i valori corretti dei "salti".
+		 * Test for djisktra algorithm implementation.
+		 * Starting from the first city the algorithm is executed on every city.
+		 * At the end we confront the resulting array of "minimum paths" with the correct one testForCurrentMap
 		 * 
-		 * Creando un nuovo vettore per i "salti" posso eseguire il test su qualsiasi città di partenza.
-		 * 
+		 * With different correct arrays we can test the algorithm starting from any city.
 		 */
 
 		List<Integer> testForCurrentMap = new ArrayList<>();

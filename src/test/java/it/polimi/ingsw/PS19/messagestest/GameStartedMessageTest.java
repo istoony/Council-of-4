@@ -6,8 +6,11 @@ import org.junit.Test;
 
 import it.polimi.ingsw.ps19.message.replies.GameStartedMessage;
 
-public class GameStartedMessageTest {
-
+public class GameStartedMessageTest 
+{
+	/**
+	 * This test makes sure that the 'GameStartedMessageTest' is properly initialized
+	 */
 	@Test
 	public void testGameStartedMessage() 
 	{		

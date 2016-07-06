@@ -21,15 +21,11 @@ public class playerConnectionTest {
 	{
 		
 		/**
-		 * Controllo se l'algoritmo per cambiare il turno funziona correttamente.
-		 * Inizializzo una partita con 6 player, disconnetto il 5 il 3 e l'1 
-		 * con una serie di chiamte che trovano il prossimo id 'giveNextCorrectId'
-		 * e con una serie di chiamate al metodo 'setPlayerTurnId'
-		 * Imposto un turno completo controllando che lo scorrere degli id sia conforme 
-		 * a quanto aspettato
-		 * 
-		 * TODO: creare nel vettore waitingroom la parte giusta di codice
-		 * 
+		 * Test for the algorithm that changes turn
+		 * A game is started with 6 player
+		 * Players 5, 3 and 1 are disconnected.
+		 * Calling repetetly the 'giveNextCorrectId' and the 'setPlayerTurnId' methods, we check that
+		 * the id "flow" is correct.
 		 */
 		
 		Connection uno = new RMIConnection(true);

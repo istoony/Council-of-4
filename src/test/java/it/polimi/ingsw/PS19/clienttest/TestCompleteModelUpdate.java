@@ -28,10 +28,11 @@ public class TestCompleteModelUpdate {
 	public void test() 
 	{
 		/**
-		 * In questo test creo una richiesta (che solitamente avviene nel client)
-		 * La richiesta la giro al server che ritorna il gioco completo (Testando il model del client)
-		 * Creo sul client l'azione di cambiare un consigliere, 
-		 * la invio al server che lo cambia e ritorna un ElectCouncillorReply
+		 * This test checks that, following a request, the "server" returns the 'FullGameMessage' with the proper
+		 * values.
+		 * Subsequentally the "client" creates an 'ElectCouncillorRequest' which is forwarded to the client.
+		 * Finally the test checks that the ElectCouncillorReply, which is the response of the server to the client action
+		 * has proper values.
 		 */
 		Connection uno = new RMIConnection(true);
 		uno.setActive();

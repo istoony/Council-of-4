@@ -42,11 +42,7 @@ public class LanguageTest
 {
 
 	/**
-	 * Test sulle classi delle lingue del client.
-	 * Ogni metodo appartenente alla classe Language viene richiamato
-	 * e si dimostra che non ritorni Null.
-	 * ogni metodo non può ritornare null perchè non ci sarebbe nulla da stampare su schermo
-	 * creando un NullPointerExcemption
+	 * This test checks all the method of the language test making sure they don't return null
 	 */
 	
 	

@@ -12,12 +12,10 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
 public class CloneTest {
 	
 	/**
-	 * in questo semlicissimo test dimostro che la funzione statica Costants.clone(List<E> list)
-	 * ritorna un vettore diverso ma con gli stessi elementi del primo.
-	 * Questa funzione è molto usata per il return dei vettori in modo da non ritornare il puntatore al vettore originale
-	 * ma ritornare il puntatore al vettore copiato.
+	 * This test is to make sure that the static function Costants.clone(List<E> list) actually returns
+	 * a list, which is different from the parameter but has the same elements
 	 * 
-	 * Utilizzando questa tecnica impediamo modifiche indesiderate degli attributi di una classe da parte di un altra classe
+	 * This method is vastly used around the program to get "copies" of list to work with.
 	 */
 
 	@Test

@@ -12,8 +12,8 @@ import it.polimi.ingsw.ps19.model.Model;
 public class GetMaxIdTest {
 
 	/**
-	 * Questo semplice test dimostra la correttezza del getMaxId, metodo del model che ritorna
-	 * il maggiore fra gli Id presenti nel gioco
+	 * This test makes sure that the getMaxId method 
+	 * returns the biggest between the idsof the connected players
 	 */
 	@Test
 	public void test() 

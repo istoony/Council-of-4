@@ -15,7 +15,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public class DrawBusinessCardRequestTest {
 
 	/**
-	 * Controllo se il messaggio DrawBusinessCardRequest Memorizza gli attributi nel modo corretto
+	 * This test makes sure that the 'DrawBusinessCardRequest' is properly initialized
 	 */
 	@Test
 	public void testDrawBusinessCardRequest() 

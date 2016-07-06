@@ -115,12 +115,12 @@ public class View extends Observable implements Observer, Runnable
 			}
 		}
 		ServerManager.serverCLI.showNotification("game has stopped");
+		WaitingRoom.removeMany(playerConnection);
 	}
 	
 	private void stop()
 	{
 		stop = true;
-		WaitingRoom.removeMany(playerConnection);
 	}
 	
 	/**
