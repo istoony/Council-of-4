@@ -29,7 +29,6 @@ public class MapLoader
 		outLeft=sx;
 	}
 	
-<<<<<<< HEAD
 	/**
 	 * Creates a map
 	 * @return
@@ -37,12 +36,6 @@ public class MapLoader
 	 */
 	public static Map builder()
 	{
-=======
-
-	//change return type to map
-	//TODO: ma è da lasciare l'illegal map exception? sonar dice che lo possiamo togliere
-	public static Map builder() throws IllegalMapException{
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 		List<MapLoader> map;
 		List<List<City>> regioncitylist;
 		

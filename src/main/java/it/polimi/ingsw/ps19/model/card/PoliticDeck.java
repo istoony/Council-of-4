@@ -50,17 +50,5 @@ public class PoliticDeck implements Deck
 	{
 		Collections.shuffle(card);
 	}
-<<<<<<< HEAD
-	
-	@Override
-	public String toString() {
-		String s = "\n+++++++++++++\n";
-		for (Card c : card) 
-		{
-			s = s.concat(c.toString() + "  ");
-		}
-		return s;
-	}
-=======
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
+
 }

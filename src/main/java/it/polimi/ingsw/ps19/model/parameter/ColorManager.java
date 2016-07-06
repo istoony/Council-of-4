@@ -56,8 +56,7 @@ public class ColorManager implements Serializable
 					log.log(Level.SEVERE, e.toString(), e);
 		    	}
 	}
-	
-<<<<<<< HEAD
+
 	/**
 	 * Constructor with a given list of colors
 	 * @param listofcolors
@@ -88,8 +87,6 @@ public class ColorManager implements Serializable
 	 * adds a color
 	 * @param color
 	 */
-=======
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 	public void addColor(Color color)
 	{
 		colors.add(color);

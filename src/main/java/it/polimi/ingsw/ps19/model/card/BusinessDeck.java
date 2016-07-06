@@ -60,20 +60,6 @@ public class BusinessDeck implements Deck, Serializable
 	public List<BusinessCard> getCard() {
 		return card;
 	}
-<<<<<<< HEAD
-	
-	@Override
-	public String toString() {
-		String s = "\n+++++++++++++\n";
-		
-		for (Card c : card) 
-		{
-			s = s.concat(c.toString() + "  ");
-		}
-		return s;
-	}
-=======
->>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 
 	/**
 	 * gets the deck size

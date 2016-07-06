@@ -45,7 +45,7 @@ public class Model extends Observable
 		
 		for (Integer p : playerIdList)
 			player.add(new Player(p));
-		Player.setStartingItems(player, FileNames.MAPFILE_PLAYERCONFIG_XML);
+		Player.setStartingItems(player, FileNames.PLAYER_FILE);
 	}
 	
 	public Map getMap() 

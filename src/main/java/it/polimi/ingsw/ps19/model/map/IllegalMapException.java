@@ -1,4 +1,4 @@
-package it.polimi.ingsw.PS19.model.map;
+package it.polimi.ingsw.ps19.model.map;
 
 public class IllegalMapException extends RuntimeException {
 	
