@@ -237,10 +237,10 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	public int getNumberOfHelpers(int n) throws InvalidInsertionException {
 		showNotification(language.getMarket());
 		index.clear();
-		numberflag=-1;
+		numberflag=-10;
 		ask = new QuestionFrame(this, n, language);
 		SwingUtilities.invokeLater(ask);
-		while(numberflag<0){
+		while(numberflag<-1){
 			//wait button
 		}
 		ask.close();
@@ -355,7 +355,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			if(e.getActionCommand().equals(language.getString(rt))){
 				index.add(regionTemp.indexOf(rt));
 			}
-			if(e.getActionCommand().equals(language.getKing().toUpperCase())){
+			if(e.getActionCommand().equalsIgnoreCase(language.getKing())){
 				index.add(regionTemp.size()-1);
 			}
 		}
