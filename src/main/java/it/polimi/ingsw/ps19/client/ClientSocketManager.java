@@ -57,7 +57,6 @@ public class ClientSocketManager extends ClientManager
 				t.interrupt();
 				userInterface.showNotification(userInterface.getLanguage().getConnInsucces());
 				ip = getIP();
-				port = getPort(Constants.SOCKET_PORT);
 			} 
 			finally
 			{

@@ -42,24 +42,4 @@ public abstract class ClientManager
 		}
 		return ip;
 	}
-	
-	protected static Integer getPort(Integer standardPort)
-	{
-		Integer port = null;
-		try 
-		{
-			String portString = userInterface.getUserString(userInterface.getLanguage().getInsertPort() + ": ");
-			if(portString.isEmpty())
-				throw new NumberFormatException();
-			port = Integer.parseUnsignedInt(portString);
-			if(port < 0 || port > 65535) 
-				throw new NumberFormatException();
-		} catch (NumberFormatException | InvalidInsertionException e) 
-		{
-			port = standardPort;
-			ClientStarter.log.log(e);
-			userInterface.showNotification(userInterface.getLanguage().getUseStdPort() + ": " + standardPort);
-		}
-		return port;
-	}
 }

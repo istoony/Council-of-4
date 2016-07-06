@@ -54,7 +54,6 @@ public class ClientRMIManager extends ClientManager
 				ClientStarter.log.log(e);
 				success = false;
 				ip = getIP();
-				port = getPort(Constants.RMI_PORT);
 			}
 			finally
 			{
