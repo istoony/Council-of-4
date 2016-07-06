@@ -36,7 +36,7 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
 public class MessageInterpreterVisitorImp implements MessageInterpreterVisitor {
 
 	/**
-	 * @requre ElectCouncillorMessage
+	 * @requre ElectCouncillorMessage != null
 	 * @return new ElectCouncillor
 	 */
 	@Override
