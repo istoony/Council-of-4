@@ -98,17 +98,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="it.polimi.ingsw.ps19.controller.action.bonus.DrawBusinessCard" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/bonus/DrawBusinessCard.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="225" width="327" x="4499" y="611"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="it.polimi.ingsw.ps19.controller.action.bonus.BusinessCardOrCityBonus" 
+  <class id="11" language="java" name="it.polimi.ingsw.ps19.controller.action.bonus.BusinessCardOrCityBonus" 
     project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/bonus/BusinessCardOrCityBonus.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="225" width="245" x="2667" y="611"/>    
@@ -118,7 +108,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="it.polimi.ingsw.ps19.controller.action.BuyMainAction" project="ps19" 
+  <class id="12" language="java" name="it.polimi.ingsw.ps19.controller.action.BuyMainAction" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/BuyMainAction.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="189" width="194" x="2952" y="611"/>    
@@ -128,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="14" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor" 
+  <interface id="13" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor" 
     project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/MessageInterpreterVisitor.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="315" width="259" x="424" y="611"/>    
@@ -138,7 +128,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="15" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.SendFullGame" project="ps19" 
+  <class id="14" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.SendFullGame" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/serveraction/SendFullGame.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="153" width="194" x="3186" y="611"/>    
@@ -148,7 +138,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="it.polimi.ingsw.ps19.controller.support.ActionMessages" project="ps19" 
+  <class id="15" language="java" name="it.polimi.ingsw.ps19.controller.support.ActionMessages" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/support/ActionMessages.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="531" width="255" x="1983" y="40"/>    
@@ -158,7 +148,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="it.polimi.ingsw.ps19.controller.action.RedrawBusinessCard" project="ps19" 
+  <class id="16" language="java" name="it.polimi.ingsw.ps19.controller.action.RedrawBusinessCard" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/RedrawBusinessCard.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="189" width="211" x="3420" y="611"/>    
@@ -168,7 +158,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="it.polimi.ingsw.ps19.controller.action.ElectCouncillor" project="ps19" 
+  <class id="17" language="java" name="it.polimi.ingsw.ps19.controller.action.ElectCouncillor" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/ElectCouncillor.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="297" width="243" x="3671" y="611"/>    
@@ -178,7 +168,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp" 
+  <class id="18" language="java" name="it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitorImp" 
     project="ps19" file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/MessageInterpreterVisitorImp.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="333" width="259" x="424" y="40"/>    
@@ -188,7 +178,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="it.polimi.ingsw.ps19.controller.support.SupportMethod" project="ps19" 
+  <class id="19" language="java" name="it.polimi.ingsw.ps19.controller.support.SupportMethod" project="ps19" 
     file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/support/SupportMethod.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3270" y="329"/>    
@@ -198,9 +188,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="it.polimi.ingsw.ps19.controller.action.serveraction.EndTurn" project="ps19" 
-    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/serveraction/EndTurn.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="20" language="java" name="it.polimi.ingsw.ps19.controller.action.EndTurn" project="ps19" 
+    file="/ps19/src/main/java/it/polimi/ingsw/ps19/controller/action/EndTurn.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="171" width="194" x="3954" y="611"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -208,6 +197,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <realization id="21">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <association id="22">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="23" name="action">        
@@ -221,67 +214,59 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="25">    
-    <end type="SOURCE" refId="11"/>    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <realization id="26">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="27">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="28">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="29">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="30">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="31">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="32">    
-    <end type="SOURCE" refId="7"/>    
+  <realization id="28">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="33">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="35">    
+  <realization id="29">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="36">    
+  <realization id="30">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="31">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="32">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
+  <realization id="33">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <realization id="37">    
-    <end type="SOURCE" refId="15"/>    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <realization id="38">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="10"/>    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
