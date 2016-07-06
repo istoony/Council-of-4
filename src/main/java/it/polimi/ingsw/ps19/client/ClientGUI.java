@@ -307,6 +307,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		else if(e.getActionCommand().equals(FAST_ACTION_COMMAND)){
 			index.add(1);
 		}
+		else if(numberflag<0){
+			numberCheck(e);
+		}
 		else if(!actionTemp.isEmpty()){
 			actionCheck(e);
 		}
@@ -333,9 +336,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		else if(!orderTemp.isEmpty()){
 			marketCheck(e);
-		}
-		else if(numberflag<0){
-			numberCheck(e);
 		}
 		else {
 			textReader(e);
