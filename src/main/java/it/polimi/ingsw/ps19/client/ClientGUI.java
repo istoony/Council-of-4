@@ -42,7 +42,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private MarketFrame market;
 	private MarketShow showmarket;
 	
-	volatile int numberflag=1000;
+	volatile int numberflag;
 	volatile List<ClientAction> actionTemp = new ArrayList<>();
 	volatile List<RegionType> regionTemp = new ArrayList<>();
 	volatile List<Color> colorTemp = new ArrayList<>();
@@ -242,6 +242,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		SwingUtilities.invokeLater(ask);
 		while(numberflag<-1){
 			//wait button
+			System.out.print(numberflag);
 		}
 		ask.close();
 		int returnValue = numberflag;
@@ -300,6 +301,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		index.clear();
+		System.out.println("eeeeee" + e.getActionCommand());
 		if(nullCheck(e)){
 			return;
 		}
@@ -416,13 +418,14 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			int n;
 				try{
 					 n = Integer.parseInt(ask.getInput().getText());
-
 						index.add(n);
 				}
 				catch(Exception e1){
 					log.log(e1);
+					e1.printStackTrace();
 					ask.getInput().setText("");
 					ask.getInput().setEditable(true);
+					textReader(e);
 				}
 			
 		}
@@ -439,8 +442,15 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void numberCheck(ActionEvent e)
 	{
+		try
+		{
 			numberflag=Integer.parseInt(e.getActionCommand());
 			System.out.println(e.getActionCommand());
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	private void registerListerner(){

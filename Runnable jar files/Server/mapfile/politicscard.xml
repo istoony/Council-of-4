@@ -56,8 +56,8 @@
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-another-turn</type>
-				<parameter>1</parameter>
+				<type>bonus-more-money</type>
+				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -80,7 +80,7 @@
 				<parameter>4</parameter>
 			</bonus>
 			<bonus>
-				<type>bonus-more-victory-points</type>
+				<type>bonus-more-nobility-points</type>
 				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>3</numberofcities>
@@ -136,7 +136,7 @@
 				<parameter>4</parameter>
 			</bonus>
 			<bonus>
-				<type>bonus-more-victory-points</type>
+				<type>bonus-more-nobility-points</type>
 				<parameter>5</parameter>
 			</bonus>
 			<bonus>
