@@ -13,6 +13,9 @@ import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 
 
+/**
+ * Action to change king position
+ */
 public class ChangeKingPosition implements Action{
 
 	int playerId;
@@ -20,6 +23,12 @@ public class ChangeKingPosition implements Action{
 	String result; //vedi l'interfaccia action, per ogni errore metti in questa stringa il perchè dell'errore
 	List<Color> politicCard;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 * @param c: destination city
+	 * @param politic: list of politic cards to satisfy council
+	 */
 	public ChangeKingPosition(int id, City c, List<Color> politic) //occhio che C non avrà lo stesso puntatore alla città salvata nel
 											//model, quidi conviene confrontare gli ID per muovere il re
 	{

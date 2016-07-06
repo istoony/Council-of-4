@@ -10,6 +10,9 @@ import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Action to build emporium
+ */
 public class MainBuildEmporium implements Action 
 {
 	private int cityid;
@@ -18,6 +21,12 @@ public class MainBuildEmporium implements Action
 	
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param city: city where to build
+	 * @param playerid: player who will build
+	 * @param card: card to build with
+	 */
 	public MainBuildEmporium(City city, int playerid, BusinessCard card) 
 	{
 		this.cityid = city.getId();

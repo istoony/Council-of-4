@@ -9,6 +9,11 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.map.City;
 
+
+/**
+ * Actiont to apply to a player a set of bonuses from a business 
+ * card or a city he could choose as a bonus
+ */
 public class BusinessCardOrCityBonus implements Action 
 {
 	private BusinessCard card;
@@ -16,6 +21,11 @@ public class BusinessCardOrCityBonus implements Action
 	private int playerId;
 	private String result;
 
+	/**
+	 * Constructor for if the player chose a business card
+	 * @param card
+	 * @param playerId
+	 */
 	public BusinessCardOrCityBonus(BusinessCard card, int playerId) 
 	{
 		this.playerId = playerId;
@@ -23,6 +33,11 @@ public class BusinessCardOrCityBonus implements Action
 		this.city = null;
 	}
 	
+	/**
+	 * Constructor for if the layer chose a city
+	 * @param city
+	 * @param playerId
+	 */
 	public BusinessCardOrCityBonus(City city, int playerId) 
 	{
 		this.playerId = playerId;

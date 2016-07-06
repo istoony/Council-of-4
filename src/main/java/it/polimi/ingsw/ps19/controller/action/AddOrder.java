@@ -8,13 +8,20 @@ import it.polimi.ingsw.ps19.message.replies.WaitingPlayerForMarketReply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.Order;
 
+/**
+ * Action to add an order to the market
+ */
 public class AddOrder implements Action 
 {
-
 	private Order order;
 	private int playerId;
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param o: order
+	 * @param id: selling player id
+	 */
 	public AddOrder(Order o, int id) 
 	{
 		order = o;

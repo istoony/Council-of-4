@@ -6,6 +6,9 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.ps19.model.Model;
 
+/**
+ * Class that creates a message that sends the full game information to the players
+ */
 public class SendFullGame implements Action 
 {
 

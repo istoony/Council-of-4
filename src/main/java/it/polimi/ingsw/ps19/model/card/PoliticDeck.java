@@ -50,5 +50,4 @@ public class PoliticDeck implements Deck
 	{
 		Collections.shuffle(card);
 	}
-
 }

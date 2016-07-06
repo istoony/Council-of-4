@@ -3,7 +3,6 @@ package it.polimi.ingsw.ps19.model.card;
 import java.awt.Color;
 import java.io.Serializable;
 
-
 /**
  * Class to rapresent a politic card
  */

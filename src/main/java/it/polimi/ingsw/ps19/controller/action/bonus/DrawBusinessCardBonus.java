@@ -10,6 +10,10 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 
+/**
+ * Actiont to apply to a player a set of bonuses from a list 
+ * of his business cards he could choose as a bonus
+ */
 public class DrawBusinessCardBonus implements Action
 {
 	private static final int NO_OTHER_BUSINESS_CARD = 0;
@@ -18,6 +22,11 @@ public class DrawBusinessCardBonus implements Action
 	
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param playerTurn: id of current active player
+	 * @param card: list of business cards
+	 */
 	public DrawBusinessCardBonus(int playerTurn, List<BusinessCard> card) 
 	{
 		this.playerId = playerTurn;
@@ -30,7 +39,6 @@ public class DrawBusinessCardBonus implements Action
 		for (BusinessCard businessCard : card) 
 		{
 			SupportMethod.removeCardFromRegionAndAddToPlayer(model, model.getPlayerById(playerId), businessCard, businessCard.getType());
-			
 			SupportMethod.giveListOfBonus(model, model.getPlayerById(playerId), businessCard.getBonus());
 		}
 			model.getPlayerById(playerId).setDrawBusinessCard(NO_OTHER_BUSINESS_CARD);

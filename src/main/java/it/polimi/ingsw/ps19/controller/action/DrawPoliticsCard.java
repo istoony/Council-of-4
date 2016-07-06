@@ -5,12 +5,20 @@ import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.message.replies.SendFullPlayerReply;
 import it.polimi.ingsw.ps19.model.Model;
 
+/**
+ * Action to draw new politic cards
+ */
 public class DrawPoliticsCard implements Action 
 {
 	private int playerId;
 	private int numberOfCard;
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 * @param numberOfCard: number of cards to draw
+	 */
 	public DrawPoliticsCard(int id, int numberOfCard) 
 	{
 		playerId = id;

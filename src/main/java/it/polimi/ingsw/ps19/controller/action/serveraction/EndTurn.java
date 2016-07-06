@@ -7,11 +7,18 @@ import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
 import it.polimi.ingsw.ps19.message.replies.Reply;
 import it.polimi.ingsw.ps19.model.Model;
 
+/**
+ * Action to end a player turn
+ */
 public class EndTurn implements Action 
 {
 	private int playerId;
 	private String result;
 	
+	/**
+	 * Constructor
+	 * @param id: player id
+	 */
 	public EndTurn(int id) 
 	{
 		playerId = id;

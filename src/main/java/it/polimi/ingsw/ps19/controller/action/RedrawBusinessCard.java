@@ -8,6 +8,9 @@ import it.polimi.ingsw.ps19.model.Model;
 import it.polimi.ingsw.ps19.model.card.BusinessCard;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
+/**
+ * Action to redraw the shown business cards of a region
+ */
 public class RedrawBusinessCard implements Action 
 {
 
@@ -15,6 +18,11 @@ public class RedrawBusinessCard implements Action
 	private int playerId;
 	private String result;
 	
+	/**
+	 * Constructo
+	 * @param r: region (type)
+	 * @param id: player id
+	 */
 	public RedrawBusinessCard(RegionType r, int id) 
 	{
 		region = r;
