@@ -143,11 +143,14 @@ public class MarketTest {
 
 		/**
 		 * il player 1 crea l'ordine
+		 * Costruttore di Order: List<BusinessCard> businesscard, List<Color> politicscards, int helper, int price
 		 */
-		Order o1 = new Order();
-		o1.setHelper(1);
-		o1.addPoliticsCard(m.getPlayerById(11).getPoliticcard().get(0).getColor());
-		o1.setPrice(3);
+		List<Color> c = new ArrayList<>();
+		c.add(m.getPlayerById(11).getPoliticcard().get(0).getColor());
+		Order o1 = new Order(null, c,1,3 );
+		//o1.setHelper(1);
+		//o1.addPoliticsCard(m.getPlayerById(11).getPoliticcard().get(0).getColor());
+		//o1.setPrice(3);
 		
 		SendOrderMessage order1 = new SendOrderMessage(o1);
 		order1.setId(11);
