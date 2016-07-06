@@ -1,6 +1,5 @@
-package it.polimi.ingsw.ps19.controller.action.serveraction;
+package it.polimi.ingsw.ps19.controller.action;
 
-import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.support.ActionMessages;
 import it.polimi.ingsw.ps19.controller.support.SupportMethod;
 import it.polimi.ingsw.ps19.message.replies.EndTurnReply;
