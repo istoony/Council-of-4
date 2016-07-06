@@ -2,6 +2,9 @@ package it.polimi.ingsw.ps19.model.map;
 
 import java.io.Serializable;
 
+/**
+ * Class that rappresents the king
+ */
 public class King implements Serializable
 {
 
@@ -10,6 +13,10 @@ public class King implements Serializable
 	City currentcity;
 	Balcony balcony;
 	
+	/**
+	 * Constructor of king in the given city
+	 * @param city
+	 */
 	public King(City city) 
 	{
 		currentcity = city;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps19.model.parameter;
+package it.polimi.ingsw.PS19.model.map;
 
 import java.io.File;
 
@@ -8,21 +8,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-/**
- * Class to read from file
- */
+
 public class FileReader {
-		
-	private FileReader(){
-	}
 	
-	/**
-	 * Read XML file
-	 * @param nomefile
-	 * @param nomeNodo
-	 * @return
-	 */
-	public static NodeList xMLReader(String nomefile, String nomeNodo){
+	public static NodeList XMLReader(String nomefile, String nomeNodo){
 		try {
 
 			File fXmlFile = new File(nomefile);
@@ -39,7 +28,7 @@ public class FileReader {
 
 		}
 		catch (Exception e) {
-			FileLogger.log.log(e);
+			e.printStackTrace();
 			return null;
 		}
 

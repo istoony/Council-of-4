@@ -1,14 +1,13 @@
 package it.polimi.ingsw.ps19.model.parameter;
 
-import java.util.logging.Logger;
+import it.polimi.ingsw.ps19.exceptions.LocalLogger;
 
 /**
  * Logger related to file reading
  */
 public class FileLogger 
 {
-	public static final Logger log = Logger.getLogger("FILE_READER_LOGGER");
-	
+	public static final LocalLogger log = new LocalLogger("file reader");
 	private FileLogger()
 	{}
 }

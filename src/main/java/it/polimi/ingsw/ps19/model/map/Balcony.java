@@ -8,17 +8,22 @@ import java.util.List;
 import it.polimi.ingsw.ps19.model.parameter.ColorManager;
 
 
+/**
+ * Class that rappresents a balcony
+ */
 public class Balcony implements Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2160537846072709310L;
 	private List<Color> councilcolor;
 	private static final int NUMBER_OF_COUNCILLOR = 4;
 	
 	private AvailableCouncillor avaiblecouncillor;
 		
+	/**
+	 * Creates a new balcony picking from the available councillors
+	 * @param avaiblecouncillor
+	 * @param colormanager
+	 */
 	public Balcony(AvailableCouncillor avaiblecouncillor, ColorManager colormanager) 
 	{
 		councilcolor = new ArrayList<>();

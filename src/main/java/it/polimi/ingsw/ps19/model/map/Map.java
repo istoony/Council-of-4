@@ -12,7 +12,9 @@ import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-
+/**
+ * Class to rappresent the map
+ */
 public class Map 
 {	
 	ArrayList<Region> regionList;
@@ -51,6 +53,11 @@ public class Map
 		return cities;
 	}
 	
+	/**
+	 * gets a region from its type
+	 * @param r: region type
+	 * @return region of type r
+	 */
 	public Region getRegionByType(RegionType r)
 	{
 		for (Region region : regionList) 
@@ -96,15 +103,19 @@ public class Map
 	{
 		String s = "";
 		for (Region region : regionList) 
-			s += region.toString() + "\n";
+			s = s.concat(region.toString() + "\n");
 		s += "KING:  " + king.toString();
 		return s;
 	}
 	
-	public static Map finalMapBuilder(List<List<City>> regioncitylist){
-
+	/**
+	 * Creates a map
+	 * @param regioncitylist
+	 * @return
+	 */
+	public static Map finalMapBuilder(List<List<City>> regioncitylist)
+	{
 		return new Map(Region.finalRegionBuilder(regioncitylist));
-		
 	}
 }
 

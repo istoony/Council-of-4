@@ -1,6 +1,5 @@
 package it.polimi.ingsw.ps19.model.map;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,10 +12,11 @@ import it.polimi.ingsw.ps19.exceptions.IllegalMapException;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 import it.polimi.ingsw.ps19.model.parameter.FileReader;
 
-
-public class MapLoader {
-	//fornisce metodi per leggere file, check di integrità dello stesso, csp delle regioni, ritorna le triplette di regioni configurabili.
-	
+/**
+ * Class to load map from file
+ */
+public class MapLoader 
+{	
 	int type;
 	int id;
 	int outRight;
@@ -29,10 +29,20 @@ public class MapLoader {
 		outLeft=sx;
 	}
 	
+<<<<<<< HEAD
+	/**
+	 * Creates a map
+	 * @return
+	 * @throws IllegalMapException: file not valid
+	 */
+	public static Map builder()
+	{
+=======
 
 	//change return type to map
 	//TODO: ma è da lasciare l'illegal map exception? sonar dice che lo possiamo togliere
 	public static Map builder() throws IllegalMapException{
+>>>>>>> branch 'master' of https://bitbucket.org/CoF_ps19/ps19
 		List<MapLoader> map;
 		List<List<City>> regioncitylist;
 		

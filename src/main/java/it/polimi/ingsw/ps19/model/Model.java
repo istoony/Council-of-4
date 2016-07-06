@@ -10,6 +10,10 @@ import it.polimi.ingsw.ps19.model.map.MapLoader;
 import it.polimi.ingsw.ps19.model.parameter.Costants;
 import it.polimi.ingsw.ps19.model.parameter.FileNames;
 
+/**
+ * Model class
+ * contains most of the static data
+ */
 public class Model extends Observable
 {
 	
@@ -18,6 +22,10 @@ public class Model extends Observable
 	private ArrayList<Player> player;
 	private CurrentState currentState;
 	
+	/**
+	 * Constructor
+	 * @param playerIdList: list of players
+	 */
 	public Model(List<Integer> playerIdList) 
 	{
 		currentState = new CurrentState(playerIdList);
@@ -50,6 +58,11 @@ public class Model extends Observable
 		return market;
 	}
 	
+	/**
+	 * Get a player from his id
+	 * @param i: id of player
+	 * @return player with id == i
+	 */
 	public Player getPlayerById(int i)
 	{
 		for (Player p : player) 
@@ -63,6 +76,10 @@ public class Model extends Observable
 		return Costants.clone(player);
 	}
 	
+	/**
+	 * notifies the view of a new message to send
+	 * @param reply: message to send
+	 */
 	public void sendMessage(Reply reply)
 	{
 		setChanged();

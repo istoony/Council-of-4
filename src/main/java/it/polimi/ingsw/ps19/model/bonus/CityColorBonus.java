@@ -8,11 +8,11 @@ import java.util.List;
 import it.polimi.ingsw.ps19.model.map.City;
 import it.polimi.ingsw.ps19.model.map.Region;
 
-public class CityColorBonus implements Serializable {
-	
-	/**
-	 * 
-	 */
+/**
+ * Bonus for a city color
+ */
+public class CityColorBonus implements Serializable 
+{
 	private static final long serialVersionUID = 4291459210465781040L;
 	private Color color;
 	private int points;
