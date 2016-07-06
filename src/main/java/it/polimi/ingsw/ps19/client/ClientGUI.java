@@ -244,7 +244,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			//wait button
 		}
 		ask.close();
-		return numberflag;
+		int returnValue = numberflag;
+		numberflag = 0;
+		return returnValue;
 	}
 
 	@Override
