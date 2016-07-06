@@ -6,13 +6,17 @@ package it.polimi.ingsw.ps19.message.requests;
 import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 
-/*
- * 
+/**
+ * Message containing all the information regarding the game
  */
 public class SendFullGameMessage extends Request 
 {
 	private static final long serialVersionUID = -1349912240299946517L;
 
+	/**
+	 * Constructor with given id
+	 * @param iD
+	 */
 	public SendFullGameMessage(int iD) 
 	{
 		id = iD;

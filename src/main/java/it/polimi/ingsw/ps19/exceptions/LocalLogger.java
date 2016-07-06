@@ -46,7 +46,8 @@ public class LocalLogger
 			logFile.createNewFile();
 			fh = new FileHandler(filePath);
 			log.addHandler(fh);
-			log.setUseParentHandlers(false);
+			//TODO uncomment
+			//log.setUseParentHandlers(false);
 		} catch (SecurityException | IOException e) 
 		{
 			log.log(Level.SEVERE, e.toString(), e);

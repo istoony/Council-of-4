@@ -7,15 +7,18 @@ import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.message.Message;
 
-/*
+/**
  * Abstract class that implements a message
  */
 public abstract class Request extends Message
-{	
-	/**
-	 * 
-	 */
+{
 	private static final long serialVersionUID = -8039426365908402102L;
 
+	/**
+	 * Visitor method 
+	 * Gets the proper action depending on the request
+	 * @param messageInterpreter
+	 * @return
+	 */
 	public abstract Action accept(MessageInterpreterVisitor messageInterpreter);
 }

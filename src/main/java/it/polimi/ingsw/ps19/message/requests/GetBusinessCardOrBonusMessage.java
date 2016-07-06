@@ -15,6 +15,11 @@ public class GetBusinessCardOrBonusMessage extends Request
 	private City city;
 	private BusinessCard card;
 	
+	/**
+	 * Message with bonus of city or business card
+	 * @param ct
+	 * @param cd
+	 */
 	public GetBusinessCardOrBonusMessage(City ct, BusinessCard cd) 
 	{
 		city = ct;
