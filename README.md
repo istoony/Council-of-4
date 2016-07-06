@@ -27,4 +27,5 @@ To lauch the client please follow these steps:
 ###Notes
 Default server IP address is 127.0.0.1  
 If the server is not found the user will be prompted to insert a new IP address
+
 For further information please refer to the complete game manual at '\Documentation\Manuals' in the repository
