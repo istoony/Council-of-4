@@ -416,7 +416,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			int n;
 				try{
 					 n = Integer.parseInt(ask.getInput().getText());
-
 						index.add(n);
 				}
 				catch(Exception e1){
@@ -424,7 +423,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 					ask.getInput().setText("");
 					ask.getInput().setEditable(true);
 				}
-			
+			System.out.println("index: " + index);
 		}
 	}
 	
@@ -440,7 +439,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	private void numberCheck(ActionEvent e)
 	{
 			numberflag=Integer.parseInt(e.getActionCommand());
-			System.out.println(e.getActionCommand());
+			System.out.println("in numberCheck con e:" + e.getActionCommand());
 	}
 	
 	private void registerListerner(){
