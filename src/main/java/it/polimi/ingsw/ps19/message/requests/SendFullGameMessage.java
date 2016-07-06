@@ -7,7 +7,7 @@ import it.polimi.ingsw.ps19.controller.action.Action;
 import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 
 /**
- * Message containing all the information regarding the game
+ * Request the server to send all the information about the game
  */
 public class SendFullGameMessage extends Request 
 {

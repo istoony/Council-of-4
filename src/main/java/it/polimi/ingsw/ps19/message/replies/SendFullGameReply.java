@@ -10,16 +10,25 @@ import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.NobilityPath;
 import it.polimi.ingsw.ps19.model.map.Region;
 
+/**
+ * Sends the full game info to the player
+ */
 public class SendFullGameReply extends ElectCouncillorReply
 {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4013509319790221079L;
 	
 	private NobilityPath nobilityPath;
 	
+	/**
+	 * Creates a message containing the following informations
+	 * @param activePlayer
+	 * @param result
+	 * @param player
+	 * @param region
+	 * @param king
+	 * @param availableCouncillor
+	 * @param nobilityPath
+	 */
 	public SendFullGameReply(int activePlayer, String result, List<Player> player, List<Region> region, King king,
 			AvailableCouncillor availableCouncillor, NobilityPath nobilityPath) 
 	{

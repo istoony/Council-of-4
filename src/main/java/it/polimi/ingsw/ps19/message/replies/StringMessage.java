@@ -5,7 +5,6 @@ import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
 
 /**
  * The Class StringMessage is used to send only a string message.
- * 
  */
 public class StringMessage extends Reply 
 {
@@ -18,7 +17,6 @@ public class StringMessage extends Reply
 	
 	/**
 	 * Instantiates a new string message.
-	 *
 	 * @param text is the string message of a Reply
 	 */
 	public StringMessage(String text) 

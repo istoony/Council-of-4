@@ -10,8 +10,8 @@ import it.polimi.ingsw.ps19.controller.action.MessageInterpreterVisitor;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.parameter.RegionType;
 
-/*
- * 
+/**
+ * Message to notify of a new councillor elected
  */
 public class ElectCouncillorMessage extends Request 
 {
@@ -21,11 +21,22 @@ public class ElectCouncillorMessage extends Request
 	private King king = null;
 	private Boolean mainAction;
 
+	/**
+	 * Constructor if election on region balcony
+	 * @param c
+	 * @param r
+	 */
 	public ElectCouncillorMessage(Color c, RegionType r) 
 	{
 		color = c;
 		region = r;
 	}
+	
+	/**
+	 * Constructor if election on king balcony
+	 * @param c
+	 * @param k
+	 */
 	public ElectCouncillorMessage(Color c, King k) 
 	{
 		color = c;

@@ -3,12 +3,22 @@ package it.polimi.ingsw.ps19.message.replies;
 import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
 
+/**
+ * Message to notify the player that their game has started
+ */
 public class GameStartedMessage extends Reply 
 {
 	private static final long serialVersionUID = 8482425746181360920L;
 	private int playerNumber;
 	private int numberOfPlayer;
 	
+	/**
+	 * Message contains some information
+	 * @param activePlayer
+	 * @param result
+	 * @param numberOfPlayer
+	 * @param playerNumber
+	 */
 	public GameStartedMessage(int activePlayer, String result, int numberOfPlayer, int playerNumber) 
 	{
 		super(activePlayer, result);

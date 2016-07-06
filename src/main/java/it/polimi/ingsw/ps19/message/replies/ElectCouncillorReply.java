@@ -9,16 +9,26 @@ import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.Region;
 
-public class ElectCouncillorReply extends DrawBusinessCardReply
+/**
+ * Response to a elect councillor action
+ * Gives the player updated information
+ */
+public class ElectCouncillorReply extends DrawBusinessCardReply 
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2780649009992940706L;
 	
 	private King king;
 	private AvailableCouncillor availableCouncillor;
 
+	/**
+	 * Constructor for message to give the players updates on the game
+	 * @param activePlayer
+	 * @param result
+	 * @param player
+	 * @param region
+	 * @param king
+	 * @param availableCouncillor
+	 */
 	public ElectCouncillorReply(int activePlayer, String result, List<Player> player, List<Region> region, 
 			King king, AvailableCouncillor availableCouncillor) 
 	{

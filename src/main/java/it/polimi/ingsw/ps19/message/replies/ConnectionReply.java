@@ -3,6 +3,9 @@ package it.polimi.ingsw.ps19.message.replies;
 import it.polimi.ingsw.ps19.client.clientmodel.ClientUpdate;
 import it.polimi.ingsw.ps19.client.clientmodel.ReplyVisitor;
 
+/**
+ * Reply to a request of connection from a new client
+ */
 public class ConnectionReply extends Reply 
 {
 	private static final long serialVersionUID = 1L;

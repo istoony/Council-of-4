@@ -9,16 +9,25 @@ import it.polimi.ingsw.ps19.model.map.AvailableCouncillor;
 import it.polimi.ingsw.ps19.model.map.King;
 import it.polimi.ingsw.ps19.model.map.Region;
 
-public class GetBusinessCardOrCityBonusReply extends ElectCouncillorReply {
-
-
-	/**
-	 * 
-	 */
+/**
+ * Message to have the player execute the get business or city bonus
+ */
+public class GetBusinessCardOrCityBonusReply extends ElectCouncillorReply 
+{
 	private static final long serialVersionUID = -1538547307429331488L;
 	private Boolean businessCardBonus;
 	private Boolean cityBonus;
 	
+	/**
+	 * Creates a message with all the update informations about the game
+	 * @param activePlayer
+	 * @param result
+	 * @param player
+	 * @param region
+	 * @param king
+	 * @param availableCouncillor
+	 * @param businessCardBonus <=!=> @param cityBonus
+	 */
 	public GetBusinessCardOrCityBonusReply(int activePlayer, String result, List<Player> player, 
 			List<Region> region, King king, AvailableCouncillor availableCouncillor, 
 			boolean businessCardBonus, boolean cityBonus) 
