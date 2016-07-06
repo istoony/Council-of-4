@@ -35,7 +35,8 @@ import it.polimi.ingsw.ps19.model.parameter.RegionType;
  */
 public class ClientCLI extends ClientUI 
 {	
-	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	
 	/**
 	 * @param l: language
 	 */

@@ -20,13 +20,10 @@ import it.polimi.ingsw.ps19.model.parameter.FileReader;
  */
 public class NobilityPath implements Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -142212466262863614L;
 	private static final String ERROR = "file corrotto/non valido!";
 	
-	private transient Map<Integer, List<Bonus>> nobility;
+	private Map<Integer, List<Bonus>> nobility;
 	
 	/**
 	 * Creates the nobility path from the pathfile

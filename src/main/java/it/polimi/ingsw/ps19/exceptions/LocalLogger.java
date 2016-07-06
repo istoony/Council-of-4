@@ -59,8 +59,6 @@ public class LocalLogger
 	 */
 	public synchronized void log(Exception e)
 	{
-		//TODO remove
-		e.printStackTrace();
 		log.log(Level.SEVERE, e.toString(), e);
 	}
 }
