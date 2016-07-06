@@ -61,10 +61,17 @@ public class QuestionFrame extends JFrame implements Runnable{
 		else if(obj.get(0) instanceof RegionType){
 			setTitle(language.getChooseRegionTitle());
 			pane.setToolTipText(language.getChooseRegionTitle());
-			for(Object  o : obj){
-				createButtons(language.getString((RegionType)o), gui);
-			}
+			try{
+				for(Object  o : obj){
+						createButtons(language.getString((RegionType)o), gui);
+					}
+				}
+			catch(NullPointerException e){
+					ClientUI.log.log(e);
+					createButtons(language.getKing().toUpperCase(), gui);
+				}
 		}
+
 		else if(obj.get(0) instanceof Color){
 			setTitle(language.getChooseColor());
 			pane.setToolTipText(language.getChooseColor());

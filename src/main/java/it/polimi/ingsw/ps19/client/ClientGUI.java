@@ -136,6 +136,7 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public RegionType getRegionAndKing(List<RegionType> regions) throws InvalidInsertionException {
 		index.clear();
+		regions.add(null);
 		regionTemp.addAll(regions);
 		ask = new QuestionFrame(this, regions, language);
 		SwingUtilities.invokeLater(ask);
@@ -354,6 +355,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 			if(e.getActionCommand().equals(language.getString(rt))){
 				index.add(regionTemp.indexOf(rt));
 			}
+			if(e.getActionCommand().equals(language.getKing().toUpperCase())){
+				index.add(regionTemp.size()-1);
+			}
 		}
 	}
 	
@@ -407,14 +411,18 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void textReader(ActionEvent e) {
 		if(e.getSource() instanceof JTextField){
-			try{
-				int n = Integer.parseInt(ask.getInput().getText());
-				index.add(n);
-			}
-			catch(Exception e1){
-				log.log(e1);
-				textReader(e);
-			}
+			int n;
+				try{
+					 n = Integer.parseInt(ask.getInput().getText());
+
+						index.add(n);
+				}
+				catch(Exception e1){
+					log.log(e1);
+					ask.getInput().setText("");
+					ask.getInput().setEditable(true);
+				}
+			
 		}
 	}
 	

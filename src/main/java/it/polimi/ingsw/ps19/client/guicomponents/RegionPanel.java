@@ -120,19 +120,15 @@ public class RegionPanel extends JPanel implements MouseListener{
 		JLabel balcony = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getBalcony()));
 		JLabel title1 = new JLabel(INDENTATION + language.getFirstCard() + ": ");
 		JLabel fcardname = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getFirstcard()));
-		//JLabel fcardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getFirstcard().toStringBonus());
 		JLabel title2 = new JLabel(INDENTATION + language.getSecondCard() + ": ");
 		JLabel scardname = new JLabel(INDENTATION+INDENTATION + language.getString(myregion.getSecondcard()));
-		//JLabel scardbonus = new JLabel(INDENTATION+INDENTATION+myregion.getSecondcard().toStringBonus());
 		balcony.setVisible(true);
 		f.add(balconytitle);
 		f.add(balcony);
 		f.add(title1);
 		f.add(fcardname);
-		//f.add(fcardbonus);
 		f.add(title2);
 		f.add(scardname);
-		//f.add(scardbonus);
 		
 		return f;
 		

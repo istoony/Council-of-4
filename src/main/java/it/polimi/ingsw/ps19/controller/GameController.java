@@ -47,10 +47,7 @@ public class GameController implements Observer
 		this.model = model;
 		drawStartingPoliticsCard();
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
+
 	@Override
 	public void update(Observable view, Object message) 
 	{
