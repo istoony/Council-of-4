@@ -19,12 +19,12 @@ import it.polimi.ingsw.ps19.view.connection.RMIReaderIntf;
 public class ClientRMIManager extends ClientManager
 {
 	/**
-	 * Constructor that actually executes the connection via RMI
+	 * Execute the connection that actually executes the connection via RMI
 	 * @param newGame
 	 * @param key
 	 * @param ui
 	 */
-	public ClientRMIManager(ClientUI ui, boolean newGame, int key)
+	public static void connect(ClientUI ui, boolean newGame, int key)
 	{
 		userInterface = ui;
 		int tries = 0;

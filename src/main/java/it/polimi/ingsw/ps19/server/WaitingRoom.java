@@ -178,7 +178,8 @@ public class WaitingRoom
 		mux.lock();
 		ServerManager.serverCLI.showNotification(LocalDateTime.now() + " New game has started with " + room.size() + " players!");  //TEST
 		List<Integer> fullRoom = Costants.clone(room);
-		new GameFactory(fullRoom);
+		GameFactory factory = new GameFactory(fullRoom);
+		factory.start();
 		room.clear();
 		mux.unlock();
 		secondPlayerTime = -1;								//Resets secondPlayerTime

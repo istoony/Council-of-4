@@ -76,9 +76,9 @@ public class ClientStarter
  				if(uiIndex == 1)
  					userInterface = new ClientGUI(language);
 				if(connIndex == 0)
-					new ClientSocketManager(userInterface, newGame, key);
+					ClientSocketManager.connect(userInterface, newGame, key);
 				else
-					new ClientRMIManager(userInterface, newGame, key);
+					ClientRMIManager.connect(userInterface, newGame, key);
 
 	}
 	

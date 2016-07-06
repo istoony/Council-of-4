@@ -15,7 +15,7 @@ public abstract class ClientManager
 	protected static ClientUI userInterface;
 	protected static Integer playerId = null;
 
-	protected void startClient()
+	protected static void startClient()
 	{
 		System.setErr(null);
 		ClientView view = new ClientView(connection);

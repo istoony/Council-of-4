@@ -39,8 +39,6 @@ public class PlayerDisconnectedAction implements Action
 				//nel caso si è disconnesso un player che non stava giocando allora non faccio niente
 			if(nextTurn != actualPlayerId)
 			{
-				//model.getCurrentState().setPlayerTurnId(nextTurn);
-				//model.getPlayerById(nextTurn).setStartingAction();
 				newTurn = true;
 				if(model.getCurrentState().isTimeToMarket())
 					model.getCurrentState().setPlayerTurnId(nextTurn);
@@ -66,6 +64,7 @@ public class PlayerDisconnectedAction implements Action
 	public Reply createReplyMessage(Model model) 
 	{
 		int idTurn;
+		//TODO: decidersi
 		//if(model.getCurrentState().isTimeToMarket() && model.getMarket().getSize() <= 
 		//		model.getCurrentState().getNumberOfPlayer() - model.getCurrentState().getNumberOfDisconnectedPlayer())
 		//	idTurn = Costants.NO_ACTIVE_PLAYER;

@@ -24,7 +24,7 @@ public class ClientSocketManager extends ClientManager
 	 * @param key: password to use to recconect to an old game
 	 * @throws InterruptedException 
 	 */
-	public ClientSocketManager(ClientUI ui, boolean newGame, int key) 
+	public static void connect(ClientUI ui, boolean newGame, int key) 
 	{
 		userInterface = ui;
 		int tries = 0;

@@ -29,7 +29,6 @@ public class GameFactory extends Thread
 	public GameFactory(List<Integer> conns) 
 	{
 		players = conns;
-		this.start();
 	}
 	
 	@Override

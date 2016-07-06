@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.polimi.ingsw.ps19.client.ClientGUI;
+import it.polimi.ingsw.ps19.client.ClientUI;
 import it.polimi.ingsw.ps19.client.language.Language;
 import it.polimi.ingsw.ps19.model.Order;
 
@@ -45,7 +46,8 @@ public class MarketFrame extends JFrame implements Runnable{
 		}
 		
 	private void createButtons(Order order, ClientGUI c, int code){	
-		try{
+		try
+		{
 			JButton j = new JButton(((Integer)order.getPrice()).toString());
 			j.setToolTipText(language.getString(order));
 			j.setActionCommand(((Integer)code).toString());
@@ -54,7 +56,9 @@ public class MarketFrame extends JFrame implements Runnable{
 			j.setVisible(true);
 			choices.add(j);
 		}
-		catch(NullPointerException e){
+		catch(NullPointerException e)
+		{
+			ClientUI.log.log(e);
 			JButton j = new JButton(language.getNothing());
 			j.setToolTipText(language.getNothing());
 			j.setActionCommand(language.getNothing());

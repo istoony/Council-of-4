@@ -23,8 +23,11 @@ public class WaitingPlayerForMarketUpdate extends ClientUpdate
 	@Override
 	public void update(ClientModel model, ClientUI userInterface) 
 	{
-		model.setResult(result);
-		userInterface.showNotification(result);
+		if(model != null)
+		{
+			model.setResult(result);
+			userInterface.showNotification(result);
+		}
 	}
 
 	@Override
