@@ -13,7 +13,6 @@ public class WaitingPlayerForMarketReply extends Reply
 	
 	public WaitingPlayerForMarketReply(int activePlayer, String result) {
 		super(activePlayer, result);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

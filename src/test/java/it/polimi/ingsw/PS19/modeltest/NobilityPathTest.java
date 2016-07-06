@@ -20,6 +20,13 @@ import it.polimi.ingsw.ps19.view.connection.RMIConnection;
 public class NobilityPathTest extends SupportMethod
 {
 
+	/**
+	 * In questo test controllo se i bonus del percorso della nobiltà siano effettivamente applicati al player.
+	 * do al player 2 punti nobiltà e chiamo la funzione checkNobilityPathBonus.
+	 * Successivamente aggiungo al player altri due punti e richiamo la funzione.
+	 * 
+	 * Dopo ogni chiamata controllo che i parametri del player siano corretti.
+	 */
 	@Test
 	public void test() 
 	{
@@ -58,6 +65,14 @@ public class NobilityPathTest extends SupportMethod
 		
 		
 	}
+	
+	/**
+	 * In questo test provo se i victory points finali siano inviati in maniera corretta ai player.
+	 * chiamo le due funzioni calculateLastPoints, sortByVictoryPoints.
+	 * la prima calcola quanti victory points aggiungere ai player e la seconda ordina i player in base a quest'ultimi.
+	 */
+	
+	
 	@Test
 	public void testEndGame() 
 	{
@@ -116,6 +131,10 @@ public class NobilityPathTest extends SupportMethod
 		
 	}
 
+	/**
+	 * Controllo che la lunghezza del percorso della nobiltà sia 20
+	 */
+	@Test
 	public void getMaxTest()
 	{
 		Connection uno = new RMIConnection(true);
@@ -140,6 +159,6 @@ public class NobilityPathTest extends SupportMethod
 		players.add(2);
 		Model m = new Model(players);
 
-		assertTrue(m.getMap().getNobilityPath().getMaxKey() == 30);
+		assertTrue("SIZE:" + m.getMap().getNobilityPath().getMaxKey(), m.getMap().getNobilityPath().getMaxKey() == 20);
 	}
 }

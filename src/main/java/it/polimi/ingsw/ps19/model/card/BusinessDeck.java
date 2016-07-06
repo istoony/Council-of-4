@@ -60,17 +60,6 @@ public class BusinessDeck implements Deck, Serializable
 	public List<BusinessCard> getCard() {
 		return card;
 	}
-	
-	@Override
-	public String toString() {
-		String s = "\n+++++++++++++\n";
-		
-		for (Card c : card) 
-		{
-			s = s.concat(c.toString() + "  ");
-		}
-		return s;
-	}
 
 	/**
 	 * gets the deck size

@@ -37,7 +37,7 @@ public class TestRedrawUpdate {
 		/**
 		 * In questo test creo una richiesta (che solitamente avviene nel client)
 		 * La richiesta la giro al server che ritorna il gioco completo (Testando il model del client)
-		 * Creo sul client l'azione di cambiare un consigliere, 
+		 * Creo sul client l'azione di Redraw Business card
 		 * la invio al server che lo cambia e ritorna il model aggiornato.
 		 * aggiorno il model e controllo che i dati aggiornati e vecchi del balcone siano coerenti.
 		 */

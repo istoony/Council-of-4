@@ -56,7 +56,7 @@ public class ColorManager implements Serializable
 					log.log(Level.SEVERE, e.toString(), e);
 		    	}
 	}
-	
+
 	/**
 	 * Constructor with a given list of colors
 	 * @param listofcolors

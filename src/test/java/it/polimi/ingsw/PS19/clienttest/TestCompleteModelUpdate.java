@@ -13,6 +13,7 @@ import org.junit.Test;
 import it.polimi.ingsw.ps19.client.clientmodel.clientdata.ClientModel;
 import it.polimi.ingsw.ps19.controller.GameController;
 import it.polimi.ingsw.ps19.message.replies.ElectCouncillorReply;
+import it.polimi.ingsw.ps19.message.replies.SendFullGameReply;
 import it.polimi.ingsw.ps19.message.requests.ElectCouncillorMessage;
 import it.polimi.ingsw.ps19.message.requests.SendFullGameMessage;
 import it.polimi.ingsw.ps19.model.Model;
@@ -30,8 +31,7 @@ public class TestCompleteModelUpdate {
 		 * In questo test creo una richiesta (che solitamente avviene nel client)
 		 * La richiesta la giro al server che ritorna il gioco completo (Testando il model del client)
 		 * Creo sul client l'azione di cambiare un consigliere, 
-		 * la invio al server che lo cambia e ritorna il model aggiornato.
-		 * aggiorno il model e controllo che i dati aggiornati e vecchi del balcone siano coerenti.
+		 * la invio al server che lo cambia e ritorna un ElectCouncillorReply
 		 */
 		Connection uno = new RMIConnection(true);
 		uno.setActive();
@@ -57,15 +57,7 @@ public class TestCompleteModelUpdate {
 		
 		g.update(null, sendFullGame);
 		
-		//ReplyVisitor visitor = new ReplyVisitorImpl();
-		
-		//ClientUpdate update = g.getReply().display(visitor);
-		
-		//assertTrue(g.getReply() instanceof SendFullGameReply);
-		
-		//assertTrue(update != null);
-		
-		//update.update(clientModel, null);
+		assertTrue(g.getReply() instanceof SendFullGameReply);
 		
 		assertTrue(clientModel.getActiveplayer() >=0 );
 		assertTrue(clientModel.getAllCities() != null);
@@ -83,20 +75,6 @@ public class TestCompleteModelUpdate {
 		
 		assertTrue(g.getReply() instanceof ElectCouncillorReply);
 		
-		//Reply electCouncillorReply = g.getReply();
-		
-		//ClientUpdate electCouncillorUpdate = electCouncillorReply.display(visitor);
-		
-		//assertTrue(electCouncillorUpdate instanceof ElectCouncillorUpdate);
-		//electCouncillorUpdate.update(clientModel, null);
-		
-		//Region mountainNew = clientModel.getRegionByType(RegionType.MOUNTAIN);
-		
-		//List<Color> second = mountainNew.getBalcony().getCouncilcolor();
-		//assertTrue(first != second);
-		//assertTrue(first.get(1).equals(second.get(2)));
-		//assertTrue(first.get(2).equals(second.get(3)));
-		//assertTrue(Color.decode("#FF0000").equals(second.get(0)));
 	}
 
 }
