@@ -119,8 +119,6 @@ public class QuestionFrame extends JFrame implements Runnable{
 	public QuestionFrame(ClientGUI gui, int n, Language l)
 	{
 		super();
-		try
-		{
 		setLanguage(l);
 		setResizable(false);
 		setAlwaysOnTop(true);
@@ -133,9 +131,6 @@ public class QuestionFrame extends JFrame implements Runnable{
 			createButtons(i.toString(), gui);
 		}
 		addButtons();
-		}
-		catch(Exception e)
-		{e.printStackTrace();}
 	}
 	
 	/**

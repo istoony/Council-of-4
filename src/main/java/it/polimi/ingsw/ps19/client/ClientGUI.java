@@ -225,11 +225,12 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		}
 		for(Entry<City, Integer> entry: citiesECost.entrySet()){
 			if(entry.getKey().getId()==index.get(0)){
-				cityTemp.clear();
+				mapTemp.clear();
 				ask.close();
 				return entry.getKey();
 			}
 		}
+		mapTemp.clear();
 		return null;
 	}
 
@@ -242,7 +243,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 		SwingUtilities.invokeLater(ask);
 		while(numberflag<-1){
 			//wait button
-			System.out.print(numberflag);
 		}
 		ask.close();
 		int returnValue = numberflag;
@@ -301,7 +301,6 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		index.clear();
-		System.out.println("eeeeee" + e.getActionCommand());
 		if(nullCheck(e)){
 			return;
 		}
@@ -422,12 +421,9 @@ public class ClientGUI extends ClientUI implements ActionListener{
 				}
 				catch(Exception e1){
 					log.log(e1);
-					e1.printStackTrace();
 					ask.getInput().setText("");
 					ask.getInput().setEditable(true);
-					textReader(e);
 				}
-			System.out.println("index: " + index);
 		}
 	}
 	
@@ -442,24 +438,11 @@ public class ClientGUI extends ClientUI implements ActionListener{
 	
 	private void numberCheck(ActionEvent e)
 	{
-		try
-		{
 			numberflag=Integer.parseInt(e.getActionCommand());
-			System.out.println(e.getActionCommand());
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-			System.out.println("in numberCheck con e:" + e.getActionCommand());
 	}
 	
 	private void registerListerner(){
-		try
-		{
 		window.getFrame().getInfobox().getBoxes().get(0).setListerner(this);
-		}catch(NumberFormatException e1)
-		{e1.printStackTrace();}
 	}
 	
 	/**
