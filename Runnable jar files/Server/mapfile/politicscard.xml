@@ -40,7 +40,7 @@
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-more-nobilitytrack</type>
+				<type>bonus-more-helper</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
@@ -48,8 +48,8 @@
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-more-nobilitytrack</type>
-				<parameter>1</parameter>
+				<type>bonus-more-helper</type>
+				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -57,7 +57,7 @@
 			<region>MOUNTAIN</region>
 			<bonus>
 				<type>bonus-more-money</type>
-				<parameter>3</parameter>
+				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -77,10 +77,18 @@
 			</bonus>
 			<bonus>
 				<type>bonus-more-money</type>
-				<parameter>4</parameter>
+				<parameter>3</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>MOUNTAIN</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>3</parameter>
 			</bonus>
 			<bonus>
-				<type>bonus-more-nobility-points</type>
+				<type>bonus-more-money</type>
 				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>3</numberofcities>
@@ -96,15 +104,15 @@
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-more-money</type>
-				<parameter>4</parameter>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
 		<card>
 			<region>MOUNTAIN</region>
 			<bonus>
-				<type>bonus-more-victory-points</type>
+				<type>bonus-more-nobilitytrack</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
@@ -121,11 +129,39 @@
 			<region>HILL</region>
 			<bonus>
 				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>2</parameter>
+			</bonus>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>3</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-victory-points</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>1</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
 				<parameter>3</parameter>
 			</bonus>
 			<bonus>
 				<type>bonus-more-victory-points</type>
-				<parameter>4</parameter>
+				<parameter>3</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -136,12 +172,36 @@
 				<parameter>4</parameter>
 			</bonus>
 			<bonus>
-				<type>bonus-more-nobility-points</type>
+				<type>bonus-more-victory-points</type>
 				<parameter>5</parameter>
 			</bonus>
 			<bonus>
 				<type>bonus-more-victory-points</type>
-				<parameter>6</parameter>
+				<parameter>1</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>5</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>HILL</region>
+			<bonus>
+				<type>bonus-more-money</type>
+				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
 		</card>
@@ -156,7 +216,23 @@
 		<card>
 			<region>PLAIN</region>
 			<bonus>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
 				<type>bonus-more-money</type>
+				<parameter>2</parameter>
+			</bonus>
+			<numberofcities>2</numberofcities>
+		</card>
+		<card>
+			<region>PLAIN</region>
+			<bonus>
+				<type>bonus-more-nobilitytrack</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>3</numberofcities>
@@ -200,8 +276,8 @@
 				<parameter>5</parameter>
 			</bonus>
 			<bonus>
-				<type>bonus-more-victory-points</type>
-				<parameter>6</parameter>
+				<type>bonus-more-nobilitytrack</type>
+				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>3</numberofcities>
 		</card>
@@ -224,7 +300,7 @@
 		<card>
 			<region>PLAIN</region>
 			<bonus>
-				<type>bonus-more-nobilitytrack</type>
+				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
@@ -240,7 +316,7 @@
 		<card>
 			<region>PLAIN</region>
 			<bonus>
-				<type>bonus-more-nobilitytrack</type>
+				<type>bonus-more-money</type>
 				<parameter>2</parameter>
 			</bonus>
 			<numberofcities>2</numberofcities>
