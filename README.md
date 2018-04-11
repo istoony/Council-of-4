@@ -1,13 +1,13 @@
-Council Of Four - PS19
+Council Of Four - Board Game
 ======================
 Progetto di Ingegneria del Software
 -----------------------------------
-###Authors
+## Authors
 Antonio Gianola  
 Andrea Facchini  
 Andrea Milanta  
 
-###How to use
+## How to use
 Both the server and the client have to be started by console.
 
 To launch the server please follow these steps:
@@ -24,7 +24,7 @@ To lauch the client please follow these steps:
  3. Execute the command 'java -jar CouncilOfFour.jar'
  4. Follow instructions on screen
 
-###Notes
+## Notes
 The game cannot be started directly from eclipse as it uses the System.console() has standard I/O
 
 Default server IP address is 127.0.0.1  
