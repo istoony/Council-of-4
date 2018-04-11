@@ -3,9 +3,9 @@ Council Of Four - Board Game
 Progetto di Ingegneria del Software
 -----------------------------------
 ## Authors
-Antonio Gianola  
-Andrea Facchini  
-Andrea Milanta  
+[Antonio Gianola](https://github.com/istoony) 
+[Andrea Facchini](https://github.com/AndreF010203)  
+[Andrea Milanta](https://github.com/AndreaMilanta)
 
 ## How to use
 Both the server and the client have to be started by console.
